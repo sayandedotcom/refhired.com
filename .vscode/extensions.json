@@ -1,0 +1,20 @@
+{
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+    "dsznajder.es7-react-js-snippets", // react snippet
+    "DavidAnson.vscode-markdownlint", // markdown linting
+    "yzhang.markdown-all-in-one", // nicer markdown support
+    "esbenp.prettier-vscode", // prettier plugin
+    "dbaeumer.vscode-eslint", // eslint plugin
+    "bradlc.vscode-tailwindcss", // hinting / autocompletion for tailwind
+    "ban.spellright", // Spell check for docs
+    "stripe.vscode-stripe", // stripe VSCode extension
+    "Prisma.prisma", // syntax|format|completion for prisma
+    "rebornix.project-snippets", // Share useful snippets between collaborators
+    "christian-kohler.path-intellisense", // path intellisense
+    "formulahendry.auto-close-tag", // for auto closing tag
+    "formulahendry.auto-rename-tag" // for auto renaming closing tag
+  ],
+  // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+  "unwantedRecommendations": []
+}
