@@ -16,7 +16,7 @@
     "strict": false,
     "target": "es5",
     "paths": {
-      "@/*": ["./*"]
+      "@*": ["./*"]
     }
   },
   "include": ["src", "next-env.d.ts"],
