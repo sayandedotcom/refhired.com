@@ -14,7 +14,8 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "7.0.12"
+    "storybook": "7.0.12",
+    "@referrer/ui": "*"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "7.0.12",
