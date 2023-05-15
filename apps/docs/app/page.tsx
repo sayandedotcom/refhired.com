@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Header } from "@referrer/ui";
 
 export default function Page() {

@@ -1,9 +1,7 @@
 {
   "name": "@referrer/tailwind-config",
   "version": "0.0.0",
-  "private": true,
-  "main": "index.js",
-  "devDependencies": {
-    "tailwindcss": "^3.3.2"
-  }
+  "files": [
+    "tailwind.config.js"
+  ]
 }
