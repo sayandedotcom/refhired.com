@@ -1,36 +1,53 @@
-# Turborepo starter
+### Repository Tool
 
-This is an official starter Turborepo.
+1. Turborepo
 
-## Using this example
+### Tech Stack
 
-Run the following command:
+1. Next.js 13.4+
+2. Tailwind CSS
+3. tRPC
+4. Prisma.io
 
-```sh
-npx create-turbo@latest
-```
+### Language
 
-## What's inside?
+1. TypeScript
 
-This Turborepo includes the following packages/apps:
+### Libraries
 
-### Apps and Packages
+1. Next-Auth
+2. Redux Toolkit
+3. Storybook
+4. Jest & React Testing Library
+5. React Joyride
+6. Zod
+7. city-timezones
+8. Post CSS
+9. React-Icons
+10. Tailwind CSS (For Styling)
+11. shadcn (For Component)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+### Build Tools
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1. Docker
+2. Kubernetes
+3. Prettier
+4. Eslint
+5. Husky
+6. Lint Staged
+7. GitHub Actions
 
-### Utilities
+### Features
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+1. SEO Optimised
+2. PWA
+3. Dynamic Progress Bar / Loaders or Spinners
+4. Tooltip
+5. Intro
+6. Info Icon everywhere
+7. OS Default Theme
+8. User Active or not
+9. Skeleton Loading
 
 ### Build
 
