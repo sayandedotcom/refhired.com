@@ -1,0 +1,18 @@
+{
+  "name": "@referrer/lib",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
+    "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix"
+  },
+  "dependencies": {
+    "clsx": "^1.2.1",
+    "tailwind-merge": "^1.12.0"
+  },
+  "devDependencies": {
+    "@referrer/eslint-config-custom": "*",
+    "@referrer/prettier-config": "*",
+    "@referrer/tsconfig": "*"
+  }
+}
