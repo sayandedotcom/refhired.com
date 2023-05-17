@@ -2,12 +2,12 @@
 
 1. Turborepo
 
-### Tech Stack
+### Main Tech Stack
 
-1. Next.js 13.4+
-2. Tailwind CSS
-3. tRPC
-4. Prisma.io
+1. Next.js 13.4+ (For Front -End)
+2. tRP (For API)
+3. Prisma.io (For Back -End)
+4. PostgreSQL (For Database)
 
 ### Language
 
