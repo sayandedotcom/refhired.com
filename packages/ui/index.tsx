@@ -1,3 +1,2 @@
-import "./styles/index.css";
-export * from "./Button";
-export * from "./Header";
+import './styles/index.css';
+export * from './components/Button';
