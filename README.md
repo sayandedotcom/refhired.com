@@ -5,7 +5,7 @@
 ### Main Tech Stack
 
 1. Next.js 13.4+ (For Front -End)
-2. tRP (For API)
+2. tRPC (For API)
 3. Prisma.io (For Back -End)
 4. PostgreSQL (For Database)
 
