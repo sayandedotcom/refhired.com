@@ -6,7 +6,8 @@ import "@referrer/ui/styles.css";
 export default function Page() {
   return (
     <>
-      <Button onClick={() => alert("hello")}>Button</Button>
+      <Button label='Button' onClick={() => alert("hello")} />
+      <Button variant='destructive' label='Hi' />
     </>
   );
 }
