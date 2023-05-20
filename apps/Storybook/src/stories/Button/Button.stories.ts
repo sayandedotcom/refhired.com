@@ -24,6 +24,7 @@ const meta = {
       control: "select",
       options: ["default", "sm", "lg"],
     },
+    disabled: { control: "boolean" },
   },
 } satisfies Meta<typeof Button>;
 
@@ -49,7 +50,7 @@ export const Secondary: Story = {
 
 export const Large: Story = {
   args: {
-    children: "Button",
+    children: "Large",
     variant: "",
     size: "lg",
   },
