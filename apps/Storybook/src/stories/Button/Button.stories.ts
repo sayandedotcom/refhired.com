@@ -9,6 +9,21 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     backgroundColor: { control: "color" },
+    variant: {
+      control: "select",
+      options: [
+        "default",
+        "destructive",
+        "outline",
+        "secondary",
+        "ghost",
+        "link",
+      ],
+    },
+    size: {
+      control: "select",
+      options: ["default", "sm", "lg"],
+    },
   },
 } satisfies Meta<typeof Button>;
 
