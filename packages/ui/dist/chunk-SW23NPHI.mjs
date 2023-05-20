@@ -1,9 +1,0 @@
-import * as l from 'react';
-import { Slot } from '@radix-ui/react-slot';
-import { cva } from 'class-variance-authority';
-import { cn } from '@referrer/lib/utils/cn';
-import { jsx } from 'react/jsx-runtime';
-
-var g=Object.defineProperty,v=Object.defineProperties;var h=Object.getOwnPropertyDescriptors;var n=Object.getOwnPropertySymbols;var s=Object.prototype.hasOwnProperty,d=Object.prototype.propertyIsEnumerable;var a=(e,t,r)=>t in e?g(e,t,{enumerable:!0,configurable:!0,writable:!0,value:r}):e[t]=r,u=(e,t)=>{for(var r in t||(t={}))s.call(t,r)&&a(e,r,t[r]);if(n)for(var r of n(t))d.call(t,r)&&a(e,r,t[r]);return e},c=(e,t)=>v(e,h(t));var f=(e,t)=>{var r={};for(var o in e)s.call(e,o)&&t.indexOf(o)<0&&(r[o]=e[o]);if(e!=null&&n)for(var o of n(e))t.indexOf(o)<0&&d.call(e,o)&&(r[o]=e[o]);return r};var V=cva("inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background",{variants:{variant:{default:"bg-primary text-primary-foreground hover:bg-primary/90",destructive:"bg-destructive text-destructive-foreground hover:bg-destructive/90",outline:"border border-input hover:bg-accent hover:text-accent-foreground",secondary:"bg-secondary text-secondary-foreground hover:bg-secondary/80",ghost:"hover:bg-accent hover:text-accent-foreground",link:"underline-offset-4 hover:underline text-primary"},size:{default:"h-10 py-2 px-4",sm:"h-9 px-3 rounded-md",lg:"h-11 px-8 rounded-md"}},defaultVariants:{variant:"default",size:"default"}}),C=l.forwardRef((R,b)=>{var i=R,{label:e,className:t,variant:r,size:o,asChild:m=!1}=i,p=f(i,["label","className","variant","size","asChild"]);return jsx(m?Slot:"button",c(u({className:cn(V({variant:r,size:o,className:t})),ref:b},p),{children:e}))});C.displayName="Button";
-
-export { V as a, C as b };
