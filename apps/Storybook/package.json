@@ -12,12 +12,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@referrer/ui": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "7.0.12",
-    "@referrer/ui": "*"
+    "storybook": "7.0.12"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^7.0.12",
     "@storybook/addon-essentials": "7.0.12",
     "@storybook/addon-interactions": "7.0.12",
     "@storybook/addon-links": "7.0.12",
