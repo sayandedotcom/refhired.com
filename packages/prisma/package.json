@@ -1,0 +1,10 @@
+{
+  "name": "@referrer/prisma",
+  "version": "1.0.0",
+  "devDependencies": {
+    "prisma": "^4.15.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.15.0"
+  }
+}
