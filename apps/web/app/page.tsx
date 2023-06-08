@@ -6,11 +6,10 @@ import "@referrer/ui/styles.css";
 export default function Page() {
   return (
     <>
-      <Button onClick={() => alert("hello")}>Button</Button>
-      <Button variant='destructive'>
-        <LoaderButton />
+      <Button iconBefore={<LoaderButton />} onClick={() => alert("hello")}>
         Button
       </Button>
+      <Button iconAfter={<LoaderButton />}>Button</Button>
     </>
   );
 }

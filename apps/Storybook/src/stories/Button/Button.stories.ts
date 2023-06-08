@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "@referrer/ui";
+import { Button, LoaderButton } from "@referrer/ui";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
-const meta = {
+const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
   tags: ["autodocs"],
@@ -26,10 +26,10 @@ const meta = {
     },
     disabled: { control: "boolean" },
   },
-} satisfies Meta<typeof Button>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Button>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
@@ -45,6 +45,7 @@ export const Secondary: Story = {
     children: "Button",
     variant: "secondary",
     size: "",
+    iconBefore: LoaderButton,
   },
 };
 
