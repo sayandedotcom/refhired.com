@@ -32,7 +32,8 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.1",
-    "@referrer/lib":"*",
+    "@radix-ui/react-tooltip": "^1.0.6",
+    "@referrer/lib": "*",
     "class-variance-authority": "^0.6.0",
     "lucide-react": "^0.218.0",
     "tailwindcss-animate": "^1.0.5"
