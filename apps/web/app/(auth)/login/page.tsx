@@ -48,7 +48,7 @@ const Login = () => {
     alert(values);
   }
   return (
-    <div className='flex items-center justify-center gap-10 py-60 px-8'>
+    <div className='flex items-center justify-center gap-12 h-screen px-10'>
       <section>
         <TypographyH1>Referrer</TypographyH1>
         <TypographyH2>Join the Larget Referall Community !</TypographyH2>

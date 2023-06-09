@@ -67,7 +67,7 @@ const SignUp = () => {
     console.log(values);
   }
   return (
-    <div className='flex items-center justify-center gap-10 py-20 px-8'>
+    <div className='flex items-center justify-center gap-10 h-screen px-8'>
       <section>
         <TypographyH1>Referrer</TypographyH1>
         <TypographyH2>Join the Larget Referall Community !</TypographyH2>
