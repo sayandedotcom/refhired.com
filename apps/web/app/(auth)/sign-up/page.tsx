@@ -35,12 +35,7 @@ const signUpSchema = z
     password: z.string().nonempty("Password is required").min(8, {
       message: "Password must be at least 8 characters.",
     }),
-    confirmPassword: z
-      .string()
-      .nonempty("Confirm Password is required")
-      .min(8, {
-        message: "Password must be at least 8 characters.",
-      }),
+    confirmPassword: z.string().nonempty("Confirm Password is required"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Password doesn't match",
