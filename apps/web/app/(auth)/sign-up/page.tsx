@@ -23,7 +23,7 @@ import {
 
 import { useRouter } from "next/navigation";
 
-const formSchema = z
+const signUpSchema = z
   .object({
     username: z.string().nonempty("Username is required").min(5, {
       message: "Username must be at least 5 characters.",
@@ -50,8 +50,8 @@ const formSchema = z
 const SignUp = () => {
   const router = useRouter();
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       username: "",
       email: "",
@@ -61,7 +61,7 @@ const SignUp = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof signUpSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
@@ -86,7 +86,7 @@ const SignUp = () => {
                 <FormItem>
                   <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input placeholder='shadcn' {...field} />
+                    <Input placeholder='@username' {...field} />
                   </FormControl>
                   <FormDescription>
                     This is your public display name.
@@ -102,7 +102,7 @@ const SignUp = () => {
                 <FormItem>
                   <FormLabel>Email Address</FormLabel>
                   <FormControl>
-                    <Input placeholder='shadcn' {...field} />
+                    <Input placeholder='Email' {...field} />
                   </FormControl>
                   <FormDescription>Enter your Email Address</FormDescription>
                   <FormMessage />
@@ -116,7 +116,7 @@ const SignUp = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type='password' placeholder='shadcn' {...field} />
+                    <Input type='password' placeholder='Password' {...field} />
                   </FormControl>
                   <FormDescription>Enter your Password</FormDescription>
                   <FormMessage />
@@ -130,7 +130,11 @@ const SignUp = () => {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
-                    <Input type='password' placeholder='shadcn' {...field} />
+                    <Input
+                      type='password'
+                      placeholder='Confirm Password'
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>Confirm your Password !</FormDescription>
                   <FormMessage />

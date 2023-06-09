@@ -22,7 +22,7 @@ import {
 } from "@referrer/ui";
 import { useRouter } from "next/navigation";
 
-const formSchema = z.object({
+const loginSchema = z.object({
   username: z.string().nonempty("Username is required").min(5, {
     message: "Username must be at least 5 characters.",
   }),
@@ -34,15 +34,16 @@ const formSchema = z.object({
 const Login = () => {
   const router = useRouter();
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       username: "",
+      password: "",
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof loginSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     alert(values);
