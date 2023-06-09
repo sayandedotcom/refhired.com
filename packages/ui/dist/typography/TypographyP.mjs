@@ -1,6 +1,2 @@
+export { a as TypographyP } from '../chunk-ZOQLMX75.mjs';
 import '../chunk-DYNA3PMW.mjs';
-import { jsx } from 'react/jsx-runtime';
-
-function c({children:e}){return jsx("p",{className:"leading-7 [&:not(:first-child)]:mt-6",children:e})}
-
-export { c as TypographyP };
