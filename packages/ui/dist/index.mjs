@@ -12,3 +12,8 @@ export { a as TypographyH1 } from './chunk-7IOGX7DG.mjs';
 export { a as TypographyH2 } from './chunk-ADSDDYTP.mjs';
 export { a as TypographyH3 } from './chunk-5FHZ4GJW.mjs';
 import './chunk-DYNA3PMW.mjs';
+import { jsx } from 'react/jsx-runtime';
+
+var k=()=>jsx("div",{children:"Header"});var D=()=>jsx("div",{children:"Footer"});
+
+export { D as Footer, k as Header };
