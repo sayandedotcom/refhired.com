@@ -1,3 +1,14 @@
+### Workspaces List
+
+| Index No. | Workspace | Info.             |
+| --------- | --------- | ----------------- |
+| 1         | docs      | Documentation     |
+| 2         | Storybook | Storybook         |
+| 3         | web       | Main Website      |
+| 4         | ui        | UI Components     |
+| 5         | prisma    | Prisma Database   |
+| 6         | lib       | Library FUnctions |
+
 ### Repository Tool
 
 1. Turborepo
