@@ -1,9 +1,11 @@
 export { Button, buttonVariants } from './components/Button/button.js';
-import * as react_jsx_runtime from 'react/jsx-runtime';
+export { Header } from './components/Header/Header.js';
+export { Footer } from './components/Footer/Footer.js';
 export { LoaderButton } from './components/Loaders/Loader-Button/Loader.js';
 export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField } from './forms/form.js';
 export { Input } from './forms/input.js';
 export { Label } from './forms/label.js';
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './components/Tooltip/tooltip.js';
 export { TypographyBlockquote } from './typography/TypographyBlockquote.js';
 export { TypographyH1 } from './typography/TypographyH1.js';
 export { TypographyH2 } from './typography/TypographyH2.js';
@@ -15,12 +17,8 @@ export { TypographySmall } from './typography/TypographySmall.js';
 import 'class-variance-authority/dist/types';
 import 'react';
 import 'class-variance-authority';
+import 'react/jsx-runtime';
 import '@radix-ui/react-slot';
 import 'react-hook-form';
 import '@radix-ui/react-label';
-
-declare const Header: () => react_jsx_runtime.JSX.Element;
-
-declare const Footer: () => react_jsx_runtime.JSX.Element;
-
-export { Footer, Header };
+import '@radix-ui/react-tooltip';
