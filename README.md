@@ -1,13 +1,20 @@
 ### Workspaces List
 
-| Index No. | Workspace | Info.             |
-| --------- | --------- | ----------------- |
-| 1         | docs      | Documentation     |
-| 2         | Storybook | Storybook         |
-| 3         | web       | Main Website      |
-| 4         | ui        | UI Components     |
-| 5         | prisma    | Prisma Database   |
-| 6         | lib       | Library FUnctions |
+| Index No.          | Workspace            | Info.             | Name                           |
+| ------------------ | -------------------- | ----------------- | ------------------------------ |
+| apps worksapce     |
+| 1                  | docs                 | Documentation     | @referrer/docs                 |
+| 2                  | Storybook            | Storybook         | @referrer/storybook            |
+| 3                  | web                  | Main Website      | @referrer/web                  |
+| packages worksapce |
+| 4                  | ui                   | UI Components     | @referrer/ui                   |
+| 5                  | prisma               | Prisma Database   | @referrer/prisma               |
+| 6                  | lib                  | Library Functions | @referrer/lib                  |
+| 7                  | eslint-config-custom | ESLint Config     | @referrer/eslint-config-custom |
+| 8                  | prettier-config      | Prettier Config   | @referrer/prettier-config      |
+| 9                  | tailwind-config      | Tailwind Config   | @referrer/tailwind-config      |
+| 10                 | tsconfig             | Tsconfig          | @referrer/tsconfig             |
+| 11                 | types                | Types             | @referrer/types                |
 
 ### Repository Tool
 
