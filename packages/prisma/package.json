@@ -1,6 +1,9 @@
 {
   "name": "@referrer/prisma",
   "version": "1.0.0",
+    "scripts": {
+    "format": "npx prisma format"
+  },
   "devDependencies": {
     "prisma": "^4.15.0"
   },

@@ -10,6 +10,7 @@ export default function Page() {
         Button
       </Button>
       <Button iconAfter={<LoaderButton />}>Button</Button>
+      <input type='text' name='' id='' placeholder='Claim your username' />
     </>
   );
 }
