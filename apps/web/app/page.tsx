@@ -2,7 +2,6 @@
 
 import { Button, LoaderButton } from "@referrer/ui";
 import "../styles/globals.css";
-import "@referrer/ui/styles.css";
 export default function Page() {
   return (
     <>
@@ -10,7 +9,7 @@ export default function Page() {
         Button
       </Button>
       <Button iconAfter={<LoaderButton />}>Button</Button>
-      <input type='text' name='' id='' placeholder='Claim your username' />
+      <input className="bg-destructive" type='text' name='' id='' placeholder='Claim your username' />
     </>
   );
 }

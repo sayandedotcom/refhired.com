@@ -4,7 +4,6 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import "@referrer/ui/styles.css";
 import "../../../styles/globals.css";
 import {
   Form,

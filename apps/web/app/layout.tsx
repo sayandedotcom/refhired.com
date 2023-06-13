@@ -1,6 +1,6 @@
 "use client";
 import { Footer, Header } from "@referrer/ui";
-import "@referrer/ui/styles.css";
+import "../styles/globals.css"
 export default function RootLayout({
   children,
 }: {
