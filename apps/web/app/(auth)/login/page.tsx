@@ -17,15 +17,17 @@ import {
   Button,
   TypographyH4,
   TypographyH2,
-  TypographyH1,
+  Separator,
+  TypographyP,
 } from "@referrer/ui";
 import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
-  username: z.string().nonempty("Username is required").min(5, {
-    message: "Username must be at least 5 characters.",
-  }),
-  password: z.string().nonempty("Password is required").min(8, {
+  email: z
+    .string()
+    .nonempty("This field is required")
+    .email({ message: "Invalid email address" }),
+  password: z.string().nonempty("This field is required").min(8, {
     message: "Password must be at least 8 characters.",
   }),
 });
@@ -36,40 +38,39 @@ const Login = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      username: "",
+      email: "",
       password: "",
     },
   });
 
-  // 2. Define a submit handler.
+  // 2. Define a submit handler.outline
   function onSubmit(values: z.infer<typeof loginSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    alert(values);
+    alert(values.email);
   }
   return (
-    <div className='flex items-center justify-center gap-12 h-screen px-10'>
-      <section>
-        <TypographyH1>Referrer</TypographyH1>
-        <TypographyH2>Join the Larget Referall Community !</TypographyH2>
-      </section>
-      <div className='w-5/12'>
-        <div className='flex justify-center items-center gap-5'>
-          <TypographyH4>Don&prime;t have an account ?</TypographyH4>
-          <Button onClick={() => router.push("/sign-up")}>Sign Up</Button>
-        </div>
+    <div className='flex flex-col items-center justify-center gap-10 h-screen bg-[#f3f4f6]'>
+      <TypographyH2>Welcome Back !</TypographyH2>
+      <div className='rounded-md border border-gray-200 w-full lg:w-[450px] px-4 py-10 bg-white flex flex-col justify-center items-center gap-6'>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='space-y-8 flex flex-col w-[350px]'>
             <FormField
               control={form.control}
-              name='username'
+              name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Email address</FormLabel>
                   <FormControl>
-                    <Input placeholder='Email' {...field} />
+                    <Input
+                      placeholder='john.doe@example.com'
+                      type='email'
+                      {...field}
+                    />
                   </FormControl>
-                  <FormDescription>Enter your Email Address</FormDescription>
+                  {/* <FormDescription>Enter your Email Address</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -81,16 +82,33 @@ const Login = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type='password' placeholder='Password' {...field} />
+                    <Input
+                      type='password'
+                      placeholder='•••••••••••'
+                      {...field}
+                    />
                   </FormControl>
-                  <FormDescription>Enter your Password</FormDescription>
+                  {/* <FormDescription>Enter your Password</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type='submit'>Submit</Button>
+            <Button type='submit'>Sign In</Button>
           </form>
         </Form>
+        <Separator />
+        <div className='flex flex-col w-[350px] gap-4'>
+          <Button variant='secondary'>
+            <TypographyP>Sign In with Google</TypographyP>
+          </Button>
+          <Button variant='secondary'>
+            <TypographyP>Sign In with Facebook</TypographyP>
+          </Button>
+        </div>
+      </div>
+      <div className='flex justify-center items-center gap-5'>
+        <TypographyH4>Don&prime;t have an account ?</TypographyH4>
+        <Button onClick={() => router.push("/sign-up")}>Sign Up</Button>
       </div>
     </div>
   );

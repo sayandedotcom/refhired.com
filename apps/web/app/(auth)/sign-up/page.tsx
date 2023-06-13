@@ -72,7 +72,9 @@ const SignUp = () => {
           <Button onClick={() => router.push("/login")}>Login</Button>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='space-y-8 flex flex-col'>
             <FormField
               control={form.control}
               name='username'
@@ -82,9 +84,7 @@ const SignUp = () => {
                   <FormControl>
                     <Input placeholder='@username' {...field} />
                   </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>
+                  {/* <FormDescription>This is your public display name.</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -98,7 +98,7 @@ const SignUp = () => {
                   <FormControl>
                     <Input placeholder='Email' {...field} />
                   </FormControl>
-                  <FormDescription>Enter your Email Address</FormDescription>
+                  {/* <FormDescription>Enter your Email Address</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -112,7 +112,7 @@ const SignUp = () => {
                   <FormControl>
                     <Input type='password' placeholder='Password' {...field} />
                   </FormControl>
-                  <FormDescription>Enter your Password</FormDescription>
+                  {/* <FormDescription>Enter your Password</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -130,7 +130,7 @@ const SignUp = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>Confirm your Password !</FormDescription>
+                  {/* <FormDescription>Confirm your Password !</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
