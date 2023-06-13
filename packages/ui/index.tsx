@@ -5,5 +5,6 @@ export * from "./components/Footer";
 export * from "./components/Loaders";
 export * from "./components/Separator";
 export * from "./components/Tooltip";
+export * from "./components/Icons";
 export * from "./forms";
 export * from "./typography";
