@@ -50,7 +50,7 @@ const Login = () => {
     alert(values.email);
   }
   return (
-    <div className='flex flex-col items-center justify-center gap-10 h-screen bg-[#f3f4f6]'>
+    <div className='p-11 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
       <div className='rounded-md border border-gray-200 w-full lg:w-[450px] px-4 py-10 bg-white flex flex-col justify-center items-center gap-6'>
         <Form {...form}>
@@ -106,9 +106,9 @@ const Login = () => {
           </Button>
         </div>
       </div>
-      <div className='flex justify-center items-center gap-5'>
-        <TypographyH4>Don&prime;t have an account ?</TypographyH4>
-        <Button onClick={() => router.push("/sign-up")}>Sign Up</Button>
+      <div className='flex justify-center items-center gap-2'>
+        <TypographyP>Don&prime;t have an account ?</TypographyP>
+        <Link href='/sign-up'>Sign Up</Link>
       </div>
     </div>
   );
