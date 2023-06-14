@@ -1,32 +1,11 @@
 "use client";
-import Link from "next/link";
-import { Separator } from "../Separator";
-const footerLinks = [
-  {
-    name: "About Us",
-    links: ["Company History", "Meet the Team", "Employee Handbook", "Careers"],
-  },
-  {
-    name: "Our Services",
-    links: ["Web Development", "Web Design", "Marketing"],
-  },
-  {
-    name: "About Us",
-    links: ["Company", "Meet", "Employee", "Careers"],
-  },
-  {
-    name: "About Us",
-    links: ["Company", "Meet", "Employee", "Careers"],
-  },
-];
-
 export const Footer = () => {
   return (
     <footer className='bg-white'>
-      <div className='mx-auto max-w-screen-xl w-10/12 px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 bg-black rounded-3xl'>
+      <div className='mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24'>
         <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
           <div>
-            <div className='flex justify-center text-white sm:justify-start'>
+            <div className='flex justify-center text-teal-600 sm:justify-start'>
               Referrer
             </div>
 
@@ -37,7 +16,7 @@ export const Footer = () => {
 
             <ul className='mt-8 flex justify-center gap-6 sm:justify-start md:gap-8'>
               <li>
-                <Link
+                <a
                   href='/'
                   rel='noreferrer'
                   target='_blank'
@@ -54,7 +33,7 @@ export const Footer = () => {
                       clipRule='evenodd'
                     />
                   </svg>
-                </Link>
+                </a>
               </li>
 
               <li>
@@ -96,7 +75,7 @@ export const Footer = () => {
               </li>
 
               <li>
-                <Link
+                <a
                   href='/'
                   rel='noreferrer'
                   target='_blank'
@@ -113,11 +92,11 @@ export const Footer = () => {
                       clipRule='evenodd'
                     />
                   </svg>
-                </Link>
+                </a>
               </li>
 
               <li>
-                <Link
+                <a
                   href='/'
                   rel='noreferrer'
                   target='_blank'
@@ -134,91 +113,110 @@ export const Footer = () => {
                       clipRule='evenodd'
                     />
                   </svg>
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
 
           <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2'>
             <div className='text-center sm:text-left'>
-              {footerLinks.map(({ name, links }) => (
-                <>
-                  <p className='text-lg font-medium text-white'>{name}</p>
-                  <ul className='mt-8 space-y-4 text-sm'>
-                    {links.map((link) => (
-                      <li>
-                        <Link
-                          className='text-gray-200 transition hover:text-gray-700/75'
-                          href='/'>
-                          {link}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ))}
-            </div>
-
-            <div className='text-center sm:text-left'>
-              <p className='text-lg font-medium text-white'>Our Services</p>
+              <p className='text-lg font-medium text-gray-900'>About Us</p>
 
               <ul className='mt-8 space-y-4 text-sm'>
                 <li>
-                  <Link
+                  <a
                     className='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
-                    Web Development
-                  </Link>
+                    Company History
+                  </a>
                 </li>
 
                 <li>
-                  <Link
+                  <a
                     className='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
-                    Web Design
-                  </Link>
+                    Meet the Team
+                  </a>
                 </li>
 
                 <li>
-                  <Link
+                  <a
                     className='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
-                    Marketing
-                  </Link>
+                    Employee Handbook
+                  </a>
                 </li>
 
                 <li>
-                  <Link
+                  <a
                     className='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
-                    Google Ads
-                  </Link>
+                    Careers
+                  </a>
                 </li>
               </ul>
             </div>
 
             <div className='text-center sm:text-left'>
-              <p className='text-lg font-medium text-white'>Helpful Links</p>
+              <p className='text-lg font-medium text-gray-900'>Our Services</p>
 
               <ul className='mt-8 space-y-4 text-sm'>
                 <li>
-                  <Link
+                  <a
+                    className='text-gray-700 transition hover:text-gray-700/75'
+                    href='/'>
+                    Web Development
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    className='text-gray-700 transition hover:text-gray-700/75'
+                    href='/'>
+                    Web Design
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    className='text-gray-700 transition hover:text-gray-700/75'
+                    href='/'>
+                    Marketing
+                  </a>
+                </li>
+
+                <li>
+                  <a
+                    className='text-gray-700 transition hover:text-gray-700/75'
+                    href='/'>
+                    Google Ads
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className='text-center sm:text-left'>
+              <p className='text-lg font-medium text-gray-900'>Helpful Links</p>
+
+              <ul className='mt-8 space-y-4 text-sm'>
+                <li>
+                  <a
                     className='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
                     FAQs
-                  </Link>
+                  </a>
                 </li>
 
                 <li>
-                  <Link
+                  <a
                     className='text-gray-700 transition hover:text-gray-700/75'
                     href='/'>
                     Support
-                  </Link>
+                  </a>
                 </li>
 
                 <li>
-                  <Link
+                  <a
                     className='group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end'
                     href='/'>
                     <span className='text-gray-700 transition group-hover:text-gray-700/75'>
@@ -229,22 +227,22 @@ export const Footer = () => {
                       <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75'></span>
                       <span className='relative inline-flex h-2 w-2 rounded-full bg-teal-500'></span>
                     </span>
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
 
             <div className='text-center sm:text-left'>
-              <p className='text-lg font-medium text-white'>Contact Us</p>
+              <p className='text-lg font-medium text-gray-900'>Contact Us</p>
 
               <ul className='mt-8 space-y-4 text-sm'>
                 <li>
-                  <Link
+                  <a
                     className='flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end'
                     href='/'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5 shrink-0 text-white'
+                      className='h-5 w-5 shrink-0 text-gray-900'
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'
@@ -257,16 +255,16 @@ export const Footer = () => {
                     </svg>
 
                     <span className='flex-1 text-gray-700'>john@doe.com</span>
-                  </Link>
+                  </a>
                 </li>
 
                 <li>
-                  <Link
+                  <a
                     className='flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end'
                     href='/'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5 shrink-0 text-white'
+                      className='h-5 w-5 shrink-0 text-gray-900'
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'
@@ -279,13 +277,13 @@ export const Footer = () => {
                     </svg>
 
                     <span className='flex-1 text-gray-700'>0123456789</span>
-                  </Link>
+                  </a>
                 </li>
 
                 <li className='flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    className='h-5 w-5 shrink-0 text-white'
+                    className='h-5 w-5 shrink-0 text-gray-900'
                     fill='none'
                     viewBox='0 0 24 24'
                     stroke='currentColor'
@@ -316,19 +314,19 @@ export const Footer = () => {
             <p className='text-sm text-gray-500'>
               <span className='block sm:inline'>All rights reserved.</span>
 
-              <Link
-                className='inline-block text-white underline transition hover:text-white/75'
+              <a
+                className='inline-block text-teal-600 underline transition hover:text-teal-600/75'
                 href='/'>
                 Terms & Conditions
-              </Link>
+              </a>
 
               <span>&middot;</span>
 
-              <Link
-                className='inline-block text-white underline transition hover:text-white/75'
+              <a
+                className='inline-block text-teal-600 underline transition hover:text-teal-600/75'
                 href='/'>
                 Privacy Policy
-              </Link>
+              </a>
             </p>
 
             <p className='mt-4 text-sm text-gray-500 sm:order-first sm:mt-0'>
