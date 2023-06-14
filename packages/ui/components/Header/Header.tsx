@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { Button } from "../Button";
 import { useRouter } from "next/navigation";
 
@@ -10,27 +10,28 @@ export const Header = () => {
       <div className='mx-auto max-w-screen-xl p-4'>
         <div className='flex items-center justify-between gap-4 lg:gap-10'>
           <div className='flex lg:w-0 lg:flex-1'>
-            <a href='#'>
+            <Link href='/'>
               <span className='sr-only'>Logo</span>
               <span className='inline-block h-10 w-32 rounded-lg bg-gray-200'></span>
-            </a>
+            </Link>
           </div>
 
           <nav
             aria-label='Global'
             className='hidden gap-8 text-sm font-medium md:flex'>
-            <a className='text-gray-500' href=''>
+            <Link href='/dashboard'>Dashboard</Link>
+            <Link className='text-gray-500' href='/about-us'>
               About
-            </a>
-            <a className='text-gray-500' href=''>
+            </Link>
+            <Link className='text-gray-500' href='/blog'>
               Blog
-            </a>
-            <a className='text-gray-500' href=''>
-              Projects
-            </a>
-            <a className='text-gray-500' href=''>
+            </Link>
+            <Link className='text-gray-500' href='/pricing'>
+              Pricing
+            </Link>
+            <Link className='text-gray-500' href=''>
               Contact
-            </a>
+            </Link>
           </nav>
 
           <div className='hidden flex-1 items-center justify-end gap-4 sm:flex'>
