@@ -6,3 +6,4 @@ export { TypographyH4 } from "./TypographyH4";
 export { TypographyLarge } from "./TypographyLarge";
 export { TypographyP } from "./TypographyP";
 export { TypographySmall } from "./TypographySmall";
+export { TypographyMuted } from "./TypographyMuted";
