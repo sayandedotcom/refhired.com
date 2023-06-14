@@ -8,16 +8,19 @@ import "../../../styles/globals.css";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
   Input,
   Button,
-  TypographyH4,
   TypographyH1,
   TypographyH2,
+  TypographyP,
+  Separator,
+  TypographyH3,
+  TypographySmall,
+  TypographyMuted,
 } from "@referrer/ui";
 
 import { useRouter } from "next/navigation";
@@ -61,20 +64,25 @@ const SignUp = () => {
     console.log(values);
   }
   return (
-    <div className='flex items-center justify-center gap-10 h-screen px-8 bg-[#f3f4f6]'>
-      <section>
+    <div className='min-h-screen flex flex-col md:flex-row items-center justify-center gap-28 bg-[#f3f4f6] lg:h-screen'>
+      <section className='hidden md:block'>
         <TypographyH1>Referrer</TypographyH1>
         <TypographyH2>Join the Larget Referall Community !</TypographyH2>
       </section>
-      <div className='w-5/12'>
-        <div className='flex justify-center items-center gap-5'>
-          <TypographyH4>Already have an account !</TypographyH4>
-          <Button onClick={() => router.push("/login")}>Login</Button>
+      <div className='w-11/12 rounded-md border border-gray-200 lg:w-[450px] px-4 py-10 bg-white flex flex-col justify-center items-center gap-6'>
+        <div className='p-2 flex flex-col gap-4'>
+          <TypographyH3>Welcome to the Referrer</TypographyH3>
+          <TypographyMuted>
+            Create your account and start using Referrer for free, with
+            unlimited event types, bookings and all the features you need.
+            Upgrade to a premium plan if you&prime;re looking for more features.
+          </TypographyMuted>
         </div>
+        <Separator />
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-8 flex flex-col'>
+            className='space-y-8 flex flex-col w-[350px]'>
             <FormField
               control={form.control}
               name='username'
@@ -96,7 +104,7 @@ const SignUp = () => {
                 <FormItem>
                   <FormLabel>Email Address</FormLabel>
                   <FormControl>
-                    <Input placeholder='Email' {...field} />
+                    <Input placeholder='john.doe@example.com' {...field} />
                   </FormControl>
                   {/* <FormDescription>Enter your Email Address</FormDescription> */}
                   <FormMessage />
@@ -110,7 +118,12 @@ const SignUp = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input type='password' placeholder='Password' {...field} />
+                    <Input
+                      className='tracking-widest'
+                      type='password'
+                      placeholder='• • • • • • • • • • •'
+                      {...field}
+                    />
                   </FormControl>
                   {/* <FormDescription>Enter your Password</FormDescription> */}
                   <FormMessage />
@@ -125,8 +138,9 @@ const SignUp = () => {
                   <FormLabel>Confirm Password</FormLabel>
                   <FormControl>
                     <Input
+                      className='tracking-widest'
                       type='password'
-                      placeholder='Confirm Password'
+                      placeholder='• • • • • • • • • • •'
                       {...field}
                     />
                   </FormControl>
@@ -135,9 +149,25 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            <Button type='submit'>Submit</Button>
+            <Button type='submit'>Sign Up for free</Button>
           </form>
         </Form>
+        <Separator />
+        <div className='flex justify-between w-[350px] gap-4'>
+          <Button variant='secondary'>
+            <TypographyP>Sign Up with Google</TypographyP>
+          </Button>
+          <Button variant='secondary'>
+            <TypographyP>Sign Up with LinkdIn</TypographyP>
+          </Button>
+        </div>
+        <Separator />
+        <div className='flex justify-center items-center gap-2'>
+          <TypographySmall>Already have an account ?</TypographySmall>
+          <Link className='text-muted-foreground' href='/login'>
+            <TypographySmall> Sign In</TypographySmall>
+          </Link>
+        </div>
       </div>
     </div>
   );

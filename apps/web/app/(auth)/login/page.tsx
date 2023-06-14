@@ -8,19 +8,19 @@ import "../../../styles/globals.css";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
   Input,
   Button,
-  TypographyH4,
   TypographyH2,
   Separator,
   TypographyP,
+  TypographySmall,
 } from "@referrer/ui";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const loginSchema = z.object({
   email: z
@@ -44,15 +44,21 @@ const Login = () => {
   });
 
   // 2. Define a submit handler.outline
-  function onSubmit(values: z.infer<typeof loginSchema>) {
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     alert(values.email);
-  }
+    const result = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: true,
+      callbackUrl: "/home",
+    });
+  };
   return (
-    <div className='p-11 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
+    <div className='min-h-screen flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
-      <div className='rounded-md border border-gray-200 w-full lg:w-[450px] px-4 py-10 bg-white flex flex-col justify-center items-center gap-6'>
+      <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] px-4 py-10 bg-white flex flex-col justify-center items-center gap-6'>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -83,8 +89,9 @@ const Login = () => {
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
+                      className='tracking-widest'
                       type='password'
-                      placeholder='•••••••••••'
+                      placeholder='• • • • • • • • • • •'
                       {...field}
                     />
                   </FormControl>
@@ -102,13 +109,16 @@ const Login = () => {
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
           <Button variant='secondary'>
-            <TypographyP>Sign In with Facebook</TypographyP>
+            <TypographyP>Sign In with LinkdIn</TypographyP>
           </Button>
         </div>
-      </div>
-      <div className='flex justify-center items-center gap-2'>
-        <TypographyP>Don&prime;t have an account ?</TypographyP>
-        <Link href='/sign-up'>Sign Up</Link>
+        <Separator />
+        <div className='flex justify-center items-center gap-2'>
+          <TypographySmall>Don&prime;t have an account ?</TypographySmall>
+          <Link className='text-muted-foreground' href='/sign-up'>
+            <TypographySmall>Sign Up</TypographySmall>
+          </Link>
+        </div>
       </div>
     </div>
   );
