@@ -64,12 +64,12 @@ const SignUp = () => {
     console.log(values);
   }
   return (
-    <div className='min-h-screen py-6 flex flex-col md:flex-row items-center justify-around lg:gap-28 bg-[#f3f4f6] lg:h-screen lg:overflow-hidden md:px-10 gap-5'>
+    <div className='min-h-screen py-3 flex flex-col md:flex-row items-center justify-around lg:gap-16 bg-[#f3f4f6] md:px-10 gap-5'>
       <section className='hidden md:block lg:flex lg:flex-col lg:gap-3'>
         <TypographyH1>Referrer</TypographyH1>
         <TypographyH2>Join the larget referall community !</TypographyH2>
       </section>
-      <div className='w-11/12 rounded-md border border-gray-200 lg:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-4'>
+      <div className='w-11/12 rounded-md border border-gray-200 lg:w-[450px] py-2 bg-white flex flex-col justify-center items-center gap-4'>
         <div className='py-2 flex flex-col gap-4 w-11/12 lg:w-10/12'>
           <TypographyH3>Welcome to the Referrer</TypographyH3>
           <TypographyMuted>
