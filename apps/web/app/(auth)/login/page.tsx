@@ -109,7 +109,7 @@ const Login = () => {
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
           <Button variant='secondary'>
-            <TypographyP>Sign In with LinkdIn</TypographyP>
+            <TypographyP>Sign In with LinkdeIn</TypographyP>
           </Button>
         </div>
         <Separator />

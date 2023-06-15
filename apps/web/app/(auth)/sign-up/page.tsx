@@ -154,11 +154,11 @@ const SignUp = () => {
         </Form>
         <Separator />
         <div className='flex justify-between w-[350px] gap-4'>
-          <Button variant='secondary'>
-            <TypographyP>Sign Up with Google</TypographyP>
+          <Button className='w-6/12' variant='secondary'>
+            <TypographyP>Google</TypographyP>
           </Button>
-          <Button variant='secondary'>
-            <TypographyP>Sign Up with LinkdIn</TypographyP>
+          <Button className='w-6/12' variant='secondary'>
+            <TypographyP>LinkdeIn</TypographyP>
           </Button>
         </div>
         <Separator />
