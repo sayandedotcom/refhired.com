@@ -5,12 +5,10 @@ import "../styles/globals.css";
 export default function Page() {
   return (
     <>
-      <Header />
       <Button iconBefore={<LoaderButton />} onClick={() => alert("hello")}>
         Button
       </Button>
       <input type='text' name='' id='' placeholder='Claim your username' />
-      <Footer />
     </>
   );
 }
