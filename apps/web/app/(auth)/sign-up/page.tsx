@@ -64,7 +64,7 @@ const SignUp = () => {
     console.log(values);
   }
   return (
-    <div className='min-h-screen flex flex-col md:flex-row items-center justify-center gap-28 bg-[#f3f4f6] lg:h-screen'>
+    <div className='min-h-screen py-6 flex flex-col md:flex-row items-center justify-center gap-28 bg-[#f3f4f6] lg:h-screen lg:overflow-hidden'>
       <section className='hidden md:block'>
         <TypographyH1>Referrer</TypographyH1>
         <TypographyH2>Join the Larget Referall Community !</TypographyH2>

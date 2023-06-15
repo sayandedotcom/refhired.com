@@ -56,7 +56,7 @@ const Login = () => {
     });
   };
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
+    <div className='min-h-screen py-5 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
       <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] px-4 py-10 bg-white flex flex-col justify-center items-center gap-6'>
         <Form {...form}>
