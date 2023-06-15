@@ -1,31 +1,33 @@
 ### Workspaces List
 
-| Index No.          | Workspace            | Info.             | Name                           |
-| ------------------ | -------------------- | ----------------- | ------------------------------ |
+| Index No.          | Workspace            | Info.                    | Name                           |
+| ------------------ | -------------------- | ------------------------ | ------------------------------ |
 | apps worksapce     |
-| 1                  | docs                 | Documentation     | @referrer/docs                 |
-| 2                  | Storybook            | Storybook         | @referrer/storybook            |
-| 3                  | web                  | Main Website      | @referrer/web                  |
+| 1                  | docs                 | Documentation            | @referrer/docs                 |
+| 2                  | storybook            | Storybook                | @referrer/storybook            |
+| 3                  | web                  | Main Website             | @referrer/web                  |
 | packages worksapce |
-| 4                  | ui                   | UI Components     | @referrer/ui                   |
-| 5                  | prisma               | Prisma Database   | @referrer/prisma               |
-| 6                  | lib                  | Library Functions | @referrer/lib                  |
-| 7                  | eslint-config-custom | ESLint Config     | @referrer/eslint-config-custom |
-| 8                  | prettier-config      | Prettier Config   | @referrer/prettier-config      |
-| 9                  | tailwind-config      | Tailwind Config   | @referrer/tailwind-config      |
-| 10                 | tsconfig             | Tsconfig          | @referrer/tsconfig             |
-| 11                 | types                | Types             | @referrer/types                |
+| 4                  | ui                   | Shared UI Components     | @referrer/ui                   |
+| 5                  | prisma               | Prisma Database          | @referrer/prisma               |
+| 6                  | lib                  | Shared Library Functions | @referrer/lib                  |
+| 7                  | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom |
+| 8                  | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      |
+| 9                  | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      |
+| 10                 | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             |
+| 11                 | types                | Shared Types             | @referrer/types                |
 
 ### Repository Tool
 
 1. Turborepo
 
-### Main Tech Stack
+### Build With
 
 1. Next.js 13.4+ (For Front -End)
-2. tRPC (For API)
-3. Prisma.io (For Back -End)
-4. PostgreSQL (For Database)
+2. Tailwind CSS (For Styling)
+3. tRPC (For API)
+4. Prisma.io (For Back - End)
+5. PostgreSQL (For Database)
+6. shadcn (For Components)
 
 ### Language
 
@@ -41,9 +43,7 @@
 6. Zod
 7. city-timezones
 8. Post CSS
-9. React-Icons
-10. Tailwind CSS (For Styling)
-11. shadcn (For Component)
+9. Lucid React
 
 ### Build Tools
 
@@ -59,13 +59,11 @@
 
 1. SEO Optimised
 2. PWA
-3. Dynamic Progress Bar / Loaders or Spinners
-4. Tooltip
-5. Intro
-6. Info Icon everywhere
-7. OS Default Theme
-8. User Active or not
-9. Skeleton Loading
+3. Tooltip
+4. Intro
+5. OS Default Theme
+6. User Active Status
+7. Skeleton Loading
 
 ### Build
 
