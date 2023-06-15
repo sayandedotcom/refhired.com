@@ -58,11 +58,11 @@ const Login = () => {
   return (
     <div className='min-h-screen py-5 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
-      <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] px-4 py-10 bg-white flex flex-col justify-center items-center gap-6'>
+      <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-6'>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-8 flex flex-col w-[350px]'>
+            className='w-11/12 space-y-8 flex flex-col lg:w-[350px]'>
             <FormField
               control={form.control}
               name='email'
@@ -104,7 +104,7 @@ const Login = () => {
           </form>
         </Form>
         <Separator />
-        <div className='flex flex-col w-[350px] gap-4'>
+        <div className='w-11/12 flex flex-col lg:w-[350px] gap-4'>
           <Button variant='secondary'>
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
