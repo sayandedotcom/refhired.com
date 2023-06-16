@@ -58,7 +58,7 @@ const Login = () => {
   return (
     <div className='min-h-screen py-5 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
-      <div className='rounded-md border border-gray-200 w-11/12 md:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-6'>
+      <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-6'>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -97,11 +97,6 @@ const Login = () => {
                   </FormControl>
                   {/* <FormDescription>Enter your Password</FormDescription> */}
                   <FormMessage />
-                  <Link
-                    className='mt-2 text-muted-foreground'
-                    href='/forgot-password'>
-                    <TypographySmall>Forgot Password ?</TypographySmall>
-                  </Link>
                 </FormItem>
               )}
             />
