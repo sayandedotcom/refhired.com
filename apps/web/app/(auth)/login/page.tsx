@@ -97,6 +97,11 @@ const Login = () => {
                   </FormControl>
                   {/* <FormDescription>Enter your Password</FormDescription> */}
                   <FormMessage />
+                  <Link
+                    className='mt-3 text-muted-foreground ml-auto'
+                    href='/forgot-password'>
+                    <TypographySmall>Forgot Password ?</TypographySmall>
+                  </Link>
                 </FormItem>
               )}
             />
