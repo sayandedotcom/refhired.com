@@ -11,18 +11,74 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  userName String @unique
-  email    String @unique
-  password String
-  posts    Post[]
+  id          String    @id @default(cuid()) //Unique Id of user
+  userName    String    @unique //username of user
+  // fullName    String //fullName of user
+  email       String    @unique //email of user
+  password    String //password of user
+  phoneNumber Int //phoneNumber of user
+  posts       Post[]
+  profile     Profile[]
+}
+
+model Profile {
+  id        String      @id @default(cuid())
+  bio       String?
+  workingAt String?
+  folowers  Folowers[]
+  following Following[]
+  requests  Request[] //Referral request that came
+  applied   Applied[] //Referral request that I applied for
+  bookmarks Bookmarks[]
+  user      User        @relation(fields: [id], references: [id])
+}
+
+model Folowers {
+  id        String   @id @default(cuid())
+  profileId String?
+  Profile   Profile? @relation(fields: [profileId], references: [id])
+}
+
+model Following {
+  id        String   @id @default(cuid())
+  profileId String?
+  Profile   Profile? @relation(fields: [profileId], references: [id])
+}
+
+model Bookmarks {
+  id      String   @id @default(cuid())
+  postId  String?
+  Profile Profile? @relation(fields: [postId], references: [id])
+}
+
+model Applied {
+  id      String   @id @default(cuid())
+  postId  String?
+  Profile Profile? @relation(fields: [postId], references: [id])
+}
+
+model Request {
+  id      String   @id @default(cuid())
+  postId  String?
+  Profile Profile? @relation(fields: [postId], references: [id])
 }
 
 model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  String
+  id         String   @id @default(cuid())
+  authorId   String //Authur (User) of the Post
+  text       String //Texts of the Post
+  createdAt  DateTime @default(now()) //Created date of the Post
+  expiresAt  DateTime //Expiry of the Post
+  role       String //Role of the Job
+  jobType    jobType //Type of the Job
+  experience Int //Experience level of the Job
+  skills     String //Skills of the Job
+  gthSkills  String? //Good to have  of the Job
+  location   String //Location of the Job
+  author     User     @relation(fields: [authorId], references: [id])
+}
+
+enum jobType {
+  Job
+  Internship
 }
