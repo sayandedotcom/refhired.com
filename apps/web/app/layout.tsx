@@ -1,33 +1,36 @@
 "use client";
 
-import { SessionProvider } from "next-auth/react";
+import { Metadata } from "next";
 import { usePathname } from "next/navigation";
+import { SessionProvider } from "next-auth/react";
 import { Footer, Header } from "@referrer/ui";
 import "../styles/globals.css";
+
+const metadata: Metadata = {
+  title: {
+    default: "Referrer",
+    template: " %s | Referrer",
+  },
+  description: "...",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const pathName = usePathname();
+  const showNavbar = ["/", "/docs", "/blogs", "/pricing", "/about-us"].includes(
+    pathName
+  );
 
   return (
     <html lang='en'>
       <body>
         <SessionProvider>
-          {pathName === "/" ||
-          pathName === "/blogs" ||
-          pathName === "/docs" ||
-          pathName === "/about-us" ||
-          pathName === "/pricing" ? (
-            <>
-              <Header />
-              {children}
-              <Footer />
-            </>
-          ) : (
-            <>{children}</>
-          )}
+          {showNavbar && <Header />}
+          {children}
+          {showNavbar && <Footer />}
         </SessionProvider>
       </body>
     </html>

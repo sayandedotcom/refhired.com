@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
-    "@referrer/ui": "*",
     "@referrer/prisma": "*",
+    "@referrer/ui": "*",
     "bcrypt": "^5.1.0",
-    "next": "^13.4.1",
+    "next": "^13.4.6",
     "next-auth": "^4.22.1",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@referrer/eslint-config-custom": "*",
-    "@referrer/prettier-config":"*",
+    "@referrer/prettier-config": "*",
     "@referrer/tailwind-config": "*",
     "@referrer/tsconfig": "*",
     "@types/bcrypt": "^5.0.0",

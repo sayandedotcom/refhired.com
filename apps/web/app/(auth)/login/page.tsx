@@ -62,13 +62,13 @@ const Login = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='w-11/12 space-y-8 flex flex-col lg:w-[350px]'>
+            className='w-11/12 space-y-4 flex flex-col lg:w-10/12'>
             <FormField
               control={form.control}
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email address</FormLabel>
+                  <FormLabel className='text-black'>Email address</FormLabel>
                   <FormControl>
                     <Input
                       placeholder='john.doe@example.com'
@@ -86,12 +86,12 @@ const Login = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className='text-black'>Password</FormLabel>
                   <FormControl>
                     <Input
-                      className='tracking-widest'
+                      className='tracking-[0.5rem]'
                       type='password'
-                      placeholder='• • • • • • • • • • •'
+                      placeholder='•••••••••••'
                       {...field}
                     />
                   </FormControl>

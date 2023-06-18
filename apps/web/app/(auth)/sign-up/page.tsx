@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import "../../../styles/globals.css";
@@ -22,8 +23,6 @@ import {
   TypographySmall,
   TypographyMuted,
 } from "@referrer/ui";
-
-import { useRouter } from "next/navigation";
 
 const signUpSchema = z
   .object({
@@ -69,7 +68,7 @@ const SignUp = () => {
         <TypographyH1>Referrer</TypographyH1>
         <TypographyH2>Join the larget referall community !</TypographyH2>
       </section>
-      <div className='w-11/12 rounded-md border border-gray-200 lg:w-[450px] py-2 bg-white flex flex-col justify-center items-center gap-4'>
+      <div className='w-11/12 rounded-md border border-gray-200 lg:w-[450px] py-3 bg-white flex flex-col justify-center items-center gap-4'>
         <div className='py-2 flex flex-col gap-4 w-11/12 lg:w-10/12'>
           <TypographyH3>Welcome to the Referrer</TypographyH3>
           <TypographyMuted>
@@ -82,13 +81,13 @@ const SignUp = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='w-11/12 space-y-8 flex flex-col lg:w-10/12'>
+            className='w-11/12 space-y-4 flex flex-col lg:w-10/12'>
             <FormField
               control={form.control}
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel className='text-black'>Username</FormLabel>
                   <FormControl>
                     <Input placeholder='@username' {...field} />
                   </FormControl>
@@ -102,7 +101,7 @@ const SignUp = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email Address</FormLabel>
+                  <FormLabel className='text-black'>Email Address</FormLabel>
                   <FormControl>
                     <Input placeholder='john.doe@example.com' {...field} />
                   </FormControl>
@@ -116,12 +115,12 @@ const SignUp = () => {
               name='password'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className='text-black'>Password</FormLabel>
                   <FormControl>
                     <Input
-                      className='tracking-widest'
+                      className='tracking-[0.5rem]'
                       type='password'
-                      placeholder='• • • • • • • • • • •'
+                      placeholder='•••••••••••'
                       {...field}
                     />
                   </FormControl>
@@ -135,12 +134,12 @@ const SignUp = () => {
               name='confirmPassword'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel className='text-black'>Confirm Password</FormLabel>
                   <FormControl>
                     <Input
-                      className='tracking-widest'
+                      className='tracking-[0.5rem]'
                       type='password'
-                      placeholder='• • • • • • • • • • •'
+                      placeholder='•••••••••••'
                       {...field}
                     />
                   </FormControl>
