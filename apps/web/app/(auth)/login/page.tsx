@@ -23,13 +23,12 @@ import {
 import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
-  email: z
-    .string()
-    .nonempty("This field is required")
-    .email({ message: "Invalid email address" }),
-  password: z.string().nonempty("This field is required").min(8, {
-    message: "Password must be at least 8 characters.",
-  }),
+  email: z.string().nonempty("This field is required"),
+  // .email({ message: "Invalid email address" }),
+  password: z.string().nonempty("This field is required"),
+  // .min(8, {
+  //   message: "Password must be at least 8 characters.",
+  // })
 });
 
 const Login = () => {
@@ -52,7 +51,7 @@ const Login = () => {
       email: values.email,
       password: values.password,
       redirect: true,
-      callbackUrl: "/home",
+      callbackUrl: "/",
     });
   };
   return (
@@ -72,7 +71,7 @@ const Login = () => {
                   <FormControl>
                     <Input
                       placeholder='john.doe@example.com'
-                      type='email'
+                      type='text'
                       {...field}
                     />
                   </FormControl>

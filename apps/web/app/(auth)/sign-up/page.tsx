@@ -57,9 +57,20 @@ const SignUp = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof signUpSchema>) {
+  async function onSubmit(values: z.infer<typeof signUpSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+
+    const res = await fetch("http://localhost:3000/api/sign-up", {
+      method: "POST",
+      body: JSON.stringify({
+        userName: values.username,
+        email: values.email,
+        password: values.password,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+
     console.log(values);
   }
   return (
