@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.ts",
     "scripts": {
-    "format": "npx prisma format"
+    "format": "npx prisma format",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
     "prisma": "^4.15.0"

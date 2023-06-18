@@ -28,8 +28,7 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <SessionProvider>
-          <Announcements />
-          {showNavbar && <Header />}
+          {showNavbar && <Header /> && <Announcements />}
           {children}
           {showNavbar && <Footer />}
         </SessionProvider>
