@@ -4,6 +4,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { signIn } from "next-auth/react";
 import "../../../styles/globals.css";
 import {
   Form,
@@ -20,7 +21,6 @@ import {
   TypographySmall,
 } from "@referrer/ui";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 
 const loginSchema = z.object({
   email: z
@@ -110,7 +110,7 @@ const Login = () => {
         </Form>
         <Separator />
         <div className='w-11/12 flex flex-col lg:w-[350px] gap-4'>
-          <Button variant='secondary'>
+          <Button onClick={() => signIn("google")} variant='secondary'>
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
           <Button variant='secondary'>
