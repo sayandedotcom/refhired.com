@@ -2,9 +2,12 @@
 import Link from "next/link";
 import { Button } from "../Button";
 import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 export const Header = () => {
   const router = useRouter();
+  const { data: session } = useSession();
+
   return (
     <header className='shadow-sm'>
       <div className='mx-auto max-w-screen-xl p-4'>
@@ -35,11 +38,19 @@ export const Header = () => {
           </nav>
 
           <div className='hidden flex-1 items-center justify-end gap-4 sm:flex'>
-            <Button onClick={() => router.push("/login")}>Log in</Button>
+            {session && session.user ? (
+              <Button onClick={() => signOut()}>Sign Out</Button>
+            ) : (
+              <>
+                <Button onClick={() => router.push("/login")}>Log in</Button>
 
-            <Button variant='outline' onClick={() => router.push("/sign-up")}>
-              Sign up
-            </Button>
+                <Button
+                  variant='outline'
+                  onClick={() => router.push("/sign-up")}>
+                  Sign up
+                </Button>
+              </>
+            )}
           </div>
 
           <div className='lg:hidden'>
