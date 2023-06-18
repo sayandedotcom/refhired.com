@@ -1,5 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// ! Schema ---------------------------------------------------------------------------------
 
 generator client {
   provider = "prisma-client-js"
@@ -10,75 +9,125 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ! Necessary for Next auth ----------------------------------------------------------------
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ! Our Models -------------------------------------------------------------------------------
+
 model User {
-  id          String    @id @default(cuid()) //Unique Id of user
-  userName    String    @unique //username of user
-  // fullName    String //fullName of user
-  email       String    @unique //email of user
-  password    String //password of user
-  phoneNumber Int //phoneNumber of user
-  posts       Post[]
-  profile     Profile[]
+  id            String      @id @default(cuid())
+  password      String
+  fullName      String?
+  userName      String?     @unique
+  email         String      @unique
+  emailVerified DateTime?
+  image         String?
+  workingAt     String?
+  bio           String?
+  stars         Int?
+  sessions      Session[]
+  accounts      Account[]
+  followers     User[]      @relation(name: "follow")
+  following     User[]      @relation(name: "follow")
+  post          Posts[]
+  applied       Applied[]
+  bookmarks     Bookmarks[]
+  comments      Comments[]
 }
 
-model Profile {
-  id        String      @id @default(cuid())
-  bio       String?
-  workingAt String?
-  folowers  Folowers[]
-  following Following[]
-  requests  Request[] //Referral request that came
-  applied   Applied[] //Referral request that I applied for
-  bookmarks Bookmarks[]
-  user      User        @relation(fields: [id], references: [id])
-}
+model Posts {
+  id            String      @id @default(cuid())
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contents      String
+  description   String
+  createdAt     DateTime    @default(now())
+  expiresAt     DateTime?
+  role          String?
+  jobType       String?
+  experience    Int?
+  location      String?
+  startingRange Int?
+  endindRange   Int?
+  image         String?
+  tags          Tags[]
+  applied       Applied[]
+  bookmarks     Bookmarks[]
+  comments      Comments[]
+  updatedAt     DateTime    @updatedAt
 
-model Folowers {
-  id        String   @id @default(cuid())
-  profileId String?
-  Profile   Profile? @relation(fields: [profileId], references: [id])
-}
-
-model Following {
-  id        String   @id @default(cuid())
-  profileId String?
-  Profile   Profile? @relation(fields: [profileId], references: [id])
-}
-
-model Bookmarks {
-  id      String   @id @default(cuid())
-  postId  String?
-  Profile Profile? @relation(fields: [postId], references: [id])
+  @@index([userId])
 }
 
 model Applied {
-  id      String   @id @default(cuid())
-  postId  String?
-  Profile Profile? @relation(fields: [postId], references: [id])
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  posts     Posts    @relation(fields: [postId], references: [id])
+  postId    String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+  @@index([userId])
+  @@index([postId])
 }
 
-model Request {
-  id      String   @id @default(cuid())
-  postId  String?
-  Profile Profile? @relation(fields: [postId], references: [id])
+model Tags {
+  id    String  @id @default(cuid())
+  name  String  @unique
+  posts Posts[]
 }
 
-model Post {
-  id         String   @id @default(cuid())
-  authorId   String //Authur (User) of the Post
-  text       String //Texts of the Post
-  createdAt  DateTime @default(now()) //Created date of the Post
-  expiresAt  DateTime //Expiry of the Post
-  role       String //Role of the Job
-  jobType    jobType //Type of the Job
-  experience Int //Experience level of the Job
-  skills     String //Skills of the Job
-  gthSkills  String? //Good to have  of the Job
-  location   String //Location of the Job
-  author     User     @relation(fields: [authorId], references: [id])
+model Comments {
+  id        String   @id @default(cuid())
+  text      String   @db.Text
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  posts     Posts    @relation(fields: [postId], references: [id])
+  postId    String
+  createdAt DateTime @default(now())
 }
 
-enum jobType {
-  Job
-  Internship
+model Bookmarks {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  posts     Posts    @relation(fields: [postId], references: [id])
+  postId    String
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
 }
