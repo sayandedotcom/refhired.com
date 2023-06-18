@@ -1,4 +1,5 @@
 import "./styles/index.css";
+export * from "./components/anouncements/Announcements";
 export * from "./components/Button";
 export * from "./components/Header";
 export * from "./components/Footer";

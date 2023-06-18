@@ -3,7 +3,7 @@
 import { Metadata } from "next";
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
-import { Footer, Header } from "@referrer/ui";
+import { Footer, Header, Announcements } from "@referrer/ui";
 import "../styles/globals.css";
 
 const metadata: Metadata = {
@@ -28,6 +28,7 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <SessionProvider>
+          <Announcements />
           {showNavbar && <Header />}
           {children}
           {showNavbar && <Footer />}
