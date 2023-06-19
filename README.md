@@ -1,114 +1,138 @@
+# Referrer - Simplifying receiving and giving job referrals for everyone ! ( Under Development )
+
+[Visit Website](https://referrer-web.vercel.app/)
+
+This is a solo Project by [Sayan De](https://github.com/sayande2002) which will be going under Open Source.
+
 ### Workspaces List
 
-| Index No.          | Workspace            | Info.                    | Name                           |
-| ------------------ | -------------------- | ------------------------ | ------------------------------ |
+| Index No.          | Workspace            | Info.                    | Name                           | Port |
+| ------------------ | -------------------- | ------------------------ | ------------------------------ | ---- |
 | apps worksapce     |
-| 1                  | api                  | api endpoints            | @referrer/api                  |
-| 2                  | storybook            | Storybook                | @referrer/storybook            |
-| 3                  | web                  | Main Website             | @referrer/web                  |
+| 1                  | api                  | API Server               | @referrer/api                  | 3001 |
+| 2                  | storybook            | Storybook                | @referrer/storybook            | 6006 |
+| 3                  | web                  | Main Website             | @referrer/web                  | 3000 |
 | packages worksapce |
-| 4                  | ui                   | Shared UI Components     | @referrer/ui                   |
-| 5                  | prisma               | Prisma Database          | @referrer/prisma               |
-| 6                  | lib                  | Shared Library Functions | @referrer/lib                  |
-| 7                  | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom |
-| 8                  | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      |
-| 9                  | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      |
-| 10                 | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             |
-| 11                 | types                | Shared Types             | @referrer/types                |
+| 4                  | ui                   | Shared UI Components     | @referrer/ui                   |      |
+| 5                  | prisma               | Prisma Database          | @referrer/prisma               |      |
+| 6                  | lib                  | Shared Library Functions | @referrer/lib                  |      |
+| 7                  | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom |      |
+| 8                  | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      |      |
+| 9                  | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      |      |
+| 10                 | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             |      |
+| 11                 | types                | Shared Types             | @referrer/types                |      |
 
-### Repository Tool
+### Main tech Stack
 
-1. Turborepo
+| Domain          | Tech         | Version |
+| --------------- | ------------ | ------- |
+| Repository      | Turborepo    | 1.9     |
+| Language        | TypeScript   |         |
+| Client & Server | Next.js      | 13.4    |
+| Styling         | Tailwind CSS |         |
+| Api             | tRPC         |         |
+| Database ORM    | Prisma.io    |         |
+| Database        | PostgreSQL   |         |
 
-### Build With
+### Main libraries
 
-1. Next.js 13.4+ (For Front -End)
-2. Tailwind CSS (For Styling)
-3. tRPC (For API)
-4. Prisma.io (For Back - End)
-5. PostgreSQL (For Database)
-6. shadcn (For Components)
+| Domain            | Libraries       | Version |
+| ----------------- | --------------- | ------- |
+| Authentication    | Next-Auth       | 4       |
+| State Management  | Redux Toolkit   |         |
+| UI Components     | shadcn.ui       |         |
+| UI Documentation  | Storybook       | 7       |
+| Icons             | Lucid React     |         |
+| Schema Validation | Zod             |         |
+| Form Validation   | React Hook Form |         |
+| Font              | Cal Sans        |         |
+| Linter Tasks      | Lint Staged     |         |
+| Git Hook          | Husky           |         |
+| Code Formatter    | Prettier        |         |
+| Code Analysis     | Eslint          |         |
 
-### Language
+### CI/CD Tools
 
-1. TypeScript
-
-### Libraries
-
-1. Next-Auth
-2. Redux Toolkit
-3. Storybook
-4. Jest & React Testing Library
-5. React Joyride
-6. Zod
-7. city-timezones
-8. Post CSS
-9. Lucid React
-
-### Build Tools
-
-1. Docker
-2. Kubernetes
-3. Prettier
-4. Eslint
-5. Husky
-6. Lint Staged
-7. GitHub Actions
+| Domain                  | Libraries      |
+| ----------------------- | -------------- |
+| Containerization        | Docker         |
+| container orchestration | Kubernetes     |
+| CI/CD                   | GitHub Actions |
 
 ### Features
 
 1. SEO Optimised
 2. PWA
-3. Tooltip
-4. Intro
-5. OS Default Theme
-6. User Active Status
-7. Skeleton Loading
+3. OS Default Theme
+4. User Active Status
+5. Skeleton Loading
 
-### Build
+## 📌 Getting Started 🚀
 
-To build all apps and packages, run the following command:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+There are two methods:-
 
-```
-cd my-turborepo
-pnpm build
-```
+#### 1. Using Docker (Recommended)
 
-### Develop
+#### 2. Using npm/yarn
 
-To develop all apps and packages, run the following command:
+### Method-1 Using Docker (Recommended)
 
-```
-cd my-turborepo
-pnpm dev
-```
+(Updating Soon ...............)
 
-### Remote Caching
+### Method-2. Using npm/yarn
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## Prerequisites 📋
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [NPM](http://npmjs.com)) installed on your computer.
 
 ```
-cd my-turborepo
-npx turbo login
+node@v10.16.0 or higher
+npm@6.9.0 or higher
+git@2.17.1 or higher
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+From your command line, first clone this repo:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```bash
+# Clone this repository
+$ git clone https://github.com/sayande2002/referrer
 
+# Go into the repository
+$ cd referrer
+
+# Remove current origin repository
+$ git remote remove origin
 ```
-npx turbo link
+
+Then you can install the dependencies either using NPM or Yarn:
+
+Using yarn:
+
+```bash
+# Install dependencies
+$ yarn
+
+# Start development server
+$ yarn run dev
 ```
 
-## Useful Links
+Once your server has started, go to this url `http://localhost:3000/` and you will see the website running on a Development Server.
 
-Learn more about the power of Turborepo:
+### 📌 Authors
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+-[Sayan De](https://github.com/sayande2002)
+
+### 📌 Contributing
+
+Please feel free to pull requests or log issues.
+
+### 📌 License
+
+-[MIT license](LICENSE)
+
+### 📌 Contact 📬
+
+For any query, email sayandeten@gmail.com.
+
+Thanks!
