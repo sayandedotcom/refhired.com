@@ -23,6 +23,7 @@ import {
   TypographySmall,
   TypographyMuted,
 } from "@referrer/ui";
+import { signIn } from "next-auth/react";
 
 const signUpSchema = z
   .object({
@@ -45,7 +46,6 @@ const signUpSchema = z
 
 const SignUp = () => {
   const router = useRouter();
-  // 1. Define your form.
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -56,23 +56,25 @@ const SignUp = () => {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-
-    const res = await fetch("http://localhost:3000/api/sign-up", {
-      method: "POST",
-      body: JSON.stringify({
-        userName: values.username,
-        email: values.email,
-        password: values.password,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
-
-    console.log(values);
+    try {
+      const res = await fetch("http://localhost:3000/api/sign-up", {
+        method: "POST",
+        body: JSON.stringify({
+          userName: values.username,
+          email: values.email,
+          password: values.password,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (res.ok) {
+        signIn();
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
+
   return (
     <div className='min-h-screen py-3 flex flex-col md:flex-row items-center justify-around lg:gap-16 bg-[#f3f4f6] md:px-10 gap-5'>
       <section className='hidden md:block lg:flex lg:flex-col lg:gap-3'>
@@ -102,7 +104,6 @@ const SignUp = () => {
                   <FormControl>
                     <Input placeholder='@username' {...field} />
                   </FormControl>
-                  {/* <FormDescription>This is your public display name.</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -116,7 +117,6 @@ const SignUp = () => {
                   <FormControl>
                     <Input placeholder='john.doe@example.com' {...field} />
                   </FormControl>
-                  {/* <FormDescription>Enter your Email Address</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -135,7 +135,6 @@ const SignUp = () => {
                       {...field}
                     />
                   </FormControl>
-                  {/* <FormDescription>Enter your Password</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}
@@ -154,7 +153,6 @@ const SignUp = () => {
                       {...field}
                     />
                   </FormControl>
-                  {/* <FormDescription>Confirm your Password !</FormDescription> */}
                   <FormMessage />
                 </FormItem>
               )}

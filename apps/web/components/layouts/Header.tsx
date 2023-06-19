@@ -1,9 +1,10 @@
 "use client";
+
 import Link from "next/link";
 import { Button } from "@referrer/ui";
 import { useRouter } from "next/navigation";
-import { useSession, signOut } from "next-auth/react";
-import { AvatarDemo, DropdownMenuDemo } from "../ui";
+import { useSession } from "next-auth/react";
+import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 
 export const Header = () => {
   const router = useRouter();
@@ -14,45 +15,55 @@ export const Header = () => {
       <div className='mx-auto max-w-screen-xl p-4'>
         <div className='flex items-center justify-between gap-4 lg:gap-10'>
           <div className='flex lg:w-0 lg:flex-1'>
-            <Link href='/'>
-              <span className='sr-only'>Logo</span>
-              <span className='inline-block h-10 w-32 rounded-lg bg-gray-200'></span>
-            </Link>
+            <TooltipDemo text='Referrer Logo'>
+              <Link href='/'>
+                <span className='sr-only'>Logo</span>
+                <h2>Referrer</h2>
+              </Link>
+            </TooltipDemo>
           </div>
 
           <nav
             aria-label='Global'
             className='hidden gap-8 text-sm font-medium md:flex'>
-            <Link href='/dashboard'>Dashboard</Link>
+            <Link className='text-gray-500' href='/dashboard'>
+              Dashboard
+            </Link>
             <Link className='text-gray-500' href='/about-us'>
-              About
+              About Us
             </Link>
             <Link className='text-gray-500' href='/blog'>
-              Blog
+              Blogs
             </Link>
             <Link className='text-gray-500' href='/pricing'>
               Pricing
             </Link>
             <Link className='text-gray-500' href=''>
-              Contact
+              Contact Us
             </Link>
           </nav>
 
           <div className='hidden flex-1 items-center justify-end gap-4 sm:flex'>
             {session && session.user ? (
-              <>
-                <Button onClick={() => router.push("/login")}>Log in</Button>
-
-                <Button
-                  variant='outline'
-                  onClick={() => router.push("/sign-up")}>
-                  Sign up
-                </Button>
-              </>
-            ) : (
-              <DropdownMenuDemo>
-                <AvatarDemo />
+              <DropdownMenuDemo
+                userName={session.user.name}
+                email={session.user.email}>
+                <AvatarDemo image={session.user?.image} />
               </DropdownMenuDemo>
+            ) : (
+              <>
+                <TooltipDemo text='Log In'>
+                  <Button onClick={() => router.push("/login")}>Log In</Button>
+                </TooltipDemo>
+
+                <TooltipDemo text='Sign Up'>
+                  <Button
+                    variant='outline'
+                    onClick={() => router.push("/sign-up")}>
+                    Sign Up
+                  </Button>
+                </TooltipDemo>
+              </>
             )}
           </div>
 

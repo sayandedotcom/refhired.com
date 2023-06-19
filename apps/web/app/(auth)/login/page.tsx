@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 import {
   Form,
@@ -20,20 +22,18 @@ import {
   TypographyP,
   TypographySmall,
 } from "@referrer/ui";
-import { useRouter } from "next/navigation";
 
 const loginSchema = z.object({
   email: z.string().nonempty("This field is required"),
-  // .email({ message: "Invalid email address" }),
   password: z.string().nonempty("This field is required"),
-  // .min(8, {
-  //   message: "Password must be at least 8 characters.",
-  // })
 });
 
 const Login = () => {
   const router = useRouter();
-  // 1. Define your form.
+  const [error, setError] = useState("");
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -42,22 +42,32 @@ const Login = () => {
     },
   });
 
-  // 2. Define a submit handler.outline
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    alert(values.email);
-    const result = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: true,
-      callbackUrl: "/",
-    });
+    try {
+      const result = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: true,
+        callbackUrl,
+      });
+      if (result.ok) {
+        router.push(callbackUrl);
+      } else {
+        setError("Invalid email or password");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <div className='min-h-screen py-5 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
       <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-6'>
+        {error && (
+          <div className='bg-red-300 border border-destructive text-destructive rounded-sm text-center p-2 w-10/12'>
+            {error}
+          </div>
+        )}
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -67,7 +77,9 @@ const Login = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-black'>Email address</FormLabel>
+                  <FormLabel className='text-black'>
+                    Email address / Username
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder='john.doe@example.com'
@@ -75,7 +87,7 @@ const Login = () => {
                       {...field}
                     />
                   </FormControl>
-                  {/* <FormDescription>Enter your Email Address</FormDescription> */}
+
                   <FormMessage />
                 </FormItem>
               )}
@@ -94,7 +106,6 @@ const Login = () => {
                       {...field}
                     />
                   </FormControl>
-                  {/* <FormDescription>Enter your Password</FormDescription> */}
                   <FormMessage />
                   <Link
                     className='mt-3 text-muted-foreground ml-auto'

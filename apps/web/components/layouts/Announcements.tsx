@@ -6,7 +6,7 @@ export const Announcements = () => {
   const [close, setClose] = useState(false);
   return (
     <div
-      className={`flex items-center justify-between gap-4 bg-indigo-600 px-4 py-3 text-white ${
+      className={`flex items-center justify-between gap-4 bg-black px-4 py-3 text-white ${
         close ? "hidden" : ""
       }`}>
       <p className='text-sm font-medium'>

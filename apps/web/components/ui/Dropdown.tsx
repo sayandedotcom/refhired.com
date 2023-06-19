@@ -1,3 +1,7 @@
+"use client";
+
+import { signOut } from "next-auth/react";
+
 import {
   Cloud,
   CreditCard,
@@ -31,14 +35,14 @@ import {
   DropdownMenuTrigger,
 } from "@referrer/ui";
 
-export function DropdownMenuDemo({ children }) {
+export function DropdownMenuDemo({ children, userName, email }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button>{children}</button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56'>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
@@ -106,7 +110,7 @@ export function DropdownMenuDemo({ children }) {
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => signOut()}>
           <LogOut className='mr-2 h-4 w-4' />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
