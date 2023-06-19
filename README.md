@@ -3,7 +3,7 @@
 | Index No.          | Workspace            | Info.                    | Name                           |
 | ------------------ | -------------------- | ------------------------ | ------------------------------ |
 | apps worksapce     |
-| 1                  | docs                 | Documentation            | @referrer/docs                 |
+| 1                  | api                  | api endpoints            | @referrer/api                  |
 | 2                  | storybook            | Storybook                | @referrer/storybook            |
 | 3                  | web                  | Main Website             | @referrer/web                  |
 | packages worksapce |
