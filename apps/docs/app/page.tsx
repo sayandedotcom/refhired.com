@@ -1,12 +1,9 @@
 "use client";
 
-import { Button, Header } from "@referrer/ui";
-
 export default function Page() {
   return (
     <>
-      <Header text='Docs' />
-      <Button />
+      <h1>Api for referrer.com</h1>
     </>
   );
 }
