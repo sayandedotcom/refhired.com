@@ -6,23 +6,23 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 
 ### Workspaces List
 
-| Index No.          | Workspace            | Info.                    | Name                           | Port |
-| ------------------ | -------------------- | ------------------------ | ------------------------------ | ---- |
-| apps worksapce     |
-| 1                  | api                  | API Server               | @referrer/api                  | 3001 |
-| 2                  | storybook            | Storybook                | @referrer/storybook            | 6006 |
-| 3                  | web                  | Main Website             | @referrer/web                  | 3000 |
-| packages worksapce |
-| 4                  | ui                   | Shared UI Components     | @referrer/ui                   |      |
-| 5                  | prisma               | Prisma Database          | @referrer/prisma               |      |
-| 6                  | lib                  | Shared Library Functions | @referrer/lib                  |      |
-| 7                  | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom |      |
-| 8                  | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      |      |
-| 9                  | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      |      |
-| 10                 | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             |      |
-| 11                 | types                | Shared Types             | @referrer/types                |      |
+| Index No.  | Workspace            | Info.                    | Name                           | Port |
+| ---------- | -------------------- | ------------------------ | ------------------------------ | ---- |
+| apps /     |
+| 1          | api                  | API Server               | @referrer/api                  | 3001 |
+| 2          | storybook            | Storybook                | @referrer/storybook            | 6006 |
+| 3          | web                  | Main Website             | @referrer/web                  | 3000 |
+| packages / |
+| 4          | ui                   | Shared UI Components     | @referrer/ui                   |      |
+| 5          | prisma               | Prisma Database          | @referrer/prisma               |      |
+| 6          | lib                  | Shared Library Functions | @referrer/lib                  |      |
+| 7          | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom |      |
+| 8          | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      |      |
+| 9          | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      |      |
+| 10         | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             |      |
+| 11         | types                | Shared Types             | @referrer/types                |      |
 
-### Main tech Stack
+### Main domains
 
 | Domain          | Tech         | Version |
 | --------------- | ------------ | ------- |
@@ -33,6 +33,8 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 | Api             | tRPC         |         |
 | Database ORM    | Prisma.io    |         |
 | Database        | PostgreSQL   |         |
+| Version Control | GitHub       |         |
+| Code Editor     | VS Code      |         |
 
 ### Main libraries
 
@@ -51,7 +53,7 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 | Code Formatter    | Prettier        |         |
 | Code Analysis     | Eslint          |         |
 
-### CI/CD Tools
+### Devops Tools
 
 | Domain                  | Libraries      |
 | ----------------------- | -------------- |
@@ -67,7 +69,7 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 4. User Active Status
 5. Skeleton Loading
 
-## 📌 Getting Started 🚀
+## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 There are two methods:-
@@ -76,13 +78,13 @@ There are two methods:-
 
 #### 2. Using npm/yarn
 
-### Method-1 Using Docker (Recommended)
+### Method-1 - Using Docker (Recommended)
 
 (Updating Soon ...............)
 
-### Method-2. Using npm/yarn
+### Method-2 - Using npm/yarn
 
-## Prerequisites 📋
+## Prerequisites
 
 You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [NPM](http://npmjs.com)) installed on your computer.
 
@@ -119,19 +121,19 @@ $ yarn run dev
 
 Once your server has started, go to this url `http://localhost:3000/` and you will see the website running on a Development Server.
 
-### 📌 Authors
+### Authors
 
 -[Sayan De](https://github.com/sayande2002)
 
-### 📌 Contributing
+### Contributing
 
 Please feel free to pull requests or log issues.
 
-### 📌 License
+### License
 
 -[MIT license](LICENSE)
 
-### 📌 Contact 📬
+### Contact 📬
 
 For any query, email sayandeten@gmail.com.
 
