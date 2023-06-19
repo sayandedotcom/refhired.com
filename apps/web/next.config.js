@@ -1,4 +1,4 @@
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ["ui"],
+  transpilePackages: ["@referrer/prisma", "@referrer/ui", "@referrer/lib"],
 };
