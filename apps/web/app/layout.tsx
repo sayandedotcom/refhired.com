@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathName = usePathname();
-  const showNavbar = ["/", "/docs", "/blogs", "/pricing", "/about-us"].includes(
+  const showNavbar = ["/", "/docs", "/blog", "/pricing", "/about-us"].includes(
     pathName
   );
 
@@ -28,7 +28,12 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <SessionProvider>
-          {showNavbar && <Header /> && <Announcements />}
+          {showNavbar && (
+            <>
+              <Announcements />
+              <Header />
+            </>
+          )}
           {children}
           {showNavbar && <Footer />}
         </SessionProvider>
