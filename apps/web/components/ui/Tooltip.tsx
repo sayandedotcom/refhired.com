@@ -1,5 +1,3 @@
-import { Plus } from "lucide-react";
-
 import {
   Tooltip,
   TooltipContent,
@@ -7,13 +5,13 @@ import {
   TooltipTrigger,
 } from "@referrer/ui";
 
-export function TooltipDemo({ children }) {
+export function TooltipDemo({ children, text }) {
   return (
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
         <TooltipContent>
-          <p>Add to library</p>
+          <p>{text}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
