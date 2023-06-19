@@ -1,11 +1,9 @@
-import "./styles/index.css";
-export * from "./components/anouncements/Announcements";
 export * from "./components/Button";
-export * from "./components/Header";
-export * from "./components/Footer";
 export * from "./components/Loaders";
 export * from "./components/Separator";
 export * from "./components/Tooltip";
 export * from "./components/Icons";
+export * from "./components/avatar";
+export * from "./components/dropdown-menu";
 export * from "./forms";
 export * from "./typography";

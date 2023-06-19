@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import { Button } from "../Button";
+import { Button } from "@referrer/ui";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import { AvatarDemo, DropdownMenuDemo } from "../ui";
 
 export const Header = () => {
   const router = useRouter();
@@ -39,8 +40,6 @@ export const Header = () => {
 
           <div className='hidden flex-1 items-center justify-end gap-4 sm:flex'>
             {session && session.user ? (
-              <Button onClick={() => signOut()}>Sign Out</Button>
-            ) : (
               <>
                 <Button onClick={() => router.push("/login")}>Log in</Button>
 
@@ -50,6 +49,10 @@ export const Header = () => {
                   Sign up
                 </Button>
               </>
+            ) : (
+              <DropdownMenuDemo>
+                <AvatarDemo />
+              </DropdownMenuDemo>
             )}
           </div>
 

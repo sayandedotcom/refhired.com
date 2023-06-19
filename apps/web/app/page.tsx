@@ -1,14 +1,20 @@
 "use client";
 
-import { Button, Footer, Header, LoaderButton } from "@referrer/ui";
-import "../styles/globals.css";
+import { Button, LoaderButton } from "@referrer/ui";
+
 export default function Page() {
   return (
     <>
       <Button iconBefore={<LoaderButton />} onClick={() => alert("hello")}>
         Button
       </Button>
-      <input type='text' name='' id='' placeholder='Claim your username' />
+      <input
+        type='text'
+        name=''
+        id=''
+        placeholder='Claim your username'
+        className='bg-destructive'
+      />
     </>
   );
 }

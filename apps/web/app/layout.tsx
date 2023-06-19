@@ -3,7 +3,7 @@
 import { Metadata } from "next";
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
-import { Footer, Header, Announcements } from "@referrer/ui";
+import { Announcements, Footer, Header } from "../components/layouts";
 import "../styles/globals.css";
 
 const metadata: Metadata = {
