@@ -14,6 +14,7 @@
     "@referrer/prisma": "*",
     "@referrer/ui": "*",
     "bcrypt": "^5.1.0",
+    "cal-sans": "^1.0.1",
     "lucide-react": "^0.245.0",
     "next": "^13.4.6",
     "next-auth": "^4.22.1",

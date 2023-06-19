@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import { Announcements, Footer, Header } from "../components/layouts";
+import "cal-sans";
 import "../styles/globals.css";
 
 const metadata: Metadata = {
