@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import { Announcements, Footer, Header } from "../components/layouts";
+import { Providers } from "./providers";
 import "cal-sans";
 import "../styles/globals.css";
 
@@ -33,16 +34,18 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <SessionProvider>
-          {showNavbar && (
-            <>
-              <Announcements />
-              <Header />
-            </>
-          )}
-          {children}
-          {showNavbar && <Footer />}
-        </SessionProvider>
+        <Providers>
+          <SessionProvider>
+            {showNavbar && (
+              <>
+                <Announcements />
+                <Header />
+              </>
+            )}
+            {children}
+            {showNavbar && <Footer />}
+          </SessionProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -138,16 +138,16 @@ export default function RootLayout({
       {/* <hr className='h-96 w-5 bg-white' /> */}
       <Separator
         orientation='vertical'
-        className='border-0 h-screen w-[0.1px]'
+        className='border-0 h-screen w-[0.1px] bg-[#2d3134]'
       />
       <section className='text-white h-screen w-[38rem]'>
         <div className='px-4 py-4'>
           <h5>Name</h5>
         </div>
-        <Separator />
+        <Separator className='bg-[#2d3134]' />
         {children}
       </section>
-      <Separator orientation='vertical' className='h-screen' />
+      <Separator orientation='vertical' className='h-screen bg-[#2d3134]' />
       <section className='text-white w-80 flex flex-col gap-3 p-2'>
         <div className='px-4 py-2 bg-[#16181c] rounded-2xl'>
           <h5>Extras</h5>

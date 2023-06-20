@@ -5,6 +5,7 @@ import { Button } from "@referrer/ui";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
+import { ThemeSwitcher } from "../custom";
 
 export const Header = () => {
   const router = useRouter();
@@ -65,6 +66,7 @@ export const Header = () => {
                 </TooltipDemo>
               </>
             )}
+            <ThemeSwitcher />
           </div>
 
           <div className='lg:hidden'>

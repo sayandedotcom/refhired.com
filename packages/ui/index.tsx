@@ -5,5 +5,6 @@ export * from "./components/Tooltip";
 export * from "./components/Icons";
 export * from "./components/avatar";
 export * from "./components/dropdown-menu";
+export * from "./components/switch/switch";
 export * from "./forms";
 export * from "./typography";
