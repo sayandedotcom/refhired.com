@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --font-sans: "Cal Sans";
+
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
 
@@ -34,12 +36,11 @@
     --ring: 215 20.2% 65.1%;
 
     --radius: 0.5rem;
-
-    --font-sans: "Cal Sans";
   }
 
   .dark {
     --font-sans: "Cal Sans";
+
     --background: 224 71% 4%;
     --foreground: 213 31% 91%;
 
