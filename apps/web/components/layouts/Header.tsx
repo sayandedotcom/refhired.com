@@ -26,20 +26,20 @@ export const Header = () => {
           <nav
             aria-label='Global'
             className='hidden gap-8 text-sm font-medium md:flex'>
-            <Link className='text-gray-500' href='/dashboard'>
-              Dashboard
-            </Link>
             <Link className='text-gray-500' href='/about-us'>
               About Us
             </Link>
-            <Link className='text-gray-500' href='/blog'>
+            <Link className='text-gray-500' href='/blogs'>
               Blogs
             </Link>
             <Link className='text-gray-500' href='/pricing'>
               Pricing
             </Link>
-            <Link className='text-gray-500' href=''>
+            <Link className='text-gray-500' href='/contact-us'>
               Contact Us
+            </Link>
+            <Link className='text-gray-500' href='/docs'>
+              Docs
             </Link>
           </nav>
 

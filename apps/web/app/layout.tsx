@@ -21,9 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathName = usePathname();
-  const showNavbar = ["/", "/docs", "/blog", "/pricing", "/about-us"].includes(
-    pathName
-  );
+  const showNavbar = [
+    "/",
+    "/docs",
+    "/blogs",
+    "/pricing",
+    "/about-us",
+    "/contact-us",
+  ].includes(pathName);
 
   return (
     <html lang='en'>
