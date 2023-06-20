@@ -13,28 +13,28 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 | 2          | storybook            | Storybook                | @referrer/storybook            | 6006 |
 | 3          | web                  | Main Website             | @referrer/web                  | 3000 |
 | packages / |
-| 4          | ui                   | Shared UI Components     | @referrer/ui                   |      |
-| 5          | prisma               | Prisma Database          | @referrer/prisma               |      |
-| 6          | lib                  | Shared Library Functions | @referrer/lib                  |      |
-| 7          | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom |      |
-| 8          | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      |      |
-| 9          | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      |      |
-| 10         | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             |      |
-| 11         | types                | Shared Types             | @referrer/types                |      |
+| 4          | ui                   | Shared UI Components     | @referrer/ui                   | -    |
+| 5          | prisma               | Prisma Database          | @referrer/prisma               | 5555 |
+| 6          | lib                  | Shared Library Functions | @referrer/lib                  | -    |
+| 7          | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom | -    |
+| 8          | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      | -    |
+| 9          | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      | -    |
+| 10         | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             | -    |
+| 11         | types                | Shared Types             | @referrer/types                | -    |
 
 ### Main domains
 
 | Domain          | Tech         | Version |
 | --------------- | ------------ | ------- |
 | Repository      | Turborepo    | 1.9     |
-| Language        | TypeScript   |         |
+| Language        | TypeScript   | 4.5     |
 | Client & Server | Next.js      | 13.4    |
-| Styling         | Tailwind CSS |         |
-| Api             | tRPC         |         |
-| Database ORM    | Prisma.io    |         |
-| Database        | PostgreSQL   |         |
-| Version Control | GitHub       |         |
-| Code Editor     | VS Code      |         |
+| Styling         | Tailwind CSS | 3.3     |
+| Api             | tRPC         | -       |
+| Database ORM    | Prisma.io    | 4.15    |
+| Database        | PostgreSQL   | -       |
+| Version Control | GitHub       | -       |
+| Code Editor     | VS Code      | -       |
 
 ### Main libraries
 
