@@ -15,7 +15,7 @@ export default function Page() {
       <div className=' h-[700px] flex flex-col justify-center items-center lg:p-16'>
         <h1 className='lg:text-[86px] text-center'>
           "Navigate the Job Market with Referrals :{" "}
-          <span className=' '>Your Path to Success</span>"
+          <span className=''>Connect through referrals</span>"
         </h1>
         <h5 className='text-center mt-7 px-28'>
           Used by some of the world's largest companies, Next.js enables you to
