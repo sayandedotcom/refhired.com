@@ -99,7 +99,7 @@ const SignUp = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='w-11/12 space-y-2 flex flex-col lg:w-10/12'>
+            className='w-11/12 space-y-2 flex flex-col lg:w-10/12 text-[#0f172a]'>
             <FormField
               control={form.control}
               name='username'

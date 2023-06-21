@@ -60,7 +60,7 @@ const Login = () => {
     }
   };
   return (
-    <div className='min-h-screen py-5 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
+    <div className='min-h-screen py-5 flex flex-col items-center justify-center gap-10 lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
       <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-6'>
         {error ? (
@@ -73,14 +73,14 @@ const Login = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className='w-11/12 space-y-4 flex flex-col lg:w-10/12'>
+            className='w-11/12 space-y-4 flex flex-col lg:w-10/12 text-[#0f172a]'>
             <FormField
               control={form.control}
               name='email'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className='text-black'>
-                    Email address / Username
+                    Email address or Username
                   </FormLabel>
                   <FormControl>
                     <Input
@@ -117,7 +117,11 @@ const Login = () => {
                 </FormItem>
               )}
             />
-            <Button type='submit'>Sign In</Button>
+            <Button
+              className='bg-[#0f172a] text-white hover:bg-[#0f172a]'
+              type='submit'>
+              Log In
+            </Button>
           </form>
         </Form>
         <Separator />
@@ -131,7 +135,9 @@ const Login = () => {
         </div>
         <Separator />
         <div className='flex justify-center items-center gap-2'>
-          <TypographySmall>Don&prime;t have an account ?</TypographySmall>
+          <TypographySmall className='text-[#030711]'>
+            Don&prime;t have an account ?
+          </TypographySmall>
           <Link className='text-muted-foreground' href='/sign-up'>
             <TypographySmall>Sign Up</TypographySmall>
           </Link>
