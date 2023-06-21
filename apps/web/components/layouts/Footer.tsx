@@ -1,18 +1,32 @@
 "use client";
+
+import { Separator } from "@referrer/ui";
+import { GitHubFork } from "../ui/GitHubFork";
+import { GitHubIssue } from "../ui/GitHubIssue";
+import { GitHubStar } from "../ui/GitHubStar";
+
 export const Footer = () => {
   return (
-    <footer className='bg-white'>
-      <div className='mx-auto max-w-screen-xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24'>
+    <footer className='text-white'>
+      <div className='bg-[#030711] mx-auto max-w-screen-2xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 rounded-3xl mb-6'>
         <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
           <div>
-            <div className='flex justify-center text-teal-600 sm:justify-start'>
-              Referrer
+            <div className='flex justify-center text-gray-200 sm:justify-start'>
+              <h2>Referrer</h2>
             </div>
+            <Separator />
+            <div className='flex flex-col gap-5 mt-6 max-w-md text-center leading-relaxed text-gray-300 sm:max-w-xs sm:text-left'>
+              <p>
+                This project is an Open Source Project ! Star , Fork or raise an
+                issue to improve this website on GitHub.
+              </p>
 
-            <p className='mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:max-w-xs sm:text-left'>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-              consequuntur amet culpa cum itaque neque.
-            </p>
+              <div>
+                <GitHubStar />
+                <GitHubFork />
+                <GitHubIssue />
+              </div>
+            </div>
 
             <ul className='mt-8 flex justify-center gap-6 sm:justify-start md:gap-8'>
               <li>
@@ -20,7 +34,7 @@ export const Footer = () => {
                   href='/'
                   rel='noreferrer'
                   target='_blank'
-                  className='text-teal-700 transition hover:text-teal-700/75'>
+                  className='text-gray-200 transition hover:text-gray-400/75'>
                   <span className='sr-only'>Facebook</span>
                   <svg
                     className='h-6 w-6'
@@ -41,7 +55,7 @@ export const Footer = () => {
                   href='/'
                   rel='noreferrer'
                   target='_blank'
-                  className='text-teal-700 transition hover:text-teal-700/75'>
+                  className='text-gray-200 transition hover:text-gray-400/75'>
                   <span className='sr-only'>Instagram</span>
                   <svg
                     className='h-6 w-6'
@@ -62,7 +76,7 @@ export const Footer = () => {
                   href='/'
                   rel='noreferrer'
                   target='_blank'
-                  className='text-teal-700 transition hover:text-teal-700/75'>
+                  className='text-gray-200 transition hover:text-gray-400/75'>
                   <span className='sr-only'>Twitter</span>
                   <svg
                     className='h-6 w-6'
@@ -79,7 +93,7 @@ export const Footer = () => {
                   href='/'
                   rel='noreferrer'
                   target='_blank'
-                  className='text-teal-700 transition hover:text-teal-700/75'>
+                  className='text-gray-200 transition hover:text-gray-400/75'>
                   <span className='sr-only'>GitHub</span>
                   <svg
                     className='h-6 w-6'
@@ -100,7 +114,7 @@ export const Footer = () => {
                   href='/'
                   rel='noreferrer'
                   target='_blank'
-                  className='text-teal-700 transition hover:text-teal-700/75'>
+                  className='text-gray-200 transition hover:text-gray-400/75'>
                   <span className='sr-only'>Dribbble</span>
                   <svg
                     className='h-6 w-6'
@@ -329,8 +343,8 @@ export const Footer = () => {
               </a>
             </p>
 
-            <p className='mt-4 text-sm text-gray-500 sm:order-first sm:mt-0'>
-              &copy; 2022 Company Name
+            <p className='mt-4 text-sm text-gray-200 sm:order-first sm:mt-0'>
+              &copy; 2023 Referrer
             </p>
           </div>
         </div>
