@@ -2,18 +2,15 @@
 
 export const Section = () => {
   return (
-    <section className='bg-gray-900 text-white'>
-      <div className='max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8'>
-        <div className='max-w-xl'>
-          <h2 className='text-3xl font-bold sm:text-4xl'>
-            What makes us special
-          </h2>
-
-          <p className='mt-4 text-gray-300'>
+    <section className='flex justify-center items-center'>
+      <div className='w-10/12 px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8 rounded-3xl'>
+        <div className='w-full'>
+          <h2 className='text-center text-[50px]'>Why referrer ?</h2>
+          <h5 className='mt-4 text-center'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
             dolores iure fugit totam iste obcaecati. Consequatur ipsa quod ipsum
             sequi culpa delectus, cumque id tenetur quibusdam, quos fuga minima.
-          </p>
+          </h5>
         </div>
 
         <div className='mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3'>
@@ -36,9 +33,8 @@ export const Section = () => {
             </span>
 
             <div>
-              <h2 className='text-lg font-bold'>Lorem, ipsum dolor.</h2>
-
-              <p className='mt-1 text-sm text-gray-300'>
+              <h4>Lorem, ipsum dolor.</h4>
+              <p className='text-lg mt-1'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
                 cumque tempore est ab possimus quisquam reiciendis tempora
                 animi! Quaerat, saepe?
@@ -65,9 +61,9 @@ export const Section = () => {
             </span>
 
             <div>
-              <h2 className='text-lg font-bold'>Lorem, ipsum dolor.</h2>
+              <h4>Lorem, ipsum dolor.</h4>
 
-              <p className='mt-1 text-sm text-gray-300'>
+              <p className='text-lg mt-1'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
                 cumque tempore est ab possimus quisquam reiciendis tempora
                 animi! Quaerat, saepe?
@@ -94,9 +90,9 @@ export const Section = () => {
             </span>
 
             <div>
-              <h2 className='text-lg font-bold'>Lorem, ipsum dolor.</h2>
+              <h4>Lorem, ipsum dolor.</h4>
 
-              <p className='mt-1 text-sm text-gray-300'>
+              <p className='text-lg mt-1'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
                 cumque tempore est ab possimus quisquam reiciendis tempora
                 animi! Quaerat, saepe?
@@ -123,9 +119,9 @@ export const Section = () => {
             </span>
 
             <div>
-              <h2 className='text-lg font-bold'>Lorem, ipsum dolor.</h2>
+              <h4>Lorem, ipsum dolor.</h4>
 
-              <p className='mt-1 text-sm text-gray-300'>
+              <p className='text-lg mt-1'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
                 cumque tempore est ab possimus quisquam reiciendis tempora
                 animi! Quaerat, saepe?
@@ -152,9 +148,9 @@ export const Section = () => {
             </span>
 
             <div>
-              <h2 className='text-lg font-bold'>Lorem, ipsum dolor.</h2>
+              <h4>Lorem, ipsum dolor.</h4>
 
-              <p className='mt-1 text-sm text-gray-300'>
+              <p className='text-lg mt-1'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
                 cumque tempore est ab possimus quisquam reiciendis tempora
                 animi! Quaerat, saepe?
@@ -181,9 +177,9 @@ export const Section = () => {
             </span>
 
             <div>
-              <h2 className='text-lg font-bold'>Lorem, ipsum dolor.</h2>
+              <h4>Lorem, ipsum dolor.</h4>
 
-              <p className='mt-1 text-sm text-gray-300'>
+              <p className='text-lg mt-1'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
                 cumque tempore est ab possimus quisquam reiciendis tempora
                 animi! Quaerat, saepe?

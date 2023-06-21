@@ -1,14 +1,16 @@
 "use client";
 
+import { Button } from "@referrer/ui";
+
 export const Joinnow = () => {
   return (
-    <section className='bg-gray-50'>
+    <section>
       <div className='mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-96 lg:items-center'>
         <div className='mx-auto max-w-xl text-center'>
           <h1 className='text-3xl font-extrabold sm:text-5xl'>
-            Understand User Flow.
-            <strong className='font-extrabold text-red-700 sm:block'>
-              Increase Conversion.
+            Don't waste your time.
+            <strong className='font-extrabold sm:block'>
+              Get / Referrer a Job now
             </strong>
           </h1>
 
@@ -18,17 +20,12 @@ export const Joinnow = () => {
           </p>
 
           <div className='mt-8 flex flex-wrap justify-center gap-4'>
-            <a
-              className='block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto'
-              href='/get-started'>
-              Get Started
-            </a>
-
-            <a
-              className='block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto'
-              href='/about'>
-              Learn More
-            </a>
+            <Button className='block w-full rounded px-12 py-3 text-sm font-medium shadow focus:outline-none focus:ring sm:w-auto'>
+              Log In
+            </Button>
+            <Button className='block w-full rounded px-12 py-3 text-sm font-medium shadow focus:outline-none focus:ring sm:w-auto'>
+              Sign Up
+            </Button>
           </div>
         </div>
       </div>

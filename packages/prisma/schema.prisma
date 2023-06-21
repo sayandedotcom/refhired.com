@@ -57,7 +57,7 @@ model User {
   image         String?
   workingAt     String?
   bio           String?
-  stars         Int? //?@default(0)
+  stars         Int? //? @default(0)
   sessions      Session[]
   accounts      Account[]
   followers     User[]      @relation(name: "follow")
@@ -88,10 +88,12 @@ model Posts {
   bookmarks     Bookmarks[]
   comments      Comments[]
   updatedAt     DateTime    @updatedAt
-  // ?Limit number of referals requests
+  // ? Limit number of referals requests
 
   @@index([userId])
 }
+
+// ? Apply with a catchy message with word limits
 
 model Applied {
   id        String   @id @default(cuid())

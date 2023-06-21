@@ -2,10 +2,10 @@
 
 export const Stats = () => {
   return (
-    <section className='bg-white'>
+    <section>
       <div className='mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8'>
         <div className='mx-auto max-w-3xl text-center'>
-          <h2 className='font-bold text-gray-900 sm:text-4xl'>
+          <h2 className='font-bold sm:text-4xl'>
             Trusted by eCommerce Businesses
           </h2>
 
@@ -23,9 +23,7 @@ export const Stats = () => {
                 Total Sales
               </dt>
 
-              <dd className='text-4xl font-extrabold text-blue-600 md:text-5xl'>
-                $4.8m
-              </dd>
+              <dd className='text-4xl font-extrabold md:text-5xl'>$4.8m</dd>
             </div>
 
             <div className='flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center'>
@@ -33,9 +31,7 @@ export const Stats = () => {
                 Official Addons
               </dt>
 
-              <dd className='text-4xl font-extrabold text-blue-600 md:text-5xl'>
-                24
-              </dd>
+              <dd className='text-4xl font-extrabold md:text-5xl'>24</dd>
             </div>
 
             <div className='flex flex-col rounded-lg border border-gray-100 px-4 py-8 text-center'>
@@ -43,9 +39,7 @@ export const Stats = () => {
                 Total Addons
               </dt>
 
-              <dd className='text-4xl font-extrabold text-blue-600 md:text-5xl'>
-                86
-              </dd>
+              <dd className='text-4xl font-extrabold md:text-5xl'>86</dd>
             </div>
           </dl>
         </div>

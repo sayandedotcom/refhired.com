@@ -7,8 +7,8 @@ import { GitHubStar } from "../ui/GitHubStar";
 
 export const Footer = () => {
   return (
-    <footer className='text-white'>
-      <div className='bg-[#030711] mx-auto max-w-screen-2xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 rounded-3xl mb-6'>
+    <footer>
+      <div className='bg-[#030711] mx-auto max-w-screen-2xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 rounded-3xl mb-6 border border-gray-200 hover:border-gray-300'>
         <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
           <div>
             <div className='flex justify-center text-gray-200 sm:justify-start'>
@@ -17,8 +17,8 @@ export const Footer = () => {
             <Separator />
             <div className='flex flex-col gap-5 mt-6 max-w-md text-center leading-relaxed text-gray-300 sm:max-w-xs sm:text-left'>
               <p>
-                This project is an Open Source Project ! Star , Fork or raise an
-                issue to improve this website on GitHub.
+                This project is an Open Source Project, Star, Fork or raise an
+                issue to help us to improve this website on GitHub.
               </p>
 
               <div>
@@ -134,12 +134,12 @@ export const Footer = () => {
 
           <div className='grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2'>
             <div className='text-center sm:text-left'>
-              <p className='text-lg font-medium text-gray-900'>About Us</p>
+              <p className='text-lg font-medium text-gray-200'>About Us</p>
 
               <ul className='mt-8 space-y-4 text-sm'>
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Company History
                   </a>
@@ -147,7 +147,7 @@ export const Footer = () => {
 
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Meet the Team
                   </a>
@@ -155,7 +155,7 @@ export const Footer = () => {
 
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Employee Handbook
                   </a>
@@ -163,7 +163,7 @@ export const Footer = () => {
 
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Careers
                   </a>
@@ -172,12 +172,12 @@ export const Footer = () => {
             </div>
 
             <div className='text-center sm:text-left'>
-              <p className='text-lg font-medium text-gray-900'>Our Services</p>
+              <p className='text-lg font-medium text-gray-200'>Our Services</p>
 
               <ul className='mt-8 space-y-4 text-sm'>
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Web Development
                   </a>
@@ -185,7 +185,7 @@ export const Footer = () => {
 
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Web Design
                   </a>
@@ -193,7 +193,7 @@ export const Footer = () => {
 
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Marketing
                   </a>
@@ -201,7 +201,7 @@ export const Footer = () => {
 
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Google Ads
                   </a>
@@ -210,12 +210,12 @@ export const Footer = () => {
             </div>
 
             <div className='text-center sm:text-left'>
-              <p className='text-lg font-medium text-gray-900'>Helpful Links</p>
+              <p className='text-lg font-medium text-gray-200'>Helpful Links</p>
 
               <ul className='mt-8 space-y-4 text-sm'>
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     FAQs
                   </a>
@@ -223,31 +223,16 @@ export const Footer = () => {
 
                 <li>
                   <a
-                    className='text-gray-700 transition hover:text-gray-700/75'
+                    className='text-gray-200 transition hover:text-gray-200/75'
                     href='/'>
                     Support
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className='group flex justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end'
-                    href='/'>
-                    <span className='text-gray-700 transition group-hover:text-gray-700/75'>
-                      Live Chat
-                    </span>
-
-                    <span className='relative flex h-2 w-2'>
-                      <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-400 opacity-75'></span>
-                      <span className='relative inline-flex h-2 w-2 rounded-full bg-teal-500'></span>
-                    </span>
                   </a>
                 </li>
               </ul>
             </div>
 
             <div className='text-center sm:text-left'>
-              <p className='text-lg font-medium text-gray-900'>Contact Us</p>
+              <p className='text-lg font-medium text-gray-200'>Contact Us</p>
 
               <ul className='mt-8 space-y-4 text-sm'>
                 <li>
@@ -256,7 +241,7 @@ export const Footer = () => {
                     href='/'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5 shrink-0 text-gray-900'
+                      className='h-5 w-5 shrink-0 text-gray-200'
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'
@@ -268,7 +253,7 @@ export const Footer = () => {
                       />
                     </svg>
 
-                    <span className='flex-1 text-gray-700'>john@doe.com</span>
+                    <span className='flex-1 text-gray-200'>john@doe.com</span>
                   </a>
                 </li>
 
@@ -278,7 +263,7 @@ export const Footer = () => {
                     href='/'>
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5 shrink-0 text-gray-900'
+                      className='h-5 w-5 shrink-0 text-gray-200'
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'
@@ -290,14 +275,14 @@ export const Footer = () => {
                       />
                     </svg>
 
-                    <span className='flex-1 text-gray-700'>0123456789</span>
+                    <span className='flex-1 text-gray-200'>0123456789</span>
                   </a>
                 </li>
 
                 <li className='flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end'>
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
-                    className='h-5 w-5 shrink-0 text-gray-900'
+                    className='h-5 w-5 shrink-0 text-gray-200'
                     fill='none'
                     viewBox='0 0 24 24'
                     stroke='currentColor'
@@ -314,7 +299,7 @@ export const Footer = () => {
                     />
                   </svg>
 
-                  <address className='-mt-0.5 flex-1 not-italic text-gray-700'>
+                  <address className='-mt-0.5 flex-1 not-italic text-gray-200'>
                     213 Lane, London, United Kingdom
                   </address>
                 </li>
@@ -329,7 +314,7 @@ export const Footer = () => {
               <span className='block sm:inline'>All rights reserved.</span>
 
               <a
-                className='inline-block text-teal-600 underline transition hover:text-teal-600/75'
+                className='inline-block text-gray-200 underline transition'
                 href='/'>
                 Terms & Conditions
               </a>
@@ -337,7 +322,7 @@ export const Footer = () => {
               <span>&middot;</span>
 
               <a
-                className='inline-block text-teal-600 underline transition hover:text-teal-600/75'
+                className='inline-block text-gray-200 underline transition'
                 href='/'>
                 Privacy Policy
               </a>
