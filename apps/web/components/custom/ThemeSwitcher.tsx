@@ -17,10 +17,10 @@ export const ThemeSwitcher = () => {
   }
 
   const switchTheme = (theme) => {
-    if (theme === "dark") {
-      setTheme("light");
-    } else {
+    if (theme === "light") {
       setTheme("dark");
+    } else {
+      setTheme("light");
     }
   };
 

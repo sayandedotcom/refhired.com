@@ -47,10 +47,10 @@ const Login = () => {
       const result = await signIn("credentials", {
         email: values.email,
         password: values.password,
-        redirect: true,
+        redirect: false,
         callbackUrl,
       });
-      if (result.ok) {
+      if (!result?.error) {
         router.push(callbackUrl);
       } else {
         setError("Invalid email or password");
@@ -63,10 +63,12 @@ const Login = () => {
     <div className='min-h-screen py-5 flex flex-col items-center justify-center gap-10 bg-[#f3f4f6] lg:h-screen'>
       <TypographyH2>Welcome Back !</TypographyH2>
       <div className='rounded-md border border-gray-200 w-11/12 lg:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-6'>
-        {error && (
+        {error ? (
           <div className='bg-red-300 border border-destructive text-destructive rounded-sm text-center p-2 w-10/12'>
             {error}
           </div>
+        ) : (
+          <></>
         )}
         <Form {...form}>
           <form

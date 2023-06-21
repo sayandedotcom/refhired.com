@@ -1,7 +1,20 @@
 "use client";
-export function TypographySmall({ children }: { children: React.ReactNode }) {
+
+import { cn } from "@referrer/lib/utils/cn";
+
+export function TypographySmall({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <small className='text-sm font-medium leading-none tracking-[0.045em]'>
+    <small
+      className={cn(
+        "text-sm font-medium leading-none tracking-[0.045em]",
+        className
+      )}>
       {children}
     </small>
   );
