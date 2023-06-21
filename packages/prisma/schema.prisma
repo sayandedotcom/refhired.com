@@ -88,6 +88,7 @@ model Posts {
   bookmarks     Bookmarks[]
   comments      Comments[]
   updatedAt     DateTime    @updatedAt
+  // ?Limit number of referals requests
 
   @@index([userId])
 }
