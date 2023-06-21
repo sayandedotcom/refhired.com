@@ -9,5 +9,7 @@ export * from "./components/switch/switch";
 export * from "./components/skeleton/skeleton";
 export * from "./components/badge/badge";
 export * from "./components/alert-dialog/alert-dialog";
+export * from "./components/dialog/dialog";
+export * from "./components/hover-card/hover-card";
 export * from "./forms";
 export * from "./typography";
