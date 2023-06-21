@@ -125,6 +125,11 @@ const Login = () => {
           </form>
         </Form>
         <Separator />
+
+        <div className='relative flex justify-center text-xs uppercase'>
+          <span className='px-2 text-muted-foreground'>Or continue with</span>
+        </div>
+
         <div className='w-11/12 flex flex-col lg:w-[350px] gap-4'>
           <Button onClick={() => signIn("google")} variant='secondary'>
             <TypographyP>Sign In with Google</TypographyP>
