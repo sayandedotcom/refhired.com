@@ -38,27 +38,28 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 
 ### Main libraries
 
-| Domain            | Libraries       | Version |
-| ----------------- | --------------- | ------- |
-| Authentication    | Next-Auth       | 4       |
-| State Management  | Redux Toolkit   |         |
-| UI Components     | shadcn.ui       |         |
-| UI Documentation  | Storybook       | 7       |
-| Icons             | Lucid React     |         |
-| Schema Validation | Zod             |         |
-| Form Validation   | React Hook Form |         |
-| Font              | Cal Sans        |         |
-| Linter Tasks      | Lint Staged     |         |
-| Git Hook          | Husky           |         |
-| Code Formatter    | Prettier        |         |
-| Code Analysis     | Eslint          |         |
+| Domain            | Libraries                | Version |
+| ----------------- | ------------------------ | ------- |
+| Authentication    | Next-Auth                | 4       |
+| State Management  | Redux Toolkit            |         |
+| UI Components     | shadcn.ui                |         |
+| UI Documentation  | Storybook                | 7       |
+| Icons             | Lucid React, React Icons |         |
+| Thenming          | Next Themes              |         |
+| Schema Validation | Zod                      |         |
+| Form Validation   | React Hook Form          |         |
+| Font              | Cal Sans                 |         |
+| Linter Tasks      | Lint Staged              |         |
+| Git Hook          | Husky                    |         |
+| Code Formatter    | Prettier                 |         |
+| Code Analysis     | Eslint                   |         |
 
 ### Devops Tools
 
 | Domain                  | Libraries      |
 | ----------------------- | -------------- |
 | Containerization        | Docker         |
-| container orchestration | Kubernetes     |
+| Container Orchestration | Kubernetes     |
 | CI/CD                   | GitHub Actions |
 
 ### Features
@@ -67,7 +68,6 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 2. PWA
 3. OS Default Theme
 4. User Active Status
-5. Skeleton Loading
 
 ## Getting Started
 
