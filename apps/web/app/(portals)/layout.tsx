@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Separator } from "@referrer/ui";
 import "../../styles/globals.css";
 import {
@@ -14,7 +14,11 @@ import {
   IoNotificationsSharp,
   IoSettingsOutline,
   IoSettingsSharp,
+  IoDocumentsOutline,
+  IoDocumentsSharp,
 } from "react-icons/io5";
+import { TiTickOutline, TiTick } from "react-icons/ti";
+import { BsFileBarGraph, BsFileEarmarkBarGraphFill } from "react-icons/bs";
 import {
   FaBookmark,
   FaRegBookmark,
@@ -26,6 +30,7 @@ import { RiSearchLine, RiSearchFill } from "react-icons/ri";
 import { useState } from "react";
 import { AvatarDemo, TooltipDemo } from "../../components/ui";
 import { useRouter } from "next/navigation";
+import { ThemeSwitcher } from "../../components/custom";
 
 const portalsList = [
   {
@@ -55,14 +60,14 @@ const portalsList = [
   {
     name: "Requests",
     link: "/requests",
-    icon: <AiOutlineHome />,
-    activeIcon: <AiOutlineHome />,
+    icon: <IoDocumentsOutline />,
+    activeIcon: <IoDocumentsSharp />,
   },
   {
     name: "Applied",
     link: "/applied",
-    icon: <AiOutlineHome />,
-    activeIcon: <AiOutlineHome />,
+    icon: <TiTickOutline />,
+    activeIcon: <TiTick />,
   },
   {
     name: "Settings",
@@ -79,8 +84,8 @@ const portalsList = [
   {
     name: "Dashboard",
     link: "/dashboard",
-    icon: <AiOutlineHome />,
-    activeIcon: <AiOutlineHome />,
+    icon: <BsFileBarGraph />,
+    activeIcon: <BsFileEarmarkBarGraphFill />,
   },
   {
     name: "Profile",
@@ -95,6 +100,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathName = usePathname();
   const router = useRouter();
   const [active, setActive] = useState("Home");
 
@@ -104,24 +110,25 @@ export default function RootLayout({
   };
 
   return (
-    <div className='flex justify-center bg-black'>
-      <section className='text-white w-80 flex flex-col items-start'>
+    <div className='flex justify-center'>
+      {/* Oprions Section ************************************************************************/}
+      <section className='w-4/12 md:w-80 flex flex-col items-start gap-3'>
         <div
           onClick={() => handleActive("Home", "/home")}
           className='p-2 cursor-pointer'>
           <h2>Referrer</h2>
         </div>
         <div>
-          <ul className='w-full list-none text-2xl cursor-pointer p-4'>
+          <ul className='w-full list-none text-xl cursor-pointer p-4'>
             {portalsList.map(({ name, link, icon, activeIcon }) => (
-              <TooltipDemo text={name}>
+              <TooltipDemo text={`Go to ${name}`}>
                 <li
                   onClick={() => handleActive(name, link)}
-                  className='flex gap-4 items-center py-3 px-6 rounded-full hover:bg-[#16181c] hover:text-gray-300 w-full'>
+                  className='flex gap-4 items-center py-3 px-6 rounded-full dark:hover:bg-[#16181c] hover:text-gray-300 w-full'>
                   {active !== name ? (
-                    <span className='text-3xl'>{icon}</span>
+                    <span className='text-2xl'>{icon}</span>
                   ) : (
-                    <span className='text-3xl'>{activeIcon}</span>
+                    <span className='text-2xl'>{activeIcon}</span>
                   )}
                   <p className='mt-1'>{name}</p>
                 </li>
@@ -129,31 +136,38 @@ export default function RootLayout({
             ))}
           </ul>
         </div>
-        <TooltipDemo text='Post'>
-          <button className='text-xl px-32 py-3 bg-white text-black rounded-full hover:bg-gray-300'>
-            Post
-          </button>
-        </TooltipDemo>
+        <button className='text-xl px-32 py-3 dark:text-black rounded-full bg-white border-2 border-black'>
+          Post
+        </button>
+        <div className='flex items-center justify-start gap-3 w-64 px-14 py-2 bg-muted rounded-full ring'>
+          <AvatarDemo image='none' /> Sayan De
+        </div>
       </section>
-      {/* <hr className='h-96 w-5 bg-white' /> */}
       <Separator
         orientation='vertical'
-        className='border-0 h-screen w-[0.1px] bg-[#2d3134]'
+        className=' h-screen dark:bg-[#2d3134]'
       />
-      <section className='text-white h-screen w-[38rem]'>
+      {/* Content Section ************************************************************************/}
+      <section className='h-screen w-[38rem]'>
         <div className='px-4 py-4'>
-          <h5>Name</h5>
+          <h5 className='capitalize'>{pathName.split("/")}</h5>
         </div>
-        <Separator className='bg-[#2d3134]' />
+        <Separator className='dark:bg-[#2d3134]' />
         {children}
       </section>
-      <Separator orientation='vertical' className='h-screen bg-[#2d3134]' />
-      <section className='text-white w-80 flex flex-col gap-3 p-2'>
-        <div className='px-4 py-2 bg-[#16181c] rounded-2xl'>
+      <Separator
+        orientation='vertical'
+        className='h-screen dark:bg-[#2d3134]'
+      />
+
+      {/* Extra Section ************************************************************************/}
+      <section className='hidden w-80 md:flex md:flex-col md:gap-3 md:p-2'>
+        <div className='px-4 py-2 bg-muted rounded-2xl'>
           <h5>Extras</h5>
         </div>
-        <div className='px-4 py-2 bg-[#16181c] rounded-2xl'>
-          <AvatarDemo image='none' />
+        <ThemeSwitcher />
+        <div className='px-4 py-2 bg-muted rounded-2xl'>
+          <h6>Sugessions</h6>
         </div>
       </section>
     </div>

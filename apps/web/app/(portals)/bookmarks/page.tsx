@@ -1,7 +1,9 @@
 "use client";
 
+import { PortalsNotFound } from "../../../components/custom";
+
 const Bookmarks = () => {
-  return <div>Bookmarks</div>;
+  return <PortalsNotFound text='Bookmarks' />;
 };
 
 export default Bookmarks;

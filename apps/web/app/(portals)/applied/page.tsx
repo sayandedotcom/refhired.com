@@ -1,7 +1,9 @@
 "use client";
 
+import { PortalsNotFound } from "../../../components/custom";
+
 const Applied = () => {
-  return <div>Applied</div>;
+  return <PortalsNotFound text='Applied' />;
 };
 
 export default Applied;

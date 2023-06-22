@@ -12,12 +12,10 @@ import {
   AvatarImage,
 } from "@referrer/ui";
 
-export function HoverCardDemo() {
+export function HoverCardDemo({ children }) {
   return (
     <HoverCard>
-      <HoverCardTrigger asChild>
-        <Button variant='link'>@nextjs</Button>
-      </HoverCardTrigger>
+      <HoverCardTrigger asChild>{children}</HoverCardTrigger>
       <HoverCardContent className='w-80'>
         <div className='flex justify-between space-x-4'>
           <Avatar>

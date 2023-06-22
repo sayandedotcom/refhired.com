@@ -1,4 +1,13 @@
 "use client";
-export function TypographyP({ children }: { children: React.ReactNode }) {
-  return <p className='leading-7 [&:not(:first-child)]:mt-6'>{children}</p>;
+
+import { cn } from "@referrer/lib/utils/cn";
+export function TypographyP({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <p className={cn("leading-7", className)}>{children}</p>;
 }
+// [&:not(:first-child)]:mt-6

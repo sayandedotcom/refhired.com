@@ -1,7 +1,9 @@
 "use client";
 
+import { PortalsNotFound } from "../../../components/custom";
+
 const Requests = () => {
-  return <div>Requests</div>;
+  return <PortalsNotFound text='Requests' />;
 };
 
 export default Requests;

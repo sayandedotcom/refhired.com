@@ -1,7 +1,18 @@
 "use client";
 
+import { PostCard } from "../../../components/custom";
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <>
+      <PostCard />
+      <PostCard />
+      <PostCard />
+      <PostCard />
+      <PostCard />
+      <PostCard />
+      <PostCard />
+    </>
+  );
 };
 
 export default Home;

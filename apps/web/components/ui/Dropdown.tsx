@@ -1,6 +1,7 @@
 "use client";
 
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 import {
   Cloud,
@@ -35,17 +36,31 @@ import {
   DropdownMenuTrigger,
 } from "@referrer/ui";
 
-export function DropdownMenuDemo({ children, userName, email }) {
+type DropdownMenuDemoProps = {
+  children: React.ReactNode;
+  userName?: string;
+  email?: string;
+};
+
+export function DropdownMenuDemo({
+  children,
+  userName,
+  email,
+}: DropdownMenuDemoProps) {
+  const router = useRouter();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button>{children}</button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56'>
-        <DropdownMenuLabel>{email}</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          Hi {"  "}
+          {email}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => router.push("/profile")}>
             <User className='mr-2 h-4 w-4' />
             <span>Profile</span>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>

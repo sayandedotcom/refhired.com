@@ -1,7 +1,9 @@
 "use client";
 
+import { PortalsNotFound } from "../../../components/custom";
+
 const Notifications = () => {
-  return <div>Notifications</div>;
+  return <PortalsNotFound text='Notifications' />;
 };
 
 export default Notifications;
