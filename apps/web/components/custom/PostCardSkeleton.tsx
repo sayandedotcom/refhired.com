@@ -6,9 +6,11 @@ export const PostCardSkeleton = () => {
   return (
     <>
       <Separator />
-      <div className='flex w-full gap-3 max-w-2xl p-4 mx-auto'>
-        <Skeleton className='h-16 aspect-square rounded-full' />
-        <div className='flex flex-col gap-2 w-full'>
+      <div className='flex w-full gap-1 md:gap-3 max-w-2xl p-1 md:p-4 mx-auto'>
+        <div className='w-[12%]'>
+          <Skeleton className='w-10 h-10 md:h-16 md:w-16 rounded-full' />
+        </div>
+        <div className='w-[88%] flex flex-col gap-2'>
           <div className='flex items-center gap-4'>
             <Skeleton className='h-5 w-[100px]' />
             <Skeleton className='h-5 w-[100px]' />
@@ -25,7 +27,7 @@ export const PostCardSkeleton = () => {
             <Skeleton className='h-5 w-[100px]' />
             <Skeleton className='h-5 w-[100px]' />
           </div>
-          <Skeleton className='h-11 w-[140px] rounded-full ml-auto' />
+          <Skeleton className='rounded-full ml-auto  h-9 w-3/12' />
         </div>
       </div>
       <Separator />

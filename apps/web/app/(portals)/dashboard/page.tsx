@@ -1,7 +1,7 @@
 "use client";
 
-const Bookmarks = () => {
-  return <div>Bookmarks</div>;
+const Dashboard = () => {
+  return <div>Dashboard</div>;
 };
 
-export default Bookmarks;
+export default Dashboard;

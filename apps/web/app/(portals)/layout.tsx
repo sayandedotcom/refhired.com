@@ -21,16 +21,18 @@ import { TiTickOutline, TiTick } from "react-icons/ti";
 import { BsFileBarGraph, BsFileEarmarkBarGraphFill } from "react-icons/bs";
 import {
   FaBookmark,
+  FaPenNib,
   FaRegBookmark,
   FaRegUser,
   FaUserAlt,
 } from "react-icons/fa";
-
 import { RiSearchLine, RiSearchFill } from "react-icons/ri";
 import { useState } from "react";
 import { AvatarDemo, TooltipDemo } from "../../components/ui";
 import { useRouter } from "next/navigation";
 import { ThemeSwitcher } from "../../components/custom";
+import { PostDialog } from "../../components/custom/PostDialog";
+import { useWindowSize } from "../../lib/hooks";
 
 const portalsList = [
   {
@@ -103,6 +105,7 @@ export default function RootLayout({
   const pathName = usePathname();
   const router = useRouter();
   const [active, setActive] = useState("Home");
+  const { width, height } = useWindowSize();
 
   const handleActive = (name, link) => {
     setActive(name);
@@ -112,43 +115,52 @@ export default function RootLayout({
   return (
     <div className='flex justify-center'>
       {/* Oprions Section ************************************************************************/}
-      <section className='w-4/12 md:w-80 flex flex-col items-start gap-3'>
-        <div
-          onClick={() => handleActive("Home", "/home")}
-          className='p-2 cursor-pointer'>
-          <h2>Referrer</h2>
-        </div>
-        <div>
-          <ul className='w-full list-none text-xl cursor-pointer p-4'>
-            {portalsList.map(({ name, link, icon, activeIcon }) => (
-              <TooltipDemo text={`Go to ${name}`}>
-                <li
-                  onClick={() => handleActive(name, link)}
-                  className='flex gap-4 items-center py-3 px-6 rounded-full dark:hover:bg-[#16181c] hover:text-gray-300 w-full'>
-                  {active !== name ? (
-                    <span className='text-2xl'>{icon}</span>
-                  ) : (
-                    <span className='text-2xl'>{activeIcon}</span>
-                  )}
-                  <p className='mt-1'>{name}</p>
-                </li>
-              </TooltipDemo>
-            ))}
-          </ul>
-        </div>
-        <button className='text-xl px-32 py-3 dark:text-black rounded-full bg-white border-2 border-black'>
-          Post
-        </button>
-        <div className='flex items-center justify-start gap-3 w-64 px-14 py-2 bg-muted rounded-full ring'>
-          <AvatarDemo image='none' /> Sayan De
+      {/* w-20 lg:w-72 sticky top-0 lg:left-56 left-0 */}
+      <section className='w-[15%] lg:w-80 h-screen sticky top-0 overflow-y-auto'>
+        <div className='flex flex-col items-center justify-center  gap-3'>
+          <div
+            onClick={() => handleActive("Home", "/home")}
+            className='p-2 cursor-pointer'>
+            <h2 className='hidden lg:block'>Referrer</h2>
+            <h4 className='hidden md:block lg:hidden'>Referrer</h4>
+            <h3 className='md:hidden lg:hidden'>R</h3>
+          </div>
+          <div className='lg:flex lg:flex-col lg:justify-start'>
+            <div className='text-xl cursor-pointer'>
+              {portalsList.map(({ name, link, icon, activeIcon }) => (
+                <TooltipDemo text={`Go to ${name}`}>
+                  <div
+                    onClick={() => handleActive(name, link)}
+                    className='flex gap-4 items-center py-3 px-3 rounded-full hover:bg-muted'>
+                    {active !== name ? (
+                      <span className='text-2xl md:text-3xl'>{icon}</span>
+                    ) : (
+                      <span className='text-2xl md:text-3xl'>{activeIcon}</span>
+                    )}
+                    <p className='hidden lg:block mt-1'>{name}</p>
+                  </div>
+                </TooltipDemo>
+              ))}
+            </div>
+          </div>
+          <PostDialog>
+            <button className='lg:w-10/12 text-xl py-3 px-3 md:px-2 dark:text-black rounded-full bg-white border-2 border-black'>
+              {width < 1000 ? <FaPenNib /> : "Post"}
+            </button>
+          </PostDialog>
+
+          <div className='flex items-center justify-center gap-3 lg:w-10/12 lg:py-2 bg-muted rounded-full'>
+            <AvatarDemo image='https://github.com/shadcn.png' />
+            <span className='hidden lg:block'>Sayan De</span>
+          </div>
         </div>
       </section>
       <Separator
         orientation='vertical'
-        className=' h-screen dark:bg-[#2d3134]'
+        className=' h-screen dark:bg-[#2d3134] sticky top-0'
       />
       {/* Content Section ************************************************************************/}
-      <section className='h-screen w-[38rem]'>
+      <section className='w-[85%] lg:w-[38rem]'>
         <div className='px-4 py-4'>
           <h5 className='capitalize'>{pathName.split("/")}</h5>
         </div>
@@ -157,11 +169,10 @@ export default function RootLayout({
       </section>
       <Separator
         orientation='vertical'
-        className='h-screen dark:bg-[#2d3134]'
+        className='h-screen dark:bg-[#2d3134] sticky top-0'
       />
-
       {/* Extra Section ************************************************************************/}
-      <section className='hidden w-80 md:flex md:flex-col md:gap-3 md:p-2'>
+      <section className='hidden w-80 lg:flex lg:flex-col lg:gap-3 lg:p-2 h-screen sticky top-0'>
         <div className='px-4 py-2 bg-muted rounded-2xl'>
           <h5>Extras</h5>
         </div>

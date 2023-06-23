@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button, Separator } from "@referrer/ui";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { AiOutlineArrowRight } from "react-icons/ai";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 import { ThemeSwitcher } from "../custom";
 
@@ -47,11 +48,20 @@ export const Header = () => {
 
             <div className='hidden flex-1 items-center justify-end gap-4 sm:flex'>
               {session && session.user ? (
-                <DropdownMenuDemo
-                  userName={session.user.name}
-                  email={session.user.email}>
-                  <AvatarDemo image={session.user?.image} />
-                </DropdownMenuDemo>
+                <>
+                  <DropdownMenuDemo
+                    userName={session.user.userName}
+                    email={session.user.email}>
+                    <AvatarDemo image={session.user?.image} />
+                  </DropdownMenuDemo>
+                  <TooltipDemo text='Explore'>
+                    <Button
+                      iconAfter={<AiOutlineArrowRight />}
+                      onClick={() => router.push("/home")}>
+                      Explore !
+                    </Button>
+                  </TooltipDemo>
+                </>
               ) : (
                 <>
                   <TooltipDemo text='Log In'>
@@ -59,7 +69,6 @@ export const Header = () => {
                       Log In
                     </Button>
                   </TooltipDemo>
-
                   <TooltipDemo text='Sign Up'>
                     <Button
                       variant='outline'

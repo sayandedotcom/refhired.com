@@ -1,0 +1,53 @@
+"use client";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
+  Button,
+} from "@referrer/ui";
+
+export function PostDialog({ children }: { children: React.ReactNode }) {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        {/* <Button className='hover:bg-background' variant='outline'> */}
+        {children}
+        {/* </Button> */}
+      </DialogTrigger>
+      <DialogContent className='md:w-[900px]'>
+        <DialogHeader>
+          <DialogTitle>Post !</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className='grid gap-4 py-4'>
+          <div className='grid grid-cols-4 items-center gap-4'>
+            <Label htmlFor='name' className='text-right'>
+              Name
+            </Label>
+            <Input id='name' value='Pedro Duarte' className='col-span-3' />
+          </div>
+          <div className='grid grid-cols-4 items-center gap-4'>
+            <Label htmlFor='username' className='text-right'>
+              Username
+            </Label>
+            <Input id='username' value='@peduarte' className='col-span-3' />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button className='rounded-full w-32' type='submit'>
+            <p>Post</p>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
