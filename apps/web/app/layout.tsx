@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import { usePathname } from "next/navigation";
 import { SessionProvider } from "next-auth/react";
 import { Announcements, Footer, Header } from "../components/layouts";
-import { Providers } from "./providers";
+import { ThemeProvider } from "./providers";
 import "cal-sans";
 import "../styles/globals.css";
 
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Providers>
+        <ThemeProvider>
           <SessionProvider>
             {showNavbar && (
               <>
@@ -45,7 +45,7 @@ export default function RootLayout({
             {children}
             {showNavbar && <Footer />}
           </SessionProvider>
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

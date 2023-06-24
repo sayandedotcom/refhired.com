@@ -81,7 +81,7 @@ model Posts {
   experience    Int?
   location      String?
   startingRange Int?
-  endindRange   Int?
+  endindRange   Int? //Typo
   image         String?
   tags          Tags[]
   applied       Applied[]
