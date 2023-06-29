@@ -40,12 +40,14 @@ type DropdownMenuDemoProps = {
   children: React.ReactNode;
   userName?: string;
   email?: string;
+  fullName?: string;
 };
 
 export function DropdownMenuDemo({
   children,
   userName,
   email,
+  fullName,
 }: DropdownMenuDemoProps) {
   const router = useRouter();
   return (
@@ -54,7 +56,7 @@ export function DropdownMenuDemo({
         <button>{children}</button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56'>
-        <DropdownMenuLabel>{email}</DropdownMenuLabel>
+        <DropdownMenuLabel>{fullName}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => router.push("/profile")}>

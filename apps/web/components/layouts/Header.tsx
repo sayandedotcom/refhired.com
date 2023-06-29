@@ -50,9 +50,13 @@ export const Header = () => {
               {session && session.user ? (
                 <>
                   <DropdownMenuDemo
-                    userName={session.user.name}
+                    userName={session.user.userName}
+                    fullName={session.user.fullName}
                     email={session.user.email}>
-                    <AvatarDemo image={session.user?.image} />
+                    <AvatarDemo
+                      fullName={session.user.fullName}
+                      image={session.user?.image}
+                    />
                   </DropdownMenuDemo>
                   {/* <TooltipDemo text='Explore'>
                     <Button

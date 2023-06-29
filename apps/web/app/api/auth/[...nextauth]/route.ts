@@ -35,24 +35,39 @@ const handler = NextAuth({
       },
     }),
   ],
-  // callbacks: {
-  //   async session(session, user) {
-  //     const userData = await prisma.user.findUnique({
-  //       where: {
-  //         email: user.email,
-  //       },
-  //     });
-  //     session.user = {
-  //        ...session.user,
-  //             session.userName=userData.userName as any,
-  //     session.fullName=userData.fullName as any ,
-  //     session.email=userData.email as any,
-  //     session.image=userData.image as any
-  //     };
-
-  //     return session;
-  //   },
-  // },
+  callbacks: {
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.userName = token.userName;
+        session.user.fullName = token.fullName;
+        session.user.email = token.email;
+        session.user.image = token.image;
+      }
+      return session;
+    },
+    async jwt({ token, user }) {
+      const dbuser = await prisma.user.findFirst({
+        where: {
+          email: token.email,
+        },
+      });
+      if (!dbuser) {
+        token.id = user!.id;
+        return token;
+      }
+      return {
+        id: dbuser.id,
+        userName: dbuser.userName,
+        fullName: dbuser.fullName,
+        email: dbuser.email,
+        image: dbuser.image,
+      };
+    },
+    redirect() {
+      return "/";
+    },
+  },
   pages: {
     signIn: "/login",
     signOut: "/",

@@ -50,7 +50,7 @@ model VerificationToken {
 model User {
   id            String      @id @default(cuid())
   password      String
-  fullName      String?
+  fullName      String? // ? change it to name
   userName      String?     @unique
   email         String      @unique
   emailVerified DateTime?
