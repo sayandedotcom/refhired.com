@@ -72,7 +72,7 @@ model Posts {
   id            String      @id @default(cuid())
   userId        String
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contents      String
+  contents      String // ? change it to tile
   description   String
   createdAt     DateTime    @default(now())
   expiresAt     DateTime?
@@ -81,7 +81,7 @@ model Posts {
   experience    Int?
   location      String?
   startingRange Int?
-  endindRange   Int? //Typo
+  endindRange   Int? // ? Typo
   image         String?
   tags          Tags[]
   applied       Applied[]
@@ -134,3 +134,5 @@ model Bookmarks {
 
   @@unique([userId, postId])
 }
+
+//? Notifications
