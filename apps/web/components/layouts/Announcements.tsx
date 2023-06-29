@@ -25,7 +25,10 @@ export const Announcements = () => {
       <button
         onClick={() => setClose(!close)}
         aria-label='Dismiss'
-        className='shrink-0 rounded-lg p-1 transition hover:bg-black/20 absolute right-2 top-3 text-white'>
+        className={clsx(
+          "shrink-0 rounded-lg p-1 transition hover:bg-black/20 absolute right-2 top-3 text-white",
+          close && "hidden"
+        )}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           className='h-5 w-5'
