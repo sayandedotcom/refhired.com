@@ -8,9 +8,7 @@ import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FiLink2, FiMessageCircle, FiShare2 } from "react-icons/fi";
 import AltImage from "../../public/avatar/avatar.png";
 import { Button, Separator } from "@referrer/ui";
-import { TooltipDemo } from "../ui";
-import { HoverCardDemo } from "../ui/HoverCard";
-import { Badge } from "../ui/Badge";
+import { ApplyDialog, TooltipDemo, Badge, HoverCardDemo } from "../ui";
 import { useWindowSize } from "../../lib/hooks";
 
 const tag = [
@@ -25,7 +23,7 @@ const tag = [
 export const PostCard = () => {
   const [applied, setApplied] = useState(false);
   const [bookmark, setBookmark] = useState(false);
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
   return (
     <>
       <Separator />
@@ -83,7 +81,6 @@ export const PostCard = () => {
               ....Show more
             </span>
           </p>
-
           <div className='flex gap-1 h-5'>
             <Badge
               className='border dark:border-gray-200 border-black'
@@ -93,7 +90,7 @@ export const PostCard = () => {
             </Badge>
             {tag.map(
               (item, i) =>
-                (width < 1000 ? i < 2 : i < 3) && (
+                (width < 1000 ? i < 1 : i < 3) && (
                   <Badge
                     className='border dark:border-gray-200 border-black'
                     variant='secondary'>
@@ -119,19 +116,20 @@ export const PostCard = () => {
                 <FiLink2 className='cursor-pointer' />
               </TooltipDemo>
             </div>
-
             <TooltipDemo text='Apply'>
-              <Button
-                disabled={applied}
-                iconBefore={
-                  applied && (
-                    <AiOutlineCheckCircle className='text-green-400 text-sm md:text-xl mr-1' />
-                  )
-                }
-                onClick={() => setApplied(!applied)}
-                className='rounded-full h-9 w-3/12 text-sm'>
-                {applied ? "Applied" : "Apply"}
-              </Button>
+              <ApplyDialog>
+                <Button
+                  disabled={applied}
+                  iconBefore={
+                    applied && (
+                      <AiOutlineCheckCircle className='text-green-400 text-sm md:text-xl mr-1' />
+                    )
+                  }
+                  onClick={() => setApplied(!applied)}
+                  className='rounded-full h-9 w-3/12 text-sm'>
+                  {applied ? "Applied" : "Apply"}
+                </Button>
+              </ApplyDialog>
             </TooltipDemo>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import prisma from "@referrer/prisma";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -34,6 +35,24 @@ const handler = NextAuth({
       },
     }),
   ],
+  // callbacks: {
+  //   async session(session, user) {
+  //     const userData = await prisma.user.findUnique({
+  //       where: {
+  //         email: user.email,
+  //       },
+  //     });
+  //     session.user = {
+  //        ...session.user,
+  //             session.userName=userData.userName as any,
+  //     session.fullName=userData.fullName as any ,
+  //     session.email=userData.email as any,
+  //     session.image=userData.image as any
+  //     };
+
+  //     return session;
+  //   },
+  // },
   pages: {
     signIn: "/login",
     signOut: "/",

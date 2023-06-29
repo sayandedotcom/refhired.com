@@ -28,10 +28,10 @@ import {
 } from "react-icons/fa";
 import { RiSearchLine, RiSearchFill } from "react-icons/ri";
 import { useState } from "react";
-import { AvatarDemo, TooltipDemo } from "../../components/ui";
+import { AvatarDemo, PostTypeDialog, TooltipDemo } from "../../components/ui";
 import { useRouter } from "next/navigation";
 import { ThemeSwitcher } from "../../components/custom";
-import { PostDialog } from "../../components/custom/PostDialog";
+import { PostDialog } from "../../components/ui";
 import { useWindowSize } from "../../lib/hooks";
 
 const portalsList = [
@@ -115,7 +115,6 @@ export default function RootLayout({
   return (
     <div className='flex justify-center'>
       {/* Oprions Section ************************************************************************/}
-      {/* w-20 lg:w-72 sticky top-0 lg:left-56 left-0 */}
       <section className='w-[15%] lg:w-80 h-screen sticky top-0 overflow-y-auto'>
         <div className='flex flex-col items-center justify-center  gap-3'>
           <div
@@ -143,12 +142,11 @@ export default function RootLayout({
               ))}
             </div>
           </div>
-          <PostDialog>
-            <button className='lg:w-10/12 text-xl py-3 px-3 md:px-2 dark:text-black rounded-full bg-white border-2 border-black'>
+          <PostTypeDialog>
+            <button className='lg:w-10/12 text-xl py-3 px-3 lg:px-2 dark:text-black rounded-full bg-white border-2 border-black'>
               {width < 1000 ? <FaPenNib /> : "Post"}
             </button>
-          </PostDialog>
-
+          </PostTypeDialog>
           <div className='flex items-center justify-center gap-3 lg:w-10/12 lg:py-2 bg-muted rounded-full'>
             <AvatarDemo image='https://github.com/shadcn.png' />
             <span className='hidden lg:block'>Sayan De</span>

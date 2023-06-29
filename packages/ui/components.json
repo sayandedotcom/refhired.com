@@ -1,0 +1,10 @@
+{
+  "style": "default",
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "styles/index.css",
+    "cssVariables": true
+  },
+  "rsc": false,
+  "aliases": {}
+}

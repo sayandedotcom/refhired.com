@@ -1,31 +1,42 @@
 "use client";
 
 import { CalendarDays } from "lucide-react";
+import Image from "next/image";
 
 import {
+  Button,
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-  Button,
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
 } from "@referrer/ui";
+import AltImage from "../../public/avatar/avatar.png";
 
 export function HoverCardDemo({ children }) {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>{children}</HoverCardTrigger>
-      <HoverCardContent className='w-80'>
-        <div className='flex justify-between space-x-4'>
-          <Avatar>
-            <AvatarImage src='https://github.com/vercel.png' />
-            <AvatarFallback>VC</AvatarFallback>
-          </Avatar>
-          <div className='space-y-1'>
-            <h4 className='text-sm font-semibold'>@nextjs</h4>
+      <HoverCardContent className='md:w-96'>
+        <div className='flex gap-2'>
+          <div className='w-[20%]'>
+            <Image
+              alt='img'
+              src={AltImage}
+              width={64}
+              height={64}
+              className='rounded-full cursor-pointer'
+            />
+          </div>
+          <div className='w-full'>
+            <div className='flex justify-start items-center gap-2'>
+              <span className='text-base font-semibold'>Full Name</span>•
+              <span className='text-base font-semibold'>@username</span>
+              <Button className='rounded-full h-9 ml-auto'>Follow</Button>
+            </div>
             <p className='text-sm'>
-              The React Framework – created and maintained by @vercel.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero
+              rerum quisquam molestias voluptas maiores mollitia dolor facere
+              sunt odio accusantium fuga, modi similique nemo corrupti iste
+              aliquam fugit laborum tempora?
             </p>
             <div className='flex items-center pt-2'>
               <CalendarDays className='mr-2 h-4 w-4 opacity-70' />{" "}

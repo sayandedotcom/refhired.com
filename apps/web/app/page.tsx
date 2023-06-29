@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { Separator } from "@referrer/ui";
 import {
   Section,
@@ -10,6 +11,7 @@ import {
 } from "../components/custom";
 
 export default function Page() {
+  const router = useRouter();
   return (
     <>
       <div className=' h-[700px] flex flex-col justify-center items-center lg:p-16'>
@@ -23,6 +25,11 @@ export default function Page() {
           the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referalls
         </h5>
+        <button
+          onClick={() => router.push("/home")}
+          className='btn-97 uppercase'>
+          Join Now
+        </button>
       </div>
       <Separator />
       <div className='flex flex-col justify-center items-center gap-4 py-16'>

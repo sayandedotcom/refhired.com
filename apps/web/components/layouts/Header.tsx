@@ -29,19 +29,19 @@ export const Header = () => {
             <nav
               aria-label='Global'
               className='hidden gap-8 text-sm font-medium md:flex'>
-              <Link className='text-gray-500' href='/about-us'>
+              <Link href='/about-us'>
                 <h6>About Us</h6>
               </Link>
-              <Link className='text-gray-500' href='/blogs'>
+              <Link href='/blogs'>
                 <h6>Blogs</h6>
               </Link>
-              <Link className='text-gray-500' href='/pricing'>
+              <Link href='/pricing'>
                 <h6>Pricing</h6>
               </Link>
-              <Link className='text-gray-500' href='/contact-us'>
+              <Link href='/contact-us'>
                 <h6>Contact Us</h6>
               </Link>
-              <Link className='text-gray-500' href='/docs'>
+              <Link href='/docs'>
                 <h6>Docs</h6>
               </Link>
             </nav>
