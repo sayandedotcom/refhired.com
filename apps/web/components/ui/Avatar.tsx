@@ -10,10 +10,10 @@ type AvatarDemoProps = {
 export function AvatarDemo({ image }: AvatarDemoProps) {
   return (
     <Avatar>
-      <AvatarImage src={image || avatar} alt='profile img' />
+      <AvatarImage src='https://github.com/shadcn.png' alt='profile img' />
       <AvatarFallback>S</AvatarFallback>
     </Avatar>
   );
 }
 
-// https://github.com/shadcn.png
+// image || avatar;

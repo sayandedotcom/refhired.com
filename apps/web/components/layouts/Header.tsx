@@ -54,13 +54,15 @@ export const Header = () => {
                     email={session.user.email}>
                     <AvatarDemo image={session.user?.image} />
                   </DropdownMenuDemo>
-                  <TooltipDemo text='Explore'>
+                  {/* <TooltipDemo text='Explore'>
                     <Button
-                      iconAfter={<AiOutlineArrowRight />}
+                      iconAfter={
+                        <AiOutlineArrowRight className='ml-2 font-extrabold' />
+                      }
                       onClick={() => router.push("/home")}>
                       Explore !
                     </Button>
-                  </TooltipDemo>
+                  </TooltipDemo> */}
                 </>
               ) : (
                 <>
@@ -82,9 +84,7 @@ export const Header = () => {
             </div>
 
             <div className='lg:hidden'>
-              <button
-                className='rounded-lg bg-gray-100 p-2 text-gray-600'
-                type='button'>
+              <button className='rounded-lg p-2' type='button'>
                 <span className='sr-only'>Open menu</span>
                 <svg
                   aria-hidden='true'

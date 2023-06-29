@@ -54,10 +54,7 @@ export function DropdownMenuDemo({
         <button>{children}</button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-56'>
-        <DropdownMenuLabel>
-          Hi {"  "}
-          {email}
-        </DropdownMenuLabel>
+        <DropdownMenuLabel>{email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => router.push("/profile")}>

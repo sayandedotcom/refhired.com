@@ -60,7 +60,7 @@ const SignUp = () => {
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     try {
-      const res = await fetch("http://localhost:3001/api/sign-up", {
+      const res = await fetch("http://localhost:3000/api/sign-up", {
         method: "POST",
         body: JSON.stringify({
           fullName: values.fullName,
