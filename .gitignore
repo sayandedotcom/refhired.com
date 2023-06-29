@@ -37,3 +37,5 @@ yarn-error.log*
 
 # ui
 dist/
+
+ToDo.txt
