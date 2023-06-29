@@ -13,3 +13,6 @@ export * from "./components/dialog/dialog";
 export * from "./components/hover-card/hover-card";
 export * from "./forms";
 export * from "./typography";
+export * from "./components/tab/tab";
+export * from "./components/calendar/calendar";
+export * from "./components/popover/popover";

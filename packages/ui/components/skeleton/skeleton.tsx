@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@referrer/lib/utils/cn";
 
 function Skeleton({

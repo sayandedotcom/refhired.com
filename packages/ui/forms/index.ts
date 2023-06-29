@@ -12,3 +12,7 @@ export {
 export { Input } from "./input";
 
 export { Label } from "./label";
+
+export { Textarea } from "./testarea";
+
+export { Checkbox } from "./checkbox";
