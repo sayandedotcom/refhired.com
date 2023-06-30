@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { Button } from "@referrer/ui";
+import AltImage from "../../public/avatar/avatar.png";
 
 export const Usecases = () => {
   return (
@@ -26,19 +28,25 @@ export const Usecases = () => {
           </div>
         </div>
         <div className='flex justify-center items-center'>
-          <img
+          <Image
             alt='Student'
-            src='https://github.com/shadcn.png'
-            className='w-96 aspect-square object-cover rounded-2xl'
+            src={AltImage}
+            height={100}
+            width={100}
+            className='w-96 aspect-square object-cover rounded-2xl transition-opacity opacity-0 duration-[2s]'
+            onLoadingComplete={(image) => image.classList.remove("opacity-0")}
           />
         </div>
       </section>
       <section className='overflow-hidden sm:grid sm:grid-cols-2'>
         <div className='flex justify-center items-center'>
-          <img
+          <Image
             alt='Student'
-            src='https://github.com/shadcn.png'
-            className='w-96 aspect-square object-cover rounded-2xl'
+            src={AltImage}
+            height={100}
+            width={100}
+            className='w-96 aspect-square object-cover rounded-2xl transition-opacity opacity-0 duration-[2s]'
+            onLoadingComplete={(image) => image.classList.remove("opacity-0")}
           />
         </div>
         <div className='p-8 md:p-12 lg:px-16 lg:py-24'>

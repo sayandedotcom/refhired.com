@@ -92,6 +92,7 @@ model Posts {
   comments      Comments[]
   updatedAt     DateTime    @updatedAt
   // ? Limit number of referals requests
+  // ? Normal Post or normal post category
 
   @@index([userId])
 }
