@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
+import { Loader2 } from "lucide-react";
 
 import { cn } from "@referrer/lib/utils/cn";
 
@@ -42,6 +43,7 @@ export interface ButtonProps
   iconBefore?: React.ReactElement;
   iconAfter?: React.ReactElement;
   children: React.ReactNode;
+  isLoading?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -49,6 +51,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       children,
       iconBefore,
+      isLoading,
       iconAfter,
       className,
       variant,
@@ -67,6 +70,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {iconBefore}
         {children}
         {iconAfter}
+        {isLoading ? <Loader2 className='mr-2 h-4 w-4 animate-spin' /> : null}
+        disabled={isLoading}
       </Comp>
     );
   }
