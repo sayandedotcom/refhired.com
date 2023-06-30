@@ -68,6 +68,9 @@ model User {
   comments      Comments[]
 }
 
+// ? LivesAt
+// ? verified
+
 model Posts {
   id            String      @id @default(cuid())
   userId        String

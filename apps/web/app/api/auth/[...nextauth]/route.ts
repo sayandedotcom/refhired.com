@@ -1,7 +1,8 @@
-import prisma from "@referrer/prisma";
-import NextAuth from "next-auth/next";
+import NextAuth, { getServerSession } from "next-auth/next";
+import { generateFromEmail } from "unique-username-generator";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import prisma from "@referrer/prisma";
 
 const handler = NextAuth({
   providers: [
@@ -40,28 +41,40 @@ const handler = NextAuth({
       if (token) {
         session.user.id = token.id;
         session.user.userName = token.userName;
-        session.user.fullName = token.fullName;
+        session.user.name = token.fullName;
         session.user.email = token.email;
         session.user.image = token.image;
       }
       return session;
     },
     async jwt({ token, user }) {
-      const dbuser = await prisma.user.findFirst({
+      const dbUser = await prisma.user.findFirst({
         where: {
           email: token.email,
         },
       });
-      if (!dbuser) {
+      if (!dbUser) {
         token.id = user!.id;
         return token;
       }
+
+      if (!dbUser.userName) {
+        await prisma.user.update({
+          where: {
+            id: dbUser.id,
+          },
+          data: {
+            userName: generateFromEmail(dbUser.email, 4),
+          },
+        });
+      }
+
       return {
-        id: dbuser.id,
-        userName: dbuser.userName,
-        fullName: dbuser.fullName,
-        email: dbuser.email,
-        image: dbuser.image,
+        id: dbUser.id,
+        userName: dbUser.userName,
+        fullName: dbUser.fullName,
+        email: dbUser.email,
+        image: dbUser.image,
       };
     },
     redirect() {
@@ -75,3 +88,5 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
+
+export const getAuthSession = () => getServerSession(handler);

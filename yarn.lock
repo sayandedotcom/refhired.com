@@ -9130,6 +9130,11 @@ unique-string@^2.0.0:
   dependencies:
     crypto-random-string "^2.0.0"
 
+unique-username-generator@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/unique-username-generator/-/unique-username-generator-1.1.3.tgz#ff0745dd8539bc08187f3ab2396ba420ab561d2d"
+  integrity sha512-TB6YdqPMKMpTSgxAzjZkKWtmpZPHvARoWreCKBpc1UrLFz/0C6Q96/qdjpLr9OXPCHk16sD1LHjTr3JDj7q2JA==
+
 unist-util-is@^4.0.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/unist-util-is/-/unist-util-is-4.1.0.tgz"

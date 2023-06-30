@@ -51,10 +51,10 @@ export const Header = () => {
                 <>
                   <DropdownMenuDemo
                     userName={session.user.userName}
-                    fullName={session.user.fullName}
+                    fullName={session.user.name}
                     email={session.user.email}>
                     <AvatarDemo
-                      fullName={session.user.fullName}
+                      fullName={session.user.name}
                       image={session.user?.image}
                     />
                   </DropdownMenuDemo>
