@@ -1,6 +1,6 @@
 export * from "./Joinnow";
 export * from "./PortalsNotFound";
-export * from "./PostCards";
+export * from "./Post/PostCards";
 export * from "./PostCardSkeleton";
 export * from "./Section";
 export * from "./Testimonials";

@@ -6,10 +6,10 @@ import { MapPin } from "lucide-react";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FiLink2, FiMessageCircle, FiShare2 } from "react-icons/fi";
-import AltImage from "../../public/avatar/avatar.png";
+import AltImage from "../../../public/avatar/avatar.png";
 import { Button, Separator } from "@referrer/ui";
-import { ApplyDialog, TooltipDemo, Badge, HoverCardDemo } from "../ui";
-import { useWindowSize } from "../../lib/hooks";
+import { ApplyDialog, TooltipDemo, Badge, HoverCardDemo } from "../../ui";
+import { useWindowSize } from "../../../lib/hooks";
 
 const tag = [
   "1-5 Years",
