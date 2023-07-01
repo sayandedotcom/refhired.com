@@ -1,4 +1,6 @@
+const eslintCOnfif = require("@referrer/eslint-config-custom");
 module.exports = {
-  root: true,
-  extends: ["custom"],
+  ...eslintCOnfif,
+  // root: true,
+  // extends: ["custom"],
 };
