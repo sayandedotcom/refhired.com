@@ -30,6 +30,7 @@ const loginSchema = z.object({
 
 const Login = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -42,8 +43,20 @@ const Login = () => {
     },
   });
 
+  const loginWithGoogle = async () => {
+    setLoading(true);
+    try {
+      const result = await signIn("google");
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
+      setLoading(true);
       const result = await signIn("credentials", {
         email: values.email,
         password: values.password,
@@ -51,12 +64,14 @@ const Login = () => {
         callbackUrl,
       });
       if (!result?.error) {
-        router.push(callbackUrl);
+        router.push("/");
       } else {
         setError("Invalid email or password");
       }
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -118,6 +133,7 @@ const Login = () => {
               )}
             />
             <Button
+              isLoading={loading}
               className='bg-[#0f172a] text-white hover:bg-[#0f172a]'
               type='submit'>
               Log In
@@ -131,7 +147,10 @@ const Login = () => {
         </div>
 
         <div className='w-11/12 flex flex-col lg:w-[350px] gap-4'>
-          <Button onClick={() => signIn("google")} variant='secondary'>
+          <Button
+            isLoading={loading}
+            onClick={loginWithGoogle}
+            variant='secondary'>
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
           <Button variant='secondary'>

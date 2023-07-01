@@ -10,6 +10,7 @@ import { ThemeSwitcher } from "../custom";
 export const Header = () => {
   const router = useRouter();
   const { data: session } = useSession();
+  console.log("session", session);
 
   return (
     <>
