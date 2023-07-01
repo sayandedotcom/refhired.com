@@ -92,3 +92,20 @@ h6 {
   box-shadow: 0 6px 0 -4px #fff, 0 9px 0 -4px #aaa, 0 12px 0 -4px #000;
   transform: translateY(-5px);
 }
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+}
+::-webkit-scrollbar-track {
+  background: black;
+}
+::-webkit-scrollbar-thumb {
+  background: white;
+  border: 0.6 solid transparent;
+  border-radius: 2rem;
+  background-clip: content-box;
+  height: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: white;
+}

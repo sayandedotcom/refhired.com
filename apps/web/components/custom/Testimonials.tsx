@@ -24,7 +24,9 @@ export const Testimonials = () => {
       />
       <div className='container px-4 mx-auto'>
         <div className='relative max-w-xl text-center mx-auto mb-16'>
-          <h2 className='mb-4 text-6xl'>What our users say</h2>
+          <h2 className='mb-4  text-[30px] md:text-[50px]'>
+            What our users say
+          </h2>
           <p className='text-xl tracking-tight'>
             Referrer is the super simple way to get referrals over a click of a
             apps, downloads, or long meeting links enim mi turpis.

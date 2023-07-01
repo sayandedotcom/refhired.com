@@ -187,7 +187,10 @@ const SignUp = () => {
           <span className='px-2 text-muted-foreground'>Or continue with</span>
         </div>
         <div className='w-11/12 flex justify-between lg:w-[350px] gap-4'>
-          <Button className='w-6/12' variant='secondary'>
+          <Button
+            className='w-6/12'
+            variant='secondary'
+            onClick={() => signIn("google")}>
             <TypographyP>Google</TypographyP>
           </Button>
           <Button className='w-6/12' variant='secondary'>

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Button, Separator } from "@referrer/ui";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 import { ThemeSwitcher } from "../custom";
 
@@ -58,15 +57,6 @@ export const Header = () => {
                       image={session.user?.image}
                     />
                   </DropdownMenuDemo>
-                  {/* <TooltipDemo text='Explore'>
-                    <Button
-                      iconAfter={
-                        <AiOutlineArrowRight className='ml-2 font-extrabold' />
-                      }
-                      onClick={() => router.push("/home")}>
-                      Explore !
-                    </Button>
-                  </TooltipDemo> */}
                 </>
               ) : (
                 <>
