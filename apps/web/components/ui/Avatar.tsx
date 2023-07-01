@@ -11,7 +11,10 @@ type AvatarDemoProps = {
 export function AvatarDemo({ image, fullName }: AvatarDemoProps) {
   return (
     <Avatar>
-      <AvatarImage src='https://github.com/shadcn.png' alt='profile img' />
+      <AvatarImage
+        src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
+        alt='profile img'
+      />
       <AvatarFallback>{fullName}</AvatarFallback>
     </Avatar>
   );

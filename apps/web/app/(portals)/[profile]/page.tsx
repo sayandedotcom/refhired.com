@@ -31,7 +31,7 @@ const Profile = async ({ params }: paramsProps) => {
           height={120}
           className='rounded-full cursor-pointer'
         />
-        <p>{userProfile ? userProfile.fullName : ""}</p>
+        <p>{userProfile ? userProfile.name : ""}</p>
         <p>@{userProfile ? userProfile.userName : profile}</p>
         <p className='text-center text-sm md:text-lg'>{userProfile.bio}</p>
         <div className='flex gap-4'>

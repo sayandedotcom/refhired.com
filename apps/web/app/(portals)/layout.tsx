@@ -148,7 +148,7 @@ export default function RootLayout({
             </button>
           </PostTypeDialog>
           <div className='flex items-center justify-center gap-3 lg:w-10/12 lg:py-2 bg-muted rounded-full'>
-            <AvatarDemo image='https://github.com/shadcn.png' />
+            <AvatarDemo image='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c' />
             <span className='hidden lg:block'>Sayan De</span>
           </div>
         </div>

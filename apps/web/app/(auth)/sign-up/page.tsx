@@ -27,7 +27,7 @@ import { signIn } from "next-auth/react";
 
 const signUpSchema = z
   .object({
-    fullName: z.string().nonempty("Your full name is required"),
+    name: z.string().nonempty("Your full name is required"),
     username: z.string().nonempty("Your username is required").min(5, {
       message: "Username must be at least 5 characters.",
     }),
@@ -50,7 +50,7 @@ const SignUp = () => {
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      fullName: "",
+      name: "",
       username: "",
       email: "",
       password: "",
@@ -63,7 +63,7 @@ const SignUp = () => {
       const res = await fetch("http://localhost:3000/api/sign-up", {
         method: "POST",
         body: JSON.stringify({
-          fullName: values.fullName,
+          name: values.name,
           userName: values.username,
           email: values.email,
           password: values.password,
@@ -115,7 +115,7 @@ const SignUp = () => {
             />
             <FormField
               control={form.control}
-              name='fullName'
+              name='name'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className='text-black'>Full Name</FormLabel>

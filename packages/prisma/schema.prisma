@@ -50,14 +50,16 @@ model VerificationToken {
 model User {
   id            String      @id @default(cuid())
   password      String
-  fullName      String? // ? change it to name
+  name          String?
   userName      String?     @unique
   email         String      @unique
   emailVerified DateTime?
   image         String?
   workingAt     String?
   bio           String?
-  stars         Int? //? @default(0)
+  stars         Int?        @default(0)
+  location      String?
+  verified      Boolean?    @default(false)
   sessions      Session[]
   accounts      Account[]
   followers     User[]      @relation(name: "follow")
@@ -68,36 +70,31 @@ model User {
   comments      Comments[]
 }
 
-// ? LivesAt
-// ? verified
-
 model Posts {
-  id            String      @id @default(cuid())
-  userId        String
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contents      String // ? change it to tile
-  description   String
-  createdAt     DateTime    @default(now())
-  expiresAt     DateTime?
-  role          String?
-  jobType       String?
-  experience    Int?
-  location      String?
-  startingRange Int?
-  endindRange   Int? // ? Typo
-  image         String?
-  tags          Tags[]
-  applied       Applied[]
-  bookmarks     Bookmarks[]
-  comments      Comments[]
-  updatedAt     DateTime    @updatedAt
-  // ? Limit number of referals requests
-  // ? Normal Post or normal post category
+  id                   String      @id @default(cuid())
+  userId               String
+  user                 User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title                String
+  description          String?
+  createdAt            DateTime    @default(now())
+  expiresAt            DateTime?
+  role                 String?
+  jobType              String?
+  experience           Int?
+  location             String?
+  startingRange        Int?
+  endingRange          Int?
+  image                String?
+  acceptingReferralsNo Int?
+  normalPost           Boolean?    @default(false)
+  tags                 Tags[]
+  applied              Applied[]
+  bookmarks            Bookmarks[]
+  comments             Comments[]
+  updatedAt            DateTime    @updatedAt
 
   @@index([userId])
 }
-
-// ? Apply with a catchy message with word limits
 
 model Applied {
   id        String   @id @default(cuid())
@@ -105,6 +102,7 @@ model Applied {
   userId    String
   posts     Posts    @relation(fields: [postId], references: [id])
   postId    String
+  message   String?  @db.Text
   createdAt DateTime @default(now())
 
   @@unique([userId, postId])

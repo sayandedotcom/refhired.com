@@ -42,7 +42,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -87,7 +87,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -132,7 +132,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -177,7 +177,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -222,7 +222,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -269,7 +269,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -314,7 +314,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -359,7 +359,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -404,7 +404,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -449,7 +449,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
@@ -494,7 +494,7 @@ export const Testimonials = () => {
                       <div className='overflow-hidden p-1.5'>
                         <img
                           className='object-cover w-[4rem] rounded-full'
-                          src='https://github.com/shadcn.png'
+                          src='https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c'
                           alt=''
                         />
                       </div>
