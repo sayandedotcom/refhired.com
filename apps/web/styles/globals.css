@@ -93,7 +93,7 @@ h6 {
   transform: translateY(-5px);
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0.6rem;
 }
 ::-webkit-scrollbar-track {
@@ -108,4 +108,4 @@ h6 {
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: white;
-}
+} */

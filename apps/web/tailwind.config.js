@@ -1,5 +1,6 @@
 const sharedConfig = require("@referrer/tailwind-config/tailwind.config.js");
 
 module.exports = {
-  ...sharedConfig
+  ...sharedConfig,
+  plugins: [require("tailwind-scrollbar")],
 };

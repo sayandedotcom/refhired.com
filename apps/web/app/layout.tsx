@@ -18,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body>
+      <body className='scrollbar-thin scrollbar-thumb-black dark:scrollbar-thumb-white scrollbar-track-white dark:scrollbar-track-black scrollbar-rounded-lg'>
         <Provider>{children}</Provider>
       </body>
     </html>
