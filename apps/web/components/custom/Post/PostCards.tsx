@@ -127,7 +127,7 @@ export const PostCard = () => {
                   }
                   onClick={() => setApplied(!applied)}
                   className='rounded-full h-9 w-3/12 text-sm'>
-                  {applied ? "Applied" : "Apply"}
+                  {applied ? "Applied !" : "Apply"}
                 </Button>
               </ApplyDialog>
             </TooltipDemo>
