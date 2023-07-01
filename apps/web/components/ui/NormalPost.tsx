@@ -25,7 +25,7 @@ import {
   Textarea,
 } from "@referrer/ui";
 
-const referralPostSchema = z
+const normalPostSchema = z
   .object({
     fullName: z.string().nonempty("Your full name is required"),
     username: z.string().nonempty("Your username is required").min(5, {
@@ -47,8 +47,8 @@ const referralPostSchema = z
 
 export const NormalPost = () => {
   const router = useRouter();
-  const form = useForm<z.infer<typeof referralPostSchema>>({
-    resolver: zodResolver(referralPostSchema),
+  const form = useForm<z.infer<typeof normalPostSchema>>({
+    resolver: zodResolver(normalPostSchema),
     defaultValues: {
       fullName: "",
       username: "",
@@ -58,7 +58,7 @@ export const NormalPost = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof referralPostSchema>) {}
+  async function onSubmit(values: z.infer<typeof normalPostSchema>) {}
   return (
     <Form {...form}>
       <form
