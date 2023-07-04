@@ -1,8 +1,6 @@
-export * from "./components/Button";
-export * from "./components/Loaders";
-export * from "./components/Separator";
-export * from "./components/Tooltip";
-// export * from "./components/Icons";
+export * from "./components/button";
+export * from "./components/separator";
+export * from "./components/tooltip";
 export * from "./components/avatar";
 export * from "./components/dropdown-menu";
 export * from "./components/switch/switch";
