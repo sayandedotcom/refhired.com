@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@referrer/eslint-config-custom": "*",
     "@hookform/resolvers": "^3.1.0",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@referrer/api": "*",
@@ -36,7 +37,6 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@referrer/eslint-config-custom": "*",
     "@referrer/prettier-config": "*",
     "@referrer/tailwind-config": "*",
     "@referrer/tsconfig": "*",
