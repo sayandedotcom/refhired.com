@@ -63,13 +63,14 @@ const Login = () => {
         redirect: false,
         callbackUrl,
       });
+      console.log("result", result);
       if (!result?.error) {
-        router.push("/");
+        router.push(callbackUrl);
       } else {
         setError("Invalid email or password");
       }
     } catch (e) {
-      console.log(e);
+      console.log("signup", e);
     } finally {
       setLoading(false);
     }
@@ -153,8 +154,8 @@ const Login = () => {
             variant='secondary'>
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
-          <Button variant='secondary'>
-            <TypographyP>Sign In with LinkdeIn</TypographyP>
+          <Button variant='secondary' onClick={() => signIn("github")}>
+            <TypographyP>Sign In with GitHub</TypographyP>
           </Button>
         </div>
         <Separator />

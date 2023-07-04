@@ -41,6 +41,7 @@
     "@radix-ui/react-tooltip": "^1.0.6",
     "@referrer/lib": "*",
     "class-variance-authority": "^0.6.0",
+    "cmdk": "^0.2.0",
     "lucide-react": "^0.218.0",
     "next": "^13.4.6",
     "react": "^18.2.0",

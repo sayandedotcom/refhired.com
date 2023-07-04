@@ -1,12 +1,17 @@
 import Image from "next/image";
 import AltImage from "../../../public/avatar/avatar.png";
 import { Separator } from "@referrer/ui";
-import { PostCard } from "../../../components/custom";
+import { PostCard } from "@/components/custom-components";
 import { FaSuitcase } from "react-icons/fa";
 
 import { HiLocationMarker } from "react-icons/hi";
 import prisma from "@referrer/prisma";
-import { notFound } from "next/navigation";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: "Get job referrals to the top best companies of the world",
+};
 
 type paramsProps = {
   params: { profile: string };
@@ -19,14 +24,31 @@ const Profile = async ({ params }: paramsProps) => {
     where: { userName: profile },
   });
 
-  if (!userProfile) return notFound();
+  if (!userProfile)
+    return (
+      <>
+        <div className='flex flex-col items-center gap-2 p-2'>
+          <Image
+            alt='img'
+            src={AltImage}
+            width={120}
+            height={120}
+            className='rounded-full cursor-pointer'
+          />
+          <p>@{profile}</p>
+
+          <h6>No Users Found !!</h6>
+        </div>
+        <Separator />
+      </>
+    );
 
   return (
     <>
       <div className='flex flex-col items-center gap-2 p-2'>
         <Image
           alt='img'
-          src={userProfile ? userProfile.image : AltImage}
+          src={AltImage}
           width={120}
           height={120}
           className='rounded-full cursor-pointer'

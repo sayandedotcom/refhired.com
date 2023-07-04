@@ -1,16 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { Button, Separator } from "@referrer/ui";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { Button, Separator, buttonVariants } from "@referrer/ui";
+// import { useRouter } from "next/navigation";
+// import { useSession } from "next-auth/react";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
-import { ThemeSwitcher } from "../custom";
+import { ThemeSwitcher } from "@/components/custom-components";
+import { signOut } from "next-auth/react";
+import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
 
 export const Header = () => {
-  const router = useRouter();
-  const { data: session } = useSession();
-  console.log("session", session);
+  // const router = useRouter();
+  // const { data: session } = useSession();
+  // const session = await getAuthSession();
+
+  const session = null;
+  // console.log("session", session);
 
   return (
     <>
@@ -62,17 +67,18 @@ export const Header = () => {
               ) : (
                 <>
                   <TooltipDemo text='Log In'>
-                    <Button onClick={() => router.push("/login")}>
+                    <Link className={buttonVariants()} href='/login'>
                       Log In
-                    </Button>
+                    </Link>
                   </TooltipDemo>
                   <TooltipDemo text='Sign Up'>
-                    <Button
-                      variant='outline'
-                      onClick={() => router.push("/sign-up")}>
+                    <Link
+                      className={buttonVariants({ variant: "outline" })}
+                      href='/sign-up'>
                       Sign Up
-                    </Button>
+                    </Link>
                   </TooltipDemo>
+                  {/* <Button onClick={() => signOut()}>Log Out</Button> */}
                 </>
               )}
               <ThemeSwitcher />

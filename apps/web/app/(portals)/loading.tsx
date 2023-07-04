@@ -1,6 +1,6 @@
 "use client";
 
-import { PostCardSkeleton } from "../../components/custom";
+import { PostCardSkeleton } from "@/components/custom-components";
 
 const loading = () => {
   return (

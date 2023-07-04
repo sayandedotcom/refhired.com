@@ -1,9 +1,7 @@
 "use client";
 
 import { Separator } from "@referrer/ui";
-import { GitHubFork } from "../ui/GitHubFork";
-import { GitHubIssue } from "../ui/GitHubIssue";
-import { GitHubStar } from "../ui/GitHubStar";
+import { GitHubFork, GitHubIssue, GitHubStar } from "../ui";
 
 export const Footer = () => {
   return (

@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -21,9 +22,7 @@ import {
   Separator,
   TypographyH3,
   TypographySmall,
-  TypographyMuted,
 } from "@referrer/ui";
-import { signIn } from "next-auth/react";
 
 const signUpSchema = z
   .object({
@@ -46,7 +45,8 @@ const signUpSchema = z
   });
 
 const SignUp = () => {
-  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -59,6 +59,7 @@ const SignUp = () => {
   });
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
+    setLoading(true);
     try {
       const res = await fetch("http://localhost:3000/api/sign-up", {
         method: "POST",
@@ -75,6 +76,9 @@ const SignUp = () => {
       }
     } catch (err) {
       console.log(err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -113,6 +117,7 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
+            {error && <div className='text-red-500 text-sm'>{error}</div>}
             <FormField
               control={form.control}
               name='name'
@@ -177,7 +182,8 @@ const SignUp = () => {
             />
             <Button
               className='bg-[#0f172a] text-white hover:bg-[#0f172a]'
-              type='submit'>
+              type='submit'
+              isLoading={loading}>
               Sign Up for free
             </Button>
           </form>

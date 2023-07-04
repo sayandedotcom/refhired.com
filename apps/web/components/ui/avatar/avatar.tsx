@@ -1,7 +1,6 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@referrer/ui";
-import avatar from "../../public/avatar/avatar.png";
 
 type AvatarDemoProps = {
   image?: any;

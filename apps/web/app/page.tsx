@@ -1,19 +1,17 @@
-"use client";
-
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Separator } from "@referrer/ui";
 import {
+  Joinnow,
   Section,
+  Stats,
   Testimonials,
   Usecases,
-  Stats,
-  Joinnow,
-} from "../components/custom";
+  Username,
+} from "@/components/custom-components";
+import { getAuthSession } from "./api/auth/[...nextauth]/authOptions";
 
-export default function Page() {
-  const router = useRouter();
-  const { data: session } = useSession();
+export default async function Page() {
+  const session = await getAuthSession();
   return (
     <>
       <div className='flex flex-col justify-center items-center lg:p-16 gap-10 mt-3'>
@@ -27,44 +25,14 @@ export default function Page() {
           the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referalls
         </h5>
-        <button
-          onClick={() =>
-            router.push(session && session.user ? "/home" : "/sign-up")
-          }
-          className='btn-97 uppercase animate-bounce'>
+        <Link
+          className='btn-97 uppercase animate-bounce'
+          href={`/${session && session.user ? "home" : "sign-up"}`}>
           {session && session.user ? "Explore Now !" : "Join Now !"}
-        </button>
+        </Link>
       </div>
       <Separator />
-      <div className='flex flex-col justify-center items-center gap-4 py-16'>
-        {session && session.user ? (
-          <h1 className='text-center text-[30px] md:text-[50px]'>
-            You are already logged in !
-          </h1>
-        ) : (
-          <>
-            <h2 className='text-center px-2 text-[30px] md:text-[50px]'>
-              Claim your username now !
-            </h2>
-            <div className='w-11/12 lg:h-full lg:w-auto flex flex-col lg:flex-row gap-4 justify-center lg:gap-6 normal-case'>
-              <div className='flex btn-97 relative w-full lg:w-[1000px]'>
-                <input
-                  placeholder='@johndoe'
-                  className='lowercase outline-none h-full w-10/12 text-[20px] md:text-[28px] bg-inherit ml-[100px] md:ml-[150px]'
-                />
-                <div className='top-0 bottom-1 left-1 absolute bg-slate-100'>
-                  <p className='mt-4 px-1 text-[20px] md:text-[28px]'>
-                    referrer.com/
-                  </p>
-                </div>
-              </div>
-              <button type='submit' className='btn-97 uppercase'>
-                Claim Username
-              </button>
-            </div>
-          </>
-        )}
-      </div>
+      <Username session={session} />
       <Separator />
       <Section />
       <Separator />

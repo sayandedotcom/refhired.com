@@ -1,6 +1,11 @@
-"use client";
+import { PostCard } from "@/components/custom-components";
+import { Metadata } from "next";
 
-import { PostCard } from "../../../components/custom";
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Get job referrals to the top best companies of the world",
+};
+
 const Home = () => {
   return (
     <>

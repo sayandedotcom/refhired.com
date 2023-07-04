@@ -16,3 +16,5 @@ export * from "./typography";
 export * from "./components/tab/tab";
 export * from "./components/calendar/calendar";
 export * from "./components/popover/popover";
+export * from "./components/command/command";
+export * from "./components/toast/toast";

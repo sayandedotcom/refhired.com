@@ -2,8 +2,10 @@ import { NextAuthOptions, getServerSession } from "next-auth";
 import { generateFromEmail } from "unique-username-generator";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@referrer/prisma";
+import { compare } from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -15,32 +17,38 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    }),
     CredentialsProvider({
-      name: "Credentials",
-
+      name: "Sign in",
       credentials: {
-        email: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "example@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        const res = await fetch("http://localhost:3000/api/login", {
-          method: "POST",
-          body: JSON.stringify({
-            email: credentials?.email,
-            password: credentials?.password,
-          }),
-          headers: { "Content-Type": "application/json" },
+      async authorize(credentials) {
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
         });
-        const user = await res.json();
 
-        if (res.ok && user) {
-          console.log("User Callback+++++++++++++++++++", {
-            user,
-          });
-          return user;
+        if (!user || !(await compare(credentials.password, user.password))) {
+          return null;
         }
 
-        return null;
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          userName: user.userName,
+          picture: user.image,
+        };
       },
     }),
   ],
@@ -100,3 +108,31 @@ export const authOptions: NextAuthOptions = {
 };
 
 export const getAuthSession = () => getServerSession(authOptions);
+
+//! CredentialsProvider({
+//   name: "Credentials",
+//   credentials: {
+//     email: { label: "Username", type: "text", placeholder: "jsmith" },
+//     password: { label: "Password", type: "password" },
+//   },
+//   async authorize(credentials, req) {
+//     const res = await fetch("http://localhost:3000/api/login", {
+//       method: "POST",
+//       body: JSON.stringify({
+//         email: credentials?.email,
+//         password: credentials?.password,
+//       }),
+//       headers: { "Content-Type": "application/json" },
+//     });
+//     const user = await res.json();
+
+//     if (res.ok && user) {
+//       console.log("User Callback+++++++++++++++++++", {
+//         user,
+//       });
+//       return user;
+//     }
+
+//     return null;
+//   },
+// }),

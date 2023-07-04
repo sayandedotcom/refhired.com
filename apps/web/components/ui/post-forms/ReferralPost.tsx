@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-
 import {
   Form,
   FormControl,
@@ -25,6 +24,7 @@ import {
 } from "@referrer/ui";
 import { cn } from "@referrer/lib/utils/cn";
 import { SelectComponent } from "./Select";
+import { referralPostValidator } from "@/lib/validators";
 
 const items = [
   {
@@ -41,7 +41,7 @@ const items = [
   },
 ] as const;
 
-const options = [
+const jobTypeList = [
   { value: "Full Time", label: "Full Time" },
   { value: "Part Time", label: "Part Time" },
   { value: "Intern", label: "Intern" },
@@ -51,63 +51,20 @@ const options = [
   { value: "Freelance", label: "Freelance" },
 ];
 
-const referralPostSchema = z.object({
-  title: z
-    .string()
-    .nonempty("Title is required")
-    .max(250, { message: "Message must not be not more than 250 characters." }),
-  desscription: z.string().nonempty("Desscription is required"),
-  accept: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),
-  expiresAt: z.date({
-    required_error: "Expiry of this Application is required.",
-  }),
-  // jobType: z.array(z.string()).refine((value) => value.some((item) => item), {
-  //   message: "You have to sesssslect at least one item.",
-  // }),
-  // jobType: z.string({
-  //   required_error: "Please select an job type to display.",
-  // }),
-  jobType: z.object({
-    value: z
-      .string({
-        required_error: "Expiry of this Application is required.",
-      })
-      .nonempty("Job Type is required"),
-  }),
-  companyName: z.object({
-    value: z
-      .string({ required_error: "Company Name is required" })
-      .nonempty("Company Name is required"),
-  }),
-  skills: z.array(
-    z.array(
-      z
-        .object({
-          value: z.string(),
-          label: z.string(),
-        })
-        .transform((obj) => obj.value)
-    )
-  ),
-});
-
 export const ReferralPost = () => {
-  const form = useForm<z.infer<typeof referralPostSchema>>({
-    resolver: zodResolver(referralPostSchema),
+  const form = useForm<z.infer<typeof referralPostValidator>>({
+    resolver: zodResolver(referralPostValidator),
     defaultValues: {
       title: "",
       desscription: "",
       accept: ["shortNote", "resume"],
-      // jobType: { value: "" },
+      // jobType: { value: "", label: "" },
     },
   });
 
-  console.log(form.watch().skills);
+  console.log(form.watch().jobType);
 
-  async function onSubmit(values: z.infer<typeof referralPostSchema>) {
-    event.preventDefault();
+  async function onSubmit(values: z.infer<typeof referralPostValidator>) {
     console.log(values);
   }
 
@@ -232,9 +189,7 @@ export const ReferralPost = () => {
                       mode='single'
                       selected={field.value}
                       onSelect={field.onChange}
-                      disabled={(date) =>
-                        date > new Date() || date < new Date("1900-01-01")
-                      }
+                      disabled={(date) => date < new Date()}
                       initialFocus
                     />
                   </PopoverContent>
@@ -255,7 +210,7 @@ export const ReferralPost = () => {
                   createAble={true}
                   isMulti={false}
                   value={field.value}
-                  options={options}
+                  options={jobTypeList}
                   onChange={field.onChange}
                   placeholder='Select Job Type'
                   {...field}
@@ -265,7 +220,7 @@ export const ReferralPost = () => {
             )}
           />
           {/* Skills */}
-          <FormField
+          {/* <FormField
             control={form.control}
             name='skills'
             render={({ field }) => (
@@ -276,7 +231,7 @@ export const ReferralPost = () => {
                   createAble={true}
                   isMulti={true}
                   value={field.value}
-                  options={options}
+                  options={jobTypeList}
                   onChange={field.onChange}
                   placeholder='Select Skills'
                   {...field}
@@ -284,7 +239,7 @@ export const ReferralPost = () => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
           <Separator />
           <Button className='bg-foreground' type='submit'>
             Post

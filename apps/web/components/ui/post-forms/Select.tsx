@@ -1,4 +1,5 @@
 "use client";
+
 import Select, {
   ClearIndicatorProps,
   DropdownIndicatorProps,
@@ -49,11 +50,10 @@ const multiValueStyles =
 const multiValueLabelStyles = "leading-6 py-0.5";
 const multiValueRemoveStyles =
   "border border-gray-200 bg-white hover:bg-red-50 hover:text-red-800 text-gray-500 hover:border-red-300 rounded-md bg-background";
-const indicatorsContainerStyles = "p-1 gap-1 bg-background";
+const indicatorsContainerStyles = "p-1 gap-1 bg-background rounded-lg";
 const clearIndicatorStyles = "text-gray-500 p-1 rounded-md hover:text-red-800";
 const indicatorSeparatorStyles = "bg-mutated";
-const dropdownIndicatorStyles =
-  "p-1 hover:text-foreground text-gray-500 rounded-md";
+const dropdownIndicatorStyles = "p-1 hover:text-foreground text-gray-500";
 const menuStyles =
   "mt-2 p-2 border border-border bg-background text-sm rounded-lg";
 const optionsStyle =

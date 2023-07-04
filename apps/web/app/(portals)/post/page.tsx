@@ -1,5 +1,6 @@
 "use client";
 
+import { NormalPost, ReferralPost } from "@/components/ui";
 import {
   Button,
   Tabs,
@@ -9,7 +10,6 @@ import {
   Input,
   Label,
 } from "@referrer/ui";
-import { NormalPost, ReferralPost } from "../../../components/ui";
 
 const Post = () => {
   return (

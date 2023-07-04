@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Metadata } from "next";
 import { Provider } from "./providers";
 import "cal-sans";
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className='scrollbar-thin scrollbar-thumb-black dark:scrollbar-thumb-white scrollbar-track-white dark:scrollbar-track-black scrollbar-rounded-lg'>
+        <Toaster />
         <Provider>{children}</Provider>
       </body>
     </html>

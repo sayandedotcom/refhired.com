@@ -1,5 +1,3 @@
-"use client";
-
 import { CalendarDays } from "lucide-react";
 import Image from "next/image";
 
@@ -9,9 +7,9 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@referrer/ui";
-import AltImage from "../../public/avatar/avatar.png";
+import AltImage from "../../../public/avatar/avatar.png";
 
-export function HoverCardDemo({ children }) {
+export function PostHoverCard({ children }) {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>{children}</HoverCardTrigger>

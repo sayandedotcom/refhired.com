@@ -2,7 +2,7 @@
 
 import { SlidersHorizontal } from "lucide-react";
 import { Input, Separator } from "@referrer/ui";
-import { TooltipDemo } from "../../../components/ui";
+import { TooltipDemo } from "@/components/ui";
 
 const Search = () => {
   return (
