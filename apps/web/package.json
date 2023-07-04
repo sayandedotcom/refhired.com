@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@referrer/eslint-config-custom": "*",
+    "eslint-config-custom": "*",
     "@hookform/resolvers": "^3.1.0",
     "@next-auth/prisma-adapter": "^1.0.7",
     "@referrer/api": "*",
