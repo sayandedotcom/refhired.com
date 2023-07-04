@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "eslint-config-custom": "*",
+    "@referrer/eslint-config-custom": "*",
     "@referrer/lib": "*",
     "@referrer/prisma": "*",
     "bcrypt": "^5.1.0",

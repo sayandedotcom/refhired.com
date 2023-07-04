@@ -11,14 +11,14 @@ const tag = [
   "1-5 Years",
   "Full Time",
   "Front-End Developer",
-  "150-250k",
-  "JavaScript",
-  "React",
+  // "150-250k",
+  // "JavaScript",
+  // "React",
 ];
 
 export const PostCard = () => {
   // const { width } = useWindowSize();
-  const width = 1001;
+  // const width = 1001;
   return (
     <>
       <Separator />
@@ -72,16 +72,14 @@ export const PostCard = () => {
               <MapPin className='h-3' />
               Location
             </Badge>
-            {tag.map(
-              (item, i) =>
-                (width < 1000 ? i < 1 : i < 3) && (
-                  <Badge
-                    className='border dark:border-gray-200 border-black'
-                    variant='secondary'>
-                    {item}
-                  </Badge>
-                )
-            )}
+            {tag.map((item, i) => (
+              // (width < 1000 ? i < 1 : i < 3) &&
+              <Badge
+                className='border dark:border-gray-200 border-black'
+                variant='secondary'>
+                {item}
+              </Badge>
+            ))}
             <Badge
               className='border dark:border-gray-200 border-black'
               variant='secondary'>

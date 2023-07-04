@@ -1,6 +1,6 @@
 {
   "name": "@referrer/prettier-config",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Prettier Config",
   "main": "index.js",
   "license": "MIT",
