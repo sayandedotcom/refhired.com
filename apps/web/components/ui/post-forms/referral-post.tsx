@@ -23,7 +23,7 @@ import {
   Calendar,
 } from "@referrer/ui";
 import { cn } from "@referrer/lib/utils/cn";
-import { SelectComponent } from "./Select";
+import { SelectComponent } from "./select";
 import { referralPostValidator } from "@/lib/validators";
 
 const items = [
@@ -58,11 +58,13 @@ export const ReferralPost = () => {
       title: "",
       desscription: "",
       accept: ["shortNote", "resume"],
-      // jobType: { value: "", label: "" },
+      jobType: undefined,
+      skills: [],
     },
   });
 
-  console.log(form.watch().jobType);
+  console.log("jobType", form.watch().jobType);
+  console.log("skills", form.watch().skills);
 
   async function onSubmit(values: z.infer<typeof referralPostValidator>) {
     console.log(values);
@@ -82,7 +84,8 @@ export const ReferralPost = () => {
               <FormItem>
                 <FormControl>
                   <Textarea
-                    placeholder='Title of the referral.......'
+                    className='h-32 rounded-2xl md:text-lg'
+                    placeholder='Title of the referral. . . . . . .'
                     {...field}
                   />
                 </FormControl>
@@ -98,7 +101,8 @@ export const ReferralPost = () => {
               <FormItem>
                 <FormControl>
                   <Textarea
-                    placeholder='Desscription of the referral.......'
+                    className='h-32 rounded-2xl md:text-lg'
+                    placeholder='Desscription of the referral. . . . . . .'
                     {...field}
                   />
                 </FormControl>
@@ -220,7 +224,7 @@ export const ReferralPost = () => {
             )}
           />
           {/* Skills */}
-          {/* <FormField
+          <FormField
             control={form.control}
             name='skills'
             render={({ field }) => (
@@ -239,7 +243,7 @@ export const ReferralPost = () => {
                 <FormMessage />
               </FormItem>
             )}
-          /> */}
+          />
           <Separator />
           <Button className='bg-foreground' type='submit'>
             Post
@@ -249,33 +253,3 @@ export const ReferralPost = () => {
     </>
   );
 };
-{
-  /* <FormField
-            control={form.control}
-            name='email'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder='Select a verified email to display' />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value='m@example.com'>m@example.com</SelectItem>
-                    <SelectItem value='m@google.com'>m@google.com</SelectItem>
-                    <SelectItem value='m@support.com'>m@support.com</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormDescription>
-                  You can manage email addresses in your
-                  <Link href='/examples/forms'>email settings</Link>.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */
-}

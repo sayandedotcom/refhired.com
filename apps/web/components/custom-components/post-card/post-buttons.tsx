@@ -30,12 +30,17 @@ export const ApplyButton = () => {
 
 export const MultipleButtons = () => {
   const [bookmark, setBookmark] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const bookmarked = () => {
     setBookmark(!bookmark);
     customToast(
       "neutral",
       bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"
     );
+  };
+  const copied = () => {
+    setLinkCopied(!linkCopied);
+    customToast("neutral", linkCopied ? "Link Copied" : "Link Copied");
   };
   return (
     <div className='flex gap-9 text-xl md:text-xl'>
@@ -46,7 +51,7 @@ export const MultipleButtons = () => {
         <FiShare2 className='w-5 cursor-pointer' />
       </TooltipDemo>
       <TooltipDemo text='Copy Link'>
-        <FiLink2 className='w-5 cursor-pointer' />
+        <FiLink2 onClick={copied} className='w-5 cursor-pointer' />
       </TooltipDemo>
       {!bookmark ? (
         <TooltipDemo text='Add to Bookmark'>

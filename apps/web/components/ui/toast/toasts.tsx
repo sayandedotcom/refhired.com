@@ -3,7 +3,7 @@
 import toast from "react-hot-toast";
 import { Alert } from "@referrer/ui";
 
-const TOAST_VISIBLE_DURATION = 6000;
+const TOAST_VISIBLE_DURATION = 3000;
 
 export const customToast = (
   type: "success" | "warning" | "error" | "info" | "neutral",
