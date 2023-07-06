@@ -14,7 +14,7 @@
     "**/*.css"
   ],
   "devDependencies": {
-    "@referrer/eslint-config-custom": "*",
+    "eslint-config-custom":"*",
     "@referrer/tailwind-config": "*",
     "@referrer/tsconfig": "*",
     "@types/react": "^18.2.0",

@@ -11,7 +11,7 @@
     "tailwind-merge": "^1.12.0"
   },
   "devDependencies": {
-    "@referrer/eslint-config-custom": "*",
+    "eslint-config-custom": "*",
     "@referrer/prettier-config": "*",
     "@referrer/tsconfig": "*"
   }
