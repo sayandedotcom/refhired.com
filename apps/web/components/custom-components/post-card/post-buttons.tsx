@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { ApplyDialog, TooltipDemo, customToast } from "@/components/ui";
+import { ApplyDialog, Badge, TooltipDemo, customToast } from "@/components/ui";
 import { Button } from "@referrer/ui";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FiLink2, FiMessageCircle, FiShare2 } from "react-icons/fi";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { MapPin } from "lucide-react";
+import { useWindowSize } from "@/lib/hooks";
 
 export const ApplyButton = () => {
   const [applied, setApplied] = useState(false);
@@ -63,5 +65,35 @@ export const MultipleButtons = () => {
         </TooltipDemo>
       )}
     </div>
+  );
+};
+
+export const Tags = ({ tag }) => {
+  const { width } = useWindowSize();
+  return (
+    <>
+      <Badge
+        className='border dark:border-gray-200 border-black'
+        variant='secondary'>
+        <MapPin className='h-3' />
+        Location
+      </Badge>
+      {tag.map((item, i) =>
+        width < 1000
+          ? i < 1
+          : i < 3 && (
+              <Badge
+                className='border dark:border-gray-200 border-black'
+                variant='secondary'>
+                {item}
+              </Badge>
+            )
+      )}
+      <Badge
+        className='border dark:border-gray-200 border-black'
+        variant='secondary'>
+        +7
+      </Badge>
+    </>
   );
 };

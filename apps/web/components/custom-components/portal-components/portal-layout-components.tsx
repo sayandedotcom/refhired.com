@@ -95,7 +95,7 @@ const portalsList = [
   },
 ];
 
-export const OptionsSection = ({ session }: { session: any | null }) => {
+export function OptionsSection({ session }: { session: any | null }) {
   const router = useRouter();
   const pathName = usePathname();
   const [active, setActive] = useState("/home");
@@ -146,9 +146,9 @@ export const OptionsSection = ({ session }: { session: any | null }) => {
       </div>
     </section>
   );
-};
+}
 
-export const ContentSection = ({ children }: { children: React.ReactNode }) => {
+export function ContentSection({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
   return (
     <section className='w-[85%] lg:w-[38rem]'>
@@ -159,9 +159,9 @@ export const ContentSection = ({ children }: { children: React.ReactNode }) => {
       {children}
     </section>
   );
-};
+}
 
-export const ExtraSection = () => {
+export function ExtraSection() {
   return (
     <section className='hidden w-80 lg:flex lg:flex-col lg:gap-3 lg:p-2 h-screen sticky top-0'>
       <div className='px-4 py-2 bg-muted rounded-2xl'>
@@ -173,4 +173,4 @@ export const ExtraSection = () => {
       </div>
     </section>
   );
-};
+}

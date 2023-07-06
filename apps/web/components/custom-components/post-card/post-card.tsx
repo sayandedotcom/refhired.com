@@ -1,24 +1,21 @@
 import Image from "next/image";
-import { MapPin } from "lucide-react";
 import { MoreHorizontal } from "lucide-react";
 import AltImage from "../../../public/avatar/avatar.png";
 import { Separator } from "@referrer/ui";
-import { Badge, PostHoverCard } from "../../ui";
-import { ApplyButton, MultipleButtons } from "./post-buttons";
+import { PostHoverCard } from "@/components/ui";
+import { ApplyButton, MultipleButtons, Tags } from "./post-buttons";
 import { ComboboxDropdownMenu } from "./post-more-menu";
 
 const tag = [
   "1-5 Years",
   "Full Time",
   "Front-End Developer",
-  // "150-250k",
-  // "JavaScript",
-  // "React",
+  "150-250k",
+  "JavaScript",
+  "React",
 ];
 
 export const PostCard = () => {
-  // const { width } = useWindowSize();
-  // const width = 1001;
   return (
     <>
       <Separator />
@@ -55,7 +52,6 @@ export const PostCard = () => {
               </div>
             </ComboboxDropdownMenu>
           </div>
-
           <p className='text-[15px] md:text-base cursor-pointer'>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse,
             beatae vitae repellendus saepe laudantium totam asperiores, nisi,
@@ -66,25 +62,7 @@ export const PostCard = () => {
             </span>
           </p>
           <div className='flex gap-1 h-5'>
-            <Badge
-              className='border dark:border-gray-200 border-black'
-              variant='secondary'>
-              <MapPin className='h-3' />
-              Location
-            </Badge>
-            {tag.map((item, i) => (
-              // (width < 1000 ? i < 1 : i < 3) &&
-              <Badge
-                className='border dark:border-gray-200 border-black'
-                variant='secondary'>
-                {item}
-              </Badge>
-            ))}
-            <Badge
-              className='border dark:border-gray-200 border-black'
-              variant='secondary'>
-              +7
-            </Badge>
+            <Tags tag={tag} />
           </div>
           <div className='flex items-center justify-between'>
             <MultipleButtons />

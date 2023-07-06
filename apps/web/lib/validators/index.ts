@@ -2,6 +2,6 @@ export * from "./apply-validator";
 export * from "./comment-validator";
 export * from "./login-validator";
 export * from "./sign-up-validator";
-export * from "./referra-post-validator";
+export * from "./referral-post-validator";
 export * from "./normal-post-validator";
 export * from "./username-validator";
