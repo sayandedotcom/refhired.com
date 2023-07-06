@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev --port 3001",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@referrer/lib": "*",
@@ -17,7 +18,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@referrer/eslint-config-custom": "*",
+    "eslint-config-custom": "*",
     "@referrer/prettier-config": "*",
     "@referrer/tsconfig": "*",
     "@types/bcrypt": "^5.0.0",

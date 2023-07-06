@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { Switch } from "@referrer/ui";
-import { TooltipDemo } from "../../ui";
+import { TooltipDemo } from "@/components/ui";
 
 export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
