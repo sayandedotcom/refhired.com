@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@referrer/eslint-config-custom": "*",
     "@referrer/lib": "*",
     "@referrer/prisma": "*",
     "bcrypt": "^5.1.0",
@@ -19,6 +18,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@referrer/eslint-config-custom": "*",
     "@referrer/prettier-config": "*",
     "@referrer/tsconfig": "*",
     "@types/bcrypt": "^5.0.0",
