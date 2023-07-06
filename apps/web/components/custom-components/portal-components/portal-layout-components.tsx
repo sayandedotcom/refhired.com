@@ -119,7 +119,7 @@ export function OptionsSection({ session }: { session: any | null }) {
         <div className='lg:flex lg:flex-col lg:justify-start'>
           <div className='text-xl cursor-pointer'>
             {portalsList.map(({ name, link, icon, activeIcon }) => (
-              <TooltipDemo text={`Go to ${name}`}>
+              <TooltipDemo key={name} text={`Go to ${name}`}>
                 <div
                   onClick={() => handleActive(link)}
                   className='flex gap-4 items-center py-3 px-3 rounded-full hover:bg-muted'>

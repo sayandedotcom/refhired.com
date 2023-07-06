@@ -1,3 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 
-export const useuserQuery = () => useQuery(["user"]);
+// export const useuserQuery = () => useQuery(["user"]);
