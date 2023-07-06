@@ -5,7 +5,8 @@
   "scripts": {
     "format": "npx prisma format",
     "generate-schemas": "prisma generate && prisma format",
-    "post-install": "yarn generate-schemas"
+    "post-install": "yarn generate-schemas",
+    "db:generate": "prisma generate"
   },
   "devDependencies": {
     "prisma": "^4.16.2"
