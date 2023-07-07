@@ -9,19 +9,10 @@ export const customToast = (
   type: "success" | "warning" | "error" | "info" | "neutral",
   title: string,
   message?: string,
-  position?:
-    | "top-center"
-    | "top-right"
-    | "top-left"
-    | "bottom-center"
-    | "bottom-right"
-    | "bottom-left",
+  position?: "top-center" | "top-right" | "top-left" | "bottom-center" | "bottom-right" | "bottom-left",
   duration?: number
 ) =>
-  toast.custom(
-    (t) => <Alert severity={type} title={title} message={message} />,
-    {
-      position: position ? position : "top-center",
-      duration: duration ? duration : TOAST_VISIBLE_DURATION,
-    }
-  );
+  toast.custom((t) => <Alert severity={type} title={title} message={message} />, {
+    position: position ? position : "top-center",
+    duration: duration ? duration : TOAST_VISIBLE_DURATION,
+  });

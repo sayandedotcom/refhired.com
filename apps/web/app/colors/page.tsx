@@ -52,67 +52,49 @@ const Page = () => {
           </div>
         ))} */}
       {/* </div> */}
-      <div className='flex flex-wrap bg-green-300'>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-background'>
+      <div className="flex flex-wrap bg-green-300">
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-background">
           background
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-foreground">
           foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-muted'>
-          muted
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-muted-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-muted">muted</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-muted-foreground">
           muted-foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-popover'>
-          popover
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-popover-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-popover">popover</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-popover-foreground">
           popover-foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-card'>
-          card
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-card-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-card">card</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-card-foreground">
           card-foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-border'>
-          border
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-input'>
-          input
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-primary'>
-          primary
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-primary-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-border">border</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-input">input</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-primary">primary</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-primary-foreground">
           primary-foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-secondary'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-secondary">
           secondary
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-secondary-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-secondary-foreground">
           secondary-foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-accent'>
-          accent
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-accent-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-accent">accent</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-accent-foreground">
           accent-foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-destructive'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-destructive">
           destructive
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-destructive-foreground'>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-destructive-foreground">
           destructive-foreground
         </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-ring'>
-          ring
-        </div>
-        <div className='w-28 aspect-square border border-green-600 dark:border-white bg-radius'>
-          radius
-        </div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-ring">ring</div>
+        <div className="w-28 aspect-square border border-green-600 dark:border-white bg-radius">radius</div>
       </div>
       <form onSubmit={handleSubmit}>
         {/* <label>Choose a car:</label>
@@ -131,7 +113,7 @@ const Page = () => {
             { value: "audi", label: "Audi" },
           ]}
         />
-        <input type='submit'></input>
+        <input type="submit"></input>
       </form>
     </>
   );

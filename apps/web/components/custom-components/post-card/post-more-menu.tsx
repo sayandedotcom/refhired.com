@@ -22,47 +22,35 @@ import {
   DropdownMenuTrigger,
 } from "@referrer/ui";
 
-const labels = [
-  "feature",
-  "bug",
-  "enhancement",
-  "documentation",
-  "design",
-  "question",
-  "maintenance",
-];
+const labels = ["feature", "bug", "enhancement", "documentation", "design", "question", "maintenance"];
 
-export function ComboboxDropdownMenu({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function ComboboxDropdownMenu({ children }: { children: React.ReactNode }) {
   const [label, setLabel] = React.useState("feature");
   const [open, setOpen] = React.useState(false);
 
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
-      <DropdownMenuContent align='end' className='w-[200px]'>
+      <DropdownMenuContent align="end" className="w-[200px]">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <User className='mr-2 h-4 w-4' />
+            <User className="mr-2 h-4 w-4" />
             Assign to...
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Calendar className='mr-2 h-4 w-4' />
+            <Calendar className="mr-2 h-4 w-4" />
             Set due date...
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
-              <Tags className='mr-2 h-4 w-4' />
+              <Tags className="mr-2 h-4 w-4" />
               Apply label
             </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent className='p-0'>
+            <DropdownMenuSubContent className="p-0">
               <Command>
-                <CommandInput placeholder='Filter label...' autoFocus={true} />
+                <CommandInput placeholder="Filter label..." autoFocus={true} />
                 <CommandList>
                   <CommandEmpty>No label found.</CommandEmpty>
                   <CommandGroup>
@@ -82,8 +70,8 @@ export function ComboboxDropdownMenu({
             </DropdownMenuSubContent>
           </DropdownMenuSub>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className='text-red-600'>
-            <Trash className='mr-2 h-4 w-4' />
+          <DropdownMenuItem className="text-red-600">
+            <Trash className="mr-2 h-4 w-4" />
             Delete
             <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
           </DropdownMenuItem>

@@ -12,17 +12,13 @@ import { useWindowSize } from "@/lib/hooks";
 export const ApplyButton = () => {
   const [applied, setApplied] = useState(false);
   return (
-    <TooltipDemo text='Apply'>
+    <TooltipDemo text="Apply">
       <ApplyDialog>
         <Button
           disabled={applied}
-          iconBefore={
-            applied && (
-              <AiOutlineCheckCircle className='text-green-400 mr-2 h-4 w-4' />
-            )
-          }
+          iconBefore={applied && <AiOutlineCheckCircle className="text-green-400 mr-2 h-4 w-4" />}
           onClick={() => setApplied(!applied)}
-          className='rounded-full h-9 w-3/12 text-sm'>
+          className="rounded-full h-9 w-3/12 text-sm">
           {applied ? "Applied !" : "Apply"}
         </Button>
       </ApplyDialog>
@@ -35,33 +31,30 @@ export const MultipleButtons = () => {
   const [linkCopied, setLinkCopied] = useState(false);
   const bookmarked = () => {
     setBookmark(!bookmark);
-    customToast(
-      "neutral",
-      bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"
-    );
+    customToast("neutral", bookmark ? "Removed from Bookmarks" : "Added to Bookmarks");
   };
   const copied = () => {
     setLinkCopied(!linkCopied);
     customToast("neutral", linkCopied ? "Link Copied" : "Link Copied");
   };
   return (
-    <div className='flex gap-9 text-xl md:text-xl'>
-      <TooltipDemo text='Comment'>
-        <FiMessageCircle className='w-5 cursor-pointer' />
+    <div className="flex gap-9 text-xl md:text-xl">
+      <TooltipDemo text="Comment">
+        <FiMessageCircle className="w-5 cursor-pointer" />
       </TooltipDemo>
-      <TooltipDemo text='Share'>
-        <FiShare2 className='w-5 cursor-pointer' />
+      <TooltipDemo text="Share">
+        <FiShare2 className="w-5 cursor-pointer" />
       </TooltipDemo>
-      <TooltipDemo text='Copy Link'>
-        <FiLink2 onClick={copied} className='w-5 cursor-pointer' />
+      <TooltipDemo text="Copy Link">
+        <FiLink2 onClick={copied} className="w-5 cursor-pointer" />
       </TooltipDemo>
       {!bookmark ? (
-        <TooltipDemo text='Add to Bookmark'>
-          <FaRegBookmark onClick={bookmarked} className='w-5 cursor-pointer' />
+        <TooltipDemo text="Add to Bookmark">
+          <FaRegBookmark onClick={bookmarked} className="w-5 cursor-pointer" />
         </TooltipDemo>
       ) : (
-        <TooltipDemo text='Remove from Bookmark'>
-          <FaBookmark onClick={bookmarked} className='w-5 cursor-pointer' />
+        <TooltipDemo text="Remove from Bookmark">
+          <FaBookmark onClick={bookmarked} className="w-5 cursor-pointer" />
         </TooltipDemo>
       )}
     </div>
@@ -72,26 +65,20 @@ export const Tags = ({ tag }) => {
   const { width } = useWindowSize();
   return (
     <>
-      <Badge
-        className='border dark:border-gray-200 border-black'
-        variant='secondary'>
-        <MapPin className='h-3' />
+      <Badge className="border dark:border-gray-200 border-black" variant="secondary">
+        <MapPin className="h-3" />
         Location
       </Badge>
       {tag.map((item, i) =>
         width < 1000
           ? i < 1
           : i < 3 && (
-              <Badge
-                className='border dark:border-gray-200 border-black'
-                variant='secondary'>
+              <Badge className="border dark:border-gray-200 border-black" variant="secondary">
                 {item}
               </Badge>
             )
       )}
-      <Badge
-        className='border dark:border-gray-200 border-black'
-        variant='secondary'>
+      <Badge className="border dark:border-gray-200 border-black" variant="secondary">
         +7
       </Badge>
     </>

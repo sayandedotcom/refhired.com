@@ -18,14 +18,14 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
-        <AlertDialogHeader className='flex-row justify-between items-center'>
+        <AlertDialogHeader className="flex-row justify-between items-center">
           <AlertDialogTitle>What you want to Post ?</AlertDialogTitle>
-          <AlertDialogCancel className='rounded-full'>
+          <AlertDialogCancel className="rounded-full">
             <X />
           </AlertDialogCancel>
         </AlertDialogHeader>
         <AlertDialogDescription>Select one</AlertDialogDescription>
-        <div className='flex items-center justify-center gap-5'>
+        <div className="flex items-center justify-center gap-5">
           <AlertDialogAction>Referral Post</AlertDialogAction>
           <AlertDialogAction>Normal Post</AlertDialogAction>
         </div>

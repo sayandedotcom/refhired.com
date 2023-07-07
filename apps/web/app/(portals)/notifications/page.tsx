@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const Notifications = () => {
-  return <PortalsNotFound text='Notifications' />;
+  return <PortalsNotFound text="Notifications" />;
 };
 
 export default Notifications;

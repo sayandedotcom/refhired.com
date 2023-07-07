@@ -54,10 +54,8 @@ const indicatorsContainerStyles = "p-1 gap-1 bg-background rounded-lg";
 const clearIndicatorStyles = "text-gray-500 p-1 rounded-md hover:text-red-800";
 const indicatorSeparatorStyles = "bg-mutated";
 const dropdownIndicatorStyles = "p-1 hover:text-foreground text-gray-500";
-const menuStyles =
-  "mt-2 p-2 border border-border bg-background text-sm rounded-lg";
-const optionsStyle =
-  "bg-background p-2 border-0 text-base hover:bg-secondary hover:cursor-pointer";
+const menuStyles = "mt-2 p-2 border border-border bg-background text-sm rounded-lg";
+const optionsStyle = "bg-background p-2 border-0 text-base hover:bg-secondary hover:cursor-pointer";
 const groupHeadingStyles = "ml-3 mt-2 mb-1 text-gray-500 text-sm bg-background";
 const noOptionsMessageStyles = "text-muted-foreground bg-background";
 
@@ -104,10 +102,7 @@ export const SelectComponent = ({
         onChange={onChange}
         classNames={{
           control: ({ isFocused }) =>
-            clsx(
-              isFocused ? controlStyles.focus : controlStyles.nonFocus,
-              controlStyles.base
-            ),
+            clsx(isFocused ? controlStyles.focus : controlStyles.nonFocus, controlStyles.base),
           placeholder: () => placeholderStyles,
           input: () => selectInputStyles,
           option: () => optionsStyle,

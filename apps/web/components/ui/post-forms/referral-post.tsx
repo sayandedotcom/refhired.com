@@ -75,17 +75,17 @@ export const ReferralPost = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='flex flex-col gap-3 justify-center w-11/12 mx-auto'>
+          className="flex flex-col gap-3 justify-center w-11/12 mx-auto">
           {/* Title */}
           <FormField
             control={form.control}
-            name='title'
+            name="title"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Textarea
-                    className='h-32 rounded-2xl md:text-lg'
-                    placeholder='Title of the referral. . . . . . .'
+                    className="h-32 rounded-2xl md:text-lg"
+                    placeholder="Title of the referral. . . . . . ."
                     {...field}
                   />
                 </FormControl>
@@ -96,13 +96,13 @@ export const ReferralPost = () => {
           {/* Description */}
           <FormField
             control={form.control}
-            name='desscription'
+            name="desscription"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Textarea
-                    className='h-32 rounded-2xl md:text-lg'
-                    placeholder='Desscription of the referral. . . . . . .'
+                    className="h-32 rounded-2xl md:text-lg"
+                    placeholder="Desscription of the referral. . . . . . ."
                     {...field}
                   />
                 </FormControl>
@@ -113,43 +113,33 @@ export const ReferralPost = () => {
           {/* Accept */}
           <FormField
             control={form.control}
-            name='accept'
+            name="accept"
             render={() => (
               <FormItem>
-                <div className='mb-4'>
+                <div className="mb-4">
                   <FormLabel>Accept</FormLabel>
-                  <FormDescription>
-                    Select the items you want to accept from applicant.
-                  </FormDescription>
+                  <FormDescription>Select the items you want to accept from applicant.</FormDescription>
                 </div>
-                <div className='flex items-center justify-center gap-3'>
+                <div className="flex items-center justify-center gap-3">
                   {items.map((item) => (
                     <FormField
                       key={item.id}
                       control={form.control}
-                      name='accept'
+                      name="accept"
                       render={({ field }) => {
                         return (
-                          <FormItem
-                            key={item.id}
-                            className='flex flex-row items-start space-x-3 space-y-0'>
+                          <FormItem key={item.id} className="flex flex-row items-start space-x-3 space-y-0">
                             <FormControl>
                               <Checkbox
                                 checked={field.value?.includes(item.id)}
                                 onCheckedChange={(checked) => {
                                   return checked
                                     ? field.onChange([...field.value, item.id])
-                                    : field.onChange(
-                                        field.value?.filter(
-                                          (value) => value !== item.id
-                                        )
-                                      );
+                                    : field.onChange(field.value?.filter((value) => value !== item.id));
                                 }}
                               />
                             </FormControl>
-                            <FormLabel className='font-normal'>
-                              {item.label}
-                            </FormLabel>
+                            <FormLabel className="font-normal">{item.label}</FormLabel>
                           </FormItem>
                         );
                       }}
@@ -163,13 +153,11 @@ export const ReferralPost = () => {
           {/* Expires At */}
           <FormField
             control={form.control}
-            name='expiresAt'
+            name="expiresAt"
             render={({ field }) => (
-              <FormItem className='flex flex-col'>
+              <FormItem className="flex flex-col">
                 <FormLabel>Expiry of Post</FormLabel>
-                <FormDescription>
-                  Select the date at which the Post will Expire.
-                </FormDescription>
+                <FormDescription>Select the date at which the Post will Expire.</FormDescription>
                 <Popover>
                   <PopoverTrigger asChild>
                     <FormControl>
@@ -179,18 +167,14 @@ export const ReferralPost = () => {
                           "w-[240px] pl-3 text-left font-normal",
                           !field.value && "text-muted-foreground"
                         )}>
-                        {field.value ? (
-                          format(field.value, "PPP")
-                        ) : (
-                          <span>Pick a Expiry date</span>
-                        )}
-                        <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                        {field.value ? format(field.value, "PPP") : <span>Pick a Expiry date</span>}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
-                  <PopoverContent className='w-auto p-0' align='start'>
+                  <PopoverContent className="w-auto p-0" align="start">
                     <Calendar
-                      mode='single'
+                      mode="single"
                       selected={field.value}
                       onSelect={field.onChange}
                       disabled={(date) => date < new Date()}
@@ -205,7 +189,7 @@ export const ReferralPost = () => {
           {/* Job Type */}
           <FormField
             control={form.control}
-            name='jobType'
+            name="jobType"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Joy Type</FormLabel>
@@ -216,7 +200,7 @@ export const ReferralPost = () => {
                   value={field.value}
                   options={jobTypeList}
                   onChange={field.onChange}
-                  placeholder='Select Job Type'
+                  placeholder="Select Job Type"
                   {...field}
                 />
                 <FormMessage />
@@ -226,7 +210,7 @@ export const ReferralPost = () => {
           {/* Skills */}
           <FormField
             control={form.control}
-            name='skills'
+            name="skills"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Skills</FormLabel>
@@ -237,7 +221,7 @@ export const ReferralPost = () => {
                   value={field.value}
                   options={jobTypeList}
                   onChange={field.onChange}
-                  placeholder='Select Skills'
+                  placeholder="Select Skills"
                   {...field}
                 />
                 <FormMessage />
@@ -245,7 +229,7 @@ export const ReferralPost = () => {
             )}
           />
           <Separator />
-          <Button className='bg-foreground' type='submit'>
+          <Button className="bg-foreground" type="submit">
             Post
           </Button>
         </form>

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const Applied = () => {
-  return <PortalsNotFound text='Applied' />;
+  return <PortalsNotFound text="Applied" />;
 };
 
 export default Applied;

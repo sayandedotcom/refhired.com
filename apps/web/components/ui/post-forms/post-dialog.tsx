@@ -62,17 +62,17 @@ export function PostDialog({ children }: { children: React.ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className='md:w-[900px]'>
+      <DialogContent className="md:w-[900px]">
         <DialogHeader>
           <DialogTitle>Post !</DialogTitle>
           <DialogDescription>Post</DialogDescription>
         </DialogHeader>
-        <Tabs defaultValue='account' className='w-[400px]'>
-          <TabsList className='grid w-full grid-cols-2'>
-            <TabsTrigger value='account'>Account</TabsTrigger>
-            <TabsTrigger value='password'>Password</TabsTrigger>
+        <Tabs defaultValue="account" className="w-[400px]">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="account">Account</TabsTrigger>
+            <TabsTrigger value="password">Password</TabsTrigger>
           </TabsList>
-          <TabsContent value='account'>
+          <TabsContent value="account">
             {/* <Card>
           <CardHeader>
             <CardTitle>Account</CardTitle>
@@ -96,7 +96,7 @@ export function PostDialog({ children }: { children: React.ReactNode }) {
         </Card> */}
             <h1>account</h1>
           </TabsContent>
-          <TabsContent value='password'>
+          <TabsContent value="password">
             {/* <Card>
           <CardHeader>
             <CardTitle>Password</CardTitle>
@@ -122,7 +122,7 @@ export function PostDialog({ children }: { children: React.ReactNode }) {
           </TabsContent>
         </Tabs>
         <DialogFooter>
-          <Button className='rounded-full w-32' type='submit'>
+          <Button className="rounded-full w-32" type="submit">
             <p>Post</p>
           </Button>
         </DialogFooter>

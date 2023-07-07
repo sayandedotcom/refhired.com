@@ -27,14 +27,8 @@ const Profile = async ({ params }: paramsProps) => {
   if (!userProfile)
     return (
       <>
-        <div className='flex flex-col items-center gap-2 p-2'>
-          <Image
-            alt='img'
-            src={AltImage}
-            width={120}
-            height={120}
-            className='rounded-full cursor-pointer'
-          />
+        <div className="flex flex-col items-center gap-2 p-2">
+          <Image alt="img" src={AltImage} width={120} height={120} className="rounded-full cursor-pointer" />
           <p>@{profile}</p>
 
           <h6>No Users Found !!</h6>
@@ -45,21 +39,15 @@ const Profile = async ({ params }: paramsProps) => {
 
   return (
     <>
-      <div className='flex flex-col items-center gap-2 p-2'>
-        <Image
-          alt='img'
-          src={AltImage}
-          width={120}
-          height={120}
-          className='rounded-full cursor-pointer'
-        />
+      <div className="flex flex-col items-center gap-2 p-2">
+        <Image alt="img" src={AltImage} width={120} height={120} className="rounded-full cursor-pointer" />
         <p>{userProfile ? userProfile.name : ""}</p>
         <p>@{userProfile ? userProfile.userName : profile}</p>
-        <p className='text-center text-sm md:text-lg'>{userProfile.bio}</p>
-        <div className='flex gap-4'>
+        <p className="text-center text-sm md:text-lg">{userProfile.bio}</p>
+        <div className="flex gap-4">
           <span>1000 Followers</span>•<span>100 Following</span>
         </div>
-        <div className='flex gap-3'>
+        <div className="flex gap-3">
           <FaSuitcase />
           <span>{userProfile.workingAt}</span>•<HiLocationMarker />
           <span>Kolkata</span>

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const Requests = () => {
-  return <PortalsNotFound text='Requests' />;
+  return <PortalsNotFound text="Requests" />;
 };
 
 export default Requests;

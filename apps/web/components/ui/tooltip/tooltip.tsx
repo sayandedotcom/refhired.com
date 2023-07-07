@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@referrer/ui";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@referrer/ui";
 
 export function TooltipDemo({ children, text }) {
   return (

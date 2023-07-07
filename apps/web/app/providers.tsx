@@ -10,16 +10,9 @@ import { Announcements, Footer, Header } from "@/components/layout-components";
 export function Provider({ children }) {
   const queryClient = new QueryClient();
   const pathName = usePathname();
-  const showNavbar = [
-    "/",
-    "/docs",
-    "/blogs",
-    "/pricing",
-    "/about-us",
-    "/contact-us",
-  ].includes(pathName);
+  const showNavbar = ["/", "/docs", "/blogs", "/pricing", "/about-us", "/contact-us"].includes(pathName);
   return (
-    <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
           {showNavbar && (

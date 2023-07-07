@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const Bookmarks = () => {
-  return <PortalsNotFound text='Bookmarks' />;
+  return <PortalsNotFound text="Bookmarks" />;
 };
 
 export default Bookmarks;
