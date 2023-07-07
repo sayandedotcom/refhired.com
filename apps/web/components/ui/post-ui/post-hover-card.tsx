@@ -11,13 +11,13 @@ export function PostHoverCard({ children }) {
       <HoverCardContent className="md:w-96">
         <div className="flex gap-2">
           <div className="w-[20%]">
-            <Image alt="img" src={AltImage} width={64} height={64} className="rounded-full cursor-pointer" />
+            <Image alt="img" src={AltImage} width={64} height={64} className="cursor-pointer rounded-full" />
           </div>
           <div className="w-full">
-            <div className="flex justify-start items-center gap-2">
+            <div className="flex items-center justify-start gap-2">
               <span className="text-base font-semibold">Full Name</span>•
               <span className="text-base font-semibold">@username</span>
-              <Button className="rounded-full h-9 ml-auto">Follow</Button>
+              <Button className="ml-auto h-9 rounded-full">Follow</Button>
             </div>
             <p className="text-sm">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero rerum quisquam molestias

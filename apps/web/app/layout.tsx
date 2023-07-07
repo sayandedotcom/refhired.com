@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="scrollbar-thin scrollbar-thumb-black dark:scrollbar-thumb-white scrollbar-track-white dark:scrollbar-track-black scrollbar-rounded-lg">
+      <body className="scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white">
         <Toaster />
         <Provider>{children}</Provider>
       </body>

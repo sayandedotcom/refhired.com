@@ -10,12 +10,12 @@ export const Announcements = () => {
     <>
       <div
         className={clsx(
-          "flex items-center justify-center gap-4 bg-black px-4 py-4 text-white relative",
+          "relative flex items-center justify-center gap-4 bg-black px-4 py-4 text-white",
           close && "hidden"
         )}>
         <p className="text-sm font-medium">
           This website is in development mode !
-          <a href="https://github.com/sayande2002/referrer" className="inline-block underline ml-3">
+          <a href="https://github.com/sayande2002/referrer" className="ml-3 inline-block underline">
             Check out the code because it is Open Source
           </a>
         </p>
@@ -24,7 +24,7 @@ export const Announcements = () => {
         onClick={() => setClose(!close)}
         aria-label="Dismiss"
         className={clsx(
-          "shrink-0 rounded-lg p-1 transition hover:bg-black/20 absolute right-2 top-3 text-white",
+          "absolute right-2 top-3 shrink-0 rounded-lg p-1 text-white transition hover:bg-black/20",
           close && "hidden"
         )}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

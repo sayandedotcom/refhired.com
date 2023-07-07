@@ -5,7 +5,7 @@ export const Stats = () => {
     <section>
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-bold  text-[30px] md:text-[50px]">Trusted by eCommerce Businesses</h2>
+          <h2 className="text-[30px]  font-bold md:text-[50px]">Trusted by eCommerce Businesses</h2>
 
           <p className="mt-4 text-gray-500 sm:text-xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dolores laborum labore provident

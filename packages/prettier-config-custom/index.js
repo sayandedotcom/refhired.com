@@ -7,4 +7,5 @@ module.exports = {
   jsxSingleQuote: false,
   trailingComma: "es5",
   printWidth: 110,
+  plugins: ["prettier-plugin-tailwindcss"],
 };

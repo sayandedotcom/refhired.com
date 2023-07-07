@@ -76,11 +76,11 @@ const Login = () => {
     }
   };
   return (
-    <div className="min-h-screen py-5 flex flex-col items-center justify-center gap-10 lg:h-screen">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-10 py-5 lg:h-screen">
       <TypographyH2>Welcome Back !</TypographyH2>
-      <div className="rounded-md border border-gray-200 w-11/12 lg:w-[450px] py-8 bg-white flex flex-col justify-center items-center gap-6">
+      <div className="flex w-11/12 flex-col items-center justify-center gap-6 rounded-md border border-gray-200 bg-white py-8 lg:w-[450px]">
         {error ? (
-          <div className="bg-red-300 border border-destructive text-destructive rounded-sm text-center p-2 w-10/12">
+          <div className="w-10/12 rounded-sm border border-destructive bg-red-300 p-2 text-center text-destructive">
             {error}
           </div>
         ) : (
@@ -89,7 +89,7 @@ const Login = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-11/12 space-y-4 flex flex-col lg:w-10/12 text-[#0f172a]">
+            className="flex w-11/12 flex-col space-y-4 text-[#0f172a] lg:w-10/12">
             <FormField
               control={form.control}
               name="email"
@@ -119,7 +119,7 @@ const Login = () => {
                     />
                   </FormControl>
                   <FormMessage />
-                  <Link className="mt-3 text-muted-foreground ml-auto" href="/forgot-password">
+                  <Link className="ml-auto mt-3 text-muted-foreground" href="/forgot-password">
                     <TypographySmall>Forgot Password ?</TypographySmall>
                   </Link>
                 </FormItem>
@@ -136,7 +136,7 @@ const Login = () => {
           <span className="px-2 text-muted-foreground">Or continue with</span>
         </div>
 
-        <div className="w-11/12 flex flex-col lg:w-[350px] gap-4">
+        <div className="flex w-11/12 flex-col gap-4 lg:w-[350px]">
           <Button isLoading={loading} onClick={loginWithGoogle} variant="secondary">
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
@@ -145,7 +145,7 @@ const Login = () => {
           </Button>
         </div>
         <Separator />
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <TypographySmall className="text-[#030711]">Don&prime;t have an account ?</TypographySmall>
           <Link className="text-muted-foreground" href="/sign-up">
             <TypographySmall>Sign Up</TypographySmall>

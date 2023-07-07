@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -50,7 +51,6 @@
     "eslint-config-custom": "*",
     "postcss": "^8.4.23",
     "prettier": "^3.0.0",
-    "prettier-plugin-tailwindcss": "^0.3.0",
     "tailwind-scrollbar": "^3.0.4",
     "tailwindcss": "^3.3.2",
     "typescript": "^4.5.3"

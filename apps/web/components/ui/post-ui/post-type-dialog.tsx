@@ -18,7 +18,7 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
-        <AlertDialogHeader className="flex-row justify-between items-center">
+        <AlertDialogHeader className="flex-row items-center justify-between">
           <AlertDialogTitle>What you want to Post ?</AlertDialogTitle>
           <AlertDialogCancel className="rounded-full">
             <X />

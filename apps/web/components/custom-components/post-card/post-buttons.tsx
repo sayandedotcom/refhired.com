@@ -16,9 +16,9 @@ export const ApplyButton = () => {
       <ApplyDialog>
         <Button
           disabled={applied}
-          iconBefore={applied && <AiOutlineCheckCircle className="text-green-400 mr-2 h-4 w-4" />}
+          iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
           onClick={() => setApplied(!applied)}
-          className="rounded-full h-9 w-3/12 text-sm">
+          className="h-9 w-3/12 rounded-full text-sm">
           {applied ? "Applied !" : "Apply"}
         </Button>
       </ApplyDialog>
@@ -65,7 +65,7 @@ export const Tags = ({ tag }) => {
   const { width } = useWindowSize();
   return (
     <>
-      <Badge className="border dark:border-gray-200 border-black" variant="secondary">
+      <Badge className="border border-black dark:border-gray-200" variant="secondary">
         <MapPin className="h-3" />
         Location
       </Badge>
@@ -73,12 +73,12 @@ export const Tags = ({ tag }) => {
         width < 1000
           ? i < 1
           : i < 3 && (
-              <Badge className="border dark:border-gray-200 border-black" variant="secondary">
+              <Badge className="border border-black dark:border-gray-200" variant="secondary">
                 {item}
               </Badge>
             )
       )}
-      <Badge className="border dark:border-gray-200 border-black" variant="secondary">
+      <Badge className="border border-black dark:border-gray-200" variant="secondary">
         +7
       </Badge>
     </>

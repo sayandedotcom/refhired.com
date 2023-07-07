@@ -6,14 +6,14 @@ import { GitHubFork, GitHubIssue, GitHubStar } from "../ui";
 export const Footer = () => {
   return (
     <footer>
-      <div className="bg-[#030711] mx-auto max-w-screen-2xl px-4 pb-6 pt-16 sm:px-6 lg:px-8 lg:pt-24 rounded-3xl mb-6 border border-gray-200 hover:border-gray-300">
+      <div className="mx-auto mb-6 max-w-screen-2xl rounded-3xl border border-gray-200 bg-[#030711] px-4 pb-6 pt-16 hover:border-gray-300 sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="flex justify-center text-gray-200 sm:justify-start">
               <h2>Referrer</h2>
             </div>
             <Separator />
-            <div className="flex flex-col gap-5 mt-6 max-w-md text-center leading-relaxed text-gray-300 sm:max-w-xs sm:text-left">
+            <div className="mt-6 flex max-w-md flex-col gap-5 text-center leading-relaxed text-gray-300 sm:max-w-xs sm:text-left">
               <p>
                 This project is an Open Source Project, Star, Fork or raise an issue to help us to improve
                 this website on GitHub.

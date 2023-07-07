@@ -122,7 +122,7 @@ export function PostDialog({ children }: { children: React.ReactNode }) {
           </TabsContent>
         </Tabs>
         <DialogFooter>
-          <Button className="rounded-full w-32" type="submit">
+          <Button className="w-32 rounded-full" type="submit">
             <p>Post</p>
           </Button>
         </DialogFooter>

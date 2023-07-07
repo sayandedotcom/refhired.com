@@ -5,9 +5,9 @@ import { useTheme } from "next-themes";
 export const Testimonials = () => {
   const { theme } = useTheme();
   return (
-    <section className="relative py-24 lg:pb-28 overflow-hidden">
+    <section className="relative overflow-hidden py-24 lg:pb-28">
       <div
-        className="absolute top-0 left-0 w-24 md:w-96 h-full"
+        className="absolute left-0 top-0 h-full w-24 md:w-96"
         style={{
           background: `linear-gradient(90deg, ${
             theme === "light" ? "#F3F7FA" : "#030711"
@@ -15,31 +15,31 @@ export const Testimonials = () => {
         }}
       />
       <div
-        className="absolute top-0 right-0 w-24 md:w-96 h-full transform rotate-180"
+        className="absolute right-0 top-0 h-full w-24 rotate-180 transform md:w-96"
         style={{
           background: `linear-gradient(90deg, ${
             theme === "light" ? "#F3F7FA" : "#030711"
           }  10.94%, rgba(243, 247, 250, 0) 100%)`,
         }}
       />
-      <div className="container px-4 mx-auto">
-        <div className="relative max-w-xl text-center mx-auto mb-16">
+      <div className="container mx-auto px-4">
+        <div className="relative mx-auto mb-16 max-w-xl text-center">
           <h2 className="mb-4  text-[30px] md:text-[50px]">What our users say</h2>
           <p className="text-xl tracking-tight">
             Referrer is the super simple way to get referrals over a click of a apps, downloads, or long
             meeting links enim mi turpis.
           </p>
         </div>
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-nowrap justify-center -m-3 mb-3">
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6 hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+        <div className="mx-auto max-w-4xl">
+          <div className="-m-3 mb-3 flex flex-nowrap justify-center">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -74,14 +74,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6 hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -116,14 +116,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -158,14 +158,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6 hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -200,14 +200,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -243,15 +243,15 @@ export const Testimonials = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-nowrap justify-center -m-3">
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+          <div className="-m-3 flex flex-nowrap justify-center">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -286,14 +286,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -328,14 +328,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -370,14 +370,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -412,14 +412,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />
@@ -454,14 +454,14 @@ export const Testimonials = () => {
                 </p>
               </div>
             </div>
-            <div className="flex-shrink-0 w-96 p-3">
-              <div className="p-6   hover:bg-opacity-80 border border-gray-200 hover:border-gray-300 rounded-xl transition duration-200">
-                <div className="flex flex-wrap justify-between -m-2 mb-6">
+            <div className="w-96 flex-shrink-0 p-3">
+              <div className="rounded-xl   border border-gray-200 p-6 transition duration-200 hover:border-gray-300 hover:bg-opacity-80">
+                <div className="-m-2 mb-6 flex flex-wrap justify-between">
                   <div className="w-auto p-2">
-                    <div className="flex flex-wrap items-center -m-1.5">
+                    <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
                         <img
-                          className="object-cover w-[4rem] rounded-full"
+                          className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
                         />

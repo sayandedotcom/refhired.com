@@ -51,7 +51,7 @@ export function ApplyDialog({ children }) {
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-2 flex flex-col relative">
+          <form onSubmit={form.handleSubmit(onSubmit)} className=" relative flex flex-col space-y-2">
             {/* Message */}
             <FormField
               control={form.control}
@@ -80,7 +80,7 @@ export function ApplyDialog({ children }) {
               name="resume"
               render={({ field }) => (
                 <FormItem className="flex items-center justify-center gap-5">
-                  <FormLabel className="text-base text-center">Resume</FormLabel>
+                  <FormLabel className="text-center text-base">Resume</FormLabel>
                   <FormControl>
                     <Input
                       id="resume"
@@ -101,7 +101,7 @@ export function ApplyDialog({ children }) {
               name="coverLetter"
               render={({ field }) => (
                 <FormItem className="flex items-center justify-center gap-3">
-                  <FormLabel className="text-base text-center">Cover Letter</FormLabel>
+                  <FormLabel className="text-center text-base">Cover Letter</FormLabel>
                   <FormControl>
                     <Input
                       id="coverLetter"
@@ -118,7 +118,7 @@ export function ApplyDialog({ children }) {
             />
             <Button
               disabled={!form.formState.isValid}
-              className="rounded-full w-5/12 self-center"
+              className="w-5/12 self-center rounded-full"
               type="submit">
               Apply !
             </Button>

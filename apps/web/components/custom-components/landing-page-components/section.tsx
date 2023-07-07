@@ -2,8 +2,8 @@
 
 export const Section = () => {
   return (
-    <section className="flex justify-center items-center">
-      <div className="w-11/12 md:w-10/12 px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8 rounded-3xl">
+    <section className="flex items-center justify-center">
+      <div className="w-11/12 rounded-3xl px-4 py-8 sm:px-6 sm:py-12 md:w-10/12 lg:px-8 lg:py-16">
         <div className="w-full">
           <h2 className="text-center text-[30px] md:text-[50px]">Why referrer ?</h2>
           <h5 className="mt-4 text-center text-[16px] md:text-[20px]">
@@ -34,7 +34,7 @@ export const Section = () => {
 
             <div>
               <h4 className="text-[24px] md:text-[28px]">Lorem, dolor.</h4>
-              <p className="text-base md:text-lg mt-1 text-foreground">
+              <p className="mt-1 text-base text-foreground md:text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque tempore est ab possimus
                 quisquam reiciendis tempora animi! Quaerat, saepe?
               </p>
@@ -62,7 +62,7 @@ export const Section = () => {
             <div>
               <h4 className="text-[20px] md:text-[28px]">Lorem, ipsum dolor.</h4>
 
-              <p className="text-lg mt-1">
+              <p className="mt-1 text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque tempore est ab possimus
                 quisquam reiciendis tempora animi! Quaerat, saepe?
               </p>
@@ -90,7 +90,7 @@ export const Section = () => {
             <div>
               <h4 className="text-[20px] md:text-[28px]">Lorem, ipsum dolor.</h4>
 
-              <p className="text-base md:text-lg mt-1">
+              <p className="mt-1 text-base md:text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque tempore est ab possimus
                 quisquam reiciendis tempora animi! Quaerat, saepe?
               </p>
@@ -118,7 +118,7 @@ export const Section = () => {
             <div>
               <h4 className="text-[20px] md:text-[28px]">Lorem, ipsum dolor.</h4>
 
-              <p className="text-lg mt-1">
+              <p className="mt-1 text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque tempore est ab possimus
                 quisquam reiciendis tempora animi! Quaerat, saepe?
               </p>
@@ -146,7 +146,7 @@ export const Section = () => {
             <div>
               <h4 className="text-[20px] md:text-[28px]">Lorem, ipsum dolor.</h4>
 
-              <p className="text-lg mt-1">
+              <p className="mt-1 text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque tempore est ab possimus
                 quisquam reiciendis tempora animi! Quaerat, saepe?
               </p>
@@ -174,7 +174,7 @@ export const Section = () => {
             <div>
               <h4 className="text-[20px] md:text-[28px]">Lorem, ipsum dolor.</h4>
 
-              <p className="text-lg mt-1">
+              <p className="mt-1 text-lg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque tempore est ab possimus
                 quisquam reiciendis tempora animi! Quaerat, saepe?
               </p>

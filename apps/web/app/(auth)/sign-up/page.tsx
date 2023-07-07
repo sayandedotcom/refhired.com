@@ -80,13 +80,13 @@ const SignUp = () => {
   }
 
   return (
-    <div className="min-h-screen py-3 flex flex-col md:flex-row items-center justify-around lg:gap-16 md:px-10 gap-5">
+    <div className="flex min-h-screen flex-col items-center justify-around gap-5 py-3 md:flex-row md:px-10 lg:gap-16">
       <section className="hidden md:block lg:flex lg:flex-col lg:gap-3">
         <TypographyH1>Referrer</TypographyH1>
         <TypographyH2>Join the larget referall community !</TypographyH2>
       </section>
-      <div className="w-11/12 rounded-md border border-gray-200 lg:w-[450px] py-3 bg-white flex flex-col justify-center items-center gap-4">
-        <div className="py-1 flex flex-col gap-4 w-11/12 lg:w-10/12">
+      <div className="flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border border-gray-200 bg-white py-3 lg:w-[450px]">
+        <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">
           <TypographyH3 className="text-[#030711]">Welcome to the Referrer</TypographyH3>
           <p className="text-muted-foreground">
             Create your account and start using Referrer for free, with unlimited event types, bookings and
@@ -97,7 +97,7 @@ const SignUp = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-11/12 space-y-2 flex flex-col lg:w-10/12 text-[#0f172a]">
+            className="flex w-11/12 flex-col space-y-2 text-[#0f172a] lg:w-10/12">
             <FormField
               control={form.control}
               name="username"
@@ -111,7 +111,7 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            {error && <div className="text-red-500 text-sm">{error}</div>}
+            {error && <div className="text-sm text-red-500">{error}</div>}
             <FormField
               control={form.control}
               name="name"
@@ -183,7 +183,7 @@ const SignUp = () => {
         <div className="relative flex justify-center text-xs uppercase">
           <span className="px-2 text-muted-foreground">Or continue with</span>
         </div>
-        <div className="w-11/12 flex justify-between lg:w-[350px] gap-4">
+        <div className="flex w-11/12 justify-between gap-4 lg:w-[350px]">
           <Button className="w-6/12" variant="secondary" onClick={() => signIn("google")}>
             <TypographyP>Google</TypographyP>
           </Button>
@@ -192,7 +192,7 @@ const SignUp = () => {
           </Button>
         </div>
         <Separator />
-        <div className="flex justify-center items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <TypographySmall className="text-[#030711]">Already have an account ?</TypographySmall>
           <Link className="text-muted-foreground" href="/login">
             <TypographySmall> Log In</TypographySmall>

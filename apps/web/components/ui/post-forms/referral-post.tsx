@@ -75,7 +75,7 @@ export const ReferralPost = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-3 justify-center w-11/12 mx-auto">
+          className="mx-auto flex w-11/12 flex-col justify-center gap-3">
           {/* Title */}
           <FormField
             control={form.control}
