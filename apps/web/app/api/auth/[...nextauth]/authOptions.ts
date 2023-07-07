@@ -1,11 +1,12 @@
-import { NextAuthOptions, getServerSession } from "next-auth";
-import { generateFromEmail } from "unique-username-generator";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import prisma from "@referrer/prisma";
 import { compare } from "bcrypt";
+import { NextAuthOptions, getServerSession } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import { generateFromEmail } from "unique-username-generator";
+
+import prisma from "@referrer/prisma";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),

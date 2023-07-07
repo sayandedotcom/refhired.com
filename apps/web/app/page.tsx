@@ -1,6 +1,9 @@
 import Link from "next/link";
+
 import { Separator } from "@referrer/ui";
+
 import { Joinnow, Section, Stats, Testimonials, Usecases, Username } from "@/components/custom-components";
+
 import { getAuthSession } from "./api/auth/[...nextauth]/authOptions";
 
 export default async function Page() {

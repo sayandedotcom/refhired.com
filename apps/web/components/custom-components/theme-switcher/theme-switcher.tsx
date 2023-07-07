@@ -1,7 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
+
 import { useTheme } from "next-themes";
+
 import { Switch } from "@referrer/ui";
+
 import { TooltipDemo } from "@/components/ui";
 
 export const ThemeSwitcher = () => {

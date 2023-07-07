@@ -1,8 +1,10 @@
 "use client";
 
 import * as React from "react";
+
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
+import { AlertCircle } from "lucide-react";
 import {
   Controller,
   ControllerProps,
@@ -13,8 +15,8 @@ import {
 } from "react-hook-form";
 
 import { cn } from "@referrer/lib/utils/cn";
+
 import { Label } from "./label";
-import { AlertCircle } from "lucide-react";
 
 const Form = FormProvider;
 

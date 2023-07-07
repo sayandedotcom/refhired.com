@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
+
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import {
+  Button,
   Form,
   FormControl,
   FormField,
@@ -15,12 +18,11 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Button,
+  Separator,
   TypographyH1,
   TypographyH2,
-  TypographyP,
-  Separator,
   TypographyH3,
+  TypographyP,
   TypographySmall,
 } from "@referrer/ui";
 

@@ -1,7 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
@@ -9,25 +11,25 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  Input,
-  Label,
-  Button,
-  Textarea,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-  TypographyH2,
+  Input,
+  Label,
   Separator,
-  TypographyP,
-  TypographySmall,
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
+  Textarea,
+  TypographyH2,
+  TypographyP,
+  TypographySmall,
 } from "@referrer/ui";
+
 // import { useForm } from "react-hook-form";
 // import { z } from "zod";
 

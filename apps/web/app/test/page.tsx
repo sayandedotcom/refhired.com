@@ -1,9 +1,11 @@
 // import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { userNameValidator } from "@/lib/validators";
+
 import prisma from "@referrer/prisma";
+
+import { userNameValidator } from "@/lib/validators";
 
 const Username = async () => {
   const session = await getAuthSession();

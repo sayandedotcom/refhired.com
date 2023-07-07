@@ -1,7 +1,9 @@
 "use client";
 
 import * as React from "react";
+
 import { Calendar, Tags, Trash, User } from "lucide-react";
+
 import {
   Command,
   CommandEmpty,

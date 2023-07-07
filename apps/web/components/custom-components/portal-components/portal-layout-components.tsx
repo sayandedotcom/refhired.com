@@ -1,25 +1,30 @@
 "use client";
 
+import { useState } from "react";
+
 import { usePathname } from "next/navigation";
-import { AiOutlineHome, AiFillHome, AiOutlineMail, AiFillMail } from "react-icons/ai";
+import { useRouter } from "next/navigation";
+
+import { AiFillHome, AiFillMail, AiOutlineHome, AiOutlineMail } from "react-icons/ai";
+import { BsFileBarGraph, BsFileEarmarkBarGraphFill } from "react-icons/bs";
+import { FaBookmark, FaPenNib, FaRegBookmark, FaRegUser, FaUserAlt } from "react-icons/fa";
 import {
+  IoDocumentsOutline,
+  IoDocumentsSharp,
   IoNotificationsOutline,
   IoNotificationsSharp,
   IoSettingsOutline,
   IoSettingsSharp,
-  IoDocumentsOutline,
-  IoDocumentsSharp,
 } from "react-icons/io5";
-import { TiTickOutline, TiTick } from "react-icons/ti";
-import { BsFileBarGraph, BsFileEarmarkBarGraphFill } from "react-icons/bs";
-import { FaBookmark, FaPenNib, FaRegBookmark, FaRegUser, FaUserAlt } from "react-icons/fa";
-import { RiSearchLine, RiSearchFill } from "react-icons/ri";
-import { useState } from "react";
-import { AvatarDemo, PostTypeDialog, TooltipDemo } from "@/components/ui";
-import { useRouter } from "next/navigation";
-import { ThemeSwitcher } from "@/components/custom-components";
-import { useWindowSize } from "@/lib/hooks";
+import { RiSearchFill, RiSearchLine } from "react-icons/ri";
+import { TiTick, TiTickOutline } from "react-icons/ti";
+
 import { Separator } from "@referrer/ui";
+
+import { ThemeSwitcher } from "@/components/custom-components";
+import { AvatarDemo, PostTypeDialog, TooltipDemo } from "@/components/ui";
+
+import { useWindowSize } from "@/lib/hooks";
 
 const portalsList = [
   {

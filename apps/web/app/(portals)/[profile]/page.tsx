@@ -1,12 +1,15 @@
-import Image from "next/image";
-import AltImage from "../../../public/avatar/avatar.png";
-import { Separator } from "@referrer/ui";
-import { PostCard } from "@/components/custom-components";
-import { FaSuitcase } from "react-icons/fa";
-
-import { HiLocationMarker } from "react-icons/hi";
-import prisma from "@referrer/prisma";
 import { Metadata } from "next";
+import Image from "next/image";
+
+import { FaSuitcase } from "react-icons/fa";
+import { HiLocationMarker } from "react-icons/hi";
+
+import prisma from "@referrer/prisma";
+import { Separator } from "@referrer/ui";
+
+import { PostCard } from "@/components/custom-components";
+
+import AltImage from "../../../public/avatar/avatar.png";
 
 export const metadata: Metadata = {
   title: "Profile",

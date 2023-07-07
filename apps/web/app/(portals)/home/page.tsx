@@ -1,5 +1,6 @@
-import { PostCard } from "@/components/custom-components";
 import { Metadata } from "next";
+
+import { PostCard } from "@/components/custom-components";
 
 export const metadata: Metadata = {
   title: "Home",

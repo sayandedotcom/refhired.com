@@ -1,10 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
-import { usePathname } from "next/navigation";
+
 import { Announcements, Footer, Header } from "@/components/layout-components";
 
 export function Provider({ children }) {

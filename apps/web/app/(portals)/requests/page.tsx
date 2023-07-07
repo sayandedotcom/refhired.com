@@ -1,6 +1,6 @@
-import { PortalsNotFound } from "@/components/custom-components";
-
 import { Metadata } from "next";
+
+import { PortalsNotFound } from "@/components/custom-components";
 
 export const metadata: Metadata = {
   title: "Requests",

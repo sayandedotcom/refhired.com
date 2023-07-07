@@ -1,7 +1,8 @@
 "use client";
 
-import { Button } from "@referrer/ui";
 import { RotateCcw } from "lucide-react";
+
+import { Button } from "@referrer/ui";
 
 export const PortalsNotFound = ({ text }) => {
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import { Separator } from "@referrer/ui";
+
 import { GitHubFork, GitHubIssue, GitHubStar } from "../ui";
 
 export const Footer = () => {

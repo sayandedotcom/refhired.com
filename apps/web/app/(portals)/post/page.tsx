@@ -1,7 +1,8 @@
 "use client";
 
+import { Button, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
+
 import { NormalPost, ReferralPost } from "@/components/ui";
-import { Button, Tabs, TabsContent, TabsList, TabsTrigger, Input, Label } from "@referrer/ui";
 
 const Post = () => {
   return (

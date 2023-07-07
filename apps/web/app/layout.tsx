@@ -1,8 +1,10 @@
-import { Toaster } from "react-hot-toast";
 import { Metadata } from "next";
-import { Provider } from "./providers";
+
 import "cal-sans";
+import { Toaster } from "react-hot-toast";
+
 import "../styles/globals.css";
+import { Provider } from "./providers";
 
 export const metadata: Metadata = {
   title: {

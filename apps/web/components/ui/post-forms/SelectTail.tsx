@@ -1,12 +1,13 @@
 "use client";
+
+import clsx from "clsx";
+import { ChevronDownIcon, ShieldCloseIcon, X } from "lucide-react";
 import Select, {
   ClearIndicatorProps,
   DropdownIndicatorProps,
   MultiValueRemoveProps,
   components,
 } from "react-select";
-import clsx from "clsx";
-import { X, ChevronDownIcon, ShieldCloseIcon } from "lucide-react";
 
 const DropdownIndicator = (props: DropdownIndicatorProps) => {
   return (

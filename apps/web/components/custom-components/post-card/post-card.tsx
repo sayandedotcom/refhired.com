@@ -1,8 +1,12 @@
 import Image from "next/image";
+
 import { MoreHorizontal } from "lucide-react";
-import AltImage from "../../../public/avatar/avatar.png";
+
 import { Separator } from "@referrer/ui";
+
 import { PostHoverCard } from "@/components/ui";
+
+import AltImage from "../../../public/avatar/avatar.png";
 import { ApplyButton, MultipleButtons, Tags } from "./post-buttons";
 import { ComboboxDropdownMenu } from "./post-more-menu";
 

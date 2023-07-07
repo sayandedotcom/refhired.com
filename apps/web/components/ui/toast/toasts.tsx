@@ -1,6 +1,7 @@
 "use client";
 
 import toast from "react-hot-toast";
+
 import { Alert } from "@referrer/ui";
 
 const TOAST_VISIBLE_DURATION = 3000;

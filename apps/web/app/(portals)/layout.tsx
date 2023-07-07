@@ -1,7 +1,9 @@
 "use client";
 
-import { ContentSection, ExtraSection, OptionsSection } from "@/components/custom-components";
 import { Separator } from "@referrer/ui";
+
+import { ContentSection, ExtraSection, OptionsSection } from "@/components/custom-components";
+
 import "../../styles/globals.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

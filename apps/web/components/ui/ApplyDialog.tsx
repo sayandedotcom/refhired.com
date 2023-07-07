@@ -1,28 +1,32 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
+
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  Input,
-  Button,
-  Textarea,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
+  Input,
+  Textarea,
 } from "@referrer/ui";
+
 import { applyValidator } from "@/lib/validators";
+
 import { customToast } from "./toast/toasts";
-import { useState } from "react";
 
 export function ApplyDialog({ children }) {
   const [open, setOpen] = useState(false);

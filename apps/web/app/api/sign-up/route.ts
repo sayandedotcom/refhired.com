@@ -1,5 +1,6 @@
-import prisma from "@referrer/prisma";
 import * as bcrypt from "bcrypt";
+
+import prisma from "@referrer/prisma";
 
 interface RequestBody {
   name: string;

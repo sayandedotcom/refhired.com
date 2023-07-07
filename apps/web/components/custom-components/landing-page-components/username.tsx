@@ -1,8 +1,10 @@
 "use client";
-import { z } from "zod";
-import { userNameValidator } from "@/lib/validators";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { userNameValidator } from "@/lib/validators";
 
 export const Username = (prop: any) => {
   const { session } = prop;

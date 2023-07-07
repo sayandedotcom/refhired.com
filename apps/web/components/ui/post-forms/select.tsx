@@ -1,16 +1,15 @@
 "use client";
 
+import clsx from "clsx";
+import { ChevronDownIcon, X } from "lucide-react";
 import Select, {
   ClearIndicatorProps,
   DropdownIndicatorProps,
   MultiValueRemoveProps,
   components,
 } from "react-select";
-import CreatableSelect from "react-select/creatable";
-import clsx from "clsx";
 import makeAnimated from "react-select/animated";
-
-import { X, ChevronDownIcon } from "lucide-react";
+import CreatableSelect from "react-select/creatable";
 
 const DropdownIndicator = (props: DropdownIndicatorProps) => {
   return (

@@ -1,9 +1,9 @@
-import clsx from "clsx";
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
-import type { IconType } from "react-icons";
 
-import { CheckCircle2, Info, XCircle, AlertTriangle } from "lucide-react";
+import clsx from "clsx";
+import { AlertTriangle, CheckCircle2, Info, XCircle } from "lucide-react";
+import type { IconType } from "react-icons";
 
 export interface AlertProps {
   title?: ReactNode;

@@ -7,5 +7,16 @@ module.exports = {
   jsxSingleQuote: false,
   trailingComma: "es5",
   printWidth: 110,
-  plugins: ["prettier-plugin-tailwindcss"],
+  importOrder: [
+    "^react$",
+    "^(next/(.*)$)|^(next$)",
+    "<THIRD_PARTY_MODULES>",
+    "^@referrer/(.*)$",
+    "^@/components/(.*)$",
+    "^@/lib/(.*)$",
+    "^[./]",
+  ],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  plugins: ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"],
 };

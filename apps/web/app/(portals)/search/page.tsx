@@ -1,7 +1,9 @@
 "use client";
 
 import { Search, SlidersHorizontal } from "lucide-react";
+
 import { Button, Input, Separator } from "@referrer/ui";
+
 import { TooltipDemo } from "@/components/ui";
 
 const SearchPage = () => {

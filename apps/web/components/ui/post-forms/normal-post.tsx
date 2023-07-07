@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { Form, FormControl, FormField, FormItem, FormMessage, Button, Textarea } from "@referrer/ui";
+import { Button, Form, FormControl, FormField, FormItem, FormMessage, Textarea } from "@referrer/ui";
+
 import { normalPostValidator } from "@/lib/validators";
 
 export const NormalPost = () => {

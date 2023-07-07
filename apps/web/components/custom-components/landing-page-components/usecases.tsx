@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+
 import { Button } from "@referrer/ui";
+
 import AltImage from "../../../public/avatar/avatar.png";
 
 export const Usecases = () => {
