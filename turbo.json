@@ -9,10 +9,6 @@
   ],
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
-    "dev": {
-      "dependsOn": ["^db:generate"],
-      "cache": false
-    },
     "build": {
       "dependsOn": ["^build", "^db:generate"],
       "env": [
@@ -29,6 +25,7 @@
     },
     "lint": {},
     "dev": {
+      "dependsOn": ["^db:generate"],
       "cache": false,
       "persistent": true
     }
