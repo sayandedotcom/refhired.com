@@ -10,5 +10,6 @@
   "keywords": [
     "prettier",
     "prettier-config"
-  ]
+  ],
+  "devDependencies": {}
 }
