@@ -5,7 +5,10 @@
   "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint \"**/*.ts*\""
+    "lint": "eslint \"**/*.ts*\"",
+    "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "exports": {
     ".": "./index.tsx"
@@ -16,6 +19,7 @@
   "devDependencies": {
     "eslint-config-custom":"*",
     "@referrer/tailwind-config": "*",
+    "@referrer/prettier-config": "*",
     "@referrer/tsconfig": "*",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
