@@ -4,8 +4,11 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "lint:report": "turbo run lint:report",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "web": "yarn workspace @referrer/web"
   },
   "devDependencies": {
     "eslint-config-custom": "*",
