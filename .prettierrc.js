@@ -1,1 +1,1 @@
-module.exports = require("./packages/prettier-config-custom/index");
+module.exports = require("@referrer/prettier-config");
