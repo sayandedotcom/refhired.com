@@ -1,1 +1,6 @@
-module.exports = require("@referrer/prettier-config");
+const sharedConfig = require("@referrer/prettier-config");
+
+module.exports = {
+  ...sharedConfig,
+};
+// plugins: ["prettier-plugin-tailwindcss"],
