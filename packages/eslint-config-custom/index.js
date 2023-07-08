@@ -4,6 +4,7 @@ module.exports = {
   rules: {
     "@next/next/no-html-link-for-pages": "off",
     "react/no-unescaped-entities": "warn",
+    "no-console": "warn",
     "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "warn",
     "unused-imports/no-unused-vars": [
