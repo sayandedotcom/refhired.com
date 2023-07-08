@@ -31,7 +31,7 @@
        "eslint",
       "prettier --write"
     ],
-    "*.json": [
+    "**/*.{json,css,scss,md}": [
       "prettier --write"
     ],
     "packages/prisma/schema.prisma": [
