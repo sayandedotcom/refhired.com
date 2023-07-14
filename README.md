@@ -2,7 +2,7 @@
 
 [Visit Website](https://referrer-web.vercel.app/)
 
-This is a solo Project by [Sayan De](https://github.com/sayande2002) which will be going under Open Source.
+This is a solo Project by [Sayan De](https://github.com/sayande2002) and Open Source.
 
 ### Workspaces List
 
@@ -64,10 +64,9 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) which will 
 
 ### Features
 
-1. SEO Optimised
-2. PWA
-3. OS Default Theme
-4. User Active Status
+1. Job referrals to top companies
+2. Manage referrals requests
+3. Easy apply to jobs referrals
 
 ## Getting Started
 
