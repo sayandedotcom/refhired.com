@@ -4,10 +4,9 @@
 // import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
-import { signOut } from "next-auth/react";
-
-import { Button, Separator, buttonVariants } from "@referrer/ui";
+// import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
+// import { signOut } from "next-auth/react";
+import { Separator, buttonVariants } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 

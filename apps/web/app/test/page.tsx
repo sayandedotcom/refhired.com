@@ -1,14 +1,9 @@
 // import { useForm } from "react-hook-form";
-import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-import prisma from "@referrer/prisma";
-
-import { userNameValidator } from "@/lib/validators";
+// import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
 
 const Username = async () => {
-  const session = await getAuthSession();
+  // const session = await getAuthSession();
+  const session = null;
 
   console.log("session from test", session);
 

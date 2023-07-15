@@ -4,10 +4,11 @@ import { Separator } from "@referrer/ui";
 
 import { Joinnow, Section, Stats, Testimonials, Usecases, Username } from "@/components/custom-components";
 
-import { getAuthSession } from "./api/auth/[...nextauth]/authOptions";
+// import { getAuthSession } from "./api/auth/[...nextauth]/authOptions";
 
 export default async function Page() {
-  const session = await getAuthSession();
+  // const session = await getAuthSession();
+  const session = null;
   return (
     <>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
