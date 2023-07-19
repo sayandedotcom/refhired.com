@@ -4,6 +4,8 @@
 // import { useSession } from "next-auth/react";
 import Link from "next/link";
 
+import { useSession } from "next-auth/react";
+
 // import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
 // import { signOut } from "next-auth/react";
 import { Separator, buttonVariants } from "@referrer/ui";
@@ -13,11 +15,12 @@ import { ThemeSwitcher } from "@/components/custom-components";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 
 export const Header = () => {
+  // const user = await getCurrentUser();
   // const router = useRouter();
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
   // const session = await getAuthSession();
 
-  const session = null;
+  const user = null;
   // console.log("session", session);
 
   return (
