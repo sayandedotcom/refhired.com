@@ -45,16 +45,16 @@ const Login = () => {
     },
   });
 
-  const loginWithGoogle = async () => {
-    setLoading(true);
-    try {
-      const result = await signIn("google");
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const loginWithGoogle = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const result = await signIn("google");
+  //   } catch (e) {
+  //     console.log(e);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
@@ -139,10 +139,10 @@ const Login = () => {
         </div>
 
         <div className="flex w-11/12 flex-col gap-4 lg:w-[350px]">
-          <Button isLoading={loading} onClick={loginWithGoogle} variant="secondary">
+          <Button isLoading={loading} onClick={() => signIn("google", { callbackUrl })} variant="secondary">
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
-          <Button variant="secondary" onClick={() => signIn("github")}>
+          <Button variant="secondary" onClick={() => signIn("github", { callbackUrl })}>
             <TypographyP>Sign In with GitHub</TypographyP>
           </Button>
         </div>
