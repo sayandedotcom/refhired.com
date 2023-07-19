@@ -9,7 +9,8 @@
     "format": "prettier --write apps/**/*.{js,ts,tsx} packages/**/*.{js,ts,tsx} *.json",
     "format:check": "prettier --check 'apps/**/*.{js,ts,tsx}' 'packages/**/*.{js,ts,tsx}'",
     "prepare": "husky install",
-    "web": "yarn workspace @referrer/web"
+    "web": "yarn workspace @referrer/web",
+    "dx":"docker compose up -d"
   },
   "devDependencies": {
     "eslint-config-custom": "*",
