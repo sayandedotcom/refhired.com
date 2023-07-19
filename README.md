@@ -34,7 +34,7 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 | Mobile App              | React Native   | 0.72    |
 | Desktop App             | Tauri          | 1.4     |
 | Styling                 | Tailwind CSS   | 3.3     |
-| Database ORM            | Prisma.io      | 4.15    |
+| Database ORM            | Prisma         | 4.15    |
 | Database                | PostgreSQL     | -       |
 | Api                     | tRPC           | -       |
 | Version Control         | GitHub         | -       |
