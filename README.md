@@ -2,7 +2,7 @@
 
 [Visit Website](https://referrer-web.vercel.app/)
 
-This is a solo Project by [Sayan De](https://github.com/sayande2002) and Open Source.
+This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
 ### Workspaces List
 
@@ -12,6 +12,8 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) and Open So
 | 1          | api                  | API Server               | @referrer/api                  | 3001 |
 | 2          | storybook            | Storybook                | @referrer/storybook            | 6006 |
 | 3          | web                  | Main Website             | @referrer/web                  | 3000 |
+| 4          | mobile               | Mobile App               | @referrer/mobile               | -    |
+| 5          | Desktop              | Desktop App              | @referrer/desktop              | -    |
 | packages / |
 | 4          | ui                   | Shared UI Components     | @referrer/ui                   | -    |
 | 5          | prisma               | Prisma Database          | @referrer/prisma               | 5555 |
@@ -29,6 +31,8 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002) and Open So
 | Repository      | Turborepo    | 1.9     |
 | Language        | TypeScript   | 4.5     |
 | Client & Server | Next.js      | 13.4    |
+| Mobile App      | React Native | 0.72    |
+| Desktop App     | Tauri        | 1.4     |
 | Styling         | Tailwind CSS | 3.3     |
 | Api             | tRPC         | -       |
 | Database ORM    | Prisma.io    | 4.15    |
