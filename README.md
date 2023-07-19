@@ -26,19 +26,25 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
 ### Main domains
 
-| Domain          | Tech         | Version |
-| --------------- | ------------ | ------- |
-| Repository      | Turborepo    | 1.9     |
-| Language        | TypeScript   | 4.5     |
-| Client & Server | Next.js      | 13.4    |
-| Mobile App      | React Native | 0.72    |
-| Desktop App     | Tauri        | 1.4     |
-| Styling         | Tailwind CSS | 3.3     |
-| Api             | tRPC         | -       |
-| Database ORM    | Prisma.io    | 4.15    |
-| Database        | PostgreSQL   | -       |
-| Version Control | GitHub       | -       |
-| Code Editor     | VS Code      | -       |
+| Domain                  | Tech           | Version |
+| ----------------------- | -------------- | ------- |
+| Repository              | Turborepo      | 1.9     |
+| Language                | TypeScript     | 4.5     |
+| Client & Server         | Next.js        | 13.4    |
+| Mobile App              | React Native   | 0.72    |
+| Desktop App             | Tauri          | 1.4     |
+| Styling                 | Tailwind CSS   | 3.3     |
+| Database ORM            | Prisma.io      | 4.15    |
+| Database                | PostgreSQL     | -       |
+| Api                     | tRPC           | -       |
+| Version Control         | GitHub         | -       |
+| Code Editor             | VS Code        | -       |
+| Containerization        | Docker         | -       |
+| Container Orchestration | Kubernetes     | -       |
+| Continuous Integration  | GitHub Actions | -       |
+| Continuous Delivery     | Argo CD        | -       |
+| Deployments             | AWS            | -       |
+| Infrastructure as code  | Terraform      | -       |
 
 ### Main libraries
 
@@ -58,19 +64,13 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 | Code Formatter    | Prettier                 |         |
 | Code Analysis     | Eslint                   |         |
 
-### Devops Tools
-
-| Domain                  | Libraries      |
-| ----------------------- | -------------- |
-| Containerization        | Docker         |
-| Container Orchestration | Kubernetes     |
-| CI/CD                   | GitHub Actions |
-
 ### Features
 
 1. Job referrals to top companies
 2. Manage referrals requests
 3. Easy apply to jobs referrals
+4. Desktop App
+5. Mobile App
 
 ## Getting Started
 
