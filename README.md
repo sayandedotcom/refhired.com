@@ -74,55 +74,54 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
 ## Getting Started
 
+To get a local copy up and running, please follow these simple steps.
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-There are two methods:-
 
-#### 1. Using Docker (Recommended)
+### Prerequisites
 
-#### 2. Using npm/yarn
+Here is what you need to be able to run Cal.com.
 
-### Method-1 - Using Docker (Recommended)
+- Node.js (Version: >=18.x)
+- Git
+- Docker and Docker Compose
+- Yarn _(recommended)_
 
-(Updating Soon ...............)
+## Development
 
-### Method-2 - Using npm/yarn
+### Setup
 
-## Prerequisites
+1. Clone the repo into a public GitHub repository (or fork https://github.com/calcom/cal.com/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/calcom/cal.com/blob/main/LICENSE).
 
-You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [NPM](http://npmjs.com)) installed on your computer.
+   ```sh
+   git clone https://github.com/sayande2002/referrer
+   ```
 
-```
-node@v10.16.0 or higher
-npm@6.9.0 or higher
-git@2.17.1 or higher
-```
+2. Go to the project folder
 
-From your command line, first clone this repo:
+   ```sh
+   cd referrer
+   ```
 
-```bash
-# Clone this repository
-$ git clone https://github.com/sayande2002/referrer
+3. Install packages with yarn
 
-# Go into the repository
-$ cd referrer
+   ```sh
+   yarn
+   ```
 
-# Remove current origin repository
-$ git remote remove origin
-```
+4. Set up your `.env` file
 
-Then you can install the dependencies either using NPM or Yarn:
+   - Duplicate `.env.example` to `.env`
+   - Use `openssl rand -base64 32` to generate a key and add it under `NEXTAUTH_SECRET` in the `.env` file.
 
-Using yarn:
+5. Quick start with `yarn dx`
 
-```bash
-# Install dependencies
-$ yarn
+> - **Requires Docker and Docker Compose to be installed**
 
-# Start development server
-$ yarn run dev
+```sh
+yarn dx
 ```
 
-Once your server has started, go to this url `http://localhost:3000/` and you will see the website running on a Development Server.
+6. Once your server has started, go to this url `http://localhost:3000/` and you will see the website running on a Development Server.
 
 ### Authors
 
