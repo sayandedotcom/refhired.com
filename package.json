@@ -10,6 +10,12 @@
     "format:check": "prettier --check 'apps/**/*.{js,ts,tsx}' 'packages/**/*.{js,ts,tsx}'",
     "prepare": "husky install",
     "web": "yarn workspace @referrer/web",
+    "prisma": "yarn workspace @referrer/prisma",
+    "ui": "yarn workspace @referrer/ui",
+    "story": "yarn workspace @referrer/storybook",
+    "eslint": "yarn workspace @referrer/eslint-config-custom",
+    "prettier-config": "yarn workspace @referrer/prettier-config",
+    "tailwind-config": "yarn workspace @referrer/tailwind-config",
     "dx":"docker compose up -d"
   },
   "devDependencies": {
