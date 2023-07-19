@@ -85,7 +85,7 @@ const SignUp = () => {
     <div className="flex min-h-screen flex-col items-center justify-around gap-5 py-3 md:flex-row md:px-10 lg:gap-16">
       <section className="hidden md:block lg:flex lg:flex-col lg:gap-3">
         <TypographyH1>Referrer</TypographyH1>
-        <TypographyH2>Join the larget referall community !</TypographyH2>
+        <TypographyH2>Join the larget referral community !</TypographyH2>
       </section>
       <div className="flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border border-gray-200 bg-white py-3 lg:w-[450px]">
         <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">

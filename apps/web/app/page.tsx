@@ -17,8 +17,8 @@ export default async function Page() {
         </h1>
         <h5 className="mt-3 px-6 text-center text-[15px] md:mt-7 md:px-28 md:text-[20px]">
           Used by many job seekers and employees of the world's largest companies, Referrer enables you to get
-          job through referalls which has the highest convertion rates among other methods . It simplifies the
-          tasks for both job seekers and employees who gives referalls
+          job through referrals which has the highest convertion rates among other methods . It simplifies the
+          tasks for both job seekers and employees who gives referrals
         </h5>
         <Link
           className="btn-97 animate-bounce uppercase"
