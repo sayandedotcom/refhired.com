@@ -8,23 +8,23 @@ The goal of Referrer is to simplify receiving and giving jobs referrals. I'm try
 
 ### Workspaces List
 
-| Index No.  | Workspace            | Info.                    | Name                           | Port |
-| ---------- | -------------------- | ------------------------ | ------------------------------ | ---- |
+| Index No.  | Workspace            | Info.                    | Name                           | Natigate                  | Port |
+| ---------- | -------------------- | ------------------------ | ------------------------------ | ------------------------- | ---- |
 | apps /     |
-| 1          | api                  | API Server               | @referrer/api                  | 3001 |
-| 2          | storybook            | Storybook                | @referrer/storybook            | 6006 |
-| 3          | web                  | Main Website             | @referrer/web                  | 3000 |
-| 4          | mobile               | Mobile App               | @referrer/mobile               | -    |
-| 5          | Desktop              | Desktop App              | @referrer/desktop              | -    |
+| 1          | api                  | API Server               | @referrer/api                  | yarn api                  | 3001 |
+| 2          | storybook            | Storybook                | @referrer/storybook            | yarn story                | 6006 |
+| 3          | web                  | Main Website             | @referrer/web                  | yarn web                  | 3000 |
+| 4          | mobile               | Mobile App               | @referrer/mobile               | yarn mobile               | -    |
+| 5          | Desktop              | Desktop App              | @referrer/desktop              | yarn desktop              | -    |
 | packages / |
-| 4          | ui                   | Shared UI Components     | @referrer/ui                   | -    |
-| 5          | prisma               | Prisma Database          | @referrer/prisma               | 5555 |
-| 6          | lib                  | Shared Library Functions | @referrer/lib                  | -    |
-| 7          | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom | -    |
-| 8          | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      | -    |
-| 9          | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      | -    |
-| 10         | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             | -    |
-| 11         | types                | Shared Types             | @referrer/types                | -    |
+| 4          | ui                   | Shared UI Components     | @referrer/ui                   | yarn ui                   | -    |
+| 5          | prisma               | Prisma Database          | @referrer/prisma               | yarn prisma               | 5555 |
+| 6          | lib                  | Shared Library Functions | @referrer/lib                  | yarn lib                  | -    |
+| 7          | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom | yarn eslint-config-custom | -    |
+| 8          | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      | yarn prettier-config      | -    |
+| 9          | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      | yarn tailwind-config      | -    |
+| 10         | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             | yarn tsconfig             | -    |
+| 11         | types                | Shared Types             | @referrer/types                | yarn types                | -    |
 
 ### Main domains
 
