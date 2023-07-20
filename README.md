@@ -80,6 +80,7 @@ Here is what you need to be able to run Cal.com.
    - Use `openssl rand -base64 32` to generate a key and add it under `NEXTAUTH_SECRET` in the `.env` file.
 
 5. Quick start with `yarn dx`
+   This will run the docker compose file in the root directory from the docker image build from @referrer/web on `http://localhost:3000/` and docker image build from @referrer/prisma (database) on `http://localhost:5432/` and adminar on `http://localhost:8080/`
 
 > - **Requires Docker and Docker Compose to be installed**
 
