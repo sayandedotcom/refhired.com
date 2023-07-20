@@ -127,7 +127,7 @@ export function OptionsSection({ session }: { session: any | null }) {
           </div>
         </div>
         <PostTypeDialog>
-          <button className="rounded-full border-2 border-black bg-white px-3 py-3 text-xl dark:text-black lg:w-10/12 lg:px-2">
+          <button className="rounded-full border-2 border-black bg-foreground px-3 py-3 text-xl dark:text-black text-white lg:w-10/12 lg:px-2">
             {width < 1000 ? <FaPenNib /> : "Post"}
           </button>
         </PostTypeDialog>
@@ -144,6 +144,19 @@ export function ContentSection({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
   return (
     <section className="w-[85%] lg:w-[38rem]">
+      <div className="px-4 py-4">
+        <h5 className="capitalize">{pathName.split("/")}</h5>
+      </div>
+      <Separator className="dark:bg-[#2d3134]" />
+      {children}
+    </section>
+  );
+}
+
+export function ContentLargeSection({ children }: { children: React.ReactNode }) {
+  const pathName = usePathname();
+  return (
+    <section className="w-[85%] lg:w-full">
       <div className="px-4 py-4">
         <h5 className="capitalize">{pathName.split("/")}</h5>
       </div>

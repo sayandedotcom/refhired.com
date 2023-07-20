@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { PortalsNotFound } from "@/components/custom-components";
+import { DataTable } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Applied",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const Applied = () => {
-  return <PortalsNotFound text="Applied" />;
+  return <DataTable />;
 };
 
 export default Applied;
