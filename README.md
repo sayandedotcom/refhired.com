@@ -1,12 +1,14 @@
-# Referrer - Simplifying receiving and giving job referrals for everyone ! ( Under Development )
+## Referrer - Simplifying receiving and giving job referrals for everyone ! ( Under Development )
 
 [Visit Website](https://referrer-web.vercel.app/)
 
 This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
-Contributing Guidelines can be found [here](https://github.com/sayande2002/referrer/blob/main/CONTRIBUTING.md).
+## Contributing
 
-### Main domains
+Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayande2002/referrer/blob/main/CONTRIBUTING.md).
+
+## Main domains
 
 | Domain                  | Tech           | Version |
 | ----------------------- | -------------- | ------- |
@@ -18,17 +20,17 @@ Contributing Guidelines can be found [here](https://github.com/sayande2002/refer
 | Styling                 | Tailwind CSS   | 3.3     |
 | Database ORM            | Prisma         | 4.15    |
 | Database                | PostgreSQL     | -       |
-| Api                     | tRPC           | -       |
+| Testing                 | Vitest         | -       |
 | Version Control         | GitHub         | -       |
 | Code Editor             | VS Code        | -       |
 | Containerization        | Docker         | -       |
 | Container Orchestration | Kubernetes     | -       |
 | Continuous Integration  | GitHub Actions | -       |
 | Continuous Delivery     | Argo CD        | -       |
-| Deployments             | AWS            | -       |
 | Infrastructure as code  | Terraform      | -       |
+| Deployment              | AWS            | -       |
 
-### Features
+## Features
 
 1. Job referrals to top companies
 2. Manage referrals requests
