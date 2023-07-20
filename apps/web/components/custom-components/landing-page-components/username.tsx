@@ -34,7 +34,9 @@ export const Username = (prop: any) => {
         <h1 className="text-center text-[30px] md:text-[50px]">You are already logged in !</h1>
       ) : (
         <>
-          <h2 className="px-2 text-center text-[30px] md:text-[50px]">Claim your username now !</h2>
+          <h2 className="px-2 text-center text-[30px] md:text-[50px] text-transparent bg-clip-text bg-gradient-to-r hover:from-green-400 hover:to-blue-500 from-pink-500 to-yellow-500">
+            Claim your username now !
+          </h2>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex w-11/12 flex-col justify-center gap-4 normal-case lg:h-full lg:w-auto lg:flex-row lg:gap-6">

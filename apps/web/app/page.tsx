@@ -13,7 +13,14 @@ export default async function Page() {
     <>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
         <h1 className="px-1 text-center text-[36px] lg:text-[86px]">
-          "Navigate the Job Market with Referrals : <span className="">Connect through referrals</span>"
+          "Navigate the Job Market with Referrals :{" "}
+          <span className="">
+            Connect through{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">
+              referrals
+            </span>{" "}
+          </span>
+          "
         </h1>
         <h5 className="mt-3 px-6 text-center text-[15px] md:mt-7 md:px-28 md:text-[20px]">
           Used by many job seekers and employees of the world's largest companies, Referrer enables you to get
