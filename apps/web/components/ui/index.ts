@@ -11,3 +11,4 @@ export * from "./post-forms/referral-post";
 export * from "./post-forms/normal-post";
 export * from "./post-forms/select";
 export * from "./toast/toasts";
+export * from "./table/table";
