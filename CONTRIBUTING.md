@@ -1,3 +1,11 @@
+# Contributing to Referrer
+
+👋 Hey, thanks for wanting to improve Referrer! Any contribution is welcome and appreciated!
+
+Before contributing
+
+The goal of Referrer is to simplify receiving and giving jobs referrals. I'm trying to make the UI more intuitive and easier to use in order to provide the best possible experience.
+
 ### Workspaces List
 
 | Index No.  | Workspace            | Info.                    | Name                           | Port |
@@ -42,29 +50,23 @@
 
 ### Main libraries
 
-| Domain            | Libraries                | Version |
-| ----------------- | ------------------------ | ------- |
-| Authentication    | Next-Auth                | 4       |
-| State Management  | Redux Toolkit            |         |
-| UI Components     | shadcn.ui                |         |
-| UI Documentation  | Storybook                | 7       |
-| Icons             | Lucid React, React Icons |         |
-| Thenming          | Next Themes              |         |
-| Schema Validation | Zod                      |         |
-| Form Validation   | React Hook Form          |         |
-| Font              | Cal Sans                 |         |
-| Linter Tasks      | Lint Staged              |         |
-| Git Hook          | Husky                    |         |
-| Code Formatter    | Prettier                 |         |
-| Code Analysis     | Eslint                   |         |
-
-### Features
-
-1. Job referrals to top companies
-2. Manage referrals requests
-3. Easy apply to jobs referrals
-4. Desktop App
-5. Mobile App
+| Domain            | Libraries                                      | Version |
+| ----------------- | ---------------------------------------------- | ------- |
+| Authentication    | Next-Auth                                      | 4       |
+| State Management  | Redux Toolkit                                  |         |
+| UI Components     | shadcn.ui                                      |         |
+| UI Documentation  | Storybook                                      | 7       |
+| Icons             | Lucid React, React Icons, Redix UI React Icons |         |
+| Thenming          | Next Themes                                    |         |
+| Schema Validation | Zod                                            |         |
+| Form Validation   | React Hook Form                                |         |
+| Font              | Cal Sans                                       |         |
+| Linter Tasks      | Lint Staged                                    |         |
+| Git Hook          | Husky                                          |         |
+| Code Formatter    | Prettier                                       |         |
+| Code Analysis     | Eslint                                         |         |
+| Code Coverage     | Jest                                           |         |
+| Code Testing      | Jest                                           |         |
 
 ## Getting Started
 
