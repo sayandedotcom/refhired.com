@@ -27,7 +27,22 @@
     "db:generate": {
       "cache": false
     },
-    "lint": {},
+    "lint": {
+      "cache": false,
+      "outputs": []
+    },
+    "lint:fix": {
+      "cache": false,
+      "outputs": []
+    },
+    "format": {
+      "cache": false,
+      "outputs": []
+    },
+    "format:check": {
+      "cache": false,
+      "outputs": []
+    },
     "dev": {
       "dependsOn": ["^db:generate"],
       "cache": false,
