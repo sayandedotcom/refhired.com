@@ -13,7 +13,11 @@ export default async function Page() {
     <>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
         <h1 className="px-1 text-center text-[36px] lg:text-[86px]">
-          "Navigate the Job Market with Referrals :{" "}
+          "
+          <span className="text-transparent bg-clip-text bg-gradient-to-r hover:from-green-400 hover:to-blue-500 from-pink-500 to-yellow-500">
+            Navigate
+          </span>{" "}
+          the Job Market with Referrals :{" "}
           <span className="">
             Connect through{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500">
