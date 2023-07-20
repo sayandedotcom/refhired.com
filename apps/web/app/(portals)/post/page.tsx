@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input, Label, Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
 
 import { NormalPost, ReferralPost } from "@/components/ui";
 

@@ -18,3 +18,4 @@ export * from "./components/command/command";
 export * from "./components/toast/toast";
 export * from "./components/table/table";
 export * from "./components/select/select";
+export * from "./components/radio/radio";

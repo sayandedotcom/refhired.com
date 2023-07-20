@@ -64,7 +64,7 @@ const portalsList = [
   },
   {
     name: "Settings",
-    link: "/settings",
+    link: "/settings/profile",
     icon: <IoSettingsOutline />,
     activeIcon: <IoSettingsSharp />,
   },
@@ -157,7 +157,7 @@ export function ContentLargeSection({ children }: { children: React.ReactNode })
   return (
     <section className="w-[85%] lg:w-full">
       <div className="px-4 py-4">
-        <h5 className="capitalize">{pathName.split("/")}</h5>
+        <h5 className="capitalize">{pathName.includes("Settings") ? "Settings" : pathName.split("/")}</h5>
       </div>
       <Separator className="dark:bg-[#2d3134]" />
       {children}
