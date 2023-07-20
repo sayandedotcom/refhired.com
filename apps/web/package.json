@@ -18,6 +18,7 @@
     "@referrer/prisma": "*",
     "@referrer/ui": "*",
     "@tanstack/react-query": "^4.29.19",
+    "@tanstack/react-table": "^8.9.3",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cal-sans": "^1.0.1",
