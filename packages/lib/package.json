@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
-    "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix"
+    "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
     "clsx": "^1.2.1",

@@ -7,8 +7,8 @@
   "scripts": {
     "lint": "eslint \"**/*.ts*\"",
     "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "exports": {
     ".": "./index.tsx"

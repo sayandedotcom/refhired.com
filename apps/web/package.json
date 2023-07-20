@@ -7,9 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
