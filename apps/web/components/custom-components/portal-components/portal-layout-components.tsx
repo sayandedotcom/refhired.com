@@ -5,6 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
+import { useWindowSize } from "@/hooks";
 import { AiFillHome, AiFillMail, AiOutlineHome, AiOutlineMail } from "react-icons/ai";
 import { BsFileBarGraph, BsFileEarmarkBarGraphFill } from "react-icons/bs";
 import { FaBookmark, FaPenNib, FaRegBookmark, FaRegUser, FaUserAlt } from "react-icons/fa";
@@ -23,8 +24,6 @@ import { Separator } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 import { AvatarDemo, PostTypeDialog, TooltipDemo } from "@/components/ui";
-
-import { useWindowSize } from "@/lib/hooks";
 
 const portalsList = [
   {

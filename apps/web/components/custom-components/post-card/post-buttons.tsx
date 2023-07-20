@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { useWindowSize } from "@/hooks";
 import { MapPin } from "lucide-react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
@@ -10,8 +11,6 @@ import { FiLink2, FiMessageCircle, FiShare2 } from "react-icons/fi";
 import { Button } from "@referrer/ui";
 
 import { ApplyDialog, Badge, TooltipDemo, customToast } from "@/components/ui";
-
-import { useWindowSize } from "@/lib/hooks";
 
 export const ApplyButton = () => {
   const [applied, setApplied] = useState(false);
