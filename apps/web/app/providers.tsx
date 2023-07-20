@@ -14,7 +14,7 @@ export function Provider({ children }) {
   const pathName = usePathname();
   const showNavbar = ["/", "/docs", "/blogs", "/pricing", "/about-us", "/contact-us"].includes(pathName);
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
           {showNavbar && (
