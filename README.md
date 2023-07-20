@@ -4,25 +4,7 @@
 
 This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
-### Workspaces List
-
-| Index No.  | Workspace            | Info.                    | Name                           | Port |
-| ---------- | -------------------- | ------------------------ | ------------------------------ | ---- |
-| apps /     |
-| 1          | api                  | API Server               | @referrer/api                  | 3001 |
-| 2          | storybook            | Storybook                | @referrer/storybook            | 6006 |
-| 3          | web                  | Main Website             | @referrer/web                  | 3000 |
-| 4          | mobile               | Mobile App               | @referrer/mobile               | -    |
-| 5          | Desktop              | Desktop App              | @referrer/desktop              | -    |
-| packages / |
-| 4          | ui                   | Shared UI Components     | @referrer/ui                   | -    |
-| 5          | prisma               | Prisma Database          | @referrer/prisma               | 5555 |
-| 6          | lib                  | Shared Library Functions | @referrer/lib                  | -    |
-| 7          | eslint-config-custom | Shared ESLint Config     | @referrer/eslint-config-custom | -    |
-| 8          | prettier-config      | Shared Prettier Config   | @referrer/prettier-config      | -    |
-| 9          | tailwind-config      | Shared Tailwind Config   | @referrer/tailwind-config      | -    |
-| 10         | tsconfig             | Shared Tsconfig          | @referrer/tsconfig             | -    |
-| 11         | types                | Shared Types             | @referrer/types                | -    |
+Contributing Guidelines can be found [here](https://github.com/sayande2002/referrer/blob/main/CONTRIBUTING.md).
 
 ### Main domains
 
@@ -45,24 +27,6 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 | Continuous Delivery     | Argo CD        | -       |
 | Deployments             | AWS            | -       |
 | Infrastructure as code  | Terraform      | -       |
-
-### Main libraries
-
-| Domain            | Libraries                | Version |
-| ----------------- | ------------------------ | ------- |
-| Authentication    | Next-Auth                | 4       |
-| State Management  | Redux Toolkit            |         |
-| UI Components     | shadcn.ui                |         |
-| UI Documentation  | Storybook                | 7       |
-| Icons             | Lucid React, React Icons |         |
-| Thenming          | Next Themes              |         |
-| Schema Validation | Zod                      |         |
-| Form Validation   | React Hook Form          |         |
-| Font              | Cal Sans                 |         |
-| Linter Tasks      | Lint Staged              |         |
-| Git Hook          | Husky                    |         |
-| Code Formatter    | Prettier                 |         |
-| Code Analysis     | Eslint                   |         |
 
 ### Features
 
@@ -90,7 +54,7 @@ Here is what you need to be able to run Cal.com.
 
 ### Setup
 
-1. Clone the repo into a public GitHub repository (or fork https://github.com/calcom/cal.com/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/calcom/cal.com/blob/main/LICENSE).
+1. Clone the repo into a public GitHub repository (or fork https://github.com/sayande2002/referrer/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/referrer/blob/main/LICENSE).
 
    ```sh
    git clone https://github.com/sayande2002/referrer
