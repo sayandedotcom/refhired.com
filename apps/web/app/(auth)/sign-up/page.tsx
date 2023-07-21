@@ -26,6 +26,8 @@ import {
   TypographySmall,
 } from "@referrer/ui";
 
+import { Icons } from "@/components/icons/icons";
+
 const signUpSchema = z
   .object({
     name: z.string().nonempty("Your full name is required"),
@@ -44,7 +46,9 @@ const signUpSchema = z
   });
 
 const SignUp = () => {
-  const [loading, setLoading] = useState(false);
+  const [signUpLoading, setSignUpLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [githubLoading, setGithubLoading] = useState(false);
   const [error, setError] = useState("");
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -58,7 +62,7 @@ const SignUp = () => {
   });
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
-    setLoading(true);
+    setSignUpLoading(true);
     try {
       const res = await fetch("http://localhost:3000/api/sign-up", {
         method: "POST",
@@ -77,7 +81,7 @@ const SignUp = () => {
       console.log(err);
       setError(err.message);
     } finally {
-      setLoading(false);
+      setSignUpLoading(false);
     }
   }
 
@@ -176,7 +180,10 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            <Button className="bg-[#0f172a] text-white hover:bg-[#0f172a]" type="submit" isLoading={loading}>
+            <Button
+              className="bg-[#0f172a] text-white hover:bg-[#0f172a]"
+              type="submit"
+              isLoading={signUpLoading}>
               Sign Up for free
             </Button>
           </form>
@@ -186,11 +193,21 @@ const SignUp = () => {
           <span className="px-2 text-muted-foreground">Or continue with</span>
         </div>
         <div className="flex w-11/12 justify-between gap-4 lg:w-[350px]">
-          <Button className="w-6/12" variant="secondary" onClick={() => signIn("google")}>
+          <Button
+            isLoading={googleLoading}
+            className="w-6/12"
+            variant="secondary"
+            onClick={() => signIn("google")}>
+            <Icons.google className="mr-2 h-4 w-4" />
             <TypographyP>Google</TypographyP>
           </Button>
-          <Button className="w-6/12" variant="secondary">
-            <TypographyP>LinkdeIn</TypographyP>
+          <Button
+            isLoading={githubLoading}
+            className="w-6/12"
+            variant="secondary"
+            onClick={() => signIn("github")}>
+            <Icons.gitHub className="mr-2 h-4 w-4" />
+            <TypographyP>GitHub</TypographyP>
           </Button>
         </div>
         <Separator />

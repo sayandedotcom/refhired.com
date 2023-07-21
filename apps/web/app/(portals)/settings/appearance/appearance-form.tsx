@@ -22,8 +22,6 @@ import {
   buttonVariants,
 } from "@referrer/ui";
 
-import { customToast } from "@/components/ui";
-
 const appearanceFormSchema = z.object({
   theme: z.enum(["light", "dark"], {
     required_error: "Please select a theme.",
@@ -49,7 +47,6 @@ export function AppearanceForm() {
   });
 
   function onSubmit(data: AppearanceFormValues) {
-    customToast("neutral", "You submitted the following values:");
     // toast({
     //   title: "You submitted the following values:",
     //   description: (

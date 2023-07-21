@@ -10,7 +10,7 @@ import { FiLink2, FiMessageCircle, FiShare2 } from "react-icons/fi";
 
 import { Button } from "@referrer/ui";
 
-import { ApplyDialog, Badge, TooltipDemo, customToast } from "@/components/ui";
+import { ApplyDialog, Badge, TooltipDemo, toastMessage } from "@/components/ui";
 
 export const ApplyButton = () => {
   const [applied, setApplied] = useState(false);
@@ -34,11 +34,11 @@ export const MultipleButtons = () => {
   const [linkCopied, setLinkCopied] = useState(false);
   const bookmarked = () => {
     setBookmark(!bookmark);
-    customToast("neutral", bookmark ? "Removed from Bookmarks" : "Added to Bookmarks");
+    toastMessage({ type: "neutral", title: bookmark ? "Removed from Bookmarks" : "Added to Bookmarks" });
   };
   const copied = () => {
     setLinkCopied(!linkCopied);
-    customToast("neutral", linkCopied ? "Link Copied" : "Link Copied");
+    toastMessage({ type: "neutral", title: linkCopied ? "Link Copied" : "Link Copied" });
   };
   return (
     <div className="flex gap-9 text-xl md:text-xl">

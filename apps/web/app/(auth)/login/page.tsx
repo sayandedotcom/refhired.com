@@ -25,6 +25,8 @@ import {
   TypographySmall,
 } from "@referrer/ui";
 
+import { Icons } from "@/components/icons/icons";
+
 const loginSchema = z.object({
   email: z.string().nonempty("This field is required"),
   password: z.string().nonempty("This field is required"),
@@ -32,7 +34,9 @@ const loginSchema = z.object({
 
 const Login = () => {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [githubLoading, setGithubLoading] = useState(false);
   const [error, setError] = useState("");
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -58,7 +62,7 @@ const Login = () => {
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
-      setLoading(true);
+      setLoginLoading(true);
       const result = await signIn("credentials", {
         email: values.email,
         password: values.password,
@@ -74,7 +78,7 @@ const Login = () => {
     } catch (e) {
       console.log("signup", e);
     } finally {
-      setLoading(false);
+      setLoginLoading(false);
     }
   };
   return (
@@ -127,7 +131,10 @@ const Login = () => {
                 </FormItem>
               )}
             />
-            <Button isLoading={loading} className="bg-[#0f172a] text-white hover:bg-[#0f172a]" type="submit">
+            <Button
+              isLoading={loginLoading}
+              className="bg-[#0f172a] text-white hover:bg-[#0f172a]"
+              type="submit">
               Log In
             </Button>
           </form>
@@ -139,10 +146,18 @@ const Login = () => {
         </div>
 
         <div className="flex w-11/12 flex-col gap-4 lg:w-[350px]">
-          <Button isLoading={loading} onClick={() => signIn("google", { callbackUrl })} variant="secondary">
+          <Button
+            isLoading={googleLoading}
+            onClick={() => signIn("google", { callbackUrl })}
+            variant="secondary">
+            <Icons.google className="mr-2 h-4 w-4" />
             <TypographyP>Sign In with Google</TypographyP>
           </Button>
-          <Button variant="secondary" onClick={() => signIn("github", { callbackUrl })}>
+          <Button
+            variant="secondary"
+            isLoading={githubLoading}
+            onClick={() => signIn("github", { callbackUrl })}>
+            <Icons.gitHub className="mr-2 h-4 w-4" />
             <TypographyP>Sign In with GitHub</TypographyP>
           </Button>
         </div>

@@ -26,7 +26,7 @@ import {
 
 import { applyValidator } from "@/lib/validators";
 
-import { customToast } from "./toast/toasts";
+import { toastMessage } from "./toast/toasts";
 
 export function ApplyDialog({ children }) {
   const [open, setOpen] = useState(false);
@@ -41,7 +41,11 @@ export function ApplyDialog({ children }) {
   async function onSubmit(values: z.infer<typeof applyValidator>) {
     console.log(values);
     setOpen(!open);
-    customToast("success", "Applied Successfully !", "You have successfully applied for this job.");
+    toastMessage({
+      type: "success",
+      title: "Applied Successfully !",
+      message: "You have successfully applied for this job.",
+    });
   }
   // !form.formState.isSubmitSuccessful;
   return (
