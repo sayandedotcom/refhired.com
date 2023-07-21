@@ -43,6 +43,10 @@
       "cache": false,
       "outputs": []
     },
+    "test": {},
+    "test:watch": {
+      "cache": false
+    },
     "dev": {
       "dependsOn": ["^db:generate"],
       "cache": false,
