@@ -12,3 +12,4 @@ export * from "./post-forms/normal-post";
 export * from "./post-forms/select";
 export * from "./toast/toasts";
 export * from "./table/table";
+export * from "./progress-bar";

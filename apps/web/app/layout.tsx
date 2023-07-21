@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
 import "cal-sans";
-import { Toaster } from "react-hot-toast";
 
 import "../styles/globals.css";
 import { Provider } from "./providers";
@@ -18,7 +17,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white">
-        <Toaster />
         <Provider>{children}</Provider>
       </body>
     </html>
