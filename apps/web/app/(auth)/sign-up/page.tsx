@@ -22,7 +22,6 @@ import {
   TypographyH1,
   TypographyH2,
   TypographyH3,
-  TypographyP,
   TypographySmall,
 } from "@referrer/ui";
 
@@ -192,7 +191,7 @@ const SignUp = () => {
         <div className="relative flex justify-center text-xs uppercase">
           <span className="px-2 text-muted-foreground">Or continue with</span>
         </div>
-        <div className="flex w-11/12 justify-between gap-4 lg:w-[350px]">
+        {/* <div className="flex w-11/12 justify-between gap-4 lg:w-[350px]">
           <Button
             isLoading={googleLoading}
             className="w-6/12"
@@ -208,6 +207,27 @@ const SignUp = () => {
             onClick={() => signIn("github")}>
             <Icons.gitHub className="mr-2 h-4 w-4" />
             <TypographyP>GitHub</TypographyP>
+          </Button>
+        </div> */}
+        <div className="flex w-11/12 gap-4 lg:w-[350px] justify-center">
+          <Button variant="secondary" size="icon" onClick={() => setGithubLoading(true)}>
+            {githubLoading ? (
+              <Icons.spinner className="h-5 w-5 animate-spin" />
+            ) : (
+              <Icons.gitHub className="h-4 w-4" />
+            )}
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.google className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.apple className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.linkedin className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.facebook className="h-5 w-5" />
           </Button>
         </div>
         <Separator />

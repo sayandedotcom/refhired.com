@@ -19,3 +19,4 @@ export * from "./components/toast/toast";
 export * from "./components/table/table";
 export * from "./components/select/select";
 export * from "./components/radio/radio";
+export * from "./components/card/card";

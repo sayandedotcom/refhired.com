@@ -21,7 +21,6 @@ import {
   Input,
   Separator,
   TypographyH2,
-  TypographyP,
   TypographySmall,
 } from "@referrer/ui";
 
@@ -140,12 +139,10 @@ const Login = () => {
           </form>
         </Form>
         <Separator />
-
         <div className="relative flex justify-center text-xs uppercase">
           <span className="px-2 text-muted-foreground">Or continue with</span>
         </div>
-
-        <div className="flex w-11/12 flex-col gap-4 lg:w-[350px]">
+        {/* <div className="flex w-11/12 flex-col gap-4 lg:w-[350px]">
           <Button
             isLoading={googleLoading}
             onClick={() => signIn("google", { callbackUrl })}
@@ -159,6 +156,23 @@ const Login = () => {
             onClick={() => signIn("github", { callbackUrl })}>
             <Icons.gitHub className="mr-2 h-4 w-4" />
             <TypographyP>Sign In with GitHub</TypographyP>
+          </Button>
+        </div> */}
+        <div className="flex w-11/12 gap-4 lg:w-[350px] justify-center">
+          <Button variant="secondary" size="icon">
+            <Icons.gitHub className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.google className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.apple className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.linkedin className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon">
+            <Icons.facebook className="h-5 w-5" />
           </Button>
         </div>
         <Separator />
