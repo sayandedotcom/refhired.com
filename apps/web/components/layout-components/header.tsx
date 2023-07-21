@@ -4,6 +4,7 @@
 // import { useSession } from "next-auth/react";
 import Link from "next/link";
 
+import { useLoading } from "@/hooks";
 import { useSession } from "next-auth/react";
 
 // import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
@@ -12,12 +13,14 @@ import { Separator, buttonVariants } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 
+import { Icons } from "../icons/icons";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 
 export const Header = () => {
   // const user = await getCurrentUser();
   // const router = useRouter();
   const { data: session } = useSession();
+  const { loadingValue, setLoadingValue } = useLoading();
   // const session = await getAuthSession();
 
   const user = null;
@@ -68,12 +71,24 @@ export const Header = () => {
               ) : (
                 <>
                   <TooltipDemo text="Log In">
-                    <Link className={buttonVariants()} href="/login">
+                    <Link
+                      onClick={() => setLoadingValue("logInRedirect")}
+                      className={buttonVariants()}
+                      href="/login">
+                      {loadingValue === "logInRedirect" && (
+                        <Icons.spinner className="h-5 w-5 animate-spin mr-2" />
+                      )}
                       Log In
                     </Link>
                   </TooltipDemo>
                   <TooltipDemo text="Sign Up">
-                    <Link className={buttonVariants({ variant: "outline" })} href="/sign-up">
+                    <Link
+                      onClick={() => setLoadingValue("signUpRedirect")}
+                      className={buttonVariants({ variant: "outline" })}
+                      href="/sign-up">
+                      {loadingValue === "signUpRedirect" && (
+                        <Icons.spinner className="h-5 w-5 animate-spin mr-2" />
+                      )}
                       Sign Up
                     </Link>
                   </TooltipDemo>

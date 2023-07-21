@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import Link from "next/link";
 
+import { useLoading } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -45,9 +46,7 @@ const signUpSchema = z
   });
 
 const SignUp = () => {
-  const [signUpLoading, setSignUpLoading] = useState(false);
-  const [googleLoading, setGoogleLoading] = useState(false);
-  const [githubLoading, setGithubLoading] = useState(false);
+  const { loadingValue, setLoadingValue } = useLoading();
   const [error, setError] = useState("");
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -61,7 +60,7 @@ const SignUp = () => {
   });
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
-    setSignUpLoading(true);
+    setLoadingValue("signUp");
     try {
       const res = await fetch("http://localhost:3000/api/sign-up", {
         method: "POST",
@@ -80,7 +79,7 @@ const SignUp = () => {
       console.log(err);
       setError(err.message);
     } finally {
-      setSignUpLoading(false);
+      setLoadingValue("");
     }
   }
 
@@ -182,7 +181,7 @@ const SignUp = () => {
             <Button
               className="bg-[#0f172a] text-white hover:bg-[#0f172a]"
               type="submit"
-              isLoading={signUpLoading}>
+              isLoading={loadingValue === "signUp"}>
               Sign Up for free
             </Button>
           </form>
@@ -210,24 +209,71 @@ const SignUp = () => {
           </Button>
         </div> */}
         <div className="flex w-11/12 gap-4 lg:w-[350px] justify-center">
-          <Button variant="secondary" size="icon" onClick={() => setGithubLoading(true)}>
-            {githubLoading ? (
+          <Button
+            disabled={loadingValue === "githubSignUp"}
+            variant="secondary"
+            size="icon"
+            onClick={() => setLoadingValue("githubSignUp")}>
+            {loadingValue === "githubSignUp" ? (
               <Icons.spinner className="h-5 w-5 animate-spin" />
             ) : (
-              <Icons.gitHub className="h-4 w-4" />
+              <Icons.gitHub className="h-5 w-5" />
             )}
           </Button>
-          <Button variant="secondary" size="icon">
-            <Icons.google className="h-4 w-4" />
+          <Button
+            disabled={loadingValue === "googleSignUp"}
+            onClick={() => setLoadingValue("googleSignUp")}
+            variant="secondary"
+            size="icon">
+            {loadingValue === "googleSignUp" ? (
+              <Icons.spinner className="h-5 w-5 animate-spin" />
+            ) : (
+              <Icons.google className="h-5 w-5" />
+            )}
           </Button>
-          <Button variant="secondary" size="icon">
-            <Icons.apple className="h-4 w-4" />
+          <Button
+            disabled={loadingValue === "appleSignUp"}
+            onClick={() => setLoadingValue("appleSignUp")}
+            variant="secondary"
+            size="icon">
+            {loadingValue === "appleSignUp" ? (
+              <Icons.spinner className="h-5 w-5 animate-spin" />
+            ) : (
+              <Icons.apple className="h-5 w-5" />
+            )}
           </Button>
-          <Button variant="secondary" size="icon">
-            <Icons.linkedin className="h-4 w-4" />
+          <Button
+            disabled={loadingValue === "linkedinSignUp"}
+            onClick={() => setLoadingValue("linkedinSignUp")}
+            variant="secondary"
+            size="icon">
+            {loadingValue === "linkedinSignUp" ? (
+              <Icons.spinner className="h-5 w-5 animate-spin" />
+            ) : (
+              <Icons.linkedin className="h-5 w-5" />
+            )}
           </Button>
-          <Button variant="secondary" size="icon">
-            <Icons.facebook className="h-5 w-5" />
+          <Button
+            disabled={loadingValue === "facebookSignUp"}
+            onClick={() => setLoadingValue("facebookSignUp")}
+            variant="secondary"
+            size="icon">
+            {loadingValue === "facebookSignUp" ? (
+              <Icons.spinner className="h-5 w-5 animate-spin" />
+            ) : (
+              <Icons.facebook className="h-6 w-6" />
+            )}
+          </Button>
+          <Button
+            disabled={loadingValue === "twitterSignUp"}
+            onClick={() => setLoadingValue("twitterSignUp")}
+            variant="secondary"
+            size="icon">
+            {loadingValue === "twitterSignUp" ? (
+              <Icons.spinner className="h-5 w-5 animate-spin" />
+            ) : (
+              <Icons.twitter className="h-5 w-5" />
+            )}
           </Button>
         </div>
         <Separator />
