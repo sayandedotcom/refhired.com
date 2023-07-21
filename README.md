@@ -19,16 +19,16 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | Desktop App             | Tauri          | 1.4     |
 | Styling                 | Tailwind CSS   | 3.3     |
 | Database ORM            | Prisma         | 4.15    |
-| Database                | PostgreSQL     | -       |
-| Testing                 | Vitest         | -       |
-| Version Control         | GitHub         | -       |
-| Code Editor             | VS Code        | -       |
+| Database                | PostgreSQL     | 15.3    |
+| Testing                 | Vitest         | 0.33.0  |
 | Containerization        | Docker         | -       |
-| Container Orchestration | Kubernetes     | -       |
+| Container Orchestration | Kubernetes     | 1.24    |
 | Continuous Integration  | GitHub Actions | -       |
-| Continuous Delivery     | Argo CD        | -       |
+| Continuous Delivery     | Argo CD        | 2.8     |
 | Infrastructure as code  | Terraform      | -       |
 | Deployment              | AWS            | -       |
+| Version Control         | GitHub         | -       |
+| Code Editor             | VS Code        | -       |
 
 ## Features
 
