@@ -8,7 +8,7 @@ The goal of Referrer is to simplify receiving and giving jobs referrals. I'm try
 
 ### Workspaces List
 
-| Index No.  | Workspace            | Info.                    | Name                           | Natigate                  | Port |
+| Index No.  | Workspace            | Info.                    | Name                           | Navigate                  | Port |
 | ---------- | -------------------- | ------------------------ | ------------------------------ | ------------------------- | ---- |
 | apps /     |
 | 1          | api                  | API Server               | @referrer/api                  | yarn api                  | 3001 |
