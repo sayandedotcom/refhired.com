@@ -4,6 +4,8 @@
 
 Before contributing
 
+- Before jumping into a PR be sure to search [existing PRs](https://github.com/sayande2002/referrer/pulls) or [issues](https://github.com/sayande2002/referrer/issues) for an open or closed item that relates to your submission.
+
 The goal of Referrer is to simplify receiving and giving jobs referrals. I'm trying to make the UI more intuitive and easier to use in order to provide the best possible experience.
 
 ### Workspaces List
@@ -86,30 +88,39 @@ Here is what you need to be able to run Cal.com.
 
 ### Setup
 
-1. Clone the repo into a public GitHub repository (or fork https://github.com/sayande2002/referrer/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/referrer/blob/main/LICENSE).
+1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your
+   own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device.
+
+2. Clone the repo into a public GitHub repository (or fork https://github.com/sayande2002/referrer/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/referrer/blob/main/LICENSE).
 
    ```sh
    git clone https://github.com/sayande2002/referrer
    ```
 
-2. Go to the project folder
+3. Go to the project folder
 
    ```sh
    cd referrer
    ```
 
-3. Install packages with yarn
+4. Install packages with yarn
 
    ```sh
    yarn
    ```
 
-4. Set up your `.env` file
+5. Create a new branch:
+
+   ```sh
+   git checkout -b MY_BRANCH_NAME
+   ```
+
+6. Set up your `.env` file
 
    - Duplicate `.env.example` to `.env`
    - Use `openssl rand -base64 32` to generate a key and add it under `NEXTAUTH_SECRET` in the `.env` file.
 
-5. Quick start with `yarn dx`
+7. Quick start with `yarn dx`
 
 > - **Requires Docker and Docker Compose to be installed**
 
