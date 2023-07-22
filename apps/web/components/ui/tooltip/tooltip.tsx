@@ -7,8 +7,8 @@ export function TooltipDemo({ children, text }) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent>
-          <p>{text}</p>
+        <TooltipContent className="bg-black">
+          <p className="text-white">{text}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

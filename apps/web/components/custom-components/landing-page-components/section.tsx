@@ -5,7 +5,13 @@ export const Section = () => {
     <section className="flex items-center justify-center">
       <div className="w-11/12 rounded-3xl px-4 py-8 sm:px-6 sm:py-12 md:w-10/12 lg:px-8 lg:py-16">
         <div className="w-full">
-          <h2 className="text-center text-[30px] md:text-[50px]">Why referrer ?</h2>
+          <h2 className="text-center text-[30px] md:text-[50px]">
+            Why{" "}
+            <span className="px-2 text-center text-[30px] md:text-[50px] text-transparent bg-clip-text bg-gradient-to-r from-[#fc00ff] to-[#00dbde]">
+              referrer
+            </span>{" "}
+            ?
+          </h2>
           <h5 className="mt-4 text-center text-[16px] md:text-[20px]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dolores iure fugit totam iste
             obcaecati. Consequatur ipsa quod ipsum sequi culpa delectus, cumque id tenetur quibusdam, quos

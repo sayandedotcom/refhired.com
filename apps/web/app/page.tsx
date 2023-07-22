@@ -2,7 +2,15 @@ import Link from "next/link";
 
 import { Separator } from "@referrer/ui";
 
-import { Joinnow, Section, Stats, Testimonials, Usecases, Username } from "@/components/custom-components";
+import {
+  Companies,
+  Joinnow,
+  Section,
+  Stats,
+  Testimonials,
+  Usecases,
+  Username,
+} from "@/components/custom-components";
 
 // import { getAuthSession } from "./api/auth/[...nextauth]/authOptions";
 
@@ -12,7 +20,7 @@ export default async function Page() {
   return (
     <>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
-        <h1 className="px-1 text-center text-[36px] lg:text-[86px]">
+        <h1 className="px-1 text-center text-[36px] lg:text-[86px] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff]">
           "
           <span className="text-transparent bg-clip-text bg-gradient-to-r hover:from-green-400 hover:to-blue-500 from-pink-500 to-yellow-500">
             Navigate
@@ -38,6 +46,7 @@ export default async function Page() {
         </Link>
       </div>
       <Separator />
+      <Companies />
       <Username session={session} />
       <Separator />
       <Section />
