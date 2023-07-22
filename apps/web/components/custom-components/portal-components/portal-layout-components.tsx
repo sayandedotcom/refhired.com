@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -94,33 +95,37 @@ export function OptionsSection({ session }: { session: any | null }) {
   const [active, setActive] = useState("/home");
   const { width, height } = useWindowSize();
 
-  const handleActive = (link) => {
-    setActive(link);
-    if (link === "/profile") router.push(`/${session}`);
-    else router.push(link);
-  };
+  // const handleActive = (link) => {
+  //   setActive(link);
+  //   if (link === "/profile") router.push(`/${session}`);
+  //   else router.push(link);
+  // };
   return (
     <section className="sticky top-0 h-screen w-[15%] overflow-y-auto lg:w-80">
       <div className="flex flex-col items-center justify-center  gap-3">
-        <div onClick={() => handleActive("/home")} className="cursor-pointer p-2">
+        <Link
+          href="/home"
+          // onClick={() => handleActive("/home")}
+          className="cursor-pointer p-2">
           <h2 className="hidden lg:block">Referrer</h2>
           <h4 className="hidden md:block lg:hidden">Referrer</h4>
           <h3 className="md:hidden lg:hidden">R</h3>
-        </div>
+        </Link>
         <div className="lg:flex lg:flex-col lg:justify-start">
           <div className="cursor-pointer text-xl">
             {portalsList.map(({ name, link, icon, activeIcon }) => (
               <TooltipDemo key={name} text={`Go to ${name}`}>
-                <div
-                  onClick={() => handleActive(link)}
+                <Link
+                  href={link}
+                  // onClick={() => handleActive(link)}
                   className="flex items-center gap-4 rounded-full px-3 py-3 hover:bg-muted">
-                  {active !== link ? (
+                  {pathName !== link ? (
                     <span className="text-2xl md:text-3xl">{icon}</span>
                   ) : (
                     <span className="text-2xl md:text-3xl">{activeIcon}</span>
                   )}
                   <p className="mt-1 hidden lg:block">{name}</p>
-                </div>
+                </Link>
               </TooltipDemo>
             ))}
           </div>
