@@ -26,7 +26,7 @@
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
     "lucide-react": "^0.245.0",
-    "next": "^13.4.11",
+    "next": "^13.4.12",
     "next-auth": "^4.22.1",
     "next-themes": "^0.2.1",
     "nprogress": "^0.2.0",
