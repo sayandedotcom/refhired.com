@@ -18,7 +18,7 @@ export const Announcements = () => {
         <p className="text-sm font-medium">
           This website is in development mode !
           <a href="https://github.com/sayande2002/referrer" className="ml-3 inline-block underline">
-            Check out the code because it is Open Source
+            Check out Open Source code ❤️
           </a>
         </p>
       </div>

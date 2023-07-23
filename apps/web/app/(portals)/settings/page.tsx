@@ -8,5 +8,4 @@ export default function Settings() {
   useEffect(() => {
     redirect("/settings/profile");
   }, []);
-  return null;
 }

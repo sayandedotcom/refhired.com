@@ -55,11 +55,11 @@ function PostCardHeader({
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm md:text-base">
         <PostHoverCard>
-          <span className="cursor-pointer">{name}</span>
+          <span className="cursor-pointer hover:underline">{name}</span>
         </PostHoverCard>
         •
         <PostHoverCard>
-          <span className="cursor-pointer font-thin dark:text-gray-200">{userName}</span>
+          <span className="cursor-pointer font-thin dark:text-gray-200 hover:underline">{userName}</span>
         </PostHoverCard>
         •<small>{time}</small>
         <small className="hidden md:block">• &nbsp; &nbsp;{timeLeft}</small>
