@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className="selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin 
+        className="bg-[#f2f2f2] dark:bg-[#111111] selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin 
       scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white">
         <Provider>{children}</Provider>
       </body>

@@ -11,7 +11,7 @@
   "description": "Monorepo for Referrer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sayande2002/referrer"
+    "url": "https://github.com/sayande2002/refhired.com"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": [

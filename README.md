@@ -3,7 +3,7 @@
    <img src="https://user-images.githubusercontent.com/8019099/210054112-5955e812-a76e-4160-9ddd-58f2c72f1cce.png" alt="Logo">
   </a>
 
-  <h3 align="center">Cal.com (formerly Calendso)</h3>
+  <h3 align="center">Refhired.com - Simplifying receiving and giving job referrals for everyone !</h3>
 
   <p align="center">
     The open-source Calendly alternative.
@@ -20,7 +20,6 @@
     <a href="https://cal.com/roadmap">Roadmap</a>
   </p>
 </p>
-## Referrer - Simplifying receiving and giving job referrals for everyone ! ( Under Development )
 
 [Visit Website](https://referrer-web.vercel.app/)
 
@@ -28,7 +27,7 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
 ## Contributing
 
-Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayande2002/referrer/blob/main/CONTRIBUTING.md).
+Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayande2002/refhired.com/blob/main/CONTRIBUTING.md).
 
 ## Main domains
 
@@ -78,16 +77,16 @@ Here is what you need to be able to run Cal.com.
 
 ### Setup
 
-1. Clone the repo into a public GitHub repository (or fork https://github.com/sayande2002/referrer/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/referrer/blob/main/LICENSE).
+1. Clone the repo into a public GitHub repository (or fork https://github.com/sayande2002/refhired.com/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/refhired.com/blob/main/LICENSE).
 
    ```sh
-   git clone https://github.com/sayande2002/referrer
+   git clone https://github.com/sayande2002/refhired.com
    ```
 
 2. Go to the project folder
 
    ```sh
-   cd referrer
+   cd refhired.com
    ```
 
 3. Install packages with yarn
@@ -102,7 +101,7 @@ Here is what you need to be able to run Cal.com.
    - Use `openssl rand -base64 32` to generate a key and add it under `NEXTAUTH_SECRET` in the `.env` file.
 
 5. Quick start with `yarn dx`
-   This will run the docker compose file in the root directory from the docker image build from @referrer/web on `http://localhost:3000/` and docker image build from @referrer/prisma (database) on `http://localhost:5432/` and adminar on `http://localhost:8080/`
+   This will run the docker compose file in the root directory from the docker image build from @refhired.com/web on `http://localhost:3000/` and docker image build from @refhired.com/prisma (database) on `http://localhost:5432/` and adminar on `http://localhost:8080/`
 
 > - **Requires Docker and Docker Compose to be installed**
 
