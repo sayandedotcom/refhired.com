@@ -5,3 +5,4 @@ export * from "./theme-switcher/theme-switcher";
 export * from "./portal-components/portal-layout-components";
 export * from "./portal-components/portal-not-found";
 export * from "./settings/sidebar-nav";
+export * from "./pre-loader";
