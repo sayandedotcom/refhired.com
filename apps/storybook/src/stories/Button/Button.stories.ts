@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button, LoaderButton } from "@referrer/ui";
+import { Button } from "@referrer/ui";
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof Button> = {
@@ -8,7 +8,7 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
   argTypes: {
-    backgroundColor: { control: "color" },
+    // backgroundColor: { control: "color" },
     variant: {
       control: "select",
       options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
@@ -28,32 +28,32 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     children: "Button",
-    variant: "",
-    size: "",
+    variant: "default",
+    size: "default",
   },
 };
 
-export const Secondary: Story = {
-  args: {
-    children: "Button",
-    variant: "secondary",
-    size: "",
-    iconBefore: LoaderButton,
-  },
-};
+// export const Secondary: Story = {
+//   args: {
+//     children: "Button",
+//     variant: "secondary",
+//     size: "",
+//     iconBefore: LoaderButton,
+//   },
+// };
 
-export const Large: Story = {
-  args: {
-    children: "Large",
-    variant: "",
-    size: "lg",
-  },
-};
+// export const Large: Story = {
+//   args: {
+//     children: "Large",
+//     variant: "",
+//     size: "lg",
+//   },
+// };
 
-export const Small: Story = {
-  args: {
-    children: "Button",
-    variant: "destructive",
-    size: "sm",
-  },
-};
+// export const Small: Story = {
+//   args: {
+//     children: "Button",
+//     variant: "destructive",
+//     size: "sm",
+//   },
+// };
