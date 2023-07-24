@@ -1,5 +1,5 @@
 {
-  "name": "referrer-monorepo",
+  "name": "refhiredcom-monorepo",
   "private": true,
   "version": "0.1.0",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "twitter": "https://twitter.com/sayande2002",
     "github": "https://github.com/sayande2002"
   },
-  "description": "Monorepo for Referrer",
+  "description": "Root package.json for Monorepo of Refhired.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/sayande2002/refhired.com"
@@ -29,10 +29,10 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "web": "yarn workspace @referrer/web",
-    "mobile": "yarn workspace @referrer/mobile",
-    "desktop": "yarn workspace @referrer/desktop",
-    "api": "yarn workspace @referrer/api",
-    "swagger": "yarn workspace @referrer/swagger",
+    "mobile": "yarn workspace @refhiredcom/mobile",
+    "desktop": "yarn workspace @refhiredcom/desktop",
+    "api": "yarn workspace @refhiredcom/api",
+    "swagger": "yarn workspace @refhiredcom/swagger",
     "prisma": "yarn workspace @referrer/prisma",
     "ui": "yarn workspace @referrer/ui",
     "story": "yarn workspace @referrer/storybook",

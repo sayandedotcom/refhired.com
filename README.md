@@ -33,11 +33,13 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 
 | Domain                  | Tech           | Version |
 | ----------------------- | -------------- | ------- |
-| Repository              | Turborepo      | 1.9     |
-| Language                | TypeScript     | 4.5     |
-| Client & Server         | Next.js        | 13.4    |
+| Repository Tool         | Turborepo      | 1.9     |
+| Primary Language        | TypeScript     | 4.5     |
+| Website Front-End       | Next.js        | 13.4    |
 | Mobile App              | React Native   | 0.72    |
-| Desktop App             | Tauri          | 1.4     |
+| Desktop App Tool        | Tauri          | 1.4     |
+| Back-End Server         | Golang         | -       |
+| Api                     | GraphQL        | -       |
 | Styling                 | Tailwind CSS   | 3.3     |
 | Database ORM            | Prisma         | 4.15    |
 | Database                | PostgreSQL     | 15.3    |
@@ -77,7 +79,7 @@ Here is what you need to be able to run Cal.com.
 
 ### Setup
 
-1. Clone the repo into a public GitHub repository (or fork https://github.com/sayande2002/refhired.com/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/refhired.com/blob/main/LICENSE).
+1. Clone the repo into a public GitHub repository (or fork <https://github.com/sayande2002/refhired.com/fork>). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/refhired.com/blob/main/LICENSE).
 
    ```sh
    git clone https://github.com/sayande2002/refhired.com
@@ -125,6 +127,6 @@ Please feel free to pull requests or log issues.
 
 ### Contact 📬
 
-For any query, email sayandeten@gmail.com.
+For any query, email <sayandeten@gmail.com>.
 
 Thanks!
