@@ -10,6 +10,7 @@ export function Companies() {
         <Icons.meta />
         <Icons.googleLogo />
         <Icons.microsoft />
+        <Icons.apple />
         <Icons.tesla />
         <Icons.uber />
         <Icons.amazon />
