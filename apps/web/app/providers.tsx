@@ -1,10 +1,9 @@
 "use client";
 
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 
 import { usePathname } from "next/navigation";
 
-import { useLoading } from "@/hooks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { SessionProvider } from "next-auth/react";
@@ -16,15 +15,17 @@ import { Announcements, Footer, Header } from "@/components/layout-components";
 import ProgressBar from "@/components/ui/progress-bar";
 
 export function Provider({ children }) {
-  const { loadingValue, setLoadingValue } = useLoading();
+  const [loadingValue, setLoadingValue] = useState(true);
   const queryClient = new QueryClient();
   const pathName = usePathname();
   const showNavbar = ["/", "/docs", "/blogs", "/pricing", "/about-us", "/contact-us"].includes(pathName);
   useLayoutEffect(() => {
-    setLoadingValue("preLoader");
-    setTimeout(() => {
-      setLoadingValue("");
-    }, 2000);
+    const timer = setTimeout(() => {
+      setLoadingValue(false);
+    }, 1500);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [setLoadingValue]);
 
   return (
@@ -32,7 +33,7 @@ export function Provider({ children }) {
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
           <Toaster />
-          {loadingValue === "preLoader" ? (
+          {loadingValue ? (
             <PreLoader />
           ) : (
             <>
