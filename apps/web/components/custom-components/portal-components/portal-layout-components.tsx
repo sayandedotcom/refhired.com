@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 
 import { useWindowSize } from "@/hooks";
 import { AiFillHome, AiFillMail, AiOutlineHome, AiOutlineMail } from "react-icons/ai";
-import { BsFileBarGraph, BsFileEarmarkBarGraphFill } from "react-icons/bs";
 import { FaBookmark, FaPenNib, FaRegBookmark, FaRegUser, FaUserAlt } from "react-icons/fa";
 import {
   IoDocumentsOutline,
@@ -24,6 +23,7 @@ import { TiTick, TiTickOutline } from "react-icons/ti";
 import { Separator } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
+import { Icons } from "@/components/icons/icons";
 import { AvatarDemo, PostTypeDialog, TooltipDemo } from "@/components/ui";
 
 const portalsList = [
@@ -78,8 +78,8 @@ const portalsList = [
   {
     name: "Dashboard",
     link: "/dashboard",
-    icon: <BsFileBarGraph />,
-    activeIcon: <BsFileEarmarkBarGraphFill />,
+    icon: <Icons.dashboard />,
+    activeIcon: <Icons.dashboard />,
   },
   {
     name: "Profile",
@@ -107,8 +107,8 @@ export function OptionsSection({ session }: { session: any | null }) {
           href="/home"
           // onClick={() => handleActive("/home")}
           className="cursor-pointer p-2">
-          <h2 className="hidden lg:block">Referrer</h2>
-          <h4 className="hidden md:block lg:hidden">Referrer</h4>
+          <h3 className="hidden lg:block">Refhired.com</h3>
+          <h4 className="hidden md:block lg:hidden">Refhired.com</h4>
           <h3 className="md:hidden lg:hidden">R</h3>
         </Link>
         <div className="lg:flex lg:flex-col lg:justify-start">
@@ -120,9 +120,9 @@ export function OptionsSection({ session }: { session: any | null }) {
                   // onClick={() => handleActive(link)}
                   className="flex items-center gap-4 rounded-full px-3 py-3 hover:bg-muted">
                   {pathName !== link ? (
-                    <span className="text-2xl md:text-3xl">{icon}</span>
+                    <span className="text-2xl md:text-2xl">{icon}</span>
                   ) : (
-                    <span className="text-2xl md:text-3xl">{activeIcon}</span>
+                    <span className="text-2xl md:text-2xl">{activeIcon}</span>
                   )}
                   <p className="mt-1 hidden lg:block">{name}</p>
                 </Link>
