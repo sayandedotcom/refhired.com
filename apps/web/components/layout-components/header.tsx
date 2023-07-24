@@ -32,10 +32,10 @@ export const Header = () => {
         <div className="mx-auto max-w-screen-xl p-4">
           <div className="flex items-center justify-between gap-4 lg:gap-10">
             <div className="flex lg:w-0 lg:flex-1">
-              <TooltipDemo text="Referrer Logo">
+              <TooltipDemo text="Refhired Logo">
                 <Link href="/">
                   <span className="sr-only">Logo</span>
-                  <h2>Referrer</h2>
+                  <h3>Refhired.com</h3>
                 </Link>
               </TooltipDemo>
             </div>

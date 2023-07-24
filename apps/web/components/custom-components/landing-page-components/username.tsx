@@ -51,7 +51,7 @@ export const Username = (prop: any) => {
                 className="ml-[100px] h-full w-10/12 bg-inherit text-[20px] lowercase outline-none md:ml-[150px] md:text-[28px]"
               />
               <div className="absolute bottom-1 left-1 top-0 bg-slate-100">
-                <p className="mt-4 px-1 text-[20px] md:text-[28px]">referrer.com/</p>
+                <p className="mt-4 px-1 text-[20px] md:text-[28px]">refhired.com/</p>
               </div>
             </div>
             <button type="submit" className="btn-97 uppercase">

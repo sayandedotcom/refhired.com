@@ -7,8 +7,8 @@ import { Provider } from "./providers";
 
 export const metadata: Metadata = {
   title: {
-    default: "Referrer",
-    template: `%s / Referrer`,
+    default: "Refhired.com",
+    template: `%s | Refhired.com`,
   },
   description: "Get job referrals to the top best companies of the world",
 };

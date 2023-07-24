@@ -86,15 +86,16 @@ const SignUp = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-around gap-5 py-3 md:flex-row md:px-10 lg:gap-16">
       <section className="hidden md:block lg:flex lg:flex-col lg:gap-3">
-        <TypographyH1>Referrer</TypographyH1>
+        <TypographyH1>Refhired.com</TypographyH1>
         <TypographyH2>Join the larget referral community !</TypographyH2>
       </section>
       <div className="flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border border-gray-200 bg-white py-3 lg:w-[450px]">
         <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">
-          <TypographyH3 className="text-[#030711]">Welcome to the Referrer</TypographyH3>
+          <TypographyH3 className="text-[#030711]">Welcome to the Refhired.com</TypographyH3>
           <p className="text-muted-foreground">
-            Create your account and start using Referrer for free, with unlimited event types, bookings and
-            all the features you need. Upgrade to a premium plan if you&prime;re looking for more features.
+            Create your account and start using Refhired.com for free, with unlimited event types, bookings
+            and all the features you need. Upgrade to a premium plan if you&prime;re looking for more
+            features.
           </p>
         </div>
         <Separator />
