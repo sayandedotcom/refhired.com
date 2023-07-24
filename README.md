@@ -42,7 +42,8 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | Api                     | GraphQL        | -       |
 | Styling                 | Tailwind CSS   | 3.3     |
 | Database ORM            | Prisma         | 4.15    |
-| Database                | PostgreSQL     | 15.3    |
+| Primary Database        | PostgreSQL     | 15.3    |
+| Caching Database        | Redis          | -       |
 | Testing                 | Vitest         | 0.33.0  |
 | Containerization        | Docker         | -       |
 | Container Orchestration | Kubernetes     | 1.24    |
@@ -50,6 +51,7 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | Continuous Delivery     | Argo CD        | 2.8     |
 | Infrastructure as code  | Terraform      | -       |
 | Deployment              | AWS            | -       |
+| Proxy                   | Nginix         | -       |
 | Version Control         | GitHub         | -       |
 | Code Editor             | VS Code        | -       |
 
