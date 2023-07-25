@@ -55,10 +55,15 @@
     "vitest": "^0.33.0",
     "vitest-mock-extended": "^1.1.4"
   },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=7.0.0",
+    "yarn": ">=1.19.0 < 2.0.0"
+  },
   "lint-staged": {
     "(apps|packages)/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "eslint --fix"
     ],
     "**/*.{json,css,scss,md}": [
       "prettier --write"
