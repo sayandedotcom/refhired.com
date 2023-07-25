@@ -29,6 +29,8 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
 Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayande2002/refhired.com/blob/main/CONTRIBUTING.md).
 
+<center>
+
 ## Main domains
 
 | Domain                  | Tech           | Version |
@@ -54,6 +56,8 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | Proxy                   | Nginix         | -       |
 | Version Control         | GitHub         | -       |
 | Code Editor             | VS Code        | -       |
+
+</center>
 
 ## Features
 
