@@ -33,14 +33,13 @@ export const Primary: Story = {
   },
 };
 
-// export const Secondary: Story = {
-//   args: {
-//     children: "Button",
-//     variant: "secondary",
-//     size: "",
-//     iconBefore: LoaderButton,
-//   },
-// };
+export const Secondary: Story = {
+  args: {
+    children: "Button",
+    variant: "secondary",
+    size: "lg",
+  },
+};
 
 // export const Large: Story = {
 //   args: {
