@@ -29,8 +29,6 @@ This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
 Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayande2002/refhired.com/blob/main/CONTRIBUTING.md).
 
-<center>
-
 ## Main domains
 
 | Domain                  | Tech           | Version |
@@ -46,7 +44,8 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | Database ORM            | Prisma         | 4.15    |
 | Primary Database        | PostgreSQL     | 15.3    |
 | Caching Database        | Redis          | -       |
-| Testing                 | Vitest         | 0.33.0  |
+| Unit Testing            | Vitest         | 0.33.0  |
+| End to end Testing      | Playwright     | 1.36.2  |
 | Containerization        | Docker         | -       |
 | Container Orchestration | Kubernetes     | 1.24    |
 | Continuous Integration  | GitHub Actions | -       |
@@ -56,8 +55,6 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | Proxy                   | Nginix         | -       |
 | Version Control         | GitHub         | -       |
 | Code Editor             | VS Code        | -       |
-
-</center>
 
 ## Features
 
