@@ -1,11 +1,8 @@
 <p align="center">
   <a href="https://github.com/sayande2002/refhired.com">
-   <img src="https://github.com/sayande2002/refhired.com/assets/107565578/b00773ba-920c-4380-b02c-6c51584547b7.png" alt="Logo">
+   <img src="https://github.com/sayande2002/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo">
   </a>
-![githubImage](https://github.com/sayande2002/refhired.com/assets/107565578/0f7bb6c5-53a9-4adc-8b92-54d514f3a7f1)
-
-  
-  
+ 
   <h3 align="center">Refhired.com</h3>
 
   <p align="center">
@@ -24,7 +21,7 @@
   </p>
 </p>
 
-This is a solo Project by [Sayan De](https://github.com/sayande2002).
+This is a solo project by [Sayan De](https://github.com/sayande2002).
 
 ## Contributing
 
