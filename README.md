@@ -6,7 +6,7 @@
   <h3 align="center">Refhired.com</h3>
 
   <p align="center">
-    Receive and give job referrals !
+    Hire and apply through referrals !
     <br />
     <a href="https://refhired-com-web.vercel.app/"><strong>Learn more »</strong></a>
     <br />
