@@ -1,27 +1,25 @@
 <p align="center">
-  <a href="https://github.com/calcom/cal.com">
-   <img src="https://user-images.githubusercontent.com/8019099/210054112-5955e812-a76e-4160-9ddd-58f2c72f1cce.png" alt="Logo">
+  <a href="https://github.com/sayande2002/refhired.com">
+   <img src="https://github.com/sayande2002/refhired.com/assets/107565578/b00773ba-920c-4380-b02c-6c51584547b7.png" alt="Logo">
   </a>
-
-  <h3 align="center">Refhired.com - Simplifying receiving and giving job referrals for everyone !</h3>
+  
+  <h3 align="center">Refhired.com</h3>
 
   <p align="center">
     The open-source Calendly alternative.
     <br />
-    <a href="https://cal.com"><strong>Learn more »</strong></a>
+    <a href="https://refhired-com-web.vercel.app/"><strong>Learn more »</strong></a>
     <br />
     <br />
-    <a href="https://go.cal.com/discord">Discord</a>
+<!--     <a href="https://go.cal.com/discord">Discord</a> -->
     ·
-    <a href="https://cal.com">Website</a>
+    <a href="https://refhired-com-web.vercel.app/">Website</a>
     ·
-    <a href="https://github.com/calcom/cal.com/issues">Issues</a>
+    <a href="https://github.com/sayande2002/refhired.com/issues">Issues</a>
     ·
-    <a href="https://cal.com/roadmap">Roadmap</a>
+<!--     <a href="https://cal.com/roadmap">Roadmap</a> -->
   </p>
 </p>
-
-[Visit Website](https://referrer-web.vercel.app/)
 
 This is a solo Project by [Sayan De](https://github.com/sayande2002).
 
@@ -115,14 +113,6 @@ yarn dx
 ```
 
 6. Once your server has started, go to this url `http://localhost:3000/` and you will see the website running on a Development Server.
-
-### Authors
-
--[Sayan De](https://github.com/sayande2002)
-
-### Contributing
-
-Please feel free to pull requests or log issues.
 
 ### License
 
