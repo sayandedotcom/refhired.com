@@ -2,11 +2,11 @@
   <a href="https://github.com/sayande2002/refhired.com">
    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo">
   </a>
- 
+
   <h3 align="center">Refhired.com</h3>
 
   <p align="center">
-    The open-source Calendly alternative.
+    Receive and give job referrals !
     <br />
     <a href="https://refhired-com-web.vercel.app/"><strong>Learn more »</strong></a>
     <br />
