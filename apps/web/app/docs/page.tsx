@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Docs",
-  description: "Get job referrals to the top best companies of the world",
+  description: "Docs of Refhired.com",
 };
 
 const Docs = () => {
