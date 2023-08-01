@@ -1,9 +1,11 @@
 <p align="center">
   <a href="https://github.com/sayande2002/refhired.com">
-   <img src="https://github.com/sayande2002/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo">
+<!--    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo"> -->
+        <img src="https://github.com/sayande2002/refhired.com/assets/107565578/a1c556f2-550d-44e5-91cf-1eb89d7faa03" alt="Logo">
   </a>
 
   <h3 align="center">Refhired.com</h3>
+
 
   <p align="center">
     Hire and apply through referrals !
