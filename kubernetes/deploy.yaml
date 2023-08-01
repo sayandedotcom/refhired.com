@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wmd-deployment
+  name: refhired-deployment
   labels:
-    app: wmd
+    app: refhired
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wmd
+      app: refhired
   template:
     metadata:
       labels:
-        app: wmd
+        app: refhired
     spec:
       containers:
-        - name: wmd-ctr
+        - name: refhired-ctr
           image: #TBD
           ports:
             - containerPort: 3000
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wmd-service
+  name: refhired-service
 spec:
   selector:
-    app: wmd
+    app: refhired
   ports:
     - protocol: TCP
       port: 3000
