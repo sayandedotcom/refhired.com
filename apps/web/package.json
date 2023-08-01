@@ -22,7 +22,6 @@
     "@tanstack/react-table": "^8.9.3",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
-    "cal-sans": "^1.0.1",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
     "lucide-react": "^0.245.0",
