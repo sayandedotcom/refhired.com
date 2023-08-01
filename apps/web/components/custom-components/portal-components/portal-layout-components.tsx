@@ -103,15 +103,15 @@ export function OptionsSection({ session }: { session: any | null }) {
   return (
     <section className="sticky top-0 h-screen w-[15%] overflow-y-auto lg:w-80">
       <div className="flex flex-col items-center justify-center  gap-3">
-        <Link
+        {/* <Link
           href="/home"
           // onClick={() => handleActive("/home")}
           className="cursor-pointer p-2">
           <h3 className="hidden lg:block">Refhired.com</h3>
           <h4 className="hidden md:block lg:hidden">Refhired.com</h4>
           <h3 className="md:hidden lg:hidden">R</h3>
-        </Link>
-        <div className="lg:flex lg:flex-col lg:justify-start">
+        </Link> */}
+        <div className="lg:flex lg:flex-col lg:justify-start font-heading tracking-wider">
           <div className="cursor-pointer text-xl">
             {portalsList.map(({ name, link, icon, activeIcon }) => (
               <TooltipDemo key={name} text={`Go to ${name}`}>
@@ -149,7 +149,7 @@ export function ContentSection({ children }: { children: React.ReactNode }) {
   return (
     <section className="w-[85%] lg:w-[38rem]">
       <div className="px-4 py-4">
-        <h5 className="capitalize">{pathName.split("/")}</h5>
+        <h5 className="font-heading capitalize">{pathName.split("/")}</h5>
       </div>
       <Separator className="dark:bg-[#2d3134]" />
       {children}
@@ -162,7 +162,9 @@ export function ContentLargeSection({ children }: { children: React.ReactNode })
   return (
     <section className="w-[85%] lg:w-full">
       <div className="px-4 py-4">
-        <h5 className="capitalize">{pathName.includes("Settings") ? "Settings" : pathName.split("/")}</h5>
+        <h5 className="capitalize font-heading">
+          {pathName.includes("Settings") ? "Settings" : pathName.split("/")}
+        </h5>
       </div>
       <Separator className="dark:bg-[#2d3134]" />
       {children}

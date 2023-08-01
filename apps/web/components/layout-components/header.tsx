@@ -34,8 +34,7 @@ export const Header = () => {
             <div className="flex lg:w-0 lg:flex-1">
               <TooltipDemo text="Refhired Logo">
                 <Link href="/">
-                  <span className="sr-only">Logo</span>
-                  <h3>Refhired.com</h3>
+                  <h3 className="font-heading">Refhired.com</h3>
                 </Link>
               </TooltipDemo>
             </div>
@@ -84,7 +83,7 @@ export const Header = () => {
                   <TooltipDemo text="Sign Up">
                     <Link
                       onClick={() => setLoadingValue("signUpRedirect")}
-                      className={buttonVariants({ variant: "outline" })}
+                      className={buttonVariants({ variant: "secondary" })}
                       href="/sign-up">
                       {loadingValue === "signUpRedirect" && (
                         <Icons.spinner className="h-5 w-5 animate-spin mr-2" />
