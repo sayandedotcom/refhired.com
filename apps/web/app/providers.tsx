@@ -25,7 +25,7 @@ const fontSans = FontSans({
 });
 
 const fontHeading = localFont({
-  src: "../assets/fonts/cal-sans/CalSans-SemiBold.woff2",
+  src: "../public/fonts/cal-sans/CalSans-SemiBold.woff2",
   variable: "--font-heading",
 });
 
