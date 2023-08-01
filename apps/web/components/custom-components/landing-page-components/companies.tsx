@@ -11,9 +11,11 @@ export function Companies() {
         <Icons.googleLogo />
         <Icons.microsoft />
         <Icons.apple />
+        <Icons.logo />
         <Icons.tesla />
         <Icons.uber />
         <Icons.amazon />
+        {/* <Icons.logo /> */}
       </div>
     </div>
   );

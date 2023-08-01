@@ -31,9 +31,10 @@ export const Header = () => {
       <header className="shadow-sm">
         <div className="mx-auto max-w-screen-xl p-4">
           <div className="flex items-center justify-between gap-4 lg:gap-10">
-            <div className="flex lg:w-0 lg:flex-1">
-              <TooltipDemo text="Refhired Logo">
-                <Link href="/">
+            <div className="flex items-center justify-center lg:w-0 lg:flex-1">
+              <TooltipDemo text="Refhired.com">
+                <Link href="/" className="flex items-center justify-center gap-5">
+                  <Icons.logo />
                   <h3 className="font-heading">Refhired.com</h3>
                   {/* <h3 className="font-heading">rh.</h3> */}
                 </Link>
