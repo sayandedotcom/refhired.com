@@ -2,6 +2,7 @@ import { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 
+import "../public/favicon/android-chrome-512x512.png";
 import { Provider } from "./providers";
 
 export const metadata: Metadata = {
@@ -13,11 +14,11 @@ export const metadata: Metadata = {
   keywords: ["Next.js", "React", "Tailwind CSS", "Server Components", "Radix UI"],
   authors: [
     {
-      name: "shadcn",
-      url: "https://shadcn.com",
+      name: "Sayan De",
+      url: "https://sayande.tech",
     },
   ],
-  creator: "shadcn",
+  creator: "Sayan De",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -35,13 +36,13 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [`${siteConfig.url}/og.jpg`],
-    creator: "@shadcn",
+    creator: "@sayan",
   },
-  // icons: {
-  //   icon: "/favicon.ico",
-  //   shortcut: "/favicon-16x16.png",
-  //   apple: "/apple-touch-icon.png",
-  // },
+  icons: {
+    icon: "/public/favicon/favicon.ico",
+    shortcut: "/public/favicon/favicon-16x16.png",
+    apple: "/public/favicon/apple-touch-icon.png",
+  },
   manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
