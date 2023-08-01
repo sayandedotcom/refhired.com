@@ -29,7 +29,7 @@ export const Username = (prop: any) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-16">
+    <div className="flex flex-col items-center justify-center gap-4 py-16 font-heading">
       {session && session.user ? (
         <h1 className="text-center text-[30px] md:text-[50px]">You are already logged in !</h1>
       ) : (

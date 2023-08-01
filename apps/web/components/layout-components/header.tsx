@@ -35,6 +35,7 @@ export const Header = () => {
               <TooltipDemo text="Refhired Logo">
                 <Link href="/">
                   <h3 className="font-heading">Refhired.com</h3>
+                  {/* <h3 className="font-heading">rh.</h3> */}
                 </Link>
               </TooltipDemo>
             </div>

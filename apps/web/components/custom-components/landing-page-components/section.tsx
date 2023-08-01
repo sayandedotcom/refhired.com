@@ -2,7 +2,7 @@
 
 export const Section = () => {
   return (
-    <section className="flex items-center justify-center">
+    <section className="flex items-center justify-center font-heading">
       <div className="w-11/12 rounded-3xl px-4 py-8 sm:px-6 sm:py-12 md:w-10/12 lg:px-8 lg:py-16">
         <div className="w-full">
           <h2 className="text-center text-[30px] md:text-[50px]">

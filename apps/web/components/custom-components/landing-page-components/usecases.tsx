@@ -8,7 +8,7 @@ import AltImage from "../../../public/avatar/avatar.png";
 
 export const Usecases = () => {
   return (
-    <section className="flex flex-col items-center justify-center gap-7 py-16">
+    <section className="flex flex-col items-center justify-center gap-7 py-16 font-heading">
       <h2 className="text-center text-[30px] md:text-[50px]">Who will be benefited</h2>
       <section className="overflow-hidden sm:grid sm:grid-cols-2">
         <div className="p-8 md:p-12 lg:px-16 lg:py-24">
