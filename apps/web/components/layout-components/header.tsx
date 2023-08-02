@@ -33,9 +33,9 @@ export const Header = () => {
           <div className="flex items-center justify-between gap-4 lg:gap-10">
             <div className="flex items-center justify-center lg:w-0 lg:flex-1">
               <TooltipDemo text="Refhired.com">
-                <Link href="/" className="flex items-center justify-center gap-5">
+                <Link href="/" className="flex items-center justify-around gap-2">
                   <Icons.logo />
-                  <h3 className="font-heading">Refhired.com</h3>
+                  <h3 className="font-heading mt-2">Refhired.com</h3>
                   {/* <h3 className="font-heading">rh.</h3> */}
                 </Link>
               </TooltipDemo>
