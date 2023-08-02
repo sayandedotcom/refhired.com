@@ -1,10 +1,7 @@
 "use client";
 
-import { useState } from "react";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 
 import { useWindowSize } from "@/hooks";
 import { AiFillHome, AiFillMail, AiOutlineHome, AiOutlineMail } from "react-icons/ai";
@@ -90,10 +87,9 @@ const portalsList = [
 ];
 
 export function OptionsSection({ session }: { session: any | null }) {
-  const router = useRouter();
   const pathName = usePathname();
-  const [active, setActive] = useState("/home");
-  const { width, height } = useWindowSize();
+
+  const { width } = useWindowSize();
 
   // const handleActive = (link) => {
   //   setActive(link);
@@ -159,12 +155,12 @@ export function ContentSection({ children }: { children: React.ReactNode }) {
 
 export function ContentLargeSection({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
+  const currentPath = pathName.split("/");
+  const path = currentPath[1];
   return (
     <section className="w-[85%] lg:w-full">
       <div className="px-4 py-4">
-        <h5 className="capitalize font-heading">
-          {pathName.includes("Settings") ? "Settings" : pathName.split("/")}
-        </h5>
+        <h5 className="capitalize font-heading">{path}</h5>
       </div>
       <Separator className="dark:bg-[#2d3134]" />
       {children}

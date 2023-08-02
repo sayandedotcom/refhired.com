@@ -85,7 +85,7 @@ export const Header = () => {
                   <TooltipDemo text="Sign Up">
                     <Link
                       onClick={() => setLoadingValue("signUpRedirect")}
-                      className={buttonVariants({ variant: "secondary" })}
+                      className={buttonVariants({ variant: "outline" })}
                       href="/sign-up">
                       {loadingValue === "signUpRedirect" && (
                         <Icons.spinner className="h-5 w-5 animate-spin mr-2" />

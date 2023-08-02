@@ -2,7 +2,6 @@ import { Metadata } from "next";
 
 import { siteConfig } from "@/config/site";
 
-import "../public/favicon/android-chrome-512x512.png";
 import { Provider } from "./providers";
 
 export const metadata: Metadata = {
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: ["Next.js", "React", "Tailwind CSS", "Server Components", "Radix UI"],
+  keywords: ["Refhired.com", "refer", "jobs", "referrals"],
   authors: [
     {
       name: "Sayan De",
@@ -38,11 +37,30 @@ export const metadata: Metadata = {
     images: [`${siteConfig.url}/og.jpg`],
     creator: "@sayan",
   },
-  icons: {
-    icon: "/public/favicon/favicon.ico",
-    shortcut: "/public/favicon/favicon-16x16.png",
-    apple: "/public/favicon/apple-touch-icon.png",
-  },
+  icons: [
+    {
+      rel: "icon",
+      sizes: "any",
+      url: "/favicon/favicon.ico",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "16x16",
+      url: "/favicon/favicon-16x16.png",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "32x32",
+      url: "/favicon/favicon-32x32.png",
+    },
+    {
+      rel: "apple-touch-icon",
+      sizes: "180x180",
+      url: "/favicon/apple-touch-icon.png",
+    },
+  ],
   manifest: `${siteConfig.url}/site.webmanifest`,
 };
 

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { headers } from "next/headers";
 
 import { Separator } from "@referrer/ui";
 
@@ -11,41 +12,52 @@ export const metadata: Metadata = {
 
 const sidebarNavItems = [
   {
-    title: "Profile",
+    title: "profile",
     href: "/settings/profile",
+    info: "Manage your profile settings and set username, bio, e-mail preferences.",
   },
   {
-    title: "Account",
+    title: "account",
     href: "/settings/account",
+    info: "Manage your account settings.",
   },
   {
-    title: "Appearance",
+    title: "appearance",
     href: "/settings/appearance",
+    info: "Manage your appearance settings .",
   },
   {
-    title: "Notifications",
+    title: "notifications",
     href: "/settings/notifications",
+    info: "Manage your notifications settings .",
   },
   {
-    title: "Display",
+    title: "display",
     href: "/settings/display",
+    info: "Manage your display settings .",
   },
   {
-    title: "Payments",
+    title: "payments",
     href: "/settings/payments",
-  },
-  {
-    title: "Payments",
-    href: "/settings/about",
+    info: "Manage your payments settings .",
   },
 ];
 
 export default function Settings({ children }: { children: React.ReactNode }) {
+  const headersList = headers();
+  const path = headersList.get("x-invoke-path") || "";
   return (
     <div className="hidden space-y-6 p-10 pb-16 md:block">
       <div className="space-y-0.5">
-        <h2 className="text-2xl font-bold tracking-tight">Settings</h2>
-        <p className="text-muted-foreground">Manage your account settings and set e-mail preferences.</p>
+        <h2 className="text-2xl font-bold tracking-tight capitalize">{`${path.split("/")[2]}`}</h2>
+        {sidebarNavItems.map(
+          (item) =>
+            path.split("/")[2] === item.title && (
+              <p key={item.title} className="text-muted-foreground">
+                {item.info}
+              </p>
+            )
+        )}
       </div>
       <Separator className="my-6" />
       <div className="flex flex-col space-y-8 lg:flex-row lg:space-x-12 lg:space-y-0">

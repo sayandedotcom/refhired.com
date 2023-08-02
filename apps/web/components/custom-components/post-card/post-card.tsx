@@ -77,7 +77,7 @@ PostCard.PostCardHeader = PostCardHeader;
 
 function PostCardDescription({ children }: { children: React.ReactNode }) {
   return (
-    <p className="cursor-pointer text-[15px] md:text-base font-medium tracking-wider font-heading">
+    <p className="cursor-pointer text-[15px] md:text-base tracking-wider font-heading">
       {children}
       <span className="float-right text-xs md:text-sm">....Show more</span>
     </p>

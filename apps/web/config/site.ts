@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
   url: "https://tx.shadcn.com",
   ogImage: "https://tx.shadcn.com/og.jpg",
   links: {
-    twitter: "https://twitter.com/shadcn",
+    twitter: "https://twitter.com/sayande2002",
     github: "https://github.com/shadcn/taxonomy",
   },
 };
