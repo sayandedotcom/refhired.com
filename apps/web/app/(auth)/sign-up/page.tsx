@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { useLoading } from "@/hooks";
+import { useStore } from "@/store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -46,13 +47,14 @@ const signUpSchema = z
   });
 
 const SignUp = () => {
+  const claimUserName = useStore((state) => state.userName);
   const { loadingValue, setLoadingValue } = useLoading();
   const [error, setError] = useState("");
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "",
-      username: "",
+      username: claimUserName ?? "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -92,7 +94,7 @@ const SignUp = () => {
       <div className="flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border border-gray-200 bg-white py-3 lg:w-[450px]">
         <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">
           <TypographyH3 className="text-[#030711]">Welcome to the Refhired.com</TypographyH3>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground font-semibold text-sm">
             Create your account and start using Refhired.com for free, with unlimited event types, bookings
             and all the features you need. Upgrade to a premium plan if you&prime;re looking for more
             features.

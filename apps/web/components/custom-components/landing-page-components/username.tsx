@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
+import { useStore } from "@/store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -7,7 +10,9 @@ import { z } from "zod";
 import { userNameValidator } from "@/lib/validators";
 
 export const Username = (prop: any) => {
+  const router = useRouter();
   const { session } = prop;
+  const setUserName = useStore((state) => state.claimUserName);
   const form = useForm<z.infer<typeof userNameValidator>>({
     resolver: zodResolver(userNameValidator),
     defaultValues: {
@@ -25,7 +30,8 @@ export const Username = (prop: any) => {
     //   message: "Username already exists",
     // });
     // return;
-    console.log(data);
+    setUserName(data.userName);
+    router.push("/sign-up");
   };
 
   return (
@@ -48,10 +54,12 @@ export const Username = (prop: any) => {
               <input
                 {...register("userName")}
                 placeholder="@johndoe"
-                className="ml-[100px] h-full w-10/12 bg-inherit text-[20px] lowercase outline-none md:ml-[150px] md:text-[28px]"
+                className="ml-[100px] h-full w-10/12 bg-inherit text-[20px] lowercase outline-none md:ml-[170px] md:text-[28px]"
               />
               <div className="absolute bottom-1 left-1 top-0 bg-slate-100">
-                <p className="mt-4 px-1 text-[20px] md:text-[28px]">refhired.com/</p>
+                <p className="mt-4 px-1 text-[20px] md:text-[28px] font-heading tracking-wide md:ml-2">
+                  refhired.com/
+                </p>
               </div>
             </div>
             <button type="submit" className="btn-97 uppercase">
