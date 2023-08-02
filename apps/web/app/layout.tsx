@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 import { Provider } from "./providers";
 
