@@ -61,7 +61,7 @@ export const metadata: Metadata = {
       url: "/favicon/apple-touch-icon.png",
     },
   ],
-  manifest: `${siteConfig.url}/site.webmanifest`,
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
