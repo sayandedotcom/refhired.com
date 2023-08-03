@@ -7,9 +7,7 @@ import { HiLocationMarker } from "react-icons/hi";
 import prisma from "@referrer/prisma";
 import { Separator } from "@referrer/ui";
 
-import { PostCard } from "@/components/custom-components";
-
-import AltImage from "../../../public/avatar/avatar.png";
+import AltImage from "../../../public/images/avatar/avatar.png";
 
 export const metadata: Metadata = {
   title: "Profile",

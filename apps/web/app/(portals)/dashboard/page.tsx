@@ -6,7 +6,7 @@ import { DataTable } from "@/components/ui/data-table/components/data-table";
 import { UserNav } from "@/components/ui/data-table/components/user-nav";
 import { tsTasks } from "@/components/ui/data-table/data/tasks";
 
-import Avatar from "../../../public/avatar/avatar.png";
+import Avatar from "../../../public/images/avatar/avatar.png";
 
 export const metadata: Metadata = {
   title: "Dashboard",

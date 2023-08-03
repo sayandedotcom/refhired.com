@@ -4,7 +4,7 @@ import { CalendarDays } from "lucide-react";
 
 import { Button, HoverCard, HoverCardContent, HoverCardTrigger } from "@referrer/ui";
 
-import AltImage from "../../../public/avatar/avatar.png";
+import AltImage from "../../../public/images/avatar/avatar.png";
 
 export function PostHoverCard({ children }) {
   return (
