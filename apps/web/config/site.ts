@@ -2,7 +2,7 @@ import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Refhired.com",
-  description: "Get job referrals to the top best companies of the world.",
+  description: "Get job referrals from employees of top best companies of the world.",
   url: "https://tx.shadcn.com",
   ogImage: "https://tx.shadcn.com/og.jpg",
   links: {
