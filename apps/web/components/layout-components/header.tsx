@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 
 // import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
 // import { signOut } from "next-auth/react";
-import { Separator, buttonVariants } from "@referrer/ui";
+import { buttonVariants } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 
@@ -36,26 +36,27 @@ export const Header = () => {
                 <Link href="/" className="flex items-center justify-around gap-2">
                   <Icons.logo />
                   <h3 className="font-heading mt-2">Refhired.com</h3>
-                  {/* <h3 className="font-heading">rh.</h3> */}
                 </Link>
               </TooltipDemo>
             </div>
 
-            <nav aria-label="Global" className="hidden gap-8 text-sm font-medium md:flex">
-              <Link href="/about-us">
-                <h6>About Us</h6>
+            <nav
+              aria-label="Global"
+              className="hidden gap-8 font-medium md:flex md:justify- md:items-center bg-foreground rounded-full p-4 text-background h-14 text-lg">
+              <Link className="hover:bg-background hover:text-foreground" href="/about-us">
+                About Us
               </Link>
-              <Link href="/blogs">
-                <h6>Blogs</h6>
+              <Link className="hover:bg-background hover:text-foreground" href="/blogs">
+                Blogs
               </Link>
-              <Link href="/pricing">
-                <h6>Pricing</h6>
+              <Link className="hover:bg-background hover:text-foreground" href="/pricing">
+                Pricing
               </Link>
-              <Link href="/contact-us">
-                <h6>Contact Us</h6>
+              <Link className="hover:bg-background hover:text-foreground" href="/contact-us">
+                Contact Us
               </Link>
-              <Link href="/docs">
-                <h6>Docs</h6>
+              <Link className="hover:bg-background hover:text-foreground" href="/docs">
+                Docs
               </Link>
             </nav>
 
@@ -121,7 +122,6 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      <Separator />
     </>
   );
 };

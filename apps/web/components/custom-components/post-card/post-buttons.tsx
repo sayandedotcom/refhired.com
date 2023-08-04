@@ -106,7 +106,9 @@ export const Tags = ({ tag }) => {
           ? i < 1
           : i < 3 && (
               <Badge
-                className="cursor-pointer border border-black dark:border-gray-200 hover:bg-foreground hover:text-background"
+                className="cursor-pointer border
+                bg-[#18273f]  text-[#3382e4] hover:bg-[#146de2] hover:text-white
+                 "
                 variant="secondary">
                 {item}
               </Badge>

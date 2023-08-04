@@ -216,7 +216,8 @@ const SignUp = () => {
             disabled={loadingValue === "githubSignUp"}
             variant="secondary"
             size="icon"
-            onClick={() => setLoadingValue("githubSignUp")}>
+            // onClick={() => setLoadingValue("githubSignUp")}
+            onClick={() => signIn("github")}>
             {loadingValue === "githubSignUp" ? (
               <Icons.spinner className="h-5 w-5 animate-spin" />
             ) : (
