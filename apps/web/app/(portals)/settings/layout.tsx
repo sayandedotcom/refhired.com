@@ -47,9 +47,9 @@ const settingsNav = [
     icon: <BellRing />,
   },
   {
-    title: "billing and plans",
-    href: "/settings/billing",
-    info: "Manage your display settings .",
+    title: "plans and billing",
+    href: "/settings/plans",
+    info: "Manage & upgrade your plans and billiings settings .",
     icon: <CreditCard />,
   },
   {

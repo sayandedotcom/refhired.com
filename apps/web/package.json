@@ -18,6 +18,7 @@
     "@referrer/lib": "*",
     "@referrer/prisma": "*",
     "@referrer/ui": "*",
+    "@stripe/stripe-js": "^1.54.2",
     "@tanstack/react-query": "^4.29.19",
     "@tanstack/react-table": "^8.9.3",
     "@vercel/analytics": "^1.0.1",
@@ -39,6 +40,7 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.9.0",
     "react-select": "^5.7.3",
+    "stripe": "^12.17.0",
     "unique-username-generator": "^1.1.3",
     "zod": "^3.21.4",
     "zustand": "^4.4.0"

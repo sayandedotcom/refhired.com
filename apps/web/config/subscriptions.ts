@@ -6,7 +6,19 @@ export const freePlan: SubscriptionPlan = {
   stripePriceId: "",
 };
 
-export const proPlan: SubscriptionPlan = {
+export const quaterPlan: SubscriptionPlan = {
+  name: "PRO",
+  description: "The PRO plan has unlimited posts.",
+  stripePriceId: "",
+};
+
+export const semiPlan: SubscriptionPlan = {
+  name: "Free",
+  description: "The free plan is limited to 3 posts. Upgrade to the PRO plan for unlimited posts.",
+  stripePriceId: "",
+};
+
+export const finalPlan: SubscriptionPlan = {
   name: "PRO",
   description: "The PRO plan has unlimited posts.",
   stripePriceId: "",
