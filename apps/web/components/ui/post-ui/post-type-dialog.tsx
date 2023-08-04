@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
+import { useStore } from "@/store/store";
 import { X } from "lucide-react";
 
 import {
@@ -7,14 +10,19 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
+  AlertDialogDescription, // AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@referrer/ui";
 
 export function PostTypeDialog({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const setPostType = useStore((state) => state.setPostType);
+  const postType = (type: string) => {
+    setPostType(type);
+    router.push("/post");
+  };
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
@@ -27,8 +35,8 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
         </AlertDialogHeader>
         <AlertDialogDescription>Select one</AlertDialogDescription>
         <div className="flex items-center justify-center gap-5">
-          <AlertDialogAction>Referral Post</AlertDialogAction>
-          <AlertDialogAction>Normal Post</AlertDialogAction>
+          <AlertDialogAction onClick={() => postType("Referral")}>Referral Post</AlertDialogAction>
+          <AlertDialogAction onClick={() => postType("Normal")}>Normal Post</AlertDialogAction>
         </div>
       </AlertDialogContent>
     </AlertDialog>

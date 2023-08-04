@@ -10,6 +10,7 @@ interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
     href: string;
     title: string;
+    icon: React.ReactNode;
   }[];
 }
 
@@ -27,8 +28,9 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
           className={cn(
             buttonVariants({ variant: "ghost" }),
             pathname === item.href ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline",
-            "justify-start"
+            "gap-4 justify-start"
           )}>
+          {item.icon}
           {item.title}
         </Link>
       ))}

@@ -103,9 +103,7 @@ export function OptionsSection({ session }: { session: any | null }) {
           href="/home"
           // onClick={() => handleActive("/home")}
           className="cursor-pointer p-2">
-          <h3 className="hidden lg:block">Refhired.com</h3>
-          <h4 className="hidden md:block lg:hidden">Refhired.com</h4>
-          <h3 className="md:hidden lg:hidden">R</h3>
+          <Icons.logo />
         </Link> */}
         <div className="lg:flex lg:flex-col lg:justify-start font-heading tracking-wider">
           <div className="cursor-pointer text-xl">
@@ -170,7 +168,7 @@ export function ContentLargeSection({ children }: { children: React.ReactNode })
 
 export function ExtraSection() {
   return (
-    <section className="sticky top-0 hidden h-screen w-80 lg:flex lg:flex-col lg:gap-3 lg:p-2">
+    <section className="sticky top-0 hidden h-screen w-80 lg:flex lg:flex-col lg:gap-3 lg:p-2 font-medium font-heading">
       <div className="rounded-2xl bg-muted px-4 py-2">
         <h5>Extras</h5>
       </div>
