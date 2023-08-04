@@ -20,6 +20,7 @@
     "@referrer/ui": "*",
     "@tanstack/react-query": "^4.29.19",
     "@tanstack/react-table": "^8.9.3",
+    "@vercel/analytics": "^1.0.1",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "clsx": "^1.2.1",
