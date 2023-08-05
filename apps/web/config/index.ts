@@ -1,2 +1,2 @@
 export * from "./site";
-export * from "./subscriptions";
+export * from "./plans";

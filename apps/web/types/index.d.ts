@@ -54,6 +54,9 @@ export type DashboardConfig = {
 export type SubscriptionPlan = {
   name: string;
   description: string;
+  price: number | string;
+  isMostPop: boolean;
+  features: string[];
   stripePriceId: string;
 };
 
