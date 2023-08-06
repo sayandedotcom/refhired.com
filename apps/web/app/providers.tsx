@@ -15,7 +15,7 @@ import { Toaster } from "react-hot-toast";
 import { cn } from "@referrer/lib/utils/cn";
 
 import { PreLoader } from "@/components/custom-components";
-import { Announcements, Footer, Navbar } from "@/components/layout-components";
+import { Banner, Footer, Navbar } from "@/components/layout-components";
 import ProgressBar from "@/components/ui/progress-bar";
 
 import "../styles/globals.css";
@@ -56,7 +56,7 @@ export function Provider({ children }) {
                     <ProgressBar />
                     {showNavbar && (
                       <>
-                        <Announcements />
+                        <Banner />
                         <Navbar />
                       </>
                     )}

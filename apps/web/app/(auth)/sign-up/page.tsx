@@ -21,8 +21,6 @@ import {
   FormMessage,
   Input,
   Separator,
-  TypographyH1,
-  TypographyH2,
   TypographyH3,
   TypographySmall,
 } from "@referrer/ui";
@@ -88,8 +86,11 @@ const SignUp = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-around gap-5 py-3 md:flex-row md:px-10 lg:gap-16">
       <section className="hidden md:block lg:flex lg:flex-col lg:gap-3">
-        <TypographyH1>Refhired.com</TypographyH1>
-        <TypographyH2>Join the larget referral community !</TypographyH2>
+        <Link href="/" className="flex items-center gap-3 font-heading">
+          <Icons.largeLogo className="" />
+          <h1 className="mt-1">Refhired.com</h1>
+        </Link>
+        <h3>Join the larget referral community !</h3>
       </section>
       <div className="flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border border-gray-200 bg-white py-3 lg:w-[450px]">
         <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">

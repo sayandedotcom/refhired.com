@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { navigation } from "@/config";
 import { useLoading } from "@/hooks";
@@ -15,6 +16,7 @@ import { TooltipDemo } from "../ui";
 
 export function Navbar() {
   const [state, setState] = useState(false);
+  const path = usePathname();
   const { loadingValue, setLoadingValue } = useLoading();
 
   return (
@@ -100,7 +102,11 @@ export function Navbar() {
             <ul className="justify-center items-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
               {navigation.map((item, idx) => {
                 return (
-                  <li key={idx} className="text-popover-foreground text-base font-semibold">
+                  <li
+                    key={idx}
+                    className={`text-popover-foreground text-base font-semibold ${
+                      path === item.path ? "line-through" : ""
+                    }`}>
                     <Link href={item.path}>{item.title}</Link>
                   </li>
                 );
