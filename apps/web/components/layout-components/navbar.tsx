@@ -19,7 +19,7 @@ export function Navbar() {
 
   return (
     <nav className="w-full top-0 z-20">
-      <div className="items-center px-4 max-w-screen-xl mx-auto md:px-8 lg:flex">
+      <div className="items-center px-4 max-w-screen-2xl mx-auto md:px-6 lg:flex">
         <div className="flex items-center justify-between py-3 lg:py-4 lg:block">
           <TooltipDemo text="Refhired.com">
             <Link href="/" className="flex items-center justify-around gap-3">
@@ -29,7 +29,7 @@ export function Navbar() {
           </TooltipDemo>
           <div className="lg:hidden">
             <button
-              className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+              className="outline-none p-2 rounded-md focus:border-gray-400 focus:border"
               onClick={() => setState(!state)}>
               {state ? (
                 <svg
@@ -61,7 +61,7 @@ export function Navbar() {
             state ? "h-screen pb-20 overflow-auto pr-4" : "hidden"
           }`}>
           <div>
-            <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
+            <ul className="flex flex-col-reverse items-center space-x-0 lg:space-x-6 lg:flex-row">
               <li className="mt-4 lg:mt-0">
                 <TooltipDemo text="Log In">
                   <Link
@@ -91,7 +91,9 @@ export function Navbar() {
               {/* <li>
                 <Button onClick={() => signOut()}>Log Out</Button>
               </li> */}
-              <ThemeSwitcher />
+              <li>
+                <ThemeSwitcher />
+              </li>
             </ul>
           </div>
           <div className="flex-1">
