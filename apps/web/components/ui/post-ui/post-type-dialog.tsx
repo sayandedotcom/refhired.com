@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 
-import { useStore } from "@/store/store";
 import { X } from "lucide-react";
 
 import {
@@ -15,6 +14,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@referrer/ui";
+
+import { useStore } from "@/store/store";
 
 export function PostTypeDialog({ children }: { children: React.ReactNode }) {
   const router = useRouter();

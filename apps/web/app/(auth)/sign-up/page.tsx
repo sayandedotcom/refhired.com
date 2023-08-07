@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { useLoading } from "@/hooks";
-import { useStore } from "@/store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -26,6 +25,8 @@ import {
 } from "@referrer/ui";
 
 import { Icons } from "@/components/icons/icons";
+
+import { useStore } from "@/store/store";
 
 const signUpSchema = z
   .object({

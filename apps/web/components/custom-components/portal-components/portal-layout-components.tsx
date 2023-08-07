@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import { FaPenNib } from "react-icons/fa";
 
@@ -11,6 +10,8 @@ import { Separator } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 import { AvatarDemo, PostTypeDialog, TooltipDemo } from "@/components/ui";
+
+import { portalsList } from "@/config/portals-list";
 
 export function OptionsSection({ session }: { session: any | null }) {
   const pathName = usePathname();

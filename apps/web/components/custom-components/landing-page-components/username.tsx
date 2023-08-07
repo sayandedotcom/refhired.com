@@ -2,12 +2,13 @@
 
 import { useRouter } from "next/navigation";
 
-import { useStore } from "@/store/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { userNameValidator } from "@/lib/validators";
+
+import { useStore } from "@/store/store";
 
 export const Username = (prop: any) => {
   const router = useRouter();

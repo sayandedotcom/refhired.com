@@ -1,9 +1,10 @@
 "use client";
 
-import { toastType } from "@/types/toast";
 import toast from "react-hot-toast";
 
 import { Alert } from "@referrer/ui";
+
+import { toastType } from "@/types/toast";
 
 const TOAST_VISIBLE_DURATION = 3000;
 

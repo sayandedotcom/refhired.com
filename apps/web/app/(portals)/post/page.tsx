@@ -1,10 +1,10 @@
 "use client";
 
-import { useStore } from "@/store/store";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
 
 import { NormalPost, ReferralPost } from "@/components/ui";
+
+import { useStore } from "@/store/store";
 
 const Post = () => {
   const postType = useStore((state) => state.postType);
