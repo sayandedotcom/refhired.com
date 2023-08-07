@@ -10,7 +10,7 @@ export function SettingsHeader({ settingsNav }) {
         (item) =>
           pathName.split("/")[2] === item.title && (
             <>
-              <h2 className="text-2xl font-bold tracking-tight capitalize">{`${pathName.split("/")[2]}`}</h2>
+              <h2 className="text-2xl font-bold capitalize tracking-tight">{`${pathName.split("/")[2]}`}</h2>
               <p key={item.title} className="text-muted-foreground">
                 {item.info}
               </p>

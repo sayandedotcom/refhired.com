@@ -19,7 +19,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
 
   return (
     <nav
-      className={cn("flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1 capitalize", className)}
+      className={cn("flex space-x-2 capitalize lg:flex-col lg:space-x-0 lg:space-y-1", className)}
       {...props}>
       {items.map((item) => (
         <Link
@@ -28,7 +28,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
           className={cn(
             buttonVariants({ variant: "ghost" }),
             pathname === item.href ? "bg-muted hover:bg-muted" : "hover:bg-transparent hover:underline",
-            "gap-4 justify-start"
+            "justify-start gap-4"
           )}>
           {item.icon}
           {item.title}

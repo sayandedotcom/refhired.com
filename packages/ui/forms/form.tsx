@@ -122,7 +122,7 @@ const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
       <p
         ref={ref}
         id={formDescriptionId}
-        className={cn("text-sm text-muted-foreground", className)}
+        className={cn("text-muted-foreground text-sm", className)}
         {...props}
       />
     );
@@ -143,7 +143,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
       <p
         ref={ref}
         id={formMessageId}
-        className={cn("flex items-center text-sm font-medium text-destructive", className)}
+        className={cn("text-destructive flex items-center text-sm font-medium", className)}
         {...props}>
         <AlertCircle className="mr-1.5 inline-block h-3 w-3" />
         {body}

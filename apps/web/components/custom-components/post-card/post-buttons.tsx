@@ -48,7 +48,7 @@ export const MultipleButtons = () => {
     // toastMessage({ type: "neutral", title: linkCopied ? "Link Copied" : "Link Copied" });
     toastMessage({
       children: (
-        <div className="flex-1 w-0 p-4">
+        <div className="w-0 flex-1 p-4">
           <div className="flex items-start">
             <div className="flex-shrink-0 pt-0.5">
               <img
@@ -96,7 +96,7 @@ export const Tags = ({ tag }) => {
   return (
     <>
       <Badge
-        className="cursor-pointer border border-black dark:border-gray-200 hover:bg-foreground hover:text-background"
+        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
         <MapPin className="h-3" />
         Location
@@ -115,7 +115,7 @@ export const Tags = ({ tag }) => {
             )
       )}
       <Badge
-        className="cursor-pointer border border-black dark:border-gray-200 hover:bg-foreground hover:text-background"
+        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
         +7
       </Badge>

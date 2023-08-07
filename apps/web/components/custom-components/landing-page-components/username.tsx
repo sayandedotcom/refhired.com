@@ -35,14 +35,14 @@ export const Username = (prop: any) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-16 font-heading">
+    <div className="font-heading flex flex-col items-center justify-center gap-4 py-16">
       {session && session.user ? (
         <h1 className="text-center text-[30px] md:text-[50px]">You are already logged in !</h1>
       ) : (
         <>
-          <h2 className="px-2 text-center text-[30px] md:text-[50px] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff]">
+          <h2 className="px-2 text-center text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
             Claim your{" "}
-            <span className="px-2 text-center text-[30px] md:text-[50px] text-transparent bg-clip-text bg-gradient-to-r from-[#ff4b1f] to-[#ff9068]">
+            <span className="bg-gradient-to-r from-[#ff4b1f] to-[#ff9068] bg-clip-text px-2 text-center text-[30px] text-transparent md:text-[50px]">
               username
             </span>{" "}
             now !
@@ -57,7 +57,7 @@ export const Username = (prop: any) => {
                 className="ml-[100px] h-full w-10/12 bg-inherit text-[20px] lowercase outline-none md:ml-[170px] md:text-[28px]"
               />
               <div className="absolute bottom-1 left-1 top-0 bg-slate-100">
-                <p className="mt-4 px-1 text-[20px] md:text-[28px] font-heading tracking-wide md:ml-2">
+                <p className="font-heading mt-4 px-1 text-[20px] tracking-wide md:ml-2 md:text-[28px]">
                   refhired.com/
                 </p>
               </div>

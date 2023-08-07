@@ -41,7 +41,7 @@ export function Provider({ children }) {
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "font-sans selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white",
+            "selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white font-sans",
             fontSans.variable,
             fontHeading.variable
           )}>

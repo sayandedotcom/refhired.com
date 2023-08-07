@@ -54,47 +54,47 @@ const Page = () => {
         ))} */}
       {/* </div> */}
       <div className="flex flex-wrap bg-green-300">
-        <div className="aspect-square w-28 border border-green-600 bg-background dark:border-white">
+        <div className="bg-background aspect-square w-28 border border-green-600 dark:border-white">
           background
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-foreground dark:border-white">
+        <div className="bg-foreground aspect-square w-28 border border-green-600 dark:border-white">
           foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-muted dark:border-white">muted</div>
-        <div className="aspect-square w-28 border border-green-600 bg-muted-foreground dark:border-white">
+        <div className="bg-muted aspect-square w-28 border border-green-600 dark:border-white">muted</div>
+        <div className="bg-muted-foreground aspect-square w-28 border border-green-600 dark:border-white">
           muted-foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-popover dark:border-white">popover</div>
-        <div className="aspect-square w-28 border border-green-600 bg-popover-foreground dark:border-white">
+        <div className="bg-popover aspect-square w-28 border border-green-600 dark:border-white">popover</div>
+        <div className="bg-popover-foreground aspect-square w-28 border border-green-600 dark:border-white">
           popover-foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-card dark:border-white">card</div>
-        <div className="aspect-square w-28 border border-green-600 bg-card-foreground dark:border-white">
+        <div className="bg-card aspect-square w-28 border border-green-600 dark:border-white">card</div>
+        <div className="bg-card-foreground aspect-square w-28 border border-green-600 dark:border-white">
           card-foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-border dark:border-white">border</div>
-        <div className="aspect-square w-28 border border-green-600 bg-input dark:border-white">input</div>
-        <div className="aspect-square w-28 border border-green-600 bg-primary dark:border-white">primary</div>
-        <div className="aspect-square w-28 border border-green-600 bg-primary-foreground dark:border-white">
+        <div className="bg-border aspect-square w-28 border border-green-600 dark:border-white">border</div>
+        <div className="bg-input aspect-square w-28 border border-green-600 dark:border-white">input</div>
+        <div className="bg-primary aspect-square w-28 border border-green-600 dark:border-white">primary</div>
+        <div className="bg-primary-foreground aspect-square w-28 border border-green-600 dark:border-white">
           primary-foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-secondary dark:border-white">
+        <div className="bg-secondary aspect-square w-28 border border-green-600 dark:border-white">
           secondary
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-secondary-foreground dark:border-white">
+        <div className="bg-secondary-foreground aspect-square w-28 border border-green-600 dark:border-white">
           secondary-foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-accent dark:border-white">accent</div>
-        <div className="aspect-square w-28 border border-green-600 bg-accent-foreground dark:border-white">
+        <div className="bg-accent aspect-square w-28 border border-green-600 dark:border-white">accent</div>
+        <div className="bg-accent-foreground aspect-square w-28 border border-green-600 dark:border-white">
           accent-foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-destructive dark:border-white">
+        <div className="bg-destructive aspect-square w-28 border border-green-600 dark:border-white">
           destructive
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-destructive-foreground dark:border-white">
+        <div className="bg-destructive-foreground aspect-square w-28 border border-green-600 dark:border-white">
           destructive-foreground
         </div>
-        <div className="aspect-square w-28 border border-green-600 bg-ring dark:border-white">ring</div>
+        <div className="bg-ring aspect-square w-28 border border-green-600 dark:border-white">ring</div>
         <div className="bg-radius aspect-square w-28 border border-green-600 dark:border-white">radius</div>
       </div>
       <form onSubmit={handleSubmit}>

@@ -52,20 +52,20 @@ function PostCardHeader({
   timeLeft: string;
 }) {
   return (
-    <div className="flex items-center justify-between font-heading">
+    <div className="font-heading flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm md:text-base">
         <PostHoverCard>
           <span className="cursor-pointer hover:underline">{name}</span>
         </PostHoverCard>
         •
         <PostHoverCard>
-          <span className="cursor-pointer dark:text-foreground hover:underline">{userName}</span>
+          <span className="dark:text-foreground cursor-pointer hover:underline">{userName}</span>
         </PostHoverCard>
         •<small>{time}</small>
         <small className="hidden md:block">• &nbsp; &nbsp;{timeLeft}</small>
       </div>
       <ComboboxDropdownMenu>
-        <div className="cursor-pointer rounded-full hover:bg-muted">
+        <div className="hover:bg-muted cursor-pointer rounded-full">
           <MoreHorizontal className="w-5" />
         </div>
       </ComboboxDropdownMenu>
@@ -77,7 +77,7 @@ PostCard.PostCardHeader = PostCardHeader;
 
 function PostCardDescription({ children }: { children: React.ReactNode }) {
   return (
-    <p className="cursor-pointer text-[15px] md:text-base tracking-wider font-heading">
+    <p className="font-heading cursor-pointer text-[15px] tracking-wider md:text-base">
       {children}
       <span className="float-right text-xs md:text-sm">....Show more</span>
     </p>
@@ -88,7 +88,7 @@ PostCard.PostCardDescription = PostCardDescription;
 
 function PostCardTags({ tag }: { tag: string[] }) {
   return (
-    <div className="flex h-5 gap-1 font-heading">
+    <div className="font-heading flex h-5 gap-1">
       <Tags tag={tag} />
     </div>
   );
@@ -98,7 +98,7 @@ PostCard.PostCardTags = PostCardTags;
 
 function PostCardFooter() {
   return (
-    <div className="flex items-center justify-between font-heading">
+    <div className="font-heading flex items-center justify-between">
       <MultipleButtons />
       <ApplyButton />
     </div>

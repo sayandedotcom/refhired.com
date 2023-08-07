@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 export default function Pricing() {
   return (
     <section className="py-14">
-      <div className="max-w-screen-xl mx-auto px-4 text-foreground md:px-8">
-        <div className="relative max-w-xl mx-auto sm:text-center">
+      <div className="text-foreground mx-auto max-w-screen-xl px-4 md:px-8">
+        <div className="relative mx-auto max-w-xl sm:text-center">
           <h1 className="font-heading font-semibold">Pricing for all everyone</h1>
           <div className="mt-3 max-w-xl">
             <h5 className="font-heading">Simple pricing based on your needs.</h5>
@@ -23,28 +23,28 @@ export default function Pricing() {
           {plans.map((item, idx) => (
             <div
               key={idx}
-              className={`relative flex-1 flex items-stretch flex-col rounded-xl border-foreground border-2 mt-6 sm:mt-0 ${
+              className={`border-foreground relative mt-6 flex flex-1 flex-col items-stretch rounded-xl border-2 sm:mt-0 ${
                 item.isMostPop ? "mt-10" : ""
               }`}>
               {item.isMostPop ? (
-                <span className="w-32 absolute -top-5 left-0 right-0 mx-auto px-3 py-2 rounded-full border shadow-md bg-foreground text-center text-background text-sm font-semibold">
+                <span className="bg-foreground text-background absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full border px-3 py-2 text-center text-sm font-semibold shadow-md">
                   Most popular
                 </span>
               ) : (
                 ""
               )}
-              <div className="p-8 space-y-4 border-b">
+              <div className="space-y-4 border-b p-8">
                 <span className="font-medium">{item.name}</span>
                 <div className="text-foreground text-3xl font-semibold">
-                  ${item.price} <span className="text-xl text-foreground font-normal">/mo</span>
+                  ${item.price} <span className="text-foreground text-xl font-normal">/mo</span>
                 </div>
                 <p>{item.description}</p>
-                <Button className="px-3 py-3 rounded-lg w-full font-semibold text-sm duration-150 text-background">
+                <Button className="text-background w-full rounded-lg px-3 py-3 text-sm font-semibold duration-150">
                   Get Started
                 </Button>
               </div>
-              <ul className="p-8 space-y-3">
-                <li className="pb-2 font-medium text-xl">
+              <ul className="space-y-3 p-8">
+                <li className="pb-2 text-xl font-medium">
                   <p>Features</p>
                 </li>
                 {item.features.map((featureItem, idx) => (

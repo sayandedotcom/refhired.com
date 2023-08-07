@@ -61,7 +61,7 @@ const Username = async () => {
     //     </>
     //   )}
     // </div>
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div className="flex h-screen w-screen items-center justify-center">
       <div className="font-heading text-[600px]">rh.</div>
       {/* <h1 className="font-heading text-[250px]">refhired.com</h1> */}
       {/* <h1 className="font-heading text-[250px]">Refhired.com</h1> */}

@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 export const Testimonials = () => {
   const { theme } = useTheme();
   return (
-    <section className="relative overflow-hidden py-24 lg:pb-28 font-heading">
+    <section className="font-heading relative overflow-hidden py-24 lg:pb-28">
       <div
         className="absolute left-0 top-0 h-full w-24 md:w-96"
         style={{

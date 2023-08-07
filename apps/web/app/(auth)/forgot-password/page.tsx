@@ -1,36 +1,36 @@
 export default function ForgotPassword() {
   return (
-    <main className="w-full flex">
-      <div className="relative flex-1 hidden items-center justify-center h-screen bg-gray-900 lg:flex">
+    <main className="flex w-full">
+      <div className="relative hidden h-screen flex-1 items-center justify-center bg-gray-900 lg:flex">
         <div className="relative z-10 w-full max-w-md">
           <img src="https://floatui.com/logo-dark.svg" width={150} />
           <div className=" mt-16 space-y-3">
-            <h3 className="text-white text-3xl font-bold">Start growing your business quickly</h3>
+            <h3 className="text-3xl font-bold text-white">Start growing your business quickly</h3>
             <p className="text-gray-300">
               Create an account and get access to all features for 30-days, No credit card required.
             </p>
             <div className="flex items-center -space-x-2 overflow-hidden">
               <img
                 src="https://randomuser.me/api/portraits/women/79.jpg"
-                className="w-10 h-10 rounded-full border-2 border-white"
+                className="h-10 w-10 rounded-full border-2 border-white"
               />
               <img
                 src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg"
-                className="w-10 h-10 rounded-full border-2 border-white"
+                className="h-10 w-10 rounded-full border-2 border-white"
               />
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=a72ca28288878f8404a795f39642a46f"
-                className="w-10 h-10 rounded-full border-2 border-white"
+                className="h-10 w-10 rounded-full border-2 border-white"
               />
               <img
                 src="https://randomuser.me/api/portraits/men/86.jpg"
-                className="w-10 h-10 rounded-full border-2 border-white"
+                className="h-10 w-10 rounded-full border-2 border-white"
               />
               <img
                 src="https://images.unsplash.com/photo-1510227272981-87123e259b17?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=3759e09a5b9fbe53088b23c615b6312e"
-                className="w-10 h-10 rounded-full border-2 border-white"
+                className="h-10 w-10 rounded-full border-2 border-white"
               />
-              <p className="text-sm text-gray-400 font-medium translate-x-5">Join 5.000+ users</p>
+              <p className="translate-x-5 text-sm font-medium text-gray-400">Join 5.000+ users</p>
             </div>
           </div>
         </div>
@@ -42,12 +42,12 @@ export default function ForgotPassword() {
             filter: "blur(118px)",
           }}></div>
       </div>
-      <div className="flex-1 flex items-center justify-center h-screen">
-        <div className="w-full max-w-md space-y-8 px-4 bg-white text-gray-600 sm:px-0">
+      <div className="flex h-screen flex-1 items-center justify-center">
+        <div className="w-full max-w-md space-y-8 bg-white px-4 text-gray-600 sm:px-0">
           <div className="">
             <img src="https://floatui.com/logo.svg" width={150} className="lg:hidden" />
             <div className="mt-5 space-y-2">
-              <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Sign up</h3>
+              <h3 className="text-2xl font-bold text-gray-800 sm:text-3xl">Sign up</h3>
               <p className="">
                 Already have an account?{" "}
                 <a href="javascript:void(0)" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -57,8 +57,8 @@ export default function ForgotPassword() {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-x-3">
-            <button className="flex items-center justify-center py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
-              <svg className="w-5 h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button className="flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-50 active:bg-gray-100">
+              <svg className="h-5 w-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_17_40)">
                   <path
                     d="M47.532 24.5528C47.532 22.9214 47.3997 21.2811 47.1175 19.6761H24.48V28.9181H37.4434C36.9055 31.8988 35.177 34.5356 32.6461 36.2111V42.2078H40.3801C44.9217 38.0278 47.532 31.8547 47.532 24.5528Z"
@@ -84,16 +84,16 @@ export default function ForgotPassword() {
                 </defs>
               </svg>
             </button>
-            <button className="flex items-center justify-center py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
-              <svg className="w-5 h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button className="flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-50 active:bg-gray-100">
+              <svg className="h-5 w-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M15.095 43.5014C33.2083 43.5014 43.1155 28.4946 43.1155 15.4809C43.1155 15.0546 43.1155 14.6303 43.0867 14.2079C45.0141 12.8138 46.6778 11.0877 48 9.11033C46.2028 9.90713 44.2961 10.4294 42.3437 10.6598C44.3996 9.42915 45.9383 7.49333 46.6733 5.21273C44.7402 6.35994 42.6253 7.16838 40.4198 7.60313C38.935 6.02428 36.9712 4.97881 34.8324 4.6285C32.6935 4.27818 30.4988 4.64256 28.5879 5.66523C26.677 6.68791 25.1564 8.31187 24.2615 10.2858C23.3665 12.2598 23.1471 14.4737 23.6371 16.5849C19.7218 16.3885 15.8915 15.371 12.3949 13.5983C8.89831 11.8257 5.81353 9.33765 3.3408 6.29561C2.08146 8.4636 1.69574 11.0301 2.2622 13.4725C2.82865 15.9148 4.30468 18.0495 6.38976 19.4418C4.82246 19.3959 3.2893 18.9731 1.92 18.2092V18.334C1.92062 20.6077 2.7077 22.8112 4.14774 24.5707C5.58778 26.3303 7.59212 27.5375 9.8208 27.9878C8.37096 28.3832 6.84975 28.441 5.37408 28.1567C6.00363 30.1134 7.22886 31.8244 8.87848 33.0506C10.5281 34.2768 12.5197 34.9569 14.5747 34.9958C12.5329 36.6007 10.1946 37.7873 7.69375 38.4878C5.19287 39.1882 2.57843 39.3886 0 39.0777C4.50367 41.9677 9.74385 43.5007 15.095 43.4937"
                   fill="#1DA1F2"
                 />
               </svg>
             </button>
-            <button className="flex items-center justify-center py-2.5 border rounded-lg hover:bg-gray-50 duration-150 active:bg-gray-100">
-              <svg className="w-5 h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button className="flex items-center justify-center rounded-lg border py-2.5 duration-150 hover:bg-gray-50 active:bg-gray-100">
+              <svg className="h-5 w-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_910_21)">
                   <path
                     fill-rule="evenodd"
@@ -139,8 +139,8 @@ export default function ForgotPassword() {
             </button>
           </div>
           <div className="relative">
-            <span className="block w-full h-px bg-gray-300"></span>
-            <p className="inline-block w-fit text-sm bg-white px-2 absolute -top-2 inset-x-0 mx-auto">
+            <span className="block h-px w-full bg-gray-300"></span>
+            <p className="absolute inset-x-0 -top-2 mx-auto inline-block w-fit bg-white px-2 text-sm">
               Or continue with
             </p>
           </div>
@@ -150,7 +150,7 @@ export default function ForgotPassword() {
               <input
                 type="text"
                 required
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
               />
             </div>
             <div>
@@ -158,7 +158,7 @@ export default function ForgotPassword() {
               <input
                 type="email"
                 required
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
               />
             </div>
             <div>
@@ -166,10 +166,10 @@ export default function ForgotPassword() {
               <input
                 type="password"
                 required
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                className="mt-2 w-full rounded-lg border bg-transparent px-3 py-2 text-gray-500 shadow-sm outline-none focus:border-indigo-600"
               />
             </div>
-            <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+            <button className="w-full rounded-lg bg-indigo-600 px-4 py-2 font-medium text-white duration-150 hover:bg-indigo-500 active:bg-indigo-600">
               Create account
             </button>
           </form>

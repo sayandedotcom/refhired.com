@@ -42,7 +42,7 @@ export const Header = () => {
 
             <nav
               aria-label="Global"
-              className="hidden gap-8 font-medium md:flex md:justify- md:items-center bg-foreground rounded-full p-4 text-background h-14 text-lg">
+              className="md:justify- bg-foreground text-background hidden h-14 gap-8 rounded-full p-4 text-lg font-medium md:flex md:items-center">
               <Link className="hover:bg-background hover:text-foreground" href="/about-us">
                 About Us
               </Link>
@@ -78,7 +78,7 @@ export const Header = () => {
                       className={buttonVariants()}
                       href="/login">
                       {loadingValue === "logInRedirect" && (
-                        <Icons.spinner className="h-5 w-5 animate-spin mr-2" />
+                        <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />
                       )}
                       Log In
                     </Link>
@@ -89,7 +89,7 @@ export const Header = () => {
                       className={buttonVariants({ variant: "outline" })}
                       href="/sign-up">
                       {loadingValue === "signUpRedirect" && (
-                        <Icons.spinner className="h-5 w-5 animate-spin mr-2" />
+                        <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />
                       )}
                       Sign Up
                     </Link>

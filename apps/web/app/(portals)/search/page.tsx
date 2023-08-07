@@ -10,17 +10,17 @@ const SearchPage = () => {
   return (
     <>
       <div className="sticky top-0 m-2 flex items-center gap-1 md:gap-2">
-        <form className="flex w-full overflow-hidden rounded-full bg-muted items-center">
+        <form className="bg-muted flex w-full items-center overflow-hidden rounded-full">
           <Search className="w-[10%]" />
           <Input
             type="text"
             placeholder="Search"
-            className="w-[90%] rounded-none bg-muted text-base md:text-lg ml-auto outline-none border-none focus:border-none focus:outline-none
-            focus-visible:ring-0 focus-visible:border-none focus-visible:outline-none"
+            className="bg-muted ml-auto w-[90%] rounded-none border-none text-base outline-none focus:border-none focus:outline-none focus-visible:border-none
+            focus-visible:outline-none focus-visible:ring-0 md:text-lg"
           />
         </form>
         <TooltipDemo text="Filter">
-          <div className="cursor-pointer rounded-full hover:bg-muted">
+          <div className="hover:bg-muted cursor-pointer rounded-full">
             <SlidersHorizontal className="m-2 h-4 md:h-5" />
           </div>
         </TooltipDemo>

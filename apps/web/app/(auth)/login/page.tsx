@@ -84,7 +84,7 @@ const Login = () => {
       <TypographyH2>Welcome Back !</TypographyH2>
       <div className="flex w-11/12 flex-col items-center justify-center gap-6 rounded-md border border-gray-200 bg-white py-8 lg:w-[450px]">
         {error ? (
-          <div className="w-10/12 rounded-sm border border-destructive bg-red-300 p-2 text-center text-destructive">
+          <div className="border-destructive text-destructive w-10/12 rounded-sm border bg-red-300 p-2 text-center">
             {error}
           </div>
         ) : (
@@ -123,7 +123,7 @@ const Login = () => {
                     />
                   </FormControl>
                   <FormMessage />
-                  <Link className="ml-auto mt-3 text-muted-foreground" href="/forgot-password">
+                  <Link className="text-muted-foreground ml-auto mt-3" href="/forgot-password">
                     <TypographySmall>Forgot Password ?</TypographySmall>
                   </Link>
                 </FormItem>
@@ -139,7 +139,7 @@ const Login = () => {
         </Form>
         <Separator />
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="px-2 text-muted-foreground">Or continue with</span>
+          <span className="text-muted-foreground px-2">Or continue with</span>
         </div>
         {/* <div className="flex w-11/12 flex-col gap-4 lg:w-[350px]">
           <Button
@@ -157,7 +157,7 @@ const Login = () => {
             <TypographyP>Sign In with GitHub</TypographyP>
           </Button>
         </div> */}
-        <div className="flex w-11/12 gap-4 lg:w-[350px] justify-center">
+        <div className="flex w-11/12 justify-center gap-4 lg:w-[350px]">
           <Button
             disabled={loadingValue === "githubSignUp"}
             variant="secondary"

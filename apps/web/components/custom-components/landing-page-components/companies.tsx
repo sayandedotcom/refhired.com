@@ -4,9 +4,9 @@ import { Icons } from "@/components/icons/icons";
 
 export function Companies() {
   return (
-    <div className="flex flex-col justify-center items-center my-9 font-heading">
+    <div className="font-heading my-9 flex flex-col items-center justify-center">
       <h4 className="">Get referrals from employees of top companies</h4>
-      <div className="flex flex-wrap justify-center items-center gap-10 my-10">
+      <div className="my-10 flex flex-wrap items-center justify-center gap-10">
         <Icons.meta />
         <Icons.googleLogo />
         <Icons.microsoft />

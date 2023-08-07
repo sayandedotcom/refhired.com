@@ -193,9 +193,9 @@ export const Section = () => {
     // </section>
 
     <section className="py-14">
-      <div className="max-w-screen-xl mx-auto px-4 text-center text-gray-600 md:px-8">
-        <div className="max-w-2xl mx-auto">
-          <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
+      <div className="mx-auto max-w-screen-xl px-4 text-center text-gray-600 md:px-8">
+        <div className="mx-auto max-w-2xl">
+          <h3 className="text-3xl font-semibold text-gray-800 sm:text-4xl">
             The fastest way to launch a product
           </h3>
           <p className="mt-3">
@@ -204,13 +204,13 @@ export const Section = () => {
           </p>
         </div>
         <div className="mt-12">
-          <ul className="grid gap-y-8 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-x-12 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((item, idx) => (
               <li key={idx} className="space-y-3">
-                <div className="w-12 h-12 mx-auto bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-indigo-50 text-indigo-600">
                   {item.icon}
                 </div>
-                <h4 className="text-lg text-gray-800 font-semibold">{item.title}</h4>
+                <h4 className="text-lg font-semibold text-gray-800">{item.title}</h4>
                 <p>{item.desc}</p>
               </li>
             ))}

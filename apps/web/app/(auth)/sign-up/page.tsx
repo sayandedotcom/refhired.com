@@ -86,7 +86,7 @@ const SignUp = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-around gap-5 py-3 md:flex-row md:px-10 lg:gap-16">
       <section className="hidden md:block lg:flex lg:flex-col lg:gap-3">
-        <Link href="/" className="flex items-center gap-3 font-heading">
+        <Link href="/" className="font-heading flex items-center gap-3">
           <Icons.largeLogo className="" />
           <h1 className="mt-1">Refhired.com</h1>
         </Link>
@@ -95,7 +95,7 @@ const SignUp = () => {
       <div className="flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border border-gray-200 bg-white py-3 lg:w-[450px]">
         <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">
           <TypographyH3 className="text-[#030711]">Welcome to the Refhired.com</TypographyH3>
-          <p className="text-muted-foreground font-semibold text-sm">
+          <p className="text-muted-foreground text-sm font-semibold">
             Create your account and start using Refhired.com for free, with unlimited event types, bookings
             and all the features you need. Upgrade to a premium plan if you&prime;re looking for more
             features.
@@ -192,7 +192,7 @@ const SignUp = () => {
         </Form>
         <Separator />
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="px-2 text-muted-foreground">Or continue with</span>
+          <span className="text-muted-foreground px-2">Or continue with</span>
         </div>
         {/* <div className="flex w-11/12 justify-between gap-4 lg:w-[350px]">
           <Button
@@ -212,7 +212,7 @@ const SignUp = () => {
             <TypographyP>GitHub</TypographyP>
           </Button>
         </div> */}
-        <div className="flex w-11/12 gap-4 lg:w-[350px] justify-center">
+        <div className="flex w-11/12 justify-center gap-4 lg:w-[350px]">
           <Button
             disabled={loadingValue === "githubSignUp"}
             variant="secondary"

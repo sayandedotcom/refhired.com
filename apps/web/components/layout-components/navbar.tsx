@@ -20,9 +20,9 @@ export function Navbar() {
   const { loadingValue, setLoadingValue } = useLoading();
 
   return (
-    <nav className="w-full top-0 z-20">
-      <div className="items-center px-4 max-w-screen-2xl mx-auto md:px-6 lg:flex">
-        <div className="flex items-center justify-between py-3 lg:py-4 lg:block">
+    <nav className="top-0 z-20 w-full">
+      <div className="mx-auto max-w-screen-2xl items-center px-4 md:px-6 lg:flex">
+        <div className="flex items-center justify-between py-3 lg:block lg:py-4">
           <TooltipDemo text="Refhired.com">
             <Link href="/" className="flex items-center justify-around gap-3">
               <Icons.logo />
@@ -31,7 +31,7 @@ export function Navbar() {
           </TooltipDemo>
           <div className="lg:hidden">
             <button
-              className="outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+              className="rounded-md p-2 outline-none focus:border focus:border-gray-400"
               onClick={() => setState(!state)}>
               {state ? (
                 <svg
@@ -59,11 +59,11 @@ export function Navbar() {
           </div>
         </div>
         <div
-          className={`flex-1 justify-between items-center flex-row-reverse lg:overflow-visible lg:flex lg:pb-0 lg:pr-0 lg:h-auto ${
-            state ? "h-screen pb-20 overflow-auto pr-4" : "hidden"
+          className={`flex-1 flex-row-reverse items-center justify-between lg:flex lg:h-auto lg:overflow-visible lg:pb-0 lg:pr-0 ${
+            state ? "h-screen overflow-auto pb-20 pr-4" : "hidden"
           }`}>
           <div>
-            <ul className="flex flex-col-reverse items-center space-x-0 lg:space-x-6 lg:flex-row">
+            <ul className="flex flex-col-reverse items-center space-x-0 lg:flex-row lg:space-x-6">
               <li className="mt-4 lg:mt-0">
                 <TooltipDemo text="Log In">
                   <Link
@@ -71,7 +71,7 @@ export function Navbar() {
                     className={buttonVariants()}
                     href="/login">
                     {loadingValue === "logInRedirect" && (
-                      <Icons.spinner className="h-5 w-5 animate-spin mr-2" />
+                      <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />
                     )}
                     Log In
                   </Link>
@@ -84,7 +84,7 @@ export function Navbar() {
                     className={buttonVariants({ variant: "outline" })}
                     href="/sign-up">
                     {loadingValue === "signUpRedirect" && (
-                      <Icons.spinner className="h-5 w-5 animate-spin mr-2" />
+                      <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />
                     )}
                     Sign Up
                   </Link>
@@ -99,7 +99,7 @@ export function Navbar() {
             </ul>
           </div>
           <div className="flex-1">
-            <ul className="justify-center items-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
+            <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
               {navigation.map((item, idx) => {
                 return (
                   <li

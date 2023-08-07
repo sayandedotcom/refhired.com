@@ -31,14 +31,14 @@ export function OptionsSection({ session }: { session: any | null }) {
           className="cursor-pointer p-2">
           <Icons.logo />
         </Link> */}
-        <div className="lg:flex lg:flex-col lg:justify-start font-heading tracking-wider">
+        <div className="font-heading tracking-wider lg:flex lg:flex-col lg:justify-start">
           <div className="cursor-pointer text-xl">
             {portalsList.map(({ name, link, icon, activeIcon }) => (
               <TooltipDemo key={name} text={`Go to ${name}`}>
                 <Link
                   href={link}
                   // onClick={() => handleActive(link)}
-                  className="flex items-center gap-4 rounded-full px-3 py-3 hover:bg-muted">
+                  className="hover:bg-muted flex items-center gap-4 rounded-full px-3 py-3">
                   {pathName !== link ? (
                     <span className="text-2xl md:text-2xl">{icon}</span>
                   ) : (
@@ -51,11 +51,11 @@ export function OptionsSection({ session }: { session: any | null }) {
           </div>
         </div>
         <PostTypeDialog>
-          <button className="rounded-full border-2 border-black bg-foreground px-3 py-3 text-xl dark:text-black text-white lg:w-10/12 lg:px-2">
+          <button className="bg-foreground rounded-full border-2 border-black px-3 py-3 text-xl text-white dark:text-black lg:w-10/12 lg:px-2">
             {width < 1000 ? <FaPenNib /> : "Post"}
           </button>
         </PostTypeDialog>
-        <div className="flex items-center justify-center gap-3 rounded-full bg-muted lg:w-10/12 lg:py-2">
+        <div className="bg-muted flex items-center justify-center gap-3 rounded-full lg:w-10/12 lg:py-2">
           <AvatarDemo image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c" />
           <span className="hidden lg:block">Sayan De</span>
         </div>
@@ -84,7 +84,7 @@ export function ContentLargeSection({ children }: { children: React.ReactNode })
   return (
     <section className="w-[85%] lg:w-full">
       <div className="px-4 py-4">
-        <h5 className="capitalize font-heading">{path}</h5>
+        <h5 className="font-heading capitalize">{path}</h5>
       </div>
       <Separator className="dark:bg-[#2d3134]" />
       {children}
@@ -94,12 +94,12 @@ export function ContentLargeSection({ children }: { children: React.ReactNode })
 
 export function ExtraSection() {
   return (
-    <section className="sticky top-0 hidden h-screen w-80 lg:flex lg:flex-col lg:gap-3 lg:p-2 font-medium font-heading">
-      <div className="rounded-2xl bg-muted px-4 py-2">
+    <section className="font-heading sticky top-0 hidden h-screen w-80 font-medium lg:flex lg:flex-col lg:gap-3 lg:p-2">
+      <div className="bg-muted rounded-2xl px-4 py-2">
         <h5>Extras</h5>
       </div>
       <ThemeSwitcher />
-      <div className="rounded-2xl bg-muted px-4 py-2">
+      <div className="bg-muted rounded-2xl px-4 py-2">
         <h6>Sugessions</h6>
       </div>
     </section>

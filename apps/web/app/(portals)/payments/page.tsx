@@ -23,7 +23,7 @@ import { Icons } from "@/components/icons/icons";
 
 export default function Payments() {
   return (
-    <div className="flex justify-center items-center h-full w-full">
+    <div className="flex h-full w-full items-center justify-center">
       <Card className="w-4/12">
         <CardHeader>
           <CardTitle>Payment Method</CardTitle>
@@ -33,7 +33,7 @@ export default function Payments() {
           <RadioGroup defaultValue="card" className="grid grid-cols-3 gap-4">
             <Label
               htmlFor="card"
-              className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary">
+              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4">
               <RadioGroupItem value="card" id="card" className="sr-only" />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -51,14 +51,14 @@ export default function Payments() {
             </Label>
             <Label
               htmlFor="paypal"
-              className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary">
+              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4">
               <RadioGroupItem value="paypal" id="paypal" className="sr-only" />
               <Icons.paypal className="mb-3 h-6 w-6" />
               Paypal
             </Label>
             <Label
               htmlFor="apple"
-              className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary">
+              className="border-muted bg-popover hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary flex flex-col items-center justify-between rounded-md border-2 p-4">
               <RadioGroupItem value="apple" id="apple" className="sr-only" />
               <Icons.apple className="mb-3 h-6 w-6" />
               Apple

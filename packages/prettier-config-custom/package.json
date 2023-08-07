@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "prettier-plugin-tailwindcss": "^0.3.0"
+    "prettier-plugin-tailwindcss": "^0.4.1"
   },
   "keywords": [
     "prettier",

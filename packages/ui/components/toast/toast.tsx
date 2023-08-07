@@ -66,7 +66,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
             )}
             {severity === "success" && (
               <CheckCircle2
-                className={clsx("text-default h-5 w-5 fill-muted", iconClassName)}
+                className={clsx("text-default fill-muted h-5 w-5", iconClassName)}
                 aria-hidden="true"
               />
             )}
