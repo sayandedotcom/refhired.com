@@ -62,6 +62,7 @@ export const metadata: Metadata = {
     },
   ],
   manifest: "/manifest.json",
+  metadataBase: new URL("https://refhired.com"),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

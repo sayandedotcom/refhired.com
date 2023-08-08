@@ -11,6 +11,10 @@ import Avatar from "../../../public/images/avatar/avatar.png";
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "Get job referrals to the top best companies of the world",
+  robots: {
+    index: false,
+    nocache: true, //Disallow in sitemap
+  },
 };
 
 // async function getTasks() {

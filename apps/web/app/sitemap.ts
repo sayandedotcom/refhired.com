@@ -1,6 +1,14 @@
-import { MetadataRoute } from "next";
+import { getAllPosts } from "@/lib/getData";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap() {
+  const baseUrl = "https://www.dummyblog.com";
+
+  const posts = await getAllPosts();
+  const postUrls = posts.map((post) => ({
+    url: `${baseUrl}/post/${post.id}`,
+    lastModified: post.updatedAt,
+  }));
+
   return [
     {
       url: "https://acme.com",
@@ -14,5 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://acme.com/blog",
       lastModified: new Date(),
     },
+    ...postUrls,
   ];
 }
