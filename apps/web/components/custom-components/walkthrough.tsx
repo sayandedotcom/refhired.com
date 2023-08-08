@@ -2,7 +2,15 @@
 
 import Joyride, { Step } from "react-joyride";
 
-export function Walkthrough({ steps, run, setRun }: { steps: Step[]; run: boolean; setRun: any }) {
+type WalkthroughProps = {
+  steps: Step[];
+  run: boolean;
+  setRun: any;
+  countIntro: number;
+  setCountIntro?: any;
+};
+
+export function Walkthrough({ steps, run, setRun, countIntro, setCountIntro }: WalkthroughProps) {
   return (
     <Joyride
       beaconComponent={(props) => <div {...props} className="hidden" />}
@@ -10,14 +18,23 @@ export function Walkthrough({ steps, run, setRun }: { steps: Step[]; run: boolea
       showProgress
       showSkipButton
       scrollToFirstStep
-      run={run}
+      disableScrolling
+      debug
+      disableCloseOnEsc
+      disableOverlayClose
+      hideCloseButton
+      // run={run}
       callback={({ status }) => {
-        if (status === "finished" || status === "skipped" || status === "error") {
-          setRun(false);
-        }
-        // if (status === "running") {
-        //   : "hsl(var(--popover))";
+        // if (status === "finished" || status === "skipped" || status === "error") {
+        //  setRun(false);
         // }
+        if (status === "finished") {
+          setCountIntro((countIntro = 2));
+        }
+
+        if (status === "skipped" || status === "paused") {
+          setCountIntro((prev) => prev + 1);
+        }
       }}
       steps={steps}
       styles={{

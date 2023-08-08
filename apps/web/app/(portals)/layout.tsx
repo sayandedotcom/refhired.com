@@ -5,6 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 import { Steps } from "@/config";
+import { useLocalStorage } from "usehooks-ts";
 
 import { Separator } from "@referrer/ui";
 
@@ -20,6 +21,8 @@ import {
 import "../../styles/globals.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const [run, setRun] = useState(true);
+  const [countIntro, setCountIntro] = useLocalStorage("count-intro", 0);
   const pathName = usePathname();
   const showExtraSection = [
     "/home",
@@ -31,13 +34,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "/applied",
   ].includes(pathName);
 
-  const [run, setRun] = useState(true);
-
   const session = null;
 
   return (
     <>
-      <Walkthrough steps={Steps} run={run} setRun={setRun} />
+      {countIntro < 2 ? (
+        <Walkthrough
+          steps={Steps}
+          run={run}
+          setRun={setRun}
+          countIntro={countIntro}
+          setCountIntro={setCountIntro}
+        />
+      ) : (
+        <></>
+      )}
       <section className="flex justify-between">
         <NewOptionsSection session={session?.user?.userName ?? "profile"} />
         <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
