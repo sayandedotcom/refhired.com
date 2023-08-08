@@ -104,7 +104,7 @@ export const Tags = ({ tag }) => {
       {tag.map((item, i) =>
         width < 1000
           ? i < 1
-          : i < 3 && (
+          : i < 100 && (
               <Badge
                 className="cursor-pointer border
                 bg-[#18273f]  text-[#3382e4] hover:bg-[#146de2] hover:text-white

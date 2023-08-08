@@ -2,8 +2,6 @@ import Image from "next/image";
 
 import { MoreHorizontal } from "lucide-react";
 
-import { Separator } from "@referrer/ui";
-
 import { PostHoverCard } from "@/components/ui";
 
 import { ApplyButton, MultipleButtons, Tags } from "./post-buttons";
@@ -11,13 +9,11 @@ import { ComboboxDropdownMenu } from "./post-more-menu";
 
 export const PostCard = ({ key, children }: { key: any; children: React.ReactNode }) => {
   return (
-    <>
-      <Separator />
-      <div key={key} className="mx-auto flex w-full gap-2 p-1 md:gap-3 md:p-4">
-        {children}
-      </div>
-      <Separator />
-    </>
+    <div
+      key={key}
+      className="border-border mx-auto my-2 flex w-11/12 gap-2 rounded-lg border p-1 md:gap-3  md:p-4 ">
+      {children}
+    </div>
   );
 };
 // (200 Applied)
@@ -26,7 +22,7 @@ function ProfileImage({ src }: { src: any }) {
   return (
     <div className="w-[12%]">
       <PostHoverCard>
-        <Image alt="img" src={src} width={64} height={64} className="cursor-pointer rounded-full" />
+        <Image alt="img" src={src} width={64} height={64} className="mx-auto cursor-pointer rounded-full" />
       </PostHoverCard>
     </div>
   );
