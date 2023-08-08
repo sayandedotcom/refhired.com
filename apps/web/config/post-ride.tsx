@@ -4,7 +4,7 @@ import { Step } from "react-joyride";
 
 export const PostSteps: Step[] = [
   {
-    title: "👋 Take a short tour of Post !",
+    title: "👋 Take a short tour of Post Cards !",
     placement: "center",
     target: "section",
     content: "Introduce to some features and options",
@@ -19,61 +19,49 @@ export const PostSteps: Step[] = [
   {
     title: "Home",
     placement: "right",
-    target: "#home",
+    target: "#profile-picture",
     content: "This is my awesome feature!",
   },
   {
     title: "Search",
     placement: "right",
-    target: "#search",
+    target: "#post-name",
     content: "This is my awesome feature!",
   },
   {
     title: "Notifications",
     placement: "right",
-    target: "#notifications",
+    target: "#post-username",
     content: "This is my awesome feature!",
   },
   {
     title: "Bookmarks",
     placement: "right",
-    target: "#bookmarks",
+    target: "#post-time-left",
     content: "This is my awesome feature!",
   },
   {
     title: "Requests",
     placement: "right",
-    target: "#requests",
+    target: "#post-options",
     content: "This is my awesome feature!",
   },
   {
     title: "Applied",
     placement: "right",
-    target: "#applied",
+    target: "#post-content",
     content: "This is my awesome feature!",
   },
   {
     title: "Settings",
     placement: "right",
-    target: "#settings",
+    target: "#post-tags",
     content: "This is my awesome feature!",
   },
   {
-    title: "Messages",
+    title: "Settings",
     placement: "right",
-    target: "#messages",
-    content: "This is my awesome feature!",
-  },
-  {
-    title: "Dashboard",
-    placement: "right",
-    target: "#dashboard",
-    content: "This is my awesome feature!",
-  },
-  {
-    title: "Profile",
-    placement: "right",
-    target: "#profile",
+    target: "#post-apply",
     content: "This is my awesome feature!",
   },
 ];

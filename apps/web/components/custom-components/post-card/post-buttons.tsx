@@ -24,12 +24,13 @@ export const ApplyButton = () => {
     <TooltipDemo text="Apply">
       <ApplyDialog>
         <Button
+          id="post-apply"
           disabled={applied}
           isLoading={loadingValue === "apply"}
           iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
           onClick={apply}
           className="h-9 w-3/12 rounded-full text-sm">
-          {applied ? "Applied !" : "Apply"}
+          {applied ? "Applied !" : "Apply (200)"}
         </Button>
       </ApplyDialog>
     </TooltipDemo>
@@ -70,21 +71,21 @@ export const MultipleButtons = () => {
   return (
     <div className="flex gap-9 text-xl md:text-xl">
       <TooltipDemo text="Comment">
-        <FiMessageCircle className="w-5 cursor-pointer" />
+        <FiMessageCircle id="options" className="w-5 cursor-pointer" />
       </TooltipDemo>
       <TooltipDemo text="Share">
-        <FiShare2 className="w-5 cursor-pointer" />
+        <FiShare2 id="options" className="w-5 cursor-pointer" />
       </TooltipDemo>
       <TooltipDemo text="Copy Link">
-        <FiLink2 onClick={copied} className="w-5 cursor-pointer" />
+        <FiLink2 onClick={copied} id="options" className="w-5 cursor-pointer" />
       </TooltipDemo>
       {!bookmark ? (
         <TooltipDemo text="Add to Bookmark">
-          <FaRegBookmark onClick={bookmarked} className="w-5 cursor-pointer" />
+          <FaRegBookmark onClick={bookmarked} id="options" className="w-5 cursor-pointer" />
         </TooltipDemo>
       ) : (
         <TooltipDemo text="Remove from Bookmark">
-          <FaBookmark onClick={bookmarked} className="w-5 cursor-pointer" />
+          <FaBookmark onClick={bookmarked} id="options" className="w-5 cursor-pointer" />
         </TooltipDemo>
       )}
     </div>

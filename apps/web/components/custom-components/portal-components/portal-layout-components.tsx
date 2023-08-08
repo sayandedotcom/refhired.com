@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useWindowSize } from "@/hooks";
+import { useLoading, useWindowSize } from "@/hooks";
 import clsx from "clsx";
-import { MoreHorizontal } from "lucide-react";
+import { Info, MoreHorizontal } from "lucide-react";
 import { FaPenNib } from "react-icons/fa";
 
 import { Separator } from "@referrer/ui";
@@ -150,7 +150,6 @@ export function NewOptionsSection({ session }: { session: any | null }) {
           </button>
         </PostTypeDialog>
       </div>
-      <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
     </section>
   );
 }
@@ -160,8 +159,10 @@ export function NewContentSection({ children }: { children: React.ReactNode }) {
   return (
     <section
       className={clsx(
-        "flex w-[85%] flex-col items-center lg:w-[60%]",
-        pathName.split("/")[1] === "settings" && "lg:w-full"
+        "flex w-[85%] flex-col items-center",
+        pathName.split("/")[1] === "settings" || pathName.split("/")[1] === "dashboard"
+          ? "lg:w-[80%]"
+          : "lg:w-[60%]"
       )}>
       <div className="px-4 py-4">
         <h5 className="font-heading capitalize">{pathName.split("/")[1]}</h5>
@@ -174,14 +175,18 @@ export function NewContentSection({ children }: { children: React.ReactNode }) {
 
 export function NewExtraSection() {
   const pathName = usePathname();
+  const { setLoadingValue } = useLoading();
   return (
     <section className="font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2">
       <div className="bg-muted rounded-2xl px-4 py-2">
         <h5>Extras</h5>
       </div>
-      <div id="start-tour" className="bg-muted rounded-2xl px-4 py-2">
-        <h5>Take a tour</h5>
-      </div>
+      <button
+        onClick={() => setLoadingValue("Info")}
+        id="start-tour"
+        className="bg-muted flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-lg">
+        <Info className="mb-1 h-5" /> <p>Info</p>
+      </button>
       <div className="bg-muted rounded-2xl px-2 py-2">
         <div className="bg-background flex items-center justify-center gap-3 rounded-2xl lg:w-[96%] lg:py-2">
           <AvatarDemo image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c" />

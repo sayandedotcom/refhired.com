@@ -4,9 +4,9 @@ import Joyride, { Step } from "react-joyride";
 
 type WalkthroughProps = {
   steps: Step[];
-  run: boolean;
-  setRun: any;
-  countIntro: number;
+  run?: boolean;
+  setRun?: any;
+  countIntro?: number;
   setCountIntro?: any;
 };
 
@@ -23,11 +23,11 @@ export function Walkthrough({ steps, run, setRun, countIntro, setCountIntro }: W
       disableCloseOnEsc
       disableOverlayClose
       hideCloseButton
-      // run={run}
+      run={run}
       callback={({ status }) => {
-        // if (status === "finished" || status === "skipped" || status === "error") {
-        //  setRun(false);
-        // }
+        if (status === "finished" || status === "skipped" || status === "error") {
+          setRun(false);
+        }
         if (status === "finished") {
           setCountIntro((countIntro = 2));
         }
