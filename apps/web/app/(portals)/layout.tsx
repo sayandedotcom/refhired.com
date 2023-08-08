@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { usePathname } from "next/navigation";
 
@@ -22,8 +22,18 @@ import "../../styles/globals.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [run, setRun] = useState(true);
+  const [showComponent, setShowComponent] = useState(false);
   const [countIntro, setCountIntro] = useLocalStorage("count-intro", 0);
+
   const pathName = usePathname();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowComponent(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, [showComponent, setShowComponent]);
+
   const showExtraSection = [
     "/home",
     "/search",
@@ -38,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <>
-      {countIntro < 2 ? (
+      {showComponent && countIntro < 2 && (
         <Walkthrough
           steps={Steps}
           run={run}
@@ -46,8 +56,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           countIntro={countIntro}
           setCountIntro={setCountIntro}
         />
-      ) : (
-        <></>
       )}
       <section className="flex justify-between">
         <NewOptionsSection session={session?.user?.userName ?? "profile"} />
