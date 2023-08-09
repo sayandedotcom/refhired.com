@@ -10,12 +10,16 @@ const Post = () => {
   const postType = useStore((state) => state.postType);
   return (
     <Tabs defaultValue={postType ?? "Referral"} className="w-full">
-      <TabsList className="grid w-full grid-cols-2">
+      <TabsList className="grid w-full grid-cols-3">
         <TabsTrigger value="Referral">Referral Post</TabsTrigger>
+        <TabsTrigger value="Seek">Seek Referral Post</TabsTrigger>
         <TabsTrigger value="Normal">Normal Post</TabsTrigger>
       </TabsList>
       <TabsContent value="Referral">
         <ReferralPost />
+      </TabsContent>
+      <TabsContent value="Seek">
+        <NormalPost />
       </TabsContent>
       <TabsContent value="Normal">
         <NormalPost />

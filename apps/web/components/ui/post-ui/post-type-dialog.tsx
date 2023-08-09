@@ -7,7 +7,7 @@ import { X } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
+  AlertDialogCancel2,
   AlertDialogContent,
   AlertDialogDescription, // AlertDialogFooter,
   AlertDialogHeader,
@@ -28,16 +28,17 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
-        <AlertDialogHeader className="flex-row items-center justify-between">
+        <AlertDialogHeader className="flex flex-row items-center justify-between">
           <AlertDialogTitle>What you want to Post ?</AlertDialogTitle>
-          <AlertDialogCancel className="rounded-full">
+          <AlertDialogCancel2>
             <X />
-          </AlertDialogCancel>
+          </AlertDialogCancel2>
         </AlertDialogHeader>
         <AlertDialogDescription>Select one</AlertDialogDescription>
         <div className="flex items-center justify-center gap-5">
           <AlertDialogAction onClick={() => postType("Referral")}>Referral Post</AlertDialogAction>
           <AlertDialogAction onClick={() => postType("Normal")}>Normal Post</AlertDialogAction>
+          <AlertDialogAction onClick={() => postType("Seek")}>Seek Referral Post</AlertDialogAction>
         </div>
       </AlertDialogContent>
     </AlertDialog>

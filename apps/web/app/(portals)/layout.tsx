@@ -42,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     "/messages",
     "/requests",
     "/applied",
+    "/post",
   ].includes(pathName);
 
   const session = null;

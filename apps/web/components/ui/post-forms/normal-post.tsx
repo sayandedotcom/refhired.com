@@ -18,31 +18,33 @@ export const NormalPost = () => {
 
   async function onSubmit(values: z.infer<typeof normalPostValidator>) {}
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="mx-auto flex w-11/12 flex-col justify-center gap-3">
-        {/* Title */}
-        <FormField
-          control={form.control}
-          name="title"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Textarea
-                  className="h-32 rounded-2xl md:text-lg"
-                  placeholder="Write here. . . . . . ."
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button className="bg-foreground" type="submit">
-          Post
-        </Button>
-      </form>
-    </Form>
+    <div className="mb-20">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="mx-auto flex w-11/12 flex-col justify-center gap-3">
+          {/* Title */}
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Textarea
+                    className="h-32 rounded-2xl md:text-lg"
+                    placeholder="Write here. . . . . . ."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button className="bg-foreground" type="submit">
+            Post
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 };

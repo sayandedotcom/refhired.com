@@ -74,7 +74,7 @@ export const ReferralPost = () => {
   }
 
   return (
-    <>
+    <div className="mb-20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -237,6 +237,6 @@ export const ReferralPost = () => {
           </Button>
         </form>
       </Form>
-    </>
+    </div>
   );
 };
