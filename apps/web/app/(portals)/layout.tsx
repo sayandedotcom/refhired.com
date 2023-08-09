@@ -18,13 +18,15 @@ import {
   Walkthrough,
 } from "@/components/custom-components";
 
+import { useStore } from "@/store/store";
+
 import "../../styles/globals.css";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [run, setRun] = useState(false);
   const [showComponent, setShowComponent] = useState(false);
   const [countIntro, setCountIntro] = useLocalStorage("count-intro", 0);
-
+  const joyRide = useStore((state) => state.joyRide);
   const pathName = usePathname();
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -52,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       {showComponent && countIntro < 2 && (
         <Walkthrough steps={Steps} countIntro={countIntro} setCountIntro={setCountIntro} />
       )}
-      <Walkthrough steps={PostSteps} run={run} setRun={setRun} />
+      <Walkthrough steps={PostSteps} run={!!joyRide} setRun={setRun} />
       <section className="flex">
         <NewOptionsSection session={session?.user?.userName ?? "profile"} />
         <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />

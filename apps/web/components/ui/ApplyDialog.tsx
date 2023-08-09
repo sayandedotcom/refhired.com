@@ -53,7 +53,7 @@ export function ApplyDialog({ children }) {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="w-11/12 md:w-[500px]">
         <DialogHeader>
-          <DialogTitle>Best of Luck !</DialogTitle>
+          <DialogTitle>Best of Luck ! 🎉</DialogTitle>
           <DialogDescription className="text-base">
             Provide the necessary information for this job.
           </DialogDescription>
@@ -125,7 +125,7 @@ export function ApplyDialog({ children }) {
               )}
             />
             <Button
-              disabled={!form.formState.isValid}
+              // disabled={!form.formState.isValid}
               className="w-5/12 self-center rounded-full"
               type="submit">
               Apply !

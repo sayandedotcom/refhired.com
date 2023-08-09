@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useLoading, useWindowSize } from "@/hooks";
+import { useWindowSize } from "@/hooks";
 import clsx from "clsx";
 import { Info, MoreHorizontal } from "lucide-react";
 import { FaPenNib } from "react-icons/fa";
@@ -15,6 +15,8 @@ import { Icons } from "@/components/icons/icons";
 import { AvatarDemo, PostTypeDialog, TooltipDemo } from "@/components/ui";
 
 import { portalsList } from "@/config/portals-list";
+
+import { useStore } from "@/store/store";
 
 import { ComboboxDropdownMenu } from "../post-card/post-more-menu";
 
@@ -175,14 +177,14 @@ export function NewContentSection({ children }: { children: React.ReactNode }) {
 
 export function NewExtraSection() {
   const pathName = usePathname();
-  const { setLoadingValue } = useLoading();
+  const setJoyRide = useStore((state) => state.setJoyRide);
   return (
     <section className="font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2">
       <div className="bg-muted rounded-2xl px-4 py-2">
         <h5>Extras</h5>
       </div>
       <button
-        onClick={() => setLoadingValue("Info")}
+        onClick={() => setJoyRide("post-ride")}
         id="start-tour"
         className="bg-muted flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-lg">
         <Info className="mb-1 h-5" /> <p>Info</p>
