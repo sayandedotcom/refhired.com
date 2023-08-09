@@ -38,6 +38,7 @@
     "react-github-btn": "^1.4.0",
     "react-hook-form": "^7.44.3",
     "react-hot-toast": "^2.4.1",
+    "react-hotkeys-hook": "^4.4.1",
     "react-icons": "^4.9.0",
     "react-joyride": "^2.5.5",
     "react-select": "^5.7.3",

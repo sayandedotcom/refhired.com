@@ -1,13 +1,11 @@
-import { getAllPosts } from "@/lib/getData";
-
 export default async function sitemap() {
   const baseUrl = "https://www.dummyblog.com";
 
-  const posts = await getAllPosts();
-  const postUrls = posts.map((post) => ({
-    url: `${baseUrl}/post/${post.id}`,
-    lastModified: post.updatedAt,
-  }));
+  // const posts = await getAllPosts();
+  // const postUrls = posts.map((post) => ({
+  //   url: `${baseUrl}/post/${post.id}`,
+  //   lastModified: post.updatedAt,
+  // }));
 
   return [
     {
@@ -22,6 +20,6 @@ export default async function sitemap() {
       url: "https://acme.com/blog",
       lastModified: new Date(),
     },
-    ...postUrls,
+    // ...postUrls,
   ];
 }

@@ -8,3 +8,4 @@ export * from "./settings/sidebar-nav";
 export * from "./settings/settings-header";
 export * from "./pre-loader";
 export * from "./walkthrough";
+export * from "./search-bar";
