@@ -29,6 +29,11 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+!packages/prisma/.env
+.vercel
+.env*.local
+
+
 # turbo
 .turbo
 
