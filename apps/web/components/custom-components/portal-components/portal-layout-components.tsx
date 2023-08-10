@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { Info, MoreHorizontal } from "lucide-react";
 import { FaPenNib } from "react-icons/fa";
 
-import { Separator } from "@referrer/ui";
+import { Button, Separator } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 import { Icons } from "@/components/icons/icons";
@@ -147,9 +147,11 @@ export function NewOptionsSection({ session }: { session: any | null }) {
           </div>
         </div>
         <PostTypeDialog>
-          <button className="font-heading bg-foreground mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold text-white dark:text-black lg:w-10/12 lg:px-2">
+          <Button
+            size="lg"
+            className="font-heading mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold lg:w-10/12 lg:py-7">
             {width < 1000 ? <FaPenNib /> : "Post"}
-          </button>
+          </Button>
         </PostTypeDialog>
       </div>
     </section>
