@@ -19,7 +19,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "dotenv -- turbo run build",
+    "build": "turbo run build",
     "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
