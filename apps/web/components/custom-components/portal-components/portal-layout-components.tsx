@@ -7,6 +7,7 @@ import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import clsx from "clsx";
 import { Info, MoreHorizontal } from "lucide-react";
+import { signOut } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
 import { Button, Separator } from "@referrer/ui";
@@ -209,6 +210,7 @@ export function NewExtraSection() {
         <Separator className="dark:bg-[#2d3134]" />
       </div>
       <ThemeSwitcher />
+      <Button onClick={() => signOut()}>Sign Out</Button>
     </section>
   );
 }
