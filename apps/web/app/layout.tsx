@@ -1,6 +1,11 @@
 import { Metadata } from "next";
+import { headers } from "next/headers";
 
-import { siteConfig } from "@/config";
+import { getSession } from "@/actions/sessions";
+
+import { Banner, Footer, Navbar } from "@/components/layout-components";
+
+import { rootPaths, siteConfig } from "@/config";
 
 import { Provider } from "./providers";
 
@@ -65,6 +70,25 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://refhired.com"),
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <Provider>{children}</Provider>;
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const session = await getSession();
+
+  const headersList = headers();
+
+  const pathName = headersList.get("x-invoke-path") || "";
+
+  const showNavbar = rootPaths.includes(pathName);
+
+  return (
+    <Provider>
+      {showNavbar && (
+        <>
+          <Banner />
+          <Navbar session={session} />
+        </>
+      )}
+      {children}
+      {showNavbar && <Footer />}
+    </Provider>
+  );
 }

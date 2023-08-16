@@ -2,7 +2,6 @@
 
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
-import { usePathname } from "next/navigation";
 
 import { useIsMounted } from "@/hooks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -15,7 +14,6 @@ import { Toaster } from "react-hot-toast";
 import { cn } from "@referrer/lib/utils/cn";
 
 import { PreLoader } from "@/components/custom-components";
-import { Banner, Footer, Navbar } from "@/components/layout-components";
 import ProgressBar from "@/components/ui/progress-bar";
 
 import "../styles/globals.css";
@@ -33,8 +31,6 @@ const fontHeading = localFont({
 export function Provider({ children }) {
   const queryClient = new QueryClient();
   const isMounted = useIsMounted();
-  const pathName = usePathname();
-  const showNavbar = ["/", "/docs", "/blogs", "/pricing", "/about-us", "/contact-us"].includes(pathName);
 
   return (
     <>
@@ -54,15 +50,8 @@ export function Provider({ children }) {
                 ) : (
                   <>
                     <ProgressBar />
-                    {showNavbar && (
-                      <>
-                        <Banner />
-                        <Navbar />
-                      </>
-                    )}
                     {children}
                     <Analytics />
-                    {showNavbar && <Footer />}
                   </>
                 )}
               </SessionProvider>
