@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-import { plans } from "@/config";
-
 import { Button } from "@referrer/ui";
+
+import { plans } from "@/config";
 
 export const metadata: Metadata = {
   title: "Pricing",
