@@ -1,6 +1,6 @@
-export type CREATEPOSTS = {
-  title?: string;
+export type Create_Refrral_Post = {
   userId?: string;
+  title?: string;
   description?: string;
   expiresAt?: string;
   role?: string;
