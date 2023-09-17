@@ -2,6 +2,7 @@
 
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
+import { usePathname } from "next/navigation";
 
 import { useIsMounted } from "@/hooks";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -10,11 +11,17 @@ import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
+import { Toaster as SonerToaster } from "sonner";
 
 import { cn } from "@referrer/lib/utils/cn";
 
 import { PreLoader } from "@/components/custom-components";
+import { Banner, Footer, Navbar } from "@/components/layout-components";
 import ProgressBar from "@/components/ui/progress-bar";
+
+import { rootPaths } from "@/config";
+
+import { useStore } from "@/store/store";
 
 import "../styles/globals.css";
 
@@ -31,6 +38,9 @@ const fontHeading = localFont({
 export function Provider({ children }) {
   const queryClient = new QueryClient();
   const isMounted = useIsMounted();
+  const path = usePathname();
+  const toastPosition = useStore((state) => state.toastPosition);
+  const showNavbar = rootPaths.includes(path);
 
   return (
     <>
@@ -45,12 +55,20 @@ export function Provider({ children }) {
             <QueryClientProvider client={queryClient}>
               <SessionProvider>
                 <Toaster />
+                <SonerToaster position={toastPosition} />
                 {!isMounted ? (
                   <PreLoader />
                 ) : (
                   <>
                     <ProgressBar />
+                    {showNavbar && (
+                      <>
+                        <Banner />
+                        <Navbar />
+                      </>
+                    )}
                     {children}
+                    {showNavbar && <Footer />}
                     <Analytics />
                   </>
                 )}

@@ -1,91 +1,74 @@
-// ! Schema ---------------------------------------------------------------------------------
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
-// ! Necessary for Next auth ----------------------------------------------------------------
+model User {
+  id               String      @id @default(cuid())
+  email            String      @unique
+  userName         String      @unique
+  emailVerified    DateTime?
+  image            String?
+  name             String?
+  bio              String?
+  locale           String?
+  location         String?
+  stars            Int?        @default(0)
+  createdAt        DateTime?   @default(now())
+  updatedAt        DateTime?   @updatedAt
+  workingAt        String?
+  stripeCustomerId String?     @unique
+  stripePriceId    String?
+  accounts         Account[]
+  applied          Applied[]
+  bookmarks        Bookmarks[]
+  comments         Comments[]
+  posts            Posts[]
+  sessions         Session[]
+}
 
 model Account {
-  id                 String    @id @default(cuid())
-  userId             String
-  providerType       String
-  providerId         String
-  providerAccountId  String
-  refreshToken       String?
-  accessToken        String?
-  accessTokenExpires DateTime?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  user               User      @relation(fields: [userId], references: [id])
+  id                String  @id @default(cuid())
+  userId            String
+  providerAccountId String
+  access_token      String?
+  expires_at        Int?
+  id_token          String?
+  provider          String
+  refresh_token     String?
+  scope             String?
+  session_state     String?
+  token_type        String?
+  type              String
+  user              User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([providerId, providerAccountId])
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
   id           String   @id @default(cuid())
+  sessionToken String   @unique
   userId       String
   expires      DateTime
-  sessionToken String   @unique
-  accessToken  String   @unique
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  user         User     @relation(fields: [userId], references: [id])
+  user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model VerificationRequest {
-  id         String   @id @default(cuid())
+model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
 
   @@unique([identifier, token])
 }
 
-// ! Our Models -------------------------------------------------------------------------------
-
-model User {
-  id            String      @id @default(cuid())
-  name          String?
-  email         String      @unique
-  emailVerified DateTime?
-  password      String
-  userName      String?     @unique
-  image         String?
-  workingAt     String?
-  bio           String?
-  stars         Int?        @default(0)
-  location      String?
-  verified      Boolean?    @default(false)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime?   @updatedAt
-  // stripeCustomerID String? @unique
-  // isSubscriptionActive Boolean? @default(false)
-  // stripeSubscriptionID String? @unique
-  sessions      Session[]
-  accounts      Account[]
-  followers     User[]      @relation(name: "follow")
-  following     User[]      @relation(name: "follow")
-  post          Posts[]
-  applied       Applied[]
-  bookmarks     Bookmarks[]
-  comments      Comments[]
-}
-
 model Posts {
-  id                   String      @id @default(cuid())
+  id                   Int         @id @default(autoincrement())
   userId               String
-  user                 User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  title                String
   description          String?
   createdAt            DateTime    @default(now())
   expiresAt            DateTime?
@@ -94,27 +77,30 @@ model Posts {
   experience           Int?
   location             String?
   startingRange        Int?
-  endingRange          Int?
   image                String?
+  updatedAt            DateTime    @updatedAt
   acceptingReferralsNo Int?
+  endingRange          Int?
   normalPost           Boolean?    @default(false)
-  tags                 Tags[]
+  title                String
+  tagsId               String?
   applied              Applied[]
   bookmarks            Bookmarks[]
   comments             Comments[]
-  updatedAt            DateTime    @updatedAt
+  tags                 Tags?       @relation(fields: [tagsId], references: [id])
+  user                 User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
 
 model Applied {
-  id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
   userId    String
-  posts     Posts    @relation(fields: [postId], references: [id])
-  postId    String
-  message   String?  @db.Text
+  postId    Int
   createdAt DateTime @default(now())
+  message   String?
+  posts     Posts    @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])
   @@index([userId])
@@ -128,22 +114,22 @@ model Tags {
 }
 
 model Comments {
-  id        String   @id @default(cuid())
-  text      String   @db.Text
-  user      User     @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
+  text      String
   userId    String
-  posts     Posts    @relation(fields: [postId], references: [id])
-  postId    String
+  postId    Int
   createdAt DateTime @default(now())
+  posts     Posts    @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Bookmarks {
-  id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
+  id        Int      @id @default(autoincrement())
   userId    String
-  posts     Posts    @relation(fields: [postId], references: [id])
-  postId    String
+  postId    Int
   createdAt DateTime @default(now())
+  posts     Posts    @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])
 }

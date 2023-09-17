@@ -13,7 +13,7 @@ better protect our clients and our systems.
 ## Out of scope vulnerabilities
 
 - Clickjacking on pages with no sensitive actions.
-- Unauthenticated/logout/login CSRF.
+- Unauthenticated/logout/auth/login CSRF.
 - Attacks requiring MITM or physical access to a user's device.
 - Any activity that could lead to the disruption of our service (DoS).
 - Content spoofing and text injection issues without showing an attack

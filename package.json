@@ -26,6 +26,7 @@
     "format": "turbo run format",
     "format:check": "turbo run format:check",
     "prepare": "husky install",
+    "postinstall": "prisma generate",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "web": "yarn workspace @referrer/web",

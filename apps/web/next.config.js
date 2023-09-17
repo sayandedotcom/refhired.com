@@ -23,6 +23,11 @@ module.exports = withPWA({
       destination: "/settings/profile",
       permanent: true,
     },
+    {
+      source: "/auth",
+      destination: "/auth/login",
+      permanent: true,
+    },
   ],
   transpilePackages: ["@referrer/prisma", "@referrer/ui", "@referrer/lib"],
 });

@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import { useLoading } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -25,6 +26,7 @@ import {
 } from "@referrer/ui";
 
 import { Icons } from "@/components/icons/icons";
+import { Required, sonerToast } from "@/components/ui";
 
 import { useStore } from "@/store/store";
 
@@ -49,6 +51,8 @@ const SignUp = () => {
   const claimUserName = useStore((state) => state.userName);
   const { loadingValue, setLoadingValue } = useLoading();
   const [error, setError] = useState("");
+  const searchParams = useSearchParams();
+  let callbackUrl = searchParams.get("callbackUrl") || "/";
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -74,6 +78,11 @@ const SignUp = () => {
         headers: { "Content-Type": "application/json" },
       });
       if (res.ok) {
+        sonerToast({
+          severity: "success",
+          title: "Sucessfully...",
+          message: "Log In with the details to continue !!!",
+        });
         signIn();
       }
     } catch (err) {
@@ -93,9 +102,9 @@ const SignUp = () => {
         </Link>
         <h3>Join the larget referral community !</h3>
       </section>
-      <div className="flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border border-gray-200 bg-white py-3 lg:w-[450px]">
+      <div className="border-foreground flex w-11/12 flex-col items-center justify-center gap-4 rounded-md border py-3 lg:w-[450px]">
         <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">
-          <TypographyH3 className="text-[#030711]">Welcome to the Refhired.com</TypographyH3>
+          <TypographyH3>Welcome to the Refhired.com</TypographyH3>
           <p className="text-muted-foreground text-sm font-semibold">
             Create your account and start using Refhired.com for free, with unlimited event types, bookings
             and all the features you need. Upgrade to a premium plan if you&prime;re looking for more
@@ -104,15 +113,15 @@ const SignUp = () => {
         </div>
         <Separator />
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex w-11/12 flex-col space-y-2 text-[#0f172a] lg:w-10/12">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-11/12 flex-col space-y-2 lg:w-10/12">
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Username</FormLabel>
+                  <FormLabel>
+                    Username <Required /> @
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="@johndoe" {...field} />
                   </FormControl>
@@ -126,7 +135,9 @@ const SignUp = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Full Name</FormLabel>
+                  <FormLabel>
+                    Full Name <Required /> 👤
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="John Doe" {...field} />
                   </FormControl>
@@ -139,7 +150,9 @@ const SignUp = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Email Address</FormLabel>
+                  <FormLabel>
+                    Email Address <Required /> 📧
+                  </FormLabel>
                   <FormControl>
                     <Input placeholder="john.doe@example.com" {...field} />
                   </FormControl>
@@ -152,7 +165,9 @@ const SignUp = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Password</FormLabel>
+                  <FormLabel>
+                    Password <Required /> 🔑
+                  </FormLabel>
                   <FormControl>
                     <Input
                       className="tracking-[0.5rem]"
@@ -170,7 +185,9 @@ const SignUp = () => {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Confirm Password</FormLabel>
+                  <FormLabel>
+                    Confirm Password <Required /> 🔑
+                  </FormLabel>
                   <FormControl>
                     <Input
                       className="tracking-[0.5rem]"
@@ -183,11 +200,8 @@ const SignUp = () => {
                 </FormItem>
               )}
             />
-            <Button
-              className="bg-[#0f172a] text-white hover:bg-[#0f172a]"
-              type="submit"
-              isLoading={loadingValue === "signUp"}>
-              Sign Up for free
+            <Button type="submit" isLoading={loadingValue === "signUp"}>
+              Sign Up for free 🎉
             </Button>
           </form>
         </Form>
@@ -195,60 +209,22 @@ const SignUp = () => {
         <div className="relative flex justify-center text-xs uppercase">
           <span className="text-muted-foreground px-2">Or continue with</span>
         </div>
-        {/* <div className="flex w-11/12 justify-between gap-4 lg:w-[350px]">
+        <div className="mx-auto flex w-full justify-center gap-5 lg:w-11/12">
           <Button
-            isLoading={googleLoading}
-            className="w-6/12"
-            variant="secondary"
-            onClick={() => signIn("google")}>
-            <Icons.google className="mr-2 h-4 w-4" />
-            <TypographyP>Google</TypographyP>
-          </Button>
-          <Button
-            isLoading={githubLoading}
-            className="w-6/12"
-            variant="secondary"
-            onClick={() => signIn("github")}>
-            <Icons.gitHub className="mr-2 h-4 w-4" />
-            <TypographyP>GitHub</TypographyP>
-          </Button>
-        </div> */}
-        <div className="flex w-11/12 justify-center gap-4 lg:w-[350px]">
-          <Button
-            disabled={loadingValue === "githubSignUp"}
-            variant="secondary"
-            size="icon"
-            // onClick={() => setLoadingValue("githubSignUp")}
-            onClick={() => signIn("github")}>
-            {loadingValue === "githubSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.gitHub className="h-5 w-5" />
-            )}
-          </Button>
-          <Button
+            className="flex w-36 justify-center gap-5 px-2 font-sans"
             disabled={loadingValue === "googleSignUp"}
-            onClick={() => setLoadingValue("googleSignUp")}
+            onClick={() => signIn("google")}
             variant="secondary"
             size="icon">
             {loadingValue === "googleSignUp" ? (
               <Icons.spinner className="h-5 w-5 animate-spin" />
             ) : (
-              <Icons.google className="h-5 w-5" />
-            )}
+              <Icons.google className="h-5 w-4" />
+            )}{" "}
+            Google
           </Button>
           <Button
-            disabled={loadingValue === "appleSignUp"}
-            onClick={() => setLoadingValue("appleSignUp")}
-            variant="secondary"
-            size="icon">
-            {loadingValue === "appleSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.apple className="h-5 w-5" />
-            )}
-          </Button>
-          <Button
+            className="flex w-36 justify-center gap-5 px-2 font-sans"
             disabled={loadingValue === "linkedinSignUp"}
             onClick={() => setLoadingValue("linkedinSignUp")}
             variant="secondary"
@@ -257,34 +233,13 @@ const SignUp = () => {
               <Icons.spinner className="h-5 w-5 animate-spin" />
             ) : (
               <Icons.linkedin className="h-5 w-5" />
-            )}
-          </Button>
-          <Button
-            disabled={loadingValue === "facebookSignUp"}
-            onClick={() => setLoadingValue("facebookSignUp")}
-            variant="secondary"
-            size="icon">
-            {loadingValue === "facebookSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.facebook className="h-6 w-6" />
-            )}
-          </Button>
-          <Button
-            disabled={loadingValue === "twitterSignUp"}
-            onClick={() => setLoadingValue("twitterSignUp")}
-            variant="secondary"
-            size="icon">
-            {loadingValue === "twitterSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.twitter className="h-5 w-5" />
-            )}
+            )}{" "}
+            LinkedIn
           </Button>
         </div>
         <Separator />
         <div className="flex items-center justify-center gap-2">
-          <TypographySmall className="text-[#030711]">Already have an account ?</TypographySmall>
+          <TypographySmall>Already have an account ?</TypographySmall>
           <Link className="text-muted-foreground" href="/login">
             <TypographySmall> Log In</TypographySmall>
           </Link>

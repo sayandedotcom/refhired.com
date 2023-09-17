@@ -26,6 +26,7 @@ import {
 } from "@referrer/ui";
 
 import { Icons } from "@/components/icons/icons";
+import { Required, sonerToast } from "@/components/ui";
 
 const loginSchema = z.object({
   email: z.string().nonempty("This field is required"),
@@ -37,7 +38,12 @@ const Login = () => {
   const { loadingValue, setLoadingValue } = useLoading();
   const [error, setError] = useState("");
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  let callbackUrl = searchParams.get("callbackUrl") || "/";
+  if (callbackUrl.endsWith("sign-up")) {
+    callbackUrl = "/";
+  } else {
+    callbackUrl = callbackUrl || "/";
+  }
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -58,6 +64,14 @@ const Login = () => {
   //   }
   // };
 
+  const googleLogin = async () => {
+    await signIn("google", { callbackUrl: "/home", redirect: true });
+  };
+
+  const linkedInLogin = async () => {
+    await signIn("linkedin", { callbackUrl: "/home", redirect: true });
+  };
+
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
       setLoadingValue("logIn");
@@ -69,8 +83,18 @@ const Login = () => {
       });
       console.log("result", result);
       if (!result?.error) {
+        sonerToast({
+          severity: "success",
+          title: "Woohhh...",
+          message: "You have Sucessfully Logged In !!!",
+        });
         router.push(callbackUrl);
       } else {
+        sonerToast({
+          severity: "error",
+          title: "Oopss.....",
+          message: "Your email / username or password is incorrect",
+        });
         setError("Invalid email or password");
       }
     } catch (e) {
@@ -82,26 +106,26 @@ const Login = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-10 py-5 lg:h-screen">
       <TypographyH2>Welcome Back !</TypographyH2>
-      <div className="flex w-11/12 flex-col items-center justify-center gap-6 rounded-md border border-gray-200 bg-white py-8 lg:w-[450px]">
-        {error ? (
+      <div className="border-foreground flex w-11/12 flex-col items-center justify-center gap-6 rounded-md border py-8 lg:w-[450px]">
+        {/* {error ? (
           <div className="border-destructive text-destructive w-10/12 rounded-sm border bg-red-300 p-2 text-center">
             {error}
           </div>
         ) : (
           <></>
-        )}
+        )} */}
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex w-11/12 flex-col space-y-4 text-[#0f172a] lg:w-10/12">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-11/12 flex-col space-y-4 lg:w-10/12">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Email address or Username</FormLabel>
+                  <FormLabel>
+                    Email address / Username <Required /> 📧
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder="john.doe@example.com" type="text" {...field} />
+                    <Input placeholder="john.doe@example.com / @johndoe" type="text" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -113,7 +137,9 @@ const Login = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-black">Password</FormLabel>
+                  <FormLabel>
+                    Password <Required /> 🔑
+                  </FormLabel>
                   <FormControl>
                     <Input
                       className="tracking-[0.5rem]"
@@ -129,69 +155,31 @@ const Login = () => {
                 </FormItem>
               )}
             />
-            <Button
-              isLoading={loadingValue === "logIn"}
-              className="bg-[#0f172a] text-white hover:bg-[#0f172a]"
-              type="submit">
-              Log In
+            <Button isLoading={loadingValue === "logIn"} type="submit">
+              Log In 🎉
             </Button>
           </form>
         </Form>
-        <Separator />
+        <Separator className="w-11/12" />
         <div className="relative flex justify-center text-xs uppercase">
           <span className="text-muted-foreground px-2">Or continue with</span>
         </div>
-        {/* <div className="flex w-11/12 flex-col gap-4 lg:w-[350px]">
+        <div className="mx-auto flex w-full justify-center gap-5 lg:w-11/12">
           <Button
-            isLoading={googleLoading}
-            onClick={() => signIn("google", { callbackUrl })}
-            variant="secondary">
-            <Icons.google className="mr-2 h-4 w-4" />
-            <TypographyP>Sign In with Google</TypographyP>
-          </Button>
-          <Button
-            variant="secondary"
-            isLoading={githubLoading}
-            onClick={() => signIn("github", { callbackUrl })}>
-            <Icons.gitHub className="mr-2 h-4 w-4" />
-            <TypographyP>Sign In with GitHub</TypographyP>
-          </Button>
-        </div> */}
-        <div className="flex w-11/12 justify-center gap-4 lg:w-[350px]">
-          <Button
-            disabled={loadingValue === "githubSignUp"}
-            variant="secondary"
-            size="icon"
-            onClick={() => setLoadingValue("githubSignUp")}>
-            {loadingValue === "githubSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.gitHub className="h-5 w-5" />
-            )}
-          </Button>
-          <Button
+            className="flex w-36 justify-center gap-5 px-2 font-sans"
             disabled={loadingValue === "googleSignUp"}
-            onClick={() => setLoadingValue("googleSignUp")}
+            onClick={googleLogin}
             variant="secondary"
             size="icon">
             {loadingValue === "googleSignUp" ? (
               <Icons.spinner className="h-5 w-5 animate-spin" />
             ) : (
-              <Icons.google className="h-5 w-5" />
-            )}
+              <Icons.google className="h-5 w-4" />
+            )}{" "}
+            Google
           </Button>
           <Button
-            disabled={loadingValue === "appleSignUp"}
-            onClick={() => setLoadingValue("appleSignUp")}
-            variant="secondary"
-            size="icon">
-            {loadingValue === "appleSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.apple className="h-5 w-5" />
-            )}
-          </Button>
-          <Button
+            className="flex w-36 justify-center gap-5 px-2 font-sans"
             disabled={loadingValue === "linkedinSignUp"}
             onClick={() => setLoadingValue("linkedinSignUp")}
             variant="secondary"
@@ -200,34 +188,13 @@ const Login = () => {
               <Icons.spinner className="h-5 w-5 animate-spin" />
             ) : (
               <Icons.linkedin className="h-5 w-5" />
-            )}
-          </Button>
-          <Button
-            disabled={loadingValue === "facebookSignUp"}
-            onClick={() => setLoadingValue("facebookSignUp")}
-            variant="secondary"
-            size="icon">
-            {loadingValue === "facebookSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.facebook className="h-6 w-6" />
-            )}
-          </Button>
-          <Button
-            disabled={loadingValue === "twitterSignUp"}
-            onClick={() => setLoadingValue("twitterSignUp")}
-            variant="secondary"
-            size="icon">
-            {loadingValue === "twitterSignUp" ? (
-              <Icons.spinner className="h-5 w-5 animate-spin" />
-            ) : (
-              <Icons.twitter className="h-5 w-5" />
-            )}
+            )}{" "}
+            LinkedIn
           </Button>
         </div>
         <Separator />
         <div className="flex items-center justify-center gap-2">
-          <TypographySmall className="text-[#030711]">Don&prime;t have an account ?</TypographySmall>
+          <TypographySmall>Don&prime;t have an account ?</TypographySmall>
           <Link className="text-muted-foreground" href="/sign-up">
             <TypographySmall>Sign Up</TypographySmall>
           </Link>
