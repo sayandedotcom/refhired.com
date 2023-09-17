@@ -22,13 +22,13 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     <div
       ref={ref}
       className={clsx(
-        "rounded-md  p-3",
+        "font-heading rounded-md  p-3",
         props.className,
         severity === "error" && "bg-red-100 text-red-900 dark:bg-red-900 dark:text-red-200",
         severity === "warning" && "bg-[#fceed8] text-[#844932] dark:bg-orange-900 dark:text-orange-200",
         severity === "info" && "bg-blue-100 text-blue-900 dark:bg-blue-900 dark:text-blue-200",
         severity === "success" && "bg-green-100 text-green-900 dark:bg-green-900 dark:text-green-200",
-        severity === "neutral" && "bg-ring"
+        severity === "neutral" && "bg-foreground text-background border-border border"
       )}>
       <div className="relative flex md:flex-row">
         {CustomIcon ? (
@@ -73,11 +73,11 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           </div>
         )}
         <div className="flex flex-grow flex-col sm:flex-row">
-          <div className="ml-3 ">
+          <div className="ml-3">
             <h3 className="text-sm font-medium">{props.title}</h3>
             <div className="text-sm">{props.message}</div>
           </div>
-          {props.actions && <div className="ml-auto mt-2 text-sm sm:mt-0 md:relative">{props.actions}</div>}
+          {props.actions && <div className="ml-auto mt-2 text-xs sm:mt-0 md:relative">{props.actions}</div>}
         </div>
       </div>
     </div>

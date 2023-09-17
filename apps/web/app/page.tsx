@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { getSession } from "@/actions/sessions";
+
 import { Separator } from "@referrer/ui";
 
 import {
@@ -12,11 +14,9 @@ import {
   Username,
 } from "@/components/custom-components";
 
-// import { getAuthSession } from "./api/auth/[...nextauth]/authOptions";
-
 export default async function Page() {
-  // const session = await getAuthSession();
-  const session = null;
+  const session = await getSession();
+
   return (
     <>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
@@ -39,10 +39,8 @@ export default async function Page() {
           job through referrals which has the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referrals
         </p>
-        <Link
-          className="btn-97 animate-bounce uppercase"
-          href={`/${session && session.user ? "home" : "sign-up"}`}>
-          {session && session.user ? "Explore Now !" : "Join Now !"}
+        <Link className="btn-97 animate-bounce uppercase" href={`/${session ? "home" : "sign-up"}`}>
+          {session && session ? "Explore Now !" : "Join Now !"}
         </Link>
       </div>
       <Separator />
@@ -57,7 +55,7 @@ export default async function Page() {
       <Separator />
       <Stats />
       <Separator />
-      {session && session.user ? <></> : <Joinnow />}
+      {session && session ? <></> : <Joinnow />}
       <section id="open-source" className="container py-8 md:py-12 lg:py-24">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
           <h2 className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl">Proudly Open Source</h2>

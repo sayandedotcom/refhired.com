@@ -1,5 +1,6 @@
 "use client";
 
+import { LayoutDashboard } from "lucide-react";
 import { AiFillHome, AiFillMail, AiOutlineHome, AiOutlineMail } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark, FaRegUser, FaUserAlt } from "react-icons/fa";
 import {
@@ -12,8 +13,6 @@ import {
 } from "react-icons/io5";
 import { RiSearchFill, RiSearchLine } from "react-icons/ri";
 import { TiTick, TiTickOutline } from "react-icons/ti";
-
-import { Icons } from "@/components/icons/icons";
 
 export const portalsList = [
   {
@@ -67,8 +66,8 @@ export const portalsList = [
   {
     name: "Dashboard",
     link: "/dashboard",
-    icon: <Icons.dashboard />,
-    activeIcon: <Icons.dashboard />,
+    icon: <LayoutDashboard />,
+    activeIcon: <LayoutDashboard />,
   },
   {
     name: "Profile",

@@ -31,6 +31,7 @@ export type SiteConfig = {
   description: string;
   url: string;
   ogImage: string;
+  email: string;
   links: {
     twitter: string;
     github: string;
@@ -56,6 +57,7 @@ export type SubscriptionPlan = {
   description: string;
   price: number | string;
   isMostPop: boolean;
+  stars: number;
   features: string[];
   stripePriceId: string;
 };

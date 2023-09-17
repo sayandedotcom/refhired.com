@@ -10,4 +10,6 @@ export * from "./pre-loader";
 export * from "./walkthrough";
 export * from "./search-bar";
 export * from "./auth-dialog";
-// export * from "./search-bar-cmdk";
+export * from "./search-bar-cmdk";
+export * from "./pricing-button";
+export * from "./custom-pricing-card";

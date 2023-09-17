@@ -2,7 +2,7 @@
   <a href="https://github.com/sayande2002/refhired.com">
 <!--    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo"> -->
 <!--    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/a1c556f2-550d-44e5-91cf-1eb89d7faa03" alt="Logo"> -->
-    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/748111d4-1f0a-42b3-a3a1-ad32bda2943c" height="120px" width="120px" alt="Logo"> 
+    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/748111d4-1f0a-42b3-a3a1-ad32bda2943c" height="120px" width="120px" alt="Logo">
   </a>
   <h3 align="center">Refhired.com</h3>
 
@@ -37,8 +37,7 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | Website Front-End       | Next.js        | 13.4    |
 | Mobile App              | React Native   | 0.72    |
 | Desktop App Tool        | Tauri          | 1.4     |
-| Back-End Server         | Golang         | -       |
-| Api                     | GraphQL        | -       |
+| Authentication          | Next-Auth      | 4       |
 | Styling                 | Tailwind CSS   | 3.3     |
 | Database ORM            | Prisma         | 4.15    |
 | Primary Database        | PostgreSQL     | 15.3    |

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -7,19 +8,164 @@ import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import clsx from "clsx";
 import { Info, MoreHorizontal } from "lucide-react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
 import { Button, Separator } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 import { Icons } from "@/components/icons/icons";
-import { AvatarDemo, PostTypeDialog, TooltipDemo } from "@/components/ui";
+import { PostTypeDialog, TooltipDemo, sonerToast } from "@/components/ui";
 
 import { useStore } from "@/store/store";
 
 import { ComboboxDropdownMenu } from "../post-card/post-more-menu";
 
+export function NewOptionsSection() {
+  const { data: session } = useSession();
+  const pathName = usePathname();
+  const path = "/" + pathName.split("/")[1];
+  const { width } = useWindowSize();
+  return (
+    <section className="sticky left-0 top-0 h-screen w-[15%] lg:w-[20%]">
+      <div className="bg-muted flex h-full w-full flex-col items-start justify-start">
+        <Link href="/home" className="mx-auto cursor-pointer p-2">
+          <Icons.logo />
+        </Link>
+        <div className="font-heading mt-3 w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
+          <div className="cursor-pointer px-1 py-4 text-base">
+            {portalsList.map(({ name, link, icon, activeIcon }) => (
+              <TooltipDemo key={name} text={`Go to ${name}`}>
+                <Link
+                  id={name.toLocaleLowerCase()}
+                  href={link ?? session?.user.userName ?? "profile"}
+                  className={clsx(
+                    "hover:bg-background flex items-center gap-4 rounded-md px-2 py-2",
+                    path === link && "bg-background"
+                  )}>
+                  {path !== link ? (
+                    <span className="ml-5 text-2xl md:text-2xl">{icon}</span>
+                  ) : (
+                    <span className="ml-5 text-2xl md:text-2xl">{activeIcon}</span>
+                  )}
+                  <p className="mt-1 hidden lg:block">{name}</p>
+                </Link>
+              </TooltipDemo>
+            ))}
+          </div>
+        </div>
+        <PostTypeDialog>
+          <Button
+            size="lg"
+            className="font-heading mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold lg:w-10/12 lg:py-7">
+            {width < 1000 ? <FaPenNib /> : "Post"}
+          </Button>
+        </PostTypeDialog>
+        <div className="bg-muted mx-auto mt-auto flex h-24 w-full justify-center rounded-sm p-2">
+          <div className="bg-background mr-auto flex h-full w-full items-center gap-3 rounded-lg px-4 lg:w-[95%]">
+            {/* <AvatarDemo
+              className="aspect-square h-14 w-14"
+              image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
+            /> */}
+            <Image
+              src={session?.user.image ?? "/images/avatar/avatar.png"}
+              height={60}
+              width={60}
+              className="rounded-md"
+              alt="img"
+            />
+            <div className="mb-2">
+              <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Your Name"}</p>
+              <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
+            </div>
+            <ComboboxDropdownMenu>
+              <div className="hover:bg-muted ml-auto cursor-pointer rounded-full">
+                <MoreHorizontal className="w-7" />
+              </div>
+            </ComboboxDropdownMenu>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function NewContentSection({ children }: { children: React.ReactNode }) {
+  const pathName = usePathname();
+  return (
+    <section
+      className={clsx(
+        "flex w-[85%] flex-col items-center",
+        pathName.split("/")[1] === "settings" || pathName.split("/")[1] === "dashboard"
+          ? "lg:w-[80%]"
+          : "lg:w-[60%]"
+      )}>
+      <div className="px-4 py-4">
+        <h5 className="font-heading capitalize">{pathName.split("/")[1]}</h5>
+      </div>
+      <Separator className="dark:bg-[#2d3134]" />
+      {children}
+    </section>
+  );
+}
+
+export function NewExtraSection() {
+  const pathName = usePathname();
+  // const { data: session } = useSession();
+  // const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
+  const setJoyRide = useStore((state) => state.setJoyRide);
+  return (
+    <section className="font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2">
+      <div className="bg-muted rounded-sm px-4 py-2 text-center">
+        <h5>Extras</h5>
+      </div>
+      <button
+        onClick={() => setJoyRide("post-ride")}
+        id="start-tour"
+        className="bg-muted flex items-center justify-center gap-2 rounded-sm px-4 py-2 text-lg">
+        <Info className="mb-1 h-5" /> <p>Info</p>
+      </button>
+      {/* <div className="bg-muted flex justify-center rounded-sm p-2">
+        {session ? (
+          <div className="bg-background flex items-center justify-center gap-3 rounded-lg lg:w-[95%] lg:py-2">
+            <AvatarDemo image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c" />
+            <span className="hidden lg:block">{session.user.userName}</span>
+            <ComboboxDropdownMenu>
+              <div className="hover:bg-muted cursor-pointer rounded-full">
+                <MoreHorizontal className="w-7" />
+              </div>
+            </ComboboxDropdownMenu>
+          </div>
+        ) : (
+          <Button
+            className="flex animate-bounce items-center justify-center gap-3 rounded-lg text-xl lg:w-8/12 lg:py-2"
+            onClick={() => setAuthDialogOpen(true)}>
+            Click here to Join !
+          </Button>
+        )}
+      </div> */}
+      <div className="bg-muted rounded-sm px-4 py-2">
+        <h6>News</h6>
+      </div>
+      <div className="bg-muted rounded-sm px-4 py-2">
+        <h6>{pathName.split("/")[1] !== "/search" ? "Filters" : "Sugessions"}</h6>
+        <Separator className="dark:bg-[#2d3134]" />
+      </div>
+      <ThemeSwitcher />
+      <Button onClick={() => signOut()}>Sign Out</Button>
+      <Button
+        onClick={() =>
+          sonerToast({
+            title: "Hi this is the first Toasts",
+            message: "Lorem sum dolor sit amet consectetur adipisicing elit. Adipisci modi, ",
+            severity: "warning",
+          })
+        }>
+        Soner
+      </Button>
+    </section>
+  );
+}
 // export function OptionsSection({ session }: { session: any | null }) {
 //   const pathName = usePathname();
 
@@ -113,104 +259,3 @@ import { ComboboxDropdownMenu } from "../post-card/post-more-menu";
 //     </section>
 //   );
 // }
-
-export function NewOptionsSection({ session }: { session: string }) {
-  const pathName = usePathname();
-  const path = "/" + pathName.split("/")[1];
-  const { width } = useWindowSize();
-  return (
-    <section className="sticky left-0 top-0 h-screen w-[15%] lg:w-[20%]">
-      <div className="bg-muted ml-4 mt-3 flex w-11/12 flex-col items-start justify-start rounded-2xl pb-6">
-        <Link href="/home" className="mx-auto cursor-pointer p-2">
-          <Icons.logo />
-        </Link>
-        <div className="font-heading mt-3 w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
-          <div className="cursor-pointer px-1 text-base">
-            {portalsList.map(({ name, link, icon, activeIcon }) => (
-              <TooltipDemo key={name} text={`Go to ${name}`}>
-                <Link
-                  id={name.toLocaleLowerCase()}
-                  href={link ?? session}
-                  className={clsx(
-                    "hover:bg-background mb-1 flex items-center gap-4 rounded-md px-2 py-2",
-                    path === link && "bg-background"
-                  )}>
-                  {path !== link ? (
-                    <span className="ml-5 text-2xl md:text-2xl">{icon}</span>
-                  ) : (
-                    <span className="ml-5 text-2xl md:text-2xl">{activeIcon}</span>
-                  )}
-                  <p className="mt-1 hidden lg:block">{name}</p>
-                </Link>
-              </TooltipDemo>
-            ))}
-          </div>
-        </div>
-        <PostTypeDialog>
-          <Button
-            size="lg"
-            className="font-heading mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold lg:w-10/12 lg:py-7">
-            {width < 1000 ? <FaPenNib /> : "Post"}
-          </Button>
-        </PostTypeDialog>
-      </div>
-    </section>
-  );
-}
-
-export function NewContentSection({ children }: { children: React.ReactNode }) {
-  const pathName = usePathname();
-  return (
-    <section
-      className={clsx(
-        "flex w-[85%] flex-col items-center",
-        pathName.split("/")[1] === "settings" || pathName.split("/")[1] === "dashboard"
-          ? "lg:w-[80%]"
-          : "lg:w-[60%]"
-      )}>
-      <div className="px-4 py-4">
-        <h5 className="font-heading capitalize">{pathName.split("/")[1]}</h5>
-      </div>
-      <Separator className="dark:bg-[#2d3134]" />
-      {children}
-    </section>
-  );
-}
-
-export function NewExtraSection() {
-  const pathName = usePathname();
-  const setJoyRide = useStore((state) => state.setJoyRide);
-  return (
-    <section className="font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2">
-      <div className="bg-muted rounded-2xl px-4 py-2 text-center">
-        <h5>Extras</h5>
-      </div>
-      <button
-        onClick={() => setJoyRide("post-ride")}
-        id="start-tour"
-        className="bg-muted flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-lg">
-        <Info className="mb-1 h-5" /> <p>Info</p>
-      </button>
-      <div className="bg-muted rounded-2xl px-2 py-2">
-        <div className="bg-background flex items-center justify-center gap-3 rounded-2xl lg:w-[96%] lg:py-2">
-          <AvatarDemo image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c" />
-          <span className="hidden lg:block">@sayande10</span>
-          <ComboboxDropdownMenu>
-            <div className="hover:bg-muted cursor-pointer rounded-full">
-              <MoreHorizontal className="w-7" />
-            </div>
-          </ComboboxDropdownMenu>
-        </div>
-      </div>
-      <div className="bg-muted rounded-2xl px-4 py-2">
-        <h6>News</h6>
-      </div>
-      <div className="bg-muted rounded-2xl px-4 py-2">
-        <h6>{pathName.split("/")[1] !== "/search" ? "Filters" : "Sugessions"}</h6>
-        <Separator className="dark:bg-[#2d3134]" />
-      </div>
-      <ThemeSwitcher />
-      <Button onClick={() => signOut()}>Sign Out</Button>
-    </section>
-  );
-}

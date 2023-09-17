@@ -10,8 +10,8 @@ export const jobTypeList = [
 
 export const items = [
   {
-    id: "shortNote",
-    label: "Short Note",
+    id: "shortMessage",
+    label: "Short Message",
   },
   {
     id: "resume",
@@ -20,5 +20,29 @@ export const items = [
   {
     id: "coverLetter",
     label: "Cover Letter",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+  },
+  {
+    id: "github",
+    label: "GitHub",
+  },
+  {
+    id: "portfolio",
+    label: "Portfolio",
+  },
+  {
+    id: "medium",
+    label: "Medium",
+  },
+  {
+    id: "twitter",
+    label: "Twitter",
+  },
+  {
+    id: "dribbble",
+    label: "Dribbble",
   },
 ] as const;

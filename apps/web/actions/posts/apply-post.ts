@@ -2,10 +2,23 @@
 
 import prisma from "@referrer/prisma";
 
-export async function applyPost(slug: string) {
-  return await prisma.posts.findFirst({
+import { getSession } from "../sessions";
+
+export async function applyPost(slug, message) {
+  const post = await prisma.posts.findFirst({
     where: {
       id: slug,
     },
   });
+
+  if (post) {
+    const sessions = await getSession();
+    await prisma.applied.create({
+      data: {
+        userId: sessions.id,
+        postId: post.id,
+        message,
+      },
+    });
+  }
 }

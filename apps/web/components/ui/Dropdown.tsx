@@ -6,7 +6,6 @@ import {
   Cloud,
   CreditCard,
   Github,
-  Keyboard,
   LifeBuoy,
   LogOut,
   Mail,
@@ -21,7 +20,6 @@ import {
 import { signOut } from "next-auth/react";
 
 import {
-  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -40,10 +38,10 @@ type DropdownMenuDemoProps = {
   children: React.ReactNode;
   userName?: string;
   email?: string;
-  fullName?: string;
+  name?: string;
 };
 
-export function DropdownMenuDemo({ children, userName, email, fullName }: DropdownMenuDemoProps) {
+export function DropdownMenuDemo({ children, userName, email, name }: DropdownMenuDemoProps) {
   const router = useRouter();
   return (
     <DropdownMenu>
@@ -51,7 +49,7 @@ export function DropdownMenuDemo({ children, userName, email, fullName }: Dropdo
         <button>{children}</button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>{fullName}</DropdownMenuLabel>
+        <DropdownMenuLabel>Hi ! {name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => router.push(`/${userName}`)}>

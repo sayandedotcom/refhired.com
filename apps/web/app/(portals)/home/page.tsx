@@ -8,25 +8,68 @@ export const metadata: Metadata = {
   title: "Home",
   description: "Get job referrals to the top best companies of the world",
 };
-const tag = ["1-5 Years", "Full Time", "Front-End Developer", "150-250k", "JavaScript", "React"];
-const Home = () => {
+const skills = ["JavaScript", "React"];
+
+const location = "Bangalore";
+const experience = "1-5 Years";
+const jobType = "Full Time";
+const salary = "150-250k";
+const role = "Front-End Developer";
+
+const Home = async () => {
+  // const posts = await getAllPosts();
+  const posts: any[] = [];
   return (
     <>
-      {[...new Array(30)].map((_, i) => (
+      {[...new Array(20)].map((_, i) => (
         <PostCard key={i}>
-          <PostCard.ProfileImage src={AltImage} />
-          <PostCard.PostCardContent>
-            <PostCard.PostCardHeader name="Full Name" userName="@username" time="1h ago" timeLeft="2d Left" />
-            <PostCard.PostCardDescription>
+          <PostCard.Image src={AltImage} />
+          <PostCard.Content>
+            <PostCard.Header name="Full Name" userName="@username" time="1h ago" timeLeft="2d Left" />
+            <PostCard.Description>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse, beatae vitae repellendus saepe
               laudantium totam asperiores, nisi, repudiandae hic tenetur porro dolore consequuntur est. Beatae
               ipsa nesciunt itaque expedita tempora?
-            </PostCard.PostCardDescription>
-            <PostCard.PostCardTags tag={tag} />
-            <PostCard.PostCardFooter />
-          </PostCard.PostCardContent>
+            </PostCard.Description>
+            <PostCard.Tags
+              location={location}
+              experience={experience}
+              jobType={jobType}
+              role={role}
+              salary={salary}
+              skills={skills}
+            />
+            <PostCard.Footer />
+          </PostCard.Content>
         </PostCard>
       ))}
+      {/* {posts.map((post) => (
+        <PostCard key={post.id}>
+          <PostCard.Image src={post.user.image ?? AltImage} />
+          <PostCard.Content>
+            <PostCard.Header
+              name={post.user.name}
+              userName={post.user.userName}
+              time="1h ago"
+              timeLeft="2d Left"
+            />
+            <PostCard.Description>
+              {post.description.length > 250
+                ? post.description.slice(0, 250) + "..."
+                : post.description ?? ""}
+            </PostCard.Description>
+            <PostCard.Tags
+              location={post.location}
+              experience={"" + post.experience}
+              jobType={post.jobType}
+              role={post.role}
+              salary={post.startingRange + "-" + post.endingRange}
+              skills={post.tags}
+            />
+            <PostCard.Footer />
+          </PostCard.Content>
+        </PostCard>
+      ))} */}
     </>
   );
 };

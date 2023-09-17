@@ -11,12 +11,11 @@ export const PostCard = ({ key, children }: { key: any; children: React.ReactNod
   return (
     <div
       key={key}
-      className="border-border mx-auto my-2 flex w-11/12 gap-2 rounded-lg border p-1 md:gap-3  md:p-4 ">
+      className="border-border mx-auto my-2 flex gap-2 rounded-lg border-2 p-1 md:w-11/12 md:gap-3 md:p-4">
       {children}
     </div>
   );
 };
-// (200 Applied)
 
 function ProfileImage({ src }: { src: any }) {
   return (
@@ -35,13 +34,13 @@ function ProfileImage({ src }: { src: any }) {
   );
 }
 
-PostCard.ProfileImage = ProfileImage;
+PostCard.Image = ProfileImage;
 
 function PostCardContent({ children }: { children: React.ReactNode }) {
   return <div className="flex w-[88%] flex-col gap-2 md:w-full">{children}</div>;
 }
 
-PostCard.PostCardContent = PostCardContent;
+PostCard.Content = PostCardContent;
 
 function PostCardHeader({
   name,
@@ -68,9 +67,9 @@ function PostCardHeader({
             {userName}
           </span>
         </PostHoverCard>
-        •<small id="post-uploaded">{time}</small>
+        •<small id="post-uploaded">{time}</small>•
         <small id="post-time-left" className="hidden md:block">
-          • &nbsp; &nbsp;{timeLeft}
+          {timeLeft}
         </small>
       </div>
       <ComboboxDropdownMenu>
@@ -82,7 +81,7 @@ function PostCardHeader({
   );
 }
 
-PostCard.PostCardHeader = PostCardHeader;
+PostCard.Header = PostCardHeader;
 
 function PostCardDescription({ children }: { children: React.ReactNode }) {
   return (
@@ -93,17 +92,38 @@ function PostCardDescription({ children }: { children: React.ReactNode }) {
   );
 }
 
-PostCard.PostCardDescription = PostCardDescription;
+PostCard.Description = PostCardDescription;
 
-function PostCardTags({ tag }: { tag: string[] }) {
+function PostCardTags({
+  location,
+  experience,
+  jobType,
+  salary,
+  role,
+  skills,
+}: {
+  location: string;
+  experience: string;
+  jobType: string;
+  salary: string;
+  role: string;
+  skills: any[];
+}) {
   return (
     <div id="post-tags" className="font-heading flex h-5 gap-1">
-      <Tags tag={tag} />
+      <Tags
+        location={location}
+        salary={salary}
+        role={role}
+        experience={experience}
+        jobType={jobType}
+        skills={skills}
+      />
     </div>
   );
 }
 
-PostCard.PostCardTags = PostCardTags;
+PostCard.Tags = PostCardTags;
 
 function PostCardFooter() {
   return (
@@ -114,4 +134,4 @@ function PostCardFooter() {
   );
 }
 
-PostCard.PostCardFooter = PostCardFooter;
+PostCard.Footer = PostCardFooter;

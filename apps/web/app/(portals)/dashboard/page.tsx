@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 
+import DashboardPage from "@/components/dashboard/page";
 import { columns } from "@/components/ui/data-table/components/columns";
 import { DataTable } from "@/components/ui/data-table/components/data-table";
 import { UserNav } from "@/components/ui/data-table/components/user-nav";
@@ -32,6 +33,7 @@ export default async function Dashboard() {
         <Image src={Avatar} width={1280} height={998} alt="Playground" className="block dark:hidden" />
         <Image src={Avatar} width={1280} height={998} alt="Playground" className="hidden dark:block" />
       </div>
+      <DashboardPage />
       <div className="hidden h-full w-full flex-1 flex-col space-y-8 p-8 md:flex">
         <div className="flex items-center justify-between space-y-2">
           <div>

@@ -32,12 +32,12 @@ export const Username = (prop: any) => {
     // });
     // return;
     setUserName(data.userName);
-    router.push("/sign-up");
+    router.push("/auth/sign-up");
   };
 
   return (
     <div className="font-heading flex flex-col items-center justify-center gap-4 py-16">
-      {session && session.user ? (
+      {session ? (
         <h1 className="text-center text-[30px] md:text-[50px]">You are already logged in !</h1>
       ) : (
         <>

@@ -3,9 +3,10 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { cn } from "@referrer/lib/utils/cn";
 import {
   Button,
   Dialog,
@@ -16,6 +17,7 @@ import {
   DialogTrigger,
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -26,6 +28,7 @@ import {
 
 import { applyValidator } from "@/lib/validators";
 
+import { Icons } from "../icons/icons";
 import { toastMessage } from "./toast/toasts";
 
 export function ApplyDialog({ children }) {
@@ -47,19 +50,24 @@ export function ApplyDialog({ children }) {
       message: "You have successfully applied for this job.",
     });
   }
+
+  const { fields, append } = useFieldArray({
+    name: "urls",
+    control: form.control,
+  });
   // !form.formState.isSubmitSuccessful;
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="w-11/12 md:w-[500px]">
+      <DialogContent className="border-foreground w-11/12 md:w-[500px]">
         <DialogHeader>
-          <DialogTitle>Best of Luck ! 🎉</DialogTitle>
+          <DialogTitle className="text-3xl">Best of Luck ! 🤞</DialogTitle>
           <DialogDescription className="text-base">
-            Provide the necessary information for this job.
+            Provide the necessary information for this referral.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className=" relative flex flex-col space-y-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="relative flex flex-col space-y-2">
             {/* Message */}
             <FormField
               control={form.control}
@@ -72,7 +80,7 @@ export function ApplyDialog({ children }) {
                       id="message"
                       name="message"
                       rows={7}
-                      cols={80}
+                      cols={70}
                       className="text-base"
                       placeholder="Write a short message to the referrer here. . . . . ."
                       {...field}
@@ -88,14 +96,14 @@ export function ApplyDialog({ children }) {
               name="resume"
               render={({ field }) => (
                 <FormItem className="flex items-center justify-center gap-5">
-                  <FormLabel className="text-center text-base">Resume</FormLabel>
+                  <FormLabel className="text-center text-sm">Resume 📄</FormLabel>
                   <FormControl>
                     <Input
                       id="resume"
                       name="resume"
                       accept=".pdf"
                       type="file"
-                      className="w-8/12"
+                      className="ml-auto w-8/12 cursor-pointer"
                       {...field}
                     />
                   </FormControl>
@@ -109,14 +117,14 @@ export function ApplyDialog({ children }) {
               name="coverLetter"
               render={({ field }) => (
                 <FormItem className="flex items-center justify-center gap-3">
-                  <FormLabel className="text-center text-base">Cover Letter</FormLabel>
+                  <FormLabel className="text-center text-sm">Cover Letter 📝</FormLabel>
                   <FormControl>
                     <Input
                       id="coverLetter"
                       name="coverLetter"
                       accept=".pdf"
                       type="file"
-                      className="w-8/12"
+                      className="ml-auto w-8/12 cursor-pointer"
                       {...field}
                     />
                   </FormControl>
@@ -124,6 +132,38 @@ export function ApplyDialog({ children }) {
                 </FormItem>
               )}
             />
+            <div className="mt-2">
+              {fields.map((field, index) => (
+                <FormField
+                  control={form.control}
+                  key={field.id}
+                  name={`urls.${index}.value`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={cn(index !== 0 && "sr-only")}>URLs</FormLabel>
+                      <FormDescription className={cn(index !== 0 && "sr-only")}>
+                        Add links to your website, blog, or social media profiles.
+                      </FormDescription>
+                      <FormControl>
+                        <div className="flex items-center gap-2">
+                          <Icons.gitHub className="h-7 w-7" />
+                          <Input {...field} />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              ))}
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                className="my-2"
+                onClick={() => append({ value: "" })}>
+                Add URL 🔗
+              </Button>
+            </div>
             <Button
               // disabled={!form.formState.isValid}
               className="w-5/12 self-center rounded-full"

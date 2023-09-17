@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -9,7 +9,8 @@ import { useLoading } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { useOnClickOutside } from "usehooks-ts";
+import { FcGoogle } from "react-icons/fc";
+import { useLocalStorage, useOnClickOutside } from "usehooks-ts";
 import * as z from "zod";
 
 import {
@@ -22,6 +23,7 @@ import {
   DialogTrigger,
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -35,28 +37,21 @@ import { useStore } from "@/store/store";
 
 import { Icons } from "../icons/icons";
 
-const loginSchema = z.object({
-  email: z.string().nonempty("This field is required"),
-  password: z.string().nonempty("This field is required"),
-});
-
 export function AuthDialog({ children }: { children: React.ReactNode }) {
-  const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
   const authDialogOpen = useStore((state) => state.authDialogOpen);
+  const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
+  const authDialogTitle = useStore((state) => state.authDialogTitle);
+  const loginSchema = z.object({
+    email: z.string().email({ message: "Invalid email address !" }).nonempty("Required"),
+  });
+
   const ref = useRef(null);
   const router = useRouter();
   const { loadingValue, setLoadingValue } = useLoading();
-  const [error, setError] = useState("");
   const searchParams = useSearchParams();
-  let callbackUrl = searchParams.get("callbackUrl") || "/";
-  if (callbackUrl.endsWith("sign-up")) {
-    callbackUrl = "/";
-  } else {
-    callbackUrl = callbackUrl || "/";
-  }
-
+  let callbackUrl = searchParams.get("callbackUrl") || "/home";
   const handleClickOutside = () => {
-    setAuthDialogOpen(!authDialogOpen);
+    setAuthDialogOpen(false);
   };
 
   useOnClickOutside(ref, handleClickOutside);
@@ -65,50 +60,48 @@ export function AuthDialog({ children }: { children: React.ReactNode }) {
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
+  const [isVerificationEmail, setVerificationEmail] = useLocalStorage("verification-email", "");
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
+      console.log(values.email);
+      setVerificationEmail(values.email);
       setLoadingValue("logIn");
-      const result = await signIn("credentials", {
+      const result = await signIn("email", {
         email: values.email,
-        password: values.password,
-        redirect: false,
-        callbackUrl,
+        redirect: true,
+        callbackUrl: "/auth/verify-request",
       });
-      if (!result?.error) {
-        router.push(callbackUrl);
-      } else {
-        setError("Invalid email or password");
-      }
+      console.log("result", result);
     } catch (e) {
+      console.log("signup", e);
     } finally {
       setLoadingValue("");
     }
   };
 
+  const signInProviders = (auth: "google") => {
+    setLoadingValue(auth);
+    signIn(auth, { redirect: false });
+  };
+  // open={authDialogOpen}
   return (
-    <Dialog open={authDialogOpen}>
+    <Dialog open={false}>
       <DialogTrigger asChild>
         <>{children}</>
       </DialogTrigger>
-      <DialogContent ref={ref} className="border-foreground max-w-[425px] border lg:w-[550px]">
+      <DialogContent ref={ref} className="border-foreground max-w-[425px] border lg:w-[500px]">
         <DialogHeader>
-          <DialogTitle className="font-heading flex items-center text-5xl">Login to Enjooy !</DialogTitle>
+          <DialogTitle className="font-heading flex items-center text-5xl">
+            Login to {authDialogTitle} !
+          </DialogTitle>
           <DialogDescription className="font-semibold">
             Join the world's 🌎 largest referral community.
           </DialogDescription>
         </DialogHeader>
         <div className="flex w-[99%] flex-col items-center justify-center gap-4">
-          {error ? (
-            <div className="border-destructive text-destructive w-10/12 rounded-sm border bg-red-300 p-2 text-center">
-              {error}
-            </div>
-          ) : (
-            <></>
-          )}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col space-y-4">
               <FormField
@@ -116,32 +109,12 @@ export function AuthDialog({ children }: { children: React.ReactNode }) {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email address or Username 📪</FormLabel>
+                    <FormLabel>Email address or Username</FormLabel>
                     <FormControl>
                       <Input placeholder="john.doe@example.com" type="text" {...field} />
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password 🔑</FormLabel>
-                    <FormControl>
-                      <Input
-                        className="tracking-[0.5rem]"
-                        type="password"
-                        placeholder="•••••••••••"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                    <Link className="text-muted-foreground ml-auto mt-5" href="/forgot-password">
-                      <TypographySmall>Forgot Password ? 🤔 </TypographySmall>
-                    </Link>
+                    <FormDescription>Either enter your email or username</FormDescription>
                   </FormItem>
                 )}
               />
@@ -154,48 +127,25 @@ export function AuthDialog({ children }: { children: React.ReactNode }) {
           <div className="relative flex justify-center text-xs uppercase">
             <span className="text-muted-foreground px-2">Or continue with</span>
           </div>
-          <div className="grid w-full grid-cols-3 gap-3">
+          <div className="mx-auto flex w-full justify-center gap-5">
             <Button
-              className="w-11/12"
-              disabled={loadingValue === "githubSignUp"}
+              className="font-heading flex w-full items-center justify-center gap-5 text-xl"
+              disabled={loadingValue === "google"}
+              onClick={() => signInProviders("google")}
               variant="secondary"
-              size="icon"
-              onClick={() => signIn("github", { callbackUrl })}>
-              {loadingValue === "githubSignUp" ? (
-                <Icons.spinner className="h-5 w-5 animate-spin" />
+              size="lg">
+              {loadingValue === "google" ? (
+                <Icons.spinner className="h-6 w-6 animate-spin" />
               ) : (
-                <Icons.gitHub className="h-5 w-5" />
-              )}
-            </Button>
-            <Button
-              className="w-11/12"
-              disabled={loadingValue === "googleSignUp"}
-              onClick={() => signIn("google", { callbackUrl })}
-              variant="secondary"
-              size="icon">
-              {loadingValue === "googleSignUp" ? (
-                <Icons.spinner className="h-5 w-5 animate-spin" />
-              ) : (
-                <Icons.google className="h-5 w-5" />
-              )}
-            </Button>
-            <Button
-              className="w-11/12"
-              disabled={loadingValue === "linkedinSignUp"}
-              onClick={() => signIn("linkedin", { callbackUrl })}
-              variant="secondary"
-              size="icon">
-              {loadingValue === "linkedinSignUp" ? (
-                <Icons.spinner className="h-5 w-5 animate-spin" />
-              ) : (
-                <Icons.linkedin className="h-5 w-5" />
-              )}
+                <FcGoogle className="h-6 w-6" />
+              )}{" "}
+              Google
             </Button>
           </div>
           <Separator />
           <div className="flex items-center justify-center gap-2">
             <TypographySmall>Don&prime;t have an account ?</TypographySmall>
-            <Link className="text-muted-foreground hover:text-foreground" href="/sign-up">
+            <Link className="text-muted-foreground hover:text-foreground" href="/auth/sign-up">
               <TypographySmall>Sign Up</TypographySmall>
             </Link>
           </div>

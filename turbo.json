@@ -2,13 +2,21 @@
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": [
     "NODE_ENV",
+    "NEXT_PUBLIC_APP_URL",
     "GOOGLE_CLIENT_ID",
     "GOOGLE_CLIENT_SECRET",
     "GITHUB_CLIENT_ID",
     "GITHUB_CLIENT_SECRET",
     "NEXTAUTH_SECRET",
     "NEXTAUTH_URL",
-    "DATABASE_URL"
+    "DATABASE_URL",
+    "COUNTRY_STATE_CITY",
+    "STRIPE_SECRET_KEY",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+    "STRIPE_WEBHOOK_SECRET",
+    "RESEND_API_KEY",
+    "UPLOADTHING_SECRET",
+    "UPLOADTHING_APP_ID"
   ],
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
@@ -16,13 +24,21 @@
       "dependsOn": ["^build", "^db:generate"],
       "env": [
         "NODE_ENV",
+        "NEXT_PUBLIC_APP_URL",
         "GOOGLE_CLIENT_ID",
         "GOOGLE_CLIENT_SECRET",
         "GITHUB_CLIENT_ID",
         "GITHUB_CLIENT_SECRET",
         "NEXTAUTH_SECRET",
         "NEXTAUTH_URL",
-        "DATABASE_URL"
+        "DATABASE_URL",
+        "COUNTRY_STATE_CITY",
+        "STRIPE_SECRET_KEY",
+        "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+        "STRIPE_WEBHOOK_SECRET",
+        "RESEND_API_KEY",
+        "UPLOADTHING_SECRET",
+        "UPLOADTHING_APP_ID"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

@@ -23,7 +23,6 @@ export const Header = () => {
   const { loadingValue, setLoadingValue } = useLoading();
   // const session = await getAuthSession();
 
-  const user = null;
   // console.log("session", session);
 
   return (
@@ -64,8 +63,8 @@ export const Header = () => {
               {session && session.user ? (
                 <>
                   <DropdownMenuDemo
-                    userName={session.user.userName}
-                    fullName={session.user.name}
+                    userName={session.user?.userName}
+                    fullName={session.user?.name}
                     email={session.user.email}>
                     <AvatarDemo fullName={session.user.name} image={session.user?.image} />
                   </DropdownMenuDemo>
@@ -76,7 +75,7 @@ export const Header = () => {
                     <Link
                       onClick={() => setLoadingValue("logInRedirect")}
                       className={buttonVariants()}
-                      href="/login">
+                      href="/auth/login">
                       {loadingValue === "logInRedirect" && (
                         <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />
                       )}
@@ -87,7 +86,7 @@ export const Header = () => {
                     <Link
                       onClick={() => setLoadingValue("signUpRedirect")}
                       className={buttonVariants({ variant: "outline" })}
-                      href="/sign-up">
+                      href="/auth/sign-up">
                       {loadingValue === "signUpRedirect" && (
                         <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />
                       )}

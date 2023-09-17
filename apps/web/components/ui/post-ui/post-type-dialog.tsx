@@ -38,7 +38,7 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
         <div className="flex items-center justify-center gap-5">
           <AlertDialogAction onClick={() => postType("Referral")}>Referral Post</AlertDialogAction>
           <AlertDialogAction onClick={() => postType("Normal")}>Normal Post</AlertDialogAction>
-          <AlertDialogAction onClick={() => postType("Seek")}>Seek Referral Post</AlertDialogAction>
+          <AlertDialogAction onClick={() => postType("Find")}>Find Referer</AlertDialogAction>
         </div>
       </AlertDialogContent>
     </AlertDialog>

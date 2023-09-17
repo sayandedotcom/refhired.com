@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
-// interface PostProps {
-//   params: {
-//     postId: string;
-//   };
-// }
+interface PostProps {
+  params: {
+    postId: string;
+  };
+}
 
 // export async function generateMetadata({ params }: PostProps): Promise<Metadata> {
 //   const post = await getPostBySlug(params.postId);

@@ -7,6 +7,7 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  FormCustomMessage,
 } from "./form";
 
 export { Input } from "./input";

@@ -8,6 +8,7 @@ module.exports = withPWA({
   reactStrictMode: true,
   experimental: {
     serverActions: true,
+    serverComponentsExternalPackages: ["@prisma/client"],
   },
   images: {
     remotePatterns: [

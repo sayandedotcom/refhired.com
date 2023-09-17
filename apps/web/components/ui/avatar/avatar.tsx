@@ -3,20 +3,25 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@referrer/ui";
 
 type AvatarDemoProps = {
-  image?: any;
+  image?: string;
   fullName?: string;
+  className?: string;
 };
 
-export function AvatarDemo({ image, fullName }: AvatarDemoProps) {
+export function AvatarDemo({ image, fullName, className }: AvatarDemoProps) {
+  const fallbackName = (name: string) => {
+    let initials: any = name.split(" ");
+    if (initials.length > 1) {
+      initials = initials.shift().charAt(0) + initials.pop().charAt(0);
+    } else {
+      initials = name.substring(0, 2);
+    }
+    return initials.toUpperCase();
+  };
   return (
-    <Avatar>
-      <AvatarImage
-        src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
-        alt="profile img"
-      />
-      <AvatarFallback>{fullName}</AvatarFallback>
+    <Avatar className={className}>
+      <AvatarImage src={image ?? "/images/avatar/avatar.png"} alt="profile" />
+      <AvatarFallback>{fallbackName(fullName)}</AvatarFallback>
     </Avatar>
   );
 }
-
-// image || avatar;

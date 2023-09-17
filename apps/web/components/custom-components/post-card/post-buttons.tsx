@@ -3,14 +3,15 @@
 import { useState } from "react";
 
 import { useLoading, useWindowSize } from "@/hooks";
-import { MapPin } from "lucide-react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { FiLink2, FiMessageCircle, FiShare2 } from "react-icons/fi";
 
 import { Button } from "@referrer/ui";
 
-import { ApplyDialog, Badge, TooltipDemo, toastMessage } from "@/components/ui";
+import { ApplyDialog, Badge, TooltipDemo, sonerToast } from "@/components/ui";
+
+import { useStore } from "@/store/store";
 
 export const ApplyButton = () => {
   const [applied, setApplied] = useState(false);
@@ -30,41 +31,39 @@ export const ApplyButton = () => {
           iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
           onClick={apply}
           className="h-9 w-3/12 rounded-full text-sm">
-          {applied ? "Applied !" : "Apply (200)"}
+          {applied ? "Applied !" : "Apply (⭐ 200)"}
         </Button>
       </ApplyDialog>
     </TooltipDemo>
   );
 };
+// (200 Applied)
 
 export const MultipleButtons = () => {
   const [bookmark, setBookmark] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const setToastPosition = useStore((state) => state.setToastPosition);
   const bookmarked = () => {
     setBookmark(!bookmark);
-    toastMessage({ type: "neutral", title: bookmark ? "Removed from Bookmarks" : "Added to Bookmarks" });
+    setToastPosition("bottom-left");
+    sonerToast({
+      severity: "neutral",
+      title: (
+        <div className="my-auto mr-4 flex items-center gap-3">
+          <p className="text-sm">{bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"}</p>
+          <Button onClick={() => setBookmark(!bookmark)} className="h-6" variant="secondary" size="sm">
+            Undo
+          </Button>
+        </div>
+      ),
+    });
   };
   const copied = () => {
     setLinkCopied(!linkCopied);
-    // toastMessage({ type: "neutral", title: linkCopied ? "Link Copied" : "Link Copied" });
-    toastMessage({
-      children: (
-        <div className="w-0 flex-1 p-4">
-          <div className="flex items-start">
-            <div className="flex-shrink-0 pt-0.5">
-              <img
-                className="h-10 w-10 rounded-full"
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=6GHAjsWpt9&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                alt=""
-              />
-            </div>
-            <div className="ml-3 flex-1">
-              <p className="text-sm font-medium text-gray-900">Emilia Gates</p>
-              <p className="mt-1 text-sm text-gray-500">Sure! 8:30pm works great!</p>
-            </div>
-          </div>
-        </div>
-      ),
+    sonerToast({
+      title: "Hi this is the first Toasts",
+      message: "Lorem sum dolor sit amet consectetur adipisicing elit. Adipisci modi, ",
+      severity: "warning",
     });
   };
 
@@ -92,24 +91,41 @@ export const MultipleButtons = () => {
   );
 };
 
-export const Tags = ({ tag }) => {
+export const Tags = ({ location, experience, jobType, salary, role, skills }) => {
   const { width } = useWindowSize();
   return (
     <>
       <Badge
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
-        <MapPin className="h-3" />
-        Location
+        💼 {role}
       </Badge>
-      {tag.map((item, i) =>
+      <Badge
+        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+        variant="secondary">
+        📍 {location}
+      </Badge>
+      <Badge
+        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+        variant="secondary">
+        🧑‍💻 {experience}
+      </Badge>
+      <Badge
+        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+        variant="secondary">
+        🧑‍💼 {jobType}
+      </Badge>
+      <Badge
+        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+        variant="secondary">
+        💵 {salary}
+      </Badge>
+      {skills.map((item, i) =>
         width < 1000
           ? i < 1
           : i < 100 && (
               <Badge
-                className="cursor-pointer border
-                bg-[#18273f]  text-[#3382e4] hover:bg-[#146de2] hover:text-white
-                 "
+                className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
                 variant="secondary">
                 {item}
               </Badge>
@@ -123,3 +139,5 @@ export const Tags = ({ tag }) => {
     </>
   );
 };
+
+// bg-[#18273f]  text-[#3382e4] hover:bg-[#146de2] hover:text-white
