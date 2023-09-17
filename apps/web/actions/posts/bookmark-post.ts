@@ -4,7 +4,7 @@ import prisma from "@referrer/prisma";
 
 import { getSession } from "../sessions";
 
-export async function bookmarkPost(slug: string) {
+export async function bookmarkPost(slug: number) {
   const post = await prisma.posts.findFirst({
     where: {
       id: slug,
