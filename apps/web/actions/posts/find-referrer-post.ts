@@ -23,17 +23,39 @@ export async function findReferrerPost({
   return await prisma.posts.create({
     data: {
       userId: sessions.id,
-      description,
-      expiresAt,
-      role,
-      jobType,
-      experience,
-      location,
-      startingRange,
-      endingRange,
-      image,
-      acceptingReferralsNo,
-      normalPost,
+      title: description,
     },
   });
 }
+
+// export async function findReferrerPost({
+//   description,
+//   expiresAt,
+//   role,
+//   jobType,
+//   experience,
+//   location,
+//   startingRange,
+//   endingRange,
+//   image,
+//   acceptingReferralsNo,
+//   normalPost,
+// }: Create_Refrral_Post) {
+//   const sessions = await getSession();
+//   return await prisma.posts.create({
+//     data: {
+//       userId: sessions.id,
+//       description,
+//       expiresAt,
+//       role,
+//       jobType,
+//       experience,
+//       location,
+//       startingRange,
+//       endingRange,
+//       image,
+//       acceptingReferralsNo,
+//       normalPost,
+//     },
+//   });
+// }

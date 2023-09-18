@@ -12,7 +12,7 @@ export const contentType = "image/png";
 
 interface Props {
   params: {
-    slug: string;
+    slug: number;
   };
 }
 

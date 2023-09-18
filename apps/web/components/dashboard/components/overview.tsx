@@ -1,4 +1,12 @@
-// "use client"
+"use client";
+
+import React from "react";
+
+function Overview() {
+  return <div>overview</div>;
+}
+
+export default Overview;
 
 // import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 

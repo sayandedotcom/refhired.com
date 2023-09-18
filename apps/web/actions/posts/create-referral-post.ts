@@ -27,6 +27,7 @@ export async function createReferralPost({
       data: {
         userId: sessions.id,
         description,
+        title: description,
         // expiresAt,
         // role,
         // jobType,
@@ -37,17 +38,17 @@ export async function createReferralPost({
         // image,
         // acceptingReferralsNo,
         // normalPost,
-        postType: "referralPost",
-        tags: {
-          connectOrCreate: tags.map((tag) => ({
-            where: {
-              name: tag,
-            },
-            create: {
-              name: tag,
-            },
-          })),
-        },
+        // postType: "referralPost",
+        // tags: {
+        //   connectOrCreate: tags.map((tag) => ({
+        //     where: {
+        //       name: tag,
+        //     },
+        //     create: {
+        //       name: tag,
+        //     },
+        //   })),
+        // },
       },
     });
 }

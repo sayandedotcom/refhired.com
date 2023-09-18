@@ -45,3 +45,4 @@ yarn-error.log*
 /public/fallback-*.js
 
 .react-email
+tsconfig.tsbuildinfo
