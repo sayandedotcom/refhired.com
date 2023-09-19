@@ -7,8 +7,6 @@ import { DataTable } from "@/components/ui/data-table/components/data-table";
 import { UserNav } from "@/components/ui/data-table/components/user-nav";
 import { tsTasks } from "@/components/ui/data-table/data/tasks";
 
-import Avatar from "../../../public/images/avatar/avatar.png";
-
 export const metadata: Metadata = {
   title: "Dashboard",
   description: "Get job referrals to the top best companies of the world",
@@ -30,8 +28,20 @@ export default async function Dashboard() {
   return (
     <>
       <div className="md:hidden">
-        <Image src={Avatar} width={1280} height={998} alt="Playground" className="block dark:hidden" />
-        <Image src={Avatar} width={1280} height={998} alt="Playground" className="hidden dark:block" />
+        <Image
+          src="/images/avatar/avatar.png"
+          width={1280}
+          height={998}
+          alt="Playground"
+          className="block dark:hidden"
+        />
+        <Image
+          src="/images/avatar/avatar.png"
+          width={1280}
+          height={998}
+          alt="Playground"
+          className="hidden dark:block"
+        />
       </div>
       <DashboardPage />
       <div className="hidden h-full w-full flex-1 flex-col space-y-8 p-8 md:flex">

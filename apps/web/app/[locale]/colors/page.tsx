@@ -1,8 +1,7 @@
 "use client";
 
 import { ThemeSwitcher } from "@/components/custom-components";
-
-import { SelectComponent } from "../../components/ui";
+import { SelectComponent } from "@/components/ui";
 
 const colors = [
   "background",

@@ -2,8 +2,6 @@ import { Metadata } from "next";
 
 import { PostCard } from "@/components/custom-components";
 
-import AltImage from "../../../public/images/avatar/avatar.png";
-
 export const metadata: Metadata = {
   title: "Home",
   description: "Get job referrals to the top best companies of the world",
@@ -23,7 +21,7 @@ const Home = async () => {
     <>
       {[...new Array(20)].map((_, i) => (
         <PostCard key={i}>
-          <PostCard.Image src={AltImage} />
+          <PostCard.Image src="/images/avatar/avatar.png" />
           <PostCard.Content>
             <PostCard.Header name="Full Name" userName="@username" time="1h ago" timeLeft="2d Left" />
             <PostCard.Description>
