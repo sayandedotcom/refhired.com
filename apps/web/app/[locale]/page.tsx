@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { getTranslator } from "next-intl/server";
+
 import { getSession } from "@/actions/sessions";
 
 import { Separator } from "@referrer/ui";
@@ -14,7 +16,8 @@ import {
   Username,
 } from "@/components/custom-components";
 
-export default async function Page() {
+export default async function Page({ params: { locale } }) {
+  const t = await getTranslator(locale, "Index");
   const session = await getSession();
 
   return (
@@ -28,6 +31,20 @@ export default async function Page() {
           :{" "}
           <span className="">
             Connect through{" "}
+            <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+              referrals
+            </span>{" "}
+          </span>
+          "
+        </h1>
+        <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
+          " {t("heading1")}{" "}
+          <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
+            referrals
+          </span>{" "}
+          :{" "}
+          <span className="">
+            {t("heading2")}{" "}
             <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
               referrals
             </span>{" "}

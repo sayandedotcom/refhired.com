@@ -1,11 +1,11 @@
+"use client";
+
 // import { useForm } from "react-hook-form";
 // import { getAuthSession } from "@/app/api/auth/[...nextauth]/authOptions";
+import { useTranslations } from "next-intl";
 
 const Username = async () => {
   // const session = await getAuthSession();
-  const session = null;
-
-  console.log("session from test", session);
 
   // const form = useForm<z.infer<typeof userNameValidator>>({
   //   resolver: zodResolver(userNameValidator),
@@ -32,8 +32,14 @@ const Username = async () => {
   // }
   // console.log("data", data);
   // };
+  const t = useTranslations("Index");
 
   return (
+    <>
+      {/* <p>{t("heading")}</p>
+      <p>{t("description1")}</p> */}
+    </>
+
     // <div className="flex flex-col items-center justify-center gap-4 py-16">
     //   {session && session.user ? (
     //     <h1 className="text-center text-[30px] md:text-[50px]">You are already logged in !</h1>
@@ -61,11 +67,11 @@ const Username = async () => {
     //     </>
     //   )}
     // </div>
-    <div className="flex h-screen w-screen items-center justify-center">
-      <div className="font-heading text-[600px]">rh.</div>
-      {/* <h1 className="font-heading text-[250px]">refhired.com</h1> */}
-      {/* <h1 className="font-heading text-[250px]">Refhired.com</h1> */}
-    </div>
+    // <div className="flex h-screen w-screen items-center justify-center">
+    //   <div className="font-heading text-[600px]">rh.</div>
+    // {/* <h1 className="font-heading text-[250px]">refhired.com</h1> */}
+    // {/* <h1 className="font-heading text-[250px]">Refhired.com</h1> */}
+    // {/* </div> */}
   );
 };
 export default Username;

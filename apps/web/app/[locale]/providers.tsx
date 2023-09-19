@@ -13,8 +13,6 @@ import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
 import { Toaster as SonerToaster } from "sonner";
 
-import { cn } from "@referrer/lib/utils/cn";
-
 import { PreLoader } from "@/components/custom-components";
 import { Banner, Footer, Navbar } from "@/components/layout-components";
 import ProgressBar from "@/components/ui/progress-bar";
@@ -23,7 +21,7 @@ import { rootPaths } from "@/config";
 
 import { useStore } from "@/store/store";
 
-import "../styles/globals.css";
+import "../../styles/globals.css";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -31,7 +29,7 @@ const fontSans = FontSans({
 });
 
 const fontHeading = localFont({
-  src: "../public/fonts/cal-sans/CalSans-SemiBold.woff2",
+  src: "../../public/fonts/cal-sans/CalSans-SemiBold.woff2",
   variable: "--font-heading",
 });
 
@@ -44,40 +42,40 @@ export function Provider({ children }) {
 
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      {/* <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
             "selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white font-sans",
             fontSans.variable,
             fontHeading.variable
-          )}>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <QueryClientProvider client={queryClient}>
-              <SessionProvider>
-                <Toaster />
-                <SonerToaster position={toastPosition} />
-                {!isMounted ? (
-                  <PreLoader />
-                ) : (
+          )}> */}
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <QueryClientProvider client={queryClient}>
+          <SessionProvider>
+            <Toaster />
+            <SonerToaster position={toastPosition} />
+            {!isMounted ? (
+              <PreLoader />
+            ) : (
+              <>
+                <ProgressBar />
+                {showNavbar && (
                   <>
-                    <ProgressBar />
-                    {showNavbar && (
-                      <>
-                        <Banner />
-                        <Navbar />
-                      </>
-                    )}
-                    {children}
-                    {showNavbar && <Footer />}
-                    <Analytics />
+                    <Banner />
+                    <Navbar />
                   </>
                 )}
-              </SessionProvider>
-              {/* <ReactQueryDevtools /> */}
-            </QueryClientProvider>
-          </ThemeProvider>
-        </body>
-      </html>
+                {children}
+                {showNavbar && <Footer />}
+                <Analytics />
+              </>
+            )}
+          </SessionProvider>
+          {/* <ReactQueryDevtools /> */}
+        </QueryClientProvider>
+      </ThemeProvider>
+      {/* </body>
+      </html> */}
     </>
   );
 }

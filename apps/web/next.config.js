@@ -4,31 +4,38 @@ const withPWA = require("next-pwa")({
   buildExcludes: ["app-build-manifest.json"],
 });
 
-module.exports = withPWA({
-  reactStrictMode: true,
-  experimental: {
-    serverActions: true,
-    serverComponentsExternalPackages: ["@prisma/client"],
-  },
-  images: {
-    remotePatterns: [
+const withNextIntl = require("next-intl/plugin")(
+  // This is the default (also the `src` folder is supported out of the box)
+  "./i18n.ts"
+);
+
+module.exports = withNextIntl(
+  withPWA({
+    reactStrictMode: true,
+    experimental: {
+      serverActions: true,
+      serverComponentsExternalPackages: ["@prisma/client"],
+    },
+    images: {
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "**",
+        },
+      ],
+    },
+    redirects: async () => [
       {
-        protocol: "https",
-        hostname: "**",
+        source: "/settings",
+        destination: "/settings/profile",
+        permanent: true,
+      },
+      {
+        source: "/auth",
+        destination: "/auth/login",
+        permanent: true,
       },
     ],
-  },
-  redirects: async () => [
-    {
-      source: "/settings",
-      destination: "/settings/profile",
-      permanent: true,
-    },
-    {
-      source: "/auth",
-      destination: "/auth/login",
-      permanent: true,
-    },
-  ],
-  transpilePackages: ["@referrer/prisma", "@referrer/ui", "@referrer/lib"],
-});
+    transpilePackages: ["@referrer/prisma", "@referrer/ui", "@referrer/lib"],
+  })
+);

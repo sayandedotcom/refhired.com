@@ -1,0 +1,11 @@
+{
+  "Index": {
+    "referrals": "referrals",
+    "log_in": "Log In",
+    "sign_up": "Sign Up",
+    "heading1": "Navigate the job market with referrals",
+    "heading2": "Connect through referrals",
+    "description1": "In the ever-evolving landscape of web development, staying abreast of the latest technologies and frameworks is crucial. The Solve It Out YouTube channel has emerged as an invaluable resource for developers, both newcomers and seasoned professionals alike, who are eager to dive into the world of modern tech stacks. This channel, with its engaging content, focuses on harnessing the power of a carefully curated set of technologies including Next.js, MongoDB, Express, React, Tailwind CSS, TypeScript, and Stripe.",
+    "description2": "At the heart of this channel's appeal lies its commitment to demystifying complex tech stacks. By breaking down each component and offering insightful tutorials, Solve It Out ensures that viewers are not only introduced to these technologies but are also equipped with the knowledge and confidence to implement them in real-world projects."
+  }
+}
