@@ -23,7 +23,6 @@ model User {
   updatedAt        DateTime?   @updatedAt
   workingAt        String?
   stripeCustomerId String?     @unique
-  stripePriceId    String?
   accounts         Account[]
   applied          Applied[]
   bookmarks        Bookmarks[]
@@ -67,30 +66,34 @@ model VerificationToken {
 }
 
 model Posts {
-  id                   Int         @id @default(autoincrement())
-  userId               String
-  description          String?
-  createdAt            DateTime    @default(now())
-  expiresAt            DateTime?
-  role                 String?
-  jobType              String?
-  experience           Int?
-  location             String?
-  startingRange        Int?
-  image                String?
-  updatedAt            DateTime    @updatedAt
-  acceptingReferralsNo Int?
-  endingRange          Int?
-  normalPost           Boolean?    @default(false)
-  title                String
-  tagsId               String?
-  applied              Applied[]
-  bookmarks            Bookmarks[]
-  comments             Comments[]
-  tags                 Tags?       @relation(fields: [tagsId], references: [id])
-  user                 User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id            Int         @id @default(autoincrement())
+  userId        String
+  description   String?
+  createdAt     DateTime    @default(now())
+  expiresAt     DateTime?
+  role          String?
+  jobType       String?
+  experience    Int?
+  location      String?
+  startingRange Int?
+  endingRange   Int?
+  image         String?
+  updatedAt     DateTime    @updatedAt
+  tagsId        String?
+  postType      postType    @default(post)
+  applied       Applied[]
+  bookmarks     Bookmarks[]
+  comments      Comments[]
+  tags          Tags?       @relation(fields: [tagsId], references: [id])
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+enum postType {
+  referralPost
+  seekReferralPost
+  post
 }
 
 model Applied {
@@ -119,7 +122,7 @@ model Comments {
   userId    String
   postId    Int
   createdAt DateTime @default(now())
-  posts     Posts    @relation(fields: [postId], references: [id])
+  posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
 }
 
@@ -128,7 +131,7 @@ model Bookmarks {
   userId    String
   postId    Int
   createdAt DateTime @default(now())
-  posts     Posts    @relation(fields: [postId], references: [id])
+  posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])

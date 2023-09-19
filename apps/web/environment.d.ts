@@ -27,6 +27,10 @@ declare global {
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string;
       STRIPE_SECRET_KEY: string;
       STRIPE_WEBHOOK_SECRET: string;
+      STRIPE_EXPERIENCED_PRICE_ID: string;
+      STRIPE_JUNIOR_PRICE_ID: string;
+      STRIPE_LAYOFFED_PRICE_ID: string;
+      STRIPE_CUST0M_PRICE_ID: string;
 
       RESEND_API_KEY: string;
 

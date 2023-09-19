@@ -55,7 +55,7 @@ export function CustomPricingCard() {
         </Button>
       </div>
       <p>Buy stars as much as you want</p>
-      <PricingButton priceId="price_1NpFuaSHACf4T604Rna91pkF" quantity={stars} stars={stars} />
+      <PricingButton priceId={process.env.STRIPE_CUST0M_PRICE_ID || ""} quantity={stars} stars={stars} />
     </>
   );
 }

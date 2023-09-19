@@ -27,7 +27,7 @@ export async function createReferralPost({
       data: {
         userId: sessions.id,
         description,
-        title: description,
+
         // expiresAt,
         // role,
         // jobType,

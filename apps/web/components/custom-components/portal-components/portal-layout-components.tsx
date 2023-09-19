@@ -7,11 +7,11 @@ import { usePathname } from "next/navigation";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import clsx from "clsx";
-import { Info, MoreHorizontal } from "lucide-react";
+import { Info, MoreHorizontal, Star } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
-import { Button, Separator } from "@referrer/ui";
+import { Badge, Button, Separator } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 import { Icons } from "@/components/icons/icons";
@@ -61,8 +61,8 @@ export function NewOptionsSection() {
             {width < 1000 ? <FaPenNib /> : "Post"}
           </Button>
         </PostTypeDialog>
-        <div className="bg-muted mx-auto mt-auto flex h-24 w-full justify-center rounded-sm p-2">
-          <div className="bg-background mr-auto flex h-full w-full items-center gap-3 rounded-lg px-4 lg:w-[95%]">
+        <div className="bg-background mx-auto mb-3 mt-auto flex h-36 w-full flex-col items-center justify-center gap-3 rounded-lg p-2 px-4 lg:w-[95%]">
+          <div className="flex w-full items-center justify-between gap-3">
             {/* <AvatarDemo
               className="aspect-square h-14 w-14"
               image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
@@ -83,6 +83,13 @@ export function NewOptionsSection() {
                 <MoreHorizontal className="w-7" />
               </div>
             </ComboboxDropdownMenu>
+          </div>
+          <div className="flex w-full items-center justify-between gap-3">
+            <Badge className="bg-background text-foreground border-foreground hover:bg-background flex items-center justify-center gap-3 rounded-sm">
+              <Star fill="#FFFF00" className="h-7" />
+              <span className="font-heading mt-1 text-base font-bold">530 Stars</span>
+            </Badge>
+            <Button>Buy Stars</Button>
           </div>
         </div>
       </div>

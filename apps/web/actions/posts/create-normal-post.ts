@@ -5,7 +5,6 @@ import prisma from "@referrer/prisma";
 import { getSession } from "../sessions";
 
 export async function createNormalPost({
-  title,
   description,
   expiresAt,
   role,
@@ -15,13 +14,10 @@ export async function createNormalPost({
   startingRange,
   endingRange,
   image,
-  acceptingReferralsNo,
-  normalPost,
 }) {
   const sessions = await getSession();
   return await prisma.posts.create({
     data: {
-      title,
       userId: sessions.id,
       description,
       expiresAt,
@@ -32,8 +28,6 @@ export async function createNormalPost({
       startingRange,
       endingRange,
       image,
-      acceptingReferralsNo,
-      normalPost,
     },
   });
 }

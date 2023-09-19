@@ -23,7 +23,6 @@ export async function findReferrerPost({
   return await prisma.posts.create({
     data: {
       userId: sessions.id,
-      title: description,
     },
   });
 }
