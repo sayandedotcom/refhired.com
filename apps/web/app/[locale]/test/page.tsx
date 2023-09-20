@@ -36,8 +36,10 @@ const Username = async () => {
 
   return (
     <>
-      {/* <p>{t("heading")}</p>
-      <p>{t("description1")}</p> */}
+      <p>{t("referrals")}</p>
+      <p>{t("log_in")}</p>
+      <p>{t("sign_up")}</p>
+      <p>{t("heading1")}</p>
     </>
 
     // <div className="flex flex-col items-center justify-center gap-4 py-16">

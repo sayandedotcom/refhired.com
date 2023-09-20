@@ -53,7 +53,7 @@
     "jsdom": "^22.1.0",
     "lint-staged": "^13.2.2",
     "prettier": "^2.5.1",
-    "turbo": "^1.10.9",
+    "turbo": "^1.10.14",
     "vitest": "^0.33.0",
     "vitest-mock-extended": "^1.1.4"
   },

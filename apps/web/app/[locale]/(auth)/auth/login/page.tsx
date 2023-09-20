@@ -127,7 +127,9 @@ const Login = () => {
     // }
   };
   return (
-    <div className="bg-muted flex min-h-screen flex-col items-center justify-center gap-10 py-5 lg:h-screen">
+    <div
+    // className="bg-muted flex min-h-screen flex-col items-center justify-center gap-10 py-5 lg:h-screen"
+    >
       <div className="bg-background border-foreground flex w-11/12 flex-col items-center justify-center gap-10 rounded-md border-[0.2px] py-14 lg:w-[450px]">
         <TypographyH2>Welcome Back !</TypographyH2>
         {/* {error ? (

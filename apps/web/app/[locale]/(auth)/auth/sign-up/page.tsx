@@ -104,7 +104,7 @@ const SignUp = () => {
           <Icons.largeLogo className="" />
           <h1 className="mt-1">Refhired.com</h1>
         </Link>
-        <h3>Join the larget referral community !</h3>
+        <h3 className="font-heading">Join the largest referral community !</h3>
       </section>
       <div className="bg-background border-foreground flex w-11/12 flex-col items-center justify-center gap-6 rounded-md border-[0.2px] py-12 lg:w-[450px]">
         <div className="flex w-11/12 flex-col gap-4 py-1 lg:w-10/12">

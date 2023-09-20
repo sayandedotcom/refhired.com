@@ -4,8 +4,8 @@ import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 
 import { useLocale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 
-// import { NextIntlClientProvider } from "next-intl";
 import { siteConfig } from "@/config";
 
 import { cn } from "@/utils";
@@ -88,12 +88,12 @@ const fontHeading = localFont({
 });
 
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params }) {
-  // let messages;
-  // try {
-  //   messages = (await import(`../../messages/${locale}.json`)).default;
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  let messages;
+  try {
+    messages = (await import(`../../messages/${params.locale}.json`)).default;
+  } catch (error) {
+    console.log(error);
+  }
   const locale = useLocale();
   // Validate that the incoming `locale` parameter is a valid locale
   if (params.locale !== locale) {
@@ -109,9 +109,9 @@ export default async function RootLayout({ children, params }: { children: React
             fontSans.variable,
             fontHeading.variable
           )}>
-          {/* <NextIntlClientProvider locale={locale} messages={messages}> */}
-          <Provider>{children}</Provider>
-          {/* </NextIntlClientProvider> */}
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Provider>{children}</Provider>
+          </NextIntlClientProvider>
         </body>
       </html>
     </>

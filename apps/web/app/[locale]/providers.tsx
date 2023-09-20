@@ -39,6 +39,7 @@ export function Provider({ children }) {
   const path = usePathname();
   const toastPosition = useStore((state) => state.toastPosition);
   const showNavbar = rootPaths.includes(path);
+  // const navv=rootPaths.su
 
   return (
     <>

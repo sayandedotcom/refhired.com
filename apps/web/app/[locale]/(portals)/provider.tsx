@@ -10,8 +10,6 @@ import { PostSteps, Steps } from "@/config";
 
 import { useStore } from "@/store/store";
 
-import "../../styles/globals.css";
-
 export function Provider({ children }: { children: React.ReactNode }) {
   const [run, setRun] = useState(false);
   const [showComponent, setShowComponent] = useState(false);
