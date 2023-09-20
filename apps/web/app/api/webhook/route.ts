@@ -8,7 +8,8 @@ import { stripe } from "@/lib/stripe";
 
 const webhookSecret: string = process.env.STRIPE_WEBHOOK_SECRET;
 
-const webhookHandler = async (req: NextRequest) => {
+// ! const webhookHandler = async (req: NextRequest) => {
+export async function POST(req: NextRequest, res: any) {
   try {
     const buf = await req.text();
     const sig = req.headers.get("stripe-signature")!;
@@ -65,6 +66,6 @@ const webhookHandler = async (req: NextRequest) => {
       { status: 405 }
     ).headers.set("Allow", "POST");
   }
-};
+}
 
-export { webhookHandler as POST };
+// ! export { webhookHandler as POST };
