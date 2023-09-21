@@ -14,7 +14,7 @@ import { Toaster } from "react-hot-toast";
 import { Toaster as SonerToaster } from "sonner";
 
 import { PreLoader } from "@/components/custom-components";
-import { Banner, Footer, Navbar } from "@/components/layout-components";
+import { Banner, Footer, Navbar } from "@/components/layout";
 import ProgressBar from "@/components/ui/progress-bar";
 
 import { rootPaths } from "@/config";

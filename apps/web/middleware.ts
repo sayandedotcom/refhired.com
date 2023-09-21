@@ -2,7 +2,7 @@ import createMiddleware from "next-intl/middleware";
 
 export default createMiddleware({
   // A list of all locales that are supported
-  locales: ["en", "de"],
+  locales: ["en", "de", "zh"],
 
   // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
   defaultLocale: "en",
@@ -15,3 +15,5 @@ export const config = {
   matcher: ["/((?!api|_next|(?:[.-]*)\\..*).*)"],
 };
 // ["/((?!api|_next|(?:[.-]*)\\..*).*)"];
+
+// ! https://dev.to/ajones_codes/the-ultimate-guide-to-internationalization-i18n-in-nextjs-13-ed0

@@ -15,10 +15,9 @@ import {
 
 import { useStore } from "@/store/store";
 
-// import "../../styles/globals.css";
 import { Provider } from "./provider";
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function PortalsLayout({ children }: { children: React.ReactNode }) {
   const { data: session } = useSession();
 
   const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);

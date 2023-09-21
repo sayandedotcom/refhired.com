@@ -74,7 +74,7 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "de" }];
+  return [{ locale: "en" }, { locale: "de" }, { locale: "zh" }];
 }
 
 const fontSans = FontSans({
@@ -87,16 +87,27 @@ const fontHeading = localFont({
   variable: "--font-heading",
 });
 
-export default async function RootLayout({ children, params }: { children: React.ReactNode; params }) {
+export default async function RootLayout({
+  children,
+  loginModal,
+  params,
+}: {
+  children: React.ReactNode;
+  loginModal: React.ReactNode;
+  params;
+}) {
   let messages;
   try {
-    messages = (await import(`../../messages/${params.locale}.json`)).default;
+    messages = (await import(`../../messages/${params?.locale || "en"}.json`)).default;
   } catch (error) {
     console.log(error);
   }
+  console.log("params---locale=====================", params?.locale);
   const locale = useLocale();
+  console.log("locale=====================", locale);
+
   // Validate that the incoming `locale` parameter is a valid locale
-  if (params.locale !== locale) {
+  if (params?.locale !== locale) {
     notFound();
   }
 
@@ -110,7 +121,10 @@ export default async function RootLayout({ children, params }: { children: React
             fontHeading.variable
           )}>
           <NextIntlClientProvider locale={locale} messages={messages}>
-            <Provider>{children}</Provider>
+            <Provider>
+              {children}
+              {loginModal}
+            </Provider>
           </NextIntlClientProvider>
         </body>
       </html>

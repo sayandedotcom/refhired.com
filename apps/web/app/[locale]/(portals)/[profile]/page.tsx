@@ -58,9 +58,6 @@ const Profile = async ({ params }: paramsProps) => {
         <p>{userProfile ? userProfile.name : ""}</p>
         <p>@{userProfile ? userProfile.userName : profile}</p>
         <p className="text-center text-sm md:text-lg">{userProfile.bio}</p>
-        <div className="flex gap-4">
-          <span>1000 Followers</span>•<span>100 Following</span>
-        </div>
         <div className="flex gap-3">
           <FaSuitcase />
           <span>{userProfile.workingAt}</span>•<HiLocationMarker />

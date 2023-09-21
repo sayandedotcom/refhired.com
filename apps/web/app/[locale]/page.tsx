@@ -37,20 +37,6 @@ export default async function Page({ params: { locale } }) {
           </span>
           "
         </h1>
-        <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
-          " {t("heading1")}{" "}
-          <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
-            referrals
-          </span>{" "}
-          :{" "}
-          <span className="">
-            {t("heading2")}{" "}
-            <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-              referrals
-            </span>{" "}
-          </span>
-          "
-        </h1>
         <p className="text-muted-foreground mt-3 px-6 text-center text-[15px] leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
           Used by many job seekers and employees of the world's largest companies, Referrer enables you to get
           job through referrals which has the highest convertion rates among other methods . It simplifies the

@@ -36,7 +36,7 @@ const AuthError = () => {
   const isTokenVerificationError = error?.toLowerCase() === "verification";
   const errorMsg = isTokenVerificationError ? "token_invalid_expired" : "error_during_login";
   return (
-    <div className="bg-destructive flex h-screen justify-center">
+    <div className="bg-destructive flex h-screen w-full justify-center">
       <div className="bg-background mt-16 h-60 w-[500px] rounded-md p-6">
         <div>
           <div className="bg-destructive mx-auto flex h-12 w-12 items-center justify-center rounded-full">

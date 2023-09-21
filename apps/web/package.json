@@ -22,7 +22,7 @@
     "@referrer/lib": "*",
     "@referrer/prisma": "*",
     "@referrer/ui": "*",
-    "@stripe/stripe-js": "^2.1.5",
+    "@stripe/stripe-js": "^2.1.6",
     "@tanstack/react-query": "^4.29.19",
     "@tanstack/react-table": "^8.9.3",
     "@uploadthing/react": "^5.6.0",
@@ -32,7 +32,7 @@
     "date-fns": "^2.30.0",
     "encoding": "^0.1.13",
     "lucide-react": "^0.279.0",
-    "next": "^13.5.1",
+    "next": "^13.5.2",
     "next-auth": "^4.23.1",
     "next-intl": "3.0.0-beta.18",
     "next-pwa": "^5.6.0",
@@ -53,10 +53,10 @@
     "react-select": "^5.7.3",
     "react-slider": "^2.0.6",
     "react-textarea-autosize": "^8.5.2",
-    "resend": "^1.0.0",
+    "resend": "^1.1.0",
     "sonner": "^0.7.4",
-    "stripe": "^13.5.0",
-    "uploadthing": "^5.6.0",
+    "stripe": "^13.6.0",
+    "uploadthing": "^5.6.1",
     "usehooks-ts": "^2.9.1",
     "zod": "^3.21.4",
     "zustand": "^4.4.0"
@@ -75,8 +75,8 @@
     "autoprefixer": "^10.4.14",
     "eslint-config-custom": "*",
     "postcss": "^8.4.23",
-    "tailwind-scrollbar": "^3.0.4",
-    "tailwindcss": "^3.3.2",
+    "tailwind-scrollbar": "^3.0.5",
+    "tailwindcss": "^3.3.3",
     "typescript": "^5.2.2"
   }
 }

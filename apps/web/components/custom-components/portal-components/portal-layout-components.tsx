@@ -11,7 +11,7 @@ import { Info, MoreHorizontal, Star } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
-import { Badge, Button, Separator } from "@referrer/ui";
+import { Badge, Button, Separator, buttonVariants } from "@referrer/ui";
 
 import { ThemeSwitcher } from "@/components/custom-components";
 import { Icons } from "@/components/icons/icons";
@@ -40,7 +40,7 @@ export function NewOptionsSection() {
                   id={name.toLocaleLowerCase()}
                   href={link ?? session?.user.userName ?? "profile"}
                   className={clsx(
-                    "hover:bg-background flex items-center gap-4 rounded-md px-2 py-2",
+                    "hover:bg-background/50 flex items-center gap-4 rounded-md px-2 py-2",
                     path === link && "bg-background"
                   )}>
                   {path !== link ? (
@@ -86,7 +86,7 @@ export function NewOptionsSection() {
           </div>
           <div className="flex w-full items-center justify-between gap-3">
             <Badge className="bg-background text-foreground border-foreground hover:bg-background flex items-center justify-center gap-3 rounded-sm">
-              <Star fill="#FFFF00" className="h-7" />
+              <Star fill="#FFC300" className="h-7" />
               <span className="font-heading mt-1 text-base font-bold">530 Stars</span>
             </Badge>
             <Button>Buy Stars</Button>
@@ -170,6 +170,9 @@ export function NewExtraSection() {
         }>
         Soner
       </Button>
+      <Link href="/auth/login" className={buttonVariants()}>
+        Dialog
+      </Link>
     </section>
   );
 }
