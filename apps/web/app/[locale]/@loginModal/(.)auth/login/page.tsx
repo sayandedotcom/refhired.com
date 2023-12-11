@@ -2,14 +2,12 @@
 
 import Login from "@/app/[locale]/(auth)/auth/login/page";
 
-import { Button, Dialog, DialogContent, DialogTrigger } from "@referrer/ui";
+import { Dialog, DialogContent, DialogTrigger } from "@referrer/ui";
 
-export default function LoginModal() {
+export default function LoginModal({ children }: { children: any }) {
   return (
     <Dialog>
-      <DialogTrigger>
-        <Button>Hffffi</Button>
-      </DialogTrigger>
+      <DialogTrigger>{children}</DialogTrigger>
       <DialogContent className="border-foreground flex w-[450px] items-center justify-center p-1">
         <Login className="w-full border-none px-0" />
       </DialogContent>

@@ -58,4 +58,5 @@ export const referralPostValidator = z.object({
       required_error: "Expiry of this Application is required.",
     })
     .optional(),
+  stars: z.number().optional(),
 });

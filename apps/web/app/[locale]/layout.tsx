@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
-import { notFound } from "next/navigation";
 
-import { useLocale } from "next-intl";
+// import { useLocale } from "next-intl";
 import { NextIntlClientProvider } from "next-intl";
 
 import { siteConfig } from "@/config";
@@ -91,7 +90,8 @@ export default async function RootLayout({
   children,
   loginModal,
   params,
-}: {
+}: // params: {locale}
+{
   children: React.ReactNode;
   loginModal: React.ReactNode;
   params;
@@ -103,24 +103,24 @@ export default async function RootLayout({
     console.log(error);
   }
   console.log("params---locale=====================", params?.locale);
-  const locale = useLocale();
-  console.log("locale=====================", locale);
+  // const locale = useLocale();
+  // console.log("locale=====================", locale);
 
   // Validate that the incoming `locale` parameter is a valid locale
-  if (params?.locale !== locale) {
-    notFound();
-  }
+  // if (params?.locale !== locale) {
+  //   notFound();
+  // }
 
   return (
     <>
-      <html lang={locale} suppressHydrationWarning>
+      <html lang={params?.locale} suppressHydrationWarning>
         <body
           className={cn(
             "selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white font-sans",
             fontSans.variable,
             fontHeading.variable
           )}>
-          <NextIntlClientProvider locale={locale} messages={messages}>
+          <NextIntlClientProvider locale={params?.locale} messages={messages}>
             <Provider>
               {children}
               {loginModal}

@@ -6,7 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import prisma from "@referrer/prisma";
 
 import { RefhiredAdapter } from "./next-auth-custom-adapter";
-import { sendMail } from "./resend";
+// import { sendMail } from "./resend";
 import { stripe } from "./stripe";
 
 export const authOptions: NextAuthOptions = {
@@ -42,6 +42,12 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       allowDangerousEmailAccountLinking: true,
+      // profile(profile, tokens) {
+      //   return ({
+      //     ! add username from email
+      //     ! add locale
+      //   })
+      // },
     }),
     EmailProvider({
       sendVerificationRequest: async (params: SendVerificationRequestParams) => {
@@ -60,27 +66,28 @@ export const authOptions: NextAuthOptions = {
 
         if (userExists) {
           try {
-            await sendMail({
-              toMail: email,
-              type: "verification",
-              data: {
-                name: userExists?.name,
-                url,
-              },
-            });
+            // await sendMail({
+            //   toMail: email,
+            //   type: "verification",
+            //   data: {
+            //     name: userExists?.name,
+            //     url,
+            //   },
+            // });
+            console.log("hi");
           } catch (error) {
             throw new Error(JSON.stringify(error));
           }
         } else {
           try {
-            await sendMail({
-              toMail: email,
-              type: "verification",
-              data: {
-                name: "Welcome to Refhired.com",
-                url,
-              },
-            });
+            // await sendMail({
+            //   toMail: email,
+            //   type: "verification",
+            //   data: {
+            //     name: "Welcome to Refhired.com",
+            //     url,
+            //   },
+            // });
           } catch (error) {
             throw new Error(JSON.stringify(error));
           }
@@ -108,6 +115,7 @@ export const authOptions: NextAuthOptions = {
       // else if (trigger === "signUp") console.log("callback jwt trigger signUp 😊😊😊😊😊😊😊😊😊😊");
       // else if (trigger === "update") console.log("callback jwt trigger update 😊😊😊😊😊😊😊😊😊😊");
       const dbUser = await prisma.user.findFirst({
+        // ! optimise with prisma
         where: {
           email: token.email,
         },
@@ -122,6 +130,7 @@ export const authOptions: NextAuthOptions = {
         picture: dbUser.image,
         locale: profile?.locale ?? dbUser.locale,
         stripeCustomerId: dbUser.stripeCustomerId,
+        stars: dbUser.stars ?? 0,
       };
     },
     async session({ session, token, user, trigger }) {
@@ -134,6 +143,7 @@ export const authOptions: NextAuthOptions = {
         session.user.image = token.picture;
         session.user.locale = token?.locale;
         session.user.stripeCustomerId = token.stripeCustomerId;
+        session.user.stars = token.stars;
       }
       return session;
     },
@@ -185,13 +195,13 @@ export const authOptions: NextAuthOptions = {
     async createUser({ user }) {
       console.log("event createUser😊😊😊😊😊😊😊😊😊😊", user);
       /* user created */
-      await sendMail({
-        toMail: user.email,
-        type: "welcome",
-        data: {
-          name: user?.name,
-        },
-      });
+      // await sendMail({
+      //   toMail: user.email,
+      //   type: "welcome",
+      //   data: {
+      //     name: user?.name,
+      //   },
+      // });
       await stripe.customers
         .create({
           email: user.email,

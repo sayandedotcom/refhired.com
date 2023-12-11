@@ -12,6 +12,7 @@ declare global {
       GITHUB_CLIENT_ID: string;
       GITHUB_CLIENT_SECRET: string;
 
+      NEXT_PUBLIC_COUNTRY_STATE_CITY: string;
       COUNTRY_STATE_CITY: string;
 
       POSTGRES_DATABASE: string;
@@ -23,6 +24,13 @@ declare global {
       POSTGRES_USER: string;
       VERCEL: string;
       VERCEL_ENV: string;
+
+      KV_URL: string;
+      KV_REST_API_URL: string;
+      KV_REST_API_TOKEN: string;
+      KV_REST_API_READ_ONLY_TOKEN: string;
+
+      EDGE_CONFIG: string;
 
       NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: string;
       STRIPE_SECRET_KEY: string;

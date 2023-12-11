@@ -1,5 +1,4 @@
-"use client";
-
+// "use client";
 import { Bell, Bookmark, LayoutDashboard, Mail, Search, Settings, User } from "lucide-react";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import { IoDocumentsOutline, IoDocumentsSharp } from "react-icons/io5";
@@ -44,7 +43,7 @@ export const portalsList = [
   },
   {
     name: "Settings",
-    link: "/settings",
+    link: "/settings/profile",
     icon: <Settings />,
     activeIcon: <Settings fill="#ffff" />,
   },

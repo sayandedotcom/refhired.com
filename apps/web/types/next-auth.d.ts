@@ -11,6 +11,7 @@ declare module "next-auth" {
       userName: PrismaUser["userName"];
       locale?: PrismaUser["locale"];
       stripeCustomerId?: PrismaUser["stripeCustomerId"];
+      stars?: PrismaUser["stars"];
     } & DefaultSession["user"];
   }
   /**
@@ -46,5 +47,6 @@ declare module "next-auth/jwt" {
     userName?: string | null;
     locale?: string | null;
     stripeCustomerId?: string | null;
+    stars: number | null;
   }
 }

@@ -5,7 +5,7 @@ import prisma from "@referrer/prisma";
 import { getSession } from "../sessions";
 
 export async function createNormalPost({
-  description,
+  // description,
   expiresAt,
   role,
   jobType,
@@ -19,7 +19,7 @@ export async function createNormalPost({
   return await prisma.posts.create({
     data: {
       userId: sessions.id,
-      description,
+      // description,
       expiresAt,
       role,
       jobType,

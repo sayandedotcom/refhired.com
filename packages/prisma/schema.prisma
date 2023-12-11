@@ -9,20 +9,20 @@ datasource db {
 }
 
 model User {
-  id               String      @id @default(cuid())
   email            String      @unique
-  userName         String      @unique
   emailVerified    DateTime?
   image            String?
   name             String?
   bio              String?
+  createdAt        DateTime?   @default(now())
   locale           String?
   location         String?
   stars            Int?        @default(0)
-  createdAt        DateTime?   @default(now())
   updatedAt        DateTime?   @updatedAt
+  userName         String      @unique
   workingAt        String?
   stripeCustomerId String?     @unique
+  id               String      @id @default(cuid())
   accounts         Account[]
   applied          Applied[]
   bookmarks        Bookmarks[]
@@ -33,7 +33,6 @@ model User {
 
 model Account {
   id                String  @id @default(cuid())
-  userId            String
   providerAccountId String
   access_token      String?
   expires_at        Int?
@@ -44,7 +43,8 @@ model Account {
   session_state     String?
   token_type        String?
   type              String
-  user              User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -52,9 +52,9 @@ model Account {
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
-  userId       String
   expires      DateTime
-  user         User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
@@ -66,9 +66,7 @@ model VerificationToken {
 }
 
 model Posts {
-  id            Int         @id @default(autoincrement())
-  userId        String
-  description   String?
+  content       Json?
   createdAt     DateTime    @default(now())
   expiresAt     DateTime?
   role          String?
@@ -76,31 +74,34 @@ model Posts {
   experience    Int?
   location      String?
   startingRange Int?
-  endingRange   Int?
   image         String?
   updatedAt     DateTime    @updatedAt
+  endingRange   Int?
+  id            Int         @id @default(autoincrement())
+  userId        String
+  stars         String?
+  limit         Int?
+  pdfs          Json?
+  links         Json?
+  // ! accept        Json?
   postType      postType    @default(post)
   applied       Applied[]
   bookmarks     Bookmarks[]
   comments      Comments[]
-  tags          Tags[]
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tags          Tags[]      @relation("PostsToTags")
 
   @@index([userId])
 }
 
-enum postType {
-  referralPost
-  seekReferralPost
-  post
-}
-
 model Applied {
+  createdAt DateTime @default(now())
+  content   Json?
   id        Int      @id @default(autoincrement())
   userId    String
   postId    Int
-  createdAt DateTime @default(now())
-  message   String?
+  pdfs      Json?
+  links     Json?
   posts     Posts    @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
@@ -112,26 +113,32 @@ model Applied {
 model Tags {
   id    String  @id @default(cuid())
   name  String  @unique
-  posts Posts[]
+  posts Posts[] @relation("PostsToTags")
 }
 
 model Comments {
-  id        Int      @id @default(autoincrement())
   text      String
+  createdAt DateTime @default(now())
+  id        Int      @id @default(autoincrement())
   userId    String
   postId    Int
-  createdAt DateTime @default(now())
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
 }
 
 model Bookmarks {
+  createdAt DateTime @default(now())
   id        Int      @id @default(autoincrement())
   userId    String
   postId    Int
-  createdAt DateTime @default(now())
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])
+}
+
+enum postType {
+  referralPost
+  findReferrer
+  post
 }

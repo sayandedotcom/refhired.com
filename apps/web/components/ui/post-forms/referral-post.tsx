@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import * as z from "zod";
 
+import { createReferralPost } from "@/actions/posts";
+
 import { cn } from "@referrer/lib/utils/cn";
 import {
   Button,
@@ -33,7 +35,7 @@ import {
 
 import { referralPostValidator } from "@/lib/validators";
 
-import { experienceOptionsObj, items, jobTypeList, jobTypeOptionsObj } from "@/config";
+import { experienceOptionsObj, items, jobTypeList, jobTypeOptionsObj, links, pdfs } from "@/config";
 
 import { useStore } from "@/store/store";
 
@@ -61,6 +63,7 @@ export const ReferralPost = () => {
       cityLocation: "",
       skills: [],
       accept: ["shortMessage", "resume", "linkedin"],
+      stars: 0,
     },
   });
 
@@ -129,11 +132,18 @@ export const ReferralPost = () => {
 
   async function onSubmit(values: z.infer<typeof referralPostValidator>) {
     try {
-      // await createReferralPost({
-      // description: values.desscription,
-      // jobType: values.jobType[0],
-      // skills: values.skills,
-      // });
+      await createReferralPost({
+        // description: values.desscription,
+        // expiresAt: values.expiresAt,
+        // role: values.role,
+        // jobType: values.jobType,
+        // // experience: values.experience,
+        // location: values.location,
+        // // startingRange,
+        // // endingRange,
+        // // image:values.image,
+        // skills:values.skills,
+      });
       console.log(values);
       sonerToast({
         severity: "success",
@@ -582,6 +592,86 @@ export const ReferralPost = () => {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="accept"
+            render={() => (
+              <FormItem className="my-2">
+                <FormLabel>
+                  Accept PDFs
+                  <Required />
+                </FormLabel>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  {pdfs.map((item) => (
+                    <FormField
+                      key={item.id}
+                      control={form.control}
+                      name="accept"
+                      render={({ field }) => {
+                        return (
+                          <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value?.includes(item.id)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([...field.value, item.id])
+                                    : field.onChange(field.value?.filter((value) => value !== item.id));
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="font-normal">{item.label}</FormLabel>
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  ))}
+                </div>
+                <FormMessage />
+                <FormDescription>Select the items you want to accept from applicant.</FormDescription>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="accept"
+            render={() => (
+              <FormItem className="my-2">
+                <FormLabel>
+                  Accept Links
+                  <Required />
+                </FormLabel>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  {links.map((item) => (
+                    <FormField
+                      key={item.id}
+                      control={form.control}
+                      name="accept"
+                      render={({ field }) => {
+                        return (
+                          <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value?.includes(item.id)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([...field.value, item.id])
+                                    : field.onChange(field.value?.filter((value) => value !== item.id));
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="font-normal">{item.label}</FormLabel>
+                          </FormItem>
+                        );
+                      }}
+                    />
+                  ))}
+                </div>
+                <FormMessage />
+                <FormDescription>Select the items you want to accept from applicant.</FormDescription>
+              </FormItem>
+            )}
+          />
           <Separator />
           {/* Deadline of Post */}
           <FormField
@@ -616,6 +706,22 @@ export const ReferralPost = () => {
                 </Popover>
                 <FormMessage />
                 <FormDescription>Select the deadline of the Post.</FormDescription>
+              </FormItem>
+            )}
+          />
+          {/* Submit */}
+          <Separator />
+          <FormField
+            control={form.control}
+            name="stars"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Stars</FormLabel>
+                <FormControl>
+                  <Input placeholder="Stars ⭐" className="" {...field} />
+                </FormControl>
+                <FormDescription>This is your public display name.</FormDescription>
+                <FormMessage />
               </FormItem>
             )}
           />

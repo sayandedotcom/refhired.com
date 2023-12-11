@@ -1,5 +1,4 @@
-"use client";
-
+// "use client";
 import { Step } from "react-joyride";
 
 // {

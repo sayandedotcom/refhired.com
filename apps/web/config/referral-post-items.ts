@@ -13,6 +13,9 @@ export const items = [
     id: "shortMessage",
     label: "Short Message",
   },
+] as const;
+
+export const pdfs = [
   {
     id: "resume",
     label: "Resume",
@@ -21,6 +24,9 @@ export const items = [
     id: "coverLetter",
     label: "Cover Letter",
   },
+] as const;
+
+export const links = [
   {
     id: "linkedin",
     label: "LinkedIn",

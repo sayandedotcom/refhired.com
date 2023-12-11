@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
+// import { useTranslations } from "next-intl";
 import { getSession } from "@/actions/sessions";
 
 import { Separator } from "@referrer/ui";
@@ -17,7 +18,10 @@ import {
 } from "@/components/custom-components";
 
 export default async function Page({ params: { locale } }) {
-  const t = await getTranslator(locale, "Index");
+  // const t = await getTranslator(locale, "Index");
+  const t = await getTranslations("Index");
+  // const t = useTranslations("Index");
+
   const session = await getSession();
 
   return (

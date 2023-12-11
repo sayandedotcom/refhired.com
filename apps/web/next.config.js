@@ -13,7 +13,7 @@ module.exports = withNextIntl(
   withPWA({
     reactStrictMode: true,
     experimental: {
-      serverActions: true,
+      // serverActions: true,
       serverComponentsExternalPackages: ["@prisma/client"],
     },
     images: {

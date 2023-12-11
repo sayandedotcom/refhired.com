@@ -132,6 +132,7 @@ export function ApplyDialog({ children }) {
                 </FormItem>
               )}
             />
+            {/* Links */}
             <div className="mt-2">
               {fields.map((field, index) => (
                 <FormField

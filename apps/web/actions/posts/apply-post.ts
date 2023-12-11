@@ -4,7 +4,7 @@ import prisma from "@referrer/prisma";
 
 import { getSession } from "../sessions";
 
-export async function applyPost(slug, message) {
+export async function applyPost(slug, content) {
   const post = await prisma.posts.findFirst({
     where: {
       id: slug,
@@ -17,7 +17,7 @@ export async function applyPost(slug, message) {
       data: {
         userId: sessions.id,
         postId: post.id,
-        message,
+        content,
       },
     });
   }

@@ -1,15 +1,21 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import LoginModal from "@/app/[locale]/@loginModal/(.)auth/login/page";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
+import type { User } from "@prisma/client";
 import clsx from "clsx";
 import { Info, MoreHorizontal, Star } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
+
+import { getProfile } from "@/actions/settings";
 
 import { Badge, Button, Separator, buttonVariants } from "@referrer/ui";
 
@@ -26,6 +32,19 @@ export function NewOptionsSection() {
   const pathName = usePathname();
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
+
+  const [data, setData] = useState<User>();
+  const getUsers = async () => {
+    const users = await getProfile();
+    setData(users);
+  };
+
+  useEffect(() => {
+    getUsers(); // run it, run it
+    // return () => {
+    // this now gets called when the component unmounts
+    // };
+  }, []);
   return (
     <section className="sticky left-0 top-0 h-screen w-[15%] lg:w-[20%]">
       <div className="bg-muted flex h-full w-full flex-col items-start justify-start">
@@ -87,7 +106,7 @@ export function NewOptionsSection() {
           <div className="flex w-full items-center justify-between gap-3">
             <Badge className="bg-background text-foreground border-foreground hover:bg-background flex items-center justify-center gap-3 rounded-sm">
               <Star fill="#FFC300" className="h-7" />
-              <span className="font-heading mt-1 text-base font-bold">530 Stars</span>
+              <span className="font-heading mt-1 text-base font-bold">{data?.stars} Stars</span>
             </Badge>
             <Button>Buy Stars</Button>
           </div>
@@ -173,6 +192,9 @@ export function NewExtraSection() {
       <Link href="/auth/login" className={buttonVariants()}>
         Dialog
       </Link>
+      <LoginModal>
+        <Button>Modal</Button>
+      </LoginModal>
     </section>
   );
 }
