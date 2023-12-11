@@ -79,12 +79,11 @@ model Posts {
   endingRange   Int?
   image         String?
   updatedAt     DateTime    @updatedAt
-  tagsId        String?
   postType      postType    @default(post)
   applied       Applied[]
   bookmarks     Bookmarks[]
   comments      Comments[]
-  tags          Tags?       @relation(fields: [tagsId], references: [id])
+  tags          Tags[]
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
