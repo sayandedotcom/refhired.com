@@ -9,8 +9,6 @@ import { useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import * as z from "zod";
 
-import { createReferralPost } from "@/actions/posts";
-
 import { cn } from "@referrer/lib/utils/cn";
 import {
   Button,
@@ -35,7 +33,7 @@ import {
 
 import { referralPostValidator } from "@/lib/validators";
 
-import { experienceOptionsObj, items, jobTypeList, jobTypeOptionsObj, links, pdfs } from "@/config";
+import { accept, experienceOptionsObj, jobTypeList, jobTypeOptionsObj, links, pdfs } from "@/config";
 
 import { useStore } from "@/store/store";
 
@@ -62,8 +60,11 @@ export const ReferralPost = () => {
       stateLocation: "",
       cityLocation: "",
       skills: [],
-      accept: ["shortMessage", "resume", "linkedin"],
+      accept: ["shortMessage"],
+      pdfs: ["resume"],
+      links: ["linkedin"],
       stars: 0,
+      limit: 0,
     },
   });
 
@@ -132,18 +133,20 @@ export const ReferralPost = () => {
 
   async function onSubmit(values: z.infer<typeof referralPostValidator>) {
     try {
-      await createReferralPost({
-        // description: values.desscription,
-        // expiresAt: values.expiresAt,
-        // role: values.role,
-        // jobType: values.jobType,
-        // // experience: values.experience,
-        // location: values.location,
-        // // startingRange,
-        // // endingRange,
-        // // image:values.image,
-        // skills:values.skills,
-      });
+      //   await createReferralPost({
+      //     content: values.desscription,
+      //     expiresAt: values.expiresAt,
+      //     role: values.role,
+      //     jobType: values.jobType,
+      //     experience: values.experience,
+      //     location: values.location,
+      //     stars: values.stars,
+      //     limit: values.limit,
+      //     pdfs: values.pdfs,
+      //     links: values.links,
+      //     postType: "referralPost",
+
+      //   });
       console.log(values);
       sonerToast({
         severity: "success",
@@ -562,7 +565,7 @@ export const ReferralPost = () => {
                   <Required />
                 </FormLabel>
                 <div className="flex flex-wrap items-center justify-center gap-3">
-                  {items.map((item) => (
+                  {accept.map((item) => (
                     <FormField
                       key={item.id}
                       control={form.control}
@@ -592,9 +595,10 @@ export const ReferralPost = () => {
               </FormItem>
             )}
           />
+          {/* Accept PDFs */}
           <FormField
             control={form.control}
-            name="accept"
+            name="pdfs"
             render={() => (
               <FormItem className="my-2">
                 <FormLabel>
@@ -606,7 +610,7 @@ export const ReferralPost = () => {
                     <FormField
                       key={item.id}
                       control={form.control}
-                      name="accept"
+                      name="pdfs"
                       render={({ field }) => {
                         return (
                           <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
@@ -632,9 +636,10 @@ export const ReferralPost = () => {
               </FormItem>
             )}
           />
+          {/* Accept Links */}
           <FormField
             control={form.control}
-            name="accept"
+            name="links"
             render={() => (
               <FormItem className="my-2">
                 <FormLabel>
@@ -646,7 +651,7 @@ export const ReferralPost = () => {
                     <FormField
                       key={item.id}
                       control={form.control}
-                      name="accept"
+                      name="links"
                       render={({ field }) => {
                         return (
                           <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
@@ -709,7 +714,7 @@ export const ReferralPost = () => {
               </FormItem>
             )}
           />
-          {/* Submit */}
+          {/* Stars */}
           <Separator />
           <FormField
             control={form.control}
@@ -718,7 +723,29 @@ export const ReferralPost = () => {
               <FormItem>
                 <FormLabel>Stars</FormLabel>
                 <FormControl>
-                  <Input placeholder="Stars ⭐" className="" {...field} />
+                  <Input placeholder="Stars ⭐" type="number" className="" value={field.value} {...field} />
+                </FormControl>
+                <FormDescription>This is your public display name.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          {/* Limit */}
+          <Separator />
+          <FormField
+            control={form.control}
+            name="limit"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Stars</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Accepting Limit"
+                    type="number"
+                    className=""
+                    value={field.value}
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>This is your public display name.</FormDescription>
                 <FormMessage />

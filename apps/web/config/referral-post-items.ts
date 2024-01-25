@@ -8,7 +8,7 @@ export const jobTypeList = [
   { value: "Freelance", label: "Freelance" },
 ];
 
-export const items = [
+export const accept = [
   {
     id: "shortMessage",
     label: "Short Message",

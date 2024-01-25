@@ -35,6 +35,7 @@ export const referralPostValidator = z.object({
     .transform((value) => value.value),
   location: z.enum(["On-site", "Remote", "Hybrid"], {
     required_error: "You need to select a notification type.",
+    invalid_type_error: "You need to select a notification type.",
   }),
   countryLocation: z.string().nonempty(),
   stateLocation: z.string().optional(),
@@ -53,10 +54,32 @@ export const referralPostValidator = z.object({
   accept: z.array(z.string()).refine((value) => value.some((item) => item), {
     message: "You have to select at least one item.",
   }),
+  pdfs: z
+    .array(z.string())
+    .refine((value) => value.some((item) => item), {
+      message: "You have to select at least one item.",
+    })
+    .transform((value) => JSON.parse(JSON.stringify(value))),
+  links: z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one item.",
+  }),
   expiresAt: z
     .date({
       required_error: "Expiry of this Application is required.",
     })
     .optional(),
-  stars: z.number().optional(),
+  stars: z
+    .string({
+      // required_error: "Name is required",
+      // invalid_type_error: "Name must be a string",
+    })
+    .optional()
+    .transform((value) => +value),
+  limit: z
+    .string({
+      // required_error: "Name is required",
+      // invalid_type_error: "Name must be a string",
+    })
+    .optional()
+    .transform((value) => +value),
 });

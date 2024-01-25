@@ -8,6 +8,6 @@
   "javascript.validate.enable": false,
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   }
 }
