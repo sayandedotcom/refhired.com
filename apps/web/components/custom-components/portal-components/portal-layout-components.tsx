@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import LoginModal from "@/app/[locale]/@loginModal/(.)auth/login/page";
+// import LoginModal from "@/app/[locale]/@loginModal/(.)auth/login/page";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import type { User } from "@prisma/client";
@@ -192,9 +192,9 @@ export function NewExtraSection() {
       <Link href="/auth/login" className={buttonVariants()}>
         Dialog
       </Link>
-      <LoginModal>
-        <Button>Modal</Button>
-      </LoginModal>
+      {/* <LoginModal> */}
+      <Button>Modal</Button>
+      {/* </LoginModal> */}
     </section>
   );
 }
