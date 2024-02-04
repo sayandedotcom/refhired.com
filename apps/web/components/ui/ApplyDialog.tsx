@@ -102,7 +102,7 @@ export function ApplyDialog({ children }) {
             )}
             {/* PDF */}
             {myObject.hasOwnProperty("pdfs") &&
-              myObject.pdfs.map((name: "resume" | "coverLetter", index) => (
+              myObject.pdfs.map((name, index) => (
                 <FormField
                   control={form.control}
                   name={`pdfs.${index}.${name}`}
