@@ -3,7 +3,7 @@ import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
 // import { useLocale } from "next-intl";
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
 import { siteConfig } from "@/config";
 
@@ -86,7 +86,7 @@ const fontHeading = localFont({
   variable: "--font-heading",
 });
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
   loginModal,
   params: { locale },
@@ -98,12 +98,12 @@ export default async function RootLayout({
   // params;
   params: { locale: string };
 }) {
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale || "en"}.json`)).default;
-  } catch (error) {
-    console.log(error);
-  }
+  // let messages;
+  // try {
+  //   messages = (await import(`../../messages/${locale || "en"}.json`)).default;
+  // } catch (error) {
+  //   console.log(error);
+  // }
   console.log("params---locale=====================", locale);
   // const locale = useLocale();
   // console.log("locale=====================", locale);
@@ -112,7 +112,7 @@ export default async function RootLayout({
   // if (params?.locale !== locale) {
   //   notFound();
   // }
-
+  const messages = useMessages();
   return (
     <>
       <html lang={locale} suppressHydrationWarning>
