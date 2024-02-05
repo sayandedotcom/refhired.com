@@ -1,7 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
+import { usePathname } from "@/navigation";
 import { useSession } from "next-auth/react";
 
 import { Separator } from "@referrer/ui";

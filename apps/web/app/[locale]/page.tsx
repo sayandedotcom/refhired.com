@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { Link } from "@/navigation";
 import { getTranslations } from "next-intl/server";
 
 // import { useTranslations } from "next-intl";

@@ -3,12 +3,11 @@
 import { useEffect, useState } from "react";
 
 import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 // import LoginModal from "@/app/[locale]/@loginModal/(.)auth/login/page";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
+import { Link, usePathname } from "@/navigation";
 import type { User } from "@prisma/client";
 import clsx from "clsx";
 import { Info, MoreHorizontal, Star } from "lucide-react";
