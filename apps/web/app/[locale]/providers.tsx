@@ -2,9 +2,10 @@
 
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
-import { usePathname } from "next/navigation";
 
+// import { usePathname } from "next/navigation";
 import { useIsMounted } from "@/hooks";
+import { usePathname } from "@/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
@@ -39,6 +40,8 @@ export function Provider({ children }) {
   const path = usePathname();
   const toastPosition = useStore((state) => state.toastPosition);
   const showNavbar = rootPaths.includes(path);
+  console.log("pathhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", path);
+
   // const navv=rootPaths.su
 
   return (

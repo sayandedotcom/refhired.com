@@ -89,20 +89,22 @@ const fontHeading = localFont({
 export default async function RootLayout({
   children,
   loginModal,
-  params,
-}: // params: {locale}
+  params: { locale },
+}: // params,
+// params: {locale}
 {
   children: React.ReactNode;
   loginModal: React.ReactNode;
-  params;
+  // params;
+  params: { locale: string };
 }) {
   let messages;
   try {
-    messages = (await import(`../../messages/${params?.locale || "en"}.json`)).default;
+    messages = (await import(`../../messages/${locale || "en"}.json`)).default;
   } catch (error) {
     console.log(error);
   }
-  console.log("params---locale=====================", params?.locale);
+  console.log("params---locale=====================", locale);
   // const locale = useLocale();
   // console.log("locale=====================", locale);
 
@@ -113,14 +115,14 @@ export default async function RootLayout({
 
   return (
     <>
-      <html lang={params?.locale} suppressHydrationWarning>
+      <html lang={locale} suppressHydrationWarning>
         <body
           className={cn(
             "selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white font-sans",
             fontSans.variable,
             fontHeading.variable
           )}>
-          <NextIntlClientProvider locale={params?.locale} messages={messages}>
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <Provider>
               {children}
               {loginModal}

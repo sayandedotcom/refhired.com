@@ -30,7 +30,7 @@ export default async function Page({ params: { locale } }) {
         <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
           " Navigate the job market with{" "}
           <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
-            referrals
+            {t("referrals")}
           </span>{" "}
           :{" "}
           <span className="">

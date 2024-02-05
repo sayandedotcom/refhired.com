@@ -4,10 +4,14 @@ const withPWA = require("next-pwa")({
   buildExcludes: ["app-build-manifest.json"],
 });
 
-const withNextIntl = require("next-intl/plugin")(
-  // This is the default (also the `src` folder is supported out of the box)
-  "./i18n.ts"
-);
+// const withNextIntl = require("next-intl/plugin")(
+//   // This is the default (also the `src` folder is supported out of the box)
+//   "./i18n.ts"
+// );
+
+const createNextIntlPlugin = require("next-intl/plugin");
+
+const withNextIntl = createNextIntlPlugin();
 
 module.exports = withNextIntl(
   withPWA({
