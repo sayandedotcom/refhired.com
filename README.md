@@ -30,29 +30,28 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 
 ## Main domains
 
-| Domain                  | Tech           | Version |
-| ----------------------- | -------------- | ------- |
-| Repository Tool         | Turborepo      | 1.9     |
-| Primary Language        | TypeScript     | 4.5     |
-| Website Front-End       | Next.js        | 13.4    |
-| Mobile App              | React Native   | 0.72    |
-| Desktop App Tool        | Tauri          | 1.4     |
-| Authentication          | Next-Auth      | 4       |
-| Styling                 | Tailwind CSS   | 3.3     |
-| Database ORM            | Prisma         | 4.15    |
-| Primary Database        | PostgreSQL     | 15.3    |
-| Caching Database        | Redis          | -       |
-| Unit Testing            | Vitest         | 0.33.0  |
-| End to end Testing      | Playwright     | 1.36.2  |
-| Containerization        | Docker         | -       |
-| Container Orchestration | Kubernetes     | 1.24    |
-| Continuous Integration  | GitHub Actions | -       |
-| Continuous Delivery     | Argo CD        | 2.8     |
-| Infrastructure as code  | Terraform      | -       |
-| Deployment              | AWS            | -       |
-| Proxy                   | Nginix         | -       |
-| Version Control         | GitHub         | -       |
-| Code Editor             | VS Code        | -       |
+| Domain                 | Tech           | Version |
+| ---------------------- | -------------- | ------- |
+| Repository Tool        | Turborepo      | 1.9     |
+| Primary Language       | TypeScript     | 4.5     |
+| Website Front-End      | Next.js        | 13.4    |
+| Website Back-End       | Node.js        | 20.9.0  |
+| API                    | GraphQL        | -       |
+| Mobile App             | React Native   | 0.72    |
+| Desktop App Tool       | Tauri          | 1.4     |
+| Authentication         | Next-Auth      | 4       |
+| Styling                | Tailwind CSS   | 3.3     |
+| Database ORM           | Prisma         | 4.15    |
+| Primary Database       | PostgreSQL     | 15.3    |
+| Caching Database       | Redis          | -       |
+| Unit Testing           | Vitest         | 0.33.0  |
+| End to end Testing     | Playwright     | 1.36.2  |
+| Containerization       | Docker         | -       |
+| CI/CD                  | GitHub Actions | -       |
+| Infrastructure as code | Terraform      | -       |
+| Deployment             | AWS            | -       |
+| Version Control        | GitHub         | -       |
+| Code Editor            | VS Code        | -       |
 
 ## Features
 
