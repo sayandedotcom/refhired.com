@@ -44,3 +44,4 @@ yarn-error.log*
 dist/
 
 ToDo.txt
+apps/api
