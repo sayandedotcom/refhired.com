@@ -1,6 +1,9 @@
+import { ChevronLeft } from "lucide-react";
+
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
+  chevronLeft: ChevronLeft,
   logo: (props: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

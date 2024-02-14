@@ -7,3 +7,4 @@ export * from "./normal-post-validator";
 export * from "./username-validator";
 export * from "./find-referrer-validator";
 export * from "./og";
+export * from "./post-schema-validator";
