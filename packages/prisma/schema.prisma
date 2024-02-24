@@ -9,20 +9,20 @@ datasource db {
 }
 
 model User {
+  id               String      @id @default(cuid())
   email            String      @unique
+  userName         String      @unique
   emailVerified    DateTime?
   image            String?
   name             String?
   bio              String?
-  createdAt        DateTime?   @default(now())
   locale           String?
   location         String?
   stars            Int?        @default(0)
-  updatedAt        DateTime?   @updatedAt
-  userName         String      @unique
-  workingAt        String?
   stripeCustomerId String?     @unique
-  id               String      @id @default(cuid())
+  updatedAt        DateTime?   @updatedAt
+  workingAt        String?
+  createdAt        DateTime?   @default(now())
   accounts         Account[]
   applied          Applied[]
   bookmarks        Bookmarks[]
@@ -66,25 +66,26 @@ model VerificationToken {
 }
 
 model Posts {
-  content       Json?
+  id            Int         @id @default(autoincrement())
+  postType      postType    @default(post)
   createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  content       Json?
+  // ! accept        Json?
+  // ! unique post number for recognition
   expiresAt     DateTime?
   role          String?
   jobType       String?
   experience    Int?
   location      String?
   startingRange Int?
-  image         String?
-  updatedAt     DateTime    @updatedAt
+  image         String? //! delete
   endingRange   Int?
-  id            Int         @id @default(autoincrement())
   userId        String
   stars         String?
   limit         Int?
-  pdfs          Json?
-  links         Json?
-  // ! accept        Json?
-  postType      postType    @default(post)
+  pdfs          Json? //! delete
+  links         Json? //! delete
   applied       Applied[]
   bookmarks     Bookmarks[]
   comments      Comments[]
@@ -95,13 +96,14 @@ model Posts {
 }
 
 model Applied {
-  createdAt DateTime @default(now())
-  content   Json?
   id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) //! delete
+  content   Json? //! delete
   userId    String
   postId    Int
-  pdfs      Json?
-  links     Json?
+  applyInfo Json? //!add
+  pdfs      Json? //! delete
+  links     Json? //! delete
   posts     Posts    @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
@@ -142,3 +144,5 @@ enum postType {
   findReferrer
   post
 }
+
+// ! Comments model
