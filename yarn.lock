@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.4.tgz#9606eb651955499525d068ce0ad8bea596286ce2"
   integrity sha512-W3ezhHGfO0MS1PtGloaTpg0PbaT8aZSmmaerL7idtU5F7oCI+uu25k+MsMS31BVFlp4aMkHSrNRxiD72IlK8TA==
 
-"@0no-co/graphqlsp@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@0no-co/graphqlsp/-/graphqlsp-1.4.0.tgz#235867f7634cb3ea5511d59fd712048069e3fd75"
-  integrity sha512-Ximv8VAJLoCAOW+4EpktCrNF/Soy+fYXpyWIByQcRBvfDHcRirK9zGsFZcFeB6+SC7s4/vfAXzyepsQbnOLwIA==
+"@0no-co/graphqlsp@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@0no-co/graphqlsp/-/graphqlsp-1.4.1.tgz#dd02e3930caf7c925dd133c580aa71a28bbd3965"
+  integrity sha512-56KhZbk+WUphc41xssDI+pGAnjSRSxozOrxhWxCaFe/0aVybTsETL3yd+9u/HrCp7i/T7T+QSqg6SSwUJb8CkA==
   dependencies:
     node-fetch "^2.0.0"
 
