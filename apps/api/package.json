@@ -13,12 +13,10 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "gql.tada": "^1.2.1",
     "graphql": "^16.8.1",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@0no-co/graphqlsp": "^1.4.0",
     "@referrer/prettier-config": "*",
     "@referrer/tsconfig": "*",
     "@types/cors": "^2.8.17",
