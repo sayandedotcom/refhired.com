@@ -1,6 +1,7 @@
 {
   "name": "@referrer/prisma",
   "version": "0.1.0",
+  "type": "module",
   "main": "index.ts",
   "scripts": {
     "format": "npx prisma format",
