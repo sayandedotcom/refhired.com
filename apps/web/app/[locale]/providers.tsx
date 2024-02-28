@@ -3,7 +3,6 @@
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
-// import { usePathname } from "next/navigation";
 import { useIsMounted } from "@/hooks";
 import { usePathname } from "@/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -17,6 +16,8 @@ import { Toaster as SonerToaster } from "sonner";
 import { PreLoader } from "@/components/custom-components";
 import { Banner, Footer, Navbar } from "@/components/layout";
 import ProgressBar from "@/components/ui/progress-bar";
+
+import { ApolloWrapper } from "@/lib/apollo-client/apollo-wrapper";
 
 import { rootPaths } from "@/config";
 
@@ -56,24 +57,26 @@ export function Provider({ children }) {
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <QueryClientProvider client={queryClient}>
           <SessionProvider>
-            <Toaster />
-            <SonerToaster position={toastPosition} />
-            {!isMounted ? (
-              <PreLoader />
-            ) : (
-              <>
-                <ProgressBar />
-                {showNavbar && (
-                  <>
-                    <Banner />
-                    <Navbar />
-                  </>
-                )}
-                {children}
-                {showNavbar && <Footer />}
-                <Analytics />
-              </>
-            )}
+            <ApolloWrapper>
+              <Toaster />
+              <SonerToaster position={toastPosition} />
+              {!isMounted ? (
+                <PreLoader />
+              ) : (
+                <>
+                  <ProgressBar />
+                  {showNavbar && (
+                    <>
+                      <Banner />
+                      <Navbar />
+                    </>
+                  )}
+                  {children}
+                  {showNavbar && <Footer />}
+                  <Analytics />
+                </>
+              )}
+            </ApolloWrapper>
           </SessionProvider>
           {/* <ReactQueryDevtools /> */}
         </QueryClientProvider>
