@@ -11,24 +11,27 @@ datasource db {
 model User {
   id               String      @id @default(cuid())
   email            String      @unique
-  userName         String      @unique
-  emailVerified    DateTime?
+  userName         String      @unique @map("user_name")
+  emailVerified    DateTime?   @map("email_verified")
   image            String?
+  overlayImage     String?     @map("overlay_image")
   name             String?
   bio              String?
   locale           String?
   location         String?
   stars            Int?        @default(0)
-  stripeCustomerId String?     @unique
-  updatedAt        DateTime?   @updatedAt
-  workingAt        String?
-  createdAt        DateTime?   @default(now())
+  stripeCustomerId String?     @unique @map("stripe_customer_id")
+  updatedAt        DateTime?   @updatedAt @map("updated_at")
+  workingAt        String?     @map("working_at")
+  createdAt        DateTime?   @default(now()) @map("created_at")
   accounts         Account[]
   applied          Applied[]
   bookmarks        Bookmarks[]
   comments         Comments[]
   posts            Posts[]
   sessions         Session[]
+
+  @@map("user")
 }
 
 model Account {
@@ -47,6 +50,7 @@ model Account {
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@map("account")
 }
 
 model Session {
@@ -55,6 +59,8 @@ model Session {
   expires      DateTime
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
 }
 
 model VerificationToken {
@@ -63,86 +69,94 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+  @@map("verification_token")
 }
 
 model Posts {
-  id            Int         @id @default(autoincrement())
-  postType      postType    @default(post)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  id            String      @id @default(cuid())
+  postType      PostType    @default(POST) @map("post_type")
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
   content       Json?
-  // ! accept        Json?
-  // ! unique post number for recognition
-  expiresAt     DateTime?
+  accept        Json?
+  expiresAt     DateTime?   @map("expires_at")
   role          String?
-  jobType       String?
+  jobType       String?     @map("job_type")
   experience    Int?
   location      String?
-  startingRange Int?
-  image         String? //! delete
-  endingRange   Int?
+  startingRange Int?        @map("starting_range")
+  endingRange   Int?        @map("ending_range")
   userId        String
   stars         String?
-  limit         Int?
-  pdfs          Json? //! delete
-  links         Json? //! delete
+  acceptLimit   Int?        @map("accept_limit")
   applied       Applied[]
   bookmarks     Bookmarks[]
   comments      Comments[]
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   tags          Tags[]      @relation("PostsToTags")
+  hashtags      Hashtags[]  @relation("PostsToHashtags")
 
   @@index([userId])
+  @@map("posts")
 }
 
 model Applied {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now()) //! delete
-  content   Json? //! delete
+  id        String   @id @default(cuid())
+  appliedAt DateTime @default(now())
   userId    String
-  postId    Int
-  applyInfo Json? //!add
-  pdfs      Json? //! delete
-  links     Json? //! delete
+  postId    String   @map("post_id")
+  applyInfo Json?    @map("apply_info")
   posts     Posts    @relation(fields: [postId], references: [id])
   user      User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])
   @@index([userId])
   @@index([postId])
+  @@map("applied")
 }
 
 model Tags {
   id    String  @id @default(cuid())
   name  String  @unique
   posts Posts[] @relation("PostsToTags")
+
+  @@map("tags")
+}
+
+model Hashtags {
+  id    String  @id @default(cuid())
+  name  String  @unique
+  posts Posts[] @relation("PostsToHashtags")
+
+  @@map("hashtags")
 }
 
 model Comments {
   text      String
   createdAt DateTime @default(now())
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   userId    String
-  postId    Int
+  postId    String
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
+
+  @@map("comments")
 }
 
 model Bookmarks {
   createdAt DateTime @default(now())
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(cuid())
   userId    String
-  postId    Int
+  postId    String
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])
+  @@map("bookmarks")
 }
 
-enum postType {
-  referralPost
-  findReferrer
-  post
+enum PostType {
+  REFERRALPOST
+  FINDREFERRER
+  POST
 }
-
-// ! Comments model
