@@ -15,7 +15,8 @@
     "type-check:ci": "tsc-absolute --pretty --noEmit"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.5",
+    "@apollo/client": "^3.9.0-rc.1",
+    "@apollo/experimental-nextjs-app-support": "^0.8.0",
     "@auth/prisma-adapter": "^1.0.2",
     "@editorjs/code": "^2.9.0",
     "@editorjs/editorjs": "^2.29.0",
