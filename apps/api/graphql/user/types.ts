@@ -1,23 +1,19 @@
 export const types = `#graphql
-
-    input CreateUserData {
-        firstName: String!
-        lastName: String
-        email: String!
-        password: String!
-    }
-
-    type User {
-        id: ID!
-        firstName: String!
-        lastName: String
-        email: String!
-        emailVerified: Boolean!
-        authenticationType: String
-        profileImageURL: String
-        role: String
-
-        createdAt: Date
-        updatedAt: Date
-    }
+  type User {
+    id: ID!
+    email: String!
+    userName:String!
+    name:String
+    emailVerified: DateTime
+    image:String
+    overlayImage:String
+    bio:String
+    locale:String
+    location:String
+    createdAt: DateTime
+    updatedAt: DateTime
+    stars:Int
+    stripeCustomerId:String
+    workingAt:String
+  }
 `;
