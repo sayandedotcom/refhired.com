@@ -17,4 +17,4 @@ console.log("port===========================", port);
 // module.exports = port;
 // module.exports = env;
 
-export { port };
+export { port, env };

@@ -10,7 +10,7 @@ const start = async () => {
 
   await server.start();
 
-  app.use("/graphql", expressMiddleware(server));
+  app.use("/graphql", expressMiddleware(server as any));
 
   app.listen(8000, () => console.log(`GraphQL server running at Port 8000 🚀`));
 };
