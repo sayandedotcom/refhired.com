@@ -1,8 +1,25 @@
+import GraphQLDateTime from "graphql-iso-date";
+import GraphQLJSON from "graphql-type-json";
+
+import { Post } from "./posts/index.js";
+import { User } from "./user/index.js";
+
 const resolvers = {
+  Json: GraphQLJSON,
+  DateTime: GraphQLDateTime,
+
   Query: {
-    getTodos: () => [{ id: 1, title: "Test" }],
+    ...User.resolvers.queries,
+    ...Post.resolvers.queries,
   },
-  // Mutation: {},
+
+  Mutation: {
+    ...User.resolvers.mutations,
+    ...Post.resolvers.mutations,
+  },
+
+  ...User.resolvers.extraResolvers,
+  ...Post.resolvers.extraResolvers,
 };
 
 export default resolvers;
