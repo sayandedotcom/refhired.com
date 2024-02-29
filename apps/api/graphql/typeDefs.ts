@@ -1,15 +1,23 @@
+import { Post } from "./posts/index.js";
+import { User } from "./user/index.js";
+
 const typeDefs = `#graphql
-    type ToDo {
-      id:ID!
-      title:String!
-    }
-    type User {
-      email: String!
-      name: String!
-    }
-    type Query {
-      getTodos:[ToDo],
-    }
+
+  scalar Json
+  scalar DateTime
+
+  ${Post.types}
+  ${User.types}
+
+  type Query {
+    ${User.queries}
+    ${Post.queries}
+  }
+
+  type Mutation {
+    ${User.mutations}
+    ${Post.mutations}
+  }
 `;
 
 export default typeDefs;
