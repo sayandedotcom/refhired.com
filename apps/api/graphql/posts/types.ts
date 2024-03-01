@@ -16,6 +16,12 @@ export const types = `#graphql
     acceptLimit:Int
   }
 
+  type UserNotAuthenticatedError {
+    message:String!
+  }
+
+  union PostResult = Post | UserNotAuthenticatedError
+
   input CreatePost {
     postType:PostType!
     content:Json!
@@ -43,3 +49,5 @@ export const types = `#graphql
     POST
   }
 `;
+
+// ! watch https://youtu.be/R0A2TE0bMes?si=8IWvg0IK_lIt-bAm  https://youtu.be/ltdVXR-ke7k?si=lVnDTmBM1Ysqk_kt
