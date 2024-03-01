@@ -1,9 +1,9 @@
 export const mutations = `#graphql
-    createPost:Boolean
-    createReferralPost:Boolean
-    createFindReferralPost:Boolean
-    deletePost(id: ID!):Boolean
-    bookmarkPost(id: ID!):Boolean
-    applyPost(id: ID!):Boolean
-    commentOnPost(id: ID!):Boolean
+    createPost(payload: CreatePost!): Post
+    createReferralPost(payload: CreatePost!): Post
+    createFindReferralPost(payload: CreatePost!): Post
+    deletePost(id: ID!): Post
+    bookmarkPost(id: ID!): Post
+    applyPost(id: ID!): Post
+    commentOnPost(id: ID!): Post
 `;
