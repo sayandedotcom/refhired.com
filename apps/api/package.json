@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@apollo/server": "^4.10.0",
+    "@as-integrations/aws-lambda": "^3.1.0",
     "@aws-sdk/client-s3": "^3.525.0",
     "@aws-sdk/s3-request-presigner": "^3.525.0",
     "@referrer/prisma": "*",
@@ -31,6 +32,7 @@
     "@types/node": "^20.11.17",
     "eslint-config-custom": "*",
     "nodemon": "^3.0.3",
+    "serverless-plugin-typescript": "^2.1.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }

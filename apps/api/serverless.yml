@@ -1,6 +1,7 @@
-service: review-app
+service: refhiredcom-api
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-dotenv-plugin
   - serverless-esbuild
   - serverless-prune-plugin
@@ -34,7 +35,7 @@ provider:
 
 functions:
   graphql:
-    handler: functions/graphql/server.graphqlHandler
+    handler: app.graphqlHandler
     events:
       - http:
           path: /graphql
