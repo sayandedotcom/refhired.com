@@ -24,6 +24,18 @@
 
 This is a solo project by [Sayan De](https://github.com/sayande2002).
 
+## Architecture
+![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/d1dd9292-9ec4-48c2-8a2b-dd2fb0a6d077)
+
+## DevOps Workflow
+![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/dd61493e-a007-4988-9750-66b9f89cb321)
+
+
+## Deployement
+![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/18b3a2a9-139a-4a6b-9405-575aa23414da)
+
+
+
 ## Contributing
 
 Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayande2002/refhired.com/blob/main/CONTRIBUTING.md).
@@ -34,8 +46,8 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | ---------------------- | -------------- | ------- |
 | Repository Tool        | Turborepo      | 1.9     |
 | Primary Language       | TypeScript     | 4.5     |
-| Website Front-End      | Next.js        | 13.4    |
-| Website Back-End       | Node.js        | 20.9.0  |
+|  Front-End             | Next.js        | 13.4    |
+| Back-End               | Node.js        | 20.9.0  |
 | API                    | GraphQL        | -       |
 | Mobile App             | React Native   | 0.72    |
 | Desktop App Tool       | Tauri          | 1.4     |
