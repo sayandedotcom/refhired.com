@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 export const referralPostValidator = z.object({
-  desscription: z.string().nonempty("Desscription is required"),
+  content: z.object({
+    desc: z.string().nonempty("Desscription is required"),
+    img: z.string().optional(),
+  }),
   role: z
     .object({
       value: z.string(),
@@ -68,18 +71,30 @@ export const referralPostValidator = z.object({
       required_error: "Expiry of this Application is required.",
     })
     .optional(),
-  stars: z
-    .string({
+  //! stars: z
+  //   .string({
+  //     // required_error: "Name is required",
+  //     // invalid_type_error: "Name must be a string",
+  //   })
+  //   .optional()
+  //!   .transform((value) => +value),
+  stars: z.coerce
+    .number({
       // required_error: "Name is required",
       // invalid_type_error: "Name must be a string",
     })
-    .optional()
-    .transform((value) => +value),
-  limit: z
-    .string({
+    .optional(),
+  //! limit: z
+  //   .string({
+  //     // required_error: "Name is required",
+  //     // invalid_type_error: "Name must be a string",
+  //   })
+  //   .optional()
+  //!   .transform((value) => +value),
+  limit: z.coerce
+    .number({
       // required_error: "Name is required",
       // invalid_type_error: "Name must be a string",
     })
-    .optional()
-    .transform((value) => +value),
+    .optional(),
 });

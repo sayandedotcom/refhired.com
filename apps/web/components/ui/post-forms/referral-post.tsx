@@ -48,7 +48,9 @@ export const ReferralPost = () => {
   const form = useForm<z.infer<typeof referralPostValidator>>({
     resolver: zodResolver(referralPostValidator),
     defaultValues: {
-      desscription: "",
+      content: {
+        desc: "",
+      },
       role: "",
       experience: "",
       range: "",
@@ -63,8 +65,8 @@ export const ReferralPost = () => {
       accept: ["shortMessage"],
       pdfs: ["resume"],
       links: ["linkedin"],
-      stars: 0,
-      limit: 0,
+      // stars: 0,
+      // limit: 0,
     },
   });
 
@@ -173,7 +175,7 @@ export const ReferralPost = () => {
           {/* Description */}
           <FormField
             control={form.control}
-            name="desscription"
+            name="content.desc"
             render={({ field }) => (
               <FormItem className="my-2">
                 <FormLabel>
@@ -197,6 +199,9 @@ export const ReferralPost = () => {
               </FormItem>
             )}
           />
+          <p className="text-sm text-gray-500">
+            Add <kbd className="bg-muted rounded-md border px-1 text-xs uppercase">Tab</kbd> Image.
+          </p>
           <Separator />
           <h5 className="mb-2 font-bold tracking-tight">
             This will help your referral to reach to many users
@@ -682,7 +687,7 @@ export const ReferralPost = () => {
             control={form.control}
             name="expiresAt"
             render={({ field }) => (
-              <FormItem className="my-2 flex flex-col">
+              <FormItem className="mx-auto my-2 flex flex-col">
                 <FormLabel>Deadline of Post</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
@@ -713,44 +718,45 @@ export const ReferralPost = () => {
               </FormItem>
             )}
           />
-          {/* Stars */}
           <Separator />
-          <FormField
-            control={form.control}
-            name="stars"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Stars</FormLabel>
-                <FormControl>
-                  <Input placeholder="Stars ⭐" type="number" className="" value={field.value} {...field} />
-                </FormControl>
-                <FormDescription>This is your public display name.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          {/* Limit */}
-          <Separator />
-          <FormField
-            control={form.control}
-            name="limit"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Stars</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Accepting Limit"
-                    type="number"
-                    className=""
-                    value={field.value}
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription>This is your public display name.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="my-2 grid w-full grid-cols-2 items-center gap-4">
+            {/* Stars */}
+            <FormField
+              control={form.control}
+              name="stars"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Stars</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Stars ⭐" type="number" className="" value={field.value} {...field} />
+                  </FormControl>
+                  <FormDescription>Number of Stars you want to accept.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Limit */}
+            <FormField
+              control={form.control}
+              name="limit"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Limit</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Accepting Limit"
+                      type="number"
+                      className=""
+                      value={field.value}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>Number of proposal you want to accept.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           {/* Submit */}
           <Separator />
           <div className="flex flex-col items-center justify-center">
