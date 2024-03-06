@@ -1,12 +1,94 @@
-export const jobTypeList = [
-  { value: "Full Time", label: "Full Time" },
-  { value: "Part Time", label: "Part Time" },
-  { value: "Intern", label: "Intern" },
-  { value: "Temporary", label: "Temporary" },
-  { value: "Contractor", label: "Contractor" },
-  { value: "Volunteer", label: "Volunteer" },
-  { value: "Freelance", label: "Freelance" },
+const jobTypeListObj = [
+  "Full Time",
+  "Part Time",
+  "Intern",
+  "Temporary",
+  "Contractor",
+  "Volunteer",
+  "Freelance",
+  "Cofounder",
 ];
+
+export const jobTypeList = jobTypeListObj.map((item) => ({
+  value: item,
+  label: item,
+}));
+
+const jobRoleListObj = [
+  "Frontend Developer",
+  "Backend Developer",
+  "Full Stack Developer",
+  "DevOps Engineer",
+  "Quality Assurance (QA) Engineer",
+  "Data Engineer",
+  "Machine Learning Engineer",
+  "Security Engineer",
+  "Embedded Systems Engineer",
+  "Game Developer",
+  "Software Engineer",
+  "Marketing Manager",
+  "Financial Analyst",
+  "Graphic Designer",
+  "Human Resources Specialist",
+  "Sales Representative",
+];
+
+export const jobRoleList = jobRoleListObj.map((item) => ({
+  value: item,
+  label: item,
+}));
+
+const experienceListObj = [
+  "Internship",
+  "Entry-level",
+  "Associate",
+  "Mid-level",
+  "Senior",
+  "Manager",
+  "Director",
+  "Executive",
+];
+export const experienceList = experienceListObj.map((item) => ({
+  value: item,
+  label: item,
+}));
+
+const companyListObj = [
+  "Microsoft",
+  "Apple",
+  "Amazon",
+  "Google",
+  "Facebook",
+  "Alibaba",
+  "Tencent",
+  "Oracle",
+  "IBM",
+  "SAP",
+  "Salesforce",
+  "Intel",
+  "Cisco Systems",
+  "Adobe",
+  "NVIDIA",
+  "Netflix",
+  "VMware",
+  "Twitter",
+  "Tesla",
+  "Square",
+  "ServiceNow",
+  "PayPal",
+  "HP Inc.",
+  "Dell Technologies",
+  "Uber Technologies",
+  "Airbnb",
+  "Snap Inc.",
+  "Dropbox",
+  "Reddit",
+  "Slack Technologies",
+];
+export const companyList = companyListObj.map((item) => ({
+  value: item,
+  label: item,
+}));
 
 export const accept = [
   {

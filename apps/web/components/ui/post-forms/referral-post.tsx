@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Image as ImageIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import * as z from "zod";
@@ -33,12 +33,22 @@ import {
 
 import { referralPostValidator } from "@/lib/validators";
 
-import { accept, experienceOptionsObj, jobTypeList, jobTypeOptionsObj, links, pdfs } from "@/config";
+import {
+  accept,
+  companyList,
+  experienceList,
+  jobRoleList,
+  jobTypeList,
+  jobTypeOptionsObj,
+  links,
+  pdfs,
+} from "@/config";
 
 import { useStore } from "@/store/store";
 
 import { Required } from "../required";
 import { sonerToast } from "../soner-toast";
+import { TooltipDemo } from "../tooltip/tooltip";
 import { AsyncSelectComponent } from "./async-select";
 import { SelectComponent } from "./select";
 
@@ -177,7 +187,7 @@ export const ReferralPost = () => {
             control={form.control}
             name="content.desc"
             render={({ field }) => (
-              <FormItem className="my-2">
+              <FormItem className="my-1">
                 <FormLabel>
                   Desctiption
                   <Required />
@@ -199,9 +209,15 @@ export const ReferralPost = () => {
               </FormItem>
             )}
           />
-          <p className="text-sm text-gray-500">
-            Add <kbd className="bg-muted rounded-md border px-1 text-xs uppercase">Tab</kbd> Image.
-          </p>
+          <TooltipDemo text={"Add Image"}>
+            <ImageIcon className="cursor-pointer" />
+          </TooltipDemo>
+
+          <input
+            type="file"
+            accept=".jpg, .jpeg, .png, image/jpg, image/jpeg, image/png"
+            className="hidden"
+          />
           <Separator />
           <h5 className="mb-2 font-bold tracking-tight">
             This will help your referral to reach to many users
@@ -221,7 +237,7 @@ export const ReferralPost = () => {
                     createAble={true}
                     isMulti={false}
                     value={field.value}
-                    options={jobTypeList}
+                    options={jobRoleList}
                     onChange={field.onChange}
                     placeholder="Select Job Role"
                     {...field}
@@ -246,7 +262,7 @@ export const ReferralPost = () => {
                     createAble={true}
                     isMulti={false}
                     value={field.value}
-                    options={experienceOptionsObj}
+                    options={experienceList}
                     onChange={field.onChange}
                     placeholder="Select Experience level"
                     {...field}
@@ -355,7 +371,7 @@ export const ReferralPost = () => {
                     createAble={true}
                     isMulti={false}
                     value={field.value}
-                    options={jobTypeList}
+                    options={companyList}
                     onChange={field.onChange}
                     placeholder="Select Conpany Name"
                     {...field}

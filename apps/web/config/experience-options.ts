@@ -3,8 +3,10 @@ const experienceOptions = [
   "Entry-level",
   "Associate",
   "Mid-level",
-  "Senior-level",
-  "Executive-level",
+  "Senior",
+  "Manager",
+  "Director",
+  "Executive",
 ];
 export const experienceOptionsObj = experienceOptions.map((item) => ({
   value: item,
