@@ -1,7 +1,6 @@
 import axios from "axios";
 
-import { prisma } from "@referrer/prisma";
-
+import PostService from "../../services/post.js";
 import {
   Id,
   applyInfo,
@@ -13,50 +12,23 @@ import {
 
 const queries = {
   getAllPosts: async () => {
-    return await prisma.posts.findMany({
-      take: 10,
-      include: {
-        tags: true,
-        user: true,
-        comments: true,
-      },
-    });
+    return await PostService.getAllPosts();
   },
 
   getPostBySlug: async (postId: Id) => {
-    return await prisma.posts.findFirst({
-      where: {
-        id: postId,
-      },
-      include: {
-        user: true,
-        comments: true,
-      },
-    });
+    return await PostService.getPostBySlug(postId);
   },
 
   getAllAppliedPosts: async (userId: Id) => {
-    return await prisma.applied.findMany({
-      where: {
-        userId: userId,
-      },
-    });
+    return await PostService.getAllAppliedPosts(userId);
   },
 
   getAllRequests: async (postId: Id) => {
-    return await prisma.applied.findMany({
-      where: {
-        postId: postId,
-      },
-    });
+    return await PostService.getAllRequests(postId);
   },
 
   getAllBookmarkedPosts: async (userId: Id) => {
-    return await prisma.bookmarks.findMany({
-      where: {
-        userId: userId,
-      },
-    });
+    return await PostService.getAllBookmarkedPosts(userId);
   },
 
   getTodos: async () => {
@@ -66,140 +38,38 @@ const queries = {
 
 const mutations = {
   createPost: async (info: createPost) => {
-    await prisma.posts.create({
-      data: {
-        userId: info.userId,
-        content: info.content !== null && info.content,
-        postType: "POST",
-        hashtags: {
-          connectOrCreate: info.hashtags.map((hashtag) => ({
-            where: {
-              name: hashtag,
-            },
-            create: {
-              name: hashtag,
-            },
-          })),
-        },
-      },
-    });
+    await PostService.createPost(info);
+    return true;
   },
 
   createReferralPost: async (info: createReferralPost) => {
-    await prisma.posts.create({
-      data: {
-        userId: info.userId,
-        content: info.content !== null && info.content,
-        accept: info.accept !== null && info.accept,
-        expiresAt: info.expiresAt,
-        role: info.role,
-        jobType: info.jobType,
-        experience: info.experience,
-        location: info.location,
-        startingRange: info.startingRange,
-        endingRange: info.endingRange,
-        stars: info.stars,
-        acceptLimit: info.acceptLimit,
-        postType: "REFERRALPOST",
-        tags: {
-          connectOrCreate: info.tags.map((tag) => ({
-            where: {
-              name: tag,
-            },
-            create: {
-              name: tag,
-            },
-          })),
-        },
-        hashtags: {
-          connectOrCreate: info.hashtags.map((hashtag) => ({
-            where: {
-              name: hashtag,
-            },
-            create: {
-              name: hashtag,
-            },
-          })),
-        },
-      },
-    });
+    await PostService.createFindReferralPost(info);
+    return true;
   },
 
   createFindReferralPost: async (info: createFindReferralPost) => {
-    await prisma.posts.create({
-      data: {
-        userId: info.userId,
-        content: info.content !== null && info.content,
-        accept: info.accept !== null && info.accept,
-        expiresAt: info.expiresAt,
-        role: info.role,
-        jobType: info.jobType,
-        experience: info.experience,
-        location: info.location,
-        startingRange: info.startingRange,
-        endingRange: info.endingRange,
-        stars: info.stars,
-        acceptLimit: info.acceptLimit,
-        postType: "FINDREFERRER",
-        tags: {
-          connectOrCreate: info.tags.map((tag) => ({
-            where: {
-              name: tag,
-            },
-            create: {
-              name: tag,
-            },
-          })),
-        },
-        hashtags: {
-          connectOrCreate: info.hashtags.map((hashtag) => ({
-            where: {
-              name: hashtag,
-            },
-            create: {
-              name: hashtag,
-            },
-          })),
-        },
-      },
-    });
+    await PostService.createFindReferralPost(info);
+    return true;
   },
 
   deletePost: async (postId: Id) => {
-    await prisma.posts.delete({
-      where: {
-        id: postId,
-      },
-    });
+    await PostService.deletePost(postId);
+    return true;
   },
 
   bookmarkPost: async (postId: Id, userId: Id) => {
-    await prisma.bookmarks.create({
-      data: {
-        userId: userId,
-        postId: postId,
-      },
-    });
+    await PostService.bookmarkPost(postId, userId);
+    return true;
   },
 
   applyPost: async (postId: Id, userId: Id, applyInfo: applyInfo) => {
-    await prisma.applied.create({
-      data: {
-        userId: userId,
-        postId: postId,
-        applyInfo: applyInfo !== null && applyInfo,
-      },
-    });
+    await PostService.applyPost(postId, userId, applyInfo);
+    return true;
   },
 
   commentOnPost: async (postId: Id, userId: Id, commentText: commentText) => {
-    await prisma.comments.create({
-      data: {
-        userId: userId,
-        postId: postId,
-        text: commentText,
-      },
-    });
+    await PostService.commentOnPost(postId, userId, commentText);
+    return true;
   },
 };
 

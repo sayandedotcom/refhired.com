@@ -16,4 +16,11 @@ export const types = `#graphql
     stripeCustomerId:String
     workingAt:String
   }
+
+  input CreateUserData {
+    email: String!
+    userName:String!
+    name: String!
+    image:String
+  }
 `;

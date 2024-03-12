@@ -1,5 +1,5 @@
 import { ApolloServer } from "@apollo/server";
-import { handlers, startServerAndCreateLambdaHandler } from "@as-integrations/aws-lambda";
+// import { handlers, startServerAndCreateLambdaHandler } from "@as-integrations/aws-lambda";
 import express from "express";
 
 import resolvers from "./graphql/resolvers.js";
@@ -12,11 +12,11 @@ const server = new ApolloServer({
   resolvers,
 });
 
-export const graphqlHandler = startServerAndCreateLambdaHandler(
-  server as any,
-  // We will be using the Proxy V2 handler
-  handlers.createAPIGatewayProxyEventV2RequestHandler()
-);
+// export const graphqlHandler = startServerAndCreateLambdaHandler(
+//   server as any,
+//   // We will be using the Proxy V2 handler
+//   handlers.createAPIGatewayProxyEventV2RequestHandler()
+// );
 export { app, server };
 
 // introspection: true,

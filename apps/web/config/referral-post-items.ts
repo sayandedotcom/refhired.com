@@ -20,6 +20,7 @@ const jobRoleListObj = [
   "Full Stack Developer",
   "DevOps Engineer",
   "Quality Assurance (QA) Engineer",
+  "Business Analyst",
   "Data Engineer",
   "Machine Learning Engineer",
   "Security Engineer",

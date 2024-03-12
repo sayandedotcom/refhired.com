@@ -1,8 +1,8 @@
-// import dotenv from "dotenv";
+import dotenv from "dotenv";
 
-// dotenv.config();
+dotenv.config();
 
-const port = process.env.PORT;
+const BACKEND_PORT = process.env.BACKEND_PORT;
 
 // You may use this as a boolean value for different situations
 const env = {
@@ -12,9 +12,6 @@ const env = {
   production: process.env.NODE_ENV === "production",
 };
 
-console.log("port===========================", port);
+console.log(BACKEND_PORT, "====================================");
 
-// module.exports = port;
-// module.exports = env;
-
-export { port, env };
+export { BACKEND_PORT, env };
