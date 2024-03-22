@@ -3,13 +3,14 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import { app, server } from "./app.js";
+import JWTService from "./services/jwt.js";
 
 const start = async () => {
   app.use(bodyParser.json());
 
   app.use(
     cors<cors.CorsRequest>({
-      origin: [process.env.FRONTEND_DEV_URL as string, process.env.FRONTEND_PROD_URL as string],
+      // origin: [process.env.FRONTEND_DEV_URL as string, process.env.FRONTEND_PROD_URL as string],
       credentials: true,
     })
   );
@@ -20,10 +21,8 @@ const start = async () => {
     "/graphql",
     expressMiddleware(server as any, {
       context: async ({ req, res }) => {
-        console.log("Cookie in Backend=========================================", req);
-
         return {
-          name: "Context",
+          user: await JWTService.verifyTokenhandler(req),
         };
       },
     })

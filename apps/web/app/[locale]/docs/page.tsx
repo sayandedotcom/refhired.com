@@ -11,9 +11,12 @@ export const metadata: Metadata = {
 
 const Docs = async () => {
   const client = getClient();
-  const { data, loading } = await client.query({
+  const { data, loading, error, errors } = await client.query({
     query: Example,
   });
+
+  errors && <h1>errors.............</h1>;
+  error && <h1>error.............</h1>;
   return (
     <section className="py-14">
       {loading ? (
@@ -21,6 +24,7 @@ const Docs = async () => {
       ) : (
         data?.getTodos.map(({ title }, i) => <h2 key={i}>{title}</h2>)
       )}
+
       <div className="relative mx-auto max-w-xl sm:text-center">
         <h1 className="font-heading font-semibold">Our Docs</h1>
         <div className="mt-3 max-w-xl">

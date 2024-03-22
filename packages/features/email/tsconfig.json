@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // "extends": "../../tsconfig/base.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "preserve"
+  }
+}
+// "jsx": "react-jsx",

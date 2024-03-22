@@ -34,7 +34,13 @@
     "JWT_SECRET",
     "DATABASE_URL",
     "DATABASE_URL_REPLICA_1",
-    "REDIS_URL"
+    "REDIS_URL",
+    "AWS_SES_REGION",
+    "EMAIL_SERVER_HOST",
+    "EMAIL_SERVER_PORT",
+    "EMAIL_SERVER_USER",
+    "EMAIL_SERVER_PASSWORD",
+    "EMAIL_FROM"
   ],
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
@@ -73,7 +79,13 @@
         "JWT_SECRET",
         "DATABASE_URL",
         "DATABASE_URL_REPLICA_1",
-        "REDIS_URL"
+        "REDIS_URL",
+        "AWS_SES_REGION",
+        "EMAIL_SERVER_HOST",
+        "EMAIL_SERVER_PORT",
+        "EMAIL_SERVER_USER",
+        "EMAIL_SERVER_PASSWORD",
+        "EMAIL_FROM"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

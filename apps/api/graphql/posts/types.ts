@@ -38,11 +38,14 @@ export const types = `#graphql
     acceptLimit:Int
   }
 
-  type Todo{
+  type Todo {
     id:ID!
     title:String!
     compleated:Boolean
   }
+
+  union TodoResult = Todo | UserNotAuthenticatedError
+
   enum PostType {
     REFERRALPOST
     FINDREFERRER

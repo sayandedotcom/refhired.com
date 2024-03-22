@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import PostService from "../../services/post.js";
+import { GraphqlContext } from "../interfaces.js";
 import {
   Id,
   applyInfo,
@@ -11,7 +12,7 @@ import {
 } from "./interfaces.js";
 
 const queries = {
-  getAllPosts: async () => {
+  getAllPosts: async (parent, args, contextValue: GraphqlContext, info) => {
     return await PostService.getAllPosts();
   },
 
@@ -31,8 +32,26 @@ const queries = {
     return await PostService.getAllBookmarkedPosts(userId);
   },
 
-  getTodos: async () => {
-    return (await axios.get("https://jsonplaceholder.typicode.com/todos")).data;
+  getTodos: async (parent, args, contextValue: GraphqlContext, info) => {
+    const { id } = args;
+    if (contextValue.user) {
+      const ans = (await axios.get(`https://jsonplaceholder.typicode.com/todos${id}`)).data;
+
+      return {
+        __typename: "Todo",
+        ...ans,
+      };
+    }
+    return {
+      __typename: "UserNotAuthenticatedError",
+      message: "User is not authenticated",
+    };
+    // throw new GraphQLError("User is not authenticated", {
+    //   extensions: {
+    //     code: "UNAUTHENTICATED",
+    //     http: { status: 401 },
+    //   },
+    // });
   },
 };
 

@@ -1,6 +1,17 @@
 {
   "name": "@refhiredcom/auth",
+  "sideEffects": false,
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@referrer/prisma": "*",
+    "@refhiredcom/features": "*",
+    "@refhiredcom/email": "*",
+    "next-auth": "^4.24.7"
+  },
+  "devDependencies": {
+    "@refhiredcom/types": "*",
+    "typescript": "^5.4.2"
+  }
 }
