@@ -17,10 +17,10 @@ import { useStore } from "@/store/store";
 import { Provider } from "./provider";
 
 export default async function PortalsLayout({
-  loginModal,
+  // loginModal,
   children,
 }: {
-  loginModal: React.ReactNode;
+  // loginModal: React.ReactNode;
   children: React.ReactNode;
 }) {
   const { data: session } = useSession();
