@@ -42,6 +42,7 @@
     "cookies-next": "^4.1.1",
     "date-fns": "^2.30.0",
     "encoding": "^0.1.13",
+    "framer-motion": "^11.0.20",
     "gql.tada": "^1.2.1",
     "graphql": "^16.8.1",
     "lucide-react": "^0.279.0",

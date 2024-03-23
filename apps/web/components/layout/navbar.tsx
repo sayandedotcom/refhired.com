@@ -10,7 +10,8 @@ import { siteConfig } from "@/config";
 
 import { Icons } from "../icons/icons";
 import { TooltipDemo } from "../ui";
-import { NavButtonsAuthenticated, NavButtonsUnAuthenticated, NavList } from "./navbar-components";
+import { NavButtonsAuthenticated, NavButtonsUnAuthenticated } from "./navbar-components";
+import { Navigation } from "./navigation";
 
 export function Navbar() {
   const { data: session, status, update } = useSession();
@@ -60,7 +61,8 @@ export function Navbar() {
           }`}>
           <div>{session ? <NavButtonsAuthenticated session={session} /> : <NavButtonsUnAuthenticated />}</div>
           <div className="flex-1">
-            <NavList />
+            <Navigation />
+            {/* <NavList /> */}
           </div>
         </div>
       </div>

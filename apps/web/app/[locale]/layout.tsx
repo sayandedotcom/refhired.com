@@ -124,8 +124,8 @@ export default function RootLayout({
           )}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Provider>
-              {loginModal}
               {children}
+              {loginModal}
             </Provider>
           </NextIntlClientProvider>
         </body>
