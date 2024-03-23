@@ -94,7 +94,7 @@ export default function RootLayout({
 }: // params,
 // params: {locale}
 {
-  children: React.ReactNode;
+  children: React.PropsWithChildren;
   loginModal?: React.ReactNode;
   // params;
   params: { locale: string };

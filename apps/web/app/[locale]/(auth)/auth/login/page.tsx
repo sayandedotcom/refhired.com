@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PartyPopper } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { useLocalStorage } from "usehooks-ts";
@@ -38,7 +39,8 @@ const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address !" }).nonempty("Required"),
 });
 
-const Login = ({ className }: { className?: string }) => {
+const Login = ({ className, params: { locale } }: { className?: string; params: any }) => {
+  unstable_setRequestLocale(locale);
   const t = useTranslations("Index");
   const router = useRouter();
   const { loadingValue, setLoadingValue } = useLoading();

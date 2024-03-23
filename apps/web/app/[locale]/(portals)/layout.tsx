@@ -2,6 +2,7 @@
 
 import { usePathname } from "@/navigation";
 import { useSession } from "next-auth/react";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 import { Separator } from "@referrer/ui";
 
@@ -19,14 +20,16 @@ import { Provider } from "./provider";
 export default async function PortalsLayout({
   // loginModal,
   children,
+  params: { locale },
 }: {
   // loginModal: React.ReactNode;
   children: React.ReactNode;
+  params: any;
 }) {
   const { data: session } = useSession();
 
   const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
-
+  unstable_setRequestLocale(locale);
   setAuthDialogOpen(!session);
 
   const pathName = usePathname();
