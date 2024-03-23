@@ -1,6 +1,6 @@
 "use client";
 
-import Login from "@/app/[locale]/(auth)/auth/login/page";
+import { Login } from "@/app/[locale]/(auth)/auth/login/page";
 import { useRouter } from "@/navigation";
 
 import { Dialog, DialogContent } from "@referrer/ui";
