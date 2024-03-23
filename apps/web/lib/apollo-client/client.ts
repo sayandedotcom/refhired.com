@@ -1,8 +1,8 @@
-import { cookies } from "next/headers";
-
+// import { cookies } from "next/headers";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
+import { getCookie } from "cookies-next";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:8000/graphql",
@@ -11,14 +11,16 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const cookieStore = cookies();
+  // const cookieStore = cookies();
+
   const token =
-    cookieStore.get("__Secure-next-auth.session-token") ?? cookieStore.get("next-auth.session-token");
+    // cookieStore.get("__Secure-next-auth.session-token") ?? cookieStore.get("next-auth.session-token");
+    getCookie("__Secure-next-auth.session-token") ?? getCookie("next-auth.session-token");
 
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token.value}` : "",
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
