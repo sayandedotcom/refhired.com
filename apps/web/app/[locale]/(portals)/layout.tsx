@@ -16,7 +16,13 @@ import { useStore } from "@/store/store";
 
 import { Provider } from "./provider";
 
-export default async function PortalsLayout({ children }: { children: React.ReactNode }) {
+export default async function PortalsLayout({
+  loginModal,
+  children,
+}: {
+  loginModal: React.ReactNode;
+  children: React.ReactNode;
+}) {
   const { data: session } = useSession();
 
   const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
@@ -33,17 +39,19 @@ export default async function PortalsLayout({ children }: { children: React.Reac
   ].includes(pathName);
 
   return (
-    <Provider>
-      <AuthDialog>
-        <section className="flex scroll-smooth">
-          <NewOptionsSection />
-          <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
-          <NewContentSection>{children}</NewContentSection>
-          <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
-          {showExtraSection ? null : <NewExtraSection />}
-        </section>
-      </AuthDialog>
-    </Provider>
+    <>
+      <Provider>
+        <AuthDialog>
+          <section className="flex scroll-smooth">
+            <NewOptionsSection />
+            <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
+            <NewContentSection loginModal={loginModal}>{children}</NewContentSection>
+            <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
+            {showExtraSection ? null : <NewExtraSection />}
+          </section>
+        </AuthDialog>
+      </Provider>
+    </>
   );
 }
 

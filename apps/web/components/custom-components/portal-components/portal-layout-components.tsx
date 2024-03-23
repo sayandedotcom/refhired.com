@@ -115,22 +115,31 @@ export function NewOptionsSection() {
   );
 }
 
-export function NewContentSection({ children }: { children: React.ReactNode }) {
+export function NewContentSection({
+  children,
+  loginModal,
+}: {
+  children: React.ReactNode;
+  loginModal?: React.ReactNode;
+}) {
   const pathName = usePathname();
   return (
-    <section
-      className={clsx(
-        "flex w-[85%] flex-col items-center",
-        pathName.split("/")[1] === "settings" || pathName.split("/")[1] === "dashboard"
-          ? "lg:w-[80%]"
-          : "lg:w-[60%]"
-      )}>
-      <div className="px-4 py-4">
-        <h5 className="font-heading capitalize">{pathName.split("/")[1]}</h5>
-      </div>
-      <Separator className="dark:bg-[#2d3134]" />
-      {children}
-    </section>
+    <>
+      <section
+        className={clsx(
+          "flex w-[85%] flex-col items-center",
+          pathName.split("/")[1] === "settings" || pathName.split("/")[1] === "dashboard"
+            ? "lg:w-[80%]"
+            : "lg:w-[60%]"
+        )}>
+        <div className="px-4 py-4">
+          <h5 className="font-heading capitalize">{pathName.split("/")[1]}</h5>
+        </div>
+        <Separator className="dark:bg-[#2d3134]" />
+        {loginModal}
+        {children}
+      </section>
+    </>
   );
 }
 
@@ -192,7 +201,10 @@ export function NewExtraSection() {
         Dialog
       </Link>
       {/* <LoginModal> */}
-      <Button>Modal</Button>
+
+      {/* <LoginModal>
+        <Button>Modal</Button>
+      </LoginModal> */}
       {/* </LoginModal> */}
     </section>
   );

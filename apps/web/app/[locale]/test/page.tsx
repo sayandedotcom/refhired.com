@@ -1,19 +1,19 @@
-"use client";
+// "use client";
 
-import Link from "next/link";
+// import Link from "next/link";
 
-import { buttonVariants } from "@referrer/ui";
+// import { buttonVariants } from "@referrer/ui";
 
-import LoginModal from "../@loginModal/(.)auth/login/page";
+// import LoginModal from "../(portals)/@loginModal/(.)auth/login/page";
 
-const Username = async () => {
-  return (
-    <>
-      <LoginModal />
-      <Link className={buttonVariants()} href="/auth/login">
-        Auth
-      </Link>
-    </>
-  );
-};
-export default Username;
+// const Username = async () => {
+//   return (
+//     <>
+//       <LoginModal />
+//       <Link className={buttonVariants()} href="/auth/login">
+//         Auth
+//       </Link>
+//     </>
+//   );
+// };
+// export default Username;

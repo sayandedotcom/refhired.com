@@ -94,7 +94,7 @@ export default function RootLayout({
 // params: {locale}
 {
   children: React.ReactNode;
-  loginModal: React.ReactNode;
+  loginModal?: React.ReactNode;
   // params;
   params: { locale: string };
 }) {
@@ -124,8 +124,8 @@ export default function RootLayout({
           )}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Provider>
-              {children}
               {loginModal}
+              {children}
             </Provider>
           </NextIntlClientProvider>
         </body>
