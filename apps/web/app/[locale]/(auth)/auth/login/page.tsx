@@ -39,7 +39,7 @@ const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address !" }).nonempty("Required"),
 });
 
-const Login = ({ className, params: { locale } }: { className?: string; params: any }) => {
+export default function Login({ className, params: { locale } }: { className?: string; params: any }) {
   unstable_setRequestLocale(locale);
   const t = useTranslations("Index");
   const router = useRouter();
@@ -198,6 +198,4 @@ const Login = ({ className, params: { locale } }: { className?: string; params: 
       </div>
     </div>
   );
-};
-
-export default Login;
+}
