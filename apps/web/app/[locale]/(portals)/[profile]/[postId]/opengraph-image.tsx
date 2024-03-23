@@ -1,5 +1,3 @@
-import { getPostBySlug } from "@/actions/posts";
-
 export const size = {
   width: 900,
   height: 450,
@@ -14,9 +12,9 @@ interface Props {
 }
 
 export default async function og({ params }: Props) {
-  const post = await getPostBySlug(params.slug);
+  // const post =  getPostBySlug(params.slug);
 
-  return;
+  return null;
 }
 //  new ImageResponse(
 //   (
