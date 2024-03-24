@@ -18,11 +18,9 @@ import { useStore } from "@/store/store";
 import { Provider } from "./provider";
 
 export default async function PortalsLayout({
-  // loginModal,
   children,
   params: { locale },
 }: {
-  // loginModal: React.ReactNode;
   children: React.ReactNode;
   params: any;
 }) {
