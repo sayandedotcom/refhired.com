@@ -1,7 +1,6 @@
 import { Link } from "@/navigation";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 
-// import { useTranslations } from "next-intl";
 import { getSession } from "@/actions/sessions";
 
 import { Separator } from "@referrer/ui";
@@ -20,7 +19,6 @@ export default async function Page({ params: { locale } }) {
   unstable_setRequestLocale(locale);
   // const t = await getTranslator(locale, "Index");
   const t = await getTranslations("Index");
-  // const t = useTranslations("Index");
 
   const session = await getSession();
 
