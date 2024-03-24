@@ -17,7 +17,7 @@ import { useStore } from "@/store/store";
 
 import { Provider } from "./provider";
 
-export default async function PortalsLayout({
+export default function PortalsLayout({
   children,
   params: { locale },
 }: {
