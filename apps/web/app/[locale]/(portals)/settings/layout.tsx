@@ -12,6 +12,7 @@ import {
   RadioTower,
   User2,
 } from "lucide-react";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 import { Separator } from "@referrer/ui";
 
@@ -84,7 +85,8 @@ const settingsNav = [
   },
 ];
 
-export default function Settings({ children }: { children: React.ReactNode }) {
+export default function Settings({ children, params: { locale } }) {
+  unstable_setRequestLocale(locale);
   return (
     <div className="hidden w-full space-y-6 p-10 pb-16 md:block">
       <div className="space-y-0.5">

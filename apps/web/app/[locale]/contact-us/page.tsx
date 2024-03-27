@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 
+import { unstable_setRequestLocale } from "next-intl/server";
+
 import { Button, Input, Textarea } from "@referrer/ui";
 
 import { contactMethods1, contactMethods2 } from "@/components/icons/icons";
@@ -9,7 +11,8 @@ export const metadata: Metadata = {
   description: "Get job referrals to the top best companies of the world",
 };
 
-export default function Contact() {
+export default function Contact({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
   return (
     <>
       <main className="py-14 font-bold">

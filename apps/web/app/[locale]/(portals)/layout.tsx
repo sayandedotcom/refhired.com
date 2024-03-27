@@ -37,11 +37,7 @@ export default function PortalsLayout({
         <section className="flex scroll-smooth">
           <NewOptionsSection />
           <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
-          <NewContentSection
-          // loginModal={loginModal}
-          >
-            {children}
-          </NewContentSection>
+          <NewContentSection>{children}</NewContentSection>
           <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
           {showExtraSection ? null : <NewExtraSection />}
         </section>

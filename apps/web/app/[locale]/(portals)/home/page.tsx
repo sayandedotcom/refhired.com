@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 
+import { unstable_setRequestLocale } from "next-intl/server";
+
 import { PostCard } from "@/components/custom-components";
 
 export const metadata: Metadata = {
@@ -14,7 +16,8 @@ const jobType = "Full Time";
 const salary = "150-250k";
 const role = "Front-End Developer";
 
-const Home = async () => {
+const Home = async ({ children, params: { locale } }) => {
+  unstable_setRequestLocale(locale);
   // const posts = await getAllPosts();
   const posts: any[] = [];
   return (

@@ -1,11 +1,15 @@
 import { Metadata } from "next";
 
+import { unstable_setRequestLocale } from "next-intl/server";
+
 export const metadata: Metadata = {
   title: "Blogs",
   description: "Get job referrals to the top best companies of the world",
 };
 
-const Blogs = () => {
+const Blogs = ({ params: { locale } }) => {
+  unstable_setRequestLocale(locale);
+
   return (
     <section className="py-14">
       <div className="relative mx-auto max-w-xl sm:text-center">

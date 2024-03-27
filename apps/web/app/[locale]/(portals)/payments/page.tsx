@@ -1,4 +1,4 @@
-import React from "react";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 import {
   Button,
@@ -21,7 +21,8 @@ import {
 
 import { Icons } from "@/components/icons/icons";
 
-export default function Payments() {
+export default function Payments({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
   return (
     <div className="flex h-full w-full items-center justify-center">
       <Card className="w-4/12">
