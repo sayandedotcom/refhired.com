@@ -16,7 +16,7 @@ const jobType = "Full Time";
 const salary = "150-250k";
 const role = "Front-End Developer";
 
-const Home = async ({ children, params: { locale } }) => {
+const Home = async ({ params: { locale } }) => {
   unstable_setRequestLocale(locale);
   // const posts = await getAllPosts();
   const posts: any[] = [];
