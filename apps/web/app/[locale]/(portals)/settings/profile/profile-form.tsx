@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -9,8 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { User } from "@prisma/client";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
-
-import { getProfile, updateProfile } from "@/actions/settings";
 
 import { cn } from "@referrer/lib/utils/cn";
 import {
@@ -92,26 +90,26 @@ export function ProfileForm() {
 
   const [data, setData] = useState<User>();
   const [image, setImage] = useState("");
-  const getUsers = async () => {
-    const users = await getProfile();
-    setData(users);
-  };
+  // const getUsers = async () => {
+  //   const users = await getProfile();
+  //   setData(users);
+  // };
 
-  useEffect(() => {
-    getUsers(); // run it, run it
-    // return () => {
-    // this now gets called when the component unmounts
-    // };
-  }, []);
+  // useEffect(() => {
+  //   getUsers(); // run it, run it
+  //   // return () => {
+  //   // this now gets called when the component unmounts
+  //   // };
+  // }, []);
 
   const onSubmit = async (data: ProfileFormValues) => {
-    await updateProfile({
-      userName: data.username,
-      name: data.name,
-      bio: data.bio,
-      email: data.email,
-      image: image,
-    });
+    // await updateProfile({
+    //   userName: data.username,
+    //   name: data.name,
+    //   bio: data.bio,
+    //   email: data.email,
+    //   image: image,
+    // });
     sonerToast({ severity: "neutral", title: "Profile Updated !" });
     form.reset();
   };

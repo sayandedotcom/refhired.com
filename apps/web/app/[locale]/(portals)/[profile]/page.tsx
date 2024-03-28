@@ -5,8 +5,6 @@ import Link from "next/link";
 import { FaSuitcase } from "react-icons/fa";
 import { HiLocationMarker } from "react-icons/hi";
 
-import { getProfile } from "@/actions/profile";
-
 import { Separator } from "@referrer/ui";
 
 import { cn } from "@/utils";
@@ -23,7 +21,8 @@ type paramsProps = {
 const Profile = async ({ params }: paramsProps) => {
   const { profile } = params;
 
-  const userProfile = await getProfile(profile);
+  // const userProfile = await getProfile(profile);
+  const userProfile = null;
 
   if (!userProfile)
     return (

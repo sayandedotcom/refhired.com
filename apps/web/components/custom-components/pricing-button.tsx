@@ -4,8 +4,6 @@ import { useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { checkout } from "@/actions/stripe";
-
 import { Button } from "@referrer/ui";
 
 function PricingButton({
@@ -23,8 +21,8 @@ function PricingButton({
   const [state, setState] = useState(false);
   const buyPlan = async (priceId: string, stars: number, quantity?: number) => {
     setState(true);
-    const stripeUrl = await checkout({ planId: priceId, quantity: quantity, stars: stars });
-    router.push(stripeUrl);
+    // const stripeUrl = await checkout({ planId: priceId, quantity: quantity, stars: stars });
+    // router.push(stripeUrl);
     // window.location.replace(stripeUrl);
   };
 

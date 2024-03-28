@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Image from "next/image";
 
@@ -13,8 +13,6 @@ import clsx from "clsx";
 import { Info, MoreHorizontal, Star } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
-
-import { getProfile } from "@/actions/settings";
 
 import { Badge, Button, Separator, buttonVariants } from "@referrer/ui";
 
@@ -33,17 +31,17 @@ export function NewOptionsSection() {
   const { width } = useWindowSize();
 
   const [data, setData] = useState<User>();
-  const getUsers = async () => {
-    const users = await getProfile();
-    setData(users);
-  };
+  // const getUsers = async () => {
+  //   const users = await getProfile();
+  //   setData(users);
+  // };
 
-  useEffect(() => {
-    getUsers(); // run it, run it
-    // return () => {
-    // this now gets called when the component unmounts
-    // };
-  }, []);
+  // useEffect(() => {
+  //   getUsers(); // run it, run it
+  //   // return () => {
+  //   // this now gets called when the component unmounts
+  //   // };
+  // }, []);
   return (
     <section className="sticky left-0 top-0 h-screen w-[15%] lg:w-[20%]">
       <div className="bg-muted flex h-full w-full flex-col items-start justify-start">
