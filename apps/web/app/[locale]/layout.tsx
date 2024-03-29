@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
+import { locales } from "@/navigation";
 // import { useLocale } from "next-intl";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
@@ -74,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "de" }, { locale: "zh" }];
+  return locales.map((locale) => ({ locale }));
 }
 
 const fontSans = FontSans({
@@ -87,7 +88,7 @@ const fontHeading = localFont({
   variable: "--font-heading",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   loginModal,
   params: { locale },
@@ -112,6 +113,7 @@ export default function RootLayout({
   // }
 
   unstable_setRequestLocale(locale);
+
   const messages = useMessages();
   return (
     <>
