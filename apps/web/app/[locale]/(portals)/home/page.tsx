@@ -23,7 +23,7 @@ const Home = async ({ params: { locale } }) => {
   return (
     <>
       {[...new Array(20)].map((_, i) => (
-        <PostCard key={i}>
+        <PostCard id={i} key={i}>
           <PostCard.Image src="/images/avatar/avatar.png" />
           <PostCard.Content>
             <PostCard.Header name="Full Name" userName="@username" time="1h ago" timeLeft="2d Left" />

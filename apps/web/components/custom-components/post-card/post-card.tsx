@@ -7,10 +7,10 @@ import { PostHoverCard } from "@/components/ui";
 import { ApplyButton, MultipleButtons, Tags } from "./post-buttons";
 import { ComboboxDropdownMenu } from "./post-more-menu";
 
-export const PostCard = ({ key, children }: { key: any; children: React.ReactNode }) => {
+export const PostCard = ({ id, children }: { id: any; children: React.ReactNode }) => {
   return (
     <div
-      key={key}
+      key={id}
       className="border-border mx-auto my-2 flex gap-2 rounded-lg border-2 p-1 md:w-11/12 md:gap-3 md:p-4">
       {children}
     </div>
