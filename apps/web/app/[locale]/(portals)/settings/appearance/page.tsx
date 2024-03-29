@@ -1,8 +1,11 @@
+import { unstable_setRequestLocale } from "next-intl/server";
+
 import { Separator } from "@referrer/ui";
 
-import { AppearanceForm } from "./appearance-form";
+import { AppearanceForm } from "@/components/settings";
 
-export default function SettingsAppearancePage() {
+export default function SettingsAppearancePage({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
   return (
     <div className="space-y-6">
       <div>

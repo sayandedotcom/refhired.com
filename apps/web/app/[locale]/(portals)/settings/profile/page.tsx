@@ -1,8 +1,11 @@
+import { unstable_setRequestLocale } from "next-intl/server";
+
 import { Separator } from "@referrer/ui";
 
-import { ProfileForm } from "./profile-form";
+import { ProfileForm } from "@/components/settings";
 
-export default function SettingsProfilePage() {
+export default function SettingsProfilePage({ params: { locale } }) {
+  unstable_setRequestLocale(locale);
   return (
     <div className="space-y-6">
       <div>
