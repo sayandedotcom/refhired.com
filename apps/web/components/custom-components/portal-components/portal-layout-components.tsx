@@ -143,11 +143,21 @@ export function NewContentSection({
 
 export function NewExtraSection() {
   const pathName = usePathname();
+  const showExtraSection = [
+    "/dashboard",
+    "/settings/profile",
+    "/settings/appearance",
+    "/settings/notifications",
+  ].includes(pathName);
   // const { data: session } = useSession();
   // const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
   const setJoyRide = useStore((state) => state.setJoyRide);
   return (
-    <section className="font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2">
+    <section
+      className={clsx(
+        showExtraSection && "md:hidden lg:hidden",
+        "font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2"
+      )}>
       <div className="bg-muted rounded-sm px-4 py-2 text-center">
         <h5>Extras</h5>
       </div>
