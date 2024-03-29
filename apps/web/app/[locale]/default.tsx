@@ -1,7 +1,3 @@
-"use client";
-
-function Default() {
-  return <div>Default</div>;
+export default function Default() {
+  return null;
 }
-
-export default Default;
