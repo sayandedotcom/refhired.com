@@ -88,7 +88,7 @@ const fontHeading = localFont({
   variable: "--font-heading",
 });
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
   loginModal,
   params: { locale },
