@@ -1,10 +1,26 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
 
-import { Drafts, FindReferrer, NormalPost, ReferralPost } from "@/components/ui";
-
 import { useStore } from "@/store/store";
+
+const DynamicReferralPost = dynamic(() => import("@/components/ui/post-forms/referral-post"), {
+  loading: () => <p>Loading...</p>,
+});
+
+const DynamicNormalPost = dynamic(() => import("@/components/ui/post-forms/normal-post"), {
+  loading: () => <p>Loading...</p>,
+});
+
+const DynamicFindReferrer = dynamic(() => import("@/components/ui/post-forms/find-referrer"), {
+  loading: () => <p>Loading...</p>,
+});
+
+const DynamicDrafts = dynamic(() => import("@/components/ui/post-forms/drafts"), {
+  loading: () => <p>Loading...</p>,
+});
 
 const Post = () => {
   const postType = useStore((state) => state.postType);
@@ -17,16 +33,16 @@ const Post = () => {
         <TabsTrigger value="Drafts">Drafts</TabsTrigger>
       </TabsList>
       <TabsContent value="Referral">
-        <ReferralPost />
+        <DynamicReferralPost />
       </TabsContent>
       <TabsContent value="Find">
-        <FindReferrer />
+        <DynamicFindReferrer />
       </TabsContent>
       <TabsContent value="Normal">
-        <NormalPost />
+        <DynamicNormalPost />
       </TabsContent>
       <TabsContent value="Drafts">
-        <Drafts />
+        <DynamicDrafts />
       </TabsContent>
     </Tabs>
   );

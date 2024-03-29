@@ -21,7 +21,7 @@ import { normalPostValidator } from "@/lib/validators";
 
 import { AsyncSelectComponent } from "./async-select";
 
-export const NormalPost = () => {
+export default function NormalPost() {
   const form = useForm<z.infer<typeof normalPostValidator>>({
     resolver: zodResolver(normalPostValidator),
     defaultValues: {
@@ -172,4 +172,4 @@ export const NormalPost = () => {
       </Form>
     </div>
   );
-};
+}

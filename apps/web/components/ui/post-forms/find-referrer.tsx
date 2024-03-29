@@ -29,7 +29,7 @@ import { jobTypeList } from "@/config";
 import { Required } from "../required";
 import { SelectComponent } from "./select";
 
-export const FindReferrer = () => {
+export default function FindReferrer() {
   const form = useForm<z.infer<typeof findReferrerValidator>>({
     resolver: zodResolver(findReferrerValidator),
     defaultValues: {
@@ -238,4 +238,4 @@ export const FindReferrer = () => {
       </Form>
     </div>
   );
-};
+}

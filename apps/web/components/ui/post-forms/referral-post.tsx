@@ -52,7 +52,7 @@ import { TooltipDemo } from "../tooltip/tooltip";
 import { AsyncSelectComponent } from "./async-select";
 import { SelectComponent } from "./select";
 
-export const ReferralPost = () => {
+export default function ReferralPost() {
   const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
   const setAuthDialogTitle = useStore((state) => state.setAuthDialogTitle);
   const form = useForm<z.infer<typeof referralPostValidator>>({
@@ -785,4 +785,4 @@ export const ReferralPost = () => {
       </Form>
     </div>
   );
-};
+}
