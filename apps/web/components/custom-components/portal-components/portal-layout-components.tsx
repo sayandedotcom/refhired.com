@@ -27,6 +27,8 @@ import { ComboboxDropdownMenu } from "../post-card/post-more-menu";
 export function NewOptionsSection() {
   const { data: session } = useSession();
   const pathName = usePathname();
+  console.log("pathName==========================", pathName);
+
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
 

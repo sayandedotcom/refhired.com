@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
+import { notFound } from "next/navigation";
 
 import { locales } from "@/navigation";
-// import { useLocale } from "next-intl";
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 import { siteConfig } from "@/config";
@@ -97,20 +97,13 @@ export default function RootLayout({
   loginModal: any;
   params: { locale: string };
 }) {
-  // let messages;
-  // try {
-  //   messages = (await import(`../../messages/${locale || "en"}.json`)).default;
-  // } catch (error) {
-  //   console.log(error);
-  // }
   console.log("params---locale=====================", locale);
-  // const locale = useLocale();
-  // console.log("locale=====================", locale);
+  const intllocale = useLocale();
 
   // Validate that the incoming `locale` parameter is a valid locale
-  // if (params?.locale !== locale) {
-  //   notFound();
-  // }
+  if (locale !== intllocale) {
+    notFound();
+  }
 
   unstable_setRequestLocale(locale);
 
@@ -120,7 +113,7 @@ export default function RootLayout({
       <html lang={locale} suppressHydrationWarning>
         <body
           className={cn(
-            "selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white font-sans",
+            "selection:bg-foreground selection:text-background font-sans",
             fontSans.variable,
             fontHeading.variable
           )}>
@@ -135,3 +128,4 @@ export default function RootLayout({
     </>
   );
 }
+// selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white font-sans

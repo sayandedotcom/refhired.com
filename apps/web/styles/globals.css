@@ -99,9 +99,12 @@ p {
 ::-webkit-scrollbar {
   width: 0.6rem;
 }
-/* ::-webkit-scrollbar-track {
-} */
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 ::-webkit-scrollbar-thumb {
+  background-color: rgb(185, 174, 174);
   border: 0.6 solid transparent;
   border-radius: 3rem;
   background-clip: content-box;

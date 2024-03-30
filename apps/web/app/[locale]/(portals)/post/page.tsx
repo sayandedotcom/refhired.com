@@ -6,20 +6,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
 
 import { useStore } from "@/store/store";
 
+import Loading from "../../loading";
+
 const DynamicReferralPost = dynamic(() => import("@/components/ui/post-forms/referral-post"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 });
 
 const DynamicNormalPost = dynamic(() => import("@/components/ui/post-forms/normal-post"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 });
 
 const DynamicFindReferrer = dynamic(() => import("@/components/ui/post-forms/find-referrer"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 });
 
 const DynamicDrafts = dynamic(() => import("@/components/ui/post-forms/drafts"), {
-  loading: () => <p>Loading...</p>,
+  loading: () => <Loading />,
 });
 
 const Post = () => {
