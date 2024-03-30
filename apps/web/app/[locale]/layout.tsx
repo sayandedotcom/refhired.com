@@ -1,10 +1,9 @@
 import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
-import { notFound } from "next/navigation";
 
 import { locales } from "@/navigation";
-import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
+import { NextIntlClientProvider, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 import { siteConfig } from "@/config";
@@ -98,12 +97,6 @@ export default function RootLayout({
   params: { locale: string };
 }) {
   console.log("params---locale=====================", locale);
-  const intllocale = useLocale();
-
-  // Validate that the incoming `locale` parameter is a valid locale
-  if (locale !== intllocale) {
-    notFound();
-  }
 
   unstable_setRequestLocale(locale);
 
