@@ -191,7 +191,6 @@ export function NewExtraSection() {
       </div>
       <div className="bg-muted rounded-sm px-4 py-2">
         <h6>{pathName.split("/")[1] !== "/search" ? "Filters" : "Sugessions"}</h6>
-        <Separator className="dark:bg-[#2d3134]" />
       </div>
       <ThemeSwitcher />
       <Button onClick={() => signOut()}>Sign Out</Button>

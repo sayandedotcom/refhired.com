@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { useLoading } from "@/hooks";
+import { Link } from "@/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PartyPopper } from "lucide-react";
 import { signIn } from "next-auth/react";
