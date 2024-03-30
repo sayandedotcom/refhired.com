@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 
 import { locales } from "@/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 import { siteConfig } from "@/config";
 
@@ -97,7 +98,7 @@ export default function RootLayout({
 }) {
   console.log("params---locale=====================", locale);
 
-  // unstable_setRequestLocale(locale);
+  unstable_setRequestLocale(locale);
 
   const messages = useMessages();
   return (
