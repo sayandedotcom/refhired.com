@@ -108,5 +108,7 @@
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "include": ["../../packages/types/*.d.ts"],
+  "exclude": ["node_modules"]
 }

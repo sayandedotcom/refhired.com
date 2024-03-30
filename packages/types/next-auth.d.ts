@@ -12,6 +12,7 @@ declare module "next-auth" {
       locale?: PrismaUser["locale"];
       stripeCustomerId?: PrismaUser["stripeCustomerId"];
       stars: PrismaUser["stars"];
+      fromTypes?: any;
     } & DefaultSession["user"];
   }
   /**

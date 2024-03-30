@@ -11,7 +11,7 @@ declare global {
 
       NEXT_PUBLIC_APP_URL: string;
 
-      NEXTAUTH_URL: string;
+      NEXTAUTH_URL?: string;
       NEXTAUTH_SECRET: string;
 
       GOOGLE_CLIENT_ID: string;
@@ -30,7 +30,7 @@ declare global {
       POSTGRES_URL: string;
       POSTGRES_URL_NON_POOLING: string;
       POSTGRES_USER: string;
-      VERCEL: string;
+      VERCEL?: string;
       VERCEL_ENV: string;
 
       KV_URL: string;
@@ -53,7 +53,7 @@ declare global {
       UPLOADTHING_SECRET: string;
       UPLOADTHING_APP_ID: string;
 
-      NODE_ENV: "development" | "production";
+      // NODE_ENV: "development" | "production";
     }
   }
 }
