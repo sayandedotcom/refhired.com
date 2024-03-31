@@ -1,7 +1,8 @@
 // "use client";
-import { Bell, Bookmark, LayoutDashboard, Search, Settings, User } from "lucide-react";
+import { Bell, Bookmark, LayoutDashboard, Search, User } from "lucide-react";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
-import { IoDocumentsOutline, IoDocumentsSharp } from "react-icons/io5";
+import { IoDocumentsOutline, IoDocumentsSharp, IoSettingsSharp } from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5";
 import { TiTick, TiTickOutline } from "react-icons/ti";
 
 export const portalsList = [
@@ -43,9 +44,9 @@ export const portalsList = [
   },
   {
     name: "Settings",
-    link: "/settings/profile",
-    icon: <Settings />,
-    activeIcon: <Settings fill="#ffff" />,
+    link: "/settings",
+    icon: <IoSettingsOutline />,
+    activeIcon: <IoSettingsSharp />,
   },
   {
     name: "Dashboard",
