@@ -59,9 +59,9 @@ export function NewOptionsSection() {
                   href={link ?? session?.user.userName ?? "profile"}
                   className={clsx(
                     "hover:bg-background/50 flex items-center gap-4 rounded-md px-2 py-2",
-                    path === link && "bg-background"
+                    path === "/" + link?.split("/")[1] && "bg-background"
                   )}>
-                  {path !== link ? (
+                  {path !== "/" + link?.split("/")[1] ? (
                     <span className="ml-5 text-2xl md:text-2xl">{icon}</span>
                   ) : (
                     <span className="ml-5 text-2xl md:text-2xl">{activeIcon}</span>

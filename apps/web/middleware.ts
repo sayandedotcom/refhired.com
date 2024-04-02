@@ -25,22 +25,54 @@
 // //   return NextResponse.json(greeting);
 // // }
 // !---------------------------------------------------
-import createMiddleware from "next-intl/middleware";
+// import createMiddleware from "next-intl/middleware";
+// import { localePrefix, locales } from "./navigation";
+// export default createMiddleware({
+//   // A list of all locales that are supported
+//   // locales: ["en", "de", "zh"],
+//   // Used when no locale matches
+//   defaultLocale: "en",
+//   localePrefix,
+//   locales,
+// });
+// export const config = {
+//   // Match only internationalized pathnames
+//   matcher: ["/", "/(de|en|zh)/:path*"],
+// };
+import { NextRequest } from "next/server";
+
+import createIntlMiddleware from "next-intl/middleware";
 
 import { localePrefix, locales } from "./navigation";
 
-export default createMiddleware({
-  // A list of all locales that are supported
-  // locales: ["en", "de", "zh"],
+export default async function middleware(request: NextRequest) {
+  const defaultLocale = request.headers.get("x-your-custom-locale") || "en";
+  const [, locale, firstSegment, ...segments] = request.nextUrl.pathname.split("/");
+  // console.log("request===================", request);
 
-  // Used when no locale matches
-  defaultLocale: "en",
+  // if (firstSegment === "settings") {
+  // return NextResponse.redirect(new URL(`profile`, request.url));
+  // return NextResponse.redirect(new URL(`/${locale}/settings/profile`, request.url));
+  // console.log(`${request.nextUrl.origin}/${locale}/settings/profile`);
+  // return NextResponse.redirect(`${request.nextUrl.origin}/${locale}/settings/profile`);
+  // const ans = new URL(`/${locale}/settings/profile`, request.url.toString());
+  // console.log(
+  //   "ans==================================================================================",
+  //   request
+  // );
+  // return NextResponse.redirect(new URL(`/${locale}/settings/profile`, request.url));
+  // }
 
-  localePrefix,
-  locales,
-});
+  const handleI18nRouting = createIntlMiddleware({
+    locales,
+    localePrefix,
+    // @ts-ignore
+    defaultLocale: defaultLocale,
+  });
+  const response = handleI18nRouting(request);
+  return response;
+}
 
 export const config = {
-  // Match only internationalized pathnames
   matcher: ["/", "/(de|en|zh)/:path*"],
 };

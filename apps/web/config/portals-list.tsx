@@ -44,7 +44,7 @@ export const portalsList = [
   },
   {
     name: "Settings",
-    link: "/settings",
+    link: "/settings/profile",
     icon: <IoSettingsOutline />,
     activeIcon: <IoSettingsSharp />,
   },
