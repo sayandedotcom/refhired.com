@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+import { redirect } from "@/navigation";
 import { unstable_setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
@@ -9,5 +10,6 @@ export const metadata: Metadata = {
 
 export default function Settings({ params: { locale } }) {
   unstable_setRequestLocale(locale);
-  return null;
+  redirect("/settings/profile");
+  return;
 }
