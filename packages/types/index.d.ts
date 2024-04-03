@@ -1,2 +1,2 @@
-export type * from "./next-auth";
-export type * from "./environment";
+/// <reference path="./environment.d.ts" />
+/// <reference path="./next-auth.d.ts" />
