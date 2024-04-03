@@ -1,0 +1,19 @@
+{
+  "name": "utils",
+  "description": "Utility functions and constants for refhired.com",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.2"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "@referrer/prettier-config": "*",
+    "@referrer/tsconfig": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
