@@ -1,10 +1,13 @@
 "use client";
 
+import { useCallback } from "react";
+
 import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
+
+import { usePathname, useRouter } from "@/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
-
-import { useStore } from "@/store/store";
 
 import Loading from "../../loading";
 
@@ -24,30 +27,67 @@ const DynamicDrafts = dynamic(() => import("@/components/ui/post-forms/drafts"),
   loading: () => <Loading />,
 });
 
-const Post = () => {
-  const postType = useStore((state) => state.postType);
+type TabParams = { tab: "referral" | "find" | "normal" | "drafts" };
+
+export default function Post() {
+  const pathName = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+  // const postType = useStore((state) => state.postType);
   return (
-    <Tabs defaultValue={postType ?? "Referral"} className="w-full">
+    <Tabs activationMode="manual" defaultValue={searchParams.get("tab")} className="w-full">
       <TabsList className="grid w-full grid-cols-4">
-        <TabsTrigger value="Referral">Referral Post</TabsTrigger>
-        <TabsTrigger value="Find">Find Referer</TabsTrigger>
-        <TabsTrigger value="Normal">Post</TabsTrigger>
-        <TabsTrigger value="Drafts">Drafts</TabsTrigger>
+        <TabsTrigger
+          onClick={() => {
+            router.push(pathName + "?" + createQueryString("tab", "referral"));
+          }}
+          value="referral">
+          Referral Post
+        </TabsTrigger>
+        <TabsTrigger
+          onClick={() => {
+            router.push(pathName + "?" + createQueryString("tab", "find"));
+          }}
+          value="find">
+          Find Referer
+        </TabsTrigger>
+        <TabsTrigger
+          onClick={() => {
+            router.push(pathName + "?" + createQueryString("tab", "normal"));
+          }}
+          value="normal">
+          Post
+        </TabsTrigger>
+        <TabsTrigger
+          onClick={() => {
+            router.push(pathName + "?" + createQueryString("tab", "drafts"));
+          }}
+          value="drafts">
+          Drafts
+        </TabsTrigger>
       </TabsList>
-      <TabsContent value="Referral">
+      <TabsContent value="referral">
         <DynamicReferralPost />
       </TabsContent>
-      <TabsContent value="Find">
+      <TabsContent value="find">
         <DynamicFindReferrer />
       </TabsContent>
-      <TabsContent value="Normal">
+      <TabsContent value="normal">
         <DynamicNormalPost />
       </TabsContent>
-      <TabsContent value="Drafts">
+      <TabsContent value="drafts">
         <DynamicDrafts />
       </TabsContent>
     </Tabs>
   );
-};
-
-export default Post;
+}

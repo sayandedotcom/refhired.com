@@ -1,5 +1,9 @@
 "use client";
 
+import { useCallback } from "react";
+
+import { useSearchParams } from "next/navigation";
+
 import { useRouter } from "@/navigation";
 import { X } from "lucide-react";
 
@@ -14,15 +18,24 @@ import {
   AlertDialogTrigger,
 } from "@referrer/ui";
 
-import { useStore } from "@/store/store";
-
 export function PostTypeDialog({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const setPostType = useStore((state) => state.setPostType);
-  const postType = (type: string) => {
-    setPostType(type);
-    router.push("/post");
-  };
+  const searchParams = useSearchParams();
+  //  const setPostType = useStore((state) => state.setPostType);
+  // const postType = (type: string) => {
+  //   setPostType(type);
+  //   router.push("/post");
+  // };
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
@@ -35,9 +48,24 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
         </AlertDialogHeader>
         <AlertDialogDescription>Select one</AlertDialogDescription>
         <div className="flex items-center justify-center gap-5">
-          <AlertDialogAction onClick={() => postType("Referral")}>Referral Post</AlertDialogAction>
-          <AlertDialogAction onClick={() => postType("Normal")}>Normal Post</AlertDialogAction>
-          <AlertDialogAction onClick={() => postType("Find")}>Find Referer</AlertDialogAction>
+          <AlertDialogAction
+            onClick={() => {
+              router.push("/post" + "?" + createQueryString("tab", "referral"));
+            }}>
+            Referral Post
+          </AlertDialogAction>
+          <AlertDialogAction
+            onClick={() => {
+              router.push("/post" + "?" + createQueryString("tab", "normal"));
+            }}>
+            Normal Post
+          </AlertDialogAction>
+          <AlertDialogAction
+            onClick={() => {
+              router.push("/post" + "?" + createQueryString("tab", "find"));
+            }}>
+            Find Referer
+          </AlertDialogAction>
         </div>
       </AlertDialogContent>
     </AlertDialog>
