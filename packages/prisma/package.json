@@ -4,9 +4,11 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "format": "npx prisma format",
-    "generate-schemas": "prisma generate && prisma format",
-    "db:generate": "prisma generate"
+    "db:format": "npx prisma format",
+    "db:generate-schemas": "prisma generate && prisma format",
+    "db:generate": "npx prisma generate",
+    "db:push": "npx prisma db push",
+    "db:pull": "npx prisma db pull"
   },
   "devDependencies": {
     "prisma": "^5.3.1"

@@ -78,6 +78,7 @@ model Posts {
   createdAt     DateTime    @default(now()) @map("created_at")
   updatedAt     DateTime    @updatedAt @map("updated_at")
   content       Json?
+  description   String?
   accept        Json?
   expiresAt     DateTime?   @map("expires_at")
   role          String?
