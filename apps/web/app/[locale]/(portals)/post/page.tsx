@@ -45,7 +45,7 @@ export default function Post() {
   );
   // const postType = useStore((state) => state.postType);
   return (
-    <Tabs activationMode="manual" defaultValue={searchParams.get("tab")} className="w-full">
+    <Tabs activationMode="manual" value={searchParams.get("tab")} className="w-full">
       <TabsList className="grid w-full grid-cols-4">
         <TabsTrigger
           onClick={() => {
