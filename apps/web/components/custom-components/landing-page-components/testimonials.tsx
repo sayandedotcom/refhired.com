@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { useTheme } from "next-themes";
 
 export const Testimonials = () => {
@@ -38,7 +40,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -80,7 +82,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -122,7 +124,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -164,7 +166,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -206,7 +208,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -250,7 +252,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -292,7 +294,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -334,7 +336,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -376,7 +378,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -418,7 +420,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
@@ -460,7 +462,7 @@ export const Testimonials = () => {
                   <div className="w-auto p-2">
                     <div className="-m-1.5 flex flex-wrap items-center">
                       <div className="overflow-hidden p-1.5">
-                        <img
+                        <Image
                           className="w-[4rem] rounded-full object-cover"
                           src="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
                           alt=""
