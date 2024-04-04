@@ -82,7 +82,7 @@
     "@referrer/tsconfig": "*",
     "@refhiredcom/types": "*",
     "@tanstack/react-query-devtools": "^4.29.19",
-    "@types/node": "^20.6.2",
+    "@types/node": "^20.12.4",
     "@types/nodemailer": "^6.4.10",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.0.22",
