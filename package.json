@@ -41,7 +41,9 @@
     "eslint": "yarn workspace @referrer/eslint-config-custom",
     "prettier-config": "yarn workspace @referrer/prettier-config",
     "tailwind-config": "yarn workspace @referrer/tailwind-config",
-    "dx": "docker compose up -d"
+    "dx": "docker compose up -d",
+    "start:frontend": "yarn web run dev",
+    "start:backend": "yarn api run dev"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",

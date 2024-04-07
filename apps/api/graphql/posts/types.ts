@@ -1,50 +1,99 @@
 export const types = `#graphql
+  type UserFromPost {
+    id: ID!
+    userName:String!
+    name:String
+    image:String
+    bio:String
+    workingAt:String
+  }
+
   type Post {
-    id:ID!
-    postType:PostType
-    content:Json
-    accept:Json
-    expiresAt:DateTime
-    role:String
-    jobType:String
-    experience:Int
-    location:String
-    startingRange:Int
-    endingRange:Int
-    userId:String
-    stars:String
-    acceptLimit:Int
+    id: ID!
+    postType: PostType
+    content: JSON
+    accept: JSON
+    description: String
+    expiresAt: DateTime
+    role: String
+    jobType: String
+    experience: Int
+    location: String
+    startingRange: Int
+    endingRange: Int
+    userId: String
+    stars: String
+    acceptLimit: Int
+    user: UserFromPost
   }
 
-  type UserNotAuthenticatedError {
-    message:String!
+  type CreatePost {
+    postType: PostType
+    content: JSON
+    accept: JSON
+    description: String
+    expiresAt: DateTime
+    role: String
+    jobType: String
+    experience: Int
+    location: String
+    startingRange: Int
+    endingRange: Int
+    userId: String
+    stars: String
+    acceptLimit: Int
   }
 
-  union PostResult = Post | UserNotAuthenticatedError
+  interface Error {
+    message: String!
+  }
 
-  input CreatePost {
-    postType:PostType!
-    content:Json!
-    accept:Json
-    expiresAt:DateTime
-    role:String
-    jobType:String
-    experience:Int
-    location:String
-    startingRange:Int
-    endingRange:Int
-    userId:String
-    stars:String
-    acceptLimit:Int
+  type UserNotAuthenticatedError implements Error {
+    message: String!
+  }
+
+  type NotFound implements Error {
+    message: String!
+  }
+
+  type PostResult {
+    code: Int
+    success: Boolean
+    message: String
+    post: CreatePost
+  }
+
+  input CreatePostType {
+    postType: PostType
+    content: JSON
+    accept: JSON
+    description: String
+    expiresAt: DateTime
+    role: String
+    jobType: String
+    experience: Int
+    location: String
+    startingRange: Int
+    endingRange: Int
+    userId: String
+    stars: String
+    acceptLimit: Int
   }
 
   type Todo {
-    id:ID!
-    title:String!
-    compleated:Boolean
+    id: ID
+    title: String
+    compleated: Boolean
   }
 
-  union TodoResult = Todo | UserNotAuthenticatedError
+  type ReturnedTodo {
+    code: Int
+    sucess: Boolean
+    message: String
+    todo: [Todo]
+  }
+
+  union TodoResult = ReturnedTodo | UserNotAuthenticatedError | NotFound
 
   enum PostType {
     REFERRALPOST
@@ -52,5 +101,3 @@ export const types = `#graphql
     POST
   }
 `;
-
-// ! watch https://youtu.be/R0A2TE0bMes?si=8IWvg0IK_lIt-bAm  https://youtu.be/ltdVXR-ke7k?si=lVnDTmBM1Ysqk_kt

@@ -17,6 +17,19 @@ export const types = `#graphql
     workingAt:String
   }
 
+  type UserProfile {
+    id: ID!
+    email: String!
+    userName: String!
+    name: String
+    image: String
+    overlayImage: String
+    bio: String
+    location: String
+    workingAt: String
+    createdAt: String
+  }
+
   input CreateUserData {
     email: String!
     userName:String!

@@ -1,8 +1,9 @@
-import BadRequestError from "@/errors/BadRequestError.js";
 import type { User } from "@prisma/client";
 import JWT from "jsonwebtoken";
 
 import prisma from "@referrer/prisma";
+
+import BadRequestError from "../errors/BadRequestError.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -80,8 +81,8 @@ class UserService {
     return prisma.user.findUnique({ where: { email } });
   }
 
-  public static getUserById(id: string) {
-    return prisma.user.findUnique({ where: { id } });
+  public static getUserById(userName: string) {
+    return prisma.user.findUnique({ where: { userName } });
   }
 
   public static verifyToken(token: string) {

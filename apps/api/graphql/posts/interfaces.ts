@@ -10,6 +10,7 @@ export type createPost = {
   userId: Posts["userId"];
   postType: Posts["postType"];
   content: Posts["content"];
+  description: Posts["description"];
   hashtags: string[];
 };
 
@@ -17,6 +18,7 @@ export type createReferralPost = {
   userId: Posts["userId"];
   postType: Posts["postType"];
   content: Posts["content"];
+  description: Posts["description"];
   accept: Posts["accept"];
   expiresAt: Posts["expiresAt"];
   role: Posts["role"];
@@ -35,6 +37,7 @@ export type createFindReferralPost = {
   userId: Posts["userId"];
   postType: Posts["postType"];
   content: Posts["content"];
+  description: Posts["description"];
   accept: Posts["accept"];
   expiresAt: Posts["expiresAt"];
   role: Posts["role"];

@@ -5,5 +5,6 @@ export const queries = `#graphql
     getAllRequests: [Post]
     getAllBookmarkedPosts: [Post]
     getSignedURLForPost(imageName: String!, imageType: String!): String
-    getTodos(id:ID): TodoResult!
+    getTodos(id:ID): ReturnedTodo
+    test(id:ID): TodoResult
 `;

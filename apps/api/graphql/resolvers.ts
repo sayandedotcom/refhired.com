@@ -5,7 +5,7 @@ import { Post } from "./posts/index.js";
 import { User } from "./user/index.js";
 
 const resolvers = {
-  Json: GraphQLJSON,
+  JSON: GraphQLJSON,
   DateTime: GraphQLDateTime,
 
   Query: {

@@ -1,6 +1,8 @@
-import axios from "axios";
-
+import AccessDeniedError from "../../errors/AccessDeniedError.js";
+import BadRequestError from "../../errors/BadRequestError.js";
+import { example } from "../../example.js";
 import PostService from "../../services/post.js";
+import UserService from "../../services/user.js";
 import { GraphqlContext } from "../interfaces.js";
 import {
   Id,
@@ -12,58 +14,114 @@ import {
 } from "./interfaces.js";
 
 const queries = {
-  getAllPosts: async (parent, args, contextValue: GraphqlContext, info) => {
+  getAllPosts: async () => {
     return await PostService.getAllPosts();
   },
 
-  getPostBySlug: async (postId: Id) => {
+  getPostBySlug: async (parent, args: { postId: Id }, ctx: GraphqlContext, info) => {
+    const { postId } = args;
     return await PostService.getPostBySlug(postId);
   },
 
-  getAllAppliedPosts: async (userId: Id) => {
+  getAllAppliedPosts: async (parent, args: { userId: Id }, ctx: GraphqlContext, info) => {
+    const { userId } = args;
     return await PostService.getAllAppliedPosts(userId);
   },
 
-  getAllRequests: async (postId: Id) => {
+  getAllRequests: async (parent, args: { postId: Id }, ctx: GraphqlContext, info) => {
+    const { postId } = args;
     return await PostService.getAllRequests(postId);
   },
 
-  getAllBookmarkedPosts: async (userId: Id) => {
+  getAllBookmarkedPosts: async (parent, args, ctx: GraphqlContext, info) => {
+    const { userId } = args;
     return await PostService.getAllBookmarkedPosts(userId);
   },
 
-  getTodos: async (parent, args, contextValue: GraphqlContext, info) => {
-    const { id } = args;
-    if (contextValue.user) {
-      const ans = (await axios.get(`https://jsonplaceholder.typicode.com/todos${id}`)).data;
+  getTodos: async (parent, args, ctx: GraphqlContext, info) => {
+    const ans = example.filter((data) => data.id === +args.id);
 
+    // if (!ctx.user) {
+    //   throw new AccessDeniedError("Login to continue");
+    // }
+    if (!args.id) {
+      throw new AccessDeniedError("Login to continue");
+    } else {
       return {
-        __typename: "Todo",
-        ...ans,
+        code: 200,
+        sucess: true,
+        message: "Sucessfully created",
+        todo: [...ans],
       };
     }
-    return {
-      __typename: "UserNotAuthenticatedError",
-      message: "User is not authenticated",
-    };
-    // throw new GraphQLError("User is not authenticated", {
-    //   extensions: {
-    //     code: "UNAUTHENTICATED",
-    //     http: { status: 401 },
-    //   },
-    // });
+  },
+
+  //  {
+  // const { id } = args;
+
+  // if (ctx.user) {
+  // const ans = (await axios.get("https://jsonplaceholder.typicode.com/todos")).data;
+  // console.log(ans);
+
+  // return ans;
+
+  // }
+  // return {
+  //   __typename: "UserNotAuthenticatedError",
+  //   message: "User is not authenticated",
+  // };
+  // throw new GraphQLError("User is not authenticated", {
+  //   extensions: {
+  //     code: "UNAUTHENTICATED",
+  //     http: { status: 401 },
+  //   },
+  // });
+  // },
+  // (await axios.get(`https://jsonplaceholder.typicode.com/todos`)).data,
+
+  test: (parent, args, ctx: GraphqlContext, info) => {
+    const ans = example.filter((data) => data.id === +args.id);
+
+    if (args.id) {
+      return {
+        __typename: "Todo",
+        sucess: true,
+        message: "Sucessfully created",
+        todo: [...ans],
+      };
+    } else if (args.id === null) throw new BadRequestError("User Id required");
+
+    return true;
   },
 };
 
 const mutations = {
-  createPost: async (info: createPost) => {
-    await PostService.createPost(info);
+  createPost: async (parent, args: { info: createPost }, ctx: GraphqlContext) => {
+    await PostService.createPost(args.info);
     return true;
   },
 
-  createReferralPost: async (info: createReferralPost) => {
-    await PostService.createFindReferralPost(info);
-    return true;
+  createReferralPost: async (_, args: { payload: createReferralPost }, ctx: GraphqlContext) => {
+    if (!ctx.user) {
+      throw new AccessDeniedError("Login to continue");
+    } else if (!args.payload) {
+      throw new BadRequestError("Bad Request");
+    } else
+      try {
+        return {
+          code: 200,
+          success: true,
+          message: "Post successfully created !",
+          post: await PostService.createReferralPost(ctx.user.id, args.payload),
+        };
+      } catch (error) {
+        return {
+          code: 400,
+          success: false,
+          message: error.message,
+          post: null,
+        };
+      }
   },
 
   createFindReferralPost: async (info: createFindReferralPost) => {
@@ -71,7 +129,8 @@ const mutations = {
     return true;
   },
 
-  deletePost: async (postId: Id) => {
+  deletePost: async (parent, args, ctx: GraphqlContext) => {
+    const { postId } = args;
     await PostService.deletePost(postId);
     return true;
   },
@@ -92,6 +151,10 @@ const mutations = {
   },
 };
 
-const extraResolvers = {};
+const extraResolvers = {
+  Post: {
+    user: async (args) => await UserService.getUserById(args.id),
+  },
+};
 
 export const resolvers = { queries, mutations, extraResolvers };

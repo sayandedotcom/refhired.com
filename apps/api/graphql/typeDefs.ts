@@ -3,7 +3,7 @@ import { User } from "./user/index.js";
 
 const typeDefs = `#graphql
 
-  scalar Json
+  scalar JSON
   scalar DateTime
 
   ${Post.types}

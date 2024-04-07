@@ -1,3 +1,5 @@
+import prisma from "@referrer/prisma";
+
 import {
   Id,
   applyInfo,
@@ -5,9 +7,7 @@ import {
   createFindReferralPost,
   createPost,
   createReferralPost,
-} from "@/graphql/posts/interfaces.js";
-
-import prisma from "@referrer/prisma";
+} from "../graphql/posts/interfaces.js";
 
 // import { redisClient } from "../config/redis/index.js";
 
@@ -49,6 +49,7 @@ class PostService {
       include: {
         tags: true,
         user: true,
+        applied: true,
         comments: true,
       },
     });
@@ -95,6 +96,7 @@ class PostService {
       data: {
         userId: info.userId,
         content: info.content !== null && info.content,
+        description: info.description,
         postType: "POST",
         hashtags: {
           connectOrCreate: info.hashtags.map((hashtag) => ({
@@ -110,11 +112,12 @@ class PostService {
     });
   }
 
-  public static async createReferralPost(info: createReferralPost) {
+  public static async createReferralPost(userId: Id, info: createReferralPost) {
     await prisma.posts.create({
       data: {
-        userId: info.userId,
+        userId: userId,
         content: info.content !== null && info.content,
+        description: info.description,
         accept: info.accept !== null && info.accept,
         expiresAt: info.expiresAt,
         role: info.role,
@@ -154,8 +157,9 @@ class PostService {
     await prisma.posts.create({
       data: {
         userId: info.userId,
-        content: info.content !== null && info.content,
-        accept: info.accept !== null && info.accept,
+        content: info.content,
+        description: info.description,
+        accept: info.accept,
         expiresAt: info.expiresAt,
         role: info.role,
         jobType: info.jobType,
@@ -167,7 +171,7 @@ class PostService {
         acceptLimit: info.acceptLimit,
         postType: "FINDREFERRER",
         tags: {
-          connectOrCreate: info.tags.map((tag) => ({
+          connectOrCreate: info?.tags.map((tag) => ({
             where: {
               name: tag,
             },
@@ -176,16 +180,16 @@ class PostService {
             },
           })),
         },
-        hashtags: {
-          connectOrCreate: info.hashtags.map((hashtag) => ({
-            where: {
-              name: hashtag,
-            },
-            create: {
-              name: hashtag,
-            },
-          })),
-        },
+        // hashtags: {
+        //   connectOrCreate: info?.hashtags.map((hashtag) => ({
+        //     where: {
+        //       name: hashtag,
+        //     },
+        //     create: {
+        //       name: hashtag,
+        //     },
+        //   })),
+        // },
       },
     });
   }

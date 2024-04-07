@@ -5,15 +5,18 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "node build/index",
+    "build": "tsc",
+    "test": "echo \"No tests configured yet.\""
   },
   "dependencies": {
-    "@refhiredcom/features": "*",
     "@apollo/server": "^4.10.0",
     "@as-integrations/aws-lambda": "^3.1.0",
     "@aws-sdk/client-s3": "^3.525.0",
     "@aws-sdk/s3-request-presigner": "^3.525.0",
     "@referrer/prisma": "*",
+    "@refhiredcom/features": "*",
     "axios": "^1.6.7",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",

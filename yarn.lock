@@ -2,16 +2,18 @@
 # yarn lockfile v1
 
 
-"@0no-co/graphql.web@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.4.tgz#9606eb651955499525d068ce0ad8bea596286ce2"
-  integrity sha512-W3ezhHGfO0MS1PtGloaTpg0PbaT8aZSmmaerL7idtU5F7oCI+uu25k+MsMS31BVFlp4aMkHSrNRxiD72IlK8TA==
+"@0no-co/graphql.web@^1.0.5":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@0no-co/graphql.web/-/graphql.web-1.0.6.tgz#3def68bbaf654a301bd910ce3744506cad97ab9a"
+  integrity sha512-KZ7TnwMcQJcFgzjoY623AVxtlDQonkqp3rSz0wb15/jHPyU1v5gynUibEpuutDeoyGJ5Tp+FwxjGyDGDwq3vIw==
 
-"@0no-co/graphqlsp@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@0no-co/graphqlsp/-/graphqlsp-1.4.1.tgz#dd02e3930caf7c925dd133c580aa71a28bbd3965"
-  integrity sha512-56KhZbk+WUphc41xssDI+pGAnjSRSxozOrxhWxCaFe/0aVybTsETL3yd+9u/HrCp7i/T7T+QSqg6SSwUJb8CkA==
+"@0no-co/graphqlsp@^1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@0no-co/graphqlsp/-/graphqlsp-1.9.1.tgz#08ed182e2ae7a304da6c0d222b882930ce737c2b"
+  integrity sha512-3mLLCNponLK84hVbBUZIXZhw1nvmWblRwFTJE7WCs312iqlCdLW+SZEt+HfhEgM03XhN0D0gQB/8KnZHKs9qwg==
   dependencies:
+    "@gql.tada/internal" "^0.1.2"
+    graphql "^16.8.1"
     node-fetch "^2.0.0"
 
 "@adobe/css-tools@^4.0.1":
@@ -46,10 +48,18 @@
   resolved "https://registry.yarnpkg.com/@apollo/cache-control-types/-/cache-control-types-1.0.3.tgz#5da62cf64c3b4419dabfef4536b57a40c8ff0b47"
   integrity sha512-F17/vCp7QVwom9eG7ToauIKdAxpSoadsJnqIfyryLFSkLSOEqu+eC5Z3N8OXcUVStuOMcNHlyraRsA6rRICu4g==
 
-"@apollo/client@^3.9.0-rc.1":
-  version "3.9.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.9.0-rc.1.tgz#65987fc0cdfab0c0c50f893c1456f7bf561c2701"
-  integrity sha512-zqiD2S51YHuJTq10zYtxO8/AZ4wk/JB1kDZN3LocBAkWboqsNcUs1h6QED5oP9wmpBi7s6q9o8FbQliVab73EQ==
+"@apollo/client-react-streaming@0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@apollo/client-react-streaming/-/client-react-streaming-0.10.0.tgz#1f9a818c679b41791ca02105f16525c93412994c"
+  integrity sha512-iZ2jYghRS71xFv6O3Js5Ojrrmk4SnIEKwPRKIswQyAtqjHrfvUTyXCDzxrhPcGQe/y7su/XcE7Xp0kOp7yTnlg==
+  dependencies:
+    superjson "^1.12.2 || ^2.0.0"
+    ts-invariant "^0.10.3"
+
+"@apollo/client@^3.10.0-rc.0":
+  version "3.10.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.10.0-rc.0.tgz#3e7c292aefbda00f413eb1578f164f6565d9083f"
+  integrity sha512-Pa232MoNEz/K8U/miQCPS3s+7FMhUm4gsOV6xuX1kTw6x+2ANwl7uA6QkLHtS0qa0YYFPLdlXu6K1BKnnZVBlw==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.1"
     "@wry/caches" "^1.0.0"
@@ -59,21 +69,19 @@
     hoist-non-react-statics "^3.3.2"
     optimism "^0.18.0"
     prop-types "^15.7.2"
-    rehackt "0.0.3"
+    rehackt "0.0.6"
     response-iterator "^0.2.6"
     symbol-observable "^4.0.0"
     ts-invariant "^0.10.3"
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@apollo/experimental-nextjs-app-support@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.8.0.tgz#7c6627195d1895bd7698b29174afe85dc9013ddf"
-  integrity sha512-uyNIkOkew0T6ukC8ycbWBeTu8gtDSD5i+NVGEHU0DIEQaToFHObYcvIxaQ/8hvWzgvnpNU/KMsApfGXA9Xkpyw==
+"@apollo/experimental-nextjs-app-support@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@apollo/experimental-nextjs-app-support/-/experimental-nextjs-app-support-0.10.0.tgz#2fe52e6bc18de87c17bfc2bc78ec63acf8260c8f"
+  integrity sha512-S3mfZRnAAAaKwA8RNckS4TWYLX5utpmRTwG3WGFtpooYx8QQG8xft0p0a9eTQ53Jrw3nSMJc/wOOsT/5noMCQg==
   dependencies:
-    server-only "^0.0.1"
-    superjson "^1.12.2 || ^2.0.0"
-    ts-invariant "^0.10.3"
+    "@apollo/client-react-streaming" "0.10.0"
 
 "@apollo/protobufjs@1.2.7":
   version "1.2.7"
@@ -3622,6 +3630,21 @@
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/@gilbarbara/deep-equal/-/deep-equal-0.1.2.tgz#1a106721368dba5e7e9fb7e9a3a6f9efbd8df36d"
   integrity sha512-jk+qzItoEb0D0xSSmrKDDzf9sheQj/BAPxlgNxgmOaA3mxpUa6ndJLYGZKsJnIVEQSD8zcTbyILz7I0HcnBCRA==
+
+"@gql.tada/cli-utils@0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@gql.tada/cli-utils/-/cli-utils-0.3.3.tgz#28d8239d737cbbb7ddcda697bc0d12d7eec8a2e5"
+  integrity sha512-Typugq2JpCevTsQRHiWiCExagbP3XGfr/U/I0eguGtvIvKFLG+giqIPV5vvjq+B65SOU0EAgQTK7D9SL9tRc5g==
+  dependencies:
+    "@gql.tada/internal" "0.1.3"
+    graphql "^16.8.1"
+
+"@gql.tada/internal@0.1.3", "@gql.tada/internal@^0.1.2":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@gql.tada/internal/-/internal-0.1.3.tgz#c39a124c18c7d4213c29751edcb89cbbbfb7e521"
+  integrity sha512-wIvykBId7O0gaizmSl5n5AhbQsgJVLTUsFBm3RsfQ9dVfpmT+Fhy2yHX+yNgiVECg2EimXMhs4ltcE4EuZ2WOA==
+  dependencies:
+    "@0no-co/graphql.web" "^1.0.5"
 
 "@graphql-tools/merge@^8.4.1":
   version "8.4.2"
@@ -10973,12 +10996,14 @@ gopd@^1.0.1:
   dependencies:
     get-intrinsic "^1.1.3"
 
-gql.tada@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/gql.tada/-/gql.tada-1.2.1.tgz#ca2ec06d403c3b68fdfd1d337309ad3ccb0204ff"
-  integrity sha512-Nx8x3g9WLT23eu9aL/4TTFDBwm7CBGVd4F2Jp2H5oOjDpuWv12i1mTLKReQwn2V1ZP+jG8V0ATXzFQZt1pxSgw==
+gql.tada@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/gql.tada/-/gql.tada-1.4.3.tgz#a112f534e29ab0d0110fcb4ea059b208983dd112"
+  integrity sha512-ZnDQxHSU1cqqndtbHa3+wwsnur9PMuU1Ma6KcEdGnu0xLIe1lYchlPkXJIZxU3CDimJzceN6WRytx36Kp8z4Dg==
   dependencies:
-    "@0no-co/graphql.web" "^1.0.4"
+    "@0no-co/graphql.web" "^1.0.5"
+    "@gql.tada/cli-utils" "0.3.3"
+    "@gql.tada/internal" "0.1.3"
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.5, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.11, graceful-fs@^4.2.2, graceful-fs@^4.2.4, graceful-fs@^4.2.9:
   version "4.2.11"
@@ -14818,10 +14843,10 @@ regjsparser@^0.9.1:
   dependencies:
     jsesc "~0.5.0"
 
-rehackt@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/rehackt/-/rehackt-0.0.3.tgz#1ea454620d4641db8342e2db44595cf0e7ac6aa0"
-  integrity sha512-aBRHudKhOWwsTvCbSoinzq+Lej/7R8e8UoPvLZo5HirZIIBLGAgdG7SL9QpdcBoQ7+3QYPi3lRLknAzXBlhZ7g==
+rehackt@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/rehackt/-/rehackt-0.0.6.tgz#7a0a2247f2295e7548915417e44fbbf03bf004f4"
+  integrity sha512-l3WEzkt4ntlEc/IB3/mF6SRgNHA6zfQR7BlGOgBTOmx7IJJXojDASav+NsgXHFjHn+6RmwqsGPFgZpabWpeOdw==
 
 remark-external-links@^8.0.0:
   version "8.0.0"
@@ -15220,11 +15245,6 @@ serve-static@1.15.0:
     escape-html "~1.0.3"
     parseurl "~1.3.3"
     send "0.18.0"
-
-server-only@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/server-only/-/server-only-0.0.1.tgz#0f366bb6afb618c37c9255a314535dc412cd1c9e"
-  integrity sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==
 
 serverless-plugin-typescript@^2.1.5:
   version "2.1.5"
@@ -16412,6 +16432,11 @@ typescript@^5.4.2:
   version "5.4.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.2.tgz#0ae9cebcfae970718474fe0da2c090cad6577372"
   integrity sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ==
+
+typescript@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.4.3.tgz#5c6fedd4c87bee01cd7a528a30145521f8e0feff"
+  integrity sha512-KrPd3PKaCLr78MalgiwJnA25Nm8HAmdwN3mYUYZgG/wizIo9EainNVQI9/yDavtVFRN2h3k8uf3GLHuhDMgEHg==
 
 ufo@^1.1.2:
   version "1.1.2"
