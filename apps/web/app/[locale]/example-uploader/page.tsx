@@ -1,8 +1,6 @@
 "use client";
 
-import { Example } from "@/graphql/queries/posts";
 import { UploadButton, UploadDropzone, Uploader } from "@/utils/uploadthing";
-import { useQuery } from "@apollo/client";
 
 import { Separator } from "@referrer/ui";
 
@@ -12,16 +10,8 @@ import { Icons } from "@/components/icons/icons";
 // import "@uploadthing/react/styles.css";
 
 export default function Home() {
-  const { loading, error, data } = useQuery(Example);
-  console.log("data==============", data);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {loading ? (
-        <h1>Loading.............</h1>
-      ) : (
-        data?.getTodos.map(({ title }, i) => <h2 key={i}>{title}</h2>)
-      )}
       <UploadButton
         className="ut-button:bg-foreground ut-button:flex ut-button:text-background ut-button:hover:bg-foreground/80 ut-upload-icon:text-background ut-button:ut-readying:bg-foreground/80
          ut-label:text-background ut-allowed-content:text-foreground ut-uploading:text-destructive font-heading"
