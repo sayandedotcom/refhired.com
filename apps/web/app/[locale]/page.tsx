@@ -29,7 +29,7 @@ export default function Page({ params: { locale } }) {
   return (
     <>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
-        <Notice href="/about-us">Small Notice</Notice>
+        <Notice href="/about-us">Important Notice !</Notice>
         <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
           " Navigate the job market with{" "}
           <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
