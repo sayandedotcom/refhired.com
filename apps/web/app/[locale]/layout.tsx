@@ -6,6 +6,8 @@ import { locales } from "@/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
+import { ApolloWrapper } from "@/lib/apollo-client/apollo-wrapper";
+
 import { siteConfig } from "@/config";
 
 import { cn } from "@/utils";
@@ -112,8 +114,10 @@ export default function RootLayout({
           )}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <Provider>
-              {children}
-              {loginModal}
+              <ApolloWrapper>
+                {children}
+                {loginModal}
+              </ApolloWrapper>
             </Provider>
           </NextIntlClientProvider>
         </body>

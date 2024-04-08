@@ -1,6 +1,4 @@
-// / <reference path="@refhiredcom/types" />
-// <reference path="../../../types/next-auth.d.ts" />
-import type { NextAuthOptions } from "next-auth";
+import { type NextAuthOptions, getServerSession } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -173,4 +171,8 @@ export const authOptions: NextAuthOptions = {
     },
   },
   debug: process.env.NODE_ENV === "development",
+};
+
+export const getAuthSession = () => {
+  return getServerSession(authOptions);
 };

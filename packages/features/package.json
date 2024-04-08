@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@refhiredcom/types": "*"
   },
   "devDependencies": {
-    "@refhiredcom/types": "*"
+    "@refhiredcom/types": "*",
+    "typescript": "^5.4.3"
   }
 }

@@ -17,8 +17,6 @@ import { PreLoader } from "@/components/custom-components";
 import { Banner, Footer, Navbar } from "@/components/layout";
 import ProgressBar from "@/components/ui/progress-bar";
 
-import { ApolloWrapper } from "@/lib/apollo-client/apollo-wrapper";
-
 import { rootPaths } from "@/config";
 
 import { useStore } from "@/store/store";
@@ -56,26 +54,24 @@ export function Provider({ children }) {
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <QueryClientProvider client={queryClient}>
           <SessionProvider>
-            <ApolloWrapper>
-              <Toaster />
-              <SonerToaster position={toastPosition} />
-              {!isMounted ? (
-                <PreLoader />
-              ) : (
-                <>
-                  <ProgressBar />
-                  {showNavbar && (
-                    <>
-                      <Banner />
-                      <Navbar />
-                    </>
-                  )}
-                  {children}
-                  {showNavbar && <Footer />}
-                  <Analytics />
-                </>
-              )}
-            </ApolloWrapper>
+            <Toaster />
+            <SonerToaster position={toastPosition} />
+            {!isMounted ? (
+              <PreLoader />
+            ) : (
+              <>
+                <ProgressBar />
+                {showNavbar && (
+                  <>
+                    <Banner />
+                    <Navbar />
+                  </>
+                )}
+                {children}
+                {showNavbar && <Footer />}
+                <Analytics />
+              </>
+            )}
           </SessionProvider>
           {/* <ReactQueryDevtools /> */}
         </QueryClientProvider>
