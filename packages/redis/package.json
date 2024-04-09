@@ -1,0 +1,13 @@
+{
+  "name": "@referrer/redis",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {},
+  "devDependencies": {
+    "@types/node": "^20.12.7"
+  },
+  "dependencies": {
+    "ioredis": "^5.3.2"
+  }
+}
