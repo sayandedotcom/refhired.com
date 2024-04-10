@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "main": "index.js",
-  "type": "module",
-  "publishConfig": {
-    "access": "public"
-  }
+  "main": "./index.ts",
+  "types": "./index.ts"
 }
