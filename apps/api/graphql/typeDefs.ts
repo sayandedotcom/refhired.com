@@ -12,6 +12,7 @@ const typeDefs = `#graphql
   type Query {
     ${User.queries}
     ${Post.queries}
+    hello: String
   }
 
   type Mutation {

@@ -40,6 +40,7 @@
 		"eslint-config-custom": "*",
 		"nodemon": "^3.0.3",
 		"serverless-plugin-typescript": "^2.1.5",
+		"sst": "^2.41.4",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.3.3"
 	}

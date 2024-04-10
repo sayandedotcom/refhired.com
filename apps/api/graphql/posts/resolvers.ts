@@ -14,6 +14,8 @@ import {
 } from "./interfaces.js";
 
 const queries = {
+  hello: () => "Hello, New World!",
+
   getAllPosts: async () => {
     return await PostService.getAllPosts();
   },
