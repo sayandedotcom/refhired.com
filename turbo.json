@@ -40,7 +40,9 @@
     "EMAIL_SERVER_PORT",
     "EMAIL_SERVER_USER",
     "EMAIL_SERVER_PASSWORD",
-    "EMAIL_FROM"
+    "EMAIL_FROM",
+    "IS_LOCAL",
+    "GRAPHQL_API_URL"
   ],
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
@@ -85,7 +87,9 @@
         "EMAIL_SERVER_PORT",
         "EMAIL_SERVER_USER",
         "EMAIL_SERVER_PASSWORD",
-        "EMAIL_FROM"
+        "EMAIL_FROM",
+        "IS_LOCAL",
+        "GRAPHQL_API_URL"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },

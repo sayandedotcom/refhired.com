@@ -5,13 +5,13 @@
   "license": "MIT",
   "author": {
     "name": "Sayan De",
-    "twitter": "https://twitter.com/sayande2002",
-    "github": "https://github.com/sayande2002"
+    "twitter": "https://twitter.com/sayandedotcom",
+    "github": "https://github.com/sayandedotcom"
   },
   "description": "Root package.json for Monorepo of Refhired.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sayande2002/refhired.com"
+    "url": "https://github.com/sayandedotcom/refhired.com"
   },
   "packageManager": "yarn@1.22.19",
   "workspaces": [
@@ -20,6 +20,12 @@
     "packages/features/*"
   ],
   "scripts": {
+    "sst:dev": "sst dev",
+    "sst:build": "sst build",
+    "sst:deploy": "sst deploy",
+    "sst:remove": "sst remove",
+    "sst:console": "sst console",
+    "typecheck": "tsc --noEmit",
     "build": "turbo run build",
     "dev": "dotenv -- turbo run dev",
     "lint": "turbo run lint",
@@ -49,6 +55,8 @@
     "@changesets/cli": "^2.26.2",
     "@referrer/prettier-config": "*",
     "@testing-library/jest-dom": "^5.17.0",
+    "aws-cdk-lib": "^2.136.1",
+    "constructs": "^10.3.0",
     "dotenv-cli": "^7.2.1",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
@@ -56,6 +64,7 @@
     "jsdom": "^22.1.0",
     "lint-staged": "^13.2.2",
     "prettier": "^2.5.1",
+    "sst": "^2.41.4",
     "turbo": "^1.10.14",
     "vitest": "^0.33.0",
     "vitest-mock-extended": "^1.1.4"
