@@ -8,6 +8,7 @@
     "@referrer/prisma": "*",
     "@refhiredcom/features": "*",
     "@refhiredcom/email": "*",
+    "@refhiredcom/types": "*",
     "next-auth": "^4.24.7"
   },
   "devDependencies": {
