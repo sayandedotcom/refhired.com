@@ -1,6 +1,23 @@
 {
-  // "extends": "@referrer/tsconfig/base.json",
-  "include": ["."]
+  "extends": "@referrer/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": ["./src"],
+  "exclude": ["dist", "build", "node_modules"]
   // "compilerOptions": {
   //   /* Visit https://aka.ms/tsconfig to read more about this file */
 
