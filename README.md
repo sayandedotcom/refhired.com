@@ -1,8 +1,60 @@
+# About this private repo
+
+This is the private repository for my project, refhired.com, with the MVP hosted on refhired.sayande.com via Vercel. I'm operating in Stealth Mode to safeguard the privacy of my ideas. However, I'm open to sharing the original repository with recruiters upon request. Presently, the MVP is deployed without backend functionality as I transition from Next.js 14's server actions to Express.js and GraphQL.
+
+I'm capable of demonstrating the minimal viable product in development mode and plan to transition deployment from Vercel to AWS using the SST framework for serverless architecture. Progressed work can be observed in the code base above, particularly in the 'apps/api' folder containing backend code, and '/stacks' containing AWS CDK constructs made with the SST framework.
+
+My goal is to complete this transition and fully deploy by May 1st, possibly even sooner. Currently, I'm seamlessly integrating GraphQL API with Prisma and delving into SST constructs for deployment purposes. The refhired.com domain is configured in AWS Route 53. Please note, I can showcase the minimal viable product in development mode.
+
+## Main domains
+
+| Domain                    | Tech                | Version |
+| ------------------------- | ------------------- | ------- |
+| Repository Tool           | Turborepo           | 1.9     |
+| Primary Language          | TypeScript          | 4.5     |
+| Front-End                 | Next.js             | 14+     |
+| Back-End                  | Node.js             | 20.9.0  |
+| API                       | GraphQL with Apollo | -       |
+| Authentication            | Next-Auth           | 4       |
+| Styling                   | Tailwind CSS        | 3.3     |
+| Database ORM              | Prisma              | 4.15    |
+| Primary Database          | PostgreSQL          | 15.3    |
+| Caching Database          | Redis               | -       |
+| Unit Testing              | Vitest              | 0.33.0  |
+| End to end Testing        | Playwright          | 1.36.2  |
+| Containerization          | Docker              | -       |
+| CI/CD                     | GitHub Actions      | -       |
+| Deployment Franework      | SST                 | 2+      |
+| Deployment                | AWS                 | -       |
+| Front-End Deployment      | AWS Lambda & S3     | -       |
+| Back-End Deployment       | AWS Lambda          | -       |
+| Database Deployment       | AWS Aurora Postgres | -       |
+| Cache Database Deployment | AWS ElastiCache     | -       |
+| Static Assests            | AWS S3              | -       |
+| CDN                       | AWS CloudFront      | -       |
+| Routing                   | AWS Route 53        | -       |
+| Version Control           | GitHub              | -       |
+| Code Editor               | VS Code             | -       |
+
+### Workspaces List
+
+| Index No. | Workspace/Folder | Info.            | Name                 | Navigate     | Port |
+| --------- | ---------------- | ---------------- | -------------------- | ------------ | ---- |
+| apps /    |                  |                  |                      |              |      |
+| 1         | api              | For API Server   | @refhiredcom/api     | yarn api     | 8000 |
+| 2         | blogs            | For blogs        | @refhiredcom/blogs   | yarn blogs   | -    |
+| 3         | desktop          | For desktop app  | @refhiredcom/desktop | yarn desktop | -    |
+| 4         | docs             | For docs         | @refhiredcom/docs    | yarn docs    | -    |
+| 5         | mobile           | For mobile app   | @refhiredcom/mobile  | yarn mobile  | -    |
+| 6         | storybook        | For Storybook    | @referrer/storybook  | yarn story   | 6006 |
+| 7         | swagger          | For desktop app  | @refhiredcom/desktop | yarn desktop | -    |
+| 8         | web              | For main website | @referrer/web        | yarn web     | 3000 |
+
 <p align="center">
-  <a href="https://github.com/sayande2002/refhired.com">
-<!--    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo"> -->
-<!--    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/a1c556f2-550d-44e5-91cf-1eb89d7faa03" alt="Logo"> -->
-    <img src="https://github.com/sayande2002/refhired.com/assets/107565578/748111d4-1f0a-42b3-a3a1-ad32bda2943c" height="120px" width="120px" alt="Logo">
+  <a href="https://github.com/sayandedotcom/refhired.com">
+<!--    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo"> -->
+<!--    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/a1c556f2-550d-44e5-91cf-1eb89d7faa03" alt="Logo"> -->
+    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/748111d4-1f0a-42b3-a3a1-ad32bda2943c" height="120px" width="120px" alt="Logo">
   </a>
   <h3 align="center">Refhired.com</h3>
 
@@ -16,54 +68,29 @@
     · -->
     <a href="https://refhired-com-web.vercel.app/">Website</a>
     ·
-    <a href="https://github.com/sayande2002/refhired.com/issues">Issues</a>
+    <a href="https://github.com/sayandedotcom/refhired.com/issues">Issues</a>
 <!--     ·
     <a href="https://cal.com/roadmap">Roadmap</a> -->
   </p>
 </p>
 
-This is a solo project by [Sayan De](https://github.com/sayande2002).
+This is a solo project by [Sayan De](https://github.com/sayandedotcom).
 
 ## Architecture
+
 ![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/d1dd9292-9ec4-48c2-8a2b-dd2fb0a6d077)
 
 ## DevOps Workflow
+
 ![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/dd61493e-a007-4988-9750-66b9f89cb321)
 
-
 ## Deployement
+
 ![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/18b3a2a9-139a-4a6b-9405-575aa23414da)
-
-
 
 ## Contributing
 
-Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayande2002/refhired.com/blob/main/CONTRIBUTING.md).
-
-## Main domains
-
-| Domain                 | Tech           | Version |
-| ---------------------- | -------------- | ------- |
-| Repository Tool        | Turborepo      | 1.9     |
-| Primary Language       | TypeScript     | 4.5     |
-|  Front-End             | Next.js        | 13.4    |
-| Back-End               | Node.js        | 20.9.0  |
-| API                    | GraphQL        | -       |
-| Mobile App             | React Native   | 0.72    |
-| Desktop App Tool       | Tauri          | 1.4     |
-| Authentication         | Next-Auth      | 4       |
-| Styling                | Tailwind CSS   | 3.3     |
-| Database ORM           | Prisma         | 4.15    |
-| Primary Database       | PostgreSQL     | 15.3    |
-| Caching Database       | Redis          | -       |
-| Unit Testing           | Vitest         | 0.33.0  |
-| End to end Testing     | Playwright     | 1.36.2  |
-| Containerization       | Docker         | -       |
-| CI/CD                  | GitHub Actions | -       |
-| Infrastructure as code | Terraform      | -       |
-| Deployment             | AWS            | -       |
-| Version Control        | GitHub         | -       |
-| Code Editor            | VS Code        | -       |
+Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayandedotcom/refhired.com/blob/main/CONTRIBUTING.md).
 
 ## Features
 
@@ -91,10 +118,10 @@ Here is what you need to be able to run Cal.com.
 
 ### Setup
 
-1. Clone the repo into a public GitHub repository (or fork <https://github.com/sayande2002/refhired.com/fork>). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/refhired.com/blob/main/LICENSE).
+1. Clone the repo into a public GitHub repository (or fork <https://github.com/sayandedotcom/refhired.com/fork>). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayandedotcom/refhired.com/blob/main/LICENSE).
 
    ```sh
-   git clone https://github.com/sayande2002/refhired.com
+   git clone https://github.com/sayandedotcom/refhired.com
    ```
 
 2. Go to the project folder

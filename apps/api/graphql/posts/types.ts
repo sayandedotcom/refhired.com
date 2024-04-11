@@ -1,47 +1,56 @@
 export const types = `#graphql
   type UserFromPost {
-    id: ID!
-    userName:String!
-    name:String
-    image:String
-    bio:String
-    workingAt:String
+    userName: String
+    name: String
+    image: String
+    bio: String
+    workingAt: String
+  }
+
+  type Tags {
+    mame: String
   }
 
   type Post {
     id: ID!
     postType: PostType
-    content: JSON
     accept: JSON
     description: String
     expiresAt: DateTime
-    role: String
+    jobRole: String
     jobType: String
-    experience: Int
-    location: String
-    startingRange: Int
-    endingRange: Int
+    jobExperience: String
+    jobLocation: String
+    jobCompensation: String
     userId: String
-    stars: String
+    stars: Int
     acceptLimit: Int
-    user: UserFromPost
+    companyName: String
+    jobCode: String
+    user: UserFromPost!
+    totalApplied: Int
+    totalComments: Int
+    tags: [Tags]
+    hashtags: [String]
   }
 
   type CreatePost {
     postType: PostType
-    content: JSON
     accept: JSON
     description: String
     expiresAt: DateTime
-    role: String
+    jobRole: String
     jobType: String
-    experience: Int
-    location: String
-    startingRange: Int
-    endingRange: Int
+    jobExperience: String
+    jobLocation: String
+    jobCompensation: String
     userId: String
-    stars: String
+    stars: Int
     acceptLimit: Int
+    companyName: String
+    jobCode: String
+    tags: [String]
+    hashtags: [String]
   }
 
   interface Error {
@@ -65,19 +74,21 @@ export const types = `#graphql
 
   input CreatePostType {
     postType: PostType
-    content: JSON
     accept: JSON
     description: String
     expiresAt: DateTime
-    role: String
+    jobRole: String
     jobType: String
-    experience: Int
-    location: String
-    startingRange: Int
-    endingRange: Int
+    jobExperience: String
+    jobLocation: String
+    jobCompensation: String
     userId: String
-    stars: String
+    stars: Int
     acceptLimit: Int
+    companyName: String
+    jobCode: String
+    tags: [String]
+    hashtags: [String]
   }
 
   type Todo {

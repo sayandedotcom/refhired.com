@@ -73,29 +73,31 @@ model VerificationToken {
 }
 
 model Posts {
-  id            String      @id @default(cuid())
-  postType      PostType    @default(POST) @map("post_type")
-  createdAt     DateTime    @default(now()) @map("created_at")
-  updatedAt     DateTime    @updatedAt @map("updated_at")
-  content       Json?
-  description   String?
-  accept        Json?
-  expiresAt     DateTime?   @map("expires_at")
-  role          String?
-  jobType       String?     @map("job_type")
-  experience    Int?
-  location      String?
-  startingRange Int?        @map("starting_range")
-  endingRange   Int?        @map("ending_range")
-  userId        String
-  stars         String?
-  acceptLimit   Int?        @map("accept_limit")
-  applied       Applied[]
-  bookmarks     Bookmarks[]
-  comments      Comments[]
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tags          Tags[]      @relation("PostsToTags")
-  hashtags      Hashtags[]  @relation("PostsToHashtags")
+  id              String      @id @default(cuid())
+  postType        PostType    @default(POST) @map("post_type")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+  description     String?
+  accept          Json?
+  expiresAt       DateTime?   @map("expires_at")
+  jobRole         String?     @map("job_role")
+  jobType         String?     @map("job_type")
+  jobExperience   String?     @map("job_experience")
+  jobLocation     String?     @map("job_location")
+  jobCompensation String?     @map("job_compensation")
+  userId          String
+  stars           Int?        @default(0)
+  acceptLimit     Int?        @map("accept_limit")
+  totalApplied    Int?        @default(0)
+  totalComments   Int?        @default(0)
+  companyName     String?     @map("company_name")
+  jobCode         String?     @map("job_code")
+  applied         Applied[]
+  bookmarks       Bookmarks[]
+  comments        Comments[]
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tags            Tags[]      @relation("PostsToTags")
+  hashtags        Hashtags[]  @relation("PostsToHashtags")
 
   @@index([userId])
   @@map("posts")

@@ -21,7 +21,7 @@ export const useStore = create<Store>((set) => ({
   userName: "",
   postType: null,
   joyRide: null,
-  toastPosition: "top-center",
+  toastPosition: "bottom-right",
   authDialogOpen: null,
   authDialogTitle: "Enjooy",
   // claimUserName: () => set((state) => ({ userName: state.userName })),

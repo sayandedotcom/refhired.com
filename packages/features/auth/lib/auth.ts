@@ -56,8 +56,6 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user, account, profile, trigger, session }) {
       // account?.access_token
 
-      console.log("jwt tonen=============", token);
-
       const dbUser = await prisma.user.findFirst({
         where: {
           email: token.email,

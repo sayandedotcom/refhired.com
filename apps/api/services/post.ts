@@ -1,5 +1,6 @@
 import prisma from "@referrer/prisma";
 
+// import redisClient from "@referrer/redis";
 import {
   Id,
   applyInfo,
@@ -9,8 +10,6 @@ import {
   createReferralPost,
 } from "../graphql/posts/interfaces.js";
 
-// import { redisClient } from "../config/redis/index.js";
-
 export interface CreateTweetPayload {
   content: string;
   imageURL?: string;
@@ -18,41 +17,38 @@ export interface CreateTweetPayload {
 }
 
 class PostService {
-  // public static async createTweet(data: CreateTweetPayload) {
-  //   const rateLimitFlag = await redisClient.get(`RATE_LIMIT:TWEET:${data.userId}`);
-  //   if (rateLimitFlag) throw new Error("Please wait....");
-  //   const tweet = await prisma.posts.create({
-  //     data: {
-  //       content: data.content,
-  //       user: { connect: { id: data.userId } },
-  //     },
-  //   });
-  //   await redisClient.setex(`RATE_LIMIT:TWEET:${data.userId}`, 10, 1);
-  //   await redisClient.del("ALL_TWEETS");
-  //   return tweet;
-  // }
-
-  // public static async getAllTweets() {
-  //   const cachedTweets = await redisClient.get("ALL_TWEETS");
-  //   if (cachedTweets) return JSON.parse(cachedTweets);
-
-  //   const tweets = await prisma.posts.findMany({
-  //     orderBy: { createdAt: "desc" },
-  //   });
-  //   await redisClient.set("ALL_TWEETS", JSON.stringify(tweets));
-  //   return tweets;
-  // }
-
   public static async getAllPosts() {
-    return await prisma.posts.findMany({
+    // const cachedPosts = await redisClient.get("ALL_POSTS");
+    // if (cachedPosts) return JSON.parse(cachedPosts);
+    const posts = await prisma.posts.findMany({
       take: 10,
       include: {
-        tags: true,
-        user: true,
+        tags: {
+          select: {
+            name: true,
+          },
+        },
+        user: {
+          select: {
+            userName: true,
+            image: true,
+            name: true,
+            workingAt: true,
+            bio: true,
+          },
+        },
         applied: true,
         comments: true,
       },
     });
+    console.log(
+      "postspostspostsposts",
+      // posts[0].tags.map((i) => i.name)
+      posts[0].user
+    );
+
+    // await redisClient.set("ALL_POSTS", JSON.stringify(posts));
+    return posts;
   }
 
   public static async getPostBySlug(postId: Id) {
@@ -95,7 +91,6 @@ class PostService {
     await prisma.posts.create({
       data: {
         userId: info.userId,
-        content: info.content !== null && info.content,
         description: info.description,
         postType: "POST",
         hashtags: {
@@ -112,25 +107,26 @@ class PostService {
     });
   }
 
-  public static async createReferralPost(userId: Id, info: createReferralPost) {
-    await prisma.posts.create({
+  public static async createReferralPost(info: createReferralPost) {
+    // const rateLimitFlag = await redisClient.get(`RATE_LIMIT:POST:${userId}`);
+    // if (rateLimitFlag) throw new Error("Please wait....");
+    return await prisma.posts.create({
       data: {
-        userId: userId,
-        content: info.content !== null && info.content,
+        userId: info.userId,
         description: info.description,
-        accept: info.accept !== null && info.accept,
+        accept: info.accept,
         expiresAt: info.expiresAt,
-        role: info.role,
+        jobRole: info.jobRole,
         jobType: info.jobType,
-        experience: info.experience,
-        location: info.location,
-        startingRange: info.startingRange,
-        endingRange: info.endingRange,
+        jobExperience: info.jobExperience,
+        jobLocation: info.jobLocation,
+        jobCode: info.jobCode,
+        companyName: info.companyName,
         stars: info.stars,
         acceptLimit: info.acceptLimit,
         postType: "REFERRALPOST",
         tags: {
-          connectOrCreate: info.tags.map((tag) => ({
+          connectOrCreate: info.tags?.map((tag) => ({
             where: {
               name: tag,
             },
@@ -140,7 +136,7 @@ class PostService {
           })),
         },
         hashtags: {
-          connectOrCreate: info.hashtags.map((hashtag) => ({
+          connectOrCreate: info.hashtags?.map((hashtag) => ({
             where: {
               name: hashtag,
             },
@@ -151,22 +147,23 @@ class PostService {
         },
       },
     });
+    // await redisClient.setex(`RATE_LIMIT:POST:${userId}`, 10, 1);
+    // await redisClient.del("ALL_POSTS");
   }
 
   public static async createFindReferralPost(info: createFindReferralPost) {
     await prisma.posts.create({
       data: {
         userId: info.userId,
-        content: info.content,
         description: info.description,
         accept: info.accept,
         expiresAt: info.expiresAt,
-        role: info.role,
+        jobRole: info.jobRole,
         jobType: info.jobType,
-        experience: info.experience,
-        location: info.location,
-        startingRange: info.startingRange,
-        endingRange: info.endingRange,
+        jobExperience: info.jobExperience,
+        jobLocation: info.jobLocation,
+        jobCode: info.jobCode,
+        companyName: info.companyName,
         stars: info.stars,
         acceptLimit: info.acceptLimit,
         postType: "FINDREFERRER",

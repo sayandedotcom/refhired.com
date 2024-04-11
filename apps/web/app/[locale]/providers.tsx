@@ -10,8 +10,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
-import { Toaster } from "react-hot-toast";
 import { Toaster as SonerToaster } from "sonner";
+
+import { Toaster } from "@referrer/ui";
 
 import { PreLoader } from "@/components/custom-components";
 import { Banner, Footer, Navbar } from "@/components/layout";
