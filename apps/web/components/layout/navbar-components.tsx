@@ -16,7 +16,7 @@ import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 export const NavButtonsUnAuthenticated = () => {
   const { loadingValue, setLoadingValue } = useLoading();
   return (
-    <ul className="flex flex-col-reverse items-center space-x-0 lg:flex-row lg:space-x-6">
+    <ul className="hidden items-center space-x-0 lg:flex lg:flex-row lg:space-x-6">
       <li className="mt-4 lg:mt-0">
         <TooltipDemo text="Log In">
           <Link
@@ -72,7 +72,7 @@ export const NavButtonsAuthenticated = ({ session }) => {
 export const NavList = () => {
   const path = usePathname();
   return (
-    <ul className="items-center justify-center space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
+    <ul className="items-center justify-center space-y-8 bg-blue-600 lg:flex lg:space-x-6 lg:space-y-0">
       {navigation.map((item, idx) => {
         return (
           <li
@@ -92,7 +92,7 @@ export const NavButton = () => {
   const [state, setState] = useState(false);
   return (
     <button
-      className="rounded-md p-2 outline-none focus:border focus:border-gray-400"
+      className="rounded-md bg-green-500 p-2 outline-none focus:border focus:border-gray-400"
       onClick={() => setState(!state)}>
       {state ? (
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">

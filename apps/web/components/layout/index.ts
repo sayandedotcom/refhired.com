@@ -5,3 +5,4 @@ export * from "./navbar";
 export * from "./banner";
 export * from "./navigation";
 export * from "./notice";
+export * from "./mobile-navbar";

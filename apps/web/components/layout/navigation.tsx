@@ -9,7 +9,7 @@ export function Navigation() {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center justify-center space-x-1 space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
+    <div className="hidden items-center justify-center space-x-1 space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
       {navigation.map((tab) => (
         <Link
           href={tab.path}
