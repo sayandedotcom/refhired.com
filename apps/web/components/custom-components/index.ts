@@ -13,3 +13,5 @@ export * from "./auth-dialog";
 export * from "./search-bar-cmdk";
 export * from "./pricing-button";
 export * from "./custom-pricing-card";
+export * from "./portal-components/left-bar-mobile";
+export * from "./portal-components/right-bar-mobile";

@@ -16,7 +16,7 @@ import { FaPenNib } from "react-icons/fa";
 
 import { Badge, Button, Separator, buttonVariants } from "@referrer/ui";
 
-import { ThemeSwitcher } from "@/components/custom-components";
+import { LeftBarMobile, RightBarMobile, ThemeSwitcher } from "@/components/custom-components";
 import { Icons } from "@/components/icons/icons";
 import { PostTypeDialog, TooltipDemo, sonerToast } from "@/components/ui";
 
@@ -27,7 +27,6 @@ import { ComboboxDropdownMenu } from "../post-card/post-more-menu";
 export function NewOptionsSection() {
   const { data: session } = useSession();
   const pathName = usePathname();
-  console.log("pathName==========================", pathName);
 
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
@@ -45,7 +44,7 @@ export function NewOptionsSection() {
   //   // };
   // }, []);
   return (
-    <section className="sticky left-0 top-0 h-screen w-[15%] lg:w-[20%]">
+    <section className="sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
       <div className="bg-muted flex h-full w-full flex-col items-start justify-start">
         <Link href="/home" className="mx-auto cursor-pointer p-2">
           <Icons.logo />
@@ -58,8 +57,9 @@ export function NewOptionsSection() {
                   id={name.toLocaleLowerCase()}
                   href={link ?? session?.user.userName ?? "profile"}
                   className={clsx(
-                    "hover:bg-background/50 flex items-center gap-4 rounded-md px-2 py-2",
-                    path === "/" + link?.split("/")[1] && "bg-background"
+                    "hover:bg-background flex items-center gap-4 rounded-md px-2 py-2",
+                    path === "/" + link?.split("/")[1] &&
+                      "bg-foreground text-background hover:bg-foreground/90"
                   )}>
                   {path !== "/" + link?.split("/")[1] ? (
                     <span className="ml-5 text-2xl md:text-2xl">{icon}</span>
@@ -105,7 +105,7 @@ export function NewOptionsSection() {
           <div className="flex w-full items-center justify-between gap-3">
             <Badge className="bg-background text-foreground border-foreground hover:bg-background flex items-center justify-center gap-3 rounded-sm">
               <Star fill="#FFC300" className="h-7" />
-              <span className="font-heading mt-1 text-base font-bold">{data?.stars} Stars</span>
+              <span className="font-heading mt-1 text-base font-bold">{session?.user.stars} Stars</span>
             </Badge>
             <Button>Buy Stars</Button>
           </div>
@@ -127,13 +127,15 @@ export function NewContentSection({
     <>
       <section
         className={clsx(
-          "flex w-[85%] flex-col items-center",
+          "flex w-full flex-col",
           pathName.split("/")[1] === "settings" || pathName.split("/")[1] === "dashboard"
             ? "lg:w-[80%]"
             : "lg:w-[60%]"
         )}>
-        <div className="px-4 py-4">
-          <h5 className="font-heading capitalize">{pathName.split("/")[1]}</h5>
+        <div className="flex flex-row justify-between px-4 py-4">
+          <LeftBarMobile />
+          <h5 className="font-heading capitalize md:mx-auto">{pathName.split("/")[1]}</h5>
+          <RightBarMobile />
         </div>
         <Separator className="dark:bg-[#2d3134]" />
         {loginModal}

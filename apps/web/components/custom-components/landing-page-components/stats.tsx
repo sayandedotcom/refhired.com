@@ -57,9 +57,9 @@ export const Stats = () => {
 
   return (
     <section className="py-14">
-      <div className="mx-auto max-w-screen-xl px-4 text-gray-600 md:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h3 className="text-3xl font-semibold text-gray-800 sm:text-4xl">Our customers are always happy</h3>
+          <h3 className="text-3xl font-semibold sm:text-4xl">Our customers are always happy</h3>
           <p className="mt-3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis sollicitudin quam ut
             tincidunt.

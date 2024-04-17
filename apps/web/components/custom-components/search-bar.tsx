@@ -35,7 +35,7 @@ export const SearchBar = () => {
   useHotkeys("ctrl+/", focusSearch, [searchRef]);
   return (
     <>
-      <div className="sticky top-0 m-2 flex items-center gap-1 md:gap-2 lg:w-7/12">
+      <div className="sticky top-0 m-2 flex items-center gap-1 md:mx-auto md:gap-2 lg:w-7/12">
         <form
           ref={outsideRef}
           className="bg-muted relative flex w-full items-center overflow-hidden rounded-full">
