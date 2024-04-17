@@ -81,8 +81,8 @@ class UserService {
     return prisma.user.findUnique({ where: { email } });
   }
 
-  public static getUserById(userName: string) {
-    return prisma.user.findUnique({ where: { userName } });
+  public static getUserById(id: string) {
+    return prisma.user.findUnique({ where: { id } });
   }
 
   public static verifyToken(token: string) {

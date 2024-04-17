@@ -3,32 +3,37 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import { app, server } from "./app.js";
-import JWTService from "./services/jwt.js";
 
 const start = async () => {
   app.use(bodyParser.json());
-
-  app.use(
-    cors<cors.CorsRequest>({
-      // origin: [process.env.FRONTEND_DEV_URL as string, process.env.FRONTEND_PROD_URL as string],
-      credentials: true,
-    })
-  );
 
   await server.start();
 
   app.use(
     "/graphql",
-    expressMiddleware(server as any, {
-      context: async ({ req, res }) => {
-        return {
-          user: await JWTService.verifyTokenhandler(req),
-        };
-      },
-    })
+    cors({ credentials: true }),
+    expressMiddleware(
+      server as any
+      // , {
+      // context: async ({ req, res }) => {
+      //   console.log("req-------------", req.headers);
+
+      //   return {
+      //     user: await JWTService.verifyTokenhandler(req),
+      //   };
+      // },
+      // }
+    )
   );
 
   app.listen(process.env.BACKEND_PORT, () => console.log(`GraphQL server running at Port  🚀`));
 };
 
 start();
+
+// app.use(
+//   cors<cors.CorsRequest>({
+//     // origin: [process.env.FRONTEND_DEV_URL as string, process.env.FRONTEND_PROD_URL as string],
+//     credentials: true,
+//   })
+// );

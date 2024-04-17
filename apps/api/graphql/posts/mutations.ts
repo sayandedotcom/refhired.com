@@ -4,6 +4,6 @@ export const mutations = `#graphql
     createFindReferralPost(payload: CreatePostType!): PostResult
     deletePost(id: ID!): PostResult
     bookmarkPost(id: ID!): PostResult
-    applyPost(id: ID!): PostResult
+    applyPost(payload: CreateApplyPost!): ApplyPostResult
     commentOnPost(id: ID!): PostResult
 `;

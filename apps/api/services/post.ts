@@ -3,8 +3,8 @@ import prisma from "@referrer/prisma";
 // import redisClient from "@referrer/redis";
 import {
   Id,
-  applyInfo,
   commentText,
+  createApplyPost,
   createFindReferralPost,
   createPost,
   createReferralPost,
@@ -22,43 +22,50 @@ class PostService {
     // if (cachedPosts) return JSON.parse(cachedPosts);
     const posts = await prisma.posts.findMany({
       take: 10,
-      include: {
-        tags: {
-          select: {
-            name: true,
-          },
-        },
-        user: {
-          select: {
-            userName: true,
-            image: true,
-            name: true,
-            workingAt: true,
-            bio: true,
-          },
-        },
-        applied: true,
-        comments: true,
-      },
+      // include: {
+      //   tags: {
+      //     select: {
+      //       id: true,
+      //       name: true,
+      //     },
+      //   },
+      //   user: {
+      //     select: {
+      //       id: true,
+      //       userName: true,
+      //       name: true,
+      //       image: true,
+      //       bio: true,
+      //       workingAt: true,
+      //     },
+      //   },
+      //   applied: true,
+      //   comments: true,
+      // },
     });
-    console.log(
-      "postspostspostsposts",
-      // posts[0].tags.map((i) => i.name)
-      posts[0].user
-    );
+    // console.log(
+    //   "postspostspostsposts",
+    //   // posts[0].tags.map((i) => i.name)
+    //   posts[0].tags
+    // );
 
     // await redisClient.set("ALL_POSTS", JSON.stringify(posts));
     return posts;
+  }
+
+  public static async getAllTags(postId: Id) {
+    return await prisma.posts.findMany({
+      where: { id: postId },
+      select: {
+        tags: true,
+      },
+    });
   }
 
   public static async getPostBySlug(postId: Id) {
     return await prisma.posts.findFirst({
       where: {
         id: postId,
-      },
-      include: {
-        user: true,
-        comments: true,
       },
     });
   }
@@ -124,6 +131,7 @@ class PostService {
         companyName: info.companyName,
         stars: info.stars,
         acceptLimit: info.acceptLimit,
+        jobCompensation: info.jobCompensation,
         postType: "REFERRALPOST",
         tags: {
           connectOrCreate: info.tags?.map((tag) => ({
@@ -208,14 +216,27 @@ class PostService {
     });
   }
 
-  public static async applyPost(postId: Id, userId: Id, applyInfo: applyInfo) {
-    await prisma.applied.create({
+  public static async applyPost(info: createApplyPost) {
+    const applied = await prisma.applied.create({
       data: {
-        userId: userId,
-        postId: postId,
-        applyInfo: applyInfo !== null && applyInfo,
+        userId: info.userId,
+        postId: info.postId,
+        applyInfo: info.postId,
       },
     });
+
+    console.log("applied ", applied);
+
+    await prisma.posts.update({
+      where: { id: info.postId },
+      data: {
+        totalApplied: {
+          increment: 1,
+        },
+      },
+    });
+    console.log("applied 2", applied);
+    return applied;
   }
 
   public static async commentOnPost(postId: Id, userId: Id, commentText: commentText) {
@@ -230,3 +251,43 @@ class PostService {
 }
 
 export default PostService;
+// prisma.applied
+//       .create({
+//         data: {
+//           userId: userId,
+//           postId: postId,
+//           applyInfo: applyInfo,
+
+//         },
+//       })
+//       .then((ans) =>
+//         ans.posts.update({
+//           data: {
+//             totalApplied: {
+//               increment: 1,
+//             },
+//           },
+//         })
+//       );
+//   }
+
+//   return await prisma.$transaction([
+//     // Create a new Applied record
+//     prisma.applied.create({
+//       data: {
+//         userId,
+//         postId,
+//         applyInfo,
+//       },
+//     }),
+//     // Increment totalApplied in the corresponding Posts record
+//     prisma.posts.update({
+//       where: { id: postId },
+//       data: {
+//         totalApplied: {
+//           increment: 1,
+//         },
+//       },
+//     }),
+//   ]);
+// }

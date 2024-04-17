@@ -1,6 +1,6 @@
 export const queries = `#graphql
     getAllPosts: [Post]
-    getPostBySlug(id: ID!): Post
+    getPostBySlug(id: String!): Post
     getAllAppliedPosts: [Post]
     getAllRequests: [Post]
     getAllBookmarkedPosts: [Post]

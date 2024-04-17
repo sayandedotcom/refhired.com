@@ -6,7 +6,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "nodemon",
-		"start": "node build/index",
+		"start": "node --loader ts-node/esm build/index.js",
 		"build": "tsc",
 		"test": "echo \"No tests configured yet.\""
 	},

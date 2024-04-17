@@ -50,3 +50,9 @@ export type createFindReferralPost = {
   tags: string[];
   hashtags: string[];
 };
+
+export type createApplyPost = {
+  userId: Applied["userId"];
+  postId: Applied["postId"];
+  applyInfo: Applied["applyInfo"];
+};

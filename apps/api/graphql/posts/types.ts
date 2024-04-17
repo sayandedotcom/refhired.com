@@ -1,5 +1,6 @@
 export const types = `#graphql
   type UserFromPost {
+    id: String
     userName: String
     name: String
     image: String
@@ -16,6 +17,7 @@ export const types = `#graphql
     postType: PostType
     accept: JSON
     description: String
+    createdAt: DateTime
     expiresAt: DateTime
     jobRole: String
     jobType: String
@@ -27,7 +29,7 @@ export const types = `#graphql
     acceptLimit: Int
     companyName: String
     jobCode: String
-    user: UserFromPost!
+    user: UserFromPost
     totalApplied: Int
     totalComments: Int
     tags: [Tags]
@@ -53,6 +55,12 @@ export const types = `#graphql
     hashtags: [String]
   }
 
+  type ApplyPost {
+    userId: String
+    postId: String
+    applyInfo: JSON
+  }
+
   interface Error {
     message: String!
   }
@@ -72,6 +80,13 @@ export const types = `#graphql
     post: CreatePost
   }
 
+  type ApplyPostResult {
+    code: Int
+    success: Boolean
+    message: String
+    post: ApplyPost
+  }
+
   input CreatePostType {
     postType: PostType
     accept: JSON
@@ -89,6 +104,12 @@ export const types = `#graphql
     jobCode: String
     tags: [String]
     hashtags: [String]
+  }
+
+  input CreateApplyPost {
+    userId: String
+    postId: String
+    applyInfo: JSON
   }
 
   type Todo {
