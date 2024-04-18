@@ -8,8 +8,8 @@ export const types = `#graphql
     workingAt: String
   }
 
-  type Tags {
-    mame: String
+  type Tag {
+    name: String
   }
 
   type Post {
@@ -32,7 +32,7 @@ export const types = `#graphql
     user: UserFromPost
     totalApplied: Int
     totalComments: Int
-    tags: [Tags]
+    tags: [Tag]
     hashtags: [String]
   }
 
@@ -59,18 +59,6 @@ export const types = `#graphql
     userId: String
     postId: String
     applyInfo: JSON
-  }
-
-  interface Error {
-    message: String!
-  }
-
-  type UserNotAuthenticatedError implements Error {
-    message: String!
-  }
-
-  type NotFound implements Error {
-    message: String!
   }
 
   type PostResult {
@@ -112,6 +100,12 @@ export const types = `#graphql
     applyInfo: JSON
   }
 
+  enum PostType {
+    REFERRALPOST
+    FINDREFERRER
+    POST
+  }
+
   type Todo {
     id: ID
     title: String
@@ -125,11 +119,18 @@ export const types = `#graphql
     todo: [Todo]
   }
 
-  union TodoResult = ReturnedTodo | UserNotAuthenticatedError | NotFound
-
-  enum PostType {
-    REFERRALPOST
-    FINDREFERRER
-    POST
+  interface Error {
+    message: String!
   }
+
+  type UserNotAuthenticatedError implements Error {
+    message: String!
+  }
+
+  type NotFound implements Error {
+    message: String!
+  }
+
+
+  union TodoResult = ReturnedTodo | UserNotAuthenticatedError | NotFound
 `;

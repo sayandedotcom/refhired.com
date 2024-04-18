@@ -22,6 +22,9 @@ class PostService {
     // if (cachedPosts) return JSON.parse(cachedPosts);
     const posts = await prisma.posts.findMany({
       take: 10,
+      orderBy: {
+        createdAt: "desc",
+      },
       // include: {
       //   tags: {
       //     select: {
@@ -53,19 +56,24 @@ class PostService {
     return posts;
   }
 
-  public static async getAllTags(postId: Id) {
-    return await prisma.posts.findMany({
-      where: { id: postId },
+  public static async getAllTags(id: Id) {
+    const tags = await prisma.posts.findMany({
+      where: { id },
       select: {
-        tags: true,
+        tags: {
+          select: {
+            name: true,
+          },
+        },
       },
     });
+    return tags[0].tags;
   }
 
-  public static async getPostBySlug(postId: Id) {
+  public static async getPostBySlug(id: Id) {
     return await prisma.posts.findFirst({
       where: {
-        id: postId,
+        id,
       },
     });
   }
@@ -216,26 +224,22 @@ class PostService {
     });
   }
 
-  public static async applyPost(info: createApplyPost) {
+  public static async applyPost(payload: createApplyPost) {
     const applied = await prisma.applied.create({
       data: {
-        userId: info.userId,
-        postId: info.postId,
-        applyInfo: info.postId,
+        userId: payload.userId,
+        postId: payload.postId,
+        applyInfo: payload.applyInfo,
       },
     });
-
-    console.log("applied ", applied);
-
     await prisma.posts.update({
-      where: { id: info.postId },
+      where: { id: payload.postId },
       data: {
         totalApplied: {
           increment: 1,
         },
       },
     });
-    console.log("applied 2", applied);
     return applied;
   }
 

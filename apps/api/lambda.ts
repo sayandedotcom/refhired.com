@@ -1,5 +1,5 @@
-const { ApolloServer, gql } = require("apollo-server-lambda");
-const { ApolloServerPluginLandingPageGraphQLPlayground } = require("apollo-server-core");
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import { ApolloServer, gql } from "apollo-server-lambda";
 
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
@@ -18,12 +18,11 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  playground: true,
   introspection: true,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
-exports.handler = server.createHandler({
+export const handler = server.createHandler({
   expressGetMiddlewareOptions: {
     cors: {
       origin: "*",

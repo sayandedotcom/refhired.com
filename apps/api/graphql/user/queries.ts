@@ -1,3 +1,3 @@
 export const queries = `#graphql
-  getUserById(userName:String!): UserProfile
+  getUserByUsername(userName:String!): User
 `;

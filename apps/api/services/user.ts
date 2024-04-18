@@ -85,6 +85,10 @@ class UserService {
     return prisma.user.findUnique({ where: { id } });
   }
 
+  public static getUserByUsername(userName: string) {
+    return prisma.user.findFirst({ where: { userName } });
+  }
+
   public static verifyToken(token: string) {
     try {
       return JWT.verify(token, JWT_SECRET as string) as UserJWTPayload;

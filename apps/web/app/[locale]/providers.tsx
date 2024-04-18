@@ -41,17 +41,8 @@ export function Provider({ children }) {
   const toastPosition = useStore((state) => state.toastPosition);
   const showNavbar = rootPaths.includes(path);
 
-  // const navv=rootPaths.su
-
   return (
     <>
-      {/* <html lang="en" suppressHydrationWarning>
-        <body
-          className={cn(
-            "selection:bg-foreground selection:text-background scrollbar-rounded-lg scrollbar-thin scrollbar-track-white scrollbar-thumb-black dark:scrollbar-track-black dark:scrollbar-thumb-white font-sans",
-            fontSans.variable,
-            fontHeading.variable
-          )}> */}
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <QueryClientProvider client={queryClient}>
           <SessionProvider>
@@ -77,8 +68,6 @@ export function Provider({ children }) {
           {/* <ReactQueryDevtools /> */}
         </QueryClientProvider>
       </ThemeProvider>
-      {/* </body>
-      </html> */}
     </>
   );
 }

@@ -17,11 +17,10 @@ const queries = {
     return await PostService.getAllPosts();
   },
 
-  getPostBySlug: async (parent, args: { postId: Id }, ctx: GraphqlContext, info) => {
-    const { postId } = args;
-    console.log(postId);
+  getPostBySlug: async (parent, args: { id: Id }, ctx: GraphqlContext, info) => {
+    const { id } = args;
 
-    return await PostService.getPostBySlug(postId);
+    return await PostService.getPostBySlug(id);
   },
 
   getAllAppliedPosts: async (parent, args: { userId: Id }, ctx: GraphqlContext, info) => {
@@ -112,7 +111,6 @@ const mutations = {
     // if (!args.payload) {
     //   throw new BadRequestError("Bad Request");
     // } else
-    console.log(args.payload);
 
     try {
       return {
@@ -147,15 +145,15 @@ const mutations = {
     return true;
   },
 
-  applyPost: async (parent, args: { playload: createApplyPost }, ctx: GraphqlContext) => {
-    console.log("args.playload", args.playload);
+  applyPost: async (parent, args: { payload: createApplyPost }, ctx: GraphqlContext) => {
+    console.log("applyPost args.playload", args.payload.applyInfo);
 
     try {
       return {
         code: 200,
         success: true,
         message: "You have sucessfully applied for the Referral",
-        post: await PostService.applyPost(args.playload),
+        post: await PostService.applyPost(args.payload),
       };
     } catch (error) {
       return {
@@ -189,7 +187,7 @@ const mutations = {
 const extraResolvers = {
   Post: {
     user: async (args) => await UserService.getUserById(args.userId),
-    tags: async (args) => await PostService.getAllTags(args.Id),
+    tags: async (args) => await PostService.getAllTags(args.id),
   },
 };
 

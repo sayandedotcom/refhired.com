@@ -22,9 +22,10 @@ import Loading from "./loading";
 export default function Page({ params: { locale } }) {
   unstable_setRequestLocale(locale);
 
+  // const { user } = await getAuthSession();
   const t = useTranslations("Index");
 
-  const session = null;
+  const user = null;
 
   return (
     <>
@@ -44,7 +45,7 @@ export default function Page({ params: { locale } }) {
           </span>
           "
         </h1>
-        <p className="text-muted-foreground mt-3 px-6 text-center text-[15px] leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
+        <p className="mt-3 px-6 text-center text-[15px] font-medium leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
           Used by many job seekers and employees of the world's largest companies, Referrer enables you to get
           job through referrals which has the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referrals
@@ -58,7 +59,7 @@ export default function Page({ params: { locale } }) {
         <Companies />
       </Suspense>
       <Suspense fallback={<Loading />}>
-        <Username session={session} />
+        <Username session={user} />
       </Suspense>
       <Separator />
       <Suspense fallback={<Loading />}>
@@ -77,7 +78,7 @@ export default function Page({ params: { locale } }) {
         <Stats />
       </Suspense>
       <Separator />
-      <Suspense fallback={<Loading />}>{session && session ? <></> : <Joinnow />}</Suspense>
+      <Suspense fallback={<Loading />}>{user && user ? <></> : <Joinnow />}</Suspense>
       <Suspense fallback={<Loading />}>
         <section id="open-source" className="container py-8 md:py-12 lg:py-24">
           <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center">
