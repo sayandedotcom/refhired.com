@@ -82,7 +82,7 @@ class UserService {
   }
 
   public static getUserById(id: string) {
-    return prisma.user.findUnique({ where: { id } });
+    return prisma.user.findFirst({ where: { id } });
   }
 
   public static getUserByUsername(userName: string) {

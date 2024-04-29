@@ -17,43 +17,66 @@ export interface CreateTweetPayload {
 }
 
 class PostService {
-  public static async getAllPosts() {
+  public static async getAllPosts(userId?: Id) {
     // const cachedPosts = await redisClient.get("ALL_POSTS");
     // if (cachedPosts) return JSON.parse(cachedPosts);
-    const posts = await prisma.posts.findMany({
-      take: 10,
-      orderBy: {
-        createdAt: "desc",
-      },
-      // include: {
-      //   tags: {
-      //     select: {
-      //       id: true,
-      //       name: true,
-      //     },
-      //   },
-      //   user: {
-      //     select: {
-      //       id: true,
-      //       userName: true,
-      //       name: true,
-      //       image: true,
-      //       bio: true,
-      //       workingAt: true,
-      //     },
-      //   },
-      //   applied: true,
-      //   comments: true,
-      // },
-    });
-    // console.log(
-    //   "postspostspostsposts",
-    //   // posts[0].tags.map((i) => i.name)
-    //   posts[0].tags
-    // );
+    if (userId) {
+      return await prisma.posts.findMany({
+        where: {
+          userId: userId,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+    } else {
+      return await prisma.posts.findMany({
+        take: 10,
+        orderBy: {
+          createdAt: "desc",
+        },
+        // include: {
+        //   tags: {
+        //     select: {
+        //       id: true,
+        //       name: true,
+        //     },
+        //   },
+        //   user: {
+        //     select: {
+        //       id: true,
+        //       userName: true,
+        //       name: true,
+        //       image: true,
+        //       bio: true,
+        //       workingAt: true,
+        //     },
+        //   },
+        //   applied: true,
+        //   comments: true,
+        // },
+      });
+      // console.log(
+      //   "postspostspostsposts",
+      //   // posts[0].tags.map((i) => i.name)
+      //   posts[0].tags
+      // );
 
-    // await redisClient.set("ALL_POSTS", JSON.stringify(posts));
-    return posts;
+      // await redisClient.set("ALL_POSTS", JSON.stringify(posts));
+    }
+  }
+
+  public static async getAllPostsWithApplied(id: Id) {
+    return await prisma.posts.findMany({
+      where: {
+        userId: id,
+        NOT: {
+          totalApplied: {
+            equals: 0,
+          },
+        },
+      },
+    });
   }
 
   public static async getAllTags(id: Id) {
@@ -86,13 +109,49 @@ class PostService {
     });
   }
 
-  public static async getAllRequests(postId: Id) {
-    return await prisma.applied.findMany({
+  public static async getAllRequests(userId: Id) {
+    return await prisma.user.findUnique({
       where: {
-        postId: postId,
+        id: userId,
+      },
+      select: {
+        posts: {
+          select: {
+            id: true,
+            userId: true,
+            description: true,
+            stars: true,
+          },
+        },
       },
     });
   }
+
+  public static async applyInfo(id: Id) {
+    return await prisma.applied.findMany({
+      where: {
+        postId: id,
+      },
+      select: {
+        userId: true,
+        applyInfo: true,
+        appliedAt: true,
+      },
+    });
+  }
+
+  //   applied: {
+  //   select: {
+  //     userId: true,
+  //     applyInfo: true,
+  //     appliedAt: true,
+  //     user: {
+  //       select: {
+  //         email: true,
+  //       },
+  //     },
+  //   },
+  // }
 
   public static async getAllBookmarkedPosts(userId: Id) {
     return await prisma.bookmarks.findMany({

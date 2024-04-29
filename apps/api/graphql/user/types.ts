@@ -15,6 +15,7 @@ export const types = `#graphql
     stars:Int
     stripeCustomerId:String
     workingAt:String
+    post: [Post]
   }
 
   type UserProfile {

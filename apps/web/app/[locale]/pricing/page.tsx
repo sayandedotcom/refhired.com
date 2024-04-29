@@ -42,7 +42,7 @@ export default async function Pricing({ params: { locale } }) {
                 <span className="font-medium">{item.name}</span>
                 <div className="text-foreground text-3xl font-semibold">₹{item.price}</div>
                 <p>{item.description}</p>
-                <PricingButton priceId={item.stripePriceId} stars={item.stars} />
+                <PricingButton planId={item.stripePriceId} stars={item.stars} />
               </div>
               <ul className="space-y-3 p-8">
                 <li className="pb-2 text-xl font-medium">

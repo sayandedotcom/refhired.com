@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import clsx from "clsx";
+import { MoveRight, X } from "lucide-react";
 
 export function Banner() {
   const [close, setClose] = useState(false);
@@ -18,29 +19,17 @@ export function Banner() {
           <p className="p-2 font-medium">
             This website is under development{" "}
             <Link
-              href="https://github.com/sayande2002/refhired.com"
+              href="https://github.com/sayandedotcom/refhired.com"
               className="inline-flex items-center gap-x-1 font-semibold underline duration-150 hover:text-indigo-100">
               Check out our code
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-5 w-5">
-                <path
-                  fillRule="evenodd"
-                  d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <MoveRight />
             </Link>
           </p>
         </div>
         <button
           onClick={() => setClose(!close)}
           className="rounded-lg p-2 ring-offset-2 duration-150 hover:bg-indigo-500 focus:ring">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-6 w-6">
-            <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
-          </svg>
+          <X />
         </button>
       </div>
     </div>

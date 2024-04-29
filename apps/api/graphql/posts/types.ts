@@ -106,6 +106,29 @@ export const types = `#graphql
     POST
   }
 
+  type AppliedUser {
+    email: String
+  }
+
+  type AppliedInfo {
+    applyInfo: JSON,
+    appliedAt: DateTime,
+    userId: String
+    user: AppliedUser
+  }
+
+  type AppliedPost {
+    id: String
+    description: String
+    stars: Int
+    appliedInfo: [AppliedInfo]
+  }
+
+  type AllRequests {
+    id: String
+    Posts: [AppliedPost]
+  }
+
   type Todo {
     id: ID
     title: String
@@ -113,10 +136,7 @@ export const types = `#graphql
   }
 
   type ReturnedTodo {
-    code: Int
-    sucess: Boolean
-    message: String
-    todo: [Todo]
+    todo: String
   }
 
   interface Error {

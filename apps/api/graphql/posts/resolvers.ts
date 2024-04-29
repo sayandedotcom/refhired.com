@@ -13,8 +13,8 @@ import {
 const queries = {
   hello: () => "Hello, New World!",
 
-  getAllPosts: async () => {
-    return await PostService.getAllPosts();
+  getAllPosts: async (parent, args: { userId?: Id }, ctx: GraphqlContext, info) => {
+    return await PostService.getAllPosts(args.userId);
   },
 
   getPostBySlug: async (parent, args: { id: Id }, ctx: GraphqlContext, info) => {
@@ -28,72 +28,15 @@ const queries = {
     return await PostService.getAllAppliedPosts(userId);
   },
 
-  getAllRequests: async (parent, args: { postId: Id }, ctx: GraphqlContext, info) => {
-    const { postId } = args;
-    return await PostService.getAllRequests(postId);
+  getAllRequests: (parent, args: { id: Id }, ctx: GraphqlContext, info) => {
+    const { id } = args;
+    return { id };
   },
 
   getAllBookmarkedPosts: async (parent, args, ctx: GraphqlContext, info) => {
     const { userId } = args;
     return await PostService.getAllBookmarkedPosts(userId);
   },
-
-  // getTodos: async (parent, args, ctx: GraphqlContext, info) => {
-  //   const ans = example.filter((data) => data.id === +args.id);
-  //   console.log(ctx);
-
-  //   if (!ctx.user) {
-  //     throw new AccessDeniedError("Login to continue");
-  //   }
-  //   if (!args.id) {
-  //     throw new BadRequestError("BadRequestError");
-  //   } else {
-  //     return {
-  //       code: 200,
-  //       sucess: true,
-  //       message: "Sucessfully created",
-  //       todo: [...ans],
-  //     };
-  //   }
-  // },
-
-  // //  {
-  // // const { id } = args;
-
-  // // if (ctx.user) {
-  // // const ans = (await axios.get("https://jsonplaceholder.typicode.com/todos")).data;
-  // // console.log(ans);
-
-  // // return ans;
-
-  // // }
-  // // return {
-  // //   __typename: "UserNotAuthenticatedError",
-  // //   message: "User is not authenticated",
-  // // };
-  // // throw new GraphQLError("User is not authenticated", {
-  // //   extensions: {
-  // //     code: "UNAUTHENTICATED",
-  // //     http: { status: 401 },
-  // //   },
-  // // });
-  // // },
-  // // (await axios.get(`https://jsonplaceholder.typicode.com/todos`)).data,
-
-  // test: (parent, args, ctx: GraphqlContext, info) => {
-  //   const ans = example.filter((data) => data.id === +args.id);
-
-  //   if (args.id) {
-  //     return {
-  //       __typename: "Todo",
-  //       sucess: true,
-  //       message: "Sucessfully created",
-  //       todo: [...ans],
-  //     };
-  //   } else if (args.id === null) throw new BadRequestError("User Id required");
-
-  //   return true;
-  // },
 };
 
 const mutations = {
@@ -146,8 +89,6 @@ const mutations = {
   },
 
   applyPost: async (parent, args: { payload: createApplyPost }, ctx: GraphqlContext) => {
-    console.log("applyPost args.playload", args.payload.applyInfo);
-
     try {
       return {
         code: 200,
@@ -189,6 +130,72 @@ const extraResolvers = {
     user: async (args) => await UserService.getUserById(args.userId),
     tags: async (args) => await PostService.getAllTags(args.id),
   },
+  AllRequests: {
+    Posts: async (args) => await PostService.getAllPostsWithApplied(args.id),
+  },
+  AppliedPost: {
+    appliedInfo: async (args) => await PostService.applyInfo(args.id),
+  },
+  AppliedInfo: {
+    user: async (args) => await UserService.getUserById(args.userId),
+  },
 };
 
 export const resolvers = { queries, mutations, extraResolvers };
+
+// getTodos: async (parent, args, ctx: GraphqlContext, info) => {
+//   const ans = example.filter((data) => data.id === +args.id);
+//   console.log(ctx);
+
+//   if (!ctx.user) {
+//     throw new AccessDeniedError("Login to continue");
+//   }
+//   if (!args.id) {
+//     throw new BadRequestError("BadRequestError");
+//   } else {
+//     return {
+//       code: 200,
+//       sucess: true,
+//       message: "Sucessfully created",
+//       todo: [...ans],
+//     };
+//   }
+// },
+
+// //  {
+// // const { id } = args;
+
+// // if (ctx.user) {
+// // const ans = (await axios.get("https://jsonplaceholder.typicode.com/todos")).data;
+// // console.log(ans);
+
+// // return ans;
+
+// // }
+// // return {
+// //   __typename: "UserNotAuthenticatedError",
+// //   message: "User is not authenticated",
+// // };
+// // throw new GraphQLError("User is not authenticated", {
+// //   extensions: {
+// //     code: "UNAUTHENTICATED",
+// //     http: { status: 401 },
+// //   },
+// // });
+// // },
+// // (await axios.get(`https://jsonplaceholder.typicode.com/todos`)).data,
+
+// test: (parent, args, ctx: GraphqlContext, info) => {
+//   const ans = example.filter((data) => data.id === +args.id);
+
+//   if (args.id) {
+//     return {
+//       __typename: "Todo",
+//       sucess: true,
+//       message: "Sucessfully created",
+//       todo: [...ans],
+//     };
+//   } else if (args.id === null) throw new BadRequestError("User Id required");
+
+//   return true;
+// },

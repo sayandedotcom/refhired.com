@@ -1,8 +1,8 @@
 export const queries = `#graphql
-    getAllPosts: [Post]
+    getAllPosts(userId: String): [Post]
     getPostBySlug(id: String!): Post
     getAllAppliedPosts: [Post]
-    getAllRequests: [Post]
+    getAllRequests(id: String!): AllRequests
     getAllBookmarkedPosts: [Post]
     getSignedURLForPost(imageName: String!, imageType: String!): String
     getTodos(id:ID): ReturnedTodo

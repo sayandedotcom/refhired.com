@@ -18,7 +18,7 @@ export const plans: SubscriptionPlan[] = [
       "Duis non diam vel tortor",
       "Curabitur faucibus",
     ],
-    stripePriceId: process.env.STRIPE_EXPERIENCED_PRICE_ID || "",
+    stripePriceId: process.env.STRIPE_EXPERIENCED_PRICE_ID,
   },
   {
     name: "Junior Plan",
@@ -37,7 +37,7 @@ export const plans: SubscriptionPlan[] = [
       "Duis non diam vel tortor",
       "Curabitur faucibus",
     ],
-    stripePriceId: process.env.STRIPE_JUNIOR_PRICE_ID || "",
+    stripePriceId: process.env.STRIPE_JUNIOR_PRICE_ID,
   },
   {
     name: "Layoffed Plan",
@@ -56,6 +56,6 @@ export const plans: SubscriptionPlan[] = [
       "Duis non diam vel tortor",
       "Curabitur faucibus",
     ],
-    stripePriceId: process.env.STRIPE_LAYOFFED_PRICE_ID || "",
+    stripePriceId: process.env.STRIPE_LAYOFFED_PRICE_ID,
   },
 ];

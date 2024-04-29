@@ -1,6 +1,6 @@
 "use client";
 
-import { ApolloLink, createHttpLink } from "@apollo/client";
+import { ApolloLink, HttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import {
   ApolloNextAppProvider,
@@ -11,14 +11,14 @@ import {
 import { getCookie } from "cookies-next";
 
 function makeClient() {
-  const httpLink = createHttpLink({
+  const httpLink = new HttpLink({
     uri: "http://localhost:8000/graphql",
-    credentials: "include",
-    fetchOptions: { cache: "no-store" },
   });
 
   const authLink = setContext((_, { headers }) => {
     const token = getCookie("__Secure-next-auth.session-token") ?? getCookie("next-auth.session-token");
+
+    console.log("token====================", token);
 
     return {
       headers: {
@@ -45,24 +45,14 @@ function makeClient() {
 export function ApolloWrapper({ children }: React.PropsWithChildren) {
   return <ApolloNextAppProvider makeClient={makeClient}>{children}</ApolloNextAppProvider>;
 }
+// const appLink = from([errorLink, httpLink]);
+// const errorLink = onError(({ graphQLErrors, networkError }) => {
+//   if (graphQLErrors) {
+//     console.log("graphQLErrorsclient------------------------------", graphQLErrors);
+//   }
 
-// function makeClient() {
-//   const httpLink = new HttpLink({
-//     uri: "http://localhost:8000/graphql",
-//     credentials: "include",
-//     fetchOptions: { cache: "no-store" },
-//   });
-
-//   return new NextSSRApolloClient({
-//     cache: new NextSSRInMemoryCache(),
-//     link:
-//       typeof window === "undefined"
-//         ? ApolloLink.from([
-//             new SSRMultipartLink({
-//               stripDefer: true,
-//             }),
-//             httpLink,
-//           ])
-//         : httpLink,
-//   });
-// }
+//   if (networkError) {
+//     // handle network error
+//     console.log(networkError);
+//   }
+// });

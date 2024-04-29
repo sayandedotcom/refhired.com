@@ -20,7 +20,6 @@ export function CustomPricingCard() {
       if (adjustment === "add") sum = +5;
       else if (adjustment === "sub") sum = -5;
     }
-
     setStars(Math.max(10, Math.min(1000, stars + sum)));
   }
 
@@ -55,7 +54,7 @@ export function CustomPricingCard() {
         </Button>
       </div>
       <p>Buy stars as much as you want</p>
-      <PricingButton priceId={process.env.STRIPE_CUST0M_PRICE_ID || ""} quantity={stars} stars={stars} />
+      <PricingButton planId={process.env.STRIPE_CUST0M_PRICE_ID} quantity={stars} stars={stars} />
     </>
   );
 }

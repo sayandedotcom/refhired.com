@@ -1,3 +1,4 @@
+import PostService from "../../services/post.js";
 import UserService from "../../services/user.js";
 
 const queries = {
@@ -6,6 +7,10 @@ const queries = {
   },
 };
 const mutations = {};
-const extraResolvers = {};
+const extraResolvers = {
+  User: {
+    post: async (args) => await PostService.getAllPosts(args.id),
+  },
+};
 
 export const resolvers = { queries, mutations, extraResolvers };
