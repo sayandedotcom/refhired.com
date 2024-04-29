@@ -5,8 +5,6 @@ import localFont from "next/font/local";
 
 import { useIsMounted } from "@/hooks";
 import { usePathname } from "@/navigation";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
@@ -16,6 +14,7 @@ import { Toaster } from "@referrer/ui";
 
 import { PreLoader } from "@/components/custom-components";
 import { Banner, Footer, Navbar } from "@/components/layout";
+import CookieConsent from "@/components/ui/cookie-consent";
 import ProgressBar from "@/components/ui/progress-bar";
 
 import { rootPaths } from "@/config";
@@ -35,7 +34,6 @@ const fontHeading = localFont({
 });
 
 export function Provider({ children }) {
-  const queryClient = new QueryClient();
   const isMounted = useIsMounted();
   const path = usePathname();
   const toastPosition = useStore((state) => state.toastPosition);
@@ -44,29 +42,27 @@ export function Provider({ children }) {
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <QueryClientProvider client={queryClient}>
-          <SessionProvider>
-            <Toaster />
-            <SonerToaster position={toastPosition} />
-            {!isMounted ? (
-              <PreLoader />
-            ) : (
-              <>
-                <ProgressBar />
-                {showNavbar && (
-                  <>
-                    <Banner />
-                    <Navbar />
-                  </>
-                )}
-                {children}
-                {showNavbar && <Footer />}
-                <Analytics />
-              </>
-            )}
-          </SessionProvider>
-          {/* <ReactQueryDevtools /> */}
-        </QueryClientProvider>
+        <SessionProvider>
+          <Toaster />
+          <SonerToaster position={toastPosition} />
+          {!isMounted ? (
+            <PreLoader />
+          ) : (
+            <>
+              <ProgressBar />
+              {showNavbar && (
+                <>
+                  <Banner />
+                  <Navbar />
+                </>
+              )}
+              {children}
+              <CookieConsent />
+              {showNavbar && <Footer />}
+              <Analytics />
+            </>
+          )}
+        </SessionProvider>
       </ThemeProvider>
     </>
   );
