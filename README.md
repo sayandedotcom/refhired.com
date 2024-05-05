@@ -6,6 +6,14 @@ I'm capable of demonstrating the minimal viable product in development mode and 
 
 My goal is to complete this transition and fully deploy by May 1st, possibly even sooner. Currently, I'm seamlessly integrating GraphQL API with Prisma and delving into SST constructs for deployment purposes. The refhired.com domain is configured in AWS Route 53. Please note, I can showcase the minimal viable product in development mode.
 
+# Things I am stuck with
+
+Using the latest Next.js 14 -Using the latest Next.js 14 comes with a cost. Every library has some special and different configurations for the latest Next.js versions, especially versions above 13. I am currently stuck with a bug in next-intl which is breaking the parallel and intercepting route in productions, and another problem is with the Apollo Client. The bug is you have to encrypt and then pass cookies to the Apollo wrapper component and then decrypt and pass the cookies to the Apollo server.
+
+Deploying with SST - I decided to transition the deployment platform from Vercel to AWS to gain more control over resources and reduce costs, with the assistance of the Serverless Stack (SST) framework. But here I got stuck! SST has no guide on how to deploy a turborepo ( I did it by tinkering ) and currently, I am stuck in using Prisma to create tables in AWS Aurora & then place them in the lambda layer.
+
+Deployment Cost - AWS Aurora Database for 2 days cost me $0.35! with only 2 test users. It will become difficult for me to bear the cost of deployment.
+
 ## Main domains
 
 | Domain                    | Tech                | Version |
