@@ -8,6 +8,7 @@ import { Separator } from "@referrer/ui";
 
 import {
   Companies,
+  JoinWaitlist,
   Joinnow,
   Section,
   Stats,
@@ -30,7 +31,9 @@ export default function Page({ params: { locale } }) {
   return (
     <>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
-        <Notice href="/about-us">Important Notice !</Notice>
+        <Notice arrow href="/about-us">
+          Important Notice !
+        </Notice>
         <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
           " Navigate the job market with{" "}
           <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
@@ -45,13 +48,14 @@ export default function Page({ params: { locale } }) {
           </span>
           "
         </h1>
-        <p className="mt-3 px-6 text-center text-[15px] font-medium leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
+        <p className="px-6 text-center text-[15px] font-medium leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
           Used by many job seekers and employees of the world's largest companies, Referrer enables you to get
           job through referrals which has the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referrals
         </p>
+        <JoinWaitlist />
         <Link className="btn-97 animate-bounce uppercase" href="/home">
-          Explore Now !
+          Explore the MVP !
         </Link>
       </div>
       <Separator />
