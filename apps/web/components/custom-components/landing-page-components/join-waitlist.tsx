@@ -32,7 +32,7 @@ export function JoinWaitlist() {
 
   const onSubmit = async (values: z.infer<typeof joinWaitlistSchema>) => {
     try {
-      const response = await fetch("http://localhost:3000/api/waitlist", {
+      const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
