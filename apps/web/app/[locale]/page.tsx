@@ -48,11 +48,11 @@ export default function Page({ params: { locale } }) {
           </span>
           "
         </h1>
-        <p className="px-6 text-center text-[15px] font-medium leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
+        {/* <p className="px-6 text-center text-[15px] font-medium leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
           Used by many job seekers and employees of the world's largest companies, Referrer enables you to get
           job through referrals which has the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referrals
-        </p>
+        </p> */}
         <JoinWaitlist />
         <Link className="btn-97 animate-bounce uppercase" href="/home">
           Explore the MVP !
