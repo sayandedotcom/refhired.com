@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 const SearchPage = ({ params: { locale } }) => {
   unstable_setRequestLocale(locale);
+
   return (
     <>
       <SearchBar />
