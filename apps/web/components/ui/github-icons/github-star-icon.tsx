@@ -5,12 +5,12 @@ import GitHubButton from "react-github-btn";
 export const GitHubStar = () => {
   return (
     <GitHubButton
-      href="https://github.com/sayande2002/referrer"
+      href="https://github.com/sayandedotcom/refhired.com"
       data-color-scheme="no-preference: light; light: light; dark: dark;"
       data-icon="octicon-star"
       data-size="large"
       data-show-count="true"
-      aria-label="Star sayande2002/referrer on GitHub">
+      aria-label="Star sayandedotcom/refhired.com on GitHub">
       Star
     </GitHubButton>
   );

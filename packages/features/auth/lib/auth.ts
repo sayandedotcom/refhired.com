@@ -51,7 +51,6 @@ export const authOptions: NextAuthOptions = {
     }),
     EmailProvider({ sendVerificationRequest }),
   ],
-
   callbacks: {
     async jwt({ token, user, account, profile, trigger, session }) {
       // account?.access_token
