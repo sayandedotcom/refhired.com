@@ -54,7 +54,7 @@ export default function Login() {
   } else {
     callbackUrl = callbackUrl || "/";
   }
-  console.log("errorCallback 😊😊😊😊😊😊😊😊😊😊", errorCallback);
+  // console.log("errorCallback 😊😊😊😊😊😊😊😊😊😊", errorCallback);
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -69,7 +69,6 @@ export default function Login() {
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
     try {
-      console.log(values.email);
       setVerificationEmail(values.email);
       setLoadingValue("logIn");
       const result = await signIn("email", {
