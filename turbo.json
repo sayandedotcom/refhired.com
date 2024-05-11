@@ -17,7 +17,7 @@
     "NEXT_PUBLIC_COUNTRY_STATE_CITY",
     "COUNTRY_STATE_CITY",
     "STRIPE_SECRET_KEY",
-    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+    "STRIPE_PUBLISHABLE_KEY",
     "STRIPE_EXPERIENCED_PRICE_ID",
     "STRIPE_JUNIOR_PRICE_ID",
     "STRIPE_LAYOFFED_PRICE_ID",
@@ -42,7 +42,10 @@
     "EMAIL_SERVER_PASSWORD",
     "EMAIL_FROM",
     "IS_LOCAL",
-    "GRAPHQL_API_URL"
+    "GRAPHQL_API_URL",
+    "SECRET_KEY",
+    "SECRET_KEY_VAR",
+    "CACHE_DATABASE_URL"
   ],
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
@@ -64,7 +67,7 @@
         "EDGE_CONFIG",
         "COUNTRY_STATE_CITY",
         "STRIPE_SECRET_KEY",
-        "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+        "STRIPE_PUBLISHABLE_KEY",
         "STRIPE_EXPERIENCED_PRICE_ID",
         "STRIPE_JUNIOR_PRICE_ID",
         "STRIPE_LAYOFFED_PRICE_ID",
@@ -89,7 +92,10 @@
         "EMAIL_SERVER_PASSWORD",
         "EMAIL_FROM",
         "IS_LOCAL",
-        "GRAPHQL_API_URL"
+        "GRAPHQL_API_URL",
+        "SECRET_KEY",
+        "SECRET_KEY_VAR",
+        "CACHE_DATABASE_URL"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
