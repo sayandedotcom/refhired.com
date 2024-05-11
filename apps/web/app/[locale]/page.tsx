@@ -53,7 +53,9 @@ export default function Page({ params: { locale } }) {
           job through referrals which has the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referrals
         </p> */}
-        <JoinWaitlist />
+        <Suspense fallback={<Loading />}>
+          <JoinWaitlist />
+        </Suspense>
         <Link className="btn-97 animate-bounce uppercase" href="/home">
           Explore the MVP !
         </Link>
