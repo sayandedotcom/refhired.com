@@ -45,7 +45,7 @@ export function LeftBarMobile() {
                 onClick={() => setOpen(!open)}
                 key={name}
                 id={name.toLocaleLowerCase()}
-                href={link ?? session?.user.userName ?? "profile"}
+                href={link ?? `/${session?.user.userName}` ?? "/profile"}
                 className={clsx(
                   "hover:bg-background flex items-center gap-4 rounded-md px-2 py-2",
                   path === "/" + link?.split("/")[1] && "bg-foreground text-background hover:bg-foreground/90"
