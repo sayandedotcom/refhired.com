@@ -28,7 +28,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
         severity === "warning" && "bg-[#fceed8] text-[#844932] dark:bg-orange-900 dark:text-orange-200",
         severity === "info" && "bg-blue-100 text-blue-900 dark:bg-blue-900 dark:text-blue-200",
         severity === "success" && "bg-green-100 text-green-900 dark:bg-green-900 dark:text-green-200",
-        severity === "neutral" && "bg-foreground text-background border-border border"
+        severity === "neutral" && "bg-foreground text-background"
       )}>
       <div className="relative flex md:flex-row">
         {CustomIcon ? (
