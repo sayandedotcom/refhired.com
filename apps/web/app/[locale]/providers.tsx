@@ -1,5 +1,7 @@
 "use client";
 
+import { Suspense } from "react";
+
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -22,6 +24,7 @@ import { rootPaths } from "@/config";
 import { useStore } from "@/store/store";
 
 import "../../styles/globals.css";
+import Loading from "./loading";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -52,8 +55,12 @@ export function Provider({ children }) {
               <ProgressBar />
               {showNavbar && (
                 <>
-                  <Banner />
-                  <Navbar />
+                  <Suspense fallback={<Loading />}>
+                    <Banner />
+                  </Suspense>
+                  <Suspense fallback={<Loading />}>
+                    <Navbar />
+                  </Suspense>
                 </>
               )}
               {children}
