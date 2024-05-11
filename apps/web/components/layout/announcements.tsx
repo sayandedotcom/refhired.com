@@ -24,7 +24,7 @@ export const Announcements = () => {
       </div>
       <button
         onClick={() => setClose(!close)}
-        aria-label="Dismiss"
+        aria-label="Close"
         className={clsx(
           "absolute right-2 top-3 shrink-0 rounded-lg p-1 text-white transition hover:bg-black/20",
           close && "hidden"

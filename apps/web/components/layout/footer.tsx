@@ -265,7 +265,7 @@ export const Footer = () => {
 
         <div className="mt-12 border-t border-gray-100 pt-6">
           <div className="text-center sm:flex sm:justify-between sm:text-left">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm">
               <span className="block sm:inline">All rights reserved.</span>
 
               <a className="inline-block text-gray-200 underline transition" href="/">
@@ -279,7 +279,7 @@ export const Footer = () => {
               </a>
             </p>
 
-            <p className="mt-4 text-sm text-gray-200 sm:order-first sm:mt-0">&copy; 2023 Referrer</p>
+            <p className="mt-4 text-sm text-gray-200 sm:order-first sm:mt-0">&copy; 2024 Referrer</p>
           </div>
         </div>
       </div>

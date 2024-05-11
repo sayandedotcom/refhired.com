@@ -28,7 +28,7 @@ export const ThemeSwitcher = () => {
 
   return (
     // <TooltipDemo text={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
-    <Switch onClick={() => switchTheme(theme)} id="dark-mode" />
+    <Switch aria-label="theme-switcher" onClick={() => switchTheme(theme)} id="dark-mode" />
     // </TooltipDemo>
   );
 };
