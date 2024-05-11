@@ -21,6 +21,7 @@ const joinWaitlistSchema = z.object({
 
 export function JoinWaitlist() {
   const [waitlisted, setWaitlisted] = useLocalStorage("waitlist", "");
+  const [fireworks, setFireworks] = useLocalStorage("fireworks", false);
   const [error, setError] = useState("");
 
   const form = useForm<z.infer<typeof joinWaitlistSchema>>({
@@ -45,6 +46,7 @@ export function JoinWaitlist() {
       }
       if (data.status === 200) {
         setError("");
+        setFireworks(!fireworks);
         setWaitlisted(values.email);
         sonerToast({
           severity: "success",
@@ -69,7 +71,7 @@ export function JoinWaitlist() {
     <>
       {waitlisted ? (
         <>
-          <Fireworks autorun={{ speed: 3, duration: 3000 }} />
+          {fireworks && <Fireworks autorun={{ speed: 3, duration: 3000 }} />}
           <p className="relative z-10 bg-gradient-to-b from-neutral-200 to-neutral-600 bg-clip-text text-center font-sans font-bold text-transparent">
             You've successfully joined our waitlist using the email address {waitlisted}
           </p>
