@@ -103,17 +103,6 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user, account, profile, trigger, session }) {
-      // console.log("callback jwt😊😊😊😊😊😊😊😊😊😊", {
-      //   token,
-      //   user,
-      //   account,
-      //   profile,
-      //   trigger,
-      //   session,
-      // });
-      // if (trigger === "signIn") console.log("callback jwt trigger signIn 😊😊😊😊😊😊😊😊😊😊");
-      // else if (trigger === "signUp") console.log("callback jwt trigger signUp 😊😊😊😊😊😊😊😊😊😊");
-      // else if (trigger === "update") console.log("callback jwt trigger update 😊😊😊😊😊😊😊😊😊😊");
       const dbUser = await prisma.user.findFirst({
         // ! optimise with prisma
         where: {
@@ -134,7 +123,6 @@ export const authOptions: NextAuthOptions = {
       };
     },
     async session({ session, token, user, trigger }) {
-      // console.log("callback session😊😊😊😊😊😊😊😊😊😊", user);
       if (token) {
         session.user.id = token.id;
         session.user.userName = token.userName;
@@ -149,11 +137,6 @@ export const authOptions: NextAuthOptions = {
     },
     async signIn(params) {
       const { user, account, profile, email, credentials } = params;
-      // console.log("callback signIn user🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴", user);
-      // console.log("callback signIn account🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴", account);
-      // console.log("callback signIn profile🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴", profile);
-      // console.log("callback signIn email🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴", email);
-      // console.log("callback signIn credentials🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴", credentials);
       if (account?.type === "email") {
         try {
           const userExists = await prisma.user.findFirst({
