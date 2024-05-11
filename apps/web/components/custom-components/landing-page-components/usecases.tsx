@@ -15,11 +15,11 @@ export const Usecases = () => {
           <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
             <h2 className="text-2xl font-bold md:text-3xl">Job Seekers</h2>
 
-            <h5 className="text-[16px] text-gray-500 md:mt-4 md:block md:text-[20px]">
+            <p className="text-[16px] md:mt-4 md:block md:text-[20px]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam sed.
               Quam a scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque
               ut interdum tincidunt duis.
-            </h5>
+            </p>
 
             <div className="mt-4 md:mt-8">
               <Button className="inline-block rounded px-12 py-3 text-sm font-medium transition focus:outline-none">
@@ -55,11 +55,11 @@ export const Usecases = () => {
           <div className="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
             <h2 className="text-2xl font-bold md:text-3xl">For Referrers</h2>
 
-            <h5 className="text-[16px] text-gray-500 md:mt-4 md:block md:text-[20px]">
+            <p className="text-[16px] md:mt-4 md:block md:text-[20px]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam sed.
               Quam a scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque
               ut interdum tincidunt duis.
-            </h5>
+            </p>
 
             <div className="mt-4 md:mt-8">
               <Button className="inline-block rounded px-12 py-3 text-sm font-medium transition focus:outline-none">

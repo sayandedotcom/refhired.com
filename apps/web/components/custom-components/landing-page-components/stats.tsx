@@ -69,7 +69,7 @@ export const Stats = () => {
           <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x">
             {stats.map((item, idx) => (
               <li key={idx} className="px-12 text-center md:px-16">
-                <h4 className="text-4xl font-semibold text-indigo-600">{item.data}</h4>
+                <h4 className="text-4xl font-semibold">{item.data}</h4>
                 <p className="mt-3 font-medium">{item.title}</p>
               </li>
             ))}
