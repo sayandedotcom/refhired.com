@@ -49,7 +49,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Margie Sutton</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Margie Sutton</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -93,7 +93,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -137,7 +137,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Fernando Sims</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Fernando Sims</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -181,7 +181,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Fernando Sims</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Fernando Sims</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -225,7 +225,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -271,7 +271,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -315,7 +315,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -359,7 +359,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -403,7 +403,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -447,7 +447,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
@@ -491,7 +491,7 @@ export const Testimonials = () => {
                         />
                       </div>
                       <div className="w-auto p-1.5">
-                        <h4 className="font-semibold tracking-tight">Luke Mccormick</h4>
+                        <p className="font-semibold tracking-tight md:text-2xl">Luke Mccormick</p>
                         <span className="text-sm tracking-tight">@andysm</span>
                       </div>
                     </div>
