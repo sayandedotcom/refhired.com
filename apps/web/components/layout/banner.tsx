@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import clsx from "clsx";
-import { MoveRight, X } from "lucide-react";
+import { CircleArrowRight, X } from "lucide-react";
 
 export function Banner() {
   const [close, setClose] = useState(false);
@@ -22,11 +22,12 @@ export function Banner() {
               href="https://github.com/sayandedotcom/refhired.com"
               className="inline-flex items-center gap-x-1 font-semibold underline duration-150 hover:text-indigo-100">
               Check out our code
-              <MoveRight />
+              <CircleArrowRight />
             </Link>
           </p>
         </div>
         <button
+          aria-label="close"
           onClick={() => setClose(!close)}
           className="rounded-lg p-2 ring-offset-2 duration-150 hover:bg-indigo-500 focus:ring">
           <X />
