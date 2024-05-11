@@ -2,7 +2,7 @@ import { thirtyDaysAgo } from "@refhiredcom/utils";
 
 import prisma from "@referrer/prisma";
 
-export async function handler() {
+export async function POST() {
   try {
     // Find all posts that have expired
     const expiredPosts = await prisma.posts.findMany({
