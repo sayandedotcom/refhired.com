@@ -69,12 +69,12 @@ Deployment Cost - AWS Aurora Database for 2 days cost me $0.35! with only 2 
   <p align="center">
     Hire and apply only through referrals !
     <br />
-    <a href="https://refhired-com-web.vercel.app/"><strong>Learn more »</strong></a>
+    <a href="https://refhired.com/"><strong>Learn more »</strong></a>
     <br />
     <br />
 <!--     <a href="https://go.cal.com/discord">Discord</a>
     · -->
-    <a href="https://refhired-com-web.vercel.app/">Website</a>
+    <a href="https://refhired.com/">Website</a>
     ·
     <a href="https://github.com/sayandedotcom/refhired.com/issues">Issues</a>
 <!--     ·
