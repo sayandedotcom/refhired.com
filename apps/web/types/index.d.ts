@@ -36,6 +36,7 @@ export type SiteConfig = {
     twitter: string;
     github: string;
   };
+  waitlist?: boolean;
 };
 
 export type DocsConfig = {
