@@ -3,11 +3,11 @@
 import { useState } from "react";
 
 import { useLoading } from "@/hooks";
-import { Link, usePathname } from "@/navigation";
+import { Link, usePathname, useRouter } from "@/navigation";
 
-import { buttonVariants } from "@referrer/ui";
+import { Button } from "@referrer/ui";
 
-import { navigation } from "@/config";
+import { navigation, siteConfig } from "@/config";
 
 import { ThemeSwitcher } from "../custom-components";
 import { Icons } from "../icons/icons";
@@ -15,28 +15,37 @@ import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 
 export const NavButtonsUnAuthenticated = () => {
   const { loadingValue, setLoadingValue } = useLoading();
+  const router = useRouter();
+  const handleCLick = (redirect, loadingValue) => {
+    setLoadingValue(loadingValue);
+    router.push(`/auth/${redirect}`);
+  };
   return (
     <ul className="hidden items-center space-x-0 lg:flex lg:flex-row lg:space-x-6">
       <li className="mt-4 lg:mt-0">
         <TooltipDemo text="Log In">
-          <Link
-            onClick={() => setLoadingValue("logInRedirect")}
-            className={buttonVariants()}
-            href="/auth/login">
+          <Button
+            onClick={() => handleCLick("login", "logInRedirect")}
+            // className={buttonVariants()}
+            disabled={siteConfig.waitlist}
+            // href="/auth/login"
+          >
             {loadingValue === "logInRedirect" && <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />}
             Log In
-          </Link>
+          </Button>
         </TooltipDemo>
       </li>
       <li className="mt-8 lg:mt-0">
         <TooltipDemo text="Sign Up">
-          <Link
-            onClick={() => setLoadingValue("signUpRedirect")}
-            className={buttonVariants({ variant: "outline" })}
-            href="/auth/sign-up">
+          <Button
+            onClick={() => handleCLick("sign-up", "signUpRedirect")}
+            // className={buttonVariants({ variant: "outline" })}
+            // href="/auth/sign-up"
+            disabled={siteConfig.waitlist}
+            variant="outline">
             {loadingValue === "signUpRedirect" && <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />}
             Sign Up
-          </Link>
+          </Button>
         </TooltipDemo>
       </li>
       {/* <li>
