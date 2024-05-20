@@ -1,10 +1,14 @@
+import { Suspense } from "react";
+
 import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
+import { cookies } from "next/headers";
 
 import { locales } from "@/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
+import { cloakSSROnlySecret } from "ssr-only-secrets";
 
 import { ApolloWrapper } from "@/lib/apollo-client/apollo-wrapper";
 
@@ -12,6 +16,7 @@ import { siteConfig } from "@/config";
 
 import { cn } from "@/utils";
 
+import Loading from "./loading";
 import { Provider } from "./providers";
 
 export const metadata: Metadata = {
@@ -44,7 +49,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.jpg`],
+    //  images: ["../../public/"],
+    // images: [siteConfig.ogImage],
     creator: "@sayan",
   },
   icons: [
@@ -98,13 +104,17 @@ export default function RootLayout({
   loginModal: any;
   params: { locale: string };
 }) {
-  console.log("params---locale=====================", locale);
-
   unstable_setRequestLocale(locale);
 
   const messages = useMessages();
+
+  const token = cookies().get("next-auth.session-token")?.value;
+
+  const sessionId = cloakSSROnlySecret(token ?? "", "SECRET_KEY_VAR");
+
   return (
     <>
+      {/* <ApolloWrapper sessionId={sessionId}> */}
       <html lang={locale} suppressHydrationWarning>
         <body
           className={cn(
@@ -112,16 +122,21 @@ export default function RootLayout({
             fontSans.variable,
             fontHeading.variable
           )}>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <Provider>
-              <ApolloWrapper>
-                {children}
-                {loginModal}
-              </ApolloWrapper>
-            </Provider>
-          </NextIntlClientProvider>
+          <Suspense fallback={<Loading />}>
+            <ApolloWrapper sessionId={sessionId}>
+              <NextIntlClientProvider locale={locale} messages={messages}>
+                <Provider>
+                  {/* <ApolloWrapper> */}
+                  {children}
+                  {loginModal}
+                  {/* </ApolloWrapper> */}
+                </Provider>
+              </NextIntlClientProvider>
+            </ApolloWrapper>
+          </Suspense>
         </body>
       </html>
+      {/* </ApolloWrapper> */}
     </>
   );
 }
