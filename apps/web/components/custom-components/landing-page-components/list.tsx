@@ -19,7 +19,7 @@ let notifications = [
   {
     name: "Jack receives a referral from Google",
     description: "@jack22",
-    src: "https://avatar.vercel.sh/jill",
+    src: "https://avatar.vercel.sh/john",
     time: "15m ago",
     icon: "💸",
     color: "#00C9A7",
@@ -27,7 +27,7 @@ let notifications = [
   {
     name: "John giving referrals to Meta",
     description: "@john12",
-    src: "https://avatar.vercel.sh/jill",
+    src: "https://avatar.vercel.sh/jane",
     time: "10m ago",
     icon: "👤",
     color: "#FFB800",
@@ -35,7 +35,7 @@ let notifications = [
   {
     name: "Mark receives a referral from Microsoft",
     description: "@zuck",
-    src: "https://avatar.vercel.sh/jill",
+    src: "https://avatar.vercel.sh/jenny",
     time: "5m ago",
     icon: "💬",
     color: "#FF3D71",
@@ -43,7 +43,7 @@ let notifications = [
   {
     name: "Sayan receives a referral from Tesla",
     description: "@sayandeten",
-    src: "https://avatar.vercel.sh/jill",
+    src: "https://avatar.vercel.sh/james",
     time: "2m ago",
     icon: "🗞️",
     color: "#1E86FF",
@@ -112,7 +112,7 @@ export function List({ className }: { className?: string }) {
 export function TopNotificationList({ className }: { className?: string }) {
   return (
     <div
-      className={`bg-background mx-auto flex h-[87px] max-h-[400px] w-full max-w-[400px] flex-col overflow-hidden rounded-lg shadow-lg ${className}`}>
+      className={`bg-background mx-auto flex h-[89px] max-h-[400px] w-full max-w-[440px] flex-col overflow-hidden rounded-lg p-1 ${className}`}>
       <AnimatedList delay={3000}>
         {notifications.map((item, idx) => (
           <Notification {...item} key={idx} />
