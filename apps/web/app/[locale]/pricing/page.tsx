@@ -5,6 +5,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 import { CustomPricingCard } from "@/components/custom-components";
 import PricingButton from "@/components/custom-components/pricing-button";
+import { BorderBeam } from "@/components/ui";
 
 import { plans } from "@/config";
 
@@ -18,7 +19,7 @@ export default async function Pricing({ params: { locale } }) {
   return (
     <section className="py-14">
       <div className="text-foreground mx-auto max-w-full md:px-8">
-        <div className="relative mx-auto max-w-xl sm:text-center">
+        <div className="relative mx-auto max-w-xl text-center">
           <h1 className="font-heading font-semibold">Pricing for all everyone</h1>
           <div className="mt-3 max-w-xl">
             <h5 className="font-heading">Simple pricing based on your needs.</h5>
@@ -29,8 +30,10 @@ export default async function Pricing({ params: { locale } }) {
             <div
               key={idx}
               className={`relative mt-6 flex flex-1 flex-col items-stretch rounded-xl sm:mt-0 ${
-                item.isMostPop ? "border-foreground mt-10 border-2" : "border-border border"
+                // item.isMostPop ? "border-foreground mt-10 border-2" :
+                "border-border border"
               }`}>
+              {item.isMostPop ? <BorderBeam size={650} duration={12} delay={6} /> : <></>}
               {item.isMostPop ? (
                 <span className="bg-foreground text-background absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full border px-3 py-2 text-center text-sm font-semibold shadow-md">
                   Most popular
