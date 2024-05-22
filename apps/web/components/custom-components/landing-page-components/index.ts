@@ -6,3 +6,4 @@ export * from "./username";
 export * from "./section";
 export * from "./companies";
 export * from "./join-waitlist";
+export * from "./review";

@@ -10,6 +10,7 @@ import {
   Companies,
   JoinWaitlist,
   Joinnow,
+  Review,
   Section,
   Stats,
   Testimonials,
@@ -74,6 +75,9 @@ export default function Page({ params: { locale } }) {
       <Separator />
       <Suspense fallback={<Loading />}>
         <Testimonials />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <Review />
       </Suspense>
       <Separator />
       <Suspense fallback={<Loading />}>
