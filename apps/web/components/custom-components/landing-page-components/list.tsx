@@ -17,7 +17,7 @@ interface Item {
 
 let notifications = [
   {
-    name: "Jack received a referral to Google",
+    name: "Jack receives a referral from Google",
     description: "@jack22",
     src: "https://avatar.vercel.sh/jill",
     time: "15m ago",
@@ -33,7 +33,7 @@ let notifications = [
     color: "#FFB800",
   },
   {
-    name: "Mark received a referral to Microsoft",
+    name: "Mark receives a referral from Microsoft",
     description: "@zuck",
     src: "https://avatar.vercel.sh/jill",
     time: "5m ago",
@@ -41,7 +41,7 @@ let notifications = [
     color: "#FF3D71",
   },
   {
-    name: "Sayan received a referral to Tesla",
+    name: "Sayan receives a referral from Tesla",
     description: "@sayandeten",
     src: "https://avatar.vercel.sh/jill",
     time: "2m ago",
