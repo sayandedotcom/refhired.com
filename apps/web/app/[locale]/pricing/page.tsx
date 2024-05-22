@@ -5,7 +5,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 import { CustomPricingCard } from "@/components/custom-components";
 import PricingButton from "@/components/custom-components/pricing-button";
-import { BorderBeam } from "@/components/ui";
+import { BackgroundGradient, BorderBeam } from "@/components/ui";
 
 import { plans } from "@/config";
 
@@ -33,7 +33,7 @@ export default async function Pricing({ params: { locale } }) {
                 // item.isMostPop ? "border-foreground mt-10 border-2" :
                 "border-border border"
               }`}>
-              {item.isMostPop ? <BorderBeam size={650} duration={12} delay={6} /> : <></>}
+              {item.isMostPop ? <BorderBeam borderWidth={3} size={650} duration={12} delay={6} /> : <></>}
               {item.isMostPop ? (
                 <span className="bg-foreground text-background absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full border px-3 py-2 text-center text-sm font-semibold shadow-md">
                   Most popular
@@ -60,7 +60,8 @@ export default async function Pricing({ params: { locale } }) {
               </ul>
             </div>
           ))}
-          <div className="border-border relative mt-6 flex flex-1 flex-col items-stretch rounded-xl border sm:mt-0 ">
+          <BackgroundGradient className="h-full rounded-[22px] bg-white dark:bg-zinc-900">
+            {/* <div className="border-border relative mt-6 flex flex-1 flex-col items-stretch rounded-xl border sm:mt-0 "> */}
             <div className="space-y-2 border-b p-8">
               <span className="font-medium">Custom</span>
               <CustomPricingCard />
@@ -74,7 +75,8 @@ export default async function Pricing({ params: { locale } }) {
                 featureItem
               </li>
             </ul>
-          </div>
+            {/* </div> */}
+          </BackgroundGradient>
         </div>
       </div>
     </section>

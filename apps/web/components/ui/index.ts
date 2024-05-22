@@ -16,3 +16,5 @@ export * from "./slider";
 export * from "./required";
 export * from "./placeholders-and-vanish-input";
 export * from "./border-beam";
+// export * from "./bento-grid";
+export * from "./background-gradient";
