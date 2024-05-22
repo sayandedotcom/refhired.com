@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 import clsx from "clsx";
-import { CircleArrowRight, X } from "lucide-react";
+import { ChevronRight, X } from "lucide-react";
 
 export function Banner() {
   const [close, setClose] = useState(false);
@@ -22,7 +22,7 @@ export function Banner() {
               href="https://github.com/sayandedotcom/refhired.com"
               className="inline-flex items-center gap-x-1 font-semibold underline duration-150 hover:text-indigo-100">
               Check out our code
-              <CircleArrowRight />
+              <ChevronRight />
             </Link>
           </p>
         </div>
