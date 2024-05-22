@@ -8,6 +8,7 @@ import { Separator } from "@referrer/ui";
 
 import {
   Companies,
+  Infotmation,
   JoinWaitlist,
   Joinnow,
   Opensource,
@@ -18,7 +19,6 @@ import {
   Usecases,
   Username,
 } from "@/components/custom-components";
-import { Notice } from "@/components/layout";
 
 import Loading from "./loading";
 
@@ -36,9 +36,10 @@ export default function Page({ params: { locale } }) {
         <TopNotificationList className="absolute right-8 top-5 hidden lg:block" />
       </Suspense>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
-        <Notice arrow href="/about-us">
+        {/* <Notice arrow href="/about-us">
           Important Notice !
-        </Notice>
+        </Notice> */}
+        <Infotmation />
         <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
           " Navigate the job market with{" "}
           <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
@@ -69,6 +70,7 @@ export default function Page({ params: { locale } }) {
       <Suspense fallback={<Loading />}>
         <Companies />
       </Suspense>
+      <Separator />
       <Suspense fallback={<Loading />}>
         <Username session={user} />
       </Suspense>

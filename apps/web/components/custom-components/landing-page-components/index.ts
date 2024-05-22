@@ -10,3 +10,4 @@ export * from "./review";
 // export * from "./bento";
 export * from "./list";
 export * from "./open-source";
+export * from "./infotmation";

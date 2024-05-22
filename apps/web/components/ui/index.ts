@@ -18,3 +18,4 @@ export * from "./placeholders-and-vanish-input";
 export * from "./border-beam";
 // export * from "./bento-grid";
 export * from "./background-gradient";
+export * from "./animated-gradient-text";
