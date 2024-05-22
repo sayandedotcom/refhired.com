@@ -7,3 +7,5 @@ export * from "./section";
 export * from "./companies";
 export * from "./join-waitlist";
 export * from "./review";
+// export * from "./bento";
+export * from "./list";

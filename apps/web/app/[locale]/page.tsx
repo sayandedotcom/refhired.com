@@ -14,6 +14,7 @@ import {
   Section,
   Stats,
   Testimonials,
+  TopNotificationList,
   Usecases,
   Username,
 } from "@/components/custom-components";
@@ -30,7 +31,8 @@ export default function Page({ params: { locale } }) {
   const user = null;
 
   return (
-    <>
+    <div className="relative">
+      <TopNotificationList className="absolute right-8 top-5 hidden lg:block" />
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
         <Notice arrow href="/about-us">
           Important Notice !
@@ -79,6 +81,9 @@ export default function Page({ params: { locale } }) {
       <Suspense fallback={<Loading />}>
         <Review />
       </Suspense>
+      {/* <Suspense fallback={<Loading />}>
+        <Bento />
+      </Suspense> */}
       <Separator />
       <Suspense fallback={<Loading />}>
         <Usecases />
@@ -123,6 +128,6 @@ export default function Page({ params: { locale } }) {
           </div>
         </section>
       </Suspense>
-    </>
+    </div>
   );
 }
