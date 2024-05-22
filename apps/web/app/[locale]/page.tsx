@@ -32,7 +32,9 @@ export default function Page({ params: { locale } }) {
 
   return (
     <div className="relative">
-      <TopNotificationList className="absolute right-8 top-5 hidden lg:block" />
+      <Suspense fallback={<Loading />}>
+        <TopNotificationList className="absolute right-8 top-5 hidden lg:block" />
+      </Suspense>
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
         <Notice arrow href="/about-us">
           Important Notice !
