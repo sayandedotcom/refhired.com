@@ -11,12 +11,6 @@ export const Joinnow = () => {
             Don't waste your time.
             <strong className="font-extrabold sm:block">Get / Referrer a Job now</strong>
           </h1>
-
-          <p className="mt-4 sm:text-xl/relaxed">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus
-            numquam ea!
-          </p>
-
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button className="block w-full rounded px-12 py-3 text-sm font-medium shadow focus:outline-none focus:ring sm:w-auto">
               Log In

@@ -38,20 +38,20 @@ export const Stats = () => {
 
   const stats = [
     {
-      data: "35K",
-      title: "Customers",
+      data: "1k",
+      title: "Visitors",
     },
     {
-      data: "10K+",
-      title: "Downloads",
+      data: "800+",
+      title: "Waitlisted",
     },
     {
       data: "40+",
       title: "Countries",
     },
     {
-      data: "30M+",
-      title: "Total revenue",
+      data: "100+",
+      title: "Reviews",
     },
   ];
 
@@ -59,11 +59,8 @@ export const Stats = () => {
     <section className="py-14">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h3 className="text-3xl font-semibold sm:text-4xl">Our customers are always happy</h3>
-          <p className="mt-3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis sollicitudin quam ut
-            tincidunt.
-          </p>
+          <h3 className="text-3xl font-semibold sm:text-4xl">Beta Insights</h3>
+          <p className="mt-3">Currently refhired.com have not publically launched</p>
         </div>
         <div className="mt-12">
           <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x">

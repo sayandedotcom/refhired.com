@@ -1,24 +1,25 @@
 import { Suspense } from "react";
 
-import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
 
-import { Separator } from "@referrer/ui";
-
 import {
+  Beam,
+  Bento,
   Companies,
   Infotmation,
   JoinWaitlist,
   Joinnow,
+  MagicBentoComponent,
+  MagicBentoTwo,
   Opensource,
   Review,
-  Section,
   Stats,
   TopNotificationList,
   Usecases,
   Username,
 } from "@/components/custom-components";
+import { ShimmerButtonComponent } from "@/components/custom-components/landing-page-components/shimmer-button-component";
 
 import Loading from "./loading";
 
@@ -62,42 +63,55 @@ export default function Page({ params: { locale } }) {
         <Suspense fallback={<Loading />}>
           <JoinWaitlist />
         </Suspense>
-        <Link className="btn-97 animate-bounce uppercase" href="/home">
-          Explore the MVP !
-        </Link>
+        <ShimmerButtonComponent href={"/home"}>Explore the MVP !</ShimmerButtonComponent>
       </div>
-      <Separator />
+
       <Suspense fallback={<Loading />}>
         <Companies />
       </Suspense>
-      <Separator />
+
       <Suspense fallback={<Loading />}>
         <Username session={user} />
       </Suspense>
-      <Separator />
+
       <Suspense fallback={<Loading />}>
-        <Section />
+        {/* <Section /> */}
+        <MagicBentoComponent />
       </Suspense>
-      <Separator />
+
+      <Suspense fallback={<Loading />}>
+        <Beam />
+      </Suspense>
+
       {/* <Suspense fallback={<Loading />}>
         <Testimonials />
       </Suspense> */}
       <Suspense fallback={<Loading />}>
         <Review />
       </Suspense>
-      {/* <Suspense fallback={<Loading />}>
+
+      <Suspense fallback={<Loading />}>
         <Bento />
-      </Suspense> */}
-      <Separator />
+      </Suspense>
+
+      <Suspense fallback={<Loading />}>
+        <MagicBentoTwo />
+      </Suspense>
+
       <Suspense fallback={<Loading />}>
         <Usecases />
       </Suspense>
-      <Separator />
+
+      {/* <Suspense fallback={<Loading />}>
+        <Features />
+      </Suspense> */}
+
       <Suspense fallback={<Loading />}>
         <Stats />
       </Suspense>
-      <Separator />
+
       <Suspense fallback={<Loading />}>{user && user ? <></> : <Joinnow />}</Suspense>
+
       <Suspense fallback={<Loading />}>
         <Opensource />
       </Suspense>

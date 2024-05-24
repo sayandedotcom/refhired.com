@@ -1,11 +1,72 @@
 "use client";
 
-import { features } from "@/config";
+import { Star } from "lucide-react";
+
+import { BentoGrid, BentoGridItem } from "@/components/ui";
 
 export const Section = () => {
   return (
-    <>
-      <section className="py-14">
+    <div className="flex flex-col gap-3 py-11">
+      <h3
+        className="font-heading bg-gradient-to-r from-[#fc00ff] to-[#00dbde] bg-clip-text text-center text-2xl text-[30px]
+        font-semibold text-transparent sm:text-4xl md:text-[50px]">
+        Features
+      </h3>
+      <BentoGrid className="mix-w-4xl mx-auto w-full md:auto-rows-[20rem]">
+        {items.map((item, i) => (
+          <BentoGridItem
+            key={i}
+            title={item.title}
+            description={item.description}
+            header={item.header}
+            className={item.className}
+            icon={item.icon}
+          />
+        ))}
+      </BentoGrid>
+    </div>
+  );
+};
+const Skeleton = () => (
+  <div className="dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex h-full min-h-[6rem] w-full   flex-1 rounded-xl border  border-transparent bg-neutral-100 [mask-image:radial-gradient(ellipse_at_center,white,transparent)] dark:border-white/[0.2] dark:bg-black"></div>
+);
+const items = [
+  {
+    title: "The Dawn of Innovation",
+    description: "Explore the birth of groundbreaking ideas and inventions.",
+    header: <Skeleton />,
+    className: "md:col-span-2",
+    icon: <Star className="h-6 w-6 text-neutral-500" />,
+  },
+  {
+    title: "The Digital Revolution",
+    description: "Dive into the transformative power of technology.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
+    icon: <Star className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "The Art of Design",
+    description: "Discover the beauty of thoughtful and functional design.",
+    header: <Skeleton />,
+    className: "md:col-span-1",
+    icon: <Star className="h-4 w-4 text-neutral-500" />,
+  },
+  {
+    title: "The Power of Communication",
+    description: "Understand the impact of effective communication in our lives.",
+    header: <Skeleton />,
+    className: "md:col-span-2",
+    icon: <Star className="h-4 w-4 text-neutral-500" />,
+  },
+];
+
+// export const Section = () => {
+//   return (
+// <>
+
+{
+  /* <section className="py-14">
         <div className="mx-auto max-w-screen-xl px-4 text-center md:px-8">
           <div className="mx-auto max-w-2xl">
             <h3
@@ -32,10 +93,13 @@ export const Section = () => {
             </ul>
           </div>
         </div>
-      </section>
-    </>
+      </section> */
+}
+{
+  /* </>
   );
-};
+}; */
+}
 
 // <section className="font-heading flex items-center justify-center">
 //   <div className="w-11/12 rounded-3xl px-4 py-8 sm:px-6 sm:py-12 md:w-10/12 lg:px-8 lg:py-16">
