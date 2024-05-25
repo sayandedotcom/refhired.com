@@ -1,5 +1,7 @@
 "use client";
 
+import NumberTicker from "@/components/ui/number-ticker";
+
 export const Stats = () => {
   // <section>
   //   <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
@@ -38,40 +40,37 @@ export const Stats = () => {
 
   const stats = [
     {
-      data: "1k",
+      data: 1000,
       title: "Visitors",
     },
     {
-      data: "800+",
+      data: 800,
       title: "Waitlisted",
     },
     {
-      data: "40+",
+      data: 40,
       title: "Countries",
     },
     {
-      data: "100+",
+      data: 100,
       title: "Reviews",
     },
   ];
 
   return (
-    <section className="py-14">
-      <div className="mx-auto max-w-screen-xl px-4 md:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h3 className="text-3xl font-semibold sm:text-4xl">Beta Insights</h3>
-          <p className="mt-3">Currently refhired.com have not publically launched</p>
-        </div>
-        <div className="mt-12">
-          <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x">
-            {stats.map((item, idx) => (
-              <li key={idx} className="px-12 text-center md:px-16">
-                <h4 className="text-4xl font-semibold">{item.data}</h4>
-                <p className="mt-3 font-medium">{item.title}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <section className="mx-auto max-w-screen-xl px-4 py-14 md:px-8">
+      <div className="mx-auto max-w-2xl text-center">
+        <h3 className="font-heading text-xl font-semibold md:text-6xl">Beta Insights</h3>
+        <p className="mt-3">Currently refhired.com have not publically launched</p>
+      </div>
+      <div className="mt-12">
+        <ul className="flex flex-col items-center justify-center gap-y-10 sm:flex-row sm:flex-wrap lg:divide-x">
+          {stats.map((item, idx) => (
+            <li key={idx} className="px-12 text-center text-4xl font-semibold md:px-16">
+              <NumberTicker value={item.data} /> +<p className="mt-3 text-2xl font-medium">{item.title}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

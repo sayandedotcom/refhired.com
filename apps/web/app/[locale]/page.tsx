@@ -5,7 +5,6 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 import {
   Beam,
-  Bento,
   Companies,
   Infotmation,
   JoinWaitlist,
@@ -16,7 +15,6 @@ import {
   Review,
   Stats,
   TopNotificationList,
-  Usecases,
   Username,
 } from "@/components/custom-components";
 import { ShimmerButtonComponent } from "@/components/custom-components/landing-page-components/shimmer-button-component";
@@ -75,12 +73,12 @@ export default function Page({ params: { locale } }) {
       </Suspense>
 
       <Suspense fallback={<Loading />}>
-        {/* <Section /> */}
-        <MagicBentoComponent />
+        <MagicBentoTwo />
       </Suspense>
 
       <Suspense fallback={<Loading />}>
-        <Beam />
+        {/* <Section /> */}
+        <MagicBentoComponent />
       </Suspense>
 
       {/* <Suspense fallback={<Loading />}>
@@ -91,16 +89,16 @@ export default function Page({ params: { locale } }) {
       </Suspense>
 
       <Suspense fallback={<Loading />}>
+        <Beam />
+      </Suspense>
+
+      {/* <Suspense fallback={<Loading />}>
         <Bento />
-      </Suspense>
+      </Suspense> */}
 
-      <Suspense fallback={<Loading />}>
-        <MagicBentoTwo />
-      </Suspense>
-
-      <Suspense fallback={<Loading />}>
+      {/* <Suspense fallback={<Loading />}>
         <Usecases />
-      </Suspense>
+      </Suspense> */}
 
       {/* <Suspense fallback={<Loading />}>
         <Features />

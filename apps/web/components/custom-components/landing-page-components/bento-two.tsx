@@ -1,4 +1,5 @@
 import { CalendarIcon, FileTextIcon, GlobeIcon, InputIcon } from "@radix-ui/react-icons";
+import { Search } from "lucide-react";
 
 import {
   Calendar,
@@ -46,7 +47,7 @@ const features = [
     description: "We automatically save your files as you type.",
     href: "/",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-1",
+    className: "col-span-3 lg:col-span-2",
     background: (
       <Marquee
         pauseOnHover
@@ -73,37 +74,26 @@ const features = [
   },
   {
     Icon: InputIcon,
-    name: "Full text search",
-    description: "Search through all your files in one place.",
+    name: "Search for referrals",
+    description: "Search through all referrals in one place.",
     href: "/",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-2",
+    className: "col-span-3 lg:col-span-1",
     background: (
       <Command className="absolute right-10 top-10 w-[70%] origin-top translate-x-0 border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:-translate-x-10">
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="Search Referrals..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Suggestions">
-            <CommandItem>screenshot.png</CommandItem>
-            <CommandItem>bitcoin.pdf</CommandItem>
-            <CommandItem>finances.xlsx</CommandItem>
-            <CommandItem>logo.svg</CommandItem>
-            <CommandItem>keys.gpg</CommandItem>
-            <CommandItem>seed.txt</CommandItem>
+            <CommandItem>Referrals at Google</CommandItem>
+            <CommandItem>Referrals at Meta</CommandItem>
+            <CommandItem>Referrals at Microsoft</CommandItem>
+            <CommandItem>Referrals at Apple</CommandItem>
+            <CommandItem>Referrals at Tesla</CommandItem>
+            <CommandItem>Referrals at Amazon</CommandItem>
           </CommandGroup>
         </CommandList>
       </Command>
-    ),
-  },
-  {
-    Icon: GlobeIcon,
-    name: "Multilingual",
-    description: "Supports 100+ languages and counting.",
-    href: "/",
-    cta: "Learn more",
-    className: "col-span-3 lg:col-span-2",
-    background: (
-      <Globe className="top-0 h-[600px] w-[600px] transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_30%,#000_100%)] group-hover:scale-105 sm:left-40" />
     ),
   },
   {
@@ -121,14 +111,31 @@ const features = [
       />
     ),
   },
+  {
+    Icon: GlobeIcon,
+    name: "Multilingual",
+    description: "Supports 40+ languages and counting.",
+    href: "/",
+    cta: "Learn more",
+    className: "col-span-3 lg:col-span-2",
+    background: (
+      <Globe className="top-0 h-[600px] w-[600px] transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_30%,#000_100%)] group-hover:scale-105 sm:left-40" />
+    ),
+  },
 ];
 
 export const MagicBentoTwo = () => {
   return (
-    <MagicBentoGrid className="mx-auto max-w-7xl py-5">
-      {features.map((feature) => (
-        <MagicBentoCard key={feature.name} {...feature} />
-      ))}
-    </MagicBentoGrid>
+    <section className="mx-auto flex max-w-7xl flex-col gap-5 py-3 md:py-16">
+      <h2 className="font-heading flex items-center px-2 text-start text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
+        <Search className="mb-2 mr-5 hidden h-16 w-16 origin-left transform-gpu text-neutral-100 transition-all duration-300 ease-in-out group-hover:scale-75 md:block" />
+        Search referrals in a new way
+      </h2>
+      <MagicBentoGrid>
+        {features.map((feature) => (
+          <MagicBentoCard key={feature.name} {...feature} />
+        ))}
+      </MagicBentoGrid>
+    </section>
   );
 };

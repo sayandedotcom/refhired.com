@@ -42,9 +42,9 @@ export const Username = (prop: any) => {
         <>
           <h2 className="px-2 text-center text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
             Claim your{" "}
-            <span className="bg-gradient-to-r from-[#ff4b1f] to-[#ff9068] bg-clip-text px-2 text-center text-[30px] text-transparent md:text-[50px]">
-              username
-            </span>{" "}
+            {/* <span className="bg-gradient-to-r from-[#ff4b1f] to-[#ff9068] bg-clip-text px-2 text-center text-[30px] text-transparent md:text-[50px]"> */}
+            username
+            {/* </span>{" "} */}
             now !
           </h2>
           <form

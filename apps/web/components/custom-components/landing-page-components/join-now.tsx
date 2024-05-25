@@ -1,25 +1,23 @@
 "use client";
 
-import { Button } from "@referrer/ui";
+import GradualSpacing from "@/components/ui/gradual-spacing";
+
+import { ShimmerButtonComponent } from "./shimmer-button-component";
 
 export const Joinnow = () => {
   return (
-    <section>
-      <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-96 lg:items-center">
-        <div className="mx-auto max-w-xl text-center">
-          <h1 className="text-[30px] font-extrabold md:text-[50px]">
-            Don't waste your time.
-            <strong className="font-extrabold sm:block">Get / Referrer a Job now</strong>
-          </h1>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Button className="block w-full rounded px-12 py-3 text-sm font-medium shadow focus:outline-none focus:ring sm:w-auto">
-              Log In
-            </Button>
-            <Button className="block w-full rounded px-12 py-3 text-sm font-medium shadow focus:outline-none focus:ring sm:w-auto">
-              Sign Up
-            </Button>
-          </div>
-        </div>
+    <section className="mx-auto py-32 text-center">
+      <GradualSpacing
+        className="font-display text-center text-xl font-bold tracking-[-0.1em] text-black  dark:text-white md:text-6xl md:leading-[5rem]"
+        text=" Don't waste your time !"
+      />
+      {/* <h1 className="font-heading text-xl font-extrabold dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-6xl">
+        Don't waste your time !
+      </h1> */}
+      <h4 className="font-extrabold sm:block">Get / Referrer a Job now</h4>
+      <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <ShimmerButtonComponent href={"/"}>Log In</ShimmerButtonComponent>
+        <ShimmerButtonComponent href={"/"}>Sign Up</ShimmerButtonComponent>
       </div>
     </section>
   );

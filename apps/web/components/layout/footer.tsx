@@ -11,7 +11,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="flex justify-center sm:justify-start">
-              <p className="md:text-4xl">Refhired.com</p>
+              <p className="text-2xl md:text-4xl">Refhired.com</p>
             </div>
             <Separator />
             <div className="mt-6 flex max-w-md flex-col gap-5 text-center leading-relaxed text-gray-300 sm:max-w-xs sm:text-left">

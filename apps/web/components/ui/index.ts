@@ -24,3 +24,7 @@ export * from "./animated-beam";
 export * from "./magic-bento";
 export * from "./globe";
 export * from "./shimmer-button";
+export * from "./word-rotate";
+export * from "./number-ticker";
+export * from "./tweet-card";
+export * from "./gradual-spacing";

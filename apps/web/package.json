@@ -69,6 +69,7 @@
     "react-share": "^5.1.0",
     "react-slider": "^2.0.6",
     "react-textarea-autosize": "^8.5.2",
+    "react-tweet": "^3.2.1",
     "resend": "^1.1.0",
     "sharp": "^0.33.3",
     "sonner": "^0.7.4",

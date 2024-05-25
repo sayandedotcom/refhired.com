@@ -1,4 +1,4 @@
-import { BellIcon, CalendarIcon, FileInputIcon, FileTextIcon, GlobeIcon } from "lucide-react";
+import { BellIcon, CalendarIcon, FileInputIcon, FileTextIcon, Folder, GlobeIcon } from "lucide-react";
 
 import { MagicBentoCard, MagicBentoGrid } from "@/components/ui";
 
@@ -101,10 +101,16 @@ const features = [
 
 export const MagicBentoComponent = () => {
   return (
-    <MagicBentoGrid className="mx-auto max-w-7xl py-5 lg:grid-rows-3">
-      {features.map((feature) => (
-        <MagicBentoCard key={feature.name} {...feature} />
-      ))}
-    </MagicBentoGrid>
+    <section className="mx-auto flex max-w-7xl flex-col gap-5 py-3 md:py-16">
+      <h2 className="font-heading flex items-center justify-end px-2 text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
+        <Folder className="mb-2 mr-5 hidden h-16 w-16 origin-left transform-gpu text-neutral-100 transition-all duration-300 ease-in-out group-hover:scale-75 md:block" />
+        Manage referrals in a new way
+      </h2>
+      <MagicBentoGrid className="lg:grid-rows-3">
+        {features.map((feature) => (
+          <MagicBentoCard key={feature.name} {...feature} />
+        ))}
+      </MagicBentoGrid>
+    </section>
   );
 };
