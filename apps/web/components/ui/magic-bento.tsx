@@ -1,9 +1,7 @@
 import { ReactNode } from "react";
 
-import { ArrowRightIcon } from "@radix-ui/react-icons";
-
-import { Button } from "@referrer/ui";
-
+// import { ArrowRightIcon } from "@radix-ui/react-icons";
+// import { Button } from "@referrer/ui";
 import { cn } from "@/utils";
 
 const MagicBentoGrid = ({ children, className }: { children: ReactNode; className?: string }) => {
@@ -44,7 +42,7 @@ const MagicBentoCard = ({
       <p className="max-w-lg text-neutral-400">{description}</p>
     </div>
 
-    <div
+    {/* <div
       className={cn(
         "pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
       )}>
@@ -54,7 +52,7 @@ const MagicBentoCard = ({
           <ArrowRightIcon className="ml-2 h-4 w-4" />
         </a>
       </Button>
-    </div>
+    </div> */}
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
   </div>
 );

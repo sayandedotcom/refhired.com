@@ -10,6 +10,7 @@ import {
   JoinWaitlist,
   Joinnow,
   MagicBentoComponent,
+  MagicBentoThree,
   MagicBentoTwo,
   Opensource,
   Review,
@@ -32,8 +33,9 @@ export default function Page({ params: { locale } }) {
   return (
     <div className="relative">
       <Suspense fallback={<Loading />}>
-        <TopNotificationList className="absolute right-8 top-5 hidden lg:block" />
+        <TopNotificationList className="fixed right-8 top-16 z-40 hidden lg:block" />
       </Suspense>
+
       <div className="mt-3 flex flex-col items-center justify-center gap-10 lg:p-16">
         {/* <Notice arrow href="/about-us">
           Important Notice !
@@ -73,12 +75,16 @@ export default function Page({ params: { locale } }) {
       </Suspense>
 
       <Suspense fallback={<Loading />}>
+        {/* <Section /> */}
+        <MagicBentoComponent />
+      </Suspense>
+
+      <Suspense fallback={<Loading />}>
         <MagicBentoTwo />
       </Suspense>
 
       <Suspense fallback={<Loading />}>
-        {/* <Section /> */}
-        <MagicBentoComponent />
+        <MagicBentoThree />
       </Suspense>
 
       {/* <Suspense fallback={<Loading />}>

@@ -1,17 +1,10 @@
-import { CalendarIcon, FileTextIcon, GlobeIcon, InputIcon } from "@radix-ui/react-icons";
-import { Search } from "lucide-react";
+import { FileTextIcon, InputIcon } from "@radix-ui/react-icons";
+import { MousePointerClick, Search } from "lucide-react";
 
-import {
-  Calendar,
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@referrer/ui";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@referrer/ui";
 
-import { Globe, MagicBentoCard, MagicBentoGrid } from "@/components/ui";
+import { Icons } from "@/components/icons/icons";
+import { MagicBentoCard, MagicBentoGrid } from "@/components/ui";
 
 import { cn } from "@/utils";
 
@@ -43,8 +36,8 @@ const files = [
 const features = [
   {
     Icon: FileTextIcon,
-    name: "Save your files",
-    description: "We automatically save your files as you type.",
+    name: "Browse through referrals",
+    description: "You can browse through unlimited number of referralss.",
     href: "/",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2",
@@ -73,12 +66,30 @@ const features = [
     ),
   },
   {
+    Icon: MousePointerClick,
+    name: "Easy Apply",
+    description: "One click apply for referrals.",
+    href: "/",
+    cta: "Learn more",
+    className: "col-span-3 lg:col-span-1",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+  },
+  {
+    Icon: Icons.findReferrer,
+    name: "Find Referrer",
+    description: "Find Referrer for specific company or startups you want.",
+    className: "col-span-3 lg:col-span-1",
+    href: "/",
+    cta: "Learn more",
+    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+  },
+  {
     Icon: InputIcon,
     name: "Search for referrals",
     description: "Search through all referrals in one place.",
     href: "/",
     cta: "Learn more",
-    className: "col-span-3 lg:col-span-1",
+    className: "col-span-3 lg:col-span-2",
     background: (
       <Command className="absolute right-10 top-10 w-[70%] origin-top translate-x-0 border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:-translate-x-10">
         <CommandInput placeholder="Search Referrals..." />
@@ -94,32 +105,6 @@ const features = [
           </CommandGroup>
         </CommandList>
       </Command>
-    ),
-  },
-  {
-    Icon: CalendarIcon,
-    name: "Calendar",
-    description: "Use the calendar to filter your files by date.",
-    className: "col-span-3 lg:col-span-1",
-    href: "/",
-    cta: "Learn more",
-    background: (
-      <Calendar
-        mode="single"
-        selected={new Date(2022, 4, 11, 0, 0, 0)}
-        className="absolute right-0 top-10 origin-top rounded-md border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:scale-105"
-      />
-    ),
-  },
-  {
-    Icon: GlobeIcon,
-    name: "Multilingual",
-    description: "Supports 40+ languages and counting.",
-    href: "/",
-    cta: "Learn more",
-    className: "col-span-3 lg:col-span-2",
-    background: (
-      <Globe className="top-0 h-[600px] w-[600px] transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_30%,#000_100%)] group-hover:scale-105 sm:left-40" />
     ),
   },
 ];

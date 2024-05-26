@@ -112,7 +112,20 @@ export function List({ className }: { className?: string }) {
 export function TopNotificationList({ className }: { className?: string }) {
   return (
     <div
-      className={`bg-background mx-auto flex h-[89px] max-h-[400px] w-full max-w-[440px] flex-col overflow-hidden rounded-lg p-1 ${className}`}>
+      className={`mx-auto flex h-[89px] max-h-[400px] w-full max-w-[440px] flex-col overflow-hidden rounded-lg  p-1 ${className}`}>
+      <AnimatedList delay={3000}>
+        {notifications.map((item, idx) => (
+          <Notification {...item} key={idx} />
+        ))}
+      </AnimatedList>
+    </div>
+  );
+}
+
+export function FeatureNotificationList({ className }: { className?: string }) {
+  return (
+    <div
+      className={`bg-background mx-auto flex h-[300px] max-h-[400px] w-full max-w-[440px] flex-col overflow-hidden rounded-lg p-1 ${className}`}>
       <AnimatedList delay={3000}>
         {notifications.map((item, idx) => (
           <Notification {...item} key={idx} />

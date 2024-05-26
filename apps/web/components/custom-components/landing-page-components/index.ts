@@ -15,3 +15,4 @@ export * from "./features";
 export * from "./lines";
 export * from "./magic-component";
 export * from "./bento-two";
+export * from "./bento-three";
