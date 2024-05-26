@@ -32,6 +32,8 @@ import { Required } from "@/components/ui";
 
 import { signUpValidator } from "@/lib/validators";
 
+import { siteConfig } from "@/config";
+
 import { useStore } from "@/store/store";
 
 const SignUp = () => {
@@ -205,6 +207,7 @@ const SignUp = () => {
               )}
             /> */}
             <Button
+              disabled={siteConfig.waitlist}
               type="submit"
               className="flex items-center justify-center"
               // onClick={() => signIn("credentials")}
@@ -219,7 +222,7 @@ const SignUp = () => {
         <div className="mx-auto flex w-full justify-center gap-5 lg:w-11/12">
           <Button
             className="font-heading flex w-11/12 items-center justify-center gap-5 text-xl"
-            disabled={loadingValue === "google"}
+            disabled={loadingValue === "google" || siteConfig.waitlist}
             onClick={() => signInProviders("google")}
             variant="secondary"
             size="lg">

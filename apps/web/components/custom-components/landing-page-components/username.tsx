@@ -66,7 +66,7 @@ export const Username = (prop: any) => {
               Claim Username
             </button>
           </form>
-          <p className="text-destructive md:text-xl">{errors.userName?.message}</p>
+          <p className="text-[#FF0000] md:text-xl">{errors.userName?.message}</p>
         </>
       )}
     </div>

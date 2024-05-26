@@ -32,6 +32,8 @@ import {
 import { Icons } from "@/components/icons/icons";
 import { Required } from "@/components/ui";
 
+import { siteConfig } from "@/config";
+
 import { cn } from "@/utils";
 
 const loginSchema = z.object({
@@ -160,6 +162,7 @@ export default function Login() {
           />
           <Button
             type="submit"
+            disabled={siteConfig.waitlist}
             className="flex items-center justify-center"
             isLoading={loadingValue === "logIn"}>
             {t("log_in")} <PartyPopper className="ml-4" />
@@ -174,7 +177,7 @@ export default function Login() {
       <div className="mx-auto flex w-full justify-center gap-5 lg:w-11/12">
         <Button
           className="font-heading flex w-11/12 items-center justify-center gap-5 text-xl"
-          disabled={loadingValue === "google"}
+          disabled={loadingValue === "google" || siteConfig.waitlist}
           onClick={() => signInProviders("google")}
           variant="secondary"
           size="lg">
