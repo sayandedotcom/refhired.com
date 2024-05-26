@@ -131,7 +131,7 @@ export function JoinWaitlist() {
                           />
                         </div> */}
                       </FormControl>
-                      <FormMessage className="justify-center text-[#ff3535]">{error}</FormMessage>
+                      <FormMessage className="justify-center text-[#ff3535bb]">{error}</FormMessage>
                       {/* <FormDescription> Enter your email address !</FormDescription> */}
                     </FormItem>
                   )}
