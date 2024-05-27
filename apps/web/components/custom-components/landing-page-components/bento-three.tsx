@@ -1,6 +1,6 @@
 import { CircleDollarSign, Folder, Gauge, Send, User } from "lucide-react";
 
-import { MagicBentoCard, MagicBentoGrid } from "@/components/ui";
+import { AnimatedGradientHeading, MagicBentoCard, MagicBentoGrid } from "@/components/ui";
 
 const files = [
   {
@@ -67,10 +67,12 @@ const features = [
 export const MagicBentoThree = () => {
   return (
     <section className="mx-auto flex max-w-7xl flex-col gap-5 py-3 md:py-16">
-      <h2 className="font-heading flex items-center justify-end px-2 text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
-        <Folder className="mb-2 mr-5 hidden h-16 w-16 origin-left transform-gpu text-neutral-100 transition-all duration-300 ease-in-out group-hover:scale-75 md:block" />
-        Manage referrals in a new way
-      </h2>
+      <AnimatedGradientHeading className="ml-auto">
+        <h2 className="flex items-center justify-end px-2 text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
+          <Folder className="mb-2 mr-5 hidden h-16 w-16 origin-left transform-gpu text-neutral-100 transition-all duration-300 ease-in-out group-hover:scale-75 md:block" />
+          Manage referrals in a new way
+        </h2>
+      </AnimatedGradientHeading>
       <MagicBentoGrid>
         {features.map((feature) => (
           <MagicBentoCard key={feature.name} {...feature} />

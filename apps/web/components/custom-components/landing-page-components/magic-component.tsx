@@ -1,6 +1,6 @@
 import { BellIcon, Fingerprint, GlobeIcon, Image, Rocket, Search } from "lucide-react";
 
-import { Globe, MagicBentoCard, MagicBentoGrid } from "@/components/ui";
+import { AnimatedGradientHeading, Globe, MagicBentoCard, MagicBentoGrid } from "@/components/ui";
 
 import { FeatureNotificationList } from "./list";
 
@@ -72,7 +72,7 @@ const features = [
     description: "Get notified when someone asks referrals or apply for referral.",
     href: "/",
     cta: "Learn more",
-    background: <FeatureNotificationList className="absolute -right-16 -top-20 opacity-60" />,
+    background: <FeatureNotificationList className="absolute opacity-60 md:-right-16 md:-top-20" />,
     className: "lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
   },
 ];
@@ -80,10 +80,12 @@ const features = [
 export const MagicBentoComponent = () => {
   return (
     <section className="mx-auto flex max-w-7xl flex-col gap-5 py-3 md:py-16">
-      <h2 className="font-heading flex items-center justify-center px-2 text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
-        <Rocket className="mb-2 mr-5 hidden h-16 w-16 origin-left transform-gpu text-neutral-100 transition-all duration-300 ease-in-out group-hover:scale-75 md:block" />
-        Features
-      </h2>
+      <AnimatedGradientHeading className="mx-auto">
+        <h2 className="flex items-center justify-center px-2 text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
+          <Rocket className="mb-2 mr-5 hidden h-16 w-16 origin-left transform-gpu text-neutral-100 transition-all duration-300 ease-in-out group-hover:scale-75 md:block" />
+          Features
+        </h2>
+      </AnimatedGradientHeading>
       <MagicBentoGrid className="lg:grid-rows-3">
         {features.map((feature) => (
           <MagicBentoCard key={feature.name} {...feature} />

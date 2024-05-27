@@ -129,7 +129,7 @@ const SignUp = () => {
                     Username <Required />
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="@johndoe" {...field} />
+                    <Input placeholder="johndoe" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

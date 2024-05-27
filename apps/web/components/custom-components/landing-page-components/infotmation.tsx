@@ -1,7 +1,7 @@
 import { Link } from "@/navigation";
 import { ChevronRight } from "lucide-react";
 
-import AnimatedGradientText from "@/components/ui/animated-gradient-text";
+import { AnimatedGradientText } from "@/components/ui";
 
 import { cn } from "@/utils";
 

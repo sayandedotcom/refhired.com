@@ -14,6 +14,7 @@ import {
   MagicBentoTwo,
   Opensource,
   Review,
+  ScrollBasedVelocityCOmponent,
   ShimmerButtonComponent,
   Stats,
   TopNotificationList,
@@ -114,6 +115,10 @@ export default function Page({ params: { locale } }) {
 
       <Suspense fallback={<Loading />}>
         <Stats />
+      </Suspense>
+
+      <Suspense fallback={<Loading />}>
+        <ScrollBasedVelocityCOmponent />
       </Suspense>
 
       <Suspense fallback={<Loading />}>{user && user ? <></> : <Joinnow />}</Suspense>

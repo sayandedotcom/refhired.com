@@ -4,6 +4,8 @@ import { ReactNode } from "react";
 // import { Button } from "@referrer/ui";
 import { cn } from "@/utils";
 
+import { AnimatedGradientBento } from "./animated-gradient-text";
+
 const MagicBentoGrid = ({ children, className }: { children: ReactNode; className?: string }) => {
   return <div className={cn("grid w-full auto-rows-[22rem] grid-cols-3 gap-4", className)}>{children}</div>;
 };
@@ -25,7 +27,7 @@ const MagicBentoCard = ({
   href: string;
   cta: string;
 }) => (
-  <div
+  <AnimatedGradientBento
     key={name}
     className={cn(
       "group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-xl",
@@ -54,7 +56,7 @@ const MagicBentoCard = ({
       </Button>
     </div> */}
     <div className="pointer-events-none absolute inset-0 transform-gpu transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10" />
-  </div>
+  </AnimatedGradientBento>
 );
 
 export { MagicBentoCard, MagicBentoGrid };

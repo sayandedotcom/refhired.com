@@ -27,6 +27,7 @@
     "@editorjs/link": "^2.6.2",
     "@editorjs/list": "^1.9.0",
     "@hookform/resolvers": "^3.3.1",
+    "@motionone/utils": "^10.17.0",
     "@radix-ui/react-icons": "^1.3.0",
     "@react-email/components": "^0.0.11",
     "@referrer/lib": "*",
