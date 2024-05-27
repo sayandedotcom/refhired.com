@@ -16,3 +16,4 @@ export * from "./lines";
 export * from "./magic-component";
 export * from "./bento-two";
 export * from "./bento-three";
+export * from "./shimmer-button-component";

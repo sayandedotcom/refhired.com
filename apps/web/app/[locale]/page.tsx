@@ -14,11 +14,11 @@ import {
   MagicBentoTwo,
   Opensource,
   Review,
+  ShimmerButtonComponent,
   Stats,
   TopNotificationList,
   Username,
 } from "@/components/custom-components";
-import { ShimmerButtonComponent } from "@/components/custom-components/landing-page-components/shimmer-button-component";
 
 import Loading from "./loading";
 
