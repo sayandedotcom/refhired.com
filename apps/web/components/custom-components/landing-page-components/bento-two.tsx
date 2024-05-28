@@ -4,7 +4,7 @@ import { MousePointerClick, Search } from "lucide-react";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@referrer/ui";
 
 import { Icons } from "@/components/icons/icons";
-import { AnimatedGradientHeading, MagicBentoCard, MagicBentoGrid } from "@/components/ui";
+import { AnimatedGradientHeading, MagicBentoCard, MagicBentoGrid, VelocityScroll } from "@/components/ui";
 
 import { cn } from "@/utils";
 
@@ -118,6 +118,12 @@ export const MagicBentoTwo = () => {
           Search referrals in a new way
         </h2>
       </AnimatedGradientHeading>
+      <VelocityScroll
+        text={<> &nbsp; • &nbsp; Find Referrals &nbsp; • &nbsp; Apply Now &nbsp; </>}
+        bottom
+        default_velocity={5}
+        className="font-heading flex h-14 w-full items-center text-2xl font-extralight tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-xl md:leading-[5rem]"
+      />
       <MagicBentoGrid>
         {features.map((feature) => (
           <MagicBentoCard key={feature.name} {...feature} />

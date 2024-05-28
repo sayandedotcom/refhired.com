@@ -1,6 +1,6 @@
 import { CircleDollarSign, Folder, Gauge, Send, User } from "lucide-react";
 
-import { AnimatedGradientHeading, MagicBentoCard, MagicBentoGrid } from "@/components/ui";
+import { AnimatedGradientHeading, MagicBentoCard, MagicBentoGrid, VelocityScroll } from "@/components/ui";
 
 const files = [
   {
@@ -73,6 +73,12 @@ export const MagicBentoThree = () => {
           Manage referrals in a new way
         </h2>
       </AnimatedGradientHeading>
+      <VelocityScroll
+        text={<> &nbsp; • &nbsp; Refer Now &nbsp; • &nbsp; Post Now &nbsp; </>}
+        top
+        default_velocity={5}
+        className="font-heading flex h-14 w-full items-center text-2xl font-extralight tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-xl md:leading-[5rem]"
+      />
       <MagicBentoGrid>
         {features.map((feature) => (
           <MagicBentoCard key={feature.name} {...feature} />

@@ -19,6 +19,8 @@ interface VelocityScrollProps {
   text: React.ReactNode;
   default_velocity?: number;
   className?: string;
+  top?: boolean;
+  bottom?: boolean;
 }
 
 interface ParallaxProps {
@@ -27,7 +29,13 @@ interface ParallaxProps {
   className?: string;
 }
 
-export function VelocityScroll({ text, default_velocity = 5, className }: VelocityScrollProps) {
+export function VelocityScroll({
+  text,
+  default_velocity = 5,
+  className,
+  top = false,
+  bottom = false,
+}: VelocityScrollProps) {
   function ParallaxText({ children, baseVelocity = 100, className }: ParallaxProps) {
     const baseX = useMotionValue(0);
     const { scrollY } = useScroll();
@@ -83,7 +91,7 @@ export function VelocityScroll({ text, default_velocity = 5, className }: Veloci
         <motion.div className={cn("inline-block", className)} style={{ x }}>
           {Array.from({ length: repetitions }).map((_, i) => (
             <span key={i} ref={i === 0 ? textRef : null}>
-              &nbsp;{children}🎉 &nbsp;
+              {children}
             </span>
           ))}
         </motion.div>
@@ -93,12 +101,17 @@ export function VelocityScroll({ text, default_velocity = 5, className }: Veloci
 
   return (
     <section className="bg-muted border-foreground relative mx-auto w-[95%] overflow-hidden rounded-3xl border-2 border-dashed">
-      <ParallaxText baseVelocity={default_velocity} className={className}>
-        {text}
-      </ParallaxText>
-      <ParallaxText baseVelocity={-default_velocity} className={className}>
-        {text}
-      </ParallaxText>
+      {!bottom && (
+        <ParallaxText baseVelocity={default_velocity} className={className}>
+          {text}
+        </ParallaxText>
+      )}
+      {!top && !bottom && <div className="border-foreground border-2 border-dashed" />}
+      {!top && (
+        <ParallaxText baseVelocity={-default_velocity} className={className}>
+          {text}
+        </ParallaxText>
+      )}
     </section>
   );
 }

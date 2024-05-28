@@ -81,7 +81,7 @@ export const Review = () => {
     <div className="py-6">
       <div className="mx-auto mb-16 max-w-xl text-center">
         <h2 className="font-heading mb-4 md:text-[50px]">What our users say</h2>
-        <p className="text-sm tracking-tight md:text-xl">
+        <p className="text-sm font-semibold tracking-tight md:text-xl">
           Refhired.com got a very positive reviews from users.
         </p>
       </div>

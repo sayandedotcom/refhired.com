@@ -1,6 +1,12 @@
 import { BellIcon, Fingerprint, GlobeIcon, Image, Rocket, Search } from "lucide-react";
 
-import { AnimatedGradientHeading, Globe, MagicBentoCard, MagicBentoGrid } from "@/components/ui";
+import {
+  AnimatedGradientHeading,
+  Globe,
+  MagicBentoCard,
+  MagicBentoGrid,
+  VelocityScroll,
+} from "@/components/ui";
 
 import { FeatureNotificationList } from "./list";
 
@@ -86,6 +92,12 @@ export const MagicBentoComponent = () => {
           Features
         </h2>
       </AnimatedGradientHeading>
+      <VelocityScroll
+        text={<> &nbsp; • &nbsp; PWA &nbsp; • &nbsp; Dashboard &nbsp; • &nbsp; Tables &nbsp; </>}
+        top
+        default_velocity={5}
+        className="font-heading flex h-14 w-full items-center text-2xl font-extralight tracking-[-0.02em] text-black drop-shadow-sm dark:text-white md:text-xl md:leading-[5rem]"
+      />
       <MagicBentoGrid className="lg:grid-rows-3">
         {features.map((feature) => (
           <MagicBentoCard key={feature.name} {...feature} />
