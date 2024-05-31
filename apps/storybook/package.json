@@ -16,7 +16,7 @@
     "@referrer/lib": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "7.1.0"
+    "storybook": "8.1.5"
   },
   "devDependencies": {
     "@referrer/tailwind-config": "*",
