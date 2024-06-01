@@ -65,7 +65,7 @@ export function Provider({ children }) {
               )}
               {children}
               <CookieConsent />
-              {showNavbar && <Footer />}
+              <Suspense fallback={<Loading />}>{showNavbar && <Footer />}</Suspense>
               <Analytics />
             </>
           )}

@@ -16,8 +16,9 @@ export const Joinnow = () => {
       </h1> */}
       <h4 className="font-extrabold sm:block">Get / Referrer a Job now</h4>
       <div className="mt-8 flex flex-wrap justify-center gap-4">
-        <ShimmerButtonComponent href={"/"}>Log In</ShimmerButtonComponent>
-        <ShimmerButtonComponent href={"/"}>Sign Up</ShimmerButtonComponent>
+        {/* <ShimmerButtonComponent href={"/"}>Log In</ShimmerButtonComponent>
+        <ShimmerButtonComponent href={"/"}>Sign Up</ShimmerButtonComponent> */}
+        <ShimmerButtonComponent href={"/"}>Join the waitlist</ShimmerButtonComponent>
       </div>
     </section>
   );

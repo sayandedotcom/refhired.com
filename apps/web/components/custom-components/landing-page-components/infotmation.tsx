@@ -5,9 +5,9 @@ import { AnimatedGradientText } from "@/components/ui";
 
 import { cn } from "@/utils";
 
-export const Infotmation = () => {
+export const Information = () => {
   return (
-    <Link href="/about-us" className="z-10 flex items-center justify-center">
+    <Link href="/blogs" className="z-10 flex items-center justify-center">
       <AnimatedGradientText>
         📣 <hr className="mx-2 h-4 w-[1px] shrink-0 bg-gray-300" />{" "}
         <span

@@ -3,12 +3,13 @@ import { WordRotate } from "@/components/ui";
 export function WordRotateComponentOne() {
   return (
     <WordRotate
-      className="text-center text-2xl font-bold text-black dark:text-white"
+      className="font-heading bg-foreground relative z-10 bg-clip-text text-center text-lg font-bold text-transparent dark:bg-gradient-to-b dark:from-neutral-200 dark:to-neutral-600 md:text-4xl"
       words={[
-        "Navigate the job market with referrals",
+        "Join the Waitlist",
         "Referrals increase your chances by 600%",
-        "Referrals from more than 1000 companies",
-        "Join Now",
+        "Referrals from top companies",
+        "Easy apply to referrals",
+        "Join Now !",
         "Enter your email below",
       ]}
     />

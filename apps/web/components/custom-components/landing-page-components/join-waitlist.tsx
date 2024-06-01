@@ -87,11 +87,11 @@ export function JoinWaitlist() {
         //  h-[20rem]
         <div className="relative flex w-full flex-col items-center justify-center rounded-md antialiased">
           <div className="mx-auto flex max-w-3xl flex-col gap-4 p-4">
-            <h1 className="bg-foreground relative z-10 bg-clip-text text-center font-sans text-lg font-bold text-transparent dark:bg-gradient-to-b dark:from-neutral-200 dark:to-neutral-600 md:text-7xl">
-              Join the waitlist
+            <h1 className="bg-foreground relative z-10 bg-clip-text text-center text-lg font-bold text-transparent dark:bg-gradient-to-b dark:from-neutral-200 dark:to-neutral-600 md:text-7xl">
+              <WordRotateComponentOne />
             </h1>
-            <WordRotateComponentOne />
-            <p className="relative mx-auto my-2 max-w-5xl text-center text-base font-medium">
+            {/* <WordRotateComponentOne /> */}
+            <p className="font-heading relative mx-auto my-2 max-w-5xl text-center text-base font-medium">
               Join our waitlist and be the first to know when we launch our product! We'll notify you via
               email as soon as it's available. Plus, we may offer special access to some of our waitlisted
               users!

@@ -6,7 +6,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import {
   Beam,
   Companies,
-  Infotmation,
+  Information,
   JoinWaitlist,
   Joinnow,
   MagicBentoComponent,
@@ -34,7 +34,7 @@ export default function Page({ params: { locale } }) {
   return (
     <div className="relative">
       <Suspense fallback={<Loading />}>
-        <TopNotificationList className="fixed right-8 top-16 z-40 hidden lg:block" />
+        <TopNotificationList className="fixed right-8 top-20 z-40 hidden lg:block" />
       </Suspense>
 
       <Suspense fallback={<Loading />}>
@@ -42,21 +42,25 @@ export default function Page({ params: { locale } }) {
           {/* <Notice arrow href="/about-us">
           Important Notice !
         </Notice> */}
-          <Infotmation />
-          <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
-            " Navigate the job market with{" "}
-            <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
-              {t("referrals")}
-            </span>{" "}
-            :{" "}
-            <span className="">
-              Connect through{" "}
-              <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-                referrals
+          <Suspense fallback={<Loading />}>
+            <Information />
+          </Suspense>
+          <Suspense fallback={<Loading />}>
+            <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
+              " Navigate the job market with{" "}
+              <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
+                {t("referrals")}
               </span>{" "}
-            </span>
-            "
-          </h1>
+              :{" "}
+              <span className="">
+                Connect through{" "}
+                <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+                  referrals
+                </span>{" "}
+              </span>
+              "
+            </h1>
+          </Suspense>
           {/* <p className="px-6 text-center text-[15px] font-medium leading-normal sm:text-lg sm:leading-7 md:mt-7 md:px-28 md:text-[20px]">
           Used by many job seekers and employees of the world's largest companies, Referrer enables you to get
           job through referrals which has the highest convertion rates among other methods . It simplifies the
@@ -65,7 +69,9 @@ export default function Page({ params: { locale } }) {
           <Suspense fallback={<Loading />}>
             <JoinWaitlist />
           </Suspense>
-          <ShimmerButtonComponent href={"/home"}>Explore the MVP !</ShimmerButtonComponent>
+          <Suspense fallback={<Loading />}>
+            <ShimmerButtonComponent href={"/home"}>Explore the MVP !</ShimmerButtonComponent>
+          </Suspense>
         </div>
       </Suspense>
 
@@ -89,6 +95,10 @@ export default function Page({ params: { locale } }) {
       <Suspense fallback={<Loading />}>
         <MagicBentoThree />
       </Suspense>
+
+      {/* <Suspense fallback={<Loading />}>
+        <TweetCard />
+      </Suspense> */}
 
       {/* <Suspense fallback={<Loading />}>
         <Testimonials />
