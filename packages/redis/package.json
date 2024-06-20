@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {},
   "devDependencies": {
-    "@types/node": "^20.12.7"
+    "@types/node": "^20.14.6"
   },
   "dependencies": {
     "ioredis": "^5.4.1"
