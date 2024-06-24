@@ -1,18 +1,61 @@
-# About this private repo
+<!-- # About this private repo
 
 This is the private repository for my project, refhired.com, with the MVP hosted on refhired.sayande.com via Vercel. I'm operating in Stealth Mode to safeguard the privacy of my ideas. However, I'm open to sharing the original repository with recruiters upon request. Presently, the MVP is deployed without backend functionality as I transition from Next.js 14's server actions to Express.js and GraphQL.
 
 I'm capable of demonstrating the minimal viable product in development mode and plan to transition deployment from Vercel to AWS using the SST framework for serverless architecture. Progressed work can be observed in the code base above, particularly in the 'apps/api' folder containing backend code, and '/stacks' containing AWS CDK constructs made with the SST framework.
 
-My goal is to complete this transition and fully deploy by May 1st, possibly even sooner. Currently, I'm seamlessly integrating GraphQL API with Prisma and delving into SST constructs for deployment purposes. The refhired.com domain is configured in AWS Route 53. Please note, I can showcase the minimal viable product in development mode.
+My goal is to complete this transition and fully deploy by May 1st, possibly even sooner. Currently, I'm seamlessly integrating GraphQL API with Prisma and delving into SST constructs for deployment purposes. The refhired.com domain is configured in AWS Route 53. Please note, I can showcase the minimal viable product in development mode. -->
 
-# Things I am stuck with
+<!-- # Things I am stuck with
 
 Using the latest Next.js 14 -Using the latest Next.js 14 comes with a cost. Every library has some special and different configurations for the latest Next.js versions, especially versions above 13. I am currently stuck with a bug in next-intl which is breaking the parallel and intercepting route in productions, and another problem is with the Apollo Client. The bug is you have to encrypt and then pass cookies to the Apollo wrapper component and then decrypt and pass the cookies to the Apollo server.
 
 Deploying with SST - I decided to transition the deployment platform from Vercel to AWS to gain more control over resources and reduce costs, with the assistance of the Serverless Stack (SST) framework. But here I got stuck! SST has no guide on how to deploy a turborepo ( I did it by tinkering ) and currently, I am stuck in using Prisma to create tables in AWS Aurora & then place them in the lambda layer.
 
-Deployment Cost - AWS Aurora Database for 2 days cost me $0.35! with only 2 test users. It will become difficult for me to bear the cost of deployment.
+Deployment Cost - AWS Aurora Database for 2 days cost me $0.35! with only 2 test users. It will become difficult for me to bear the cost of deployment. -->
+
+<p align="center">
+  <a href="https://github.com/sayandedotcom/refhired.com">
+<!--    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo"> -->
+<!--    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/a1c556f2-550d-44e5-91cf-1eb89d7faa03" alt="Logo"> -->
+    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/748111d4-1f0a-42b3-a3a1-ad32bda2943c" height="120px" width="120px" alt="Logo">
+  </a>
+  <h3 align="center">Refhired.com</h3>
+
+  <p align="center">
+    Hire and apply only through referrals !
+    <br />
+    <a href="https://refhired.com/"><strong>Learn more »</strong></a>
+    <br />
+    <br />
+<!--     <a href="https://go.cal.com/discord">Discord</a>
+    · -->
+    <a href="https://refhired.com/">Website</a>
+    ·
+    <a href="https://github.com/sayandedotcom/refhired.com/issues">Issues</a>
+<!--     ·
+    <a href="https://cal.com/roadmap">Roadmap</a> -->
+  </p>
+</p>
+
+This is a solo project by [Sayan De](https://github.com/sayandedotcom).
+
+## Architecture
+
+![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/d1dd9292-9ec4-48c2-8a2b-dd2fb0a6d077)
+
+<!--
+## DevOps Workflow
+
+![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/dd61493e-a007-4988-9750-66b9f89cb321) -->
+
+<!-- ## Deployement
+
+![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/18b3a2a9-139a-4a6b-9405-575aa23414da) -->
+
+## Contributing
+
+Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayandedotcom/refhired.com/blob/main/CONTRIBUTING.md).
 
 ## Main domains
 
@@ -58,47 +101,13 @@ Deployment Cost - AWS Aurora Database for 2 days cost me $0.35! with only 2 
 | 7         | swagger          | For desktop app  | @refhiredcom/desktop | yarn desktop | -    |
 | 8         | web              | For main website | @referrer/web        | yarn web     | 3000 |
 
-<p align="center">
-  <a href="https://github.com/sayandedotcom/refhired.com">
-<!--    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/8ac174c0-7abd-4305-a604-d32397988ed0" alt="Logo"> -->
-<!--    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/a1c556f2-550d-44e5-91cf-1eb89d7faa03" alt="Logo"> -->
-    <img src="https://github.com/sayandedotcom/refhired.com/assets/107565578/748111d4-1f0a-42b3-a3a1-ad32bda2943c" height="120px" width="120px" alt="Logo">
-  </a>
-  <h3 align="center">Refhired.com</h3>
+## Things I am stuck with
 
-  <p align="center">
-    Hire and apply only through referrals !
-    <br />
-    <a href="https://refhired.com/"><strong>Learn more »</strong></a>
-    <br />
-    <br />
-<!--     <a href="https://go.cal.com/discord">Discord</a>
-    · -->
-    <a href="https://refhired.com/">Website</a>
-    ·
-    <a href="https://github.com/sayandedotcom/refhired.com/issues">Issues</a>
-<!--     ·
-    <a href="https://cal.com/roadmap">Roadmap</a> -->
-  </p>
-</p>
+Using the latest Next.js 14 -Using the latest Next.js 14 comes with a cost. Every library has some special and different configurations for the latest Next.js versions, especially versions above 13. I am currently stuck with a bug in next-intl which is breaking the parallel and intercepting route in productions, and another problem is with the Apollo Client. The bug is you have to encrypt and then pass cookies to the Apollo wrapper component and then decrypt and pass the cookies to the Apollo server.
 
-This is a solo project by [Sayan De](https://github.com/sayandedotcom).
+Deploying with SST - I decided to transition the deployment platform from Vercel to AWS to gain more control over resources and reduce costs, with the assistance of the Serverless Stack (SST) framework. But here I got stuck! SST has no guide on how to deploy a turborepo ( I did it by tinkering ) and currently, I am stuck in using Prisma to create tables in AWS Aurora & then place them in the lambda layer.
 
-## Architecture
-
-![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/d1dd9292-9ec4-48c2-8a2b-dd2fb0a6d077)
-
-## DevOps Workflow
-
-![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/dd61493e-a007-4988-9750-66b9f89cb321)
-
-## Deployement
-
-![image](https://github.com/sayandedotcom/refhired.com/assets/107565578/18b3a2a9-139a-4a6b-9405-575aa23414da)
-
-## Contributing
-
-Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com/sayandedotcom/refhired.com/blob/main/CONTRIBUTING.md).
+Deployment Cost - AWS Aurora Database for 2 days cost me $0.35! with only 2 test users. It will become difficult for me to bear the cost of deployment.
 
 ## Features
 
