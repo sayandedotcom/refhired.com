@@ -1,6 +1,6 @@
 {
-  "watch": ["./src/app.ts"],
+  "watch": ["./src/index.ts"],
   "ext": ".ts,.js",
   "ignore": ["*.test.js", "**/fixtures/**"],
-  "exec": "node --loader ts-node/esm ./src/app.ts"
+  "exec": "node --loader ts-node/esm ./src/index.ts"
 }
