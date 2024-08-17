@@ -5,10 +5,11 @@
 	"type": "module",
 	"license": "MIT",
 	"scripts": {
-		"dev": "nodemon",
-		"start": "node --loader ts-node/esm build/index.js",
+		"dev": "nodemon ./src/index.ts",
+		"start": "node dist/index.js",
 		"build": "tsc",
-		"test": "echo \"No tests configured yet.\""
+		"test": "echo \"No tests configured yet.\"",
+		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@referrer/prisma": "*",
@@ -19,8 +20,10 @@
 		"cors": "^2.8.5",
 		"dotenv": "^16.4.5",
 		"express": "^4.18.2",
+		"helmet": "^7.1.0",
 		"ioredis": "^5.4.1",
-		"jsonwebtoken": "^9.0.2"
+		"jsonwebtoken": "^9.0.2",
+		"morgan": "^1.10.0"
 	},
 	"devDependencies": {
 		"@referrer/prettier-config": "*",
@@ -28,6 +31,7 @@
 		"@types/cors": "^2.8.17",
 		"@types/express": "^4.17.21",
 		"@types/jsonwebtoken": "^9.0.6",
+		"@types/morgan": "^1.9.9",
 		"@types/node": "^20.11.17",
 		"eslint-config-custom": "*",
 		"nodemon": "^3.0.3",
