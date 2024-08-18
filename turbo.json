@@ -105,7 +105,7 @@
         "SECRET_KEY_VAR",
         "CACHE_DATABASE_URL"
       ],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "db:generate": {
       "cache": false
@@ -134,6 +134,15 @@
       "dependsOn": ["^db:generate"],
       "cache": false,
       "persistent": true
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "dotEnv": [".env"]
+    },
+    "build:api": {
+      "dependsOn": ["^postinstall"],
+      "outputs": ["dist/**"]
     }
   }
 }
