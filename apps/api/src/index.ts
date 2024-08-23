@@ -1,3 +1,4 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 
@@ -6,6 +7,7 @@ import PostRoute from "./routes/post.js";
 dotenv.config();
 
 const app = express();
+app.use(cors());
 
 app.use("/post", PostRoute);
 app.get("/", (req, res) => {
