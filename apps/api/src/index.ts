@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
   res.json(`👋 teszting ${process.env.NODE_ENV} && ${process.env.BACKEND_PORT}`);
 });
 app.post("/", (req, res) => {
-  res.send(`This is home page with post request ! Hi ${process.env.NODE_ENV}`);
+  res.send(`This is home page with post request ${process.env.NODE_ENV}`);
 });
 // // PORT
 const PORT = process.env.BACKEND_PORT || 9000;
