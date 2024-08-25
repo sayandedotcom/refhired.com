@@ -18,7 +18,7 @@ jobs:
       - name: Install Typescript Compile Tools
         run: npm install --global tsc typescript turbo
       - name: Compile Typescript
-        run: npm run build --filter=api
+        run: npm run build:api
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
