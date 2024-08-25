@@ -11,7 +11,7 @@ app.use(cors());
 
 app.use("/post", PostRoute);
 app.get("/", (req, res) => {
-  res.json(`👋 Hi teszting ${process.env.NODE_ENV} && ${process.env.BACKEND_PORT}`);
+  res.json(`👋 api-11 teszting ${process.env.NODE_ENV} && ${process.env.BACKEND_PORT}`);
 });
 app.post("/", (req, res) => {
   res.send(`This is home page with post request ${process.env.NODE_ENV}`);

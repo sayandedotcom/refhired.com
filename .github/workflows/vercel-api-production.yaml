@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - migration-to-rest
+    paths:
+      - "/apps/api/**"
 jobs:
   Deploy-Production:
     name: Deploy to Vercel Production Hosting
