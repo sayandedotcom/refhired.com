@@ -16,7 +16,7 @@ jobs:
       - name: Initial Checkout
         uses: actions/checkout@v4.1.7
       - name: Install Typescript Compile Tools
-        run: npm install --global tsc typescript
+        run: npm install --global tsc typescript turbo
       - name: Compile Typescript
         run: npm run build
       - name: Install Vercel CLI
