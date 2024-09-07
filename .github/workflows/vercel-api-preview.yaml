@@ -10,7 +10,7 @@ on:
     branches:
       - migration-to-rest
     paths:
-      - "/apps/api/**"
+      - "../../apps/api/**"
 jobs:
   Deploy-Preview:
     name: Deploy to Vercel Preview Hosting
