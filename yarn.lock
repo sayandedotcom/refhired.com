@@ -8742,6 +8742,18 @@
   dependencies:
     tslib "^2.4.0"
 
+"@tanstack/query-core@5.55.2":
+  version "5.55.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.55.2.tgz#3109abeb3393f48a0781667093ad7c21ca34920c"
+  integrity sha512-WfuUx06sw/V3R2tRRQf4KZj0g4Q5EHrTdwJmCUovMFuHWVzDvLd5U+B7d5Pk8ni5w5SGpUuzGuQv3nN8xo1QbQ==
+
+"@tanstack/react-query@^5.55.2":
+  version "5.55.2"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.55.2.tgz#071c5a2f67aecefc06bbed866753f5e07a9239bd"
+  integrity sha512-PkbEmO64nphWPhufkE9aJ+iEScg8tNNCykYlH7vDwb2R6G8uJC+HTJgXc2n8cRaJe6ETVIeQLFFESVd+2N/tww==
+  dependencies:
+    "@tanstack/query-core" "5.55.2"
+
 "@tanstack/react-table@^8.9.3":
   version "8.9.3"
   resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.9.3.tgz#03a52e9e15f65c82a8c697a445c42bfca0c5cfc4"
