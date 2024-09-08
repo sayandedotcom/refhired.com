@@ -52,7 +52,7 @@
     "CACHE_DATABASE_URL"
   ],
   "globalDependencies": ["**/.env.*local"],
-  "tasks": {
+  "pipeline": {
     "build": {
       "dependsOn": ["^build", "^db:generate"],
       "env": [
