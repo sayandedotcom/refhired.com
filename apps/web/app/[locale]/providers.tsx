@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 
 import { useIsMounted } from "@/hooks";
 import { usePathname } from "@/navigation";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
@@ -41,35 +42,38 @@ export function Provider({ children }) {
   const path = usePathname();
   const toastPosition = useStore((state) => state.toastPosition);
   const showNavbar = rootPaths.includes(path);
+  const queryClient = new QueryClient();
 
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <SessionProvider>
-          <Toaster />
-          <SonerToaster position={toastPosition} />
-          {!isMounted ? (
-            <PreLoader />
-          ) : (
-            <>
-              <ProgressBar />
-              {showNavbar && (
-                <>
-                  <Suspense fallback={<Loading />}>
-                    <Banner />
-                  </Suspense>
-                  <Suspense fallback={<Loading />}>
-                    <Navbar />
-                  </Suspense>
-                </>
-              )}
-              {children}
-              <CookieConsent />
-              <Suspense fallback={<Loading />}>{showNavbar && <Footer />}</Suspense>
-              <Analytics />
-            </>
-          )}
-        </SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          <SessionProvider>
+            <Toaster />
+            <SonerToaster position={toastPosition} />
+            {!isMounted ? (
+              <PreLoader />
+            ) : (
+              <>
+                <ProgressBar />
+                {showNavbar && (
+                  <>
+                    <Suspense fallback={<Loading />}>
+                      <Banner />
+                    </Suspense>
+                    <Suspense fallback={<Loading />}>
+                      <Navbar />
+                    </Suspense>
+                  </>
+                )}
+                {children}
+                <CookieConsent />
+                <Suspense fallback={<Loading />}>{showNavbar && <Footer />}</Suspense>
+                <Analytics />
+              </>
+            )}
+          </SessionProvider>
+        </QueryClientProvider>
       </ThemeProvider>
     </>
   );
