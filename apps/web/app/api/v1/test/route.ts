@@ -1,12 +1,24 @@
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
-  return NextResponse.json("Hello, Next.js!", {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  try {
+    return NextResponse.json(
+      { Hi: "Hello, Next.js!" },
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  } catch (error) {
+    return NextResponse.json(`Error from our side! ${error.message}`, {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 }
 
 export async function POST(request: NextRequest) {
