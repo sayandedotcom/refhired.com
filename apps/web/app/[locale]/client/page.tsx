@@ -1,14 +1,13 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-
-import { requests } from "@/lib/axios";
+import axios from "axios";
 
 function Client() {
   const { data, error, isLoading } = useQuery({
     queryKey: ["test"],
     queryFn: () => {
-      return requests.get("/test", {
+      return axios.get("/api/v1/test", {
         headers: {
           name: "Sayan De from Client Component",
         },
