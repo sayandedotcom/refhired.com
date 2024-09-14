@@ -5,12 +5,14 @@ import prisma from "@referrer/prisma";
 export async function GET(request: NextRequest, context: any) {
   // const cachedAllPosts = await redis.get("ALL_POSTS");
   // if (cachedAllPosts) return JSON.parse(cachedAllPosts);
-  console.log("calllllllllllled");
 
   const posts = await prisma.posts.findMany({
     take: 10,
     orderBy: {
       createdAt: "desc",
+    },
+    include: {
+      user: true,
     },
   });
   // await redis.set("ALL_POSTS", JSON.stringify(posts));
