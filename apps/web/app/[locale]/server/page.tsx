@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
 async function getTest() {
   const response = await fetch("http://localhost:3000/api/v1/test", {
     method: "GET",
