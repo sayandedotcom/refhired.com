@@ -1,12 +1,11 @@
 // export const dynamic = "force-dynamic";
 // export const fetchCache = "force-no-store";
+import { requests } from "@/lib/axios";
 
 async function getTest() {
-  const response = await fetch("https://web-ef7eri9cr-sayande2002s-projects.vercel.app/api/v1/test", {
-    method: "GET",
-  });
+  const response = await requests.get("/test");
 
-  return response.json();
+  return response.data;
 }
 
 export default async function Server() {
