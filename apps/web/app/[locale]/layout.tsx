@@ -3,14 +3,10 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
-import { cookies } from "next/headers";
 
 import { locales } from "@/navigation";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
-import { cloakSSROnlySecret } from "ssr-only-secrets";
-
-import { ApolloWrapper } from "@/lib/apollo-client/apollo-wrapper";
 
 import { siteConfig } from "@/config";
 
@@ -108,13 +104,8 @@ export default function RootLayout({
 
   const messages = useMessages();
 
-  const token = cookies().get("next-auth.session-token")?.value;
-
-  const sessionId = cloakSSROnlySecret(token ?? "", "SECRET_KEY_VAR");
-
   return (
     <>
-      {/* <ApolloWrapper sessionId={sessionId}> */}
       <html lang={locale} suppressHydrationWarning>
         <body
           className={cn(
@@ -123,20 +114,15 @@ export default function RootLayout({
             fontHeading.variable
           )}>
           <Suspense fallback={<Loading />}>
-            <ApolloWrapper sessionId={sessionId}>
-              <NextIntlClientProvider locale={locale} messages={messages}>
-                <Provider>
-                  {/* <ApolloWrapper> */}
-                  {children}
-                  {loginModal}
-                  {/* </ApolloWrapper> */}
-                </Provider>
-              </NextIntlClientProvider>
-            </ApolloWrapper>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <Provider>
+                {children}
+                {loginModal}
+              </Provider>
+            </NextIntlClientProvider>
           </Suspense>
         </body>
       </html>
-      {/* </ApolloWrapper> */}
     </>
   );
 }

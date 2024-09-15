@@ -4,14 +4,12 @@ import { MoreHorizontal } from "lucide-react";
 
 import { PostHoverCard } from "@/components/ui";
 
-import { ApplyButton, MultipleButtons, Tags } from "./post-buttons";
+import { Tags } from "./post-buttons";
 import { ComboboxDropdownMenu } from "./post-more-menu";
 
-export const PostCard = ({ id, children }: { id: any; children: React.ReactNode }) => {
+export const PostCard = ({ children }: { children: any }) => {
   return (
-    <div
-      key={id}
-      className="border-border mx-auto my-2 flex gap-2 rounded-lg border-2 p-1 md:w-11/12 md:gap-3 md:p-4">
+    <div className="border-border mx-auto my-2 flex gap-2 rounded-lg border-2 p-1 md:w-11/12 md:gap-3 md:p-4">
       {children}
     </div>
   );
@@ -36,7 +34,7 @@ function ProfileImage({ src }: { src: any }) {
 
 PostCard.Image = ProfileImage;
 
-function PostCardContent({ children }: { children: React.ReactNode }) {
+function PostCardContent({ children }: { children: any }) {
   return <div className="flex w-[88%] flex-col gap-2 md:w-full">{children}</div>;
 }
 
@@ -50,8 +48,8 @@ function PostCardHeader({
 }: {
   name: string;
   userName: string;
-  time: string;
-  timeLeft: string;
+  time?: any;
+  timeLeft?: any;
 }) {
   return (
     <div className="font-heading flex items-center justify-between">
@@ -83,9 +81,11 @@ function PostCardHeader({
 
 PostCard.Header = PostCardHeader;
 
-function PostCardDescription({ children }: { children: React.ReactNode }) {
+function PostCardDescription({ children }: { children: any }) {
   return (
-    <p id="post-content" className="font-heading cursor-pointer text-[15px] tracking-wider md:text-base">
+    <p
+      id="post-content"
+      className="font-heading cursor-pointer text-[12px] font-thin tracking-wider md:text-[15px]">
       {children}
       <span className="float-right text-xs md:text-sm">....Show more</span>
     </p>
@@ -95,6 +95,7 @@ function PostCardDescription({ children }: { children: React.ReactNode }) {
 PostCard.Description = PostCardDescription;
 
 function PostCardTags({
+  allTags = false,
   location,
   experience,
   jobType,
@@ -102,16 +103,18 @@ function PostCardTags({
   role,
   skills,
 }: {
+  allTags: boolean;
   location: string;
   experience: string;
   jobType: string;
   salary: string;
   role: string;
-  skills: any[];
+  skills?: any;
 }) {
   return (
-    <div id="post-tags" className="font-heading flex h-5 gap-1">
+    <div id="post-tags" className="font-heading">
       <Tags
+        allTags={allTags}
         location={location}
         salary={salary}
         role={role}
@@ -125,13 +128,8 @@ function PostCardTags({
 
 PostCard.Tags = PostCardTags;
 
-function PostCardFooter() {
-  return (
-    <div className="font-heading flex items-center justify-between">
-      <MultipleButtons />
-      <ApplyButton />
-    </div>
-  );
+function PostCardFooter({ children }: { children: any }) {
+  return <div className="font-heading mt-2 flex items-center justify-between">{children}</div>;
 }
 
 PostCard.Footer = PostCardFooter;
