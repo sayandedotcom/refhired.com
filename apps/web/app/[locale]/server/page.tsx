@@ -1,15 +1,16 @@
 // export const dynamic = "force-dynamic";
 // export const fetchCache = "force-no-store";
 // import { requests } from "@/lib/axios";
+import { requests } from "@/lib/axios";
 
-// async function getTest() {
-//   const response = await requests.get("https://refhired.com/api/v1/test");
+async function getTest() {
+  const response = await requests.get("/test");
 
-//   return response.data;
-// }
+  return response.data;
+}
 
 export default async function Server() {
-  // const response = await getTest();
+  const response = await getTest();
   // const response = await fetch("http://localhost:3000/api/v1/test", {
   //   method: "GET",
   // }).then((ans) => ans.json());
@@ -24,7 +25,7 @@ export default async function Server() {
   return (
     <div>
       hi
-      {/* {response?.Hi} */}
+      {response?.Hi}
     </div>
   );
 }
