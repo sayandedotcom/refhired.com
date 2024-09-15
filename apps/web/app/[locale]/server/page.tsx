@@ -1,5 +1,5 @@
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
+// export const dynamic = "force-dynamic";
+// export const fetchCache = "force-no-store";
 
 async function getTest() {
   const response = await fetch("https://web-ef7eri9cr-sayande2002s-projects.vercel.app/api/v1/test", {
