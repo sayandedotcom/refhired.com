@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     return NextResponse.json(
-      { message: "👋 Hi, welcome to our API !" },
+      { message: "👋 Hi, welcome to our refhired.com API !" },
       {
         status: 200,
         headers: {
