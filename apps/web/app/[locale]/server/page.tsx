@@ -21,12 +21,7 @@ export default async function Server() {
   // .then((ans) => ans.data);
 
   console.log("😊datadatadatadatadata", response);
-  return (
-    <div>
-      HI
-      {response?.Hi}
-    </div>
-  );
+  return <div>{response?.Hi}</div>;
 }
 
 // const queryClient = new QueryClient();

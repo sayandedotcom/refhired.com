@@ -18,10 +18,7 @@ function Client() {
       );
     },
   });
-  console.log(
-    "from /client😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊BACKEND_PROD_URL",
-    process.env.BACKEND_PROD_URL
-  );
+
   console.log("datadatadatadatadata", data, error);
 
   return <div>{data?.data?.Hi}</div>;
