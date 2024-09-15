@@ -1,7 +1,7 @@
 async function Server() {
-  const response = await fetch("http://localhost:3000/api/v1/test", {
-    method: "GET",
-  }).then((ans) => ans.json());
+  // const response = await fetch("http://localhost:3000/api/v1/test", {
+  //   method: "GET",
+  // }).then((ans) => ans.json());
   // .get("/api/v1/test", {
   //   headers: {
   //     name: "Sayan De from Server Component",
@@ -9,8 +9,13 @@ async function Server() {
   // })
   // .then((ans) => ans.data);
 
-  console.log("😊datadatadatadatadata", response);
-  return <div>{response?.Hi}</div>;
+  // console.log("😊datadatadatadatadata", response);
+  return (
+    <div>
+      HI
+      {/* {response?.Hi} */}
+    </div>
+  );
 }
 
 export default Server;
