@@ -6,7 +6,7 @@ async function getTest() {
   return response.json();
 }
 
-async function Server() {
+export default async function Server() {
   const response = await getTest();
   // const response = await fetch("http://localhost:3000/api/v1/test", {
   //   method: "GET",
@@ -26,8 +26,6 @@ async function Server() {
     </div>
   );
 }
-
-export default Server;
 
 // const queryClient = new QueryClient();
 // await queryClient.prefetchQuery({
