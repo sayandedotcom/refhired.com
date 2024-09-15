@@ -1,4 +1,13 @@
+async function getTest() {
+  const response = await fetch("http://localhost:3000/api/v1/test", {
+    method: "GET",
+  });
+
+  return response.json();
+}
+
 async function Server() {
+  const response = await getTest();
   // const response = await fetch("http://localhost:3000/api/v1/test", {
   //   method: "GET",
   // }).then((ans) => ans.json());
@@ -9,11 +18,11 @@ async function Server() {
   // })
   // .then((ans) => ans.data);
 
-  // console.log("😊datadatadatadatadata", response);
+  console.log("😊datadatadatadatadata", response);
   return (
     <div>
       HI
-      {/* {response?.Hi} */}
+      {response?.Hi}
     </div>
   );
 }
