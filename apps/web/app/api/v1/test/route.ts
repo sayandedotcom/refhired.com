@@ -1,6 +1,14 @@
+import { headers } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const query = searchParams.get("key");
+  const headersList = headers();
+
+  const referer = headersList.get("commonRequest");
+  // console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊", headersList);
+  console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊", query);
   try {
     return NextResponse.json(
       { Hi: "Hello, Next.js!" },

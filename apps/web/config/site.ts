@@ -16,5 +16,5 @@ export const siteConfig: SiteConfig = {
     twitter: "https://twitter.com/sayandedotcom",
     github: "https://github.com/sayandedotcom/refhired.com",
   },
-  waitlist: true,
+  waitlist: false,
 };

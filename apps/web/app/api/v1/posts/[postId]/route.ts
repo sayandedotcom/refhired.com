@@ -4,13 +4,18 @@ import prisma from "@referrer/prisma";
 
 // import redis from "@referrer/redis";
 
-export async function GET(request: NextRequest, context: any) {
-  const { postId } = context;
+export async function GET(request: NextRequest, { params }: { params: { postId: string } }) {
+  const { postId } = params;
+
   // const cachedPostBySlug = await redis.get(`POST:ID:${id}`);
   // if (cachedPostBySlug) return JSON.parse(cachedPostBySlug);
   const post = await prisma.posts.findFirst({
     where: {
       id: postId,
+    },
+    include: {
+      user: true,
+      tags: true,
     },
   });
   // await redis.set(`POST:ID:${id}`, JSON.stringify(post), "EX", cacheTime);

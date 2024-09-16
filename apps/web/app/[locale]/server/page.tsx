@@ -1,16 +1,16 @@
 // export const dynamic = "force-dynamic";
 // export const fetchCache = "force-no-store";
 // import { requests } from "@/lib/axios";
-import { requests } from "@/lib/axios";
+import { request } from "@/lib/axios";
 
 async function getTest() {
-  const response = await requests.get("/test");
+  const response = await request.get("/test");
 
   return response.data;
 }
 
 export default async function Server() {
-  const response = (await requests.get("/test")).data;
+  const response = (await request.get("/test")).data;
   // const response = await fetch("http://localhost:3000/api/v1/test", {
   //   method: "GET",
   // }).then((ans) => ans.json());

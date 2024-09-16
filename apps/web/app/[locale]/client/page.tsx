@@ -2,13 +2,13 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { requests } from "@/lib/axios";
+import { request } from "@/lib/axios";
 
 function Client() {
   const { data, error, isLoading } = useQuery({
     queryKey: ["test"],
     queryFn: () => {
-      return requests.get(
+      return request.get(
         "/test"
         // , {
         // headers: {
