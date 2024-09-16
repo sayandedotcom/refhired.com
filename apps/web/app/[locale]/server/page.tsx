@@ -10,7 +10,7 @@ async function getTest() {
 }
 
 export default async function Server() {
-  const response = await getTest();
+  const response = (await requests.get("/test")).data;
   // const response = await fetch("http://localhost:3000/api/v1/test", {
   //   method: "GET",
   // }).then((ans) => ans.json());
