@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import { unstable_setRequestLocale } from "next-intl/server";
 
 import { Separator } from "@referrer/ui";
@@ -5,6 +7,11 @@ import { Separator } from "@referrer/ui";
 import { NewContentSection, NewExtraSection, NewOptionsSection } from "@/components/custom-components";
 
 import { Provider } from "./provider";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Get job referrals to the top best companies of the world",
+};
 
 export default function PortalsLayout({
   children,
