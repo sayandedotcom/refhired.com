@@ -1,39 +1,38 @@
-import { Metadata } from "next";
+"use client";
 
 import { fromNow } from "@refhiredcom/utils";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { useQuery } from "@tanstack/react-query";
 
 import { PostCard } from "@/components/custom-components";
 import { MultipleButtons } from "@/components/custom-components/post-card/post-buttons";
 import Navigate from "@/components/navigate";
 
-import { requests } from "@/lib/axios";
+import { request } from "@/lib/axios";
 
-export const metadata: Metadata = {
-  title: "Home",
-  description: "Get job referrals to the top best companies of the world",
-};
+import Loading from "../loading";
 
-export default async function Home({ params: { locale } }) {
-  unstable_setRequestLocale(locale);
-  // const response = await fetch("http://localhost:3000/api/v1/posts", {
-  //   method: "GET",
-  // }).then((response) => response.json());
-  const response = (await requests.get("/posts")).data;
+export default function Home() {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => {
+      return request.get(
+        "/posts"
+        // , {
+        // headers: {
+        //   name: "Sayan De from Client Component",
+        // },
+        // }
+      );
+    },
+  });
 
-  // .get("posts", {
-  //   headers: {
-  //     name: "Sayan De from Server Component",
-  //   },
-  // })
-  // .then((response) => response.data)
-  // .catch((error) => console.log(error));
+  if (isLoading) {
+    return <Loading />;
+  }
 
-  console.log("😊Postsssssssssssssssssssssssssssss", response);
-  const posts: any[] = [];
   return (
     <>
-      {response?.data.map((data) => (
+      {data?.data?.data.map((data) => (
         <PostCard key={data.id}>
           <PostCard.Image src={data.user?.image ?? "/images/avatar/avatar.png"} />
           <PostCard.Content>
