@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { PartyPopper } from "lucide-react";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import { useForm } from "react-hook-form";
@@ -12,6 +13,8 @@ import * as z from "zod";
 import { Button, Form, FormControl, FormField, FormItem, FormMessage, Input } from "@referrer/ui";
 
 import { sonerToast } from "@/components/ui";
+
+import { request } from "@/lib/axios";
 
 import { WordRotateComponentOne } from "./word-rotate-component-one";
 
@@ -24,10 +27,13 @@ const joinWaitlistSchema = z.object({
     .email({ message: "Invalid email address ! 🤔" }),
 });
 
+const sendEmail = (email) => {
+  return request.post("/waitlist", { email });
+};
+
 export function JoinWaitlist() {
   const [waitlisted, setWaitlisted] = useLocalStorage("waitlist", "");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>("");
 
   const form = useForm<z.infer<typeof joinWaitlistSchema>>({
     resolver: zodResolver(joinWaitlistSchema),
@@ -36,43 +42,34 @@ export function JoinWaitlist() {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof joinWaitlistSchema>) => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/waitlist", {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({ email: values.email }),
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["waitlist"],
+    mutationFn: sendEmail,
+    onSuccess(data, variables) {
+      setWaitlisted(variables);
+      sonerToast({
+        severity: "success",
+        title: "Sucess !",
+        message: data.data.message,
       });
-      const data = await response.json();
-      if (data.status === 409) {
-        setError(data?.message);
-      }
-      if (data.status === 200) {
-        setError("");
-        setWaitlisted(values.email);
-        sonerToast({
-          severity: "success",
-          title: "Sucess !",
-          message: data.message,
-        });
-      }
-    } catch (error) {
-      setError(`Error: ${error.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    onError(error, variables, context) {
+      ///@ts-expect-error
+      setError(error?.response.data.message);
+      sonerToast({
+        severity: "error",
+        title: "Error !",
+        ///@ts-expect-error
+        message: error?.response.data.message,
+      });
+      ///@ts-expect-error
+      console.log(error?.response.data.message);
+    },
+  });
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(e.target.value);
-  // };
-  // const onSubmitt = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   console.log("submitted");
-  // };
+  const onSubmit = (values: z.infer<typeof joinWaitlistSchema>) => {
+    mutate(values.email);
+  };
 
   return (
     <>
@@ -136,9 +133,9 @@ export function JoinWaitlist() {
                     </FormItem>
                   )}
                 />
-                <Button type="submit" isLoading={loading} className="flex items-center justify-center">
-                  {loading ? "Please Wait" : "Join Waitlist"}{" "}
-                  {loading ? <></> : <PartyPopper className="ml-4" />}
+                <Button type="submit" isLoading={isPending} className="flex items-center justify-center">
+                  {isPending ? "Please Wait" : "Join Waitlist"}{" "}
+                  {isPending ? <></> : <PartyPopper className="ml-4" />}
                 </Button>
               </form>
             </Form>
