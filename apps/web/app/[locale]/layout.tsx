@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
@@ -29,10 +29,6 @@ export const metadata: Metadata = {
     },
   ],
   creator: "Sayan De",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -75,6 +71,13 @@ export const metadata: Metadata = {
   ],
   manifest: "/manifest.json",
   metadataBase: new URL("https://refhired.com"),
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export function generateStaticParams() {
