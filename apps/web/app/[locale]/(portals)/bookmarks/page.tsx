@@ -5,7 +5,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 import { PortalsNotFound } from "@/components/custom-components";
 
 export const metadata: Metadata = {
-  title: "Booksmarks",
+  title: "Bookmarks",
   description: "Get job referrals to the top best companies of the world",
 };
 
