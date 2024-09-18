@@ -27,8 +27,8 @@ const joinWaitlistSchema = z.object({
     .email({ message: "Invalid email address ! 🤔" }),
 });
 
-const sendEmail = (email) => {
-  return request.post("/waitlist", { email });
+const sendEmail = ({ email }) => {
+  return request.post("/waitlist", email);
 };
 
 export function JoinWaitlist() {
@@ -46,7 +46,7 @@ export function JoinWaitlist() {
     mutationKey: ["waitlist"],
     mutationFn: sendEmail,
     onSuccess(data, variables) {
-      setWaitlisted(variables);
+      setWaitlisted(variables.email);
       sonerToast({
         severity: "success",
         title: "Sucess !",
@@ -68,7 +68,7 @@ export function JoinWaitlist() {
   });
 
   const onSubmit = (values: z.infer<typeof joinWaitlistSchema>) => {
-    mutate(values.email);
+    mutate({ email: values.email });
   };
 
   return (
