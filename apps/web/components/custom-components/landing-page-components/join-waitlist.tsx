@@ -53,7 +53,7 @@ export function JoinWaitlist() {
         message: data.data.message,
       });
     },
-    onError(error, variables, context) {
+    onError(error) {
       ///@ts-expect-error
       setError(error?.response.data.message);
       sonerToast({
@@ -62,8 +62,6 @@ export function JoinWaitlist() {
         ///@ts-expect-error
         message: error?.response.data.message,
       });
-      ///@ts-expect-error
-      console.log(error?.response.data.message);
     },
   });
 
