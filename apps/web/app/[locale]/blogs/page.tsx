@@ -29,17 +29,16 @@ const Blogs = () => {
             <AnimatedGradientText className="font-heading flex flex-col text-2xl">
               <p>
                 {" "}
-                Initially, this website's backend was built with Next.js 14 server actions. However, due to
-                scalability, security, and limited community support concerns, I've opted to migrate the
-                entire backend to Node.js and Express.js, utilizing a GraphQL API. This migration process may
-                take some time, during which all services will be unavailable.
+                We are currently in the process of migrating our website's backend from a GraphQL API to a
+                REST API. This transition is aimed at improving the scalability and performance of our
+                services. As a result, certain features and services will be temporarily unavailable during
+                this period. We expect the migration to be completed by late October.
               </p>
               <br />
               <p>
                 {" "}
-                Additionally, I am transitioning the deployment platform from Vercel to AWS to gain more
-                control over resources and reduce costs, with the assistance of the Serverless Stack (SST)
-                framework. I plan to fully redeploy this website by late June.
+                We appreciate your patience and understanding as we work to enhance your experience with our
+                platform. Thank you for your continued support!
               </p>
               <br />
               <p> Thank you to all the visitors!</p>
