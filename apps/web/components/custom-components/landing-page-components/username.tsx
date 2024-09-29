@@ -2,18 +2,29 @@
 
 import { useRouter } from "@/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { AnimatedGradientHeading } from "@/components/ui";
 
+import { request } from "@/lib/axios";
 import { userNameValidator } from "@/lib/validators";
 
 import { useStore } from "@/store/store";
 
+const checkUserName = ({ userName }) => {
+  return request.get("/claimusername", {
+    params: {
+      userName,
+    },
+  });
+};
+
 export const Username = (prop: any) => {
-  const router = useRouter();
   const { session } = prop;
+  const router = useRouter();
   const setUserName = useStore((state) => state.claimUserName);
   const form = useForm<z.infer<typeof userNameValidator>>({
     resolver: zodResolver(userNameValidator),
@@ -24,22 +35,35 @@ export const Username = (prop: any) => {
   const { register, handleSubmit, formState, setError } = form;
   const { errors } = formState;
 
-  const onSubmit = async (data: z.infer<typeof userNameValidator>) => {
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["claimusername"],
+    mutationFn: checkUserName,
+    onSuccess(data, variables) {
+      setUserName(variables.userName);
+      router.push("/auth/sign-up");
+    },
+    onError(error) {
+      setError("userName", {
+        ///@ts-expect-error
+        message: error?.response.data.message,
+      });
+    },
+  });
+
+  const onSubmit = (data: z.infer<typeof userNameValidator>) => {
     // errors.userName = {
     //   message: "Username already exists",
     // };
     // setError("userName", {
     //   message: "Username already exists",
     // });
-    // return;
-    setUserName(data.userName);
-    router.push("/auth/sign-up");
+    mutate({ userName: data.userName });
   };
 
   return (
     <div className="font-heading flex flex-col items-center justify-center gap-4 py-16">
       {session ? (
-        <h1 className="text-center text-[30px] md:text-[50px]">You are already logged in !</h1>
+        <></>
       ) : (
         <>
           <AnimatedGradientHeading className="px-2 text-center text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
@@ -64,7 +88,7 @@ export const Username = (prop: any) => {
               </div>
             </div>
             <button type="submit" className="btn-97 uppercase">
-              Claim Username
+              {isPending ? <Loader className="w-10 animate-spin" /> : "Claim Username"}
             </button>
           </form>
           <p className="text-[#FF0000] md:text-xl">{errors.userName?.message}</p>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -28,12 +28,12 @@ const joinWaitlistSchema = z.object({
 });
 
 const sendEmail = ({ email }) => {
-  return request.post("/waitlist", email);
+  return request.post("/waitlist", { email });
 };
 
 export function JoinWaitlist() {
   const [waitlisted, setWaitlisted] = useLocalStorage("waitlist", "");
-  const [error, setError] = useState<string>("");
+  // const [error, setError] = useState<string>("");
 
   const form = useForm<z.infer<typeof joinWaitlistSchema>>({
     resolver: zodResolver(joinWaitlistSchema),
@@ -41,6 +41,9 @@ export function JoinWaitlist() {
       email: "",
     },
   });
+
+  const { handleSubmit, formState, setError } = form;
+  const { errors } = formState;
 
   const { mutate, isPending } = useMutation({
     mutationKey: ["waitlist"],
@@ -55,7 +58,7 @@ export function JoinWaitlist() {
     },
     onError(error) {
       ///@ts-expect-error
-      setError(error?.response.data.message);
+      setError("email", { message: error?.response.data.message });
       sonerToast({
         severity: "error",
         title: "Error !",
@@ -99,9 +102,7 @@ export function JoinWaitlist() {
               />
             </div> */}
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="mt-3 flex items-start justify-center gap-4">
+              <form onSubmit={handleSubmit(onSubmit)} className="mt-3 flex items-start justify-center gap-4">
                 <FormField
                   control={form.control}
                   name="email"
@@ -126,12 +127,17 @@ export function JoinWaitlist() {
                           />
                         </div> */}
                       </FormControl>
-                      <FormMessage className="justify-center text-[#ff3535bb]">{error}</FormMessage>
+                      <FormMessage className="justify-center text-[#ff3535bb]">
+                        {errors?.email?.message}
+                      </FormMessage>
                       {/* <FormDescription> Enter your email address !</FormDescription> */}
                     </FormItem>
                   )}
                 />
-                <Button type="submit" isLoading={isPending} className="flex items-center justify-center">
+                <Button
+                  type="submit"
+                  isLoading={isPending}
+                  className="flex items-center justify-center transition active:scale-95">
                   {isPending ? "Please Wait" : "Join Waitlist"}{" "}
                   {isPending ? <></> : <PartyPopper className="ml-4" />}
                 </Button>
