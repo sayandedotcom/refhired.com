@@ -3,6 +3,8 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -26,13 +28,57 @@ import {
   Textarea,
 } from "@referrer/ui";
 
+import { request } from "@/lib/axios";
 import { applyValidator } from "@/lib/validators";
 
-import { Icons } from "../icons/icons";
-import { toastMessage } from "./toast/toasts";
+import { DynamicIcons } from "../icons/dynamic-icons";
+import { sonerToast } from "./soner-toast";
 
-export function ApplyDialog({ children }) {
+const applyPost = ({ applyInfo, postId, userId }) => {
+  return request.post("/apply", { applyInfo, postId, userId });
+};
+
+export function ApplyDialog({
+  myObject,
+  postID,
+  stars,
+  totalApplied,
+  acceptLimit,
+  expired,
+}: {
+  myObject?: any;
+  postID?: any;
+  stars?: any;
+  totalApplied?: any;
+  acceptLimit?: any;
+  expired?: any;
+}) {
   const [open, setOpen] = useState(false);
+  const { data: session } = useSession();
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["apply"],
+    mutationFn: applyPost,
+    onSuccess(data, variables) {
+      setOpen(!open);
+      sonerToast({
+        severity: "success",
+        title: "Sucess !",
+        message: data.data.message,
+      });
+    },
+    onError(error, variables, context) {
+      ///@ts-expect-error
+      setError(error?.response.data.message);
+      sonerToast({
+        severity: "error",
+        title: "Error !",
+        ///@ts-expect-error
+        message: error?.response.data.message,
+      });
+      ///@ts-expect-error
+      console.log(error?.response.data.message);
+    },
+  });
 
   const form = useForm<z.infer<typeof applyValidator>>({
     resolver: zodResolver(applyValidator),
@@ -41,20 +87,16 @@ export function ApplyDialog({ children }) {
     },
   });
 
-  const myObject = {
-    message: "true",
-    pdfs: ["resume", "coverLetter"],
-    links: ["github", "linkedin"],
-  };
-
-  async function onSubmit(values: z.infer<typeof applyValidator>) {
-    console.log(values);
-    setOpen(!open);
-    toastMessage({
-      type: "success",
-      title: "Applied Successfully !",
-      message: "You have successfully applied for this job.",
-    });
+  function onSubmit(values: z.infer<typeof applyValidator>) {
+    if (!session) {
+      sonerToast({
+        severity: "info",
+        title: "Oopps !",
+        message: "Login or SignUp to continue !",
+      });
+    } else {
+      mutate({ applyInfo: values, postId: postID, userId: session?.user?.id });
+    }
   }
 
   // const { fields, append } = useFieldArray({
@@ -64,9 +106,26 @@ export function ApplyDialog({ children }) {
   // });
 
   // !form.formState.isSubmitSuccessful;
+
+  const full = totalApplied === acceptLimit;
+  const fileRef = form.register("pdfs");
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger asChild>
+        <Button
+          id="post-apply"
+          // disabled={applied}
+          disabled={full || expired}
+          isLoading={isPending}
+          // isLoading={loadingValue === "apply"}
+          // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
+          // onClick={apply}
+          className="h-9 w-3/12 rounded-full text-sm">
+          {(full && "Full") || (expired && "Expired") || "Apply"}
+        </Button>
+      </DialogTrigger>
+
       <DialogContent className="border-foreground w-11/12 md:w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-3xl">Best of Luck ! 🤞</DialogTitle>
@@ -77,7 +136,7 @@ export function ApplyDialog({ children }) {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="relative flex flex-col space-y-2">
             {/* Message */}
-            {myObject.hasOwnProperty("message") && myObject.message.toLocaleLowerCase() === "true" && (
+            {myObject?.hasOwnProperty("message") && myObject.message === true && (
               <FormField
                 control={form.control}
                 name="message"
@@ -101,7 +160,7 @@ export function ApplyDialog({ children }) {
               />
             )}
             {/* PDF */}
-            {myObject.hasOwnProperty("pdfs") &&
+            {myObject?.hasOwnProperty("pdfs") &&
               myObject.pdfs.map((name, index) => (
                 <FormField
                   control={form.control}
@@ -109,14 +168,16 @@ export function ApplyDialog({ children }) {
                   key={index}
                   render={({ field }) => (
                     <FormItem className="flex items-center justify-center gap-5">
-                      <FormLabel className="text-center text-sm">{name}</FormLabel>
+                      <FormLabel className="text-center text-sm">
+                        {name.charAt(0).toUpperCase() + name.slice(1)}
+                      </FormLabel>
                       <FormControl>
                         <Input
-                          id="resume"
                           name={name}
-                          accept=".pdf"
                           type="file"
+                          accept=".pdf"
                           className="ml-auto w-8/12 cursor-pointer"
+                          // {...fileRef}
                           {...field}
                         />
                       </FormControl>
@@ -127,7 +188,7 @@ export function ApplyDialog({ children }) {
               ))}
             {/* Links */}
             <div className="mt-2">
-              {myObject.hasOwnProperty("links") &&
+              {myObject?.hasOwnProperty("links") &&
                 myObject.links.map((name, index) => (
                   <FormField
                     control={form.control}
@@ -141,8 +202,12 @@ export function ApplyDialog({ children }) {
                         </FormDescription>
                         <FormControl>
                           <div className="flex items-center gap-2">
-                            <Icons.gitHub className="h-7 w-7" />
-                            <Input {...field} placeholder={name} />
+                            <DynamicIcons iconName={name} className="h-7 w-7" />
+                            <Input
+                              {...field}
+                              placeholder={name.charAt(0).toUpperCase() + name.slice(1)}
+                              type="url"
+                            />
                           </div>
                         </FormControl>
                         <FormMessage />
@@ -152,6 +217,7 @@ export function ApplyDialog({ children }) {
                 ))}
             </div>
             <Button
+              isLoading={isPending}
               // disabled={!form.formState.isValid}
               className="w-5/12 self-center rounded-full"
               type="submit">
@@ -162,118 +228,4 @@ export function ApplyDialog({ children }) {
       </DialogContent>
     </Dialog>
   );
-}
-
-{
-  /* Message */
-}
-{
-  /* <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-base">Write a short message to the referrer</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      rows={7}
-                      cols={70}
-                      className="text-base"
-                      placeholder="Write a short message to the referrer here. . . . . ."
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */
-}
-{
-  /* Resume */
-}
-{
-  /* <FormField
-              control={form.control}
-              name="resume"
-              render={({ field }) => (
-                <FormItem className="flex items-center justify-center gap-5">
-                  <FormLabel className="text-center text-sm">Resume 📄</FormLabel>
-                  <FormControl>
-                    <Input
-                      id="resume"
-                      name="resume"
-                      accept=".pdf"
-                      type="file"
-                      className="ml-auto w-8/12 cursor-pointer"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */
-}
-{
-  /* Cover Letter */
-}
-{
-  /* <FormField
-              control={form.control}
-              name="coverLetter"
-              render={({ field }) => (
-                <FormItem className="flex items-center justify-center gap-3">
-                  <FormLabel className="text-center text-sm">Cover Letter 📝</FormLabel>
-                  <FormControl>
-                    <Input
-                      id="coverLetter"
-                      name="coverLetter"
-                      accept=".pdf"
-                      type="file"
-                      className="ml-auto w-8/12 cursor-pointer"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */
-}
-{
-  /* Links */
-}
-{
-  /* <div className="mt-2">
-              {fields.map((field, index) => (
-                <FormField
-                  control={form.control}
-                  key={field.id}
-                  name={`urls.${index}.value`}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className={cn(index !== 0 && "sr-only")}>URLs</FormLabel>
-                      <FormDescription className={cn(index !== 0 && "sr-only")}>
-                        Add links to your website, blog, or social media profiles.
-                      </FormDescription>
-                      <FormControl>
-                        <div className="flex items-center gap-2">
-                          <Icons.gitHub className="h-7 w-7" />
-                          <Input {...field} />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              ))}
-              <Button
-                type="button"
-                variant="secondary"
-                size="sm"
-                className="my-2"
-                onClick={() => append({ value: "" })}>
-                Add URL 🔗
-              </Button>
-            </div> */
 }
