@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { getAuthSession } from "@refhiredcom/features/auth/lib/auth";
-
+import { getServerAuthSession } from "@/lib/auth";
 import { stripe } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
@@ -11,7 +10,7 @@ export async function POST(req: NextRequest) {
   const { planId = process.env.STRIPE_CUST0M_PRICE_ID, quantity = 1, stars } = await req.json();
 
   try {
-    const { user } = await getAuthSession();
+    const { user } = await getServerAuthSession();
 
     if (!user) {
       return new NextResponse("Unauthorized", { status: 401 });

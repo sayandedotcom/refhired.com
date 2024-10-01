@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import { useLoading, useWindowSize } from "@/hooks";
+import { Star } from "lucide-react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import { FiMessageCircle, FiShare2 } from "react-icons/fi";
@@ -36,7 +37,29 @@ export const ApplyButton = ({ stars }) => {
 };
 // (200 Applied)
 
-export const MultipleButtons = ({ link, title }: { link?: any; title?: any }) => {
+export const MultipleButtons = ({ children }: { children?: any }) => {
+  return <div className="flex justify-center  gap-9 text-xl md:text-xl">{children}</div>;
+};
+
+export const ShareButton = ({ link, title }: { link?: any; title?: any }) => {
+  return (
+    <TooltipDemo text="Share">
+      <ShareDialog shareUrl={link} title={title}>
+        <FiShare2 id="options" className="w-5 cursor-pointer" />
+      </ShareDialog>
+    </TooltipDemo>
+  );
+};
+
+export const CommentButton = () => {
+  return (
+    <TooltipDemo text="Comment">
+      <FiMessageCircle id="options" className="w-5 cursor-pointer" />
+    </TooltipDemo>
+  );
+};
+
+export const BookmarkButton = () => {
   const [bookmark, setBookmark] = useState(false);
 
   const bookmarked = () => {
@@ -55,15 +78,7 @@ export const MultipleButtons = ({ link, title }: { link?: any; title?: any }) =>
   };
 
   return (
-    <div className="flex gap-9 text-xl md:text-xl">
-      <TooltipDemo text="Comment">
-        <FiMessageCircle id="options" className="w-5 cursor-pointer" />
-      </TooltipDemo>
-      <TooltipDemo text="Share">
-        <ShareDialog shareUrl={link} title={title}>
-          <FiShare2 id="options" className="w-5 cursor-pointer" />
-        </ShareDialog>
-      </TooltipDemo>
+    <>
       {!bookmark ? (
         <TooltipDemo text="Add to Bookmark">
           <FaRegBookmark onClick={bookmarked} id="options" className="w-5 cursor-pointer" />
@@ -73,7 +88,27 @@ export const MultipleButtons = ({ link, title }: { link?: any; title?: any }) =>
           <FaBookmark onClick={bookmarked} id="options" className="w-5 cursor-pointer" />
         </TooltipDemo>
       )}
-    </div>
+    </>
+  );
+};
+
+export const StarButton = ({ star }: { star?: any }) => {
+  return (
+    <TooltipDemo text="Star">
+      <div className="flex gap-2">
+        <Star id="options" className="w-5 cursor-pointer" /> {star}
+      </div>
+    </TooltipDemo>
+  );
+};
+
+export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any; acceptLimit?: any }) => {
+  return (
+    <TooltipDemo text="Comment">
+      <>
+        {totalApplied} / {acceptLimit}
+      </>
+    </TooltipDemo>
   );
 };
 

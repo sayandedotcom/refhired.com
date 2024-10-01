@@ -4,6 +4,7 @@ import { fromNow } from "@refhiredcom/utils";
 
 import { PostCard } from "@/components/custom-components";
 import { MultipleButtons } from "@/components/custom-components/post-card/post-buttons";
+import { ApplyDialog } from "@/components/ui";
 
 import { request } from "@/lib/axios";
 
@@ -48,7 +49,7 @@ export default async function Post({ params }: PostProps) {
         <PostCard.Content>
           <PostCard.Header
             name={data.user?.name}
-            userName={`@${data.user?.userName}`}
+            userName={data.user?.userName}
             time={fromNow(data.createdAt)}
             timeLeft={fromNow(data.expiresAt)}
           />
@@ -64,13 +65,13 @@ export default async function Post({ params }: PostProps) {
           />
           <PostCard.Footer>
             <MultipleButtons />
-            {/* <ApplyDialog
-              myObject={data.getPostBySlug.accept}
-              postID={data.getPostBySlug.id}
-              stars={data.getPostBySlug.stars}
-              totalApplied={data.getPostBySlug.totalApplied}
-              acceptLimit={data.getPostBySlug.acceptLimit}
-            /> */}
+            <ApplyDialog
+              myObject={data.accept}
+              postID={data.id}
+              stars={data.stars}
+              totalApplied={data.totalApplied}
+              acceptLimit={data.acceptLimit}
+            />
           </PostCard.Footer>
         </PostCard.Content>
       </PostCard>

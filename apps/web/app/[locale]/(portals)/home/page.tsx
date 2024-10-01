@@ -4,25 +4,26 @@ import { fromNow } from "@refhiredcom/utils";
 import { useQuery } from "@tanstack/react-query";
 
 import { PostCard } from "@/components/custom-components";
-import { MultipleButtons } from "@/components/custom-components/post-card/post-buttons";
+import {
+  ApplyStatus,
+  BookmarkButton,
+  CommentButton,
+  MultipleButtons,
+  ShareButton,
+  StarButton,
+} from "@/components/custom-components/post-card/post-buttons";
 import Navigate from "@/components/navigate";
+import { ApplyDialog } from "@/components/ui";
 
 import { request } from "@/lib/axios";
 
 import Loading from "../loading";
 
 export default function Home() {
-  const { data, error, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["posts"],
     queryFn: () => {
-      return request.get(
-        "/posts"
-        // , {
-        // headers: {
-        //   name: "Sayan De from Client Component",
-        // },
-        // }
-      );
+      return request.get("/posts");
     },
   });
 
@@ -38,7 +39,7 @@ export default function Home() {
           <PostCard.Content>
             <PostCard.Header
               name={data.user?.name}
-              userName={`@${data.user?.userName}`}
+              userName={data.user?.userName}
               time={fromNow(data.createdAt)}
               timeLeft={fromNow(data.expiresAt)}
             />
@@ -55,15 +56,21 @@ export default function Home() {
               // skills={data.tags}
             />
             <PostCard.Footer>
-              <MultipleButtons link={`${data.user.userName}/${data.id}`} title={data.description} />
-              {/* <ApplyDialog
+              <MultipleButtons>
+                <CommentButton />
+                <ShareButton link={`${data.user.userName}/posts/${data.id}`} title={data.description} />
+                <BookmarkButton />
+                <StarButton star={data.stars} />
+                <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
+              </MultipleButtons>
+              <ApplyDialog
                 myObject={data.accept}
                 postID={data.id}
                 stars={data.stars}
                 totalApplied={data.totalApplied}
                 acceptLimit={data.acceptLimit}
-                expired={expired(data.expiresAt)}
-              /> */}
+                // expired={expired(data.expiresAt)}
+              />
             </PostCard.Footer>
           </PostCard.Content>
         </PostCard>

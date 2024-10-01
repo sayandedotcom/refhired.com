@@ -2,6 +2,9 @@
 
 import { Suspense } from "react";
 
+import { Inter as FontSans } from "next/font/google";
+import localFont from "next/font/local";
+
 import { useIsMounted } from "@/hooks";
 import { usePathname } from "@/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -21,8 +24,18 @@ import { rootPaths } from "@/config";
 
 import { useStore } from "@/store/store";
 
+import Loading from "../../app/[locale]/loading";
 import "../../styles/globals.css";
-import Loading from "./loading";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const fontHeading = localFont({
+  src: "../../public/fonts/cal-sans/CalSans-SemiBold.woff2",
+  variable: "--font-heading",
+});
 
 export function Provider({ children }) {
   const isMounted = useIsMounted();
