@@ -5,7 +5,7 @@ import { Link } from "@/navigation";
 import { fromNow } from "@refhiredcom/utils";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 
-import { Separator, buttonVariants } from "@referrer/ui";
+import { Button, Separator } from "@referrer/ui";
 
 import { PostCard } from "@/components/custom-components";
 import { MultipleButtons } from "@/components/custom-components/post-card/post-buttons";
@@ -43,10 +43,11 @@ const Profile = async ({ params }: paramsProps) => {
             height={120}
             className="rounded-full"
           />
-          <h6 className="font-sans">Login to view your account</h6>
-          <Link href={"/auth/login"} className={`rounded-full ${buttonVariants()}`}>
-            Login
-            <ArrowRight className="ml-2 h-4 w-4" />
+          <h6 className="font-sans">Profile donot exists</h6>
+          <Link href={"/auth/login"}>
+            <Button>
+              Login <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
           </Link>
         </div>
         <Separator />

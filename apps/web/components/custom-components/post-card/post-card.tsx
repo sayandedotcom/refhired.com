@@ -3,6 +3,7 @@ import Image from "next/image";
 import { MoreHorizontal } from "lucide-react";
 
 import { PostHoverCard } from "@/components/ui";
+import UsernameNavigate from "@/components/wrappers/username-navigator";
 
 import { Tags } from "./post-buttons";
 import { ComboboxDropdownMenu } from "./post-more-menu";
@@ -55,15 +56,19 @@ function PostCardHeader({
     <div className="font-heading flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm md:text-base">
         <PostHoverCard>
-          <span id="post-name" className="cursor-pointer hover:underline">
-            {name}
-          </span>
+          <UsernameNavigate userName={userName}>
+            <span id="post-name" className="cursor-pointer hover:underline">
+              {name}
+            </span>
+          </UsernameNavigate>
         </PostHoverCard>
         •
         <PostHoverCard>
-          <span id="post-username" className="dark:text-foreground cursor-pointer hover:underline">
-            {userName}
-          </span>
+          <UsernameNavigate userName={userName}>
+            <span id="post-username" className="dark:text-foreground cursor-pointer hover:underline">
+              @{userName}
+            </span>
+          </UsernameNavigate>
         </PostHoverCard>
         •<small id="post-uploaded">{time}</small>•
         <small id="post-time-left" className="hidden md:block">

@@ -13,7 +13,10 @@ import { useStore } from "@/store/store";
 export function RightBarMobile() {
   const pathName = usePathname();
   const showExtraSection = [
+    "/requests",
+    "/applied",
     "/dashboard",
+    "/dashboard/settings",
     "/settings/profile",
     "/settings/appearance",
     "/settings/notifications",

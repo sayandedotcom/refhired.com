@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 
+import { useSearchParams } from "next/navigation";
+
 import clsx from "clsx";
 import { Search, X } from "lucide-react";
 import { useHotkeys } from "react-hotkeys-hook";
@@ -11,15 +13,17 @@ import { Input } from "@referrer/ui";
 
 import { history } from "@/config";
 
-export const SearchBar = () => {
-  const [state, setState] = useState("");
+export const SearchBar = ({ searchString }: { searchString?: string }) => {
+  const searchParams = useSearchParams();
+  const search = searchParams.get("search_query");
+  const [value, setValue] = useState(search ?? "");
   const [isInputFocused, setInputFocused] = useState(false);
   const searchRef = useRef();
   const outsideRef = useRef();
   useOnClickOutside(outsideRef, () => setInputFocused(false));
 
   const handleChange = (e) => {
-    setState(e.target.value);
+    setValue(e.target.value);
   };
 
   const focusSearch = () => {
@@ -28,7 +32,7 @@ export const SearchBar = () => {
   };
 
   const optionClick = (item) => {
-    setState(item);
+    setValue(item);
     setInputFocused(false);
   };
 
@@ -43,7 +47,7 @@ export const SearchBar = () => {
           <Input
             type="text"
             ref={searchRef}
-            value={state}
+            value={value}
             onFocus={() => setInputFocused(true)}
             placeholder="Type ctrl+/ to search"
             onChange={handleChange}
@@ -52,9 +56,9 @@ export const SearchBar = () => {
           />
           <X
             className={`mr-4 h-[4%] w-[4%] cursor-pointer rounded-full  ${
-              state.length === 0 ? "hidden" : ""
+              value?.length === 0 ? "hidden" : ""
             }`}
-            onClick={() => setState("")}
+            onClick={() => setValue("")}
           />
         </form>
         <div

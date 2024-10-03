@@ -2,8 +2,6 @@
 
 import * as React from "react";
 
-import { Link } from "@/navigation";
-import { fromNow } from "@refhiredcom/utils";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -16,7 +14,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, ChevronDown, File, Link2, MoreHorizontal } from "lucide-react";
+import { ChevronDown, MoreHorizontal } from "lucide-react";
 
 import {
   Button,
@@ -37,79 +35,47 @@ import {
   TableRow,
 } from "@referrer/ui";
 
-import { TooltipDemo } from "../ui";
+const data: Payment[] = [
+  {
+    id: "m5gr84i9",
+    amount: 316,
+    status: "success",
+    email: "ken99@yahoo.com",
+  },
+  {
+    id: "3u1reuv4",
+    amount: 242,
+    status: "success",
+    email: "Abe45@gmail.com",
+  },
+  {
+    id: "derv1ws0",
+    amount: 837,
+    status: "processing",
+    email: "Monserrat44@gmail.com",
+  },
+  {
+    id: "5kma53ae",
+    amount: 874,
+    status: "success",
+    email: "Silas22@gmail.com",
+  },
+  {
+    id: "bhqecj4p",
+    amount: 721,
+    status: "failed",
+    email: "carmella@hotmail.com",
+  },
+];
 
-// const data: Payment[] = [];
-//   // {
-//   //   id: "m5gr84i9",
-//   //   amount: 316,
-//   //   status: "read",
-//   //   email: "ken99@yahoo.com",
-//   // },
-//   // {
-//   //   id: "3u1reuv4",
-//   //   amount: 242,
-//   //   status: "unread",
-//   //   email: "Abe45@gmail.com",
-//   // },
-//   // {
-//   //   id: "derv1ws0",
-//   //   amount: 837,
-//   //   status: "read",
-//   //   email: "Monserrat44@gmail.com",
-//   // },
-//   // {
-//   //   id: "5kma53ae",
-//   //   amount: 874,
-//   //   status: "read",
-//   //   email: "Silas22@gmail.com",
-//   // },
-//   // {
-//   //   id: "bhqecj4p",
-//   //   amount: 721,
-//   //   status: "unread",
-//   //   email: "carmella@hotmail.com",
-//   // },
-// ];
+export type Payment = {
+  id: string;
+  amount: number;
+  status: "pending" | "processing" | "success" | "failed";
+  email: string;
+};
 
-// export type Data = {
-//   id: string;
-//   received: string;
-//   status: string;
-//   post: string;
-//   email: string;
-//   amount: number;
-//   info: any;
-// };
-
-// const data = [
-//   {
-//     id: "1",
-//     received: "5 min ago",
-//     status: "Read",
-//     post: "Hiring Backend Developers from India and I would ...",
-//     email: "chumkimahajandey@gmail.com",
-//     amount: 354,
-//     info: "grfhrtehbyrt",
-//     message: "message",
-//     pdf: ["www.sayande.com"],
-//     links: ["www.sayande.com"],
-//   },
-//   {
-//     id: "2",
-//     received: "5 min ago",
-//     status: "Unread",
-//     post: "Hiring Developers from India and I would ...",
-//     email: "ayande@gmail.com",
-//     amount: 354,
-//     info: "grfhrtehbyrt",
-//     message: "message",
-//     pdf: ["www.sayande.com"],
-//     links: ["www.sayande.com"],
-//   },
-// ];
-
-export const columns: ColumnDef<any>[] = [
+export const columns: ColumnDef<Payment>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -130,86 +96,19 @@ export const columns: ColumnDef<any>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "received",
-    header: "Received",
-    cell: ({ row }) => <div className="capitalize">{fromNow(row.getValue("received"))}</div>,
+    accessorKey: "sent",
+    header: "Sent",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("status")}</div>,
   },
-  // {
-  //   accessorKey: "status",
-  //   header: "Status",
-  //   cell: ({ row }) => (
-  //     <Badge variant="outline" className="capitalize">
-  //       {row.getValue("status")}
-  //     </Badge>
-  //   ),
-  // },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => <div className="capitalize">{row.getValue("status")}</div>,
+  },
   {
     accessorKey: "post",
     header: "Post",
-    cell: ({ row }) => <div className="lowercase">{row.getValue("post")}</div>,
-  },
-  {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-  },
-  {
-    accessorKey: "message",
-    header: () => <div className="text-right">Message</div>,
-    cell: ({ row }) => {
-      return <div className="text-right font-medium">{row.getValue("message")}</div>;
-    },
-  },
-  {
-    accessorKey: "pdfs",
-    header: () => <div className="text-right">Pdfs</div>,
-    cell: ({ row }) => {
-      return (
-        <div className="text-right font-medium">
-          {/* @ts-ignore */}
-          {row.getValue("pdfs").map((link, index) => {
-            const platform = Object.keys(link)[0];
-            const url = link[platform];
-            return (
-              <TooltipDemo key={index} text={platform}>
-                <Link href={url} target="_blank">
-                  <File />
-                </Link>
-              </TooltipDemo>
-            );
-          })}
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "links",
-    header: () => <div className="text-right">Links</div>,
-    cell: ({ row }) => {
-      return (
-        <div className="flex gap-3 text-right font-medium">
-          {/* @ts-ignore */}
-          {row.getValue("links").map((link, index) => {
-            const platform = Object.keys(link)[0];
-            const url = link[platform];
-            return (
-              <Link key={index} href={url} target="_blank">
-                <TooltipDemo text={platform}>
-                  <Link2 />
-                </TooltipDemo>
-              </Link>
-            );
-          })}
-        </div>
-      );
-    },
   },
   {
     accessorKey: "amount",
@@ -222,6 +121,21 @@ export const columns: ColumnDef<any>[] = [
         style: "currency",
         currency: "USD",
       }).format(amount);
+
+      return <div className="text-right font-medium">{formatted}</div>;
+    },
+  },
+  {
+    accessorKey: "info",
+    header: () => <div className="text-right">Info</div>,
+    cell: ({ row }) => {
+      const info = parseFloat(row.getValue("info"));
+
+      // Format the amount as a dollar amount
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(info);
 
       return <div className="text-right font-medium">{formatted}</div>;
     },
@@ -255,44 +169,11 @@ export const columns: ColumnDef<any>[] = [
   },
 ];
 
-export default function RequestDataTable({ data }) {
-  // console.log("data in client", data);
-
+export default function AppliedDataTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-
-  // console.log("queriedData?.getAllRequests.Posts", queriedData?.getAllRequests.Posts);
-
-  // const data = queriedData?.getAllRequests.Posts || [];
-
-  // const transformArray = React.useCallback(
-  //   (originalArray) => {
-  //     const transformedArray = [];
-
-  //     originalArray.forEach((obj) => {
-  //       obj.appliedInfo.forEach((applyInfo) => {
-  //         const transformedObj = {
-  //           id: obj.id,
-  //           received: "5 min ago", // Example value, you need to calculate actual time difference
-  //           status: "Read", // Assuming all are read
-  //           post: obj.description,
-  //           email: applyInfo.user.email,
-  //           amount: 354, // Example value, you need to determine how to calculate it
-  //           info: applyInfo.applyInfo.message,
-  //         };
-  //         transformedArray.push(transformedObj);
-  //       });
-  //     });
-
-  //     return transformedArray;
-  //   },
-  //   [data]
-  // );
-
-  // // Call the function to get the transformed array
-  // const formattedArray = transformArray(data);
 
   const table = useReactTable({
     data,
@@ -312,16 +193,6 @@ export default function RequestDataTable({ data }) {
       rowSelection,
     },
   });
-
-  // console.log(
-  //   table?.getRowModel().rows.map((row) => {
-  //     console.log("row", row);
-  //     //   .getVisibleCells().map((cell) => {
-  //     //     console.log("cols", flexRender(cell.column.columnDef.cell, cell.getContext()));
-  //     //   })
-  //     // );
-  //   })
-  // );
 
   return (
     <div className="w-full px-4">
@@ -374,7 +245,7 @@ export default function RequestDataTable({ data }) {
             ))}
           </TableHeader>
           <TableBody>
-            {table?.getRowModel()?.rows?.length ? (
+            {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
@@ -387,7 +258,7 @@ export default function RequestDataTable({ data }) {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  You got no requests !
+                  No results.
                 </TableCell>
               </TableRow>
             )}

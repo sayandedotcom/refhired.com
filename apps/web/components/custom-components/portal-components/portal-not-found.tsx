@@ -12,7 +12,7 @@ export const PortalsNotFound = ({ text }) => {
     <div className="mt-8 flex flex-col items-center justify-center gap-5 font-sans">
       {data ? (
         <>
-          <p>
+          <p className="font-semibold">
             <Frown className="mr-2 inline h-5 w-5 font-bold" /> Ooops ! You have no {text} !
           </p>
           <Button className="rounded-full">
@@ -22,11 +22,14 @@ export const PortalsNotFound = ({ text }) => {
         </>
       ) : (
         <>
-          <p>
-            <Frown className="mr-2 inline h-5 w-5 font-bold" /> Ooops ! Login or Sign Up to see your {text}
+          <p className="font-semibold">
+            <Frown className="mb-1 mr-1 inline h-5 w-5 font-bold" /> Ooops ! Login or Sign Up to see your{" "}
+            {text}
             ....
           </p>
-          <Link href={"/auth/login"} className={`rounded-full ${buttonVariants()}`}>
+          <Link
+            href={"/auth/login"}
+            className={`rounded-full transition active:scale-95 ${buttonVariants()}`}>
             Login
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
