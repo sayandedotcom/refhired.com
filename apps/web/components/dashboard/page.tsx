@@ -12,26 +12,17 @@ import {
 } from "@referrer/ui";
 
 import { CalendarDateRangePicker } from "./components/date-range-picker";
-import { MainNav } from "./components/main-nav";
+// import { MainNav } from "./components/main-nav";
 import { RecentSales } from "./components/recent-sales";
-import { Search } from "./components/search";
-import TeamSwitcher from "./components/team-switcher";
-import { UserNav } from "./components/user-nav";
+
+// import { Search } from "./components/search";
+// import TeamSwitcher from "./components/team-switcher";
+// import { UserNav } from "./components/user-nav";
 
 export default function DashboardPage() {
   return (
     <>
       <div className="hidden w-full flex-col md:flex">
-        <div className="border-b">
-          <div className="flex h-16 items-center px-4">
-            <TeamSwitcher />
-            <MainNav className="mx-6" />
-            <div className="ml-auto flex items-center space-x-4">
-              <Search />
-              <UserNav />
-            </div>
-          </div>
-        </div>
         <div className="flex-1 space-y-4 p-8 pt-6">
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
@@ -43,15 +34,10 @@ export default function DashboardPage() {
           <Tabs defaultValue="overview" className="space-y-4">
             <TabsList>
               <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="analytics" disabled>
-                Analytics
-              </TabsTrigger>
-              <TabsTrigger value="reports" disabled>
-                Reports
-              </TabsTrigger>
-              <TabsTrigger value="notifications" disabled>
-                Notifications
-              </TabsTrigger>
+              <TabsTrigger value="requests">Requests</TabsTrigger>
+              <TabsTrigger value="applied">Applied</TabsTrigger>
+              <TabsTrigger value="reports">Reports</TabsTrigger>
+              <TabsTrigger value="notifications">Notifications</TabsTrigger>
             </TabsList>
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -77,7 +63,7 @@ export default function DashboardPage() {
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
+                    <CardTitle className="text-sm font-medium">Referrals</CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -148,7 +134,7 @@ export default function DashboardPage() {
                 </Card>
                 <Card className="col-span-3">
                   <CardHeader>
-                    <CardTitle>Recent Sales</CardTitle>
+                    <CardTitle>Recent Referral Request</CardTitle>
                     <CardDescription>You made 265 sales this month.</CardDescription>
                   </CardHeader>
                   <CardContent>

@@ -23,8 +23,7 @@ export const PortalsNotFound = ({ text }) => {
       ) : (
         <>
           <p className="font-semibold">
-            <Frown className="mb-1 mr-1 inline h-5 w-5 font-bold" /> Ooops ! Login or Sign Up to see your{" "}
-            {text}
+            <Frown className="mb-1 mr-1 inline h-5 w-5 font-bold" /> Ooops ! Login to see your {text}
             ....
           </p>
           <Link

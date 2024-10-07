@@ -2,6 +2,8 @@
 
 import * as React from "react";
 
+import { Link } from "@/navigation";
+import { fromNow } from "@refhiredcom/utils";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -14,7 +16,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ChevronDown, MoreHorizontal } from "lucide-react";
+import { ChevronDown, File, Link2, MoreHorizontal } from "lucide-react";
 
 import {
   Button,
@@ -35,38 +37,40 @@ import {
   TableRow,
 } from "@referrer/ui";
 
-const data: Payment[] = [
-  {
-    id: "m5gr84i9",
-    amount: 316,
-    status: "success",
-    email: "ken99@yahoo.com",
-  },
-  {
-    id: "3u1reuv4",
-    amount: 242,
-    status: "success",
-    email: "Abe45@gmail.com",
-  },
-  {
-    id: "derv1ws0",
-    amount: 837,
-    status: "processing",
-    email: "Monserrat44@gmail.com",
-  },
-  {
-    id: "5kma53ae",
-    amount: 874,
-    status: "success",
-    email: "Silas22@gmail.com",
-  },
-  {
-    id: "bhqecj4p",
-    amount: 721,
-    status: "failed",
-    email: "carmella@hotmail.com",
-  },
-];
+import { TooltipDemo } from "../ui";
+
+// const data: Payment[] = [
+//   {
+//     id: "m5gr84i9",
+//     amount: 316,
+//     status: "success",
+//     email: "ken99@yahoo.com",
+//   },
+//   {
+//     id: "3u1reuv4",
+//     amount: 242,
+//     status: "success",
+//     email: "Abe45@gmail.com",
+//   },
+//   {
+//     id: "derv1ws0",
+//     amount: 837,
+//     status: "processing",
+//     email: "Monserrat44@gmail.com",
+//   },
+//   {
+//     id: "5kma53ae",
+//     amount: 874,
+//     status: "success",
+//     email: "Silas22@gmail.com",
+//   },
+//   {
+//     id: "bhqecj4p",
+//     amount: 721,
+//     status: "failed",
+//     email: "carmella@hotmail.com",
+//   },
+// ];
 
 export type Payment = {
   id: string;
@@ -75,7 +79,7 @@ export type Payment = {
   email: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<any>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -98,7 +102,7 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "sent",
     header: "Sent",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("status")}</div>,
+    cell: ({ row }) => <div className="capitalize">{fromNow(row.getValue("sent"))}</div>,
   },
   {
     accessorKey: "status",
@@ -108,7 +112,59 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "post",
     header: "Post",
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    cell: ({ row }) => <div className="lowercase">{row.getValue("post")}</div>,
+  },
+
+  {
+    accessorKey: "message",
+    header: () => <div className="text-right">Message</div>,
+    cell: ({ row }) => {
+      return <div className="text-right font-medium">{row.getValue("message")}</div>;
+    },
+  },
+  {
+    accessorKey: "pdfs",
+    header: () => <div className="text-right">Pdfs</div>,
+    cell: ({ row }) => {
+      return (
+        <div className="text-right font-medium">
+          {/* @ts-ignore */}
+          {row.getValue("pdfs").map((link, index) => {
+            const platform = Object.keys(link)[0];
+            const url = link[platform];
+            return (
+              <TooltipDemo key={index} text={platform}>
+                <Link href={url} target="_blank">
+                  <File />
+                </Link>
+              </TooltipDemo>
+            );
+          })}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "links",
+    header: () => <div className="text-right">Links</div>,
+    cell: ({ row }) => {
+      return (
+        <div className="flex gap-3 text-right font-medium">
+          {/* @ts-ignore */}
+          {row.getValue("links").map((link, index) => {
+            const platform = Object.keys(link)[0];
+            const url = link[platform];
+            return (
+              <Link key={index} href={url} target="_blank">
+                <TooltipDemo text={platform}>
+                  <Link2 />
+                </TooltipDemo>
+              </Link>
+            );
+          })}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "amount",
@@ -121,21 +177,6 @@ export const columns: ColumnDef<Payment>[] = [
         style: "currency",
         currency: "USD",
       }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "info",
-    header: () => <div className="text-right">Info</div>,
-    cell: ({ row }) => {
-      const info = parseFloat(row.getValue("info"));
-
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(info);
 
       return <div className="text-right font-medium">{formatted}</div>;
     },
@@ -169,7 +210,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function AppliedDataTable() {
+export default function AppliedDataTable({ data }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -258,7 +299,7 @@ export default function AppliedDataTable() {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
+                  You got no applies !
                 </TableCell>
               </TableRow>
             )}

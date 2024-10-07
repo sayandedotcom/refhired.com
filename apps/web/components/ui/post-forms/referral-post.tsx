@@ -3,8 +3,10 @@
 import { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { CalendarIcon, Image as ImageIcon } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
 import * as z from "zod";
@@ -31,6 +33,7 @@ import {
   Separator,
 } from "@referrer/ui";
 
+import { request } from "@/lib/axios";
 import { referralPostValidator } from "@/lib/validators";
 
 import {
@@ -44,39 +47,92 @@ import {
   pdfs,
 } from "@/config";
 
-import { useStore } from "@/store/store";
-
 import { Required } from "../required";
 import { sonerToast } from "../soner-toast";
-import { TooltipDemo } from "../tooltip/tooltip";
 import { AsyncSelectComponent } from "./async-select";
 import { SelectComponent } from "./select";
 
+const postReferral = ({
+  accept,
+  acceptLimit,
+  companyName,
+  description,
+  expiresAt,
+  jobCode,
+  jobCompensation,
+  jobExperience,
+  jobLocation,
+  jobRole,
+  jobType,
+  postType,
+  stars,
+  tags,
+}) => {
+  return request.post("/apply", {
+    accept,
+    acceptLimit,
+    companyName,
+    description,
+    expiresAt,
+    jobCode,
+    jobCompensation,
+    jobExperience,
+    jobLocation,
+    jobRole,
+    jobType,
+    postType,
+    stars,
+    tags,
+  });
+};
+
 export default function ReferralPost() {
-  const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
-  const setAuthDialogTitle = useStore((state) => state.setAuthDialogTitle);
+  const { data: session } = useSession();
   const form = useForm<z.infer<typeof referralPostValidator>>({
     resolver: zodResolver(referralPostValidator),
     defaultValues: {
-      content: {
-        desc: "",
-      },
-      role: "",
-      experience: "",
-      range: "",
+      description: "",
+      jobRole: "",
+      jobExperience: "",
       companyName: "",
       jobCode: "",
       jobType: "",
-      location: null,
+      jobLocation: "Remote",
       countryLocation: "",
       stateLocation: "",
       cityLocation: "",
       skills: [],
-      accept: ["shortMessage"],
-      pdfs: ["resume"],
-      links: ["linkedin"],
+      jobCompensation: "",
       // stars: 0,
       // limit: 0,
+      accept: {
+        message: true,
+        pdfs: ["resume"],
+        links: ["linkedin"],
+      },
+    },
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["referral"],
+    mutationFn: postReferral,
+    onSuccess(data, variables) {
+      sonerToast({
+        severity: "success",
+        title: "Sucess !",
+        message: data.data.message,
+      });
+      form.reset();
+    },
+    onError(error, variables, context) {
+      ///@ts-expect-error
+      setError(error?.response.data.message);
+      sonerToast({
+        severity: "error",
+        title: "Error !",
+        ///@ts-expect-error
+        message: error?.response.data.message,
+      });
     },
   });
 
@@ -143,31 +199,42 @@ export default function ReferralPost() {
     return data;
   }
 
-  async function onSubmit(values: z.infer<typeof referralPostValidator>) {
-    try {
-      //   await createReferralPost({
-      //     content: values.desscription,
-      //     expiresAt: values.expiresAt,
-      //     role: values.role,
-      //     jobType: values.jobType,
-      //     experience: values.experience,
-      //     location: values.location,
-      //     stars: values.stars,
-      //     limit: values.limit,
-      //     pdfs: values.pdfs,
-      //     links: values.links,
-      //     postType: "referralPost",
-      //   });
-      console.log(values);
+  function onSubmit(values: z.infer<typeof referralPostValidator>) {
+    let locationString = values.jobLocation;
+    if (values?.countryLocation) {
+      locationString += " (" + values.countryLocation;
+    }
+    if (values?.stateLocation) {
+      locationString += " - " + values.stateLocation;
+    }
+    if (values?.cityLocation) {
+      locationString += " - " + values.cityLocation;
+    }
+    const finalLocationString = locationString + ")";
+
+    if (!session) {
       sonerToast({
-        severity: "success",
-        title: "Sucess !",
-        message: "You have Sucessfully posted a Referral",
+        severity: "info",
+        title: "Oopps !",
+        message: "Login or SignUp to continue !",
       });
-      form.reset();
-    } catch (err) {
-      setAuthDialogTitle("Post");
-      setAuthDialogOpen(true);
+    } else {
+      mutate({
+        accept: values.accept,
+        acceptLimit: values.acceptLimit,
+        companyName: values.companyName,
+        description: values.description,
+        expiresAt: values.expiresAt,
+        jobCode: values.jobCode,
+        jobCompensation: values.jobCompensation,
+        jobExperience: values.jobExperience,
+        jobLocation: finalLocationString,
+        jobRole: values.jobRole,
+        jobType: values.jobType,
+        postType: "REFERRALPOST",
+        stars: values.stars,
+        tags: [...values.skills, values.cityLocation, values.stateLocation, values.cityLocation],
+      });
     }
   }
 
@@ -185,7 +252,7 @@ export default function ReferralPost() {
           {/* Description */}
           <FormField
             control={form.control}
-            name="content.desc"
+            name="description"
             render={({ field }) => (
               <FormItem className="my-1">
                 <FormLabel>
@@ -209,15 +276,6 @@ export default function ReferralPost() {
               </FormItem>
             )}
           />
-          <TooltipDemo text={"Add Image"}>
-            <ImageIcon className="cursor-pointer" />
-          </TooltipDemo>
-
-          <input
-            type="file"
-            accept=".jpg, .jpeg, .png, image/jpg, image/jpeg, image/png"
-            className="hidden"
-          />
           <Separator />
           <h5 className="mb-2 font-bold tracking-tight">
             This will help your referral to reach to many users
@@ -226,7 +284,7 @@ export default function ReferralPost() {
             {/* Job Role */}
             <FormField
               control={form.control}
-              name="role"
+              name="jobRole"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
@@ -251,7 +309,7 @@ export default function ReferralPost() {
             {/* Job Experience */}
             <FormField
               control={form.control}
-              name="experience"
+              name="jobExperience"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
@@ -276,7 +334,7 @@ export default function ReferralPost() {
             {/* Salary Range */}
             <FormField
               control={form.control}
-              name="range"
+              name="jobCompensation"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
@@ -427,7 +485,7 @@ export default function ReferralPost() {
           <h5 className="mb-2 font-bold tracking-tight">Select the location of the referral</h5>
           <FormField
             control={form.control}
-            name="location"
+            name="jobLocation"
             render={({ field }) => (
               <FormItem className="space-y-3">
                 <FormLabel>
@@ -577,7 +635,7 @@ export default function ReferralPost() {
           {/* Accept */}
           <FormField
             control={form.control}
-            name="accept"
+            name="accept.message"
             render={() => (
               <FormItem className="my-2">
                 <FormLabel>
@@ -589,19 +647,28 @@ export default function ReferralPost() {
                     <FormField
                       key={item.id}
                       control={form.control}
-                      name="accept"
+                      name="accept.message"
                       render={({ field }) => {
                         return (
                           <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
                             <FormControl>
                               <Checkbox
+                                checked={field.value}
+                                // checked={field.value?.includes(item.id)}
+                                onCheckedChange={(checked) => {
+                                  return checked ? true : false;
+                                  //     ? field.onChange([...field.value, item.id])
+                                  // : field.onChange(field.value?.filter((value) => value !== item.id));
+                                }}
+                              />
+                              {/*  <Checkbox
                                 checked={field.value?.includes(item.id)}
                                 onCheckedChange={(checked) => {
                                   return checked
                                     ? field.onChange([...field.value, item.id])
                                     : field.onChange(field.value?.filter((value) => value !== item.id));
                                 }}
-                              />
+                              />*/}
                             </FormControl>
                             <FormLabel className="font-normal">{item.label}</FormLabel>
                           </FormItem>
@@ -618,7 +685,7 @@ export default function ReferralPost() {
           {/* Accept PDFs */}
           <FormField
             control={form.control}
-            name="pdfs"
+            name="accept.pdfs"
             render={() => (
               <FormItem className="my-2">
                 <FormLabel>
@@ -630,7 +697,7 @@ export default function ReferralPost() {
                     <FormField
                       key={item.id}
                       control={form.control}
-                      name="pdfs"
+                      name="accept.pdfs"
                       render={({ field }) => {
                         return (
                           <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
@@ -659,7 +726,7 @@ export default function ReferralPost() {
           {/* Accept Links */}
           <FormField
             control={form.control}
-            name="links"
+            name="accept.links"
             render={() => (
               <FormItem className="my-2">
                 <FormLabel>
@@ -671,7 +738,7 @@ export default function ReferralPost() {
                     <FormField
                       key={item.id}
                       control={form.control}
-                      name="links"
+                      name="accept.links"
                       render={({ field }) => {
                         return (
                           <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
@@ -754,7 +821,7 @@ export default function ReferralPost() {
             {/* Limit */}
             <FormField
               control={form.control}
-              name="limit"
+              name="acceptLimit"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Limit</FormLabel>
@@ -776,7 +843,7 @@ export default function ReferralPost() {
           {/* Submit */}
           <Separator />
           <div className="flex flex-col items-center justify-center">
-            <Button className="bg-foreground my-2 w-6/12" type="submit">
+            <Button className="bg-foreground my-2 w-6/12" isLoading={isPending} type="submit">
               Post
             </Button>
             <Button className="bg-foreground my-2 w-6/12">Save as Draft</Button>
