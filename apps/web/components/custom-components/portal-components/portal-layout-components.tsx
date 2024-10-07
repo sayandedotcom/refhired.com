@@ -24,7 +24,7 @@ import { useStore } from "@/store/store";
 
 import { ComboboxDropdownMenu } from "../post-card/post-more-menu";
 
-export function NewOptionsSection() {
+export function LeftSection() {
   const { data: session } = useSession();
   const pathName = usePathname();
 
@@ -115,7 +115,7 @@ export function NewOptionsSection() {
   );
 }
 
-export function NewContentSection({
+export function CenterSection({
   children,
   loginModal,
 }: {
@@ -141,7 +141,7 @@ export function NewContentSection({
   );
 }
 
-export function NewExtraSection() {
+export function RightSection() {
   const pathName = usePathname();
   const showExtraSection = [
     "/requests",

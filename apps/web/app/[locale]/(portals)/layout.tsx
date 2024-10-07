@@ -4,7 +4,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 import { Separator } from "@referrer/ui";
 
-import { NewContentSection, NewExtraSection, NewOptionsSection } from "@/components/custom-components";
+import { CenterSection, LeftSection, RightSection } from "@/components/custom-components";
 
 import { Provider } from "./provider";
 
@@ -26,11 +26,11 @@ export default function PortalsLayout({
     <>
       <Provider>
         <section className="flex scroll-smooth">
-          <NewOptionsSection />
+          <LeftSection />
           <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
-          <NewContentSection>{children}</NewContentSection>
+          <CenterSection>{children}</CenterSection>
           <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
-          <NewExtraSection />
+          <RightSection />
         </section>
       </Provider>
     </>
