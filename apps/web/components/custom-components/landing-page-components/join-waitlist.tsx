@@ -4,21 +4,19 @@ import React from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { PartyPopper } from "lucide-react";
+import { Loader2, PartyPopper } from "lucide-react";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 import { useForm } from "react-hook-form";
 import { useLocalStorage } from "usehooks-ts";
 import * as z from "zod";
 
-import { Button, Form, FormControl, FormField, FormItem, FormMessage, Input } from "@referrer/ui";
+import { Form, FormControl, FormField, FormItem, FormMessage, Input } from "@referrer/ui";
 
 import { sonerToast } from "@/components/ui";
 
 import { request } from "@/lib/axios";
 
 import { WordRotateComponentOne } from "./word-rotate-component-one";
-
-// const placeholders = ["Enter your Email Address..", "john.doe@example.com", "Get added to the waitlist"];
 
 const joinWaitlistSchema = z.object({
   email: z
@@ -33,7 +31,6 @@ const sendEmail = ({ email }) => {
 
 export function JoinWaitlist() {
   const [waitlisted, setWaitlisted] = useLocalStorage("waitlist", "");
-  // const [error, setError] = useState<string>("");
 
   const form = useForm<z.infer<typeof joinWaitlistSchema>>({
     resolver: zodResolver(joinWaitlistSchema),
@@ -94,13 +91,6 @@ export function JoinWaitlist() {
               email as soon as it's available. Plus, we may offer special access to some of our waitlisted
               users!
             </p>
-            {/* <div className="flex w-full flex-col items-center justify-center">
-             <PlaceholdersAndVanishInput
-                placeholders={placeholders}
-                onChange={handleChange}
-                onSubmit={onSubmitt}
-              />
-            </div> */}
             <Form {...form}>
               <form onSubmit={handleSubmit(onSubmit)} className="mt-3 flex items-start justify-center gap-4">
                 <FormField
@@ -108,39 +98,27 @@ export function JoinWaitlist() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      {/* <FormLabel>
-                        Email Address <Required />
-                      </FormLabel> */}
                       <FormControl>
                         <Input
                           placeholder="Enter your email address......"
                           type="text"
                           {...field}
-                          className="md:w-96"
+                          className="bg-muted md:w-96"
                         />
-                        {/* <div className="flex w-full flex-col items-center justify-center">
-                          <PlaceholdersAndVanishInput
-                            placeholders={placeholders}
-                            onChange={handleChange}
-                            onSubmit={onSubmitt}
-                            {...field}
-                          />
-                        </div> */}
                       </FormControl>
                       <FormMessage className="justify-center text-[#ff3535bb]">
                         {errors?.email?.message}
                       </FormMessage>
-                      {/* <FormDescription> Enter your email address !</FormDescription> */}
                     </FormItem>
                   )}
                 />
-                <Button
+                <button
                   type="submit"
-                  isLoading={isPending}
-                  className="flex items-center justify-center transition active:scale-95">
+                  className="join-waitlist-button h-10 px-4 py-2 transition active:scale-95">
+                  {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
                   {isPending ? "Please Wait" : "Join Waitlist"}{" "}
                   {isPending ? <></> : <PartyPopper className="ml-4" />}
-                </Button>
+                </button>
               </form>
             </Form>
           </div>

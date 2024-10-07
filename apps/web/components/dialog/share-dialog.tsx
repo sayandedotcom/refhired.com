@@ -1,6 +1,8 @@
 "use client";
 
-import { Copy } from "lucide-react";
+import { useState } from "react";
+
+import { Check, Copy } from "lucide-react";
 import { useLocale } from "next-intl";
 import {
   EmailIcon,
@@ -33,8 +35,6 @@ import {
 
 import { siteConfig } from "@/config";
 
-import { sonerToast } from "../ui";
-
 export function ShareDialog({
   children,
   shareUrl,
@@ -48,6 +48,8 @@ export function ShareDialog({
 
   const locale = useLocale();
 
+  const [isCopied, setIsOnCopied] = useState<Boolean>(false);
+
   const url = `${siteConfig.url}/${locale}/${shareUrl}`;
 
   const size = 50;
@@ -56,10 +58,11 @@ export function ShareDialog({
     copy(text)
       .then(() => {
         console.log("Copied!", { text });
-        sonerToast({
-          title: "Copied to your clipboard !",
-          severity: "neutral",
-        });
+        setIsOnCopied(!isCopied);
+        // sonerToast({
+        //   title: "Copied to your clipboard !",
+        //   severity: "neutral",
+        // });
       })
       .catch((error) => {
         console.error("Failed to copy!", error);
@@ -132,9 +135,12 @@ export function ShareDialog({
             </Label>
             <Input id="link" defaultValue={url} readOnly />
           </div>
-          <Button type="submit" size="sm" className="px-3" onClick={handleCopy(url)}>
-            <span className="sr-only">Copy</span>
-            <Copy className="h-4 w-4" />
+          <Button
+            type="submit"
+            size="sm"
+            className="px-3 transition active:scale-95"
+            onClick={handleCopy(url)}>
+            {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
           </Button>
         </div>
         <DialogFooter className="sm:justify-start"></DialogFooter>
