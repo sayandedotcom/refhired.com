@@ -1,3 +1,13 @@
+"use client";
+
+import { useCallback } from "react";
+
+import dynamic from "next/dynamic";
+import { useSearchParams } from "next/navigation";
+
+import Loading from "@/app/[locale]/loading";
+import { usePathname, useRouter } from "@/navigation";
+
 import {
   Button,
   Card,
@@ -11,34 +21,72 @@ import {
   TabsTrigger,
 } from "@referrer/ui";
 
-import { CalendarDateRangePicker } from "./components/date-range-picker";
-// import { MainNav } from "./components/main-nav";
-import { RecentSales } from "./components/recent-sales";
+import { CalendarDateRangePicker } from "@/components/dashboard/components/date-range-picker";
+import { RecentSales } from "@/components/dashboard/components/recent-sales";
+import { columns } from "@/components/ui/data-table/components/columns";
+// import { DataTable } from "@/components/ui/data-table/components/data-table";
+import { tsTasks } from "@/components/ui/data-table/data/tasks";
 
+const DynamicDataTable = dynamic(() => import("@/components/ui/data-table/components/data-table"), {
+  loading: () => <Loading />,
+});
 // import { Search } from "./components/search";
 // import TeamSwitcher from "./components/team-switcher";
 // import { UserNav } from "./components/user-nav";
 
 export default function DashboardPage() {
+  const pathName = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  // const tasks = await getTasks();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
   return (
     <>
       <div className="hidden w-full flex-col md:flex">
         <div className="flex-1 space-y-4 p-8 pt-6">
-          <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-            <div className="flex items-center space-x-2">
-              <CalendarDateRangePicker />
-              <Button>Download</Button>
-            </div>
-          </div>
           <Tabs defaultValue="overview" className="space-y-4">
             <TabsList>
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="requests">Requests</TabsTrigger>
-              <TabsTrigger value="applied">Applied</TabsTrigger>
-              <TabsTrigger value="reports">Reports</TabsTrigger>
+              <TabsTrigger
+                onClick={() => {
+                  router.push(pathName + "?" + createQueryString("tab", "overview"));
+                }}
+                value="overview">
+                Overview
+              </TabsTrigger>
+              <TabsTrigger
+                onClick={() => {
+                  router.push(pathName + "?" + createQueryString("tab", "requests"));
+                }}
+                value="requests">
+                Requests
+              </TabsTrigger>
+              <TabsTrigger
+                onClick={() => {
+                  router.push(pathName + "?" + createQueryString("tab", "applied"));
+                }}
+                value="applied">
+                Applied
+              </TabsTrigger>
+              <TabsTrigger value="revenue">Revenue</TabsTrigger>
+              <TabsTrigger value="chart">Chart</TabsTrigger>
               <TabsTrigger value="notifications">Notifications</TabsTrigger>
             </TabsList>
+            <div className="flex items-center justify-between space-y-2">
+              <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+              <div className="flex items-center space-x-2">
+                <CalendarDateRangePicker />
+                <Button>Download</Button>
+              </div>
+            </div>
             <TabsContent value="overview" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <Card>
@@ -142,6 +190,12 @@ export default function DashboardPage() {
                   </CardContent>
                 </Card>
               </div>
+            </TabsContent>
+            <TabsContent value="requests" className="space-y-4">
+              <DynamicDataTable columns={columns} data={tsTasks} />
+            </TabsContent>
+            <TabsContent value="applied" className="space-y-4">
+              Hi applied
             </TabsContent>
           </Tabs>
         </div>
