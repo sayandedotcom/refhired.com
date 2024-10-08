@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/:locale*/demo/:path*",
+      "destination": "https://dashboard-j5p5jy31k-sayande2002s-projects.vercel.app/:path*"
+    }
+  ]
+}
