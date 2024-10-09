@@ -22,3 +22,5 @@ export * from "./components/radio/radio";
 export * from "./components/card/card";
 export * from "./components/sonner/sonner";
 export * from "./components/sheet";
+export * from "./components/resizable/resizable";
+export * from "./components/scroll-area/scroll-area";
