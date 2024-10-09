@@ -37,6 +37,7 @@
     "postinstall": "prisma generate",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
+    "dashboard": "yarn workspace @refhiredcom/dashboard",
     "web": "yarn workspace @referrer/web",
     "build:web": "dotenv -- turbo build --filter=web",
     "mobile": "yarn workspace @refhiredcom/mobile",
