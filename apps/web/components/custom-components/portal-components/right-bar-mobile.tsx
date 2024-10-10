@@ -8,19 +8,13 @@ import { Info, ListFilter } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@referrer/ui";
 
+import { withoutRightBarPages } from "@/config";
+
 import { useStore } from "@/store/store";
 
 export function RightBarMobile() {
   const pathName = usePathname();
-  const showExtraSection = [
-    "/requests",
-    "/applied",
-    "/dashboard",
-    "/dashboard/settings",
-    "/settings/profile",
-    "/settings/appearance",
-    "/settings/notifications",
-  ].includes(pathName);
+  const showExtraSection = withoutRightBarPages.includes(pathName);
   const [open, setOpen] = useState(false);
   const setJoyRide = useStore((state) => state.setJoyRide);
 

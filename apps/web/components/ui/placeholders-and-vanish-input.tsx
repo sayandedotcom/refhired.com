@@ -16,7 +16,7 @@ import { history } from "@/config";
 
 import { cn } from "@/utils";
 
-export function PlaceholdersAndVanishInput({ placeholders }) {
+export function PlaceholdersAndVanishInput({ placeholders, className, searchIconWidth, showSugession }) {
   const searchParams = useSearchParams();
   const search = searchParams.get("search_query");
   const [value, setValue] = useState(search ?? "");
@@ -67,9 +67,9 @@ export function PlaceholdersAndVanishInput({ placeholders }) {
   }, [placeholders]);
 
   return (
-    <div className="sticky top-0 m-2 flex items-center gap-1 md:mx-auto md:gap-2 lg:w-7/12">
+    <div className={className}>
       <form className={cn("bg-muted relative flex w-full items-center overflow-hidden rounded-full")}>
-        <Search className="w-[10%]" />
+        <Search className={searchIconWidth} />
         <Input
           onFocus={() => setInputFocused(true)}
           onChange={(e) => {
@@ -106,29 +106,31 @@ export function PlaceholdersAndVanishInput({ placeholders }) {
                   duration: 0.3,
                   ease: "linear",
                 }}
-                className="w-[calc(100%-2rem)] truncate pl-4 text-left text-sm font-normal text-neutral-500 dark:text-zinc-500 sm:pl-12 sm:text-base">
+                className="w-[calc(100%-2rem)] truncate pl-4 text-left text-sm font-normal text-neutral-500 sm:pl-12 sm:text-base dark:text-zinc-500">
                 {placeholders[currentPlaceholder]}
               </motion.p>
             )}
           </AnimatePresence>
         </div>
       </form>
-      <div
-        ref={outsideRef}
-        className={clsx(
-          "bg-muted absolute top-12 h-[300px] w-full rounded-2xl",
-          !isInputFocused && "hidden"
-        )}>
-        {history.map((item) => (
-          <div
-            key={item}
-            onClick={() => optionClick(item)}
-            className="hover:bg-background mx-1 mt-1 flex h-[15%] cursor-pointer items-center rounded-md">
-            <Search className="mr-3 w-[10%]" />
-            {item}
-          </div>
-        ))}
-      </div>
+      {showSugession && (
+        <div
+          ref={outsideRef}
+          className={clsx(
+            "bg-muted absolute top-12 h-[300px] w-full rounded-2xl",
+            !isInputFocused && "hidden"
+          )}>
+          {history.map((item) => (
+            <div
+              key={item}
+              onClick={() => optionClick(item)}
+              className="hover:bg-background mx-1 mt-1 flex h-[15%] cursor-pointer items-center rounded-md">
+              <Search className="mr-3 w-[10%]" />
+              {item}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

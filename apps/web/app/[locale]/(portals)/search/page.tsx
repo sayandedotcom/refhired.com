@@ -12,7 +12,6 @@ export const metadata: Metadata = {
 };
 const placeholders = [
   "Remote Front-End Developer jobs",
-  "Type ctrl+/ to search",
   "Full Stack jobs in San Francisco",
   "Javascript jobs",
   "Referrals in Google",
@@ -24,7 +23,12 @@ const SearchPage = ({ params: { locale } }) => {
   return (
     <>
       {/* <SearchBar /> */}
-      <PlaceholdersAndVanishInput placeholders={placeholders} />
+      <PlaceholdersAndVanishInput
+        showSugession={true}
+        className={"sticky top-0 m-2 flex items-center gap-1 md:mx-auto md:gap-2 lg:w-7/12"}
+        searchIconWidth={"w-[10%]"}
+        placeholders={placeholders}
+      />
       <Separator />
     </>
   );
