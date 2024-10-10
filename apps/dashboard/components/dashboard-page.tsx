@@ -21,6 +21,7 @@ import {
 } from "@referrer/ui";
 
 import { Component } from "./bar-chart";
+import MailPage from "./requests/page";
 
 // import { RecentSales } from "@/components/dashboard/components/recent-sales";
 // import { columns } from "@/components/ui/data-table/components/columns";
@@ -183,7 +184,9 @@ export default function DashboardPage() {
                   <CardHeader>
                     <CardTitle>Overview</CardTitle>
                   </CardHeader>
-                  <CardContent className="pl-2">Hi</CardContent>
+                  <CardContent className="pl-2">
+                    <Component />
+                  </CardContent>
                 </Card>
                 <Card className="col-span-3">
                   <CardHeader>
@@ -195,11 +198,13 @@ export default function DashboardPage() {
               </div>
             </TabsContent>
             <TabsContent value="requests" className="space-y-4">
-              {/* <MailPage /> */}
-              <Component />
+              <MailPage />
             </TabsContent>
             <TabsContent value="applied" className="space-y-4">
               {/* <DynamicDataTable columns={columns} data={tsTasks} /> */}
+            </TabsContent>
+            <TabsContent value="revenue" className="space-y-4">
+              <Component />
             </TabsContent>
           </Tabs>
         </div>
