@@ -5,6 +5,10 @@
       "destination": "https://dashboard.refhired.com/:match*"
     },
     {
+      "source": "/:locale*/demo19/:match+",
+      "destination": "https://dashboard.refhired.com/:match+"
+    },
+    {
       "source": "/:locale*/demo2/",
       "destination": "../dashboard"
     },
