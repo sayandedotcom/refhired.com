@@ -71,7 +71,6 @@
     "zustand": "^4.4.0"
   },
   "devDependencies": {
-    "@0no-co/graphqlsp": "^1.9.1",
     "@referrer/prettier-config": "*",
     "@referrer/tailwind-config": "*",
     "@referrer/tsconfig": "*",
