@@ -1,8 +1,20 @@
 {
   "rewrites": [
     {
-      "source": "/:locale*/demo/:path*",
-      "destination": "https://dashboard-j5p5jy31k-sayande2002s-projects.vercel.app/:path*"
+      "source": "/:locale*/demo1/:match*",
+      "destination": "https://dashboard.refhired.com/:match*"
+    },
+    {
+      "source": "/:locale*/demo2/",
+      "destination": "../dashboard"
+    },
+    {
+      "source": "/:locale*/demo3/",
+      "destination": "https://dashboard.refhired.com/"
+    },
+    {
+      "source": "/:locale*/demo4/:path(.*)",
+      "destination": "https://dashboard.refhired.com/:path"
     }
   ]
 }
