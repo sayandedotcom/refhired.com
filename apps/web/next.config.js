@@ -1,3 +1,5 @@
+import { getLocale } from "next-intl/server";
+
 const withPWA = require("next-pwa")({
   dest: "public",
   disable: process.env.NODE_ENV === "development",
@@ -12,6 +14,8 @@ const withPWA = require("next-pwa")({
 const createNextIntlPlugin = require("next-intl/plugin");
 
 const withNextIntl = createNextIntlPlugin();
+
+const locale = await getLocale();
 
 module.exports = withNextIntl(
   withPWA({
@@ -32,6 +36,26 @@ module.exports = withNextIntl(
         source: "/settings",
         destination: "/settings/profile",
         permanent: true,
+      },
+      {
+        source: "/:locale*/demodash1",
+        destination: `${process.env.DASHBOARD_URL}/?tab=overview`,
+      },
+      {
+        source: "/:locale*/demodash2/:path+",
+        destination: `${process.env.DASHBOARD_URL}/:path+`,
+      },
+      {
+        source: `/${locale}/demodash2/:path+`,
+        destination: `${process.env.DASHBOARD_URL}/:path+`,
+      },
+      {
+        source: `${locale}/demodash3/:path+`,
+        destination: `${process.env.DASHBOARD_URL}/:path+`,
+      },
+      {
+        source: "/:locale*/demo10/:match*",
+        destination: "https://dashboard.refhired.com/:match*",
       },
       {
         source: "/auth",

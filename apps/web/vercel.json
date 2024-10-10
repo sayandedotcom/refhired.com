@@ -15,6 +15,22 @@
     {
       "source": "/:locale*/demo4/:path(.*)",
       "destination": "https://dashboard.refhired.com/:path"
+    },
+    {
+      "source": "/:locale*/demo5/",
+      "destination": "https://dashboard.refhired.com/"
+    },
+    {
+      "source": "/:locale*/demo6/",
+      "destination": "https://dashboard.refhired.com/?tab=overview"
+    },
+    {
+      "source": "/demo9/:match*",
+      "destination": "https://dashboard.refhired.com/:match*"
+    },
+    {
+      "source": "/admin/:match*",
+      "destination": "https://admin-app.vercel.com/:match*"
     }
   ]
 }
