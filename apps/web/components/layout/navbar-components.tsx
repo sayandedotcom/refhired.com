@@ -9,7 +9,6 @@ import { Button } from "@referrer/ui";
 
 import { navigation, siteConfig } from "@/config";
 
-import { ThemeSwitcher } from "../custom-components";
 import { Icons } from "../icons/icons";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 
@@ -25,17 +24,18 @@ export const NavButtonsUnAuthenticated = () => {
       <li className="mt-4 lg:mt-0">
         <TooltipDemo text="Log In">
           <Button
+            className="font-heading h-[3.2rem] w-32 rounded-full text-xl"
             onClick={() => handleCLick("login", "logInRedirect")}
             // className={buttonVariants()}
             disabled={siteConfig.waitlist}
             // href="/auth/login"
           >
             {loadingValue === "logInRedirect" && <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />}
-            Log In
+            Login
           </Button>
         </TooltipDemo>
       </li>
-      <li className="mt-8 lg:mt-0">
+      {/* <li className="mt-8 lg:mt-0">
         <TooltipDemo text="Sign Up">
           <Button
             onClick={() => handleCLick("sign-up", "signUpRedirect")}
@@ -47,13 +47,10 @@ export const NavButtonsUnAuthenticated = () => {
             Sign Up
           </Button>
         </TooltipDemo>
-      </li>
+      </li> */}
       {/* <li>
         <Button onClick={() => signOut()}>Log Out</Button>
       </li> */}
-      <li>
-        <ThemeSwitcher />
-      </li>
     </ul>
   );
 };
