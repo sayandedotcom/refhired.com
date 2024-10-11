@@ -45,6 +45,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   // const tasks = await getTasks();
+  const locale = searchParams.get("locale");
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -55,6 +56,9 @@ export default function DashboardPage() {
     },
     [searchParams]
   );
+  if (locale) {
+    return <h1>Hi from dashboard.refhired.com</h1>;
+  }
   return (
     <>
       <div className="hidden w-full flex-col md:flex">
