@@ -25,7 +25,7 @@ export default function PortalsLayout({
   return (
     <>
       <Provider>
-        <section className="flex scroll-smooth">
+        <section className="bg-background flex scroll-smooth">
           <LeftSection />
           <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
           <CenterSection>{children}</CenterSection>

@@ -112,7 +112,7 @@ export default function RootLayout({
       <html lang={locale} suppressHydrationWarning>
         <body
           className={cn(
-            "selection:bg-foreground selection:text-background font-sans",
+            "selection:bg-foreground selection:text-background via-#15081b bg-gradient-to-r from-neutral-900 from-10% via-85% to-gray-900 to-80% font-sans",
             fontSans.variable,
             fontHeading.variable
           )}>

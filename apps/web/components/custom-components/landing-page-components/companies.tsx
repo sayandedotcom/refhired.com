@@ -6,7 +6,7 @@ import Marquee from "./marquee";
 
 export function Companies() {
   return (
-    <div className="font-heading my-9 flex flex-col items-center justify-center">
+    <div className="font-heading my-9 flex flex-col items-center justify-center bg-transparent">
       <p className="md:text-4xl">Get referrals from employees of top companies</p>
       <div className="relative my-10 flex flex-wrap items-center justify-center gap-10">
         <Marquee pauseOnHover className="w-[95vw] overflow-hidden [--duration:20s]">
@@ -19,8 +19,8 @@ export function Companies() {
           <Icons.uber className="mx-4" />
           <Icons.amazon className="mx-4" />
         </Marquee>
-        <div className="pointer-events-none absolute inset-y-0 left-0 h-full w-1/3 bg-gradient-to-r from-white dark:from-black"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 h-full w-1/3 bg-gradient-to-l from-white dark:from-black"></div>
+        <div className="dark:transparent pointer-events-none absolute inset-y-0 left-0 h-full w-1/3 bg-gradient-to-r from-transparent"></div>
+        <div className="dark:transparent pointer-events-none absolute inset-y-0 right-0 h-full w-1/3 bg-gradient-to-l from-transparent"></div>
       </div>
     </div>
   );

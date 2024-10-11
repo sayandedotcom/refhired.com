@@ -17697,6 +17697,11 @@ react-spring@^9.7.3:
     "@react-spring/web" "~9.7.3"
     "@react-spring/zdog" "~9.7.3"
 
+react-starfield@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-starfield/-/react-starfield-1.0.3.tgz#928bea6066535c9bd96498d05330768aee0c970b"
+  integrity sha512-JgNib2NPBvcCyvm0eLWnE1bjy5x3q/qywenjiIlrWScbz8tPAcRgmqsBfHe3mMkOs0bFm2kH6wjtc0HBRzFDqA==
+
 react-style-singleton@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmjs.org/react-style-singleton/-/react-style-singleton-2.2.1.tgz"

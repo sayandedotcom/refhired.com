@@ -2,9 +2,9 @@ import { Suspense } from "react";
 
 import { useTranslations } from "next-intl";
 import { unstable_setRequestLocale } from "next-intl/server";
+import Starfield from "react-starfield";
 
 import {
-  Beam,
   Companies,
   Information,
   JoinWaitlist,
@@ -33,6 +33,7 @@ export default function Page({ params: { locale } }) {
 
   return (
     <div className="relative">
+      <Starfield starCount={5000} />
       <Suspense fallback={<Loading />}>
         <TopNotificationList className="fixed right-8 top-20 z-40 hidden lg:block" />
       </Suspense>
@@ -46,12 +47,12 @@ export default function Page({ params: { locale } }) {
             <Information />
           </Suspense>
           <Suspense fallback={<Loading />}>
-            <h1 className="font-heading px-1 text-center text-[36px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent lg:text-[86px]">
+            <h1 className="font-heading px-1 text-center text-[36px] lg:text-[66px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent">
               " Navigate the job market with{" "}
               <span className="bg-gradient-to-r from-pink-500 to-yellow-500  bg-clip-text text-transparent">
                 {t("referrals")}
               </span>{" "}
-              :{" "}
+              : <br />
               <span className="">
                 Connect through{" "}
                 <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
@@ -105,10 +106,6 @@ export default function Page({ params: { locale } }) {
       </Suspense> */}
       <Suspense fallback={<Loading />}>
         <Review />
-      </Suspense>
-
-      <Suspense fallback={<Loading />}>
-        <Beam />
       </Suspense>
 
       {/* <Suspense fallback={<Loading />}>

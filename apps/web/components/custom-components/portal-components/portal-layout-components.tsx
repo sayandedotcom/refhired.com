@@ -177,7 +177,7 @@ export function RightSection() {
             className={"flex items-center text-xs"}
             placeholders={placeholders}
           />
-          <div className="h-32 w-full rounded-3xl bg-gradient-to-r from-amber-600 via-stone-900 to-sky-900 py-3 pl-5">
+          <div className="h-32 w-full rounded-3xl bg-gradient-to-br from-amber-600 via-stone-900 via-60% to-sky-900 py-3 pl-5">
             <h5>Expiring soon !</h5>
             <p className="font-sans font-semibold">Get up to 40% off on stars</p>
             <Button className="rounded-full transition active:scale-95">Learn more !</Button>

@@ -3,7 +3,16 @@ const { fontFamily } = require("tailwindcss/defaultTheme");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["../../apps/**/*.{js,ts,jsx,tsx,html}", "../../packages/ui/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    // "../../apps/**/*.{js,ts,jsx,tsx,html}",
+    "../../apps/web/app/**/*.{js,ts,jsx,tsx,html}",
+    "../../apps/web/components/**/*.{js,ts,jsx,tsx,html}",
+    "../../apps/dashboard/app/**/*.{js,ts,jsx,tsx,html}",
+    "../../apps/dashboard/components/**/*.{js,ts,jsx,tsx,html}",
+    "../../packages/ui/components/**/*.{js,ts,jsx,tsx}",
+    "../../packages/ui/forms/**/*.{js,ts,jsx,tsx}",
+    "../../packages/ui/typography/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     container: {
       center: true,
