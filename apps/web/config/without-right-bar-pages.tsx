@@ -1,4 +1,5 @@
 export const withoutRightBarPages = [
+  "/payments",
   "/requests",
   "/applied",
   "/dashboard",

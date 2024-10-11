@@ -1,5 +1,5 @@
 // "use client";
-import { Bell, Bookmark, LayoutDashboard, Search, User } from "lucide-react";
+import { Bell, Bookmark, DollarSign, LayoutDashboard, Search, User } from "lucide-react";
 import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import { IoDocumentsOutline, IoDocumentsSharp, IoSettingsSharp } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -53,6 +53,12 @@ export const portalsList = [
     link: "/dashboard",
     icon: <LayoutDashboard />,
     activeIcon: <LayoutDashboard fill="#ffff" />,
+  },
+  {
+    name: "Buy Stars",
+    link: "/payments",
+    icon: <DollarSign />,
+    activeIcon: <DollarSign />,
   },
   {
     name: "Profile",

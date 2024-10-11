@@ -16,7 +16,7 @@ import { FaPenNib } from "react-icons/fa";
 
 import { Badge, Button, Separator, buttonVariants } from "@referrer/ui";
 
-import { LeftBarMobile, RightBarMobile, ThemeSwitcher } from "@/components/custom-components";
+import { LeftBarMobile, RightBarMobile } from "@/components/custom-components";
 import { PostTypeDialog, TooltipDemo, sonerToast } from "@/components/ui";
 import { PlaceholdersAndVanishInput } from "@/components/ui";
 
@@ -52,7 +52,7 @@ export function LeftSection() {
           <Icons.logo />
         </Link> */}
         <div className="font-heading w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
-          <div className="cursor-pointer px-1 py-4 text-base">
+          <div className="cursor-pointer px-2 py-4 text-base">
             {portalsList.map(({ name, link, icon, activeIcon }) => (
               <TooltipDemo key={name} text={`Go to ${name}`}>
                 <Link
@@ -60,12 +60,12 @@ export function LeftSection() {
                   href={link ?? session?.user.userName ?? "profile"}
                   className={clsx(
                     "hover:bg-muted flex items-center gap-4 rounded-md px-2 py-2",
-                    path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/90"
+                    path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
                   )}>
                   {path !== "/" + link?.split("/")[1] ? (
-                    <span className="ml-5 text-2xl md:text-2xl">{icon}</span>
+                    <span className="ml-5 text-xl md:text-xl">{icon}</span>
                   ) : (
-                    <span className="ml-5 text-2xl md:text-2xl">{activeIcon}</span>
+                    <span className="ml-5 text-xl md:text-xl">{activeIcon}</span>
                   )}
                   <p className="mt-1 hidden lg:block">{name}</p>
                 </Link>
@@ -80,7 +80,7 @@ export function LeftSection() {
             {width < 1000 ? <FaPenNib /> : "Post"}
           </Button>
         </PostTypeDialog>
-        <div className="bg-muted mx-auto mb-3 mt-auto flex h-36 w-full flex-col items-center justify-center gap-3 rounded-lg p-2 px-4 lg:w-[95%]">
+        <div className="bg-muted border-muted-foreground mx-auto mb-3 mt-auto flex h-36 w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-4 lg:w-[95%]">
           <div className="flex w-full items-center justify-between gap-3">
             {/* <AvatarDemo
               className="aspect-square h-14 w-14"
@@ -124,7 +124,7 @@ export function CenterSection({
   loginModal?: React.ReactNode;
 }) {
   const pathName = usePathname();
-  const largeLayout = ["requests", "applied", "dashboard", "settings"].includes(pathName.split("/")[1]);
+  const largeLayout = withoutRightBarPages.includes(pathName);
 
   return (
     <>
@@ -213,7 +213,7 @@ export function RightSection() {
           <div className="bg-muted rounded-sm px-4 py-2">
             <h6>Sugessions</h6>
           </div>
-          <ThemeSwitcher />
+
           <Button onClick={() => signOut()}>Sign Out</Button>
           <Button
             onClick={() =>
