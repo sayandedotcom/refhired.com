@@ -24,7 +24,7 @@ export const NavButtonsUnAuthenticated = () => {
       <li className="mt-4 lg:mt-0">
         <TooltipDemo text="Log In">
           <Button
-            className="font-heading h-[3.2rem] w-32 rounded-full text-xl"
+            className="font-heading h-[3.2rem] w-32 rounded-full text-xl hover:rounded-xl"
             onClick={() => handleCLick("login", "logInRedirect")}
             // className={buttonVariants()}
             disabled={siteConfig.waitlist}

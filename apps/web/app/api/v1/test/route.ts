@@ -1,24 +1,71 @@
 import { headers } from "next/headers";
+import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+import { getToken } from "next-auth/jwt";
+import { getServerSession } from "next-auth/next";
+
+import { authOptions, getServerAuthSession } from "@/lib/auth";
+
+export async function GET(request: NextRequest, { params }: { params: { postId: string } }) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("key");
   const headersList = headers();
+  const session2 = await getServerSession(authOptions);
+  const cookieStore = cookies();
+  const hasCookie = cookieStore.get("next-auth.session-token");
 
-  const referer = headersList.get("commonRequest");
-  // console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊", headersList);
-  console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊", query);
+  const referer = headersList.get("cookie");
+  // console.log("🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨", request.headers);
+  // console.log("🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨", referer);
+  console.log("🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨", hasCookie);
+
+  console.log(
+    "🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨headersList.getheadersList.get",
+    headersList.get("Authorization")?.split(" ")[1]
+  );
+
+  console.log(request);
+
+  const token = await getToken({ req: request });
+  console.log(
+    "tokentokentokentokentokenttokentokentokentokentokenoken🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨",
+    token
+  );
+
+  const session = await getServerAuthSession();
+  // console.log(
+  //   "🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨 const session = await getServerAuthSession();",
+  //   session?.user
+  // );
+
+  // console.log(
+  //   "🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨 const session2 = await getServerAuthSession();",
+  //   session2?.user
+  // );
+
   try {
-    return NextResponse.json(
-      { Hi: "Hello, Next.js!" },
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    if (token) {
+      return NextResponse.json(
+        { message: "You are authenticated !!" },
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    } else {
+      return NextResponse.json(
+        { message: "You are NOT authenticated !!" },
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
   } catch (error) {
     return NextResponse.json(`Error from our side! ${error.message}`, {
       status: 500,

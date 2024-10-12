@@ -1,16 +1,30 @@
-// export const dynamic = "force-dynamic";
-// export const fetchCache = "force-no-store";
-// import { requests } from "@/lib/axios";
+import { cookies } from "next/headers";
+
+import { getServerAuthSession } from "@/lib/auth";
 import { request } from "@/lib/axios";
 
-async function getTest() {
-  const response = await request.get("/test");
+async function getTest(hasCookie: string) {
+  const response = await request.get("/test", {
+    withCredentials: true,
+
+    headers: { withCredentials: true, Authorization: `Bearer ${hasCookie}` },
+  });
 
   return response.data;
 }
 
 export default async function Server() {
-  const response = (await request.get("/test")).data;
+  const cookieStore = cookies();
+  const hasCookie = cookieStore.get("next-auth.session-token");
+  const response = await getTest(hasCookie?.value);
+  // console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊datadatadatadatadata", response);
+
+  // console.log(
+  //   "😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊hasCookiehasCookiehasCookiehasCookiehasCookiehasCookiehasCookiehasCookie",
+  //   hasCookie.value
+  // );
+
+  const session = await getServerAuthSession();
   // const response = await fetch("http://localhost:3000/api/v1/test", {
   //   method: "GET",
   // }).then((ans) => ans.json());
@@ -21,34 +35,12 @@ export default async function Server() {
   // })
   // .then((ans) => ans.data);
 
-  // console.log("😊datadatadatadatadata", response);
+  // console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊datadatadatadatadata", response);
   return (
     <div>
-      hi
-      {response?.Hi}
+      Server
+      {response?.message}
+      <h4>{JSON.stringify(session?.user)}</h4>{" "}
     </div>
   );
 }
-
-// const queryClient = new QueryClient();
-// await queryClient.prefetchQuery({
-//   queryKey: ["test"],
-//   queryFn: () => {
-//     return axios.get("http://localhost:3000/api/v1/test", {
-//       headers: {
-//         name: "Sayan De from Client Component",
-//       },
-//     });
-//   },
-// });
-// const { data, error, isLoading } = useQuery({
-//   queryKey: ["test"],
-//   queryFn: () => {
-//     return axios.get("http://localhost:3000/api/v1/test", {
-//       headers: {
-//         name: "Sayan De from Client Component",
-//       },
-//     });
-//   },
-// });
-// console.log("😊datadatadatadatadata",data);

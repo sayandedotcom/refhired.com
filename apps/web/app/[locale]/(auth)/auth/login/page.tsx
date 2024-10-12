@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import { useLoading } from "@/hooks";
 import { Link } from "@/navigation";
@@ -43,20 +43,17 @@ const loginSchema = z.object({
 export default function Login() {
   const locale = useLocale();
   const t = useTranslations("Index");
-  const router = useRouter();
   const { loadingValue, setLoadingValue } = useLoading();
   const [isVerificationEmail, setVerificationEmail] = useLocalStorage("verification-email", "");
-
-  const [error, setError] = useState("");
   const searchParams = useSearchParams();
   let errorCallback = searchParams.get("error");
-  let callbackUrl = searchParams.get("callbackUrl") || "/";
-  if (callbackUrl.endsWith("sign-up")) {
-    callbackUrl = "/";
-  } else {
-    callbackUrl = callbackUrl || "/";
-  }
-  // console.log("errorCallback 😊😊😊😊😊😊😊😊😊😊", errorCallback);
+  let callbackUrl = searchParams.get("callbackUrl") || `/${locale}/home`;
+  // if (callbackUrl.endsWith("sign-up")) {
+  //   callbackUrl = "/";
+  // } else {
+  //   callbackUrl = callbackUrl || "/";
+  // }
+
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -66,7 +63,7 @@ export default function Login() {
 
   const signInProviders = (auth: "google") => {
     setLoadingValue(auth);
-    signIn(auth, { redirect: true, callbackUrl: `/${locale}` });
+    signIn(auth, { callbackUrl });
   };
 
   const onSubmit = async (values: z.infer<typeof loginSchema>) => {
@@ -78,7 +75,6 @@ export default function Login() {
         redirect: true,
         callbackUrl: `${locale}/auth/verify-request`,
       });
-      console.log("result", result);
       // if (!result?.error) {
       //   sonerToast({
       //     severity: "success",
@@ -99,35 +95,6 @@ export default function Login() {
     } finally {
       setLoadingValue("");
     }
-    // try {
-    //   setLoadingValue("logIn");
-    //   const result = await signIn("credentials", {
-    //     email: values.email,
-    //     password: values.password,
-    //     redirect: false,
-    //     callbackUrl,
-    //   });
-    //   console.log("result", result);
-    //   if (!result?.error) {
-    //     sonerToast({
-    //       severity: "success",
-    //       title: "Woohhh...",
-    //       message: "You have Sucessfully Logged In !!!",
-    //     });
-    //     router.push(callbackUrl);
-    //   } else {
-    //     sonerToast({
-    //       severity: "error",
-    //       title: "Oopss.....",
-    //       message: "Your email / username or password is incorrect",
-    //     });
-    //     setError("Invalid email or password");
-    //   }
-    // } catch (e) {
-    //   console.log("signup", e);
-    // } finally {
-    //   setLoadingValue("");
-    // }
   };
   return (
     <div
