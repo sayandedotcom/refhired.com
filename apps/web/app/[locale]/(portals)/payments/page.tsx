@@ -30,7 +30,7 @@ export default function Payments({ params: { locale } }) {
             ) : (
               ""
             )}
-            <div className="space-y-4 border-b p-8">
+            <div className="space-y-4 border-b p-4">
               <span className="font-medium">{item.name}</span>
               <div className="text-3xl font-semibold">₹{item.price}</div>
               <p>{item.description}</p>
@@ -50,7 +50,7 @@ export default function Payments({ params: { locale } }) {
           </div>
         ))}
         <div className="border-border bg-muted relative flex flex-col items-stretch rounded-xl border px-6">
-          <div className="space-y-4 border-b p-6">
+          <div className="space-y-4 border-b p-2">
             <span className="font-medium">Custom</span>
             <CustomPricingCard />
           </div>
