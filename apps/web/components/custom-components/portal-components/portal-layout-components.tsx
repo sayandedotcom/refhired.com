@@ -7,14 +7,14 @@ import Image from "next/image";
 // import LoginModal from "@/app/[locale]/@loginModal/(.)auth/login/page";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
-import { Link, usePathname } from "@/navigation";
+import { Link, usePathname, useRouter } from "@/navigation";
 import type { User } from "@prisma/client";
 import clsx from "clsx";
-import { Info, MoreHorizontal, SlidersHorizontal, Star } from "lucide-react";
+import { Info, PartyPopper, SlidersHorizontal, Star } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
-import { Badge, Button, Separator, buttonVariants } from "@referrer/ui";
+import { Badge, Button, Separator } from "@referrer/ui";
 
 import { LeftBarMobile, RightBarMobile } from "@/components/custom-components";
 import { PostTypeDialog, TooltipDemo, sonerToast } from "@/components/ui";
@@ -24,27 +24,16 @@ import { withoutRightBarPages } from "@/config";
 
 import { useStore } from "@/store/store";
 
-import { ComboboxDropdownMenu } from "../post-card/post-more-menu";
-
 export function LeftSection() {
   const { data: session } = useSession();
   const pathName = usePathname();
+  const router = useRouter();
 
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
 
   const [data, setData] = useState<User>();
-  // const getUsers = async () => {
-  //   const users = await getProfile();
-  //   setData(users);
-  // };
 
-  // useEffect(() => {
-  //   getUsers(); // run it, run it
-  //   // return () => {
-  //   // this now gets called when the component unmounts
-  //   // };
-  // }, []);
   return (
     <section className="sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
       <div className="flex h-full w-full flex-col items-start justify-start">
@@ -80,12 +69,12 @@ export function LeftSection() {
             {width < 1000 ? <FaPenNib /> : "Post"}
           </Button>
         </PostTypeDialog>
-        <div className="bg-muted border-muted-foreground mx-auto mb-3 mt-auto flex h-36 w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-4 lg:w-[95%]">
+        <div className="mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-4 lg:w-[95%]">
           <div className="flex w-full items-center justify-between gap-3">
             {/* <AvatarDemo
               className="aspect-square h-14 w-14"
               image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
-            /> */}
+            />  */}
             <Image
               src={session?.user.image ?? "/images/avatar/avatar.png"}
               height={60}
@@ -93,22 +82,25 @@ export function LeftSection() {
               className="rounded-md"
               alt="img"
             />
-            <div className="mb-2">
+            <div className=" mr-auto">
               <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Your Name"}</p>
               <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
             </div>
-            <ComboboxDropdownMenu>
-              <div className="hover:bg-muted ml-auto cursor-pointer rounded-full">
-                <MoreHorizontal className="w-7" />
-              </div>
-            </ComboboxDropdownMenu>
           </div>
           <div className="flex w-full items-center justify-between gap-3">
             <Badge className="bg-background text-foreground border-foreground hover:bg-background flex items-center justify-center gap-3 rounded-sm">
-              <Star fill="#FFC300" className="h-7" />
-              <span className="font-heading mt-1 text-base font-bold">{session?.user.stars} Stars</span>
+              <Star className="h-7" />
+              <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
             </Badge>
-            <Button>Buy Stars</Button>
+            {session ? (
+              <Button
+                className="bg-destructive hover:bg-destructive text-foreground"
+                onClick={() => signOut()}>
+                Log out
+              </Button>
+            ) : (
+              <Button onClick={() => router.push("/auth/login")}>Log In</Button>
+            )}
           </div>
         </div>
       </div>
@@ -144,6 +136,7 @@ export function CenterSection({
 
 export function RightSection() {
   const pathName = usePathname();
+  const router = useRouter();
   const showExtraSection = withoutRightBarPages.includes(pathName);
   // const { data: session } = useSession();
   // const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
@@ -177,10 +170,33 @@ export function RightSection() {
             className={"flex items-center text-xs"}
             placeholders={placeholders}
           />
-          <div className="h-32 w-full rounded-3xl bg-gradient-to-br from-amber-600 via-stone-900 via-60% to-sky-900 py-3 pl-5">
-            <h5>Expiring soon !</h5>
-            <p className="font-sans font-semibold">Get up to 40% off on stars</p>
-            <Button className="rounded-full transition active:scale-95">Learn more !</Button>
+          <div className="border-border w-full rounded-3xl border bg-gradient-to-br from-amber-600 via-stone-900 via-60% to-sky-900 p-4">
+            <div className="mb-2">
+              <div className="flex gap-2">
+                <h5>Expiring soon !</h5>
+                <PartyPopper />
+              </div>
+              <p className="text-sm">Get up to 40% off on stars</p>
+            </div>
+            <div>
+              <Button
+                onClick={() => router.push("/payments")}
+                className="rounded-3xl transition active:scale-95">
+                Learn more !
+              </Button>
+            </div>
+          </div>
+          <div className="border-border group relative flex w-full flex-col gap-2 overflow-hidden rounded-2xl border bg-neutral-900 p-4 text-gray-50 group-hover:duration-500">
+            <div className="z-10 flex flex-col duration-500 before:absolute before:right-16 before:top-20 before:-z-10 before:h-12 before:h-20 before:w-12 before:w-20 before:rounded-full before:bg-sky-400 before:blur-xl before:duration-500 after:absolute after:bottom-32 after:right-16 after:-z-10 after:h-12 after:h-12 after:w-12 after:w-12 after:rounded-full after:bg-orange-400 after:blur-xl after:duration-500 group-hover:before:-translate-y-11 group-hover:before:translate-x-11 group-hover:after:translate-x-11 group-hover:after:translate-y-16">
+              <h5>Get Dashboard</h5>
+              <p className="text-sm">
+                Get an advanced AI-powered dashboard for just $49, with lifetime access!
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button className="rounded-full transition active:scale-95">Get it now</Button>
+              <Button className="z-20 rounded-full transition active:scale-95">Learn more !</Button>
+            </div>
           </div>
           <button
             onClick={() => setJoyRide("post-ride")}
@@ -208,13 +224,8 @@ export function RightSection() {
         )}
       </div> */}
           <div className="bg-muted rounded-sm px-4 py-2">
-            <h6>News</h6>
+            <h6>Changelog</h6>
           </div>
-          <div className="bg-muted rounded-sm px-4 py-2">
-            <h6>Sugessions</h6>
-          </div>
-
-          <Button onClick={() => signOut()}>Sign Out</Button>
           <Button
             onClick={() =>
               sonerToast({
@@ -225,9 +236,6 @@ export function RightSection() {
             }>
             Soner
           </Button>
-          <Link href="/auth/login" className={buttonVariants()}>
-            Dialog
-          </Link>
           {/* <LoginModal> */}
 
           {/* <LoginModal>
