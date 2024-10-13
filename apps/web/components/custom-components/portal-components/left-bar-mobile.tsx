@@ -40,7 +40,7 @@ export function LeftBarMobile() {
       <SheetContent side="left" className="mg:hidden bg-muted flex w-full flex-col">
         <div className="font-heading mt-3 w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
           <div className="cursor-pointer px-1 py-4 text-base">
-            {portalsList.map(({ name, link, icon, activeIcon }) => (
+            {portalsList.map(({ name, link, icon }) => (
               <Link
                 onClick={() => setOpen(!open)}
                 key={name}
@@ -50,11 +50,7 @@ export function LeftBarMobile() {
                   "hover:bg-background flex items-center gap-4 rounded-md px-2 py-2",
                   path === "/" + link?.split("/")[1] && "bg-foreground text-background hover:bg-foreground/90"
                 )}>
-                {path !== "/" + link?.split("/")[1] ? (
-                  <span className="ml-5 text-2xl md:text-2xl">{icon}</span>
-                ) : (
-                  <span className="ml-5 text-2xl md:text-2xl">{activeIcon}</span>
-                )}
+                <span className="ml-5 text-2xl md:text-2xl">{icon}</span>
                 <p className="mt-1 lg:block">{name}</p>
               </Link>
             ))}
