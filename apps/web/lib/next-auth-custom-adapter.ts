@@ -88,6 +88,7 @@ export function RefhiredAdapter(prisma: PrismaClient | ReturnType<PrismaClient["
         throw error;
       }
     },
+    /// @ts-expect-error
     async getAccount(providerAccountId, provider) {
       return p.account.findFirst({
         where: { providerAccountId, provider },
