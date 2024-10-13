@@ -1,30 +1,29 @@
-import { cookies } from "next/headers";
-
-import { getServerAuthSession } from "@/lib/auth";
+import { auth } from "@/lib/auth";
 import { request } from "@/lib/axios";
 
-async function getTest(hasCookie: string) {
+async function getTest(refreshToken: string) {
   const response = await request.get("/test", {
-    withCredentials: true,
-
-    headers: { withCredentials: true, Authorization: `Bearer ${hasCookie}` },
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
   });
 
   return response.data;
 }
 
 export default async function Server() {
-  const cookieStore = cookies();
-  const hasCookie = cookieStore.get("next-auth.session-token");
-  const response = await getTest(hasCookie?.value);
-  // console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊datadatadatadatadata", response);
+  // const cookieStore = cookies();
+  // const hasCookie = cookieStore.get("next-auth.session-token");
+
+  const session = await auth();
+  const response = await getTest(session.user.refresh_token);
+  console.log("😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊datadatadatadatadata", response);
 
   // console.log(
   //   "😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊hasCookiehasCookiehasCookiehasCookiehasCookiehasCookiehasCookiehasCookie",
   //   hasCookie.value
   // );
 
-  const session = await getServerAuthSession();
   // const response = await fetch("http://localhost:3000/api/v1/test", {
   //   method: "GET",
   // }).then((ans) => ans.json());
@@ -40,7 +39,7 @@ export default async function Server() {
     <div>
       Server
       {response?.message}
-      <h4>{JSON.stringify(session?.user)}</h4>{" "}
+      <h4>{JSON.stringify(session)}</h4>{" "}
     </div>
   );
 }

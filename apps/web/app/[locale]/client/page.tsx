@@ -10,14 +10,11 @@ function Client() {
   const { data, error, isLoading } = useQuery({
     queryKey: ["test"],
     queryFn: () => {
-      return request.get(
-        "/test"
-        // , {
-        // headers: {
-        //   name: "Sayan De from Client Component",
-        // },
-        // }
-      );
+      return request.get("/test", {
+        headers: {
+          Authorization: `Bearer ${session.user.refresh_token}`,
+        },
+      });
     },
   });
 
@@ -31,7 +28,7 @@ function Client() {
     <div>
       Client
       {data?.data?.message}
-      <h4>{JSON.stringify(session?.user)}</h4>
+      <h4>{JSON.stringify(session)}</h4>
     </div>
   );
 }
