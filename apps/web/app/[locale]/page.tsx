@@ -1,7 +1,5 @@
 import { Suspense } from "react";
 
-import { redirect } from "@/navigation";
-import { getServerSession } from "next-auth";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import Starfield from "react-starfield";
 
@@ -25,11 +23,11 @@ import {
 import Loading from "./loading";
 
 export default async function Page({ params: { locale } }) {
-  const session = await getServerSession();
+  // const session = await getServerSession();
 
-  if (session?.user) {
-    redirect("/home");
-  }
+  // if (session?.user) {
+  //   redirect("/home");
+  // }
   unstable_setRequestLocale(locale);
 
   const t = await getTranslations("Index");

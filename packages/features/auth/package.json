@@ -6,10 +6,10 @@
   "license": "MIT",
   "dependencies": {
     "@referrer/prisma": "*",
-    "@refhiredcom/features": "*",
     "@refhiredcom/email": "*",
+    "@refhiredcom/features": "*",
     "@refhiredcom/types": "*",
-    "next-auth": "^4.24.7"
+    "next-auth": "^5.0.0-beta.22"
   },
   "devDependencies": {
     "@refhiredcom/types": "*",

@@ -17,7 +17,7 @@ import { FaPenNib } from "react-icons/fa";
 import { Badge, Button, Separator } from "@referrer/ui";
 
 import { LeftBarMobile, RightBarMobile } from "@/components/custom-components";
-import { PostTypeDialog, TooltipDemo, sonerToast } from "@/components/ui";
+import { PostTypeDialog, sonerToast } from "@/components/ui";
 import { PlaceholdersAndVanishInput } from "@/components/ui";
 
 import { withoutRightBarPages } from "@/config";
@@ -42,34 +42,29 @@ export function LeftSection() {
         </Link> */}
         <div className="font-heading w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
           <div className="cursor-pointer px-2 py-4 text-base">
-            {portalsList.map(({ name, link, icon, activeIcon }) => (
-              <TooltipDemo key={name} text={`Go to ${name}`}>
-                <Link
-                  id={name.toLocaleLowerCase()}
-                  href={link ?? session?.user.userName ?? "profile"}
-                  className={clsx(
-                    "hover:bg-muted flex items-center gap-4 rounded-md px-2 py-2",
-                    path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
-                  )}>
-                  {path !== "/" + link?.split("/")[1] ? (
-                    <span className="ml-5 text-xl md:text-xl">{icon}</span>
-                  ) : (
-                    <span className="ml-5 text-xl md:text-xl">{activeIcon}</span>
-                  )}
-                  <p className="mt-1 hidden lg:block">{name}</p>
-                </Link>
-              </TooltipDemo>
+            {portalsList.map(({ name, link, icon }) => (
+              <Link
+                key={name}
+                id={name.toLocaleLowerCase()}
+                href={link ?? session?.user.userName ?? "profile"}
+                className={clsx(
+                  "hover:bg-muted flex items-center gap-4 rounded-md px-2 py-2",
+                  path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
+                )}>
+                <span className="ml-5">{icon}</span>
+                <p className="mt-1 hidden lg:block">{name}</p>
+              </Link>
             ))}
           </div>
         </div>
         <PostTypeDialog>
           <Button
             size="lg"
-            className="font-heading mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold transition active:scale-95 lg:w-10/12 lg:py-7">
+            className="font-heading mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold transition active:scale-95 lg:w-11/12 lg:py-7">
             {width < 1000 ? <FaPenNib /> : "Post"}
           </Button>
         </PostTypeDialog>
-        <div className="mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-4 lg:w-[95%]">
+        <div className="bg-muted mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-4 lg:w-[95%]">
           <div className="flex w-full items-center justify-between gap-3">
             {/* <AvatarDemo
               className="aspect-square h-14 w-14"
@@ -86,21 +81,25 @@ export function LeftSection() {
               <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Your Name"}</p>
               <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
             </div>
-          </div>
-          <div className="flex w-full items-center justify-between gap-3">
-            <Badge className="bg-background text-foreground border-foreground hover:bg-background flex items-center justify-center gap-3 rounded-sm">
-              <Star className="h-7" />
-              <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
-            </Badge>
             {session ? (
               <Button
-                className="bg-destructive hover:bg-destructive text-foreground"
+                className="text-foreground font-heading rounded-full bg-red-600 px-6 text-sm transition hover:bg-red-600/90 active:scale-95"
                 onClick={() => signOut()}>
                 Log out
               </Button>
             ) : (
-              <Button onClick={() => router.push("/auth/login")}>Log In</Button>
+              <Button
+                className="font-heading rounded-full px-6 text-sm transition active:scale-95"
+                onClick={() => router.push("/auth/login")}>
+                Log In
+              </Button>
             )}
+          </div>
+          <div className="flex w-full items-center justify-between gap-3">
+            <Badge className="bg-background text-foreground border-foreground hover:bg-background flex h-full items-center justify-center gap-3 rounded-sm">
+              <Star className="h-5" />
+              <span className="font-heading mt-1 text-base font-bold">{session?.user.stars}</span>
+            </Badge>
           </div>
         </div>
       </div>
@@ -137,6 +136,7 @@ export function CenterSection({
 export function RightSection() {
   const pathName = usePathname();
   const router = useRouter();
+  const { data: session } = useSession();
   const showExtraSection = withoutRightBarPages.includes(pathName);
   // const { data: session } = useSession();
   // const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
@@ -170,7 +170,7 @@ export function RightSection() {
             className={"flex items-center text-xs"}
             placeholders={placeholders}
           />
-          <div className="border-border w-full rounded-3xl border bg-gradient-to-br from-amber-600 via-stone-900 via-60% to-sky-900 p-4">
+          <div className="border-border w-full rounded-3xl border bg-gradient-to-br from-amber-600 via-stone-900 via-60% to-sky-900 p-4 backdrop-blur-sm">
             <div className="mb-2">
               <div className="flex gap-2">
                 <h5>Expiring soon !</h5>
@@ -186,18 +186,20 @@ export function RightSection() {
               </Button>
             </div>
           </div>
-          <div className="border-border group relative flex w-full flex-col gap-2 overflow-hidden rounded-2xl border bg-neutral-900 p-4 text-gray-50 group-hover:duration-500">
-            <div className="z-10 flex flex-col duration-500 before:absolute before:right-16 before:top-20 before:-z-10 before:h-12 before:h-20 before:w-12 before:w-20 before:rounded-full before:bg-sky-400 before:blur-xl before:duration-500 after:absolute after:bottom-32 after:right-16 after:-z-10 after:h-12 after:h-12 after:w-12 after:w-12 after:rounded-full after:bg-orange-400 after:blur-xl after:duration-500 group-hover:before:-translate-y-11 group-hover:before:translate-x-11 group-hover:after:translate-x-11 group-hover:after:translate-y-16">
-              <h5>Get Dashboard</h5>
-              <p className="text-sm">
-                Get an advanced AI-powered dashboard for just $49, with lifetime access!
-              </p>
+          {session?.user?.paidForDashboard ? (
+            <></>
+          ) : (
+            <div className="border-border group relative flex w-full flex-col gap-2 overflow-hidden rounded-2xl border bg-neutral-900 p-4 text-gray-50 group-hover:duration-500">
+              <div className="z-10 flex flex-col duration-500 before:absolute before:right-16 before:top-20 before:-z-10 before:h-12 before:h-20 before:w-12 before:w-20 before:rounded-full before:bg-sky-400 before:blur-xl before:duration-500 after:absolute after:bottom-32 after:right-16 after:-z-10 after:h-12 after:h-12 after:w-12 after:w-12 after:rounded-full after:bg-orange-400 after:blur-xl after:duration-500 group-hover:before:-translate-y-11 group-hover:before:translate-x-11 group-hover:after:translate-x-11 group-hover:after:translate-y-16">
+                <h5>Get Dashboard</h5>
+                <p className="text-sm">Get an advanced AI-powered dashboard for just $49 per year!</p>
+              </div>
+              <div className="flex gap-2">
+                <Button className="rounded-full transition active:scale-95">Get it now</Button>
+                <Button className="z-20 rounded-full transition active:scale-95">Learn more !</Button>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <Button className="rounded-full transition active:scale-95">Get it now</Button>
-              <Button className="z-20 rounded-full transition active:scale-95">Learn more !</Button>
-            </div>
-          </div>
+          )}
           <button
             onClick={() => setJoyRide("post-ride")}
             id="start-tour"

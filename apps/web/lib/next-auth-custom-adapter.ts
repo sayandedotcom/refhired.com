@@ -1,8 +1,26 @@
-import type { Adapter, AdapterAccount } from "@auth/core/adapters";
+/**
+ * <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", padding: 16}}>
+ *  Official <a href="https://www.prisma.io/docs">Prisma</a> adapter for Auth.js / NextAuth.js.
+ *  <a href="https://www.prisma.io/">
+ *   <img style={{display: "block"}} src="https://authjs.dev/img/adapters/prisma.svg" width="38" />
+ *  </a>
+ * </div>
+ *
+ * ## Installation
+ *
+ * ```bash npm2yarn
+ * npm install @prisma/client @auth/prisma-adapter
+ * npm install prisma --save-dev
+ * ```
+ *
+ * @module @auth/prisma-adapter
+ */
+import type { Adapter, AdapterAccount, AdapterSession, AdapterUser } from "@auth/core/adapters";
 import type { Prisma, PrismaClient } from "@prisma/client";
 
 /** @return { import("next-auth/adapters").Adapter } */
-export function RefhiredAdapter(p: PrismaClient): Adapter {
+export function RefhiredAdapter(prisma: PrismaClient | ReturnType<PrismaClient["$extends"]>): Adapter {
+  const p = prisma as PrismaClient;
   return {
     createUser: (data) => {
       return p.user.create({
@@ -13,82 +31,73 @@ export function RefhiredAdapter(p: PrismaClient): Adapter {
         },
       });
     },
-    getUser: (id) => {
-      console.log("adaptor getUser 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.user.findUnique({ where: { id } });
-    },
-    getUserByEmail: (email) => {
-      console.log("adaptor getUserByEmail 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.user.findUnique({ where: { email } });
-    },
+    getUser: (id) => p.user.findUnique({ where: { id } }),
+    getUserByEmail: (email) => p.user.findUnique({ where: { email } }),
     async getUserByAccount(provider_providerAccountId) {
-      console.log("adaptor getUserByAccount 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
       const account = await p.account.findUnique({
         where: { provider_providerAccountId },
         select: { user: true },
       });
-      return account?.user ?? null;
+      return (account?.user as AdapterUser) ?? null;
     },
-    updateUser: ({ id, ...data }) => {
-      console.log("adaptor updateUser 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.user.update({ where: { id }, data });
-    },
-    deleteUser: (id) => {
-      console.log("adaptor deleteUser 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.user.delete({ where: { id } });
-    },
-    linkAccount: (data) => {
-      console.log("adaptor linkAccount 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.account.create({ data }) as unknown as AdapterAccount;
-    },
-    unlinkAccount: (provider_providerAccountId) => {
-      console.log("adaptor unlinkAccount 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.account.delete({
+    updateUser: ({ id, ...data }) =>
+      p.user.update({
+        where: { id },
+        ...stripUndefined(data),
+      }) as Promise<AdapterUser>,
+    deleteUser: (id) => p.user.delete({ where: { id } }) as Promise<AdapterUser>,
+    linkAccount: (data) => p.account.create({ data }) as unknown as AdapterAccount,
+    unlinkAccount: (provider_providerAccountId) =>
+      p.account.delete({
         where: { provider_providerAccountId },
-      }) as unknown as AdapterAccount;
-    },
+      }) as unknown as AdapterAccount,
     async getSessionAndUser(sessionToken) {
-      console.log("adaptor getSessionAndUser 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
       const userAndSession = await p.session.findUnique({
         where: { sessionToken },
         include: { user: true },
       });
       if (!userAndSession) return null;
       const { user, ...session } = userAndSession;
-      return { user, session };
+      return { user, session } as { user: AdapterUser; session: AdapterSession };
     },
-    createSession: (data) => {
-      console.log("adaptor createSession 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.session.create({ data });
-    },
-    updateSession: (data) => {
-      console.log("adaptor updateSession 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.session.update({ where: { sessionToken: data.sessionToken }, data });
-    },
-    deleteSession: (sessionToken) => {
-      console.log("adaptor deleteSession 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      return p.session.delete({ where: { sessionToken } });
-    },
+    createSession: (data) => p.session.create(stripUndefined(data)),
+    updateSession: (data) =>
+      p.session.update({
+        where: { sessionToken: data.sessionToken },
+        ...stripUndefined(data),
+      }),
+    deleteSession: (sessionToken) => p.session.delete({ where: { sessionToken } }),
     async createVerificationToken(data) {
-      console.log("adaptor createVerificationToken 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
-      const verificationToken = await p.verificationToken.create({ data });
-      // if (verificationToken.id) delete verificationToken.id;
+      const verificationToken = await p.verificationToken.create(stripUndefined(data));
+      // @ts-expect-errors // MongoDB needs an ID, but we don't
+      if (verificationToken.id) delete verificationToken.id;
       return verificationToken;
     },
     async useVerificationToken(identifier_token) {
-      console.log("adaptor useVerificationToken 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
       try {
-        console.log("adaptor useVerificationToken====try 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
         const verificationToken = await p.verificationToken.delete({
           where: { identifier_token },
         });
-        // if (verificationToken.id) delete verificationToken.id;
+        // @ts-expect-errors // MongoDB needs an ID, but we don't
+        if (verificationToken.id) delete verificationToken.id;
         return verificationToken;
       } catch (error) {
-        console.log("adaptor useVerificationToken====catch 🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️🅰️");
+        // If token already used/deleted, just return null
+        // https://www.prisma.io/docs/reference/api-reference/error-reference#p2025
         if ((error as Prisma.PrismaClientKnownRequestError).code === "P2025") return null;
         throw error;
       }
     },
+    async getAccount(providerAccountId, provider) {
+      return p.account.findFirst({
+        where: { providerAccountId, provider },
+      });
+    },
   };
+}
+
+function stripUndefined<T>(obj: T) {
+  const data = {} as T;
+  for (const key in obj) if (obj[key] !== undefined) data[key] = obj[key];
+  return { data };
 }

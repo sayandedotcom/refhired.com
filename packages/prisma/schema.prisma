@@ -24,6 +24,7 @@ model User {
   updatedAt        DateTime?   @updatedAt @map("updated_at")
   workingAt        String?     @map("working_at")
   createdAt        DateTime?   @default(now()) @map("created_at")
+  paidForDashboard Boolean     @default(false) @map("paid_for_dashboard")
   accounts         Account[]
   applied          Applied[]
   bookmarks        Bookmarks[]
@@ -36,30 +37,32 @@ model User {
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
   providerAccountId String
+  refresh_token     String?
   access_token      String?
   expires_at        Int?
-  id_token          String?
-  provider          String
-  refresh_token     String?
-  scope             String?
-  session_state     String?
   token_type        String?
-  type              String
-  userId            String
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([provider, providerAccountId])
+  @@id([provider, providerAccountId])
   @@map("account")
 }
 
 model Session {
-  id           String   @id @default(cuid())
   sessionToken String   @unique
   expires      DateTime
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   @@map("session")
 }
@@ -69,7 +72,7 @@ model VerificationToken {
   token      String   @unique
   expires    DateTime
 
-  @@unique([identifier, token])
+  @@id([identifier, token])
   @@map("verification_token")
 }
 
@@ -93,6 +96,7 @@ model Posts {
   totalComments   Int?        @default(0)
   companyName     String?     @map("company_name")
   jobCode         String?     @map("job_code")
+  jobURL          String?     @map("job_url")
   applied         Applied[]
   bookmarks       Bookmarks[]
   comments        Comments[]
@@ -105,13 +109,16 @@ model Posts {
 }
 
 model Applied {
-  id        String   @id @default(cuid())
-  appliedAt DateTime @default(now())
-  userId    String
-  postId    String   @map("post_id")
-  applyInfo Json?    @map("apply_info")
-  posts     Posts    @relation(fields: [postId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+  id         String     @id @default(cuid())
+  appliedAt  DateTime   @default(now())
+  userId     String
+  postId     String     @map("post_id")
+  applyInfo  Json?      @map("apply_info")
+  visibility Visibility @default(Unread)
+  status     Status     @default(Pending)
+  reply      String?
+  posts      Posts      @relation(fields: [postId], references: [id])
+  user       User       @relation(fields: [userId], references: [id])
 
   @@unique([userId, postId])
   @@index([userId])
@@ -163,4 +170,15 @@ enum PostType {
   REFERRALPOST
   FINDREFERRER
   POST
+}
+
+enum Visibility {
+  Read
+  Unread
+}
+
+enum Status {
+  Pending
+  Accepted
+  Rejected
 }

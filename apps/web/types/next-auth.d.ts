@@ -1,17 +1,18 @@
 import type { User as PrismaUser } from "@prisma/client";
-import type { DefaultSession, DefaultUser } from "next-auth";
+import type { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `Provider` React Context
    */
   interface Session {
+    error?: "RefreshTokenError";
     user: {
       id: string;
       userName: PrismaUser["userName"];
-      locale?: PrismaUser["locale"];
       stripeCustomerId?: PrismaUser["stripeCustomerId"];
       stars: PrismaUser["stars"];
+      refresh_token: string;
     } & DefaultSession["user"];
   }
   /**
@@ -20,7 +21,8 @@ declare module "next-auth" {
    */
   interface User extends DefaultUser {
     userName: PrismaUser["userName"];
-    locale?: PrismaUser["locale"];
+    stars: PrismaUser["stars"];
+    paidForDashboard?: PrismaUser["paidForDashboard"];
     stripeCustomerId?: PrismaUser["stripeCustomerId"];
   }
   /**
@@ -45,9 +47,13 @@ declare module "next-auth/jwt" {
     name?: PrismaUser["name"];
     email: PrismaUser["email"];
     userName: PrismaUser["userName"];
-    locale?: PrismaUser["locale"];
     stripeCustomerId?: PrismaUser["stripeCustomerId"];
+    paidForDashboard?: PrismaUser["paidForDashboard"];
     stars: PrismaUser["stars"];
+    access_token: string;
+    expires_at: number;
+    refresh_token?: string;
+    error?: "RefreshTokenError";
   }
 }
 

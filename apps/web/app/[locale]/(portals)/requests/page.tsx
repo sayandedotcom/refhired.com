@@ -5,7 +5,7 @@ import { unstable_setRequestLocale } from "next-intl/server";
 
 import { PortalsNotFound } from "@/components/custom-components";
 
-import { getServerAuthSession } from "@/lib/auth";
+import { auth } from "@/lib/auth";
 import { request } from "@/lib/axios";
 
 import Loading from "../../loading";
@@ -51,7 +51,7 @@ const transformArray = (originalArray) => {
 const Requests = async ({ params: { locale } }) => {
   unstable_setRequestLocale(locale);
 
-  const session = await getServerAuthSession();
+  const session = await auth();
 
   if (!session) {
     return <PortalsNotFound text="Requests" />;

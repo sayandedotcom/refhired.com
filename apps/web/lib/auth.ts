@@ -1,175 +1,164 @@
-import { NextAuthOptions, getServerSession } from "next-auth";
-import EmailProvider, { SendVerificationRequestParams } from "next-auth/providers/email";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
 
-// import { sendMail } from "@/actions/mails";
 import prisma from "@referrer/prisma";
 
 import { RefhiredAdapter } from "./next-auth-custom-adapter";
-// import { sendMail } from "./resend";
 import { stripe } from "./stripe";
 
-export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET,
-  adapter: RefhiredAdapter(prisma) as any,
+export type { Account, DefaultSession, Profile, Session, User } from "@auth/core/types";
+export const { auth, handlers, signIn, signOut } = NextAuth({
+  adapter: RefhiredAdapter(prisma),
+  providers: [
+    Google({
+      // Google requires "offline" access_type to provide a `refresh_token`
+      authorization: { params: { access_type: "offline", prompt: "consent" } },
+      allowDangerousEmailAccountLinking: true,
+    }),
+  ],
   pages: {
     signIn: "/auth/login", // custom login page
-    signOut: "/", // signout page
+    // signOut: "/", // signout page
     error: "/auth/error", // Error code passed in query string as ?error=
     verifyRequest: "/auth/verify-request", // (used for check email message)
     // newUser: "/auth/new-user", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
   session: {
     strategy: "jwt",
-    // Seconds - How long until an idle session expires and is no longer valid.
-    // maxAge: 30 * 24 * 60 * 60, // 30 days
+    //     // Seconds - How long until an idle session expires and is no longer valid.
+    //     // maxAge: 30 * 24 * 60 * 60, // 30 days
 
-    // Seconds - Throttle how frequently to write to database to extend a session.
-    // Use it to limit write operations. Set to 0 to always update the database.
-    // Note: This option is ignored if using JSON Web Tokens
-    // updateAge: 24 * 60 * 60, // 24 hours
+    //     // Seconds - Throttle how frequently to write to database to extend a session.
+    //     // Use it to limit write operations. Set to 0 to always update the database.
+    //     // Note: This option is ignored if using JSON Web Tokens
+    //     // updateAge: 24 * 60 * 60, // 24 hours
   },
   jwt: {
-    // The maximum age of the NextAuth.js issued JWT in seconds.
-    // Defaults to `session.maxAge`.
-    // maxAge: 60 * 60 * 24 * 30,
-    // You can define your own encode/decode functions for signing and encryption
-    // async encode() {},
-    // async decode() {},
+    //     // The maximum age of the NextAuth.js issued JWT in seconds.
+    //     // Defaults to `session.maxAge`.
+    //     // maxAge: 60 * 60 * 24 * 30,
+    //     // You can define your own encode/decode functions for signing and encryption
+    //     // async encode() {},
+    //     // async decode() {},
   },
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      allowDangerousEmailAccountLinking: true,
-      // profile(profile, tokens) {
-      //   return ({
-      //     ! add username from email
-      //     ! add locale
-      //   })
-      // },
-    }),
-    EmailProvider({
-      sendVerificationRequest: async (params: SendVerificationRequestParams) => {
-        const { identifier: email, url, provider, expires, theme, token } = params;
-        // console.log("EmailProvider email 😊😊😊😊😊😊😊😊😊😊", email);
-        // console.log("EmailProvider url  😊😊😊😊😊😊😊😊😊😊", url);
-        // console.log("EmailProvider provider  😊😊😊😊😊😊😊😊😊😊", provider);
-        // console.log("EmailProvider expires  😊😊😊😊😊😊😊😊😊😊", expires);
-        // console.log("EmailProvider theme  😊😊😊😊😊😊😊😊😊😊", theme);
-        // console.log("EmailProvider token  😊😊😊😊😊😊😊😊😊😊", token);
-
-        const userExists = await prisma.user.findUnique({
-          where: { email },
-          select: { name: true },
-        });
-
-        if (userExists) {
-          try {
-            // await sendMail({
-            //   toMail: email,
-            //   type: "verification",
-            //   data: {
-            //     name: userExists?.name,
-            //     url,
-            //   },
-            // });
-            console.log("hi");
-          } catch (error) {
-            throw new Error(JSON.stringify(error));
-          }
-        } else {
-          try {
-            // await sendMail({
-            //   toMail: email,
-            //   type: "verification",
-            //   data: {
-            //     name: "Welcome to Refhired.com",
-            //     url,
-            //   },
-            // });
-          } catch (error) {
-            throw new Error(JSON.stringify(error));
-          }
-        }
-      },
-      // ! secret: "",
-      // ! generateVerificationToken() {},
-      // ! normalizeIdentifier(identifier) {},
-      // ! maxAge
-      // ! server
-      // ! type
-    }),
-  ],
   callbacks: {
-    async jwt({ token, user, account, profile, trigger, session }) {
-      const dbUser = await prisma.user.findFirst({
-        // ! optimise with prisma
-        where: {
-          email: token.email,
-        },
-      });
+    async jwt({ token, account, user, profile, trigger, session }) {
+      if (account) {
+        // First-time login, save the `access_token`, its expiry and the `refresh_token`
+        return {
+          ...token,
+          id: user.id,
+          userName: user.userName,
+          stars: user.stars,
+          stripeCustomerId: user.stripeCustomerId,
+          paidForDashboard: user.paidForDashboard,
+          access_token: account.access_token,
+          expires_at: account.expires_at,
+          refresh_token: account.refresh_token,
+        };
+      } else if (Date.now() < token.expires_at * 1000) {
+        // Subsequent logins, but the `access_token` is still valid
+        return token;
+      } else {
+        // Subsequent logins, but the `access_token` has expired, try to refresh it
+        if (!token.refresh_token) throw new TypeError("Missing refresh_token");
 
+        try {
+          // The `token_endpoint` can be found in the provider's documentation. Or if they support OIDC,
+          // at their `/.well-known/openid-configuration` endpoint.
+          // i.e. https://accounts.google.com/.well-known/openid-configuration
+          const response = await fetch("https://oauth2.googleapis.com/token", {
+            method: "POST",
+            body: new URLSearchParams({
+              client_id: process.env.AUTH_GOOGLE_ID!,
+              client_secret: process.env.AUTH_GOOGLE_SECRET!,
+              grant_type: "refresh_token",
+              refresh_token: token.refresh_token!,
+            }),
+          });
+
+          const tokensOrError = await response.json();
+
+          if (!response.ok) throw tokensOrError;
+
+          const newTokens = tokensOrError as {
+            access_token: string;
+            expires_in: number;
+            refresh_token?: string;
+          };
+
+          token.access_token = newTokens.access_token;
+          token.expires_at = Math.floor(Date.now() / 1000 + newTokens.expires_in);
+          // Some providers only issue refresh tokens once, so preserve if we did not get a new one
+          if (newTokens.refresh_token) token.refresh_token = newTokens.refresh_token;
+          return token;
+        } catch (error) {
+          console.error("Error refreshing access_token", error);
+          // If we fail to refresh the token, return an error so we can handle it on the page
+          token.error = "RefreshTokenError";
+          return token;
+        }
+      }
+    },
+    async session({ session, token, trigger, user, newSession }) {
+      session.error = token.error;
       return {
-        ...token,
-        id: dbUser.id,
-        name: dbUser.name,
-        userName: dbUser.userName,
-        email: dbUser.email,
-        picture: dbUser.image,
-        locale: profile?.locale ?? dbUser.locale,
-        stripeCustomerId: dbUser.stripeCustomerId,
-        stars: dbUser.stars ?? 0,
+        ...session,
+        error: token.error,
+        user: {
+          ...session.user,
+          userName: token.userName,
+          paidForDashboard: token.paidForDashboard,
+          stars: token.stars,
+          refresh_token: token.refresh_token,
+        },
       };
     },
-    async session({ session, token, user, trigger }) {
-      if (token) {
-        session.user.id = token.id;
-        session.user.userName = token.userName;
-        session.user.name = token.name;
-        session.user.email = token.email;
-        session.user.image = token.picture;
-        session.user.locale = token?.locale;
-        session.user.stripeCustomerId = token.stripeCustomerId;
-        session.user.stars = token.stars;
-      }
-      return session;
-    },
-    async signIn(params) {
-      const { user, account, profile, email, credentials } = params;
-      if (account?.type === "email") {
-        try {
-          const userExists = await prisma.user.findFirst({
-            where: { email: user.email },
-          });
-          await prisma.account.create({
-            data: {
-              userId: userExists.id ?? user.id,
-              type: account.type,
-              provider: account.provider,
-              providerAccountId: account.providerAccountId,
-              access_token: account?.access_token,
-              expires_at: account?.expires_at,
-              id_token: account?.id_token,
-              refresh_token: account?.refresh_token,
-              scope: account?.scope,
-              session_state: account?.session_state,
-              token_type: account?.token_type,
-            },
-          });
-        } catch (error) {}
-      }
+    async signIn({ user, account, email, credentials }) {
+      //       const { user, account, profile, email, credentials } = params;
+      //       if (account?.type === "email") {
+      //         try {
+      //           const userExists = await prisma.user.findFirst({
+      //             where: { email: user.email },
+      //           });
+      //           await prisma.account.create({
+      //             data: {
+      //               userId: userExists.id ?? user.id,
+      //               type: account.type,
+      //               provider: account.provider,
+      //               providerAccountId: account.providerAccountId,
+      //               access_token: account?.access_token,
+      //               expires_at: account?.expires_at,
+      //               id_token: account?.id_token,
+      //               refresh_token: account?.refresh_token,
+      //               scope: account?.scope,
+      //               session_state: account?.session_state,
+      //               token_type: account?.token_type,
+      //             },
+      //           });
+      //         } catch (error) {}
+      //       }
       return true;
     },
     async redirect({ url, baseUrl }) {
-      // console.log("callback redirect😊😊😊😊😊😊😊😊😊😊", url, baseUrl);
-      return baseUrl;
+      console.log("/** URL provided as callback URL by the client */😊😊😊😊😊😊😊😊😊😊", url);
+      console.log("/** Default base URL of site (can be used as fallback) */😊😊😊😊😊😊😊😊😊😊", baseUrl);
+
+      if (baseUrl === process.env.AUTH_URL) {
+        return url;
+      }
+    },
+    async authorized({ request, auth }) {
+      // Logged in users are authenticated, otherwise redirect to login page
+      console.log("/** The request to be authorized. */ 😊😊😊😊😊😊😊😊😊😊", request);
+      console.log("/** The authenticated user or token, if any. */ 😊😊😊😊😊😊😊😊😊😊", auth);
+      return !!auth;
     },
   },
   events: {
-    async signIn(message) {
+    async signIn({ user, account, profile, isNewUser }) {
       /* on successful sign in */
-      console.log("event signIn😊😊😊😊😊😊😊😊😊😊", message);
+      console.log("event signIn😊😊😊😊😊😊😊😊😊😊", account);
     },
     async signOut(message) {
       /* on signout */
@@ -202,36 +191,29 @@ export const authOptions: NextAuthOptions = {
             })
         );
     },
-    async updateUser(message) {
+    async updateUser({ user }) {
       /* user updated - e.g. their email was verified */
-      console.log("event updateUser😊😊😊😊😊😊😊😊😊😊", message);
+      console.log("event updateUser😊😊😊😊😊😊😊😊😊😊", user);
     },
-    async linkAccount(message) {
+    async linkAccount({ user, account, profile }) {
       /* account (e.g. Twitter) linked to a user */
-      console.log("event linkAccount😊😊😊😊😊😊😊😊😊😊", message);
+      console.log("event linkAccount😊😊😊😊😊😊😊😊😊😊", account);
     },
-    async session(message) {
+    async session({ session, token }) {
       /* session is active */
       // console.log("event session😊😊😊😊😊😊😊😊😊😊", message);
     },
   },
-  debug: process.env.NODE_ENV === "development",
-};
-
-export const getServerAuthSession = () => {
-  return getServerSession(authOptions);
-};
-
-// ! AWS SES providers: [
-//   EmailProvider({
-//     server: {
-//       host: process.env.EMAIL_SERVER_HOST,
-//       port: process.env.EMAIL_SERVER_PORT,
-//       auth: {
-//         user: process.env.EMAIL_SERVER_USER,
-//         pass: process.env.EMAIL_SERVER_PASSWORD
-//       }
-//     },
-//     from: process.env.EMAIL_FROM
-//   }),
-// ],
+  logger: {
+    error(code, ...message) {
+      console.error(code, message);
+    },
+    warn(code, ...message) {
+      console.warn(code, message);
+    },
+    debug(code, ...message) {
+      console.debug(code, message);
+    },
+  },
+  debug: true,
+});

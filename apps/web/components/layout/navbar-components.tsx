@@ -56,13 +56,23 @@ export const NavButtonsUnAuthenticated = () => {
 };
 
 export const NavButtonsAuthenticated = ({ session }) => {
+  const { loadingValue, setLoadingValue } = useLoading();
+  const router = useRouter();
+  const handleCLick = (redirect, loadingValue) => {
+    setLoadingValue(loadingValue);
+    router.push(`/${redirect}`);
+  };
   return (
     <ul className="flex items-center justify-center space-x-0 lg:flex-row lg:space-x-6">
-      {/* <li>
-        <TooltipDemo text="Log Out">
-          <Button onClick={() => signOut()}>Log Out</Button>
-        </TooltipDemo>
-      </li> */}
+      <li>
+        <Button
+          className="font-heading h-[3.2rem] w-32 rounded-full text-xl hover:rounded-xl"
+          onClick={() => handleCLick("home", "homeRedirect")}
+          disabled={siteConfig.waitlist}>
+          {loadingValue === "homeRedirect" && <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />}
+          Explore
+        </Button>
+      </li>
       <li>
         <DropdownMenuDemo
           userName={session.user?.userName}
