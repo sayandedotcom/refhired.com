@@ -66,7 +66,7 @@ export const NavButtonsAuthenticated = ({ session }) => {
     <ul className="flex items-center justify-center space-x-0 lg:flex-row lg:space-x-6">
       <li>
         <Button
-          className="font-heading h-[3.2rem] w-32 rounded-full text-xl hover:rounded-xl"
+          className="font-heading h-[3.2rem] rounded-full px-7 text-xl uppercase hover:rounded-xl"
           onClick={() => handleCLick("home", "homeRedirect")}
           disabled={siteConfig.waitlist}>
           {loadingValue === "homeRedirect" && <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />}

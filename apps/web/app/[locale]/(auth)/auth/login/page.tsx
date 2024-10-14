@@ -47,12 +47,7 @@ export default function Login() {
   const [isVerificationEmail, setVerificationEmail] = useLocalStorage("verification-email", "");
   const searchParams = useSearchParams();
   let errorCallback = searchParams.get("error");
-  let callbackUrl = searchParams.get("callbackUrl") || `/${locale}/home`;
-  // if (callbackUrl.endsWith("sign-up")) {
-  //   callbackUrl = "/";
-  // } else {
-  //   callbackUrl = callbackUrl || "/";
-  // }
+  let callbackUrl = `/${locale}/${searchParams.get("callbackUrl")}` || `/${locale}/home`;
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),

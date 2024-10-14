@@ -1,13 +1,29 @@
 "use client";
 
-import { Link } from "@/navigation";
-import { ArrowRight, Frown, RotateCcw } from "lucide-react";
+import { useCallback } from "react";
+
+import { useSearchParams } from "next/navigation";
+
+import { usePathname, useRouter } from "@/navigation";
+import { Frown, RotateCcw } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-import { Button, buttonVariants } from "@referrer/ui";
+import { Button } from "@referrer/ui";
 
 export const PortalsNotFound = ({ text }) => {
   const { data } = useSession();
+  const pathName = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
   return (
     <div className="mt-8 flex flex-col items-center justify-center gap-5 font-sans">
       {data ? (
@@ -26,12 +42,11 @@ export const PortalsNotFound = ({ text }) => {
             <Frown className="mb-1 mr-1 inline h-5 w-5 font-bold" /> Ooops ! Login to see your {text}
             ....
           </p>
-          <Link
-            href={"/auth/login"}
-            className={`rounded-full transition active:scale-95 ${buttonVariants()}`}>
-            Login
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Link>
+          <Button
+            className="font-heading rounded-full px-6 text-sm transition active:scale-95"
+            onClick={() => router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))}>
+            Log In
+          </Button>
         </>
       )}
     </div>

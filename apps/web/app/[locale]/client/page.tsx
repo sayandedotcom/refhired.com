@@ -1,12 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 import { request } from "@/lib/axios";
 
 function Client() {
   const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.error !== "RefreshTokenError") return;
+    signIn("google"); // Force sign in to obtain a new set of access and refresh tokens
+  }, [session?.error]);
+
   const { data, error, isLoading } = useQuery({
     queryKey: ["test"],
     queryFn: () => {

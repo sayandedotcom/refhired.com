@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 // import LoginModal from "@/app/[locale]/@loginModal/(.)auth/login/page";
 import { portalsList } from "@/config/portals-list";
@@ -28,6 +29,16 @@ export function LeftSection() {
   const { data: session } = useSession();
   const pathName = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
@@ -90,7 +101,7 @@ export function LeftSection() {
             ) : (
               <Button
                 className="font-heading rounded-full px-6 text-sm transition active:scale-95"
-                onClick={() => router.push("/auth/login")}>
+                onClick={() => router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))}>
                 Log In
               </Button>
             )}

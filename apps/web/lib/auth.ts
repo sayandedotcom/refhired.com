@@ -141,9 +141,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       return true;
     },
     async redirect({ url, baseUrl }) {
-      console.log("/** URL provided as callback URL by the client */😊😊😊😊😊😊😊😊😊😊", url);
-      console.log("/** Default base URL of site (can be used as fallback) */😊😊😊😊😊😊😊😊😊😊", baseUrl);
-
       if (baseUrl === process.env.AUTH_URL) {
         return url;
       }

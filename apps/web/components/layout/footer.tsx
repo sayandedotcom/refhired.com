@@ -11,7 +11,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="flex justify-center sm:justify-start">
-              <p className="text-2xl md:text-4xl">Refhired.com</p>
+              <p className="text-2xl md:text-5xl">Refhired.com</p>
             </div>
             <Separator />
             <div className="mt-6 flex max-w-md flex-col gap-5 text-center leading-relaxed text-gray-300 sm:max-w-xs sm:text-left">
@@ -113,9 +113,9 @@ export const Footer = () => {
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 lg:col-span-2">
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-200">About Us</p>
+              <p className="text-2xl font-medium text-gray-200">About Us</p>
 
-              <ul className="mt-8 space-y-4 text-sm">
+              <ul className="mt-8 space-y-4 text-lg">
                 <li>
                   <a className="text-gray-200 transition hover:text-gray-200/75" href="/">
                     Company History
@@ -143,9 +143,9 @@ export const Footer = () => {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-200">Our Services</p>
+              <p className="text-2xl font-medium text-gray-200">Our Services</p>
 
-              <ul className="mt-8 space-y-4 text-sm">
+              <ul className="mt-8 space-y-4 text-lg">
                 <li>
                   <a className="text-gray-200 transition hover:text-gray-200/75" href="/">
                     Web Development
@@ -173,9 +173,9 @@ export const Footer = () => {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-200">Helpful Links</p>
+              <p className="text-2xl font-medium text-gray-200">Helpful Links</p>
 
-              <ul className="mt-8 space-y-4 text-sm">
+              <ul className="mt-8 space-y-4 text-lg">
                 <li>
                   <a className="text-gray-200 transition hover:text-gray-200/75" href="/">
                     FAQs
@@ -191,9 +191,9 @@ export const Footer = () => {
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-lg font-medium text-gray-200">Contact Us</p>
+              <p className="text-2xl font-medium text-gray-200">Contact Us</p>
 
-              <ul className="mt-8 space-y-4 text-sm">
+              <ul className="mt-8 space-y-4 text-lg">
                 <li>
                   <a
                     className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
