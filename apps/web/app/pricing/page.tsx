@@ -1,5 +1,4 @@
-import { Metadata } from "next";
-
+// import { Metadata } from "next";
 import { CheckCircle2 } from "lucide-react";
 
 import { CustomPricingCard, PagesHeading } from "@/components/custom-components";
@@ -8,12 +7,12 @@ import { BackgroundGradient, BorderBeam } from "@/components/ui";
 
 import { plans } from "@/config";
 
-export const metadata: Metadata = {
-  title: "Pricing",
-  description: "Get job referrals to the top best companies of the world",
-};
+// export const metadata: Metadata = {
+//   title: "Pricing",
+//   description: "Get job referrals to the top best companies of the world",
+// };
 
-export default async function Pricing() {
+export default function Pricing() {
   return (
     <section className="py-14">
       <div className="text-foreground mx-auto max-w-full md:px-8">

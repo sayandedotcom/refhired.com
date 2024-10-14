@@ -2,7 +2,7 @@
 import {
   Bell,
   Bookmark,
-  DollarSign,
+  Coins,
   FileInput,
   FileOutput,
   Home,
@@ -54,9 +54,9 @@ export const portalsList = [
     icon: <LayoutDashboard />,
   },
   {
-    name: "Buy Stars",
-    link: "/payments",
-    icon: <DollarSign />,
+    name: "Pricing",
+    link: "/pricing",
+    icon: <Coins />,
   },
   {
     name: "Profile",

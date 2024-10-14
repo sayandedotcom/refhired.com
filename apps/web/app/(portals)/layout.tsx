@@ -11,14 +11,26 @@ export const metadata: Metadata = {
   description: "Get job referrals to the top best companies of the world",
 };
 
-export default function PortalsLayout({ children }: { children: React.ReactNode }) {
+export default function PortalsLayout({
+  children,
+  portalsLoginModal,
+  pricingModal,
+}: {
+  children: React.ReactNode;
+  portalsLoginModal: React.ReactNode;
+  pricingModal: React.ReactNode;
+}) {
   return (
     <>
       <Provider>
         <section className="bg-background flex scroll-smooth">
           <LeftSection />
           <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
-          <CenterSection>{children}</CenterSection>
+          <CenterSection>
+            {children}
+            {portalsLoginModal}
+            {pricingModal}
+          </CenterSection>
           <Separator orientation="vertical" className=" sticky top-0 h-screen dark:bg-[#2d3134]" />
           <RightSection />
         </section>

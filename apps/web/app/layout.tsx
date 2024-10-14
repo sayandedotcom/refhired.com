@@ -94,7 +94,7 @@ export default async function RootLayout({
   loginModal,
 }: {
   children: React.ReactNode;
-  loginModal: any;
+  loginModal: React.ReactNode;
 }) {
   const locale = await getLocale();
 

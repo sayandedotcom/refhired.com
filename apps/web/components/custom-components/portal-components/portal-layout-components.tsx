@@ -8,7 +8,6 @@ import { useSearchParams } from "next/navigation";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-// import LoginModal from "@/app/[locale]/@loginModal/(.)auth/login/page";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import type { User } from "@prisma/client";
@@ -120,13 +119,7 @@ export function LeftSection() {
   );
 }
 
-export function CenterSection({
-  children,
-  loginModal,
-}: {
-  children: React.ReactNode;
-  loginModal?: React.ReactNode;
-}) {
+export function CenterSection({ children }: { children: React.ReactNode }) {
   const pathName = usePathname();
   const largeLayout = withoutRightBarPages.includes(pathName);
 
@@ -139,7 +132,6 @@ export function CenterSection({
           <RightBarMobile />
         </div>
         <Separator className="dark:bg-[#2d3134]" />
-        {loginModal}
         {children}
       </section>
     </>
@@ -193,7 +185,7 @@ export function RightSection() {
             </div>
             <div>
               <Button
-                onClick={() => router.push("/payments")}
+                onClick={() => router.push("/pricing")}
                 className="rounded-3xl transition active:scale-95">
                 Learn more !
               </Button>
@@ -251,12 +243,7 @@ export function RightSection() {
             }>
             Soner
           </Button>
-          {/* <LoginModal> */}
-
-          {/* <LoginModal>
-        <Button>Modal</Button>
-      </LoginModal> */}
-          {/* </LoginModal> */}
+          <Button onClick={() => router.push("/pricing")}>Soner</Button>
         </>
       )}
     </section>
