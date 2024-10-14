@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-import { unstable_setRequestLocale } from "next-intl/server";
-
 // import { Example } from "@/graphql/queries/posts";
 
 // import { getClient } from "@/lib/apollo-client/client";
@@ -11,8 +9,7 @@ export const metadata: Metadata = {
   description: "Docs of Refhired.com",
 };
 
-const Docs = ({ params: { locale } }) => {
-  unstable_setRequestLocale(locale);
+const Docs = () => {
   // const client = getClient();
   // const { data, loading, error, errors } = await client.query({
   //   query: Example,

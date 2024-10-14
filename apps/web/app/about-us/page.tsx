@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-import { unstable_setRequestLocale } from "next-intl/server";
-
 import { Separator } from "@referrer/ui";
 
 import { PagesHeading, ShimmerButtonComponent, ThreeDCard } from "@/components/custom-components";
@@ -13,8 +11,7 @@ export const metadata: Metadata = {
   description: "Get job referrals to the top best companies of the world",
 };
 
-const AboutUs = ({ params: { locale } }) => {
-  unstable_setRequestLocale(locale);
+const AboutUs = () => {
   return (
     <section className="px-6 py-14">
       <div className="relative mx-auto flex max-w-4xl flex-col gap-10 sm:text-center">

@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-import { unstable_setRequestLocale } from "next-intl/server";
-
 import { Separator } from "@referrer/ui";
 
 import { PlaceholdersAndVanishInput } from "@/components/ui";
@@ -17,9 +15,7 @@ const placeholders = [
   "Referrals in Google",
 ];
 
-const SearchPage = ({ params: { locale } }) => {
-  unstable_setRequestLocale(locale);
-
+const SearchPage = () => {
   return (
     <>
       {/* <SearchBar /> */}

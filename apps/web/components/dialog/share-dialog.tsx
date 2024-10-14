@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { Check, Copy } from "lucide-react";
-import { useLocale } from "next-intl";
 import {
   EmailIcon,
   EmailShareButton,
@@ -46,11 +45,9 @@ export function ShareDialog({
 }) {
   const [copiedText, copy] = useCopyToClipboard();
 
-  const locale = useLocale();
-
   const [isCopied, setIsOnCopied] = useState<Boolean>(false);
 
-  const url = `${siteConfig.url}/${locale}/${shareUrl}`;
+  const url = `${siteConfig.url}/${shareUrl}`;
 
   const size = 50;
 

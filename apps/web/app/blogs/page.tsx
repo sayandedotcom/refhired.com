@@ -7,15 +7,12 @@ import { AnimatedGradientText } from "@/components/ui";
 
 // import { useSuspenseQuery } from "@apollo/client";
 
-// import { unstable_setRequestLocale } from "next-intl/server";
-
 // export const metadata: Metadata = {
 //   title: "Blogs",
 //   description: "Get job referrals to the top best companies of the world",
 // };
 
 const Blogs = () => {
-  // unstable_setRequestLocale(locale);
   // const { data, error } = useQuery(Example);
 
   return (

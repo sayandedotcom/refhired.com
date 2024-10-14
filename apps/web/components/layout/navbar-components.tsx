@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 import { useLoading } from "@/hooks";
-import { Link, usePathname, useRouter } from "@/navigation";
 
 import { Button } from "@referrer/ui";
 

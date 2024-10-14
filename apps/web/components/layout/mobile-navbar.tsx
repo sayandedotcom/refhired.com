@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-import { Link, usePathname } from "@/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import { Menu } from "lucide-react";
 
 import { Sheet, SheetContent, SheetTrigger } from "@referrer/ui";

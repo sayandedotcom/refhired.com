@@ -1,4 +1,5 @@
-import { Link } from "@/navigation";
+import Link from "next/link";
+
 import { ChevronRight } from "lucide-react";
 
 import { AnimatedGradientText } from "@/components/ui";
@@ -16,7 +17,7 @@ export const Information = () => {
           )}>
           Important Notice
         </span>
-        <ChevronRight className="size-3 ml-1 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+        <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
       </AnimatedGradientText>
     </Link>
   );

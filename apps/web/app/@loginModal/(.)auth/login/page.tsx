@@ -1,7 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import Login from "@/app/(auth)/auth/login/page";
-import { useRouter } from "@/navigation";
 
 import { Dialog, DialogContent } from "@referrer/ui";
 

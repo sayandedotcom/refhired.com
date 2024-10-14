@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-import { usePathname } from "@/navigation";
+import { usePathname } from "next/navigation";
+
 import clsx from "clsx";
 import { Info, ListFilter } from "lucide-react";
 

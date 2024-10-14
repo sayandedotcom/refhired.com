@@ -1,7 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import { navigateToPostsOfUser } from "@/config/urls";
-import { useRouter } from "@/navigation";
 
 function Navigate({ children, userName, postId }) {
   const router = useRouter();

@@ -4,8 +4,8 @@ import { useCallback } from "react";
 
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-
-import { usePathname, useRouter } from "@/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@referrer/ui";
 

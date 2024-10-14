@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-import { unstable_setRequestLocale } from "next-intl/server";
-
 import { Separator } from "@referrer/ui";
 
 import { CenterSection, LeftSection, RightSection } from "@/components/custom-components";
@@ -13,15 +11,7 @@ export const metadata: Metadata = {
   description: "Get job referrals to the top best companies of the world",
 };
 
-export default function PortalsLayout({
-  children,
-  params: { locale },
-}: {
-  children: React.ReactNode;
-  params: any;
-}) {
-  unstable_setRequestLocale(locale);
-
+export default function PortalsLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Provider>

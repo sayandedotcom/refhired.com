@@ -1,11 +1,8 @@
-import { unstable_setRequestLocale } from "next-intl/server";
-
 import { Separator } from "@referrer/ui";
 
 import { NotificationsForm } from "@/components/settings";
 
-export default function SettingsNotificationsPage({ params: { locale } }) {
-  unstable_setRequestLocale(locale);
+export default function SettingsNotificationsPage() {
   return (
     <div className="space-y-6">
       <div>

@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "@/navigation";
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { Loader } from "lucide-react";
@@ -66,7 +67,7 @@ export const Username = (prop: any) => {
         <></>
       ) : (
         <>
-          <AnimatedGradientHeading className="px-2 text-center text-[30px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent md:text-[50px]">
+          <AnimatedGradientHeading className="px-2 text-center text-[30px] md:text-[50px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent">
             Claim your{" "}
             {/* <span className="bg-gradient-to-r from-[#ff4b1f] to-[#ff9068] bg-clip-text px-2 text-center text-[30px] text-transparent md:text-[50px]"> */}
             username {/* </span>{" "} */}

@@ -3,8 +3,7 @@
 import { useCallback } from "react";
 
 import { useSearchParams } from "next/navigation";
-
-import { useRouter } from "@/navigation";
+import { useRouter } from "next/navigation";
 
 import { cn } from "@referrer/lib/utils/cn";
 import { BadgeProps, badgeVariants } from "@referrer/ui";

@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/navigation";
+import Link from "next/link";
 
 export default function NotFound() {
   return (

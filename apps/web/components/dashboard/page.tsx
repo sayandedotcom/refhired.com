@@ -3,10 +3,10 @@
 import { useCallback } from "react";
 
 import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import Loading from "@/app/[locale]/loading";
-import { usePathname, useRouter } from "@/navigation";
+import Loading from "@/app/loading";
 
 import {
   Button,
@@ -21,11 +21,15 @@ import {
   TabsTrigger,
 } from "@referrer/ui";
 
-import { CalendarDateRangePicker } from "@/components/dashboard/components/date-range-picker";
 import { RecentSales } from "@/components/dashboard/components/recent-sales";
 import { columns } from "@/components/ui/data-table/components/columns";
 // import { DataTable } from "@/components/ui/data-table/components/data-table";
 import { tsTasks } from "@/components/ui/data-table/data/tasks";
+
+import { dashboardInfo } from "@/config";
+
+import { CalendarDateRangePicker } from "./components/date-range-picker";
+import MailPage from "./requests/page";
 
 const DynamicDataTable = dynamic(() => import("@/components/ui/data-table/components/data-table"), {
   loading: () => <Loading />,
@@ -81,7 +85,7 @@ export default function DashboardPage() {
               <TabsTrigger value="notifications">Notifications</TabsTrigger>
             </TabsList>
             <div className="flex items-center justify-between space-y-2">
-              <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+              <h6 className="font-bold tracking-tight">{dashboardInfo[searchParams.get("tab")]}</h6>
               <div className="flex items-center space-x-2">
                 <CalendarDateRangePicker />
                 <Button>Download</Button>
@@ -192,10 +196,10 @@ export default function DashboardPage() {
               </div>
             </TabsContent>
             <TabsContent value="requests" className="space-y-4">
-              <DynamicDataTable columns={columns} data={tsTasks} />
+              <MailPage />
             </TabsContent>
             <TabsContent value="applied" className="space-y-4">
-              Hi applied
+              <DynamicDataTable columns={columns} data={tsTasks} />
             </TabsContent>
           </Tabs>
         </div>

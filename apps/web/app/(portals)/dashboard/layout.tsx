@@ -1,14 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
-
-export default function DashboardLayout({
-  children,
-  params: { locale },
-}: {
-  children: React.ReactNode;
-  params: any;
-}) {
-  unstable_setRequestLocale(locale);
-
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <section className="scroll-smooth">{children}</section>

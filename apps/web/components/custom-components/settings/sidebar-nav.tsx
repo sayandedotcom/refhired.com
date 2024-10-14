@@ -1,6 +1,7 @@
 "use client";
 
-import { Link, usePathname } from "@/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@referrer/lib/utils/cn";
 import { buttonVariants } from "@referrer/ui";

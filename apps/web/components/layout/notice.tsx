@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/navigation";
+import Link from "next/link";
 
 export const Notice = ({ children, href }: any) => {
   return (

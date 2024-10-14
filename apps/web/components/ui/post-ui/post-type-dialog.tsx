@@ -3,8 +3,8 @@
 import { useCallback } from "react";
 
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import { useRouter } from "@/navigation";
 import { X } from "lucide-react";
 
 import {

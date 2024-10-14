@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "@/navigation";
+import { useRouter } from "next/navigation";
+
 import { Cloud, CreditCard, Github, LifeBuoy, LogOut, Settings, User } from "lucide-react";
 import { signOut } from "next-auth/react";
 

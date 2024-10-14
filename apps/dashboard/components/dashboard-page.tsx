@@ -6,7 +6,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { dashboardInfo } from "@/config/dasghboard-info";
 
-// import { usePathname, useRouter } from "@/navigation";
 import {
   Button,
   Card,

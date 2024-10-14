@@ -2,8 +2,9 @@
 
 import { Suspense } from "react";
 
+import { usePathname } from "next/navigation";
+
 import { useIsMounted } from "@/hooks";
-import { usePathname } from "@/navigation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";

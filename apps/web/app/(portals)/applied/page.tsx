@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
-import { unstable_setRequestLocale } from "next-intl/server";
-
 import { PortalsNotFound } from "@/components/custom-components";
 
 import { auth } from "@/lib/auth";
@@ -45,9 +43,7 @@ const transformArray = (originalData) => {
   return transformedArray;
 };
 
-const Applied = async ({ params: { locale } }) => {
-  unstable_setRequestLocale(locale);
-
+const Applied = async () => {
   const session = await auth();
   if (!session) {
     return <PortalsNotFound text="Requests" />;

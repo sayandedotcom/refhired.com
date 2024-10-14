@@ -1,12 +1,3 @@
-import { unstable_setRequestLocale } from "next-intl/server";
-
-export default function AuthLayout({
-  children,
-  params: { locale },
-}: {
-  children: React.ReactNode;
-  params: any;
-}) {
-  unstable_setRequestLocale(locale);
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return <div className="bg-muted flex flex-col items-center justify-center lg:h-screen">{children}</div>;
 }

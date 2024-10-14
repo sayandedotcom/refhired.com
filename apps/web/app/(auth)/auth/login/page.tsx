@@ -2,14 +2,14 @@
 
 import React from "react";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { useLoading } from "@/hooks";
-import { Link } from "@/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PartyPopper } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { useLocalStorage } from "usehooks-ts";
@@ -41,15 +41,12 @@ const loginSchema = z.object({
 });
 
 export default function Login() {
-  const locale = useLocale();
   const t = useTranslations("Index");
   const { loadingValue, setLoadingValue } = useLoading();
   const [isVerificationEmail, setVerificationEmail] = useLocalStorage("verification-email", "");
   const searchParams = useSearchParams();
   let errorCallback = searchParams.get("error");
-  let callbackUrl = searchParams.has("callbackUrl")
-    ? `/${locale}/${searchParams.get("callbackUrl")}`
-    : `/${locale}/home`;
+  let callbackUrl = searchParams.has("callbackUrl") ? `/${searchParams.get("callbackUrl")}` : `/home`;
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -70,7 +67,7 @@ export default function Login() {
       const result = await signIn("email", {
         email: values.email,
         redirect: true,
-        callbackUrl: `${locale}/auth/verify-request`,
+        callbackUrl: "/auth/verify-request",
       });
       // if (!result?.error) {
       //   sonerToast({

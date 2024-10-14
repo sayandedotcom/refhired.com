@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
 import { CheckCircle2 } from "lucide-react";
-import { unstable_setRequestLocale } from "next-intl/server";
 
 import { CustomPricingCard } from "@/components/custom-components";
 import PricingButton from "@/components/custom-components/pricing-button";
@@ -13,8 +12,7 @@ export const metadata: Metadata = {
   description: "Get job referrals to the top best companies of the world",
 };
 
-export default function Payments({ params: { locale } }) {
-  unstable_setRequestLocale(locale);
+export default function Payments() {
   return (
     <div className="my-5 w-full">
       <h5 className="font-heading text-center">Simple pricing based on your needs.</h5>

@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
-import { Link } from "@/navigation";
 import { fromNow } from "@refhiredcom/utils";
 import { ArrowRight, Mail, MapPin } from "lucide-react";
 

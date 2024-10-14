@@ -2,14 +2,29 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import prisma from "@referrer/prisma";
 
-export async function GET(request: NextRequest, context: any) {
-  // * Get Posts by ID
-  const { params } = context;
-  console.log("params=============", params);
+export async function GET() {
+  // * Get all Posts user applied
+
+  const data = await prisma.applied.findMany({
+    where: {
+      userId: "cluy7vm6t0000go3v3lwwzt0z",
+    },
+    select: {
+      id: true,
+      appliedAt: true,
+      applyInfo: true,
+      posts: {
+        select: {
+          description: true,
+          stars: true,
+        },
+      },
+    },
+  });
 
   return NextResponse.json(
     {
-      message: "Hi",
+      data: data,
     },
     {
       status: 200,
@@ -21,7 +36,7 @@ export async function GET(request: NextRequest, context: any) {
 }
 
 export async function POST(request: NextRequest) {
-  // * Create Posts
+  // * Apply Post
 
   const response = await request.json();
 

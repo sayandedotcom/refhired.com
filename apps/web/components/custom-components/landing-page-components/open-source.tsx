@@ -1,6 +1,7 @@
 "use client";
 
-import { Link } from "@/navigation";
+import Link from "next/link";
+
 import { Star } from "lucide-react";
 
 export const Opensource = () => {

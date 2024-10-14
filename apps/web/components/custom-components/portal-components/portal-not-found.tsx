@@ -3,8 +3,9 @@
 import { useCallback } from "react";
 
 import { useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
-import { usePathname, useRouter } from "@/navigation";
 import { Frown, RotateCcw } from "lucide-react";
 import { useSession } from "next-auth/react";
 

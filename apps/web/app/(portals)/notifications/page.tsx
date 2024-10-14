@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 
-import { unstable_setRequestLocale } from "next-intl/server";
-
 import { PortalsNotFound } from "@/components/custom-components";
 
 export const metadata: Metadata = {
@@ -9,8 +7,7 @@ export const metadata: Metadata = {
   description: "Get job referrals to the top best companies of the world",
 };
 
-const Notifications = ({ params: { locale } }) => {
-  unstable_setRequestLocale(locale);
+const Notifications = () => {
   return <PortalsNotFound text="Notifications" />;
 };
 
