@@ -11,7 +11,7 @@ export default function LoginModal() {
   return (
     <Dialog defaultOpen onOpenChange={() => router.back()}>
       {/* <DialogTrigger>{children}</DialogTrigger> */}
-      <DialogContent className="flex w-[450px] items-center justify-center p-[1px]">
+      <DialogContent className="flex items-center justify-center p-[7px] lg:w-[450px] lg:p-[1px]">
         <Login />
       </DialogContent>
     </Dialog>

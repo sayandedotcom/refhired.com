@@ -30,8 +30,8 @@ const AuthError = () => {
   // const { error } = router.query;
   // const errorMessage = error && (errors[error as keyof typeof errors] ?? errors.default);
 
-  const { error } = querySchema.parse(searchParams);
-  console.log("errorjwt😊😊😊😊😊😊😊😊😊😊", error);
+  // const { error } = querySchema.parse(searchParams.get("error"));
+  const error = searchParams.get("error");
 
   const isTokenVerificationError = error?.toLowerCase() === "verification";
   const errorMsg = isTokenVerificationError ? "token_invalid_expired" : "error_during_login";
@@ -44,7 +44,7 @@ const AuthError = () => {
           </div>
           <div className="mt-3 text-center sm:mt-5">
             <h3 className="text-emphasis text-lg font-medium leading-6" id="modal-title">
-              {error ?? "Error !"}
+              {error ? `${error} error` : "Error !"}
             </h3>
             <div className="mt-2">
               <p className="text-subtle text-sm">
