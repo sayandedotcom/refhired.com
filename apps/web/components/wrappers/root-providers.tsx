@@ -24,7 +24,7 @@ import { rootPaths } from "@/config";
 
 import { useStore } from "@/store/store";
 
-import Loading from "../../app/[locale]/loading";
+import Loading from "../../app/loading";
 import "../../styles/globals.css";
 
 const fontSans = FontSans({

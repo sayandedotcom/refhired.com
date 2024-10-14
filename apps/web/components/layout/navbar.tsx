@@ -1,6 +1,7 @@
 "use client";
 
-import { Link } from "@/navigation";
+import Link from "next/link";
+
 import { useSession } from "next-auth/react";
 
 import { siteConfig } from "@/config";

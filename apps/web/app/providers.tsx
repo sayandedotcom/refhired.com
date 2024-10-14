@@ -21,7 +21,7 @@ import { rootPaths } from "@/config";
 
 import { useStore } from "@/store/store";
 
-import "../../styles/globals.css";
+import "../styles/globals.css";
 import Loading from "./loading";
 
 export function Provider({ children }) {
