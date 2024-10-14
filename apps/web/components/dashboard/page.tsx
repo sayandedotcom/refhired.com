@@ -29,7 +29,8 @@ import { tsTasks } from "@/components/ui/data-table/data/tasks";
 import { dashboardInfo } from "@/config";
 
 import { CalendarDateRangePicker } from "./components/date-range-picker";
-import MailPage from "./requests/page";
+
+// import MailPage from "./requests/page";
 
 const DynamicDataTable = dynamic(() => import("@/components/ui/data-table/components/data-table"), {
   loading: () => <Loading />,
@@ -196,7 +197,7 @@ export default function DashboardPage() {
               </div>
             </TabsContent>
             <TabsContent value="requests" className="space-y-4">
-              <MailPage />
+              {/* <MailPage /> */}
             </TabsContent>
             <TabsContent value="applied" className="space-y-4">
               <DynamicDataTable columns={columns} data={tsTasks} />
