@@ -93,6 +93,17 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between space-y-2">
               <h6 className="font-bold tracking-tight">{dashboardInfo[searchParams.get("tab")]}</h6>
               <div className="flex items-center space-x-2">
+                <Button
+                  className="font-heading rounded-full px-6 text-sm transition active:scale-95"
+                  onClick={() =>
+                    router.push(
+                      "http://localhost:3000/en/auth/login" +
+                        "?" +
+                        createQueryString("callbackUrl", "http://localhost:4000/en")
+                    )
+                  }>
+                  Log In
+                </Button>
                 {/* <CalendarDateRangePicker /> */}
                 <Button>Download</Button>
               </div>

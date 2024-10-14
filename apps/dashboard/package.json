@@ -20,7 +20,7 @@
     "@refhiredcom/utils": "*",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.451.0",
-    "next": "14.2.14",
+    "next": "^14.2.15",
     "next-intl": "^3.21.1",
     "next-themes": "^0.3.0",
     "react": "^18",
