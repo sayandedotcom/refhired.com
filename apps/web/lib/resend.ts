@@ -4,7 +4,7 @@ import { type CreateEmailOptions } from "resend/build/src/emails/interfaces";
 
 import { VerificationTemp, WelcomeTemp } from "@/components/emails";
 
-export const resend = new Resend(process.env.RESEND_API_KEY!);
+export const resend = new Resend(process.env.AUTH_RESEND_KEY);
 
 interface SendMailProps {
   toMail: string;

@@ -64,11 +64,18 @@ export default function Login() {
     try {
       setVerificationEmail(values.email);
       setLoadingValue("logIn");
-      const result = await signIn("email", {
-        email: values.email,
+
+      signIn("resend", values, {
+        callbackUrl,
         redirect: true,
-        callbackUrl: "/auth/verify-request",
+        redirectTo: "/auth/verify-request",
       });
+
+      // const result = await signIn("email", {
+      //   email: values.email,
+      //   redirect: true,
+      //   callbackUrl: "/auth/verify-request",
+      // });
       // if (!result?.error) {
       //   sonerToast({
       //     severity: "success",
@@ -111,10 +118,10 @@ export default function Login() {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {t("email_address")} <Required />
+                  {t("email_address")} <Required /> <span>[ Service Unavailable ]</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder="john.doe@example.com" type="text" {...field} />
+                  <Input disabled placeholder="john.doe@example.com" type="text" {...field} />
                 </FormControl>
                 <FormMessage />
                 <FormDescription> {t("enter_your_email_address_here")} </FormDescription>
@@ -122,8 +129,9 @@ export default function Login() {
             )}
           />
           <Button
+            disabled
             type="submit"
-            disabled={siteConfig.waitlist}
+            // disabled={siteConfig.waitlist}
             className="flex items-center justify-center"
             isLoading={loadingValue === "logIn"}>
             {t("log_in")} <PartyPopper className="ml-4" />

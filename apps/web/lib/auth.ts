@@ -1,8 +1,10 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
+import Resend from "next-auth/providers/resend";
 
 import prisma from "@referrer/prisma";
 
+import { sendVerificationRequest } from "./authSendRequest";
 import { RefhiredAdapter } from "./next-auth-custom-adapter";
 import { stripe } from "./stripe";
 
@@ -14,6 +16,30 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       // Google requires "offline" access_type to provide a `refresh_token`
       authorization: { params: { access_type: "offline", prompt: "consent" } },
       allowDangerousEmailAccountLinking: true,
+    }),
+    Resend({
+      // If your environment variable is named differently than default
+      apiKey: process.env.AUTH_RESEND_KEY,
+      from: "onboarding@resend.dev",
+      normalizeIdentifier(identifier: string): string {
+        // Get the first two elements only,
+        // separated by `@` from user input.
+        let [local, domain] = identifier.toLowerCase().trim().split("@");
+        // The part before "@" can contain a ","
+        // but we remove it on the domain part
+        domain = domain.split(",")[0];
+        return `${local}@${domain}`;
+
+        // You can also throw an error, which will redirect the user
+        // to the sign-in page with error=EmailSignin in the URL
+        // if (identifier.split("@").length > 2) {
+        //   throw new Error("Only one email allowed")
+        // }
+      },
+      async generateVerificationToken() {
+        return crypto.randomUUID();
+      },
+      sendVerificationRequest,
     }),
   ],
   pages: {
