@@ -89,13 +89,7 @@ const fontHeading = localFont({
   variable: "--font-heading",
 });
 
-export default async function RootLayout({
-  children,
-  loginModal,
-}: {
-  children: React.ReactNode;
-  loginModal: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale();
 
   // Providing all messages to the client
@@ -113,10 +107,7 @@ export default async function RootLayout({
           )}>
           <Suspense fallback={<Loading />}>
             <NextIntlClientProvider messages={messages}>
-              <Provider>
-                {children}
-                {loginModal}
-              </Provider>
+              <Provider>{children}</Provider>
             </NextIntlClientProvider>
           </Suspense>
         </body>
