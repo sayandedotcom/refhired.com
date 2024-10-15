@@ -12,7 +12,6 @@ export * from "./toast/toasts";
 export * from "./table/table";
 export * from "./progress-bar";
 export * from "./soner-toast";
-export * from "./slider";
 export * from "./required";
 export * from "./placeholders-and-vanish-input";
 export * from "./border-beam";

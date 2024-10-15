@@ -7,7 +7,6 @@ import { useSearchParams } from "next/navigation";
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
-import { useHotkeys } from "react-hotkeys-hook";
 import { useOnClickOutside } from "usehooks-ts";
 
 import { Input } from "@referrer/ui";
@@ -21,21 +20,13 @@ export function PlaceholdersAndVanishInput({ placeholders, className, searchIcon
   const search = searchParams.get("search_query");
   const [value, setValue] = useState(search ?? "");
   const [isInputFocused, setInputFocused] = useState(false);
-  const searchRef = useRef();
   const outsideRef = useRef();
   useOnClickOutside(outsideRef, () => setInputFocused(false));
-
-  const focusSearch = () => {
-    const node = searchRef.current as any;
-    node.focus();
-  };
 
   const optionClick = (item) => {
     setValue(item);
     setInputFocused(false);
   };
-
-  useHotkeys("ctrl+/", focusSearch, [searchRef]);
 
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 

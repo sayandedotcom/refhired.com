@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 
 import clsx from "clsx";
 import { Search, X } from "lucide-react";
-import { useHotkeys } from "react-hotkeys-hook";
 import { useOnClickOutside } from "usehooks-ts";
 
 import { Input } from "@referrer/ui";
@@ -18,7 +17,6 @@ export const SearchBar = ({ searchString }: { searchString?: string }) => {
   const search = searchParams.get("search_query");
   const [value, setValue] = useState(search ?? "");
   const [isInputFocused, setInputFocused] = useState(false);
-  const searchRef = useRef();
   const outsideRef = useRef();
   useOnClickOutside(outsideRef, () => setInputFocused(false));
 
@@ -26,17 +24,11 @@ export const SearchBar = ({ searchString }: { searchString?: string }) => {
     setValue(e.target.value);
   };
 
-  const focusSearch = () => {
-    const node = searchRef.current as any;
-    node.focus();
-  };
-
   const optionClick = (item) => {
     setValue(item);
     setInputFocused(false);
   };
 
-  useHotkeys("ctrl+/", focusSearch, [searchRef]);
   return (
     <>
       <div className="sticky top-0 m-2 flex items-center gap-1 md:mx-auto md:gap-2 lg:w-7/12">
@@ -46,7 +38,6 @@ export const SearchBar = ({ searchString }: { searchString?: string }) => {
           <Search className="w-[10%]" />
           <Input
             type="text"
-            ref={searchRef}
             value={value}
             onFocus={() => setInputFocused(true)}
             placeholder="Type ctrl+/ to search"
