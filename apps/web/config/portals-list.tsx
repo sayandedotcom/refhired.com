@@ -54,8 +54,8 @@ export const portalsList = [
     icon: <LayoutDashboard />,
   },
   {
-    name: "Pricing",
-    link: "/pricing",
+    name: "Purchase",
+    link: "/purchase",
     icon: <Coins />,
   },
   {

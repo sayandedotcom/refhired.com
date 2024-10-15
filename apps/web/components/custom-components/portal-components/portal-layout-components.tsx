@@ -185,7 +185,7 @@ export function RightSection() {
             </div>
             <div>
               <Button
-                onClick={() => router.push("/pricing")}
+                onClick={() => router.push("/purchase")}
                 className="rounded-3xl transition active:scale-95">
                 Learn more !
               </Button>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import { useLoading } from "@/hooks";
+import { Loader } from "lucide-react";
 
 import { Button } from "@referrer/ui";
 
@@ -32,7 +33,7 @@ export const NavButtonsUnAuthenticated = () => {
             disabled={siteConfig.waitlist}
             // href="/auth/login"
           >
-            {loadingValue === "logInRedirect" && <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />}
+            {loadingValue === "logInRedirect" && <Loader className="mr-2 h-5 w-5 animate-spin" />}
             Login
           </Button>
         </TooltipDemo>
