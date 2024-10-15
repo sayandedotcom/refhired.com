@@ -24,3 +24,4 @@ export * from "./components/sonner/sonner";
 export * from "./components/sheet";
 export * from "./components/resizable/resizable";
 export * from "./components/scroll-area/scroll-area";
+export * from "./components/collapsible/collapsible";

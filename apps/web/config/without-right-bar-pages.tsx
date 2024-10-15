@@ -1,4 +1,5 @@
 export const withoutRightBarPages = [
+  "/auth",
   "/purchase",
   "/requests",
   "/applied",

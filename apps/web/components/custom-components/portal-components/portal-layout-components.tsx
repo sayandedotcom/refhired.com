@@ -12,14 +12,14 @@ import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import type { User } from "@prisma/client";
 import clsx from "clsx";
-import { Info, PartyPopper, SlidersHorizontal, Star } from "lucide-react";
+import { ArrowUpRight, ChevronsUpDown, Info, PartyPopper, SlidersHorizontal, Star } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
-import { Badge, Button, Separator } from "@referrer/ui";
+import { Button, Collapsible, CollapsibleContent, CollapsibleTrigger, Separator } from "@referrer/ui";
 
 import { LeftBarMobile, RightBarMobile } from "@/components/custom-components";
-import { PostTypeDialog, sonerToast } from "@/components/ui";
+import { Badge, PostTypeDialog, sonerToast } from "@/components/ui";
 import { PlaceholdersAndVanishInput } from "@/components/ui";
 
 import { withoutRightBarPages } from "@/config";
@@ -31,6 +31,7 @@ export function LeftSection() {
   const pathName = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString());
@@ -43,11 +44,12 @@ export function LeftSection() {
 
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
+  const [isOpen, setIsOpen] = useState(false);
 
   const [data, setData] = useState<User>();
 
   return (
-    <section className="sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
+    <section className="bg-muted/40 sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
       <div className="flex h-full w-full flex-col items-start justify-start">
         {/* <Link href="/home" className="mx-auto cursor-pointer p-2">
           <Icons.logo />
@@ -76,43 +78,61 @@ export function LeftSection() {
             {width < 1000 ? <FaPenNib /> : "Post"}
           </Button>
         </PostTypeDialog>
-        <div className="bg-muted mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-4 lg:w-[95%]">
-          <div className="flex w-full items-center justify-between gap-3">
-            {/* <AvatarDemo
-              className="aspect-square h-14 w-14"
-              image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
-            />  */}
-            <Image
-              src={session?.user.image ?? "/images/avatar/avatar.png"}
-              height={60}
-              width={60}
-              className="rounded-md"
-              alt="img"
-            />
-            <div className=" mr-auto">
-              <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Your Name"}</p>
-              <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
+        <div className="bg-muted mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-3 lg:w-[95%]">
+          <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
+            <div className="flex w-full items-center justify-between gap-3 py-2">
+              <Image
+                src={session?.user.image ?? "/images/avatar/avatar.png"}
+                height={60}
+                width={60}
+                className="rounded-md"
+                alt="img"
+              />
+              <div className=" mr-auto">
+                <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Name"}</p>
+                <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
+              </div>
+              {!session?.user && (
+                <Button
+                  className="font-heading rounded-lg px-5 text-sm transition active:scale-95"
+                  onClick={() =>
+                    router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))
+                  }>
+                  Log In
+                </Button>
+              )}
+              {session?.user && (
+                <CollapsibleTrigger asChild>
+                  <Button size="sm" className="bg-background hover:bg-background w-9 p-0">
+                    <ChevronsUpDown className="h-5 w-5 font-semibold text-white" />
+                    <span className="sr-only">Toggle</span>
+                  </Button>
+                </CollapsibleTrigger>
+              )}
             </div>
-            {session ? (
+            {/* <div className="rounded-md border px-4 py-3 text-sm">2</div> */}
+            <CollapsibleContent className="space-y-2">
+              <Button className="font-heading w-full px-6 text-start text-base transition active:scale-95">
+                Manage Account
+              </Button>
               <Button
-                className="text-foreground font-heading rounded-full bg-red-600 px-6 text-sm transition hover:bg-red-600/90 active:scale-95"
+                className="text-foreground font-heading w-full bg-red-600 px-6 text-start text-base transition hover:bg-red-600/90 active:scale-95"
                 onClick={() => signOut()}>
-                Log out
+                Log out @{session?.user.userName}
               </Button>
-            ) : (
-              <Button
-                className="font-heading rounded-full px-6 text-sm transition active:scale-95"
-                onClick={() => router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))}>
-                Log In
-              </Button>
-            )}
-          </div>
-          <div className="flex w-full items-center justify-between gap-3">
-            <Badge className="bg-background text-foreground border-foreground hover:bg-background flex h-full items-center justify-center gap-3 rounded-sm">
-              <Star className="h-5" />
-              <span className="font-heading mt-1 text-base font-bold">{session?.user.stars}</span>
-            </Badge>
-          </div>
+            </CollapsibleContent>
+            <div className="flex w-full items-center gap-3 py-2">
+              <Badge className="bg-background text-foreground border-foreground hover:bg-background flex h-full items-center justify-center gap-3 rounded-sm">
+                <Star className="h-5" />
+                <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
+              </Badge>
+              {session?.user?.paidForDashboard && (
+                <Button className="font-heading w-full px-6 text-start transition active:scale-95">
+                  Go to Dashboard <ArrowUpRight className="mb-1 mr-4 h-5 w-5" />
+                </Button>
+              )}
+            </div>
+          </Collapsible>
         </div>
       </div>
     </section>
@@ -126,9 +146,13 @@ export function CenterSection({ children }: { children: React.ReactNode }) {
   return (
     <>
       <section className={clsx("flex w-full flex-col", largeLayout ? "lg:w-[80%]" : "lg:w-[60%]")}>
-        <div className="flex flex-row justify-between px-4 py-4">
+        <div className="flex flex-row justify-between px-4">
           <LeftBarMobile />
-          <h5 className="font-heading capitalize md:mx-auto">{pathName.split("/")[1]}</h5>
+          {largeLayout ? (
+            <></>
+          ) : (
+            <h5 className="font-heading py-4 capitalize md:mx-auto">{pathName.split("/")[1]}</h5>
+          )}
           <RightBarMobile />
         </div>
         <Separator className="dark:bg-[#2d3134]" />
@@ -159,7 +183,7 @@ export function RightSection() {
     <section
       className={clsx(
         showExtraSection && "md:hidden lg:hidden",
-        "font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2"
+        "bg-muted/40 font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2"
       )}>
       {pathName === "/search" ? (
         <>
@@ -249,3 +273,40 @@ export function RightSection() {
     </section>
   );
 }
+
+//  <div className="flex w-full items-center justify-between gap-3">
+//             {/* <AvatarDemo
+//               className="aspect-square h-14 w-14"
+//               image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
+//             />  */}
+//             <Image
+//               src={session?.user.image ?? "/images/avatar/avatar.png"}
+//               height={60}
+//               width={60}
+//               className="rounded-md"
+//               alt="img"
+//             />
+// <div className=" mr-auto">
+//   <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Your Name"}</p>
+//   <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
+// </div>
+// {session ? (
+// <Button
+//   className="text-foreground font-heading rounded-full bg-red-600 px-6 text-sm transition hover:bg-red-600/90 active:scale-95"
+//   onClick={() => signOut()}>
+//   Log out
+// </Button>
+// ) : (
+//   <Button
+//     className="font-heading rounded-full px-6 text-sm transition active:scale-95"
+//     onClick={() => router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))}>
+//     Log In
+//   </Button>
+// )}
+// </div>
+// <div className="flex w-full items-center justify-between gap-3">
+//   <Badge className="bg-background text-foreground border-foreground hover:bg-background flex h-full items-center justify-center gap-3 rounded-sm">
+//     <Star className="h-5" />
+//     <span className="font-heading mt-1 text-base font-bold">{session?.user.stars}</span>
+//   </Badge>
+// </div>
