@@ -1,40 +1,24 @@
 {
   "rewrites": [
     {
-      "source": "/:locale*/demo1/:match*",
+      "source": "/demo1",
+      "destination": "https://dashboard.refhired.com"
+    },
+    {
+      "source": "/demo1/:match*",
       "destination": "https://dashboard.refhired.com/:match*"
     },
     {
-      "source": "/:locale*/demo19/:match+",
-      "destination": "https://dashboard.refhired.com/:match+"
-    },
-    {
-      "source": "/:locale*/demo2/",
-      "destination": "../dashboard"
-    },
-    {
-      "source": "/:locale*/demo3/",
-      "destination": "https://dashboard.refhired.com/"
-    },
-    {
-      "source": "/:locale*/demo4/:path(.*)",
+      "source": "/demo4/:path(.*)",
       "destination": "https://dashboard.refhired.com/:path"
     },
     {
-      "source": "/:locale*/demo5/",
+      "source": "/demo5",
       "destination": "https://dashboard.refhired.com/"
     },
     {
-      "source": "/:locale*/demo6/",
+      "source": "/demo6/",
       "destination": "https://dashboard.refhired.com/?tab=overview"
-    },
-    {
-      "source": "/demo9/:match*",
-      "destination": "https://dashboard.refhired.com/:match*"
-    },
-    {
-      "source": "/admin/:match*",
-      "destination": "https://admin-app.vercel.com/:match*"
     }
   ]
 }

@@ -300,7 +300,7 @@ export default function AppliedDataTable({ data }) {
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                  You got no applies !
+                  You haven&apos;t applied anything !
                 </TableCell>
               </TableRow>
             )}

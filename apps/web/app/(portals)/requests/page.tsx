@@ -26,7 +26,7 @@ async function getAllRequests() {
 const transformArray = (originalArray) => {
   const transformedArray = [];
 
-  originalArray.forEach((obj) => {
+  originalArray?.forEach((obj) => {
     obj.applied.forEach((applyInfo) => {
       const transformedObj = {
         id: obj.id,
@@ -55,7 +55,7 @@ const Requests = async () => {
 
   const data = await getAllRequests();
 
-  const formattedArray = transformArray(data.data.posts);
+  const formattedArray = transformArray(data?.data?.posts);
 
   return <DynamicRequestDataTable data={formattedArray || []} />;
 };

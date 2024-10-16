@@ -32,9 +32,9 @@ export function Badge({ children, search, className, variant, ...props }: Search
   return (
     <div
       onClick={() => {
-        router.push("/search" + "?" + createQueryString("search_query", search?.toLowerCase()));
+        search && router.push("/search" + "?" + createQueryString("search_query", search?.toLowerCase()));
       }}
-      className={cn(badgeVariants({ variant }), className, "mx-1 w-fit")}
+      className={cn(badgeVariants({ variant }), "mx-1 w-fit", className)}
       {...props}>
       {children}
     </div>

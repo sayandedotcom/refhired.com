@@ -45,12 +45,14 @@ const transformArray = (originalData) => {
 
 const Applied = async () => {
   const session = await auth();
+
   if (!session) {
     return <PortalsNotFound text="Requests" />;
   }
 
   const data = await getAllAppliedPosts();
-  const formattedArray = transformArray(data.data);
+
+  const formattedArray = transformArray(data?.data);
 
   return <DynamicAppliedDataTable data={formattedArray || []} />;
 };

@@ -98,7 +98,7 @@ export function LeftSection() {
                   onClick={() =>
                     router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))
                   }>
-                  Log In
+                  Join now !
                 </Button>
               )}
               {session?.user && (
@@ -122,7 +122,7 @@ export function LeftSection() {
               </Button>
             </CollapsibleContent>
             <div className="flex w-full items-center gap-3 py-2">
-              <Badge className="bg-background text-foreground border-foreground hover:bg-background flex h-full items-center justify-center gap-3 rounded-sm">
+              <Badge className="bg-background text-foreground border-foreground hover:bg-background mx-0 flex h-full items-center justify-center gap-3 rounded-sm">
                 <Star className="h-5" />
                 <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
               </Badge>
@@ -235,25 +235,6 @@ export function RightSection() {
             className="bg-muted flex items-center justify-center gap-2 rounded-sm px-4 py-2 text-lg">
             <Info className="mb-1 h-5" /> <p>Info</p>
           </button>
-          {/* <div className="bg-muted flex justify-center rounded-sm p-2">
-        {session ? (
-          <div className="bg-background flex items-center justify-center gap-3 rounded-lg lg:w-[95%] lg:py-2">
-            <AvatarDemo image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c" />
-            <span className="hidden lg:block">{session.user.userName}</span>
-            <ComboboxDropdownMenu>
-              <div className="hover:bg-muted cursor-pointer rounded-full">
-                <MoreHorizontal className="w-7" />
-              </div>
-            </ComboboxDropdownMenu>
-          </div>
-        ) : (
-          <Button
-            className="flex animate-bounce items-center justify-center gap-3 rounded-lg text-xl lg:w-8/12 lg:py-2"
-            onClick={() => setAuthDialogOpen(true)}>
-            Click here to Join !
-          </Button>
-        )}
-      </div> */}
           <div className="bg-muted rounded-sm px-4 py-2">
             <h6>Changelog</h6>
           </div>
@@ -273,40 +254,3 @@ export function RightSection() {
     </section>
   );
 }
-
-//  <div className="flex w-full items-center justify-between gap-3">
-//             {/* <AvatarDemo
-//               className="aspect-square h-14 w-14"
-//               image="https://lh3.googleusercontent.com/a/AAcHTteBykOVLLMQsijQiZTK0Nf54AlgfTv75dAyHUAWNFZyHQ=s96-c"
-//             />  */}
-//             <Image
-//               src={session?.user.image ?? "/images/avatar/avatar.png"}
-//               height={60}
-//               width={60}
-//               className="rounded-md"
-//               alt="img"
-//             />
-// <div className=" mr-auto">
-//   <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Your Name"}</p>
-//   <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
-// </div>
-// {session ? (
-// <Button
-//   className="text-foreground font-heading rounded-full bg-red-600 px-6 text-sm transition hover:bg-red-600/90 active:scale-95"
-//   onClick={() => signOut()}>
-//   Log out
-// </Button>
-// ) : (
-//   <Button
-//     className="font-heading rounded-full px-6 text-sm transition active:scale-95"
-//     onClick={() => router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))}>
-//     Log In
-//   </Button>
-// )}
-// </div>
-// <div className="flex w-full items-center justify-between gap-3">
-//   <Badge className="bg-background text-foreground border-foreground hover:bg-background flex h-full items-center justify-center gap-3 rounded-sm">
-//     <Star className="h-5" />
-//     <span className="font-heading mt-1 text-base font-bold">{session?.user.stars}</span>
-//   </Badge>
-// </div>

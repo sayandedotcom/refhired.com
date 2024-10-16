@@ -10,6 +10,7 @@ import { stripe } from "./stripe";
 
 export type { Account, DefaultSession, Profile, Session, User } from "@auth/core/types";
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET,
   adapter: RefhiredAdapter(prisma),
   providers: [
     Google({
@@ -173,12 +174,12 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         return url;
       }
     },
-    async authorized({ request, auth }) {
-      // Logged in users are authenticated, otherwise redirect to login page
-      console.log("/** The request to be authorized. */ 😊😊😊😊😊😊😊😊😊😊", request);
-      console.log("/** The authenticated user or token, if any. */ 😊😊😊😊😊😊😊😊😊😊", auth);
-      return !!auth;
-    },
+    // async authorized({ request, auth }) {
+    //   // Logged in users are authenticated, otherwise redirect to login page
+    //   console.log("/** The request to be authorized. */ 😊😊😊😊😊😊😊😊😊😊", request);
+    //   console.log("/** The authenticated user or token, if any. */ 😊😊😊😊😊😊😊😊😊😊", auth);
+    //   return !!auth;
+    // },
   },
   events: {
     async signIn({ user, account, profile, isNewUser }) {
@@ -240,5 +241,13 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       console.debug(code, message);
     },
   },
+  // experimental: {},
+  // theme: {},
+  // cookies: {},
+  // redirectProxyUrl: {},
+  // trustHost: {},
+  // useSecureCookies: {},
+  // skipCSRFCheck: {},
+  // basePath: {},
   debug: true,
 });

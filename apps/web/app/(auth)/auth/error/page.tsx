@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { X } from "lucide-react";
 import { z } from "zod";
@@ -26,6 +25,7 @@ const errors = {
 
 const AuthError = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
   // const router = useRouter();
   // const { error } = router.query;
   // const errorMessage = error && (errors[error as keyof typeof errors] ?? errors.default);
@@ -56,9 +56,9 @@ const AuthError = () => {
           </div>
         </div>
         <div className="mt-4">
-          <Link href="/auth/login" passHref legacyBehavior>
-            <Button className="flex w-full justify-center">Go back to the login page</Button>
-          </Link>
+          <Button onClick={() => router.back()} className="flex w-full justify-center">
+            Go back to the login page
+          </Button>
         </div>
       </div>
     </div>
