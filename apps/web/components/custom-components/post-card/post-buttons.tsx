@@ -38,14 +38,14 @@ export const ApplyButton = ({ stars }) => {
 // (200 Applied)
 
 export const MultipleButtons = ({ children }: { children?: any }) => {
-  return <div className="flex justify-center  gap-9 text-xl md:text-xl">{children}</div>;
+  return <div className="flex items-center justify-center gap-9 text-xl md:text-xl">{children}</div>;
 };
 
 export const ShareButton = ({ link, title }: { link?: any; title?: any }) => {
   return (
     <TooltipDemo text="Share">
       <ShareDialog shareUrl={link} title={title}>
-        <FiShare2 id="options" className="w-5 cursor-pointer" />
+        <FiShare2 id="options" className="h-5 w-5 cursor-pointer" />
       </ShareDialog>
     </TooltipDemo>
   );
@@ -54,7 +54,7 @@ export const ShareButton = ({ link, title }: { link?: any; title?: any }) => {
 export const CommentButton = () => {
   return (
     <TooltipDemo text="Comment">
-      <FiMessageCircle id="options" className="w-5 cursor-pointer" />
+      <FiMessageCircle id="options" className="h-5 w-5 cursor-pointer" />
     </TooltipDemo>
   );
 };
@@ -69,7 +69,7 @@ export const BookmarkButton = () => {
       title: (
         <div className="my-auto mr-4 flex items-center gap-3">
           <p className="text-sm">{bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"}</p>
-          <Button onClick={() => setBookmark(!bookmark)} className="h-6" variant="secondary" size="sm">
+          <Button onClick={() => setBookmark(!bookmark)} className="h-5 w-5" variant="secondary" size="sm">
             Undo
           </Button>
         </div>
@@ -95,19 +95,40 @@ export const BookmarkButton = () => {
 export const StarButton = ({ star }: { star?: any }) => {
   return (
     <TooltipDemo text="Star">
-      <div className="flex gap-2">
-        <Star id="options" className="w-5 cursor-pointer" /> {star}
+      <div className="flex items-center gap-2 text-base">
+        <Star id="options" className="h-5 w-5 cursor-pointer" /> <p className="mt-1">{star}</p>
       </div>
     </TooltipDemo>
   );
 };
 
 export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any; acceptLimit?: any }) => {
+  const percentage = acceptLimit ? Math.round((100 / acceptLimit) * totalApplied) : 0;
+
   return (
-    <TooltipDemo text="Comment">
-      <>
-        {totalApplied} / {acceptLimit}
-      </>
+    <TooltipDemo text="Apply Status">
+      <div
+        className={`flex items-center gap-3 text-base ${totalApplied === acceptLimit ? "text-red-600" : ""} ${
+          acceptLimit === 0 ? "hidden" : ""
+        } `}>
+        <svg height="20" width="20" viewBox="0 0 20 20">
+          <circle r="10" cx="10" cy="10" fill="#000" />
+          <circle
+            r="5"
+            cx="10"
+            cy="10"
+            fill="transparent"
+            stroke={totalApplied === acceptLimit ? "#cb2424" : "#05FB31"}
+            strokeWidth="10"
+            strokeDasharray={`calc(${percentage} * 31.4 / 100) 31.4`}
+            transform="rotate(-90) translate(-20)"
+          />
+          <circle r="6" cx="10" cy="10" fill="black" />
+        </svg>
+        <p>
+          {totalApplied} / {acceptLimit} Applied
+        </p>
+      </div>
     </TooltipDemo>
   );
 };

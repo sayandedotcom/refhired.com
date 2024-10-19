@@ -134,6 +134,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
         error: token.error,
         user: {
           ...session.user,
+          id: token.id,
           userName: token.userName,
           paidForDashboard: token.paidForDashboard,
           stars: token.stars,

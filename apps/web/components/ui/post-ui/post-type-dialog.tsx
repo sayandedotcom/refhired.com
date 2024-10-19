@@ -11,8 +11,7 @@ import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel2,
-  AlertDialogContent,
-  AlertDialogDescription, // AlertDialogFooter,
+  AlertDialogContent, // AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -39,14 +38,13 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-muted">
         <AlertDialogHeader className="flex flex-row items-center justify-between">
           <AlertDialogTitle>What you want to Post ?</AlertDialogTitle>
           <AlertDialogCancel2>
             <X />
           </AlertDialogCancel2>
         </AlertDialogHeader>
-        <AlertDialogDescription>Select one</AlertDialogDescription>
         <div className="flex items-center justify-center gap-5">
           <AlertDialogAction
             onClick={() => {

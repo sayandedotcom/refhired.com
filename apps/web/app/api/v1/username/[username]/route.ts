@@ -2,11 +2,17 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import prisma from "@referrer/prisma";
 
-export async function GET(request: NextRequest, context: any) {
-  const { username } = context;
+export async function GET(request: NextRequest, { params }: { params: { username: string } }) {
+  const { username } = params;
+
   //  const cachedUserById = await redis.get(`USER:ID:${id}`);
   // if (cachedUserById) return JSON.parse(cachedUserById);
-  const user = await prisma.user.findFirst({ where: { userName: username } });
+  const user = await prisma.user.findFirst({
+    where: { userName: username },
+    include: {
+      posts: true,
+    },
+  });
   // await redis.set(`USER:ID:${id}`, JSON.stringify(user), "EX", cacheTime);
 
   return NextResponse.json(

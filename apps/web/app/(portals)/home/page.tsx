@@ -41,10 +41,10 @@ export default function Home() {
               name={data.user?.name}
               userName={data.user?.userName}
               time={fromNow(data.createdAt)}
-              timeLeft={fromNow(data.expiresAt)}
+              timeLeft={data.expiresAt && fromNow(data.expiresAt)}
             />
             <Navigate userName={data.user.userName} postId={data.id}>
-              <PostCard.Description>{data.description}</PostCard.Description>
+              <PostCard.Description>{data.description.substring(0, 300)}</PostCard.Description>
             </Navigate>
             <PostCard.Tags
               allTags={false}

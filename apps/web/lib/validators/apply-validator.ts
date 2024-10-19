@@ -1,10 +1,8 @@
 import { z } from "zod";
 
 export const applyValidator = z.object({
-  message: z
-    .string()
-    .nonempty("Message is required")
-    .max(300, { message: "Message must not be more than 300 characters." }),
+  message: z.string().nonempty("Message is required"),
+  // .max(300, { message: "Message must not be more than 300 characters." }),
   pdfs: z.array(
     z.record(z.string().nonempty("Required by the Referrers").url({ message: "Please enter a valid URL." }))
   ),

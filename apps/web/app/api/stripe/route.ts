@@ -4,8 +4,6 @@ import { auth } from "@/lib/auth";
 import { stripe } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
-  const locale = req.cookies.get("NEXT_LOCALE")?.value || "en";
-
   // const billingUrl = siteConfig(locale).url + "/dashboard/billing/";
   const { planId = process.env.STRIPE_CUST0M_PRICE_ID, quantity = 1, stars } = await req.json();
 
@@ -30,8 +28,8 @@ export async function POST(req: NextRequest) {
         userId: user.id,
         stars,
       },
-      success_url: `http://localhost:3000/${locale}`,
-      cancel_url: `http://localhost:3000/${locale}/pricing`,
+      success_url: "http://localhost:3000/",
+      cancel_url: "http://localhost:3000/purchase",
     });
 
     return new NextResponse(JSON.stringify({ url: checkoutSession.url }));

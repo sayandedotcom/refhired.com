@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import parse from "html-react-parser";
 import { MoreHorizontal } from "lucide-react";
 
 import { PostHoverCard } from "@/components/ui";
@@ -88,12 +89,10 @@ PostCard.Header = PostCardHeader;
 
 function PostCardDescription({ children }: { children: any }) {
   return (
-    <p
-      id="post-content"
-      className="font-heading cursor-pointer text-[12px] font-thin tracking-wider md:text-[15px]">
-      {children}
+    <div id="post-content" className="cursor-pointer text-xs md:text-base">
+      {parse(children)}
       <span className="float-right text-xs md:text-sm">....Show more</span>
-    </p>
+    </div>
   );
 }
 

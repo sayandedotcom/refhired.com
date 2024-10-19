@@ -20,17 +20,14 @@ import {
   Username,
 } from "@/components/custom-components";
 
+import { auth } from "@/lib/auth";
+
 import Loading from "./loading";
 
 export default async function Page() {
-  // const session = await getServerSession();
+  const session = await auth();
 
-  // if (session?.user) {
-  //   redirect("/home");
-  // }
   const t = await getTranslations("Index");
-
-  const user = null;
 
   return (
     <div className="relative">
@@ -68,9 +65,7 @@ export default async function Page() {
           job through referrals which has the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referrals
         </p> */}
-          <Suspense fallback={<Loading />}>
-            <JoinWaitlist />
-          </Suspense>
+          <Suspense fallback={<Loading />}>{!session?.user && <JoinWaitlist />}</Suspense>
           <Suspense fallback={<Loading />}>
             <ShimmerButtonComponent href={"/home"}>Explore the MVP !</ShimmerButtonComponent>
           </Suspense>
@@ -81,9 +76,7 @@ export default async function Page() {
         <Companies />
       </Suspense>
 
-      <Suspense fallback={<Loading />}>
-        <Username session={user} />
-      </Suspense>
+      <Suspense fallback={<Loading />}>{!session?.user && <Username />}</Suspense>
 
       <Suspense fallback={<Loading />}>
         {/* <Section /> */}
@@ -129,7 +122,7 @@ export default async function Page() {
         <ScrollBasedVelocityCOmponent />
       </Suspense>
 
-      <Suspense fallback={<Loading />}>{user && user ? <></> : <Joinnow />}</Suspense>
+      <Suspense fallback={<Loading />}>{!session?.user && <Joinnow />}</Suspense>
 
       <Suspense fallback={<Loading />}>
         <Opensource />

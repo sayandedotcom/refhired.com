@@ -42,13 +42,13 @@ module.exports = withNextIntl(
     async rewrites() {
       return [
         {
-          source: "/:locale*/demodash1",
-          destination: `${process.env.DASHBOARD_URL}/:locale*`,
+          source: "/demodash1",
+          destination: "http://localhost:4000/client",
           basePath: false,
         },
         {
-          source: "/:locale*/demodash1/:path+",
-          destination: `${process.env.DASHBOARD_URL}/:locale*/:path+`,
+          source: "/demodash1/:path+",
+          destination: "http://localhost:4000/:path+",
           basePath: false,
         },
       ];

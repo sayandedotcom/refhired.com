@@ -12,7 +12,10 @@ import { MultipleButtons } from "@/components/custom-components/post-card/post-b
 import Navigate from "@/components/navigate";
 import { ApplyDialog } from "@/components/ui";
 
+import { auth } from "@/lib/auth";
 import { request } from "@/lib/axios";
+
+import { cn } from "@/utils";
 
 export const metadata: Metadata = {
   title: "Profile",
@@ -32,6 +35,8 @@ async function getProfile(profile) {
 const Profile = async ({ params }: paramsProps) => {
   const { profile } = params;
 
+  const session = await auth();
+
   if (profile === "profile")
     return (
       <>
@@ -43,7 +48,7 @@ const Profile = async ({ params }: paramsProps) => {
             height={120}
             className="rounded-full"
           />
-          <h6 className="font-sans">Profile donot exists</h6>
+          <h6 className="font-sans">Get your profile !</h6>
           <Link href={"/auth/login"}>
             <Button>
               Login <ArrowRight className="ml-2 h-4 w-4" />
@@ -77,7 +82,7 @@ const Profile = async ({ params }: paramsProps) => {
 
   return (
     <>
-      <div className="flex w-11/12 flex-col items-center gap-2 p-2">
+      <div className="flex flex-col items-center gap-2 p-2">
         <Image
           alt="img"
           src={data.image ?? "/images/avatar/avatar.png"}
@@ -91,16 +96,16 @@ const Profile = async ({ params }: paramsProps) => {
           <Mail />
           <span>{data.email}</span>•<MapPin />
           <span>Kolkata</span>•<p>{fromNow(data.createdAt)}</p>
+          {session?.user.userName === data?.userName && (
+            <Link
+              href="/settings/profile"
+              className={cn(
+                "focus-visible:ring-ring ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 items-center justify-center rounded-lg  px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              )}>
+              Edit Profile
+            </Link>
+          )}
         </div>
-        {/* {session?.user.id === data?.id && (
-          <Link
-            href="/settings/profile"
-            className={cn(
-              "focus-visible:ring-ring ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 items-center justify-center rounded-lg  px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-            )}>
-            Edit Profile
-          </Link>
-        )} */}
       </div>
       <Separator />
       {data?.posts.map((postData) => (

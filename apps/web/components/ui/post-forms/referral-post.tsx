@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import TextareaAutosize from "react-textarea-autosize";
 import * as z from "zod";
 
-import { cn } from "@referrer/lib/utils/cn";
 import {
   Button,
   Calendar,
@@ -33,6 +33,8 @@ import {
   Separator,
 } from "@referrer/ui";
 
+import RichTextEditor from "@/components/Tiptap";
+
 import { request } from "@/lib/axios";
 import { referralPostValidator } from "@/lib/validators";
 
@@ -47,47 +49,65 @@ import {
   pdfs,
 } from "@/config";
 
+import { cn } from "@/utils";
+
+import { TPostReferralPost } from "@/types/types";
+
 import { Required } from "../required";
 import { sonerToast } from "../soner-toast";
 import { AsyncSelectComponent } from "./async-select";
 import { SelectComponent } from "./select";
 
-const postReferral = ({
-  accept,
-  acceptLimit,
-  companyName,
-  description,
-  expiresAt,
-  jobCode,
-  jobCompensation,
-  jobExperience,
-  jobLocation,
-  jobRole,
-  jobType,
-  postType,
-  stars,
-  tags,
-}) => {
-  return request.post("/apply", {
-    accept,
-    acceptLimit,
-    companyName,
-    description,
-    expiresAt,
-    jobCode,
-    jobCompensation,
-    jobExperience,
-    jobLocation,
-    jobRole,
-    jobType,
-    postType,
-    stars,
-    tags,
-  });
-};
+// const postReferral = ({
+//   accept,
+//   acceptLimit,
+//   companyName,
+//   description,
+//   expiresAt,
+//   jobCode,
+//   jobCompensation,
+//   jobExperience,
+//   jobLocation,
+//   jobRole,
+//   jobType,
+//   jobURL,
+//   postType,
+//   stars,
+//   tags,
+//   refrshToken,
+// }) => {
+//   return request.post(
+//     "/posts/referral",
+//     {
+//       accept,
+//       acceptLimit,
+//       companyName,
+//       description,
+//       expiresAt,
+//       jobCode,
+//       jobCompensation,
+//       jobExperience,
+//       jobLocation,
+//       jobRole,
+//       jobType,
+//       postType,
+//       stars,
+//       tags,
+//       refrshToken,
+//     },
+//     {
+//       headers: {
+//         Authorization: refrshToken && `Bearer ${refrshToken}`,
+//       },
+//     }
+//   );
+// };
 
 export default function ReferralPost() {
   const { data: session } = useSession();
+
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof referralPostValidator>>({
     resolver: zodResolver(referralPostValidator),
     defaultValues: {
@@ -115,18 +135,58 @@ export default function ReferralPost() {
 
   const { mutate, isPending } = useMutation({
     mutationKey: ["referral"],
-    mutationFn: postReferral,
+    mutationFn: ({
+      accept,
+      acceptLimit,
+      companyName,
+      description,
+      expiresAt,
+      jobCode,
+      jobCompensation,
+      jobExperience,
+      jobLocation,
+      jobRole,
+      jobType,
+      postType,
+      stars,
+      tags,
+    }: TPostReferralPost) => {
+      return request.post(
+        "/posts/referral",
+        {
+          accept,
+          acceptLimit,
+          companyName,
+          description,
+          expiresAt,
+          jobCode,
+          jobCompensation,
+          jobExperience,
+          jobLocation,
+          jobRole,
+          jobType,
+          postType,
+          stars,
+          tags,
+        },
+        {
+          headers: {
+            Authorization: session?.user?.refresh_token && `Bearer ${session?.user?.refresh_token}`,
+          },
+        }
+      );
+    },
     onSuccess(data, variables) {
       sonerToast({
         severity: "success",
         title: "Sucess !",
         message: data.data.message,
       });
-      form.reset();
+      // form.reset();
     },
     onError(error, variables, context) {
-      ///@ts-expect-error
-      setError(error?.response.data.message);
+      console.log("errrrorrrr", error);
+      router.push("/auth/login");
       sonerToast({
         severity: "error",
         title: "Error !",
@@ -212,43 +272,51 @@ export default function ReferralPost() {
     }
     const finalLocationString = locationString + ")";
 
-    if (!session) {
-      sonerToast({
-        severity: "info",
-        title: "Oopps !",
-        message: "Login or SignUp to continue !",
-      });
-    } else {
-      mutate({
-        accept: values.accept,
-        acceptLimit: values.acceptLimit,
-        companyName: values.companyName,
-        description: values.description,
-        expiresAt: values.expiresAt,
-        jobCode: values.jobCode,
-        jobCompensation: values.jobCompensation,
-        jobExperience: values.jobExperience,
-        jobLocation: finalLocationString,
-        jobRole: values.jobRole,
-        jobType: values.jobType,
-        postType: "REFERRALPOST",
-        stars: values.stars,
-        tags: [...values.skills, values.cityLocation, values.stateLocation, values.cityLocation],
-      });
-    }
+    let tags = [...values.skills, values.countryLocation, values.stateLocation, values.cityLocation].filter(
+      (item) => item !== ""
+    );
+
+    console.log(values);
+
+    mutate({
+      accept: values.accept,
+      acceptLimit: values.acceptLimit,
+      companyName: values.companyName,
+      description: values.description,
+      expiresAt: values.expiresAt,
+      jobCode: values.jobCode,
+      jobCompensation: values.jobCompensation,
+      jobExperience: values.jobExperience,
+      jobLocation: finalLocationString,
+      jobRole: values.jobRole,
+      jobType: values.jobType,
+      postType: "REFERRALPOST",
+      stars: values.stars,
+      jobURL: "",
+      tags: tags,
+    });
   }
 
   return (
     <div className="mb-20">
-      <div className="mx-auto my-5 w-11/12">
-        <h2 className="mb-3 text-2xl font-bold capitalize tracking-tight">Referral Post</h2>
-        <p className="text-muted-foreground mb-2">Post a new referral now and open oppotunies to others !</p>
-        <Separator />
-      </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="mx-auto flex w-11/12 flex-col justify-center gap-6">
+          <div className="bg-muted sticky top-0 z-50 mx-auto my-5 flex w-full justify-between rounded-xl p-5">
+            <div>
+              <h2 className="mb-3 text-2xl font-bold capitalize tracking-tight">Referral Post</h2>
+              <p className="text-muted-foreground mb-2">
+                Post a new referral now and open oppotunies to others !
+              </p>
+            </div>
+            <div className="flex items-start justify-center gap-3">
+              <Button className="bg-foreground my-2 rounded-full lg:w-40" isLoading={isPending} type="submit">
+                Publish
+              </Button>
+              <Button className="bg-foreground my-2 rounded-full lg:w-40">Save as Draft</Button>
+            </div>
+          </div>
           {/* Description */}
           <FormField
             control={form.control}
@@ -260,7 +328,7 @@ export default function ReferralPost() {
                   <Required />
                 </FormLabel>
                 <FormControl>
-                  <TextareaAutosize
+                  {/* <TextareaAutosize
                     cacheMeasurements
                     minRows={5}
                     maxRows={30}
@@ -269,6 +337,14 @@ export default function ReferralPost() {
                     shadow-sm focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50 md:text-lg"
                     placeholder="Desscription of the referral. . . . . . ."
                     {...field}
+                  /> */}
+                  <RichTextEditor
+                    charactersLimit={2000}
+                    className="min-h-[140px] max-w-full text-base"
+                    name="message"
+                    placeholder="Write a short message to the referrer here. . . . . ."
+                    value={field.value}
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
@@ -276,6 +352,7 @@ export default function ReferralPost() {
               </FormItem>
             )}
           />
+          {/* <Tiptap /> */}
           <Separator />
           <h5 className="mb-2 font-bold tracking-tight">
             This will help your referral to reach to many users
@@ -841,13 +918,16 @@ export default function ReferralPost() {
             />
           </div>
           {/* Submit */}
-          <Separator />
+          {/* <Separator />
           <div className="flex flex-col items-center justify-center">
-            <Button className="bg-foreground my-2 w-6/12" isLoading={isPending} type="submit">
+            <Button
+              className="bg-foreground my-2 w-6/12 rounded-full lg:w-40"
+              isLoading={isPending}
+              type="submit">
               Post
             </Button>
-            <Button className="bg-foreground my-2 w-6/12">Save as Draft</Button>
-          </div>
+            <Button className="bg-foreground my-2 w-6/12 rounded-full lg:w-40">Save as Draft</Button>
+          </div> */}
         </form>
       </Form>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -13,13 +13,14 @@ import { useWindowSize } from "@/hooks";
 import type { User } from "@prisma/client";
 import clsx from "clsx";
 import { ArrowUpRight, ChevronsUpDown, Info, PartyPopper, SlidersHorizontal, Star } from "lucide-react";
-import { signOut, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
 import { Button, Collapsible, CollapsibleContent, CollapsibleTrigger, Separator } from "@referrer/ui";
 
 import { LeftBarMobile, RightBarMobile } from "@/components/custom-components";
-import { Badge, PostTypeDialog, sonerToast } from "@/components/ui";
+import { Icons } from "@/components/icons/icons";
+import { ApplyDialog, Badge, PostTypeDialog, sonerToast } from "@/components/ui";
 import { PlaceholdersAndVanishInput } from "@/components/ui";
 
 import { withoutRightBarPages } from "@/config";
@@ -51,9 +52,12 @@ export function LeftSection() {
   return (
     <section className="bg-muted/40 sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
       <div className="flex h-full w-full flex-col items-start justify-start">
-        {/* <Link href="/home" className="mx-auto cursor-pointer p-2">
-          <Icons.logo />
-        </Link> */}
+        <Link
+          href="/home"
+          className="mx-auto ml-7 mt-2 flex cursor-pointer items-center justify-center gap-4 p-2">
+          <Icons.logo className="h-8" />
+          <h5 className="font-heading mt-1">Refhired.com</h5>
+        </Link>
         <div className="font-heading w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
           <div className="cursor-pointer px-2 py-4 text-base">
             {portalsList.map(({ name, link, icon }) => (
@@ -140,7 +144,15 @@ export function LeftSection() {
 }
 
 export function CenterSection({ children }: { children: React.ReactNode }) {
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.error !== "RefreshTokenError") return;
+    signIn("google"); // Force sign in to obtain a new set of access and refresh tokens
+  }, [session?.error]);
+
   const pathName = usePathname();
+
   const largeLayout = withoutRightBarPages.includes(pathName);
 
   return (
@@ -249,6 +261,7 @@ export function RightSection() {
             Soner
           </Button>
           <Button onClick={() => router.push("/pricing")}>Soner</Button>
+          <ApplyDialog />
         </>
       )}
     </section>
