@@ -95,8 +95,8 @@ export const BookmarkButton = () => {
 export const StarButton = ({ star }: { star?: any }) => {
   return (
     <TooltipDemo text="Star">
-      <div className="flex items-center gap-2 text-base">
-        <Star id="options" className="h-5 w-5 cursor-pointer" /> <p className="mt-1">{star}</p>
+      <div className="flex items-center gap-2">
+        <Star id="options" /> <p className="mt-1 text-2xl">{star}</p>
       </div>
     </TooltipDemo>
   );
@@ -104,15 +104,14 @@ export const StarButton = ({ star }: { star?: any }) => {
 
 export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any; acceptLimit?: any }) => {
   const percentage = acceptLimit ? Math.round((100 / acceptLimit) * totalApplied) : 0;
-
   return (
-    <TooltipDemo text="Apply Status">
+    <TooltipDemo text={`${totalApplied} / ${acceptLimit} Applied`}>
       <div
-        className={`flex items-center gap-3 text-base ${totalApplied === acceptLimit ? "text-red-600" : ""} ${
+        className={`flex items-center text-base ${totalApplied === acceptLimit ? "text-red-600" : ""} ${
           acceptLimit === 0 ? "hidden" : ""
         } `}>
-        <svg height="20" width="20" viewBox="0 0 20 20">
-          <circle r="10" cx="10" cy="10" fill="#000" />
+        <svg height="22" width="22" viewBox="0 0 20 20">
+          <circle r="10" cx="10" cy="10" fill="#ffff" />
           <circle
             r="5"
             cx="10"
@@ -125,9 +124,6 @@ export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any;
           />
           <circle r="6" cx="10" cy="10" fill="black" />
         </svg>
-        <p>
-          {totalApplied} / {acceptLimit} Applied
-        </p>
       </div>
     </TooltipDemo>
   );

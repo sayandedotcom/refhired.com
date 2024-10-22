@@ -10,9 +10,16 @@ import { useRouter } from "next/navigation";
 
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
-import type { User } from "@prisma/client";
 import clsx from "clsx";
-import { ArrowUpRight, ChevronsUpDown, Info, PartyPopper, SlidersHorizontal, Star } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronsUpDown,
+  Coins,
+  Info,
+  PartyPopper,
+  SlidersHorizontal,
+  Star,
+} from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
@@ -20,7 +27,7 @@ import { Button, Collapsible, CollapsibleContent, CollapsibleTrigger, Separator 
 
 import { LeftBarMobile, RightBarMobile } from "@/components/custom-components";
 import { Icons } from "@/components/icons/icons";
-import { ApplyDialog, Badge, PostTypeDialog, sonerToast } from "@/components/ui";
+import { Badge, PostTypeDialog, sonerToast } from "@/components/ui";
 import { PlaceholdersAndVanishInput } from "@/components/ui";
 
 import { withoutRightBarPages } from "@/config";
@@ -46,8 +53,6 @@ export function LeftSection() {
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
   const [isOpen, setIsOpen] = useState(false);
-
-  const [data, setData] = useState<User>();
 
   return (
     <section className="bg-muted/40 sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
@@ -130,6 +135,11 @@ export function LeftSection() {
                 <Star className="h-5" />
                 <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
               </Badge>
+              <Button
+                onClick={() => router.push("/purchase")}
+                className="font-heading h-9 text-start transition active:scale-95">
+                <Coins className="mb-1 mr-2 h-5 w-5" /> Buy Stars !
+              </Button>
               {session?.user?.paidForDashboard && (
                 <Button className="font-heading w-full px-6 text-start transition active:scale-95">
                   Go to Dashboard <ArrowUpRight className="mb-1 mr-4 h-5 w-5" />
@@ -260,8 +270,6 @@ export function RightSection() {
             }>
             Soner
           </Button>
-          <Button onClick={() => router.push("/pricing")}>Soner</Button>
-          <ApplyDialog />
         </>
       )}
     </section>

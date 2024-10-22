@@ -3,12 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { fromNow } from "@refhiredcom/utils";
-import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { ArrowRight, Calendar, Mail, MapPin } from "lucide-react";
 
 import { Button, Separator } from "@referrer/ui";
 
 import { PostCard } from "@/components/custom-components";
-import { MultipleButtons } from "@/components/custom-components/post-card/post-buttons";
+import {
+  ApplyStatus,
+  BookmarkButton,
+  MultipleButtons,
+  ShareButton,
+  StarButton,
+} from "@/components/custom-components/post-card/post-buttons";
 import Navigate from "@/components/navigate";
 import { ApplyDialog } from "@/components/ui";
 
@@ -16,6 +22,8 @@ import { auth } from "@/lib/auth";
 import { request } from "@/lib/axios";
 
 import { cn } from "@/utils";
+
+import { TProfile } from "@/types/types";
 
 export const metadata: Metadata = {
   title: "Profile",
@@ -26,8 +34,8 @@ type paramsProps = {
   params: { profile: string };
 };
 
-async function getProfile(profile) {
-  const response = await request.get(`/username/${profile}`);
+async function getProfile<T>(profile) {
+  const response = await request.get<T>(`/username/${profile}`);
 
   return response.data;
 }
@@ -59,7 +67,7 @@ const Profile = async ({ params }: paramsProps) => {
       </>
     );
 
-  const { data } = await getProfile(profile);
+  const { data } = await getProfile<TProfile>(profile);
 
   if (!data)
     return (
@@ -90,22 +98,38 @@ const Profile = async ({ params }: paramsProps) => {
           height={120}
           className="cursor-pointer rounded-full"
         />
-        <p>@{data.userName}</p>
-        <p className="text-center text-sm md:text-lg">{data.name}</p>
-        <div className="flex gap-3">
-          <Mail />
-          <span>{data.email}</span>•<MapPin />
-          <span>Kolkata</span>•<p>{fromNow(data.createdAt)}</p>
-          {session?.user.userName === data?.userName && (
-            <Link
-              href="/settings/profile"
-              className={cn(
-                "focus-visible:ring-ring ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 items-center justify-center rounded-lg  px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
-              )}>
-              Edit Profile
-            </Link>
+        <p className="font-heading text-center text-sm md:text-xl">{data.name}</p>
+        <p>@{data?.userName}</p>
+        <span>{data?.bio}</span>
+        <div className="flex items-center justify-center gap-3">
+          <div className="flex gap-2">
+            <Mail className="h-6" />
+            <span>{data?.email}</span>
+          </div>
+          {data?.location && (
+            <div className="flex gap-2">
+              <MapPin />
+              <span>{data.location}</span>
+            </div>
           )}
+          <div className="flex gap-2">
+            <Calendar className="h-5" />
+            <span>Joined {fromNow(data.createdAt)}</span>
+          </div>
+          {/* <div className="flex gap-2">
+            <BriefcaseBusiness />
+            <span>{data?.workingAt}</span>
+          </div> */}
         </div>
+        {session?.user.userName === data?.userName && (
+          <Link
+            href="/settings/profile"
+            className={cn(
+              "focus-visible:ring-ring ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-10 items-center justify-center rounded-lg  px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            )}>
+            Edit Profile
+          </Link>
+        )}
       </div>
       <Separator />
       {data?.posts.map((postData) => (
@@ -116,10 +140,13 @@ const Profile = async ({ params }: paramsProps) => {
               name={data?.name}
               userName={data?.userName}
               time={fromNow(postData.createdAt)}
-              timeLeft={fromNow(postData.expiresAt)}
+              timeLeft={postData.expiresAt ? fromNow(postData.expiresAt) : "No Expiry"}
+              postType={postData.postType}
             />
             <Navigate userName={data.userName} postId={postData.id}>
-              <PostCard.Description>{postData.description}</PostCard.Description>
+              <PostCard.Description showMore={true}>
+                {postData.description.substring(0, 300)}
+              </PostCard.Description>
             </Navigate>
             <PostCard.Tags
               allTags={false}
@@ -131,13 +158,19 @@ const Profile = async ({ params }: paramsProps) => {
               // skills={postData.tags}
             />
             <PostCard.Footer>
-              <MultipleButtons />
+              <MultipleButtons>
+                {/* <CommentButton /> */}
+                <ShareButton link={`${data.userName}/posts/${postData.id}`} title={postData.description} />
+                <BookmarkButton />
+                <ApplyStatus totalApplied={postData.totalApplied} acceptLimit={postData.acceptLimit} />
+                <StarButton star={data.stars} />
+              </MultipleButtons>
               <ApplyDialog
-                myObject={data.accept}
-                postID={data.id}
-                stars={data.stars}
-                totalApplied={data.totalApplied}
-                acceptLimit={data.acceptLimit}
+                myObject={postData.accept}
+                postID={postData.id}
+                stars={postData.stars}
+                totalApplied={postData.totalApplied}
+                acceptLimit={postData.acceptLimit}
                 // expired={data.expiresAt}
               />
             </PostCard.Footer>

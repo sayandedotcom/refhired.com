@@ -3,7 +3,7 @@ import Image from "next/image";
 import parse from "html-react-parser";
 import { MoreHorizontal } from "lucide-react";
 
-import { PostHoverCard } from "@/components/ui";
+import { Badge, PostHoverCard } from "@/components/ui";
 import UsernameNavigate from "@/components/wrappers/username-navigator";
 
 import { Tags } from "./post-buttons";
@@ -47,12 +47,19 @@ function PostCardHeader({
   userName,
   time,
   timeLeft,
+  postType,
 }: {
   name: string;
   userName: string;
   time?: any;
   timeLeft?: any;
+  postType?: any;
 }) {
+  const type = {
+    REFERRALPOST: "Referral Post",
+    FINDREFERRER: "Finding Referrer",
+    POST: "",
+  };
   return (
     <div className="font-heading flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm md:text-base">
@@ -76,22 +83,25 @@ function PostCardHeader({
           {timeLeft}
         </small>
       </div>
-      <ComboboxDropdownMenu>
-        <div className="hover:bg-muted cursor-pointer rounded-full">
-          <MoreHorizontal id="post-options" className="w-5" />
-        </div>
-      </ComboboxDropdownMenu>
+      <div className="flex gap-4">
+        <Badge className="capitalize">{type[postType]}</Badge>
+        <ComboboxDropdownMenu>
+          <div className="hover:bg-muted cursor-pointer rounded-full">
+            <MoreHorizontal id="post-options" className="w-5" />
+          </div>
+        </ComboboxDropdownMenu>
+      </div>
     </div>
   );
 }
 
 PostCard.Header = PostCardHeader;
 
-function PostCardDescription({ children }: { children: any }) {
+function PostCardDescription({ children, showMore }: { children: any; showMore?: Boolean }) {
   return (
     <div id="post-content" className="cursor-pointer text-xs md:text-base">
       {parse(children)}
-      <span className="float-right text-xs md:text-sm">....Show more</span>
+      {showMore && <span className="float-right text-xs md:text-sm">....Show more</span>}
     </div>
   );
 }

@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { useLoading } from "@/hooks";
@@ -26,7 +25,6 @@ import {
   FormMessage,
   Input,
   Separator,
-  TypographySmall,
 } from "@referrer/ui";
 
 import { Icons } from "@/components/icons/icons";
@@ -159,12 +157,12 @@ export default function Login() {
         </Button>
       </div>
       <Separator />
-      <div className="flex items-center justify-center gap-2">
+      {/* <div className="flex items-center justify-center gap-2">
         <TypographySmall>{t("dont_have_an_account")}</TypographySmall>
         <Link className="text-muted-foreground" href="/auth/sign-up">
           <TypographySmall>{t("sign_up")}</TypographySmall>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

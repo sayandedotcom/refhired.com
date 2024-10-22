@@ -3,10 +3,18 @@ import { Metadata } from "next";
 import { fromNow } from "@refhiredcom/utils";
 
 import { PostCard } from "@/components/custom-components";
-import { MultipleButtons } from "@/components/custom-components/post-card/post-buttons";
+import {
+  ApplyStatus,
+  BookmarkButton,
+  MultipleButtons,
+  ShareButton,
+  StarButton,
+} from "@/components/custom-components/post-card/post-buttons";
 import { ApplyDialog } from "@/components/ui";
 
 import { request } from "@/lib/axios";
+
+import { TPostsData } from "@/types/types";
 
 interface PostProps {
   params: {
@@ -40,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Post({ params }: PostProps) {
-  const { data } = (await request.get(`/posts/${params.postId}`)).data;
+  const { data } = (await request.get<TPostsData>(`/posts/${params.postId}`)).data;
 
   return (
     <>
@@ -51,9 +59,10 @@ export default async function Post({ params }: PostProps) {
             name={data.user?.name}
             userName={data.user?.userName}
             time={fromNow(data.createdAt)}
-            timeLeft={fromNow(data.expiresAt)}
+            timeLeft={data.expiresAt ? fromNow(data.expiresAt) : "No Expiry"}
+            postType={data.postType}
           />
-          <PostCard.Description>{data.description}</PostCard.Description>
+          <PostCard.Description showMore={false}>{data.description}</PostCard.Description>
           <PostCard.Tags
             allTags={true}
             location={data.jobLocation}
@@ -64,7 +73,13 @@ export default async function Post({ params }: PostProps) {
             skills={data.tags}
           />
           <PostCard.Footer>
-            <MultipleButtons />
+            <MultipleButtons>
+              {/* <CommentButton /> */}
+              <ShareButton link={`${data.user.userName}/posts/${data.id}`} title={data.description} />
+              <BookmarkButton />
+              <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
+              <StarButton star={data.stars} />
+            </MultipleButtons>
             <ApplyDialog
               myObject={data.accept}
               postID={data.id}

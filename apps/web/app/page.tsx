@@ -5,8 +5,6 @@ import Starfield from "react-starfield";
 
 import {
   Companies,
-  Information,
-  JoinWaitlist,
   Joinnow,
   MagicBentoComponent,
   MagicBentoThree,
@@ -14,10 +12,8 @@ import {
   Opensource,
   Review,
   ScrollBasedVelocityCOmponent,
-  ShimmerButtonComponent,
   Stats,
   TopNotificationList,
-  Username,
 } from "@/components/custom-components";
 
 import { auth } from "@/lib/auth";
@@ -41,9 +37,9 @@ export default async function Page() {
           {/* <Notice arrow href="/about-us">
           Important Notice !
         </Notice> */}
-          <Suspense fallback={<Loading />}>
+          {/* <Suspense fallback={<Loading />}>
             <Information />
-          </Suspense>
+          </Suspense> */}
           <Suspense fallback={<Loading />}>
             <h1 className="font-heading px-1 text-center text-[36px] lg:text-[66px] dark:bg-gradient-to-r dark:from-[#abbaab] dark:to-[#ffffff] dark:bg-clip-text dark:text-transparent">
               " Navigate the job market with{" "}
@@ -65,10 +61,10 @@ export default async function Page() {
           job through referrals which has the highest convertion rates among other methods . It simplifies the
           tasks for both job seekers and employees who gives referrals
         </p> */}
-          <Suspense fallback={<Loading />}>{!session?.user && <JoinWaitlist />}</Suspense>
-          <Suspense fallback={<Loading />}>
+          {/* <Suspense fallback={<Loading />}>{!session?.user && <JoinWaitlist />}</Suspense> */}
+          {/* <Suspense fallback={<Loading />}>
             <ShimmerButtonComponent href={"/home"}>Explore the MVP !</ShimmerButtonComponent>
-          </Suspense>
+          </Suspense> */}
         </div>
       </Suspense>
 
@@ -76,7 +72,7 @@ export default async function Page() {
         <Companies />
       </Suspense>
 
-      <Suspense fallback={<Loading />}>{!session?.user && <Username />}</Suspense>
+      {/* <Suspense fallback={<Loading />}>{!session?.user && <Username />}</Suspense> */}
 
       <Suspense fallback={<Loading />}>
         {/* <Section /> */}

@@ -54,7 +54,7 @@ export function ShareDialog({
   const handleCopy = (text: string) => () => {
     copy(text)
       .then(() => {
-        console.log("Copied!", { text });
+        // console.log("Copied!", { text });
         setIsOnCopied(!isCopied);
         // sonerToast({
         //   title: "Copied to your clipboard !",
@@ -69,7 +69,7 @@ export function ShareDialog({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="bg-muted sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Share !</DialogTitle>
           <DialogDescription>Share on your Social Media sitess</DialogDescription>

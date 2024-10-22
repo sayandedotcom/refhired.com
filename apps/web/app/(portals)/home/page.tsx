@@ -7,7 +7,6 @@ import { PostCard } from "@/components/custom-components";
 import {
   ApplyStatus,
   BookmarkButton,
-  CommentButton,
   MultipleButtons,
   ShareButton,
   StarButton,
@@ -17,10 +16,12 @@ import { ApplyDialog } from "@/components/ui";
 
 import { request } from "@/lib/axios";
 
+import { TPosts } from "@/types/types";
+
 import Loading from "../loading";
 
 export default function Home() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useQuery<TPosts>({
     queryKey: ["posts"],
     queryFn: () => {
       return request.get("/posts");
@@ -33,7 +34,7 @@ export default function Home() {
 
   return (
     <>
-      {data?.data?.data.map((data) => (
+      {data?.data?.data?.map((data) => (
         <PostCard key={data.id}>
           <PostCard.Image src={data.user?.image ?? "/images/avatar/avatar.png"} />
           <PostCard.Content>
@@ -41,10 +42,13 @@ export default function Home() {
               name={data.user?.name}
               userName={data.user?.userName}
               time={fromNow(data.createdAt)}
-              timeLeft={data.expiresAt && fromNow(data.expiresAt)}
+              timeLeft={data.expiresAt ? fromNow(data.expiresAt) : "No Expiry"}
+              postType={data.postType}
             />
             <Navigate userName={data.user.userName} postId={data.id}>
-              <PostCard.Description>{data.description.substring(0, 300)}</PostCard.Description>
+              <PostCard.Description showMore={true}>
+                {data.description.substring(0, 300)}
+              </PostCard.Description>
             </Navigate>
             <PostCard.Tags
               allTags={false}
@@ -53,15 +57,14 @@ export default function Home() {
               jobType={data.jobType}
               role={data.jobRole}
               salary={data.jobCompensation}
-              // skills={data.tags}
             />
             <PostCard.Footer>
               <MultipleButtons>
-                <CommentButton />
+                {/* <CommentButton /> */}
                 <ShareButton link={`${data.user.userName}/posts/${data.id}`} title={data.description} />
                 <BookmarkButton />
-                <StarButton star={data.stars} />
                 <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
+                <StarButton star={data.stars} />
               </MultipleButtons>
               <ApplyDialog
                 myObject={data.accept}

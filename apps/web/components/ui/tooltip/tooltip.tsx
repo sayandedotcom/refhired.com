@@ -2,7 +2,7 @@
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@referrer/ui";
 
-export function TooltipDemo({ children, text }) {
+export function TooltipDemo({ children, text }: { children: React.ReactNode; text: String }) {
   return (
     <TooltipProvider>
       <Tooltip>

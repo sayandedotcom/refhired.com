@@ -25,12 +25,12 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Textarea,
 } from "@referrer/ui";
 
 import { request } from "@/lib/axios";
 import { applyValidator } from "@/lib/validators";
 
+import RichTextEditor from "../Tiptap";
 import { DynamicIcons } from "../icons/dynamic-icons";
 import { sonerToast } from "./soner-toast";
 
@@ -107,7 +107,7 @@ export function ApplyDialog({
 
   // !form.formState.isSubmitSuccessful;
 
-  const full = totalApplied === acceptLimit;
+  const full = acceptLimit != 0 && acceptLimit === totalApplied;
   const fileRef = form.register("pdfs");
 
   return (
@@ -116,12 +116,12 @@ export function ApplyDialog({
         <Button
           id="post-apply"
           // disabled={applied}
-          disabled={full || expired}
+          // disabled={full || expired}
           isLoading={isPending}
           // isLoading={loadingValue === "apply"}
           // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
           // onClick={apply}
-          className="h-9 w-3/12 rounded-full text-sm">
+          className="h-9 rounded-full text-sm md:w-36">
           {(full && "Full") || (expired && "Expired") || "Apply"}
         </Button>
       </DialogTrigger>
@@ -135,6 +135,26 @@ export function ApplyDialog({
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="relative flex flex-col space-y-2">
+            {/* <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-base">Write a short message to the referrer</FormLabel>
+                  <FormControl>
+                    <RichTextEditor
+                      charactersLimit={400}
+                      className="min-h-[140px] max-w-full text-base"
+                      name="message"
+                      placeholder="Write a short message to the referrer here. . . . . ."
+                      value={field.value}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            /> */}
             {/* Message */}
             {myObject?.hasOwnProperty("message") && myObject.message === true && (
               <FormField
@@ -144,13 +164,12 @@ export function ApplyDialog({
                   <FormItem>
                     <FormLabel className="text-base">Write a short message to the referrer</FormLabel>
                     <FormControl>
-                      <Textarea
-                        id="message"
+                      <RichTextEditor
+                        charactersLimit={500}
+                        className="min-h-[140px] max-w-full text-base"
                         name="message"
-                        rows={7}
-                        cols={70}
-                        className="text-base"
                         placeholder="Write a short message to the referrer here. . . . . ."
+                        value={field.value}
                         {...field}
                       />
                     </FormControl>

@@ -12,7 +12,6 @@ import { Button } from "@referrer/ui";
 
 import { navigation, siteConfig } from "@/config";
 
-import { Icons } from "../icons/icons";
 import { AvatarDemo, DropdownMenuDemo, TooltipDemo } from "../ui";
 
 export const NavButtonsUnAuthenticated = () => {
@@ -72,7 +71,7 @@ export const NavButtonsAuthenticated = ({ session }) => {
           className="font-heading h-[3.2rem] rounded-full px-7 text-xl uppercase hover:rounded-xl"
           onClick={() => handleCLick("home", "homeRedirect")}
           disabled={siteConfig.waitlist}>
-          {loadingValue === "homeRedirect" && <Icons.spinner className="mr-2 h-5 w-5 animate-spin" />}
+          {loadingValue === "homeRedirect" && <Loader className="mr-2 h-5 w-5 animate-spin" />}
           Explore
         </Button>
       </li>

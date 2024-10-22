@@ -1,3 +1,5 @@
+import { Globe } from "lucide-react";
+
 export function DynamicIcons({
   iconName,
   className,
@@ -35,4 +37,5 @@ export function DynamicIcons({
         />
       </svg>
     );
+  if (iconName === "portfolio") return <Globe />;
 }
