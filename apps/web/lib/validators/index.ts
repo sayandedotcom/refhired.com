@@ -9,3 +9,4 @@ export * from "./find-referrer-validator";
 export * from "./og";
 export * from "./post-schema-validator";
 export * from "./profile-settings-validator";
+export * from "./filters-validator";

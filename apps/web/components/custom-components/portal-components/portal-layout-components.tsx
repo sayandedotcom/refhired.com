@@ -11,15 +11,7 @@ import { useRouter } from "next/navigation";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import clsx from "clsx";
-import {
-  ArrowUpRight,
-  ChevronsUpDown,
-  Coins,
-  Info,
-  PartyPopper,
-  SlidersHorizontal,
-  Star,
-} from "lucide-react";
+import { ArrowUpRight, ChevronsUpDown, Info, PartyPopper, Star } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { FaPenNib } from "react-icons/fa";
 
@@ -33,6 +25,8 @@ import { PlaceholdersAndVanishInput } from "@/components/ui";
 import { withoutRightBarPages } from "@/config";
 
 import { useStore } from "@/store/store";
+
+import Filters from "./filters";
 
 export function LeftSection() {
   const { data: session } = useSession();
@@ -138,7 +132,13 @@ export function LeftSection() {
               <Button
                 onClick={() => router.push("/purchase")}
                 className="font-heading h-9 text-start transition active:scale-95">
-                <Coins className="mb-1 mr-2 h-5 w-5" /> Buy Stars !
+                {/* <Coins className="mb-1 mr-2 h-5 w-5" />  */}
+                Buy Stars
+              </Button>
+              <Button
+                onClick={() => router.push("/purchase")}
+                className="font-heading h-9 text-start transition active:scale-95">
+                Withdraw
               </Button>
               {session?.user?.paidForDashboard && (
                 <Button className="font-heading w-full px-6 text-start transition active:scale-95">
@@ -192,7 +192,6 @@ export function RightSection() {
   // const { data: session } = useSession();
   // const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
   const setJoyRide = useStore((state) => state.setJoyRide);
-  console.log(pathName);
 
   const placeholders = [
     "Remote Front-End Developer jobs",
@@ -205,13 +204,12 @@ export function RightSection() {
     <section
       className={clsx(
         showExtraSection && "md:hidden lg:hidden",
-        "bg-muted/40 font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:w-[20%] lg:flex-col lg:gap-3 lg:p-2"
+        "bg-muted/40 font-heading sticky right-0 top-0 hidden h-screen w-80 font-medium lg:flex lg:flex-col lg:gap-3 lg:p-2",
+        pathName === "/search" ? "lg:w-[25%] " : "lg:w-[20%] "
       )}>
       {pathName === "/search" ? (
         <>
-          <div className="bg-muted flex items-center justify-center gap-2 rounded-sm px-4 py-2 text-lg">
-            <SlidersHorizontal className="mb-1 h-5" /> <h5>Filters</h5>
-          </div>
+          <Filters />
         </>
       ) : (
         <>

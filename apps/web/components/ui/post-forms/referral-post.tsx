@@ -25,6 +25,8 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  InputWithIconEnd,
+  InputWithIconStart,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -41,12 +43,14 @@ import { referralPostValidator } from "@/lib/validators";
 import {
   accept,
   companyList,
+  currencies,
   experienceList,
+  jobLoationType,
   jobRoleList,
-  jobTypeList,
   jobTypeOptionsObj,
   links,
   pdfs,
+  skillsList,
 } from "@/config";
 
 import { cn } from "@/utils";
@@ -58,51 +62,6 @@ import { sonerToast } from "../soner-toast";
 import { AsyncSelectComponent } from "./async-select";
 import { SelectComponent } from "./select";
 
-// const postReferral = ({
-//   accept,
-//   acceptLimit,
-//   companyName,
-//   description,
-//   expiresAt,
-//   jobCode,
-//   jobCompensation,
-//   jobExperience,
-//   jobLocation,
-//   jobRole,
-//   jobType,
-//   jobURL,
-//   postType,
-//   stars,
-//   tags,
-//   refrshToken,
-// }) => {
-//   return request.post(
-//     "/posts/referral",
-//     {
-//       accept,
-//       acceptLimit,
-//       companyName,
-//       description,
-//       expiresAt,
-//       jobCode,
-//       jobCompensation,
-//       jobExperience,
-//       jobLocation,
-//       jobRole,
-//       jobType,
-//       postType,
-//       stars,
-//       tags,
-//       refrshToken,
-//     },
-//     {
-//       headers: {
-//         Authorization: refrshToken && `Bearer ${refrshToken}`,
-//       },
-//     }
-//   );
-// };
-
 export default function ReferralPost() {
   const { data: session } = useSession();
 
@@ -113,18 +72,22 @@ export default function ReferralPost() {
     defaultValues: {
       description: "",
       jobRole: "",
-      jobExperience: "",
+      // jobExperience: 0,
       companyName: "",
+      jobURL: "",
       jobCode: "",
       jobType: "",
-      jobLocation: "Remote",
+      // jobLocation: "Remote Only",
       countryLocation: "",
       stateLocation: "",
       cityLocation: "",
       skills: [],
-      jobCompensation: "",
+      salaryEndingRange: undefined,
+      // jobCompensation: "",
+      currency: undefined,
       // stars: 0,
       // limit: 0,
+      noEquity: false,
       accept: {
         message: true,
         pdfs: ["resume"],
@@ -146,6 +109,7 @@ export default function ReferralPost() {
       jobExperience,
       jobLocation,
       jobRole,
+      jobURL,
       jobType,
       postType,
       stars,
@@ -160,6 +124,7 @@ export default function ReferralPost() {
           description,
           expiresAt,
           jobCode,
+          jobURL,
           jobCompensation,
           jobExperience,
           jobLocation,
@@ -196,8 +161,6 @@ export default function ReferralPost() {
     },
   });
 
-  // console.log("jobType", form.watch().jobType);
-  // console.log("skills", form.watch().skills);
   const [countryiso2, setcountryiso2] = useState("");
   const [stateiso2, setstateiso2] = useState("");
   const mapResponseToValuesAndLabels = (data) => ({
@@ -278,45 +241,46 @@ export default function ReferralPost() {
 
     console.log(values);
 
-    mutate({
-      accept: values.accept,
-      acceptLimit: values.acceptLimit,
-      companyName: values.companyName,
-      description: values.description,
-      expiresAt: values.expiresAt,
-      jobCode: values.jobCode,
-      jobCompensation: values.jobCompensation,
-      jobExperience: values.jobExperience,
-      jobLocation: finalLocationString,
-      jobRole: values.jobRole,
-      jobType: values.jobType,
-      postType: "REFERRALPOST",
-      stars: values.stars,
-      jobURL: "",
-      tags: tags,
-    });
+    // mutate({
+    //   accept: values.accept,
+    //   acceptLimit: values.acceptLimit,
+    //   companyName: values.companyName,
+    //   description: values.description,
+    //   expiresAt: values.expiresAt,
+    //   jobCode: values.jobCode,
+    //   jobCompensation: values.jobCompensation,
+    //   jobExperience: values.jobExperience,
+    //   jobLocation: finalLocationString,
+    //   jobRole: values.jobRole,
+    //   jobType: values.jobType,
+    //   postType: "REFERRALPOST",
+    //   stars: values.stars,
+    //   jobURL: values.jobURL,
+    //   tags: tags,
+    // });
   }
+  // console.log("form.watch", form.watch("noEquity"));
 
   return (
-    <div className="mb-20">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="mx-auto flex w-11/12 flex-col justify-center gap-6">
-          <div className="bg-muted sticky top-0 z-50 mx-auto my-5 flex w-full justify-between rounded-xl p-5">
-            <div>
-              <h2 className="mb-3 text-2xl font-bold capitalize tracking-tight">Referral Post</h2>
-              <p className="text-muted-foreground mb-2">
-                Post a new referral now and open oppotunies to others !
-              </p>
-            </div>
-            <div className="flex items-start justify-center gap-3">
-              <Button className="bg-foreground my-2 rounded-full lg:w-40" isLoading={isPending} type="submit">
-                Publish
-              </Button>
-              <Button className="bg-foreground my-2 rounded-full lg:w-40">Save as Draft</Button>
-            </div>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="mx-auto mb-20 flex flex-col justify-center gap-6">
+        <div className="bg-muted sticky top-0 z-50 mx-auto my-5 flex w-[98%] justify-between rounded-md p-5">
+          <div>
+            <h2 className="mb-3 text-2xl font-bold capitalize tracking-tight">Referral Post</h2>
+            <p className="text-muted-foreground mb-2">
+              Post a new referral now and open oppotunies to others !
+            </p>
           </div>
+          <div className="flex items-start justify-center gap-3">
+            <Button className="bg-foreground my-2 rounded-full lg:w-40" isLoading={isPending} type="submit">
+              Publish
+            </Button>
+            <Button className="bg-foreground my-2 rounded-full lg:w-40">Save as Draft</Button>
+          </div>
+        </div>
+        <div className="mx-auto flex w-11/12 flex-col justify-center gap-6">
           {/* Description */}
           <FormField
             control={form.control}
@@ -352,11 +316,65 @@ export default function ReferralPost() {
               </FormItem>
             )}
           />
-          {/* <Tiptap /> */}
           <Separator />
-          <h5 className="mb-2 font-bold tracking-tight">
-            This will help your referral to reach to many users
-          </h5>
+          <h5 className="mb-2 font-bold tracking-tight">1. Job Details</h5>
+          <div className="my-2 grid w-full grid-cols-3 items-center gap-4">
+            {/* Conpany Name */}
+            <FormField
+              control={form.control}
+              name="companyName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Conpany Name
+                    <Required />
+                  </FormLabel>
+                  <SelectComponent
+                    createAble={true}
+                    isMulti={false}
+                    value={field.value}
+                    options={companyList}
+                    onChange={field.onChange}
+                    placeholder="Select Conpany Name"
+                    {...field}
+                  />
+                  {/* <FormMessage /> */}
+                  <FormCustomMessage>Required</FormCustomMessage>
+                  <FormDescription>Select the Conpany Name.</FormDescription>
+                </FormItem>
+              )}
+            />
+            {/* Job URL */}
+            <FormField
+              control={form.control}
+              name="jobURL"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Job URL</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Job URL" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                  <FormDescription>This is the job listing url.</FormDescription>
+                </FormItem>
+              )}
+            />
+            {/* Job Code */}
+            <FormField
+              control={form.control}
+              name="jobCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Job Code</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Job Code" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                  <FormDescription>This is the job listing code.</FormDescription>
+                </FormItem>
+              )}
+            />
+          </div>
           <div className="my-2 grid w-full grid-cols-3 items-center gap-4">
             {/* Job Role */}
             <FormField
@@ -383,155 +401,6 @@ export default function ReferralPost() {
                 </FormItem>
               )}
             />
-            {/* Job Experience */}
-            <FormField
-              control={form.control}
-              name="jobExperience"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Experience level
-                    <Required />
-                  </FormLabel>
-                  <SelectComponent
-                    createAble={true}
-                    isMulti={false}
-                    value={field.value}
-                    options={experienceList}
-                    onChange={field.onChange}
-                    placeholder="Select Experience level"
-                    {...field}
-                  />
-                  {/* <FormMessage /> */}
-                  <FormCustomMessage>Required</FormCustomMessage>
-                  <FormDescription>Select the job type.</FormDescription>
-                </FormItem>
-              )}
-            />
-            {/* Salary Range */}
-            <FormField
-              control={form.control}
-              name="jobCompensation"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Salary Range
-                    <Required />
-                  </FormLabel>
-                  <SelectComponent
-                    createAble={true}
-                    isMulti={false}
-                    value={field.value}
-                    options={jobTypeList}
-                    onChange={field.onChange}
-                    placeholder="Select Salary Range"
-                    {...field}
-                  />
-                  {/* <FormMessage /> */}
-                  <FormCustomMessage>Required</FormCustomMessage>
-                  <FormDescription>Select the salary Range.</FormDescription>
-                </FormItem>
-              )}
-            />
-          </div>
-          <Separator />
-          <div className="my-2 grid w-full grid-cols-3 items-center gap-4">
-            {/* Conpany Name */}
-            {/* <FormField
-              control={form.control}
-              name="companyName"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel className="mb-2">
-                    Company Name
-                    <Required />
-                  </FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant="outline"
-                          role="combobox"
-                          className={cn(
-                            "w-[300px] justify-between",
-                            !field.value && "text-muted-foreground"
-                          )}>
-                          {field.value
-                            ? countries.find((language) => language.value === field.value)?.label
-                            : "Select Company"}
-                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="h-[220px] w-[300px] p-0">
-                      <Command>
-                        <CommandInput placeholder="Search Companies..." />
-                        <CommandEmpty>No locations found.</CommandEmpty>
-                        <CommandGroup>
-                          {countries.map((language) => (
-                            <CommandItem
-                              value={language.label}
-                              key={language.label}
-                              onSelect={() => {
-                                form.setValue("companyName", language.value);
-                              }}>
-                              <Check
-                                className={cn(
-                                  "mr-2 h-4 w-4",
-                                  language.value === field.value ? "opacity-100" : "opacity-0"
-                                )}
-                              />
-                              {language.label}
-                            </CommandItem>
-                          ))}
-                        </CommandGroup>
-                      </Command>
-                    </PopoverContent>
-                  </Popover>
-                  <FormDescription>This is the locations for the referral.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
-            <FormField
-              control={form.control}
-              name="companyName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    Conpany Name
-                    <Required />
-                  </FormLabel>
-                  <SelectComponent
-                    createAble={true}
-                    isMulti={false}
-                    value={field.value}
-                    options={companyList}
-                    onChange={field.onChange}
-                    placeholder="Select Conpany Name"
-                    {...field}
-                  />
-                  {/* <FormMessage /> */}
-                  <FormCustomMessage>Required</FormCustomMessage>
-                  <FormDescription>Select the Conpany Name.</FormDescription>
-                </FormItem>
-              )}
-            />
-            {/* Job Code */}
-            <FormField
-              control={form.control}
-              name="jobCode"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Job Code</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Job Code" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                  <FormDescription>This is the job listing code.</FormDescription>
-                </FormItem>
-              )}
-            />
             {/* Job Type */}
             <FormField
               control={form.control}
@@ -543,7 +412,7 @@ export default function ReferralPost() {
                     <Required />
                   </FormLabel>
                   <SelectComponent
-                    createAble={true}
+                    createAble={false}
                     isMulti={false}
                     value={field.value}
                     options={jobTypeOptionsObj}
@@ -557,9 +426,230 @@ export default function ReferralPost() {
                 </FormItem>
               )}
             />
+            {/* Job Experience */}
+            <FormField
+              control={form.control}
+              name="jobExperience"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Work experience
+                    <Required />
+                  </FormLabel>
+                  <SelectComponent
+                    createAble={false}
+                    isMulti={false}
+                    value={field.value}
+                    options={experienceList}
+                    onChange={field.onChange}
+                    placeholder="Select Work experience"
+                    {...field}
+                  />
+                  {/* <FormMessage /> */}
+                  <FormCustomMessage>Required</FormCustomMessage>
+                  <FormDescription>Select the job type.</FormDescription>
+                </FormItem>
+              )}
+            />
           </div>
+          {/* Skills */}
+          <FormField
+            control={form.control}
+            name="skills"
+            render={({ field }) => (
+              <FormItem className="my-2">
+                <FormLabel>
+                  Skills
+                  <Required />
+                </FormLabel>
+                <SelectComponent
+                  createAble={true}
+                  isMulti={true}
+                  value={field.value}
+                  options={skillsList}
+                  onChange={field.onChange}
+                  placeholder="Select Skills"
+                  {...field}
+                />
+                <FormMessage />
+                <FormDescription>Select the Skills Required.</FormDescription>
+              </FormItem>
+            )}
+          />
           <Separator />
-          <h5 className="mb-2 font-bold tracking-tight">Select the location of the referral</h5>
+          <h5 className="font-bold tracking-tight">2. Salary & Equity</h5>
+          <div className="mb-2">
+            <FormDescription>
+              Jobs without salaries are not returned in search results for candidates. If you'd rather not
+              share these details, you can always promote your job once it is published.
+            </FormDescription>
+          </div>
+          {/* Salary Range */}
+          {/* <FormField
+            control={form.control}
+            name="jobCompensation"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Salary Range
+                  <Required />
+                </FormLabel>
+                <SelectComponent
+                  createAble={true}
+                  isMulti={false}
+                  value={field.value}
+                  options={jobTypeList}
+                  onChange={field.onChange}
+                  placeholder="Select Salary Range"
+                  {...field}
+                />
+                {/* <FormMessage /> */}
+          {/* <FormCustomMessage>Required</FormCustomMessage>
+                <FormDescription>Select the salary Range.</FormDescription>
+              </FormItem> */}
+          {/* )}
+          />  */}
+          {/* Currency */}
+          <FormField
+            control={form.control}
+            name="currency"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Currency
+                  <Required />
+                </FormLabel>
+                <SelectComponent
+                  createAble={false}
+                  isMulti={false}
+                  // value={field.value}
+                  options={currencies}
+                  // onChange={field.onChange}
+                  value={field.value ? { value: field.value, label: field.value } : ""}
+                  onChange={(newValue: { value: string; label: string } | "") => {
+                    field.onChange(newValue);
+                  }}
+                  placeholder="Select Currency"
+                  {...field}
+                />
+                <FormCustomMessage>Required</FormCustomMessage>
+                <FormDescription>Select the Currency.</FormDescription>
+              </FormItem>
+            )}
+          />
+          <h6 className="font-bold tracking-tight">Annual salary range</h6>
+          <div className="grid w-full grid-cols-2 items-center gap-4">
+            {/* Starting Range */}
+            <FormField
+              control={form.control}
+              name="salaryStartingRange"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Starting Range</FormLabel>
+                  <FormControl>
+                    <InputWithIconStart
+                      type="text"
+                      ///@ts-ignore
+                      icon={form.watch("currency")?.value ?? "$"}
+                      placeholder="10,000"
+                      // value={numeral(field.value).format("0,0")}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Ending Range */}
+            <FormField
+              control={form.control}
+              name="salaryEndingRange"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Ending Range</FormLabel>
+                  <FormControl>
+                    <InputWithIconStart
+                      ///@ts-ignore
+                      icon={form.watch("currency")?.value ?? "$"}
+                      placeholder="80,000"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <h6 className="font-bold tracking-tight">Equity range</h6>
+          <div className="grid w-full grid-cols-2 items-center gap-4">
+            {/* Equity Starting Range */}
+            <FormField
+              control={form.control}
+              name="equityStartingRange"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Starting Range</FormLabel>
+                  <FormControl>
+                    <InputWithIconEnd
+                      disabled={form.watch("noEquity")}
+                      icon="%"
+                      placeholder="0.1"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Equity Ending Range */}
+            <FormField
+              control={form.control}
+              name="equityEndingRange"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Ending Range</FormLabel>
+                  <FormControl>
+                    <InputWithIconEnd
+                      disabled={form.watch("noEquity")}
+                      icon="%"
+                      placeholder="1.2"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          {/* No Equity */}
+          <FormField
+            control={form.control}
+            name="noEquity"
+            render={() => (
+              <FormItem className="my-2 mr-auto">
+                <FormField
+                  control={form.control}
+                  name="noEquity"
+                  render={({ field }) => {
+                    return (
+                      <FormItem className="flex flex-row items-center justify-center space-x-3 space-y-0">
+                        <FormControl>
+                          <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                        </FormControl>
+                        <FormLabel className="mt-2 font-normal">No Equity</FormLabel>
+                      </FormItem>
+                    );
+                  }}
+                />
+              </FormItem>
+            )}
+          />
+          <Separator />
+          <div className="mb-2">
+            <h5 className="font-bold tracking-tight">3. Location</h5>
+            <FormDescription>Add your location policy for this job.</FormDescription>
+          </div>
+          {/* Job Location Type */}
           <FormField
             control={form.control}
             name="jobLocation"
@@ -573,24 +663,16 @@ export default function ReferralPost() {
                     onValueChange={field.onChange}
                     // defaultValue={field.value}
                     className="flex items-center justify-center gap-8">
-                    <FormItem className="flex items-center justify-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="Remote" />
-                      </FormControl>
-                      <FormLabel className="font-normal">Remote</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center justify-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="Hybrid" />
-                      </FormControl>
-                      <FormLabel className="font-normal">Hybrid</FormLabel>
-                    </FormItem>
-                    <FormItem className="flex items-center justify-center space-x-3 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="On-site" />
-                      </FormControl>
-                      <FormLabel className="font-normal">On-site</FormLabel>
-                    </FormItem>
+                    {jobLoationType.map((data) => (
+                      <FormItem
+                        key={data.id}
+                        className="flex items-center justify-center space-x-3 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value={data.label} />
+                        </FormControl>
+                        <FormLabel className="font-normal">{data.label}</FormLabel>
+                      </FormItem>
+                    ))}
                   </RadioGroup>
                 </FormControl>
                 <FormMessage />
@@ -600,7 +682,11 @@ export default function ReferralPost() {
               </FormItem>
             )}
           />
-          <div className="my-2 grid w-full grid-cols-3 items-center gap-4">
+          <div
+            className={cn(
+              "my-2 grid w-full grid-cols-3 items-center gap-4",
+              form.watch("jobLocation") === "Remote Only" && "cursor-not-allowed opacity-50"
+            )}>
             {/* Country Location */}
             <FormField
               control={form.control}
@@ -614,7 +700,6 @@ export default function ReferralPost() {
                     isMulti={false}
                     loadOptions={countriesList}
                     onChange={(data) => {
-                      console.log("onChange==================", data);
                       form.setValue("countryLocation", data?.value);
                       setcountryiso2(data?.iso2);
                     }}
@@ -644,7 +729,6 @@ export default function ReferralPost() {
                     isMulti={false}
                     loadOptions={statesList}
                     onChange={(data) => {
-                      console.log("onChange==================", data);
                       form.setValue("stateLocation", data?.value);
                       setstateiso2(data?.iso2);
                     }}
@@ -684,31 +768,10 @@ export default function ReferralPost() {
             />
           </div>
           <Separator />
-          {/* Skills */}
-          <FormField
-            control={form.control}
-            name="skills"
-            render={({ field }) => (
-              <FormItem className="my-2">
-                <FormLabel>
-                  Skills
-                  <Required />
-                </FormLabel>
-                <SelectComponent
-                  createAble={true}
-                  isMulti={true}
-                  value={field.value}
-                  options={jobTypeList}
-                  onChange={field.onChange}
-                  placeholder="Select Skills"
-                  {...field}
-                />
-                <FormMessage />
-                <FormDescription>Select the Skills Required.</FormDescription>
-              </FormItem>
-            )}
-          />
-          <Separator />
+          <div className="mb-2">
+            <h5 className="font-bold tracking-tight">4. Accept</h5>
+            <FormDescription>What you want from referral seekers</FormDescription>
+          </div>
           {/* Accept */}
           <FormField
             control={form.control}
@@ -841,44 +904,6 @@ export default function ReferralPost() {
               </FormItem>
             )}
           />
-          <Separator />
-          {/* Deadline of Post */}
-          <FormField
-            control={form.control}
-            name="expiresAt"
-            render={({ field }) => (
-              <FormItem className="mx-auto my-2 flex flex-col">
-                <FormLabel>Deadline of Post</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant={"outline"}
-                        className={cn(
-                          "w-[240px] pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
-                        )}>
-                        {field.value ? format(field.value, "PPP") : <span>Pick the deadline date</span>}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      disabled={(date) => date < new Date()}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-                <FormMessage />
-                <FormDescription>Select the deadline of the Post.</FormDescription>
-              </FormItem>
-            )}
-          />
-          <Separator />
           <div className="my-2 grid w-full grid-cols-2 items-center gap-4">
             {/* Stars */}
             <FormField
@@ -917,6 +942,47 @@ export default function ReferralPost() {
               )}
             />
           </div>
+          <Separator />
+          <div className="mb-2">
+            <h5 className="font-bold tracking-tight">5. Deadline</h5>
+            <FormDescription>Give a deadline of the post !</FormDescription>
+          </div>
+          {/* Deadline of Post */}
+          <FormField
+            control={form.control}
+            name="expiresAt"
+            render={({ field }) => (
+              <FormItem className="mx-auto my-2 flex flex-col">
+                <FormLabel>Deadline of Post</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-[240px] pl-3 text-left font-normal",
+                          !field.value && "text-muted-foreground"
+                        )}>
+                        {field.value ? format(field.value, "PPP") : <span>Pick the deadline date</span>}
+                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date) => date < new Date()}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormMessage />
+                <FormDescription>Select the deadline of the Post.</FormDescription>
+              </FormItem>
+            )}
+          />
           {/* Submit */}
           {/* <Separator />
           <div className="flex flex-col items-center justify-center">
@@ -928,8 +994,33 @@ export default function ReferralPost() {
             </Button>
             <Button className="bg-foreground my-2 w-6/12 rounded-full lg:w-40">Save as Draft</Button>
           </div> */}
-        </form>
-      </Form>
-    </div>
+        </div>
+      </form>
+    </Form>
   );
+}
+{
+  /* <RadioGroup
+                    onValueChange={field.onChange}
+                    // defaultValue={field.value}
+                    className="flex items-center justify-center gap-8">
+                    <FormItem className="flex items-center justify-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="Remote" />
+                      </FormControl>
+                      <FormLabel className="font-normal">Remote</FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center justify-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="Hybrid" />
+                      </FormControl>
+                      <FormLabel className="font-normal">Hybrid</FormLabel>
+                    </FormItem>
+                    <FormItem className="flex items-center justify-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="On-site" />
+                      </FormControl>
+                      <FormLabel className="font-normal">On-site</FormLabel>
+                    </FormItem>
+                  </RadioGroup> */
 }

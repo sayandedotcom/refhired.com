@@ -12,6 +12,8 @@ export {
 
 export { Input } from "./input";
 
+export { InputWithIconStart, InputWithIconEnd } from "./input-with-icon";
+
 export { Label } from "./label";
 
 export { Textarea } from "./testarea";

@@ -81,11 +81,11 @@ export const BookmarkButton = () => {
     <>
       {!bookmark ? (
         <TooltipDemo text="Add to Bookmark">
-          <FaRegBookmark onClick={bookmarked} id="options" className="w-5 cursor-pointer" />
+          <FaRegBookmark onClick={bookmarked} id="options" className="h-5 w-5 cursor-pointer" />
         </TooltipDemo>
       ) : (
         <TooltipDemo text="Remove from Bookmark">
-          <FaBookmark onClick={bookmarked} id="options" className="w-5 cursor-pointer" />
+          <FaBookmark onClick={bookmarked} id="options" className="h-5 w-5 cursor-pointer" />
         </TooltipDemo>
       )}
     </>

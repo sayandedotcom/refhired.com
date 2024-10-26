@@ -6,6 +6,7 @@ export const jobTypeOptions = [
   "Contract",
   "Volunteer",
   "Freelance",
+  "Cofounder",
 ];
 
 export const jobTypeOptionsObj = jobTypeOptions.map((item) => ({

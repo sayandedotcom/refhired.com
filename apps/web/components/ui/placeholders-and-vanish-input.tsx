@@ -17,7 +17,7 @@ import { cn } from "@/utils";
 
 export function PlaceholdersAndVanishInput({ placeholders, className, searchIconWidth, showSugession }) {
   const searchParams = useSearchParams();
-  const search = searchParams.get("search_query");
+  const search = searchParams.get("q");
   const [value, setValue] = useState(search ?? "");
   const [isInputFocused, setInputFocused] = useState(false);
   const outsideRef = useRef();

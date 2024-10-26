@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { ChevronDownIcon, X } from "lucide-react";
+import { ChevronDownIcon, Loader, X } from "lucide-react";
 import { ClearIndicatorProps, DropdownIndicatorProps, MultiValueRemoveProps, components } from "react-select";
 import makeAnimated from "react-select/animated";
 import AsyncSelect from "react-select/async";
@@ -94,7 +94,7 @@ export const AsyncSelectComponent = ({
         cacheOptions={cacheOptions}
         defaultOptions={defaultOptions}
         loadOptions={loadOptions}
-        loadingMessage={() => "Loading ..."}
+        loadingMessage={() => <Loader className="mx-auto my-2 h-4 w-4 animate-spin" />}
         unstyled
         isClearable
         isSearchable

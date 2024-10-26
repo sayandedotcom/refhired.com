@@ -12,6 +12,7 @@ import {
   Opensource,
   Review,
   ScrollBasedVelocityCOmponent,
+  ShimmerButtonComponent,
   Stats,
   TopNotificationList,
 } from "@/components/custom-components";
@@ -62,9 +63,9 @@ export default async function Page() {
           tasks for both job seekers and employees who gives referrals
         </p> */}
           {/* <Suspense fallback={<Loading />}>{!session?.user && <JoinWaitlist />}</Suspense> */}
-          {/* <Suspense fallback={<Loading />}>
-            <ShimmerButtonComponent href={"/home"}>Explore the MVP !</ShimmerButtonComponent>
-          </Suspense> */}
+          <Suspense fallback={<Loading />}>
+            <ShimmerButtonComponent href={"/home"}>Explore !</ShimmerButtonComponent>
+          </Suspense>
         </div>
       </Suspense>
 
