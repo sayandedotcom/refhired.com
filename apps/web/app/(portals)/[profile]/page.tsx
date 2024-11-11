@@ -150,6 +150,8 @@ const Profile = async ({ params }: paramsProps) => {
             </Navigate>
             <PostCard.Tags
               allTags={false}
+              companyName={postData.companyName}
+              locationType={postData.jobLocationType}
               location={postData.jobLocation}
               experience={postData.jobExperience}
               jobType={postData.jobType}
