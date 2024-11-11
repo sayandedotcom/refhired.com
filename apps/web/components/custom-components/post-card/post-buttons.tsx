@@ -108,7 +108,7 @@ export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any;
     <TooltipDemo text={`${totalApplied} / ${acceptLimit} Applied`}>
       <div
         className={`flex items-center text-base ${totalApplied === acceptLimit ? "text-red-600" : ""} ${
-          acceptLimit === 0 ? "hidden" : ""
+          acceptLimit ? "" : "hidden"
         } `}>
         <svg height="22" width="22" viewBox="0 0 20 20">
           <circle r="10" cx="10" cy="10" fill="#ffff" />
@@ -129,9 +129,18 @@ export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any;
   );
 };
 
-export const Tags = ({ allTags, location, experience, jobType, salary, role, skills }) => {
+export const Tags = ({
+  allTags,
+  companyName,
+  locationType,
+  location,
+  experience,
+  jobType,
+  salary,
+  role,
+  skills,
+}) => {
   const { width } = useWindowSize();
-  console.log(skills);
 
   return (
     <>
@@ -139,19 +148,35 @@ export const Tags = ({ allTags, location, experience, jobType, salary, role, ski
         search={role}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
+        {companyName}
+      </Badge>
+      <Badge
+        search={role}
+        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+        variant="secondary">
         💼 {role}
       </Badge>
+
       <Badge
         search={location}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
-        📍 {location}
+        {locationType}
       </Badge>
+
+      {location && (
+        <Badge
+          search={location}
+          className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+          variant="secondary">
+          📍 {location}
+        </Badge>
+      )}
       <Badge
         search={experience}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
-        🧑‍💻 {experience}
+        🧑‍💻 {experience} + years of experience
       </Badge>
       <Badge
         search={jobType}

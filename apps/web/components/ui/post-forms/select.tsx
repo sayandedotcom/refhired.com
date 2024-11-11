@@ -94,7 +94,7 @@ export const SelectComponent = ({
   return (
     <>
       <Comp
-        closeMenuOnSelect={false}
+        closeMenuOnSelect={!isMulti}
         getOptionValue={getOptionValue}
         onInputChange={onInputChange}
         loadingMessage={() => <Loader2 className="mx-auto my-2 h-4 w-4 animate-spin" />}

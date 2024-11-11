@@ -79,7 +79,7 @@ function PostCardHeader({
           </UsernameNavigate>
         </PostHoverCard>
         •<small id="post-uploaded">{time}</small>•
-        <small id="post-time-left" className="hidden md:block">
+        <small id="post-time-left" className="hidden capitalize md:block">
           {timeLeft}
         </small>
       </div>
@@ -110,6 +110,8 @@ PostCard.Description = PostCardDescription;
 
 function PostCardTags({
   allTags = false,
+  companyName,
+  locationType,
   location,
   experience,
   jobType,
@@ -118,8 +120,10 @@ function PostCardTags({
   skills,
 }: {
   allTags: boolean;
+  companyName: string;
+  locationType: string;
   location: string;
-  experience: string;
+  experience: number;
   jobType: string;
   salary: string;
   role: string;
@@ -129,6 +133,8 @@ function PostCardTags({
     <div id="post-tags" className="font-heading">
       <Tags
         allTags={allTags}
+        companyName={companyName}
+        locationType={locationType}
         location={location}
         salary={salary}
         role={role}

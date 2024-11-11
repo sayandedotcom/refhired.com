@@ -184,14 +184,14 @@ export const referralPostValidator = z.object({
     .optional()
     // .parse((value) => numeral(value).format("0,0")),
     // .refine((value) => numeral(value).format("0,0"))
-    .transform((value) => +value.replace(/,/g, "")),
+    .transform((value) => +value?.replace(/,/g, "")),
   salaryEndingRange: z.coerce
     .string({
       // required_error: "Name is required",
       // invalid_type_error: "Name must be a string",
     })
     .optional()
-    .transform((value) => +value.replace(/,/g, "")),
+    .transform((value) => +value?.replace(/,/g, "")),
   equityStartingRange: z.coerce
     .number({
       required_error: "Name is required",

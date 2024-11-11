@@ -52,6 +52,8 @@ export default function Home() {
             </Navigate>
             <PostCard.Tags
               allTags={false}
+              companyName={data.companyName}
+              locationType={data.jobLocationType}
               location={data.jobLocation}
               experience={data.jobExperience}
               jobType={data.jobType}

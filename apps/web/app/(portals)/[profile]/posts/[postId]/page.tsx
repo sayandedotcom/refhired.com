@@ -65,6 +65,8 @@ export default async function Post({ params }: PostProps) {
           <PostCard.Description showMore={false}>{data.description}</PostCard.Description>
           <PostCard.Tags
             allTags={true}
+            companyName={data.companyName}
+            locationType={data.jobLocationType}
             location={data.jobLocation}
             experience={data.jobExperience}
             jobType={data.jobType}

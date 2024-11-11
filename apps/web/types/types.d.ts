@@ -18,6 +18,7 @@ export type TPostReferralPost = {
   jobCode: Posts["jobCode"];
   jobCompensation: Posts["jobCompensation"];
   jobExperience: Posts["jobExperience"];
+  jobLocationType: Posts["jobLocationType"];
   jobLocation: Posts["jobLocation"];
   jobRole: Posts["jobRole"];
   jobType: Posts["jobType"];

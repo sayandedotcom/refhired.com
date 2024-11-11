@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
+import numeral from "numeral";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
@@ -107,6 +108,7 @@ export default function ReferralPost() {
       jobCode,
       jobCompensation,
       jobExperience,
+      jobLocationType,
       jobLocation,
       jobRole,
       jobURL,
@@ -127,6 +129,7 @@ export default function ReferralPost() {
           jobURL,
           jobCompensation,
           jobExperience,
+          jobLocationType,
           jobLocation,
           jobRole,
           jobType,
@@ -233,24 +236,46 @@ export default function ReferralPost() {
     if (values?.cityLocation) {
       locationString += " - " + values.cityLocation;
     }
-    const finalLocationString = locationString + ")";
 
-    let tags = [...values.skills, values.countryLocation, values.stateLocation, values.cityLocation].filter(
-      (item) => item !== ""
-    );
+    let jobLocation;
+    if (values?.countryLocation) {
+      jobLocation = values.countryLocation;
+    }
+    if (values?.stateLocation) {
+      jobLocation += ", " + values.stateLocation;
+    }
+    if (values?.cityLocation) {
+      jobLocation += ", " + values.cityLocation + "";
+    }
 
-    console.log(values);
+    const finalLocationString =
+      values.jobLocation === "Remote Only" ? values.jobLocation : locationString + ")";
 
-    // mutate({
+    let tags = values.skills.filter((item) => item !== "");
+    let equity = values.noEquity
+      ? " (No Equity)"
+      : " (" + values.equityStartingRange + "%-" + values.equityEndingRange + "% Equity)";
+
+    let jobCompensation =
+      values.salaryStartingRange &&
+      values.currency +
+        numeral(values.salaryStartingRange).format("0a") +
+        "-" +
+        values.currency +
+        numeral(values.salaryEndingRange).format("0a") +
+        equity;
+
+    // console.log("===========", {
     //   accept: values.accept,
     //   acceptLimit: values.acceptLimit,
     //   companyName: values.companyName,
     //   description: values.description,
     //   expiresAt: values.expiresAt,
     //   jobCode: values.jobCode,
-    //   jobCompensation: values.jobCompensation,
+    //   jobCompensation: jobCompensation,
     //   jobExperience: values.jobExperience,
-    //   jobLocation: finalLocationString,
+    //   jobLocationType: values.jobLocation,
+    //   jobLocation: jobLocation,
     //   jobRole: values.jobRole,
     //   jobType: values.jobType,
     //   postType: "REFERRALPOST",
@@ -258,6 +283,25 @@ export default function ReferralPost() {
     //   jobURL: values.jobURL,
     //   tags: tags,
     // });
+
+    mutate({
+      accept: values.accept,
+      acceptLimit: values.acceptLimit,
+      companyName: values.companyName,
+      description: values.description,
+      expiresAt: values.expiresAt,
+      jobCode: values.jobCode,
+      jobCompensation: jobCompensation,
+      jobExperience: values.jobExperience,
+      jobLocationType: values.jobLocation,
+      jobLocation: values.jobLocation === "Remote Only" ? null : jobLocation,
+      jobRole: values.jobRole,
+      jobType: values.jobType,
+      postType: "REFERRALPOST",
+      stars: values.stars,
+      jobURL: values.jobURL,
+      tags: tags,
+    });
   }
   // console.log("form.watch", form.watch("noEquity"));
 
@@ -551,7 +595,7 @@ export default function ReferralPost() {
                       type="text"
                       ///@ts-ignore
                       icon={form.watch("currency")?.value ?? "$"}
-                      placeholder="10,000"
+                      placeholder="50,000"
                       // value={numeral(field.value).format("0,0")}
                       {...field}
                     />
@@ -697,6 +741,7 @@ export default function ReferralPost() {
                     Country Location <Required />
                   </FormLabel>
                   <AsyncSelectComponent
+                    isDisabled={form.watch("jobLocation") === "Remote Only"}
                     isMulti={false}
                     loadOptions={countriesList}
                     onChange={(data) => {
@@ -726,6 +771,7 @@ export default function ReferralPost() {
                     State Location
                   </FormLabel>
                   <AsyncSelectComponent
+                    isDisabled={form.watch("jobLocation") === "Remote Only"}
                     isMulti={false}
                     loadOptions={statesList}
                     onChange={(data) => {

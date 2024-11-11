@@ -89,6 +89,7 @@ export const AsyncSelectComponent = ({
   return (
     <>
       <AsyncSelect
+        closeMenuOnSelect={!isMulti}
         getOptionValue={getOptionValue}
         onInputChange={onInputChange}
         cacheOptions={cacheOptions}

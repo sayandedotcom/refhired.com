@@ -17,7 +17,7 @@ model User {
   overlayImage     String?     @map("overlay_image")
   name             String?
   bio              String?
-  locale           String?
+  link             String?
   location         String?
   stars            Int?        @default(0)
   stripeCustomerId String?     @unique @map("stripe_customer_id")
@@ -86,7 +86,8 @@ model Posts {
   expiresAt       DateTime?   @map("expires_at")
   jobRole         String?     @map("job_role")
   jobType         String?     @map("job_type")
-  jobExperience   String?     @map("job_experience")
+  jobExperience   Int?        @map("job_experience")
+  jobLocationType String?     @map("job_location_type")
   jobLocation     String?     @map("job_location")
   jobCompensation String?     @map("job_compensation")
   userId          String

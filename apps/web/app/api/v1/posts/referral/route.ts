@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
   }
   const response: TPostReferralPost = await request.json();
   const session = await auth();
+
   // const key = `RATE_LIMIT:POST:${response.userId}`;
   // const currentCount = await redis.incr(key);
 
@@ -49,6 +50,8 @@ export async function POST(request: NextRequest) {
       jobCode: response.jobCode,
       jobCompensation: response.jobCompensation,
       jobExperience: response.jobExperience,
+      jobLocationType: response.jobLocationType,
+      jobURL: response.jobURL,
       jobLocation: response.jobLocation,
       jobRole: response.jobRole,
       jobType: response.jobType,

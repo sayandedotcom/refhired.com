@@ -8,7 +8,7 @@ declare module "next-auth" {
   interface Session {
     error?: "RefreshTokenError";
     user: {
-      id: string;
+      id: PrismaUser["id"];
       userName: PrismaUser["userName"];
       stripeCustomerId?: PrismaUser["stripeCustomerId"];
       stars: PrismaUser["stars"];
