@@ -32,31 +32,28 @@ import {
 import { request } from "@/lib/axios";
 import { applyValidator } from "@/lib/validators";
 
+import { TApply } from "@/types/types";
+
 import RichTextEditor from "../Tiptap";
 import { DynamicIcons } from "../icons/dynamic-icons";
-import { Badge } from "./badge/badge";
 import { sonerToast } from "./soner-toast";
-
-const applyPost = ({ applyInfo, postId }) => {
-  return request.post("/apply", { applyInfo, postId });
-};
 
 export function ApplyDialog({
   myObject,
-  postID,
+  postId,
   stars,
   totalApplied,
   acceptLimit,
   expired,
-  isAuthor,
+  authorId,
 }: {
   myObject?: any;
-  postID?: any;
+  postId?: any;
   stars?: any;
   totalApplied?: any;
   acceptLimit?: any;
   expired?: any;
-  isAuthor?: boolean;
+  authorId: string;
 }) {
   const router = useRouter();
 
@@ -66,10 +63,10 @@ export function ApplyDialog({
 
   const { mutate, isPending } = useMutation({
     mutationKey: ["apply"],
-    mutationFn: ({ applyInfo, postId }: { applyInfo: any; postId: any }) => {
+    mutationFn: ({ applyInfo, postId, starsRequired, authorId }: TApply) => {
       return request.post(
         "/apply",
-        { applyInfo, postId },
+        { applyInfo, postId, starsRequired, authorId },
         {
           headers: {
             Authorization: session?.user?.refresh_token && `Bearer ${session?.user?.refresh_token}`,
@@ -107,13 +104,13 @@ export function ApplyDialog({
   function onSubmit(values: z.infer<typeof applyValidator>) {
     if (!session) {
       sonerToast({
-        severity: "error",
-        title: "Oopps !",
-        message: "Please Login to continue !",
+        severity: "warning",
+        title: "Oops !",
+        message: "You are not authenticated. Please Login to continue!",
       });
       router.push("/auth/login");
     } else {
-      mutate({ applyInfo: values, postId: postID });
+      mutate({ applyInfo: values, postId: postId, starsRequired: stars, authorId: authorId });
     }
   }
 
@@ -132,21 +129,15 @@ export function ApplyDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        {isAuthor ? (
-          <></>
-        ) : (
-          <Button
-            id="post-apply"
-            disabled={expired || full}
-            // disabled={full || expired}
-            isLoading={isPending}
-            // isLoading={loadingValue === "apply"}
-            // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
-            // onClick={apply}
-            className="h-9 rounded-full text-sm md:w-36">
-            {(full && "Full") || (expired && "Expired") || "Apply"}
-          </Button>
-        )}
+        <Button
+          id="post-apply"
+          disabled={expired || full}
+          // isLoading={isPending}
+          // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
+          // onClick={apply}
+          className="h-9 rounded-full text-sm md:w-36">
+          {(full && "Full") || (expired && "Expired") || "Apply"}
+        </Button>
       </DialogTrigger>
       <DialogContent className="border-foreground w-11/12 md:w-[500px]">
         <DialogHeader>
@@ -181,7 +172,36 @@ export function ApplyDialog({
               />
             )}
             {/* PDF */}
-            {myObject?.hasOwnProperty("pdfs") &&
+            <div className="mt-2">
+              {myObject?.hasOwnProperty("pdfs") &&
+                myObject.pdfs.map((name, index) => (
+                  <FormField
+                    control={form.control}
+                    key={index}
+                    name={`pdfs.${index}.${name}`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className={cn(index !== 0 && "sr-only")}>Pdfs</FormLabel>
+                        <FormDescription className={cn(index !== 0 && "sr-only")}>
+                          Add pdfs links.
+                        </FormDescription>
+                        <FormControl>
+                          <div className="flex items-center gap-2">
+                            <DynamicIcons iconName={name} className="h-7 w-7" />
+                            <Input
+                              {...field}
+                              placeholder={name.charAt(0).toUpperCase() + name.slice(1)}
+                              type="url"
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                ))}
+            </div>
+            {/* {myObject?.hasOwnProperty("pdfs") &&
               myObject.pdfs.map((name, index) => (
                 <FormField
                   control={form.control}
@@ -207,7 +227,7 @@ export function ApplyDialog({
                     </FormItem>
                   )}
                 />
-              ))}
+              ))} */}
             {/* Links */}
             <div className="mt-2">
               {myObject?.hasOwnProperty("links") &&
@@ -238,20 +258,20 @@ export function ApplyDialog({
                   />
                 ))}
             </div>
-            {notEnoughStars ? (
+            {/* {notEnoughStars ? (
               <Badge className="bg-destructive text-foreground mx-auto py-1 text-sm">
                 You Don't have enough Stars to Apply
               </Badge>
-            ) : (
-              <Button
-                isLoading={isPending}
-                disabled={notEnoughStars}
-                // disabled={!form.formState.isValid}
-                className="w-5/12 self-center rounded-full"
-                type="submit">
-                {stars ? `Apply with ${stars} stars !` : "Apply !"}
-              </Button>
-            )}
+            ) : ( */}
+            <Button
+              isLoading={isPending}
+              // disabled={notEnoughStars}
+              // disabled={!form.formState.isValid}
+              className="w-5/12 self-center rounded-full"
+              type="submit">
+              {stars ? `Apply with ${stars} stars` : "Apply !"}
+            </Button>
+            {/* )} */}
           </form>
         </Form>
       </DialogContent>

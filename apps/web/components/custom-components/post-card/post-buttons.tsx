@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { useLoading, useWindowSize } from "@/hooks";
-import { Bookmark, CircleCheckBig, MessageCircle, Share2, Star } from "lucide-react";
+import { Bookmark, MessageCircle, Share2, Star } from "lucide-react";
 
 import { Button } from "@referrer/ui";
 
@@ -24,7 +24,7 @@ export const ApplyButton = ({ stars }) => {
         id="post-apply"
         disabled={applied}
         isLoading={loadingValue === "apply"}
-        iconBefore={applied && <CircleCheckBig className="mr-2 h-4 w-4 text-green-400" />}
+        iconBefore={applied && <Bookmark className="mr-2 h-4 w-4 text-green-400" />}
         onClick={apply}
         className="h-9 w-3/12 rounded-full text-sm">
         {applied ? "Applied !" : `Apply (⭐ ${stars})`}

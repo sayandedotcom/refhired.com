@@ -56,7 +56,7 @@ export default function DataTable<TData, TValue>({ columns, data }: DataTablePro
   });
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-1">
       <DataTableToolbar table={table} />
       <div className="rounded-md border">
         <Table>
