@@ -10,11 +10,12 @@ import { BadgeProps, badgeVariants } from "@referrer/ui";
 
 interface Search {
   search?: string;
+  search_query?: string;
 }
 
 interface Search extends BadgeProps {}
 
-export function Badge({ children, search, className, variant, ...props }: Search) {
+export function Badge({ children, search, search_query, className, variant, ...props }: Search) {
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -32,7 +33,7 @@ export function Badge({ children, search, className, variant, ...props }: Search
   return (
     <div
       onClick={() => {
-        search && router.push("/search" + "?" + createQueryString("search_query", search?.toLowerCase()));
+        search && router.push("/search" + "?" + createQueryString(search_query, search));
       }}
       className={cn(badgeVariants({ variant }), "mx-1 w-fit", className)}
       {...props}>

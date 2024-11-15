@@ -50,7 +50,7 @@ export const portalsList = [
   },
   {
     name: "Dashboard",
-    link: "/dashboard",
+    link: "/dashboard/overview",
     icon: <LayoutDashboard />,
   },
   {

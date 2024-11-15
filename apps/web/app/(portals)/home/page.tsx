@@ -2,6 +2,7 @@
 
 import { fromNow } from "@refhiredcom/utils";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 
 import { PostCard } from "@/components/custom-components";
 import {
@@ -21,6 +22,7 @@ import { TPosts } from "@/types/types";
 import Loading from "../loading";
 
 export default function Home() {
+  const { data: session } = useSession();
   const { data, isLoading } = useQuery<TPosts>({
     queryKey: ["posts"],
     queryFn: () => {
@@ -36,18 +38,26 @@ export default function Home() {
     <>
       {data?.data?.data?.map((data) => (
         <PostCard key={data.id}>
-          <PostCard.Image src={data.user?.image ?? "/images/avatar/avatar.png"} />
+          <PostCard.Image
+            src={data.user?.image ?? "/images/avatar/avatar.png"}
+            name={data.user?.name}
+            userName={data.user?.userName}
+            bio={data.user?.bio}
+          />
           <PostCard.Content>
             <PostCard.Header
               name={data.user?.name}
               userName={data.user?.userName}
+              image={data.user?.image ?? "/images/avatar/avatar.png"}
+              bio={data.user?.bio}
               time={fromNow(data.createdAt)}
               timeLeft={data.expiresAt ? fromNow(data.expiresAt) : "No Expiry"}
               postType={data.postType}
+              isAuthor={session?.user?.id === data.userId}
             />
             <Navigate userName={data.user.userName} postId={data.id}>
               <PostCard.Description showMore={true}>
-                {data.description.substring(0, 300)}
+                {data.description.substring(0, 350).concat(" ...")}
               </PostCard.Description>
             </Navigate>
             <PostCard.Tags
@@ -68,14 +78,20 @@ export default function Home() {
                 <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
                 <StarButton star={data.stars} />
               </MultipleButtons>
-              <ApplyDialog
-                myObject={data.accept}
-                postID={data.id}
-                stars={data.stars}
-                totalApplied={data.totalApplied}
-                acceptLimit={data.acceptLimit}
-                // expired={expired(data.expiresAt)}
-              />
+              {session?.user?.id === data.userId ? (
+                <></>
+              ) : (
+                // <Button className="h-9 rounded-full text-sm md:w-36">Analytics</Button>
+                <ApplyDialog
+                  myObject={data.accept}
+                  postId={data.id}
+                  stars={data.stars}
+                  totalApplied={data.totalApplied}
+                  acceptLimit={data.acceptLimit}
+                  authorId={data.userId}
+                  // expired={expired(data.expiresAt)}
+                />
+              )}
             </PostCard.Footer>
           </PostCard.Content>
         </PostCard>

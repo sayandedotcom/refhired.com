@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -32,10 +34,11 @@ import { applyValidator } from "@/lib/validators";
 
 import RichTextEditor from "../Tiptap";
 import { DynamicIcons } from "../icons/dynamic-icons";
+import { Badge } from "./badge/badge";
 import { sonerToast } from "./soner-toast";
 
-const applyPost = ({ applyInfo, postId, userId }) => {
-  return request.post("/apply", { applyInfo, postId, userId });
+const applyPost = ({ applyInfo, postId }) => {
+  return request.post("/apply", { applyInfo, postId });
 };
 
 export function ApplyDialog({
@@ -45,6 +48,7 @@ export function ApplyDialog({
   totalApplied,
   acceptLimit,
   expired,
+  isAuthor,
 }: {
   myObject?: any;
   postID?: any;
@@ -52,12 +56,27 @@ export function ApplyDialog({
   totalApplied?: any;
   acceptLimit?: any;
   expired?: any;
+  isAuthor?: boolean;
 }) {
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
+
   const { data: session } = useSession();
+
   const { mutate, isPending } = useMutation({
     mutationKey: ["apply"],
-    mutationFn: applyPost,
+    mutationFn: ({ applyInfo, postId }: { applyInfo: any; postId: any }) => {
+      return request.post(
+        "/apply",
+        { applyInfo, postId },
+        {
+          headers: {
+            Authorization: session?.user?.refresh_token && `Bearer ${session?.user?.refresh_token}`,
+          },
+        }
+      );
+    },
     onSuccess(data, variables) {
       setOpen(!open);
       sonerToast({
@@ -67,8 +86,6 @@ export function ApplyDialog({
       });
     },
     onError(error, variables, context) {
-      ///@ts-expect-error
-      setError(error?.response.data.message);
       sonerToast({
         severity: "error",
         title: "Error !",
@@ -90,12 +107,13 @@ export function ApplyDialog({
   function onSubmit(values: z.infer<typeof applyValidator>) {
     if (!session) {
       sonerToast({
-        severity: "info",
+        severity: "error",
         title: "Oopps !",
-        message: "Login or SignUp to continue !",
+        message: "Please Login to continue !",
       });
+      router.push("/auth/login");
     } else {
-      mutate({ applyInfo: values, postId: postID, userId: session?.user?.id });
+      mutate({ applyInfo: values, postId: postID });
     }
   }
 
@@ -108,24 +126,28 @@ export function ApplyDialog({
   // !form.formState.isSubmitSuccessful;
 
   const full = acceptLimit != 0 && acceptLimit === totalApplied;
+  const notEnoughStars = session?.user?.stars < stars;
   const fileRef = form.register("pdfs");
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button
-          id="post-apply"
-          // disabled={applied}
-          // disabled={full || expired}
-          isLoading={isPending}
-          // isLoading={loadingValue === "apply"}
-          // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
-          // onClick={apply}
-          className="h-9 rounded-full text-sm md:w-36">
-          {(full && "Full") || (expired && "Expired") || "Apply"}
-        </Button>
+        {isAuthor ? (
+          <></>
+        ) : (
+          <Button
+            id="post-apply"
+            disabled={expired || full}
+            // disabled={full || expired}
+            isLoading={isPending}
+            // isLoading={loadingValue === "apply"}
+            // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
+            // onClick={apply}
+            className="h-9 rounded-full text-sm md:w-36">
+            {(full && "Full") || (expired && "Expired") || "Apply"}
+          </Button>
+        )}
       </DialogTrigger>
-
       <DialogContent className="border-foreground w-11/12 md:w-[500px]">
         <DialogHeader>
           <DialogTitle className="text-3xl">Best of Luck ! 🤞</DialogTitle>
@@ -134,27 +156,7 @@ export function ApplyDialog({
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="relative flex flex-col space-y-2">
-            {/* <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-base">Write a short message to the referrer</FormLabel>
-                  <FormControl>
-                    <RichTextEditor
-                      charactersLimit={400}
-                      className="min-h-[140px] max-w-full text-base"
-                      name="message"
-                      placeholder="Write a short message to the referrer here. . . . . ."
-                      value={field.value}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
+          <form onSubmit={form.handleSubmit(onSubmit)} className="relative flex w-full flex-col space-y-2">
             {/* Message */}
             {myObject?.hasOwnProperty("message") && myObject.message === true && (
               <FormField
@@ -193,6 +195,7 @@ export function ApplyDialog({
                       <FormControl>
                         <Input
                           name={name}
+                          value={undefined}
                           type="file"
                           accept=".pdf"
                           className="ml-auto w-8/12 cursor-pointer"
@@ -235,13 +238,20 @@ export function ApplyDialog({
                   />
                 ))}
             </div>
-            <Button
-              isLoading={isPending}
-              // disabled={!form.formState.isValid}
-              className="w-5/12 self-center rounded-full"
-              type="submit">
-              Apply !
-            </Button>
+            {notEnoughStars ? (
+              <Badge className="bg-destructive text-foreground mx-auto py-1 text-sm">
+                You Don't have enough Stars to Apply
+              </Badge>
+            ) : (
+              <Button
+                isLoading={isPending}
+                disabled={notEnoughStars}
+                // disabled={!form.formState.isValid}
+                className="w-5/12 self-center rounded-full"
+                type="submit">
+                {stars ? `Apply with ${stars} stars !` : "Apply !"}
+              </Button>
+            )}
           </form>
         </Form>
       </DialogContent>

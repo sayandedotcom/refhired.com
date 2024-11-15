@@ -150,7 +150,8 @@ export default function ReferralPost() {
         title: "Sucess !",
         message: data.data.message,
       });
-      // form.reset();
+      router.push("/home");
+      form.reset();
     },
     onError(error, variables, context) {
       console.log("errrrorrrr", error);

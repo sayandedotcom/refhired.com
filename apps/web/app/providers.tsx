@@ -11,8 +11,7 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { Toaster as SonerToaster } from "sonner";
 
-import { Toaster } from "@referrer/ui";
-
+// import { Toaster } from "@referrer/ui";
 import { PreLoader } from "@/components/custom-components";
 import { Banner, Footer, Navbar } from "@/components/layout";
 import CookieConsent from "@/components/ui/cookie-consent";
@@ -37,7 +36,7 @@ export function Provider({ children }) {
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <QueryClientProvider client={queryClient}>
           <SessionProvider>
-            <Toaster />
+            {/* <Toaster /> */}
             <SonerToaster position={toastPosition} />
             {!isMounted ? (
               <PreLoader />

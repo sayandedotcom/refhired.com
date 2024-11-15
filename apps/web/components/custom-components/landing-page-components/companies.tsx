@@ -11,7 +11,7 @@ export function Companies() {
       <div className="relative my-10 flex flex-wrap items-center justify-center gap-10">
         <Marquee pauseOnHover className="w-[95vw] overflow-hidden [--duration:20s]">
           <Icons.meta className="mx-4" />
-          <Icons.googleLogo className="mx-4" />
+          <Icons.GLogo className="mx-4" />
           <Icons.microsoft className="mx-4" />
           <Icons.apple className="mx-4" />
           <Icons.logo className="mx-4" />

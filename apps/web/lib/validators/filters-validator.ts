@@ -47,7 +47,7 @@ export const filterValidator = z.object({
     )
     .optional()
     .transform((value) => value?.map((item) => item.value) ?? []),
-  jobLocation: z.array(z.string()),
+  jobLocationType: z.array(z.string()),
   // .array(z.string())
   // .refine((value) => value?.some((item) => item))
   // .optional(),

@@ -10,7 +10,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PartyPopper } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import * as z from "zod";
 
 import {
@@ -229,9 +228,8 @@ const SignUp = () => {
             {loadingValue === "google" ? (
               <Icons.spinner className="h-6 w-6 animate-spin" />
             ) : (
-              // <Icons.google className="h-5 w-4" />
-              <FcGoogle className="h-6 w-6" />
-            )}{" "}
+              <Icons.googleG />
+            )}
             Google
           </Button>
         </div>

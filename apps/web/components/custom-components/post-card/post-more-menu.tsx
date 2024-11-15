@@ -26,7 +26,13 @@ import {
 
 const labels = ["feature", "bug", "enhancement", "documentation", "design", "question", "maintenance"];
 
-export function ComboboxDropdownMenu({ children }: { children: React.ReactNode }) {
+export function ComboboxDropdownMenu({
+  children,
+  isAuthor,
+}: {
+  children: React.ReactNode;
+  isAuthor?: boolean;
+}) {
   const [label, setLabel] = React.useState("feature");
   const [open, setOpen] = React.useState(false);
 
@@ -35,49 +41,59 @@ export function ComboboxDropdownMenu({ children }: { children: React.ReactNode }
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[200px]">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
-            Assign to...
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Calendar className="mr-2 h-4 w-4" />
-            Set due date...
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <Tags className="mr-2 h-4 w-4" />
-              Apply label
-            </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent className="p-0">
-              <Command>
-                <CommandInput placeholder="Filter label..." autoFocus={true} />
-                <CommandList>
-                  <CommandEmpty>No label found.</CommandEmpty>
-                  <CommandGroup>
-                    {labels.map((label) => (
-                      <CommandItem
-                        key={label}
-                        onSelect={(value) => {
-                          setLabel(value);
-                          setOpen(false);
-                        }}>
-                        {label}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="text-red-600">
-            <Trash className="mr-2 h-4 w-4" />
-            Delete
-            <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        {isAuthor ? (
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <User className="mr-2 h-4 w-4" />
+              Assign to...
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Calendar className="mr-2 h-4 w-4" />
+              Set due date...
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>
+                <Tags className="mr-2 h-4 w-4" />
+                Apply label
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent className="p-0">
+                <Command>
+                  <CommandInput placeholder="Filter label..." autoFocus={true} />
+                  <CommandList>
+                    <CommandEmpty>No label found.</CommandEmpty>
+                    <CommandGroup>
+                      {labels.map((label) => (
+                        <CommandItem
+                          key={label}
+                          onSelect={(value) => {
+                            setLabel(value);
+                            setOpen(false);
+                          }}>
+                          {label}
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="text-red-600">
+              <Trash className="mr-2 h-4 w-4" />
+              Delete
+              <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        ) : (
+          <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <User className="mr-2 h-4 w-4" />
+              Hide
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+          </DropdownMenuGroup>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

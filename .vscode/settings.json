@@ -1,8 +1,7 @@
 {
   "editor.formatOnSave": true,
   "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma",
-    "editor.formatOnSave": true
+    "editor.defaultFormatter": "KhanhhNe.prisma-smart-formatter"
   },
   "editor.tabSize": 2,
   "javascript.validate.enable": false,

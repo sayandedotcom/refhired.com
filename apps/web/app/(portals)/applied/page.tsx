@@ -47,7 +47,7 @@ const Applied = async () => {
   const session = await auth();
 
   if (!session) {
-    return <PortalsNotFound text="Requests" />;
+    return <PortalsNotFound text="Applies" />;
   }
 
   const data = await getAllAppliedPosts();

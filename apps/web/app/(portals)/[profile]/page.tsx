@@ -134,18 +134,26 @@ const Profile = async ({ params }: paramsProps) => {
       <Separator />
       {data?.posts.map((postData) => (
         <PostCard key={postData.id}>
-          <PostCard.Image src={data?.image ?? "/images/avatar/avatar.png"} />
+          <PostCard.Image
+            src={data?.image ?? "/images/avatar/avatar.png"}
+            name={data.name}
+            userName={data.userName}
+            bio={data.bio}
+          />
           <PostCard.Content>
             <PostCard.Header
-              name={data?.name}
-              userName={data?.userName}
-              time={fromNow(postData.createdAt)}
+              name={data.name}
+              userName={data.userName}
+              image={data.image ?? "/images/avatar/avatar.png"}
+              bio={data.bio}
+              time={fromNow(data.createdAt)}
               timeLeft={postData.expiresAt ? fromNow(postData.expiresAt) : "No Expiry"}
               postType={postData.postType}
+              isAuthor={session?.user?.id === data.id}
             />
-            <Navigate userName={data.userName} postId={postData.id}>
+            <Navigate userName={data.userName} postId={data.id}>
               <PostCard.Description showMore={true}>
-                {postData.description.substring(0, 300)}
+                {postData.description.substring(0, 350).concat(" ...")}
               </PostCard.Description>
             </Navigate>
             <PostCard.Tags
@@ -157,24 +165,29 @@ const Profile = async ({ params }: paramsProps) => {
               jobType={postData.jobType}
               role={postData.jobRole}
               salary={postData.jobCompensation}
-              // skills={postData.tags}
             />
             <PostCard.Footer>
               <MultipleButtons>
                 {/* <CommentButton /> */}
-                <ShareButton link={`${data.userName}/posts/${postData.id}`} title={postData.description} />
+                <ShareButton link={`${data.userName}/posts/${data.id}`} title={postData.description} />
                 <BookmarkButton />
                 <ApplyStatus totalApplied={postData.totalApplied} acceptLimit={postData.acceptLimit} />
                 <StarButton star={data.stars} />
               </MultipleButtons>
-              <ApplyDialog
-                myObject={postData.accept}
-                postID={postData.id}
-                stars={postData.stars}
-                totalApplied={postData.totalApplied}
-                acceptLimit={postData.acceptLimit}
-                // expired={data.expiresAt}
-              />
+              {session?.user.id === data.id ? (
+                <></>
+              ) : (
+                // <Button className="h-9 rounded-full text-sm md:w-36">Analytics</Button>
+                <ApplyDialog
+                  myObject={postData.accept}
+                  postId={postData.id}
+                  stars={postData.stars}
+                  totalApplied={postData.totalApplied}
+                  acceptLimit={postData.acceptLimit}
+                  authorId={postData.userId}
+                  // expired={expired(data.expiresAt)}
+                />
+              )}
             </PostCard.Footer>
           </PostCard.Content>
         </PostCard>

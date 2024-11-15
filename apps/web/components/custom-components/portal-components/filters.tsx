@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { useSearch } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ListFilter, Search } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -68,7 +69,7 @@ function Filters() {
       jobURL: searchParams.get("jobURL") ?? "",
       jobCode: searchParams.get("jobCode") ?? "",
       ///@ts-ignore
-      jobLocation: searchParams.getAll("jobLocation") ?? [],
+      jobLocationType: searchParams.getAll("jobLocationType") ?? [],
       ///@ts-ignore
       skills:
         searchParams.getAll("skills").map((item) => ({
@@ -97,7 +98,7 @@ function Filters() {
     const skills = form.watch("skills");
     const jobRole = form.watch("jobRole");
     const jobExperience = form.watch("jobExperience");
-    const jobLocation = form.watch("jobLocation");
+    const jobLocationType = form.watch("jobLocationType");
     const jobURL = form.watch("jobURL");
     const jobCode = form.watch("jobCode");
 
@@ -159,20 +160,22 @@ function Filters() {
       });
     }
 
-    if (Array.isArray(jobLocation)) {
-      if (jobLocation.length === 0) removeQueryParam("jobLocation");
+    if (Array.isArray(jobLocationType)) {
+      if (jobLocationType.length === 0) removeQueryParam("jobLocationType");
 
-      jobLocation.forEach((data) => {
+      jobLocationType.forEach((data) => {
         ///@ts-ignore
-        params.append("jobLocation", data); // Append each skill for the same key
+        params.append("jobLocationType", data); // Append each skill for the same key
       });
     }
 
     if (jobURL) {
-      params.append("jobURL", String(jobURL)); // Append jobLocation
+      if (!jobURL) removeQueryParam("jobURL");
+      params.append("jobURL", String(jobURL)); // Append jobLocationType
     }
 
     if (jobCode) {
+      if (!jobCode) removeQueryParam("jobCode");
       params.append("jobCode", String(jobCode)); // Append jobExperience
     }
 
@@ -186,18 +189,28 @@ function Filters() {
     form.watch("skills"),
     form.watch("postType"),
     form.watch("jobRole"),
-    form.watch("jobLocation"),
+    form.watch("jobLocationType"),
     form.watch("jobExperience"),
     form.watch("jobURL"),
     form.watch("jobCode"),
   ]);
+  const urlParams = new URLSearchParams(window.location.search);
 
-  function onSubmit(value: z.infer<typeof filterValidator>) {
+  const { data, refetch } = useSearch(urlParams.toString());
+
+  async function onSubmit(value: z.infer<typeof filterValidator>) {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // const { data } = useSearch(urlParams.toString());
+
+    // await request.get("/search", {
+    //   params: urlParams,
+    // });
     console.log(value);
   }
 
   return (
-    <div className="flex flex-col overflow-auto">
+    <div className="flex flex-col">
       <div className="bg-muted font-heading flex items-center justify-center gap-2 rounded-sm px-4 py-1 text-lg">
         <ListFilter className="mb-1 h-5" /> <h6>Filters</h6>
       </div>
@@ -347,7 +360,7 @@ function Filters() {
           {/* Job Location Type */}
           <FormField
             control={form.control}
-            name="jobLocation"
+            name="jobLocationType"
             render={() => (
               <FormItem className="my-2">
                 <FormLabel>Location Type</FormLabel>
@@ -356,7 +369,7 @@ function Filters() {
                     <FormField
                       key={item.id}
                       control={form.control}
-                      name="jobLocation"
+                      name="jobLocationType"
                       render={({ field }) => {
                         return (
                           <FormItem
@@ -434,7 +447,7 @@ function Filters() {
               </FormItem>
             )}
           />
-          <Button className="mx-auto rounded-full px-5" type="submit">
+          <Button className="mx-auto rounded-full px-5" onClick={() => refetch()} type="submit">
             <Search className="mr-1 h-5" /> Search
           </Button>
         </form>

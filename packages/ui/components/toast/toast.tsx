@@ -3,7 +3,6 @@ import { forwardRef } from "react";
 
 import clsx from "clsx";
 import { AlertTriangle, CheckCircle2, Info, XCircle } from "lucide-react";
-import type { IconType } from "react-icons";
 
 export interface AlertProps {
   title?: ReactNode;
@@ -12,7 +11,7 @@ export interface AlertProps {
   className?: string;
   iconClassName?: string;
   severity: "success" | "warning" | "error" | "info" | "neutral";
-  CustomIcon?: IconType;
+  CustomIcon?: any;
   customIconColor?: string;
 }
 export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
@@ -22,7 +21,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
     <div
       ref={ref}
       className={clsx(
-        "font-heading rounded-md  p-3",
+        "font-heading rounded-md p-3",
         props.className,
         severity === "error" && "bg-red-100 text-red-900 dark:bg-red-900 dark:text-red-200",
         severity === "warning" && "bg-[#fceed8] text-[#844932] dark:bg-orange-900 dark:text-orange-200",
@@ -30,7 +29,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
         severity === "success" && "bg-green-100 text-green-900 dark:bg-green-900 dark:text-green-200",
         severity === "neutral" && "bg-foreground text-background"
       )}>
-      <div className="relative flex md:flex-row">
+      <div className="relative flex gap-2 md:flex-row">
         {CustomIcon ? (
           <div className="flex-shrink-0">
             <CustomIcon
@@ -73,7 +72,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           </div>
         )}
         <div className="flex flex-grow flex-col sm:flex-row">
-          <div className="ml-3">
+          <div>
             <h3 className="text-sm font-medium">{props.title}</h3>
             <div className="text-sm">{props.message}</div>
           </div>

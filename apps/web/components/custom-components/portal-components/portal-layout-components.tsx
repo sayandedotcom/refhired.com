@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -11,15 +11,14 @@ import { useRouter } from "next/navigation";
 import { portalsList } from "@/config/portals-list";
 import { useWindowSize } from "@/hooks";
 import clsx from "clsx";
-import { ArrowUpRight, ChevronsUpDown, Info, PartyPopper, Star } from "lucide-react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { FaPenNib } from "react-icons/fa";
+import { ArrowUpRight, ChevronsUpDown, Info, PartyPopper, PenTool, Send, Star } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 
 import { Button, Collapsible, CollapsibleContent, CollapsibleTrigger, Separator } from "@referrer/ui";
 
 import { LeftBarMobile, RightBarMobile } from "@/components/custom-components";
 import { Icons } from "@/components/icons/icons";
-import { Badge, PostTypeDialog, sonerToast } from "@/components/ui";
+import { Badge, PostTypeDialog, TooltipDemo, sonerToast } from "@/components/ui";
 import { PlaceholdersAndVanishInput } from "@/components/ui";
 
 import { withoutRightBarPages } from "@/config";
@@ -49,125 +48,161 @@ export function LeftSection() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="bg-muted/40 sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
-      <div className="flex h-full w-full flex-col items-start justify-start">
-        <Link
-          href="/home"
-          className="mx-auto ml-7 mt-2 flex cursor-pointer items-center justify-center gap-4 p-2">
-          <Icons.logo className="h-8" />
-          <h5 className="font-heading mt-1">Refhired.com</h5>
-        </Link>
-        <div className="font-heading w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
-          <div className="cursor-pointer px-2 py-4 text-base">
-            {portalsList.map(({ name, link, icon }) => (
-              <Link
-                key={name}
-                id={name.toLocaleLowerCase()}
-                href={link ?? session?.user.userName ?? "profile"}
-                className={clsx(
-                  "hover:bg-muted flex items-center gap-4 rounded-md px-2 py-2",
-                  path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
-                )}>
-                <span className="ml-5">{icon}</span>
-                <p className="mt-1 hidden lg:block">{name}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <PostTypeDialog>
-          <Button
-            size="lg"
-            className="font-heading mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold transition active:scale-95 lg:w-11/12 lg:py-7">
-            {width < 1000 ? <FaPenNib /> : "Post"}
-          </Button>
-        </PostTypeDialog>
-        <div className="bg-muted mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-3 lg:w-[95%]">
-          <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
-            <div className="flex w-full items-center justify-between gap-3 py-2">
-              <Image
-                src={session?.user.image ?? "/images/avatar/avatar.png"}
-                height={60}
-                width={60}
-                className="rounded-md"
-                alt="img"
-              />
-              <div className=" mr-auto">
-                <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Name"}</p>
-                <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
+    <>
+      {pathName.startsWith("/dashboard") ? (
+        <section className="bg-muted/40 sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[4%]">
+          <div className="flex h-full w-full flex-col items-start justify-start">
+            <Link
+              href="/home"
+              className="mx-auto mt-2 flex cursor-pointer items-center justify-center gap-4 p-2">
+              <Icons.logo className="h-8" />
+            </Link>
+            <div className="font-heading w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
+              <div className="cursor-pointer px-2 py-4 text-base">
+                {portalsList.map(({ name, link, icon }) => (
+                  <TooltipDemo key={name} side="right" text={name}>
+                    <Link
+                      id={name.toLocaleLowerCase()}
+                      href={link ?? session?.user.userName ?? "profile"}
+                      className={clsx(
+                        "hover:bg-muted flex items-center justify-center gap-4 rounded-md px-2 py-3",
+                        path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
+                      )}>
+                      <span>{icon}</span>
+                    </Link>
+                  </TooltipDemo>
+                ))}
               </div>
-              {!session?.user && (
-                <Button
-                  className="font-heading rounded-lg px-5 text-sm transition active:scale-95"
-                  onClick={() =>
-                    router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))
-                  }>
-                  Join now !
-                </Button>
-              )}
-              {session?.user && (
-                <CollapsibleTrigger asChild>
-                  <Button size="sm" className="bg-background hover:bg-background w-9 p-0">
-                    <ChevronsUpDown className="h-5 w-5 font-semibold text-white" />
-                    <span className="sr-only">Toggle</span>
+            </div>
+            <PostTypeDialog>
+              <Button
+                size="lg"
+                className="font-heading mx-auto rounded-full border-black px-3 py-6 text-base font-semibold transition active:scale-95">
+                <Send />
+              </Button>
+            </PostTypeDialog>
+          </div>
+        </section>
+      ) : (
+        <section className="bg-muted/40 sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[20%]">
+          <div className="flex h-full w-full flex-col items-start justify-start">
+            <Link
+              href="/home"
+              className="mx-auto ml-7 mt-2 flex cursor-pointer items-center justify-center gap-4 p-2">
+              <Icons.logo className="h-8" />
+              <h5 className="font-heading mt-1">Refhired.com</h5>
+            </Link>
+            <div className="font-heading w-full tracking-wider lg:flex lg:flex-col lg:justify-start">
+              <div className="cursor-pointer px-2 py-4 text-base">
+                {portalsList.map(({ name, link, icon }) => (
+                  <Link
+                    key={name}
+                    id={name.toLocaleLowerCase()}
+                    href={link ?? session?.user.userName ?? "profile"}
+                    className={clsx(
+                      "hover:bg-muted flex items-center gap-4 rounded-md px-2 py-2",
+                      path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
+                    )}>
+                    <span className="ml-5">{icon}</span>
+                    <p className="mt-1 hidden lg:block">{name}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <PostTypeDialog>
+              <Button
+                size="lg"
+                className="font-heading mx-auto rounded-full border-2 border-black px-3 py-3 text-2xl font-semibold transition active:scale-95 lg:w-11/12 lg:py-7">
+                {width < 1000 ? <PenTool /> : "Post"}
+              </Button>
+            </PostTypeDialog>
+            <div className="bg-muted mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-3 lg:w-[95%]">
+              <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-full">
+                <div className="flex w-full items-center justify-between gap-3 py-2">
+                  <Image
+                    src={session?.user.image ?? "/images/avatar/avatar.png"}
+                    height={60}
+                    width={60}
+                    className="rounded-md"
+                    alt="img"
+                  />
+                  <div className=" mr-auto">
+                    <p className="hidden text-lg font-semibold lg:block">{session?.user?.name ?? "Name"}</p>
+                    <span className="hidden text-sm lg:block">@{session?.user?.userName ?? "username"}</span>
+                  </div>
+                  {!session?.user && (
+                    <Button
+                      className="font-heading rounded-lg px-5 text-sm transition active:scale-95"
+                      onClick={() =>
+                        router.push("/auth/login" + "?" + createQueryString("callbackUrl", pathName))
+                      }>
+                      Join now !
+                    </Button>
+                  )}
+                  {session?.user && (
+                    <CollapsibleTrigger asChild>
+                      <Button size="sm" className="bg-background hover:bg-background w-9 p-0">
+                        <ChevronsUpDown className="h-5 w-5 font-semibold text-white" />
+                        <span className="sr-only">Toggle</span>
+                      </Button>
+                    </CollapsibleTrigger>
+                  )}
+                </div>
+                {/* <div className="rounded-md border px-4 py-3 text-sm">2</div> */}
+                <CollapsibleContent className="space-y-2">
+                  <Button className="font-heading w-full px-6 text-start text-base transition active:scale-95">
+                    Manage Account
                   </Button>
-                </CollapsibleTrigger>
-              )}
+                  <Button
+                    className="text-foreground font-heading w-full bg-red-600 px-6 text-start text-base transition hover:bg-red-600/90 active:scale-95"
+                    onClick={() => signOut()}>
+                    Log out @{session?.user.userName}
+                  </Button>
+                </CollapsibleContent>
+                <div className="flex w-full items-center gap-3 py-2">
+                  <Badge className="bg-background text-foreground border-foreground hover:bg-background mx-0 flex h-full items-center justify-center gap-3 rounded-sm">
+                    <Star className="h-5" />
+                    <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
+                  </Badge>
+                  <Button
+                    onClick={() => router.push("/purchase")}
+                    className="font-heading h-9 text-start transition active:scale-95">
+                    {/* <Coins className="mb-1 mr-2 h-5 w-5" />  */}
+                    Buy Stars
+                  </Button>
+                  <Button
+                    onClick={() => router.push("/purchase")}
+                    className="font-heading h-9 text-start transition active:scale-95">
+                    Withdraw
+                  </Button>
+                  {session?.user?.paidForDashboard && (
+                    <Button className="font-heading w-full px-6 text-start transition active:scale-95">
+                      Go to Dashboard <ArrowUpRight className="mb-1 mr-4 h-5 w-5" />
+                    </Button>
+                  )}
+                </div>
+              </Collapsible>
             </div>
-            {/* <div className="rounded-md border px-4 py-3 text-sm">2</div> */}
-            <CollapsibleContent className="space-y-2">
-              <Button className="font-heading w-full px-6 text-start text-base transition active:scale-95">
-                Manage Account
-              </Button>
-              <Button
-                className="text-foreground font-heading w-full bg-red-600 px-6 text-start text-base transition hover:bg-red-600/90 active:scale-95"
-                onClick={() => signOut()}>
-                Log out @{session?.user.userName}
-              </Button>
-            </CollapsibleContent>
-            <div className="flex w-full items-center gap-3 py-2">
-              <Badge className="bg-background text-foreground border-foreground hover:bg-background mx-0 flex h-full items-center justify-center gap-3 rounded-sm">
-                <Star className="h-5" />
-                <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
-              </Badge>
-              <Button
-                onClick={() => router.push("/purchase")}
-                className="font-heading h-9 text-start transition active:scale-95">
-                {/* <Coins className="mb-1 mr-2 h-5 w-5" />  */}
-                Buy Stars
-              </Button>
-              <Button
-                onClick={() => router.push("/purchase")}
-                className="font-heading h-9 text-start transition active:scale-95">
-                Withdraw
-              </Button>
-              {session?.user?.paidForDashboard && (
-                <Button className="font-heading w-full px-6 text-start transition active:scale-95">
-                  Go to Dashboard <ArrowUpRight className="mb-1 mr-4 h-5 w-5" />
-                </Button>
-              )}
-            </div>
-          </Collapsible>
-        </div>
-      </div>
-    </section>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
 
 export function CenterSection({ children }: { children: React.ReactNode }) {
-  const { data: session } = useSession();
-
-  useEffect(() => {
-    if (session?.error !== "RefreshTokenError") return;
-    signIn("google"); // Force sign in to obtain a new set of access and refresh tokens
-  }, [session?.error]);
-
   const pathName = usePathname();
 
   const largeLayout = withoutRightBarPages.includes(pathName);
 
   return (
     <>
-      <section className={clsx("flex w-full flex-col", largeLayout ? "lg:w-[80%]" : "lg:w-[60%]")}>
+      <section
+        className={clsx(
+          "flex w-full flex-col",
+          largeLayout ? "lg:w-[80%]" : "lg:w-[60%]",
+          pathName.startsWith("/dashboard") && "lg:w-[96%]"
+        )}>
         <div className="flex flex-row justify-between px-4">
           <LeftBarMobile />
           {largeLayout ? (
@@ -189,8 +224,7 @@ export function RightSection() {
   const router = useRouter();
   const { data: session } = useSession();
   const showExtraSection = withoutRightBarPages.includes(pathName);
-  // const { data: session } = useSession();
-  // const setAuthDialogOpen = useStore((state) => state.setAuthDialogOpen);
+
   const setJoyRide = useStore((state) => state.setJoyRide);
 
   const placeholders = [
@@ -222,10 +256,10 @@ export function RightSection() {
           <div className="border-border w-full rounded-3xl border bg-gradient-to-br from-amber-600 via-stone-900 via-60% to-sky-900 p-4 backdrop-blur-sm">
             <div className="mb-2">
               <div className="flex gap-2">
-                <h5>Expiring soon !</h5>
+                <h5>Custom Pricing !</h5>
                 <PartyPopper />
               </div>
-              <p className="text-sm">Get up to 40% off on stars</p>
+              <p className="text-sm">Buy stars as you need</p>
             </div>
             <div>
               <Button

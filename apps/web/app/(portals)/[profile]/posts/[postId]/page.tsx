@@ -12,6 +12,7 @@ import {
 } from "@/components/custom-components/post-card/post-buttons";
 import { ApplyDialog } from "@/components/ui";
 
+import { auth } from "@/lib/auth";
 import { request } from "@/lib/axios";
 
 import { TPostsData } from "@/types/types";
@@ -48,19 +49,28 @@ export const metadata: Metadata = {
 };
 
 export default async function Post({ params }: PostProps) {
+  const session = await auth();
   const { data } = (await request.get<TPostsData>(`/posts/${params.postId}`)).data;
 
   return (
     <>
       <PostCard key={data.id}>
-        <PostCard.Image src={data?.user?.image ?? "/images/avatar/avatar.png"} />
+        <PostCard.Image
+          src={data.user?.image ?? "/images/avatar/avatar.png"}
+          name={data.user?.name}
+          userName={data.user?.userName}
+          bio={data.user?.bio}
+        />
         <PostCard.Content>
           <PostCard.Header
             name={data.user?.name}
             userName={data.user?.userName}
+            image={data.user?.image ?? "/images/avatar/avatar.png"}
+            bio={data.user?.bio}
             time={fromNow(data.createdAt)}
             timeLeft={data.expiresAt ? fromNow(data.expiresAt) : "No Expiry"}
             postType={data.postType}
+            isAuthor={session?.user?.id === data.userId}
           />
           <PostCard.Description showMore={false}>{data.description}</PostCard.Description>
           <PostCard.Tags
@@ -84,10 +94,11 @@ export default async function Post({ params }: PostProps) {
             </MultipleButtons>
             <ApplyDialog
               myObject={data.accept}
-              postID={data.id}
+              postId={data.id}
               stars={data.stars}
               totalApplied={data.totalApplied}
               acceptLimit={data.acceptLimit}
+              authorId={data.userId}
             />
           </PostCard.Footer>
         </PostCard.Content>

@@ -3,10 +3,7 @@
 import { useState } from "react";
 
 import { useLoading, useWindowSize } from "@/hooks";
-import { Star } from "lucide-react";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import { FaBookmark, FaRegBookmark } from "react-icons/fa";
-import { FiMessageCircle, FiShare2 } from "react-icons/fi";
+import { Bookmark, CircleCheck, MessageCircle, Share2, Star } from "lucide-react";
 
 import { Button } from "@referrer/ui";
 
@@ -27,7 +24,7 @@ export const ApplyButton = ({ stars }) => {
         id="post-apply"
         disabled={applied}
         isLoading={loadingValue === "apply"}
-        iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
+        iconBefore={applied && <CircleCheck className="mr-2 h-4 w-4 text-green-400" />}
         onClick={apply}
         className="h-9 w-3/12 rounded-full text-sm">
         {applied ? "Applied !" : `Apply (⭐ ${stars})`}
@@ -35,7 +32,6 @@ export const ApplyButton = ({ stars }) => {
     </TooltipDemo>
   );
 };
-// (200 Applied)
 
 export const MultipleButtons = ({ children }: { children?: any }) => {
   return <div className="flex items-center justify-center gap-9 text-xl md:text-xl">{children}</div>;
@@ -45,7 +41,7 @@ export const ShareButton = ({ link, title }: { link?: any; title?: any }) => {
   return (
     <TooltipDemo text="Share">
       <ShareDialog shareUrl={link} title={title}>
-        <FiShare2 id="options" className="h-5 w-5 cursor-pointer" />
+        <Share2 id="options" className="h-5 w-5 cursor-pointer" />
       </ShareDialog>
     </TooltipDemo>
   );
@@ -54,7 +50,7 @@ export const ShareButton = ({ link, title }: { link?: any; title?: any }) => {
 export const CommentButton = () => {
   return (
     <TooltipDemo text="Comment">
-      <FiMessageCircle id="options" className="h-5 w-5 cursor-pointer" />
+      <MessageCircle id="options" className="h-5 w-5 cursor-pointer" />
     </TooltipDemo>
   );
 };
@@ -69,25 +65,26 @@ export const BookmarkButton = () => {
       title: (
         <div className="my-auto mr-4 flex items-center gap-3">
           <p className="text-sm">{bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"}</p>
-          <Button onClick={() => setBookmark(!bookmark)} className="h-5 w-5" variant="secondary" size="sm">
-            Undo
-          </Button>
         </div>
+      ),
+      actions: (
+        <Button onClick={() => setBookmark(!bookmark)} className="h-6" variant="secondary">
+          Undo
+        </Button>
       ),
     });
   };
 
   return (
     <>
-      {!bookmark ? (
-        <TooltipDemo text="Add to Bookmark">
-          <FaRegBookmark onClick={bookmarked} id="options" className="h-5 w-5 cursor-pointer" />
-        </TooltipDemo>
-      ) : (
-        <TooltipDemo text="Remove from Bookmark">
-          <FaBookmark onClick={bookmarked} id="options" className="h-5 w-5 cursor-pointer" />
-        </TooltipDemo>
-      )}
+      <TooltipDemo text={`${bookmark ? "Add to Bookmark" : "Remove from Bookmark"}`}>
+        <Bookmark
+          fill={`${bookmark ? "#ffff" : ""}`}
+          onClick={bookmarked}
+          id="options"
+          className="h-5 w-5 cursor-pointer"
+        />
+      </TooltipDemo>
     </>
   );
 };
@@ -95,8 +92,8 @@ export const BookmarkButton = () => {
 export const StarButton = ({ star }: { star?: any }) => {
   return (
     <TooltipDemo text="Star">
-      <div className="flex items-center gap-2">
-        <Star id="options" /> <p className="mt-1 text-2xl">{star}</p>
+      <div className="flex h-5 items-center gap-1">
+        <Star id="options" className="h-full" /> <p className="mt-1 text-base">{star}</p>
       </div>
     </TooltipDemo>
   );
@@ -110,7 +107,7 @@ export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any;
         className={`flex items-center text-base ${totalApplied === acceptLimit ? "text-red-600" : ""} ${
           acceptLimit ? "" : "hidden"
         } `}>
-        <svg height="22" width="22" viewBox="0 0 20 20">
+        <svg height="18" width="18" viewBox="0 0 20 20">
           <circle r="10" cx="10" cy="10" fill="#ffff" />
           <circle
             r="5"
@@ -145,20 +142,24 @@ export const Tags = ({
   return (
     <>
       <Badge
-        search={role}
+        search={companyName}
+        search_query={"companyName"}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
         {companyName}
       </Badge>
+
       <Badge
         search={role}
+        search_query={"jobRole"}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
         💼 {role}
       </Badge>
 
       <Badge
-        search={location}
+        search={locationType}
+        search_query={"jobLocationType"}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
         {locationType}
@@ -167,6 +168,7 @@ export const Tags = ({
       {location && (
         <Badge
           search={location}
+          search_query={"jobLocation"}
           className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
           variant="secondary">
           📍 {location}
@@ -174,12 +176,14 @@ export const Tags = ({
       )}
       <Badge
         search={experience}
+        search_query={"jobExperience"}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
         🧑‍💻 {experience} + years of experience
       </Badge>
       <Badge
         search={jobType}
+        search_query={"jobType"}
         className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
         variant="secondary">
         🧑‍💼 {jobType}
@@ -187,7 +191,6 @@ export const Tags = ({
       {allTags && (
         <>
           <Badge
-            search={salary}
             className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
             variant="secondary">
             💵 {salary}
@@ -196,6 +199,7 @@ export const Tags = ({
             <Badge
               key={i}
               search={name}
+              search_query={"skills"}
               className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
               variant="secondary">
               {name}

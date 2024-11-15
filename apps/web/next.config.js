@@ -34,6 +34,11 @@ module.exports = withNextIntl(
         permanent: true,
       },
       {
+        source: "/dashboard",
+        destination: "/dashboard/overview",
+        permanent: true,
+      },
+      {
         source: "/auth",
         destination: "/auth/login",
         permanent: true,

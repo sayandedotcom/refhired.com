@@ -2,7 +2,9 @@
 // export default function Home() {
 //   return <DashboardPage />;
 // }
-import { getTranslations } from "next-intl/server";
+"use client";
+
+import DashboardPage from "@/components/dashboard-page";
 
 // import DashboardPage from "@/components/dashboard-page";
 // export default function Home() {
@@ -14,36 +16,40 @@ import { getTranslations } from "next-intl/server";
 //   return <DashboardPage />;
 // }
 
-// import DashboardPage from "@/components/dashboard-page";
-// export default function Home() {
-//   return <DashboardPage />;
-// }
-
-// import DashboardPage from "@/components/dashboard-page";
-// export default function Home() {
-//   return <DashboardPage />;
-// }
-
-// import DashboardPage from "@/components/dashboard-page";
-// export default function Home() {
-//   return <DashboardPage />;
-// }
-
-// import DashboardPage from "@/components/dashboard-page";
-// export default function Home() {
-//   return <DashboardPage />;
-// }
-
-export default async function Home() {
-  // function onChange(value: string) {
-  //   const locale = value as Locale;
-  //   startTransition(() => {
-  //     setUserLocale(locale);
-  //   });
-  const t = await getTranslations("Index");
-  return (
-    <div>
-      <h1>{t("log_in")}</h1>
-    </div>
-  );
+export default function Home() {
+  return <DashboardPage />;
 }
+
+// export default function Home() {
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+
+//   const createQueryString = useCallback(
+//     (name: string, value: string) => {
+//       const params = new URLSearchParams(searchParams.toString());
+//       params.set(name, value);
+
+//       return params.toString();
+//     },
+//     [searchParams]
+//   );
+//   // function onChange(value: string) {
+//   //   const locale = value as Locale;
+//   //   startTransition(() => {
+//   //     setUserLocale(locale);
+//   //   });
+//   return (
+//     <div>
+//       <Button
+//         onClick={() =>
+//           router.push(
+//             "http://localhost:3000/auth/login" +
+//               "?" +
+//               createQueryString("callbackUrl", "http://localhost:4000")
+//           )
+//         }>
+//         Login
+//       </Button>
+//     </div>
+//   );
+// }

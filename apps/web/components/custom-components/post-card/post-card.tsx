@@ -17,10 +17,10 @@ export const PostCard = ({ children }: { children: any }) => {
   );
 };
 
-function ProfileImage({ src }: { src: any }) {
+function ProfileImage({ src, name, userName, bio }) {
   return (
     <div className="w-[12%]">
-      <PostHoverCard>
+      <PostHoverCard name={name} userName={userName} image={src} bio={bio}>
         <Image
           id="profile-picture"
           alt="img"
@@ -48,22 +48,28 @@ function PostCardHeader({
   time,
   timeLeft,
   postType,
+  isAuthor,
+  image,
+  bio,
 }: {
   name: string;
   userName: string;
   time?: any;
   timeLeft?: any;
   postType?: any;
+  isAuthor?: boolean;
+  image?: any;
+  bio: any;
 }) {
   const type = {
     REFERRALPOST: "Referral Post",
     FINDREFERRER: "Finding Referrer",
-    POST: "",
+    POST: "Post",
   };
   return (
     <div className="font-heading flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm md:text-base">
-        <PostHoverCard>
+        <PostHoverCard name={name} userName={userName} image={image} bio={bio}>
           <UsernameNavigate userName={userName}>
             <span id="post-name" className="cursor-pointer hover:underline">
               {name}
@@ -71,7 +77,7 @@ function PostCardHeader({
           </UsernameNavigate>
         </PostHoverCard>
         •
-        <PostHoverCard>
+        <PostHoverCard name={name} userName={userName} image={image} bio={bio}>
           <UsernameNavigate userName={userName}>
             <span id="post-username" className="dark:text-foreground cursor-pointer hover:underline">
               @{userName}
@@ -84,8 +90,10 @@ function PostCardHeader({
         </small>
       </div>
       <div className="flex gap-4">
-        <Badge className="capitalize">{type[postType]}</Badge>
-        <ComboboxDropdownMenu>
+        <Badge search={type[postType]} search_query={"postType"} className="cursor-pointer capitalize">
+          {type[postType]}
+        </Badge>
+        <ComboboxDropdownMenu isAuthor={isAuthor}>
           <div className="hover:bg-muted cursor-pointer rounded-full">
             <MoreHorizontal id="post-options" className="w-5" />
           </div>

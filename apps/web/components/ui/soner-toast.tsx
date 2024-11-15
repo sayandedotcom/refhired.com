@@ -13,10 +13,12 @@ export const sonerToast = ({
   severity,
   title,
   message,
+  actions,
 }: {
   severity: severityType;
   title: React.ReactNode;
   message?: React.ReactNode;
+  actions?: React.ReactNode;
 }) =>
   toast.custom((t) => (
     <Alert
@@ -25,9 +27,11 @@ export const sonerToast = ({
       title={title}
       message={message}
       actions={
-        <button onClick={() => toast.dismiss(t)}>
-          <X />
-        </button>
+        actions ?? (
+          <button onClick={() => toast.dismiss(t)}>
+            <X className="h-4 w-4" />
+          </button>
+        )
       }
     />
   ));

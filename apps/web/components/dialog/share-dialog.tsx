@@ -69,7 +69,7 @@ export function ShareDialog({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="bg-muted sm:max-w-md">
+      <DialogContent className="border-foreground sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Share !</DialogTitle>
           <DialogDescription>Share on your Social Media sitess</DialogDescription>

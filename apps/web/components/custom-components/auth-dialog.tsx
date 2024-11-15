@@ -9,7 +9,6 @@ import { useLoading } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { useLocalStorage, useOnClickOutside } from "usehooks-ts";
 import * as z from "zod";
 
@@ -137,7 +136,7 @@ export function AuthDialog({ children }: { children: React.ReactNode }) {
               {loadingValue === "google" ? (
                 <Icons.spinner className="h-6 w-6 animate-spin" />
               ) : (
-                <FcGoogle className="h-6 w-6" />
+                <Icons.googleG className="h-6 w-6" />
               )}{" "}
               Google
             </Button>

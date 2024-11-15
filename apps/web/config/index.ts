@@ -12,7 +12,7 @@ export * from "./banned-usernames";
 export * from "./experience-options";
 export * from "./jobtype-options";
 export * from "./search-history";
-export * from "./dasghboard-info";
 export * from "./without-right-bar-pages";
 export * from "./currencyList";
 export * from "./job-experience-list";
+export * from "./dashboard-navigation";

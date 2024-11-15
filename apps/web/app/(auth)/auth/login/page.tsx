@@ -10,7 +10,6 @@ import { PartyPopper } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 import { useLocalStorage } from "usehooks-ts";
 import * as z from "zod";
 
@@ -148,11 +147,7 @@ export default function Login() {
           onClick={() => signInProviders("google")}
           variant="secondary"
           size="lg">
-          {loadingValue === "google" ? (
-            <Icons.spinner className="h-6 w-6 animate-spin" />
-          ) : (
-            <FcGoogle className="h-6 w-6" />
-          )}{" "}
+          {loadingValue === "google" ? <Icons.spinner className="h-6 w-6 animate-spin" /> : <Icons.googleG />}
           Google
         </Button>
       </div>

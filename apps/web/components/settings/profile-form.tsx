@@ -3,14 +3,13 @@
 import { useState } from "react";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { User } from "@prisma/client";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { cn } from "@referrer/lib/utils/cn";
 import {
   Button,
   Form,
@@ -21,52 +20,17 @@ import {
   FormLabel,
   FormMessage,
   Input,
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
   Textarea,
 } from "@referrer/ui";
 
 import { sonerToast } from "@/components/ui";
-import UploadBtn from "@/components/upload-button";
 
-const profileFormSchema = z.object({
-  image: z.string().optional(),
-  username: z
-    .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Username must not be longer than 30 characters.",
-    })
-    .optional(),
-  name: z
-    .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Username must not be longer than 30 characters.",
-    })
-    .optional(),
-  email: z
-    .string({
-      required_error: "Please select an email to display.",
-    })
-    .email()
-    .optional(),
-  bio: z.string().max(160).min(4).optional(),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      })
-    )
-    .optional(),
-});
+import { request } from "@/lib/axios";
+import { profileFormSchema } from "@/lib/validators";
+
+import { cn } from "@/utils";
+
+import { TSettingsProfile } from "@/types/types";
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
 
@@ -75,12 +39,54 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 //   bio: "I own a computer.",
 //   urls: [{ value: "https://shadcn.com" }, { value: "http://twitter.com/shadcn" }],
 // };
+const updateProfile = ({ userName, bio, name }) => {
+  return request.post("/settings/profile", {
+    userName,
+    bio,
+    name,
+  });
+};
 
 export function ProfileForm() {
+  const { data: session } = useSession();
+  const { data, error, isLoading } = useQuery<TSettingsProfile>({
+    queryKey: ["settings/profile"],
+    queryFn: () => {
+      return request.get("/settings/profile", {
+        headers: {
+          Authorization: `Bearer ${session.user.refresh_token}`,
+        },
+      });
+    },
+  });
+
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     // defaultValues,
     mode: "onChange",
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["referral"],
+    mutationFn: updateProfile,
+    onSuccess(data, variables) {
+      sonerToast({
+        severity: "success",
+        title: "Sucess !",
+        message: data.data.message,
+      });
+      // form.reset();
+    },
+    onError(error, variables, context) {
+      ///@ts-expect-error
+      setError(error?.response.data.message);
+      sonerToast({
+        severity: "error",
+        title: "Error !",
+        ///@ts-expect-error
+        message: error?.response.data.message,
+      });
+    },
   });
 
   const { fields, append } = useFieldArray({
@@ -88,7 +94,7 @@ export function ProfileForm() {
     control: form.control,
   });
 
-  const [data, setData] = useState<User>();
+  // const [data, setData] = useState<User>();
   const [image, setImage] = useState("");
   // const getUsers = async () => {
   //   const users = await getProfile();
@@ -102,16 +108,14 @@ export function ProfileForm() {
   //   // };
   // }, []);
 
-  const onSubmit = async (data: ProfileFormValues) => {
-    // await updateProfile({
-    //   userName: data.username,
-    //   name: data.name,
-    //   bio: data.bio,
-    //   email: data.email,
-    //   image: image,
-    // });
+  const onSubmit = async (values: ProfileFormValues) => {
+    mutate({
+      userName: values.username,
+      name: values.name,
+      bio: values.bio,
+    });
     sonerToast({ severity: "neutral", title: "Profile Updated !" });
-    form.reset();
+    // form.reset();
   };
 
   return (
@@ -125,7 +129,7 @@ export function ProfileForm() {
               <FormLabel>Profile Picture</FormLabel>
               <FormControl>
                 <Image
-                  src={image ? image : data?.image ?? "/images/avatar/avatar.png"}
+                  src={image ? image : data?.data.image ?? "/images/avatar/avatar.png"}
                   alt="Img"
                   height={100}
                   width={100}
@@ -140,7 +144,7 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <UploadBtn text="Change Picture" setImage={setImage} />
+        {/* <UploadBtn text="Change Picture" setImage={setImage} /> */}
         <FormField
           control={form.control}
           name="username"
@@ -148,7 +152,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="@username" defaultValue={data?.userName} {...field} />
+                <Input placeholder="@username" defaultValue={data?.data.userName} {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a pseudonym. You can only change
@@ -165,7 +169,7 @@ export function ProfileForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Your Name" defaultValue={data?.name} {...field} />
+                <Input placeholder="Your Name" defaultValue={data?.data?.name} {...field} />
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a pseudonym. You can only change
@@ -175,7 +179,7 @@ export function ProfileForm() {
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
@@ -200,7 +204,7 @@ export function ProfileForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name="bio"
@@ -211,7 +215,7 @@ export function ProfileForm() {
                 <Textarea
                   placeholder="Tell us a little bit about yourself"
                   className="resize-none"
-                  defaultValue={data?.bio}
+                  defaultValue={data?.data?.bio}
                   {...field}
                 />
               </FormControl>

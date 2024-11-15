@@ -17,6 +17,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import parse from "html-react-parser";
 import { ChevronDown, File, Link2, MoreHorizontal } from "lucide-react";
 
 import {
@@ -39,39 +40,6 @@ import {
 } from "@referrer/ui";
 
 import { TooltipDemo } from "../ui";
-
-// const data: Payment[] = [
-//   {
-//     id: "m5gr84i9",
-//     amount: 316,
-//     status: "success",
-//     email: "ken99@yahoo.com",
-//   },
-//   {
-//     id: "3u1reuv4",
-//     amount: 242,
-//     status: "success",
-//     email: "Abe45@gmail.com",
-//   },
-//   {
-//     id: "derv1ws0",
-//     amount: 837,
-//     status: "processing",
-//     email: "Monserrat44@gmail.com",
-//   },
-//   {
-//     id: "5kma53ae",
-//     amount: 874,
-//     status: "success",
-//     email: "Silas22@gmail.com",
-//   },
-//   {
-//     id: "bhqecj4p",
-//     amount: 721,
-//     status: "failed",
-//     email: "carmella@hotmail.com",
-//   },
-// ];
 
 export type Payment = {
   id: string;
@@ -113,22 +81,22 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "post",
     header: "Post",
-    cell: ({ row }) => <div className="lowercase">{row.getValue("post")}</div>,
+    cell: ({ row }) => <div className="lowercase">{parse(row.getValue("post"))}</div>,
   },
 
   {
     accessorKey: "message",
-    header: () => <div className="text-right">Message</div>,
+    header: () => <div className="">Message</div>,
     cell: ({ row }) => {
-      return <div className="text-right font-medium">{row.getValue("message")}</div>;
+      return <div className=" font-medium">{parse(row.getValue("message"))}</div>;
     },
   },
   {
     accessorKey: "pdfs",
-    header: () => <div className="text-right">Pdfs</div>,
+    header: () => <div className="">Pdfs</div>,
     cell: ({ row }) => {
       return (
-        <div className="text-right font-medium">
+        <div className=" font-medium">
           {/* @ts-ignore */}
           {row.getValue("pdfs").map((link, index) => {
             const platform = Object.keys(link)[0];
@@ -147,10 +115,10 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "links",
-    header: () => <div className="text-right">Links</div>,
+    header: () => <div className="">Links</div>,
     cell: ({ row }) => {
       return (
-        <div className="flex gap-3 text-right font-medium">
+        <div className="flex gap-3  font-medium">
           {/* @ts-ignore */}
           {row.getValue("links").map((link, index) => {
             const platform = Object.keys(link)[0];
@@ -169,7 +137,7 @@ export const columns: ColumnDef<any>[] = [
   },
   {
     accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    header: () => <div className="">Amount</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
 
@@ -179,7 +147,7 @@ export const columns: ColumnDef<any>[] = [
         currency: "USD",
       }).format(amount);
 
-      return <div className="text-right font-medium">{formatted}</div>;
+      return <div className=" font-medium">{formatted}</div>;
     },
   },
   {

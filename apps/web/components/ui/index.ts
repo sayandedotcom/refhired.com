@@ -8,7 +8,6 @@ export * from "./github-icons";
 export * from "./post-ui/post-type-dialog";
 export * from "./post-forms/post-dialog";
 export * from "./post-forms/select";
-export * from "./toast/toasts";
 export * from "./table/table";
 export * from "./progress-bar";
 export * from "./soner-toast";
