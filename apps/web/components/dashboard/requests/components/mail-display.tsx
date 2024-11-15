@@ -2,7 +2,7 @@ import addDays from "date-fns/addDays";
 import addHours from "date-fns/addHours";
 import format from "date-fns/format";
 import nextSaturday from "date-fns/nextSaturday";
-import { Archive, ArchiveX, Clock, Forward, MoreVertical, Reply, ReplyAll, Trash2 } from "lucide-react";
+import { Archive, Clock, Forward, MoreVertical, Reply, ReplyAll, Trash2 } from "lucide-react";
 
 import {
   Avatar,
@@ -51,7 +51,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="ghost" size="icon" disabled={!mail}>
-                <ArchiveX className="h-4 w-4" />
+                <Archive className="h-4 w-4" />
                 <span className="sr-only">Move to junk</span>
               </Button>
             </TooltipTrigger>
