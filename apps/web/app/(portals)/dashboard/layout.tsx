@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import DashboardProvider from "./providers";
 
 export const metadata: Metadata = {
-  title: "Dashboard • Refhired.com",
+  title: "Dashboard",
   description: "Get job referrals to the top best companies of the world",
   robots: {
     index: false,

@@ -6,6 +6,8 @@ import { MoreHorizontal } from "lucide-react";
 import { Badge, PostHoverCard } from "@/components/ui";
 import UsernameNavigate from "@/components/wrappers/username-navigator";
 
+import { cn } from "@/utils";
+
 import { Tags } from "./post-buttons";
 import { ComboboxDropdownMenu } from "./post-more-menu";
 
@@ -107,7 +109,7 @@ PostCard.Header = PostCardHeader;
 
 function PostCardDescription({ children, showMore }: { children: any; showMore?: Boolean }) {
   return (
-    <div id="post-content" className="cursor-pointer text-xs md:text-base">
+    <div id="post-content" className={cn("cursor-pointer text-xs md:text-sm", showMore && "line-clamp-3")}>
       {parse(children)}
       {showMore && <span className="float-right text-xs md:text-sm">....Show more</span>}
     </div>

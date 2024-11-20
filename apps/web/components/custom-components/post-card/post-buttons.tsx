@@ -34,7 +34,11 @@ export const ApplyButton = ({ stars }) => {
 };
 
 export const MultipleButtons = ({ children }: { children?: any }) => {
-  return <div className="flex items-center justify-center gap-9 text-xl md:text-xl">{children}</div>;
+  return (
+    <div className="text-muted-foreground flex items-center justify-center gap-9 text-xl md:text-xl">
+      {children}
+    </div>
+  );
 };
 
 export const ShareButton = ({ link, title }: { link?: any; title?: any }) => {
@@ -108,13 +112,13 @@ export const ApplyStatus = ({ totalApplied, acceptLimit }: { totalApplied?: any;
           acceptLimit ? "" : "hidden"
         } `}>
         <svg height="18" width="18" viewBox="0 0 20 20">
-          <circle r="10" cx="10" cy="10" fill="#ffff" />
+          <circle r="10" cx="10" cy="10" fill="#a1a1aa" />
           <circle
             r="5"
             cx="10"
             cy="10"
             fill="transparent"
-            stroke={totalApplied === acceptLimit ? "#cb2424" : "#05FB31"}
+            stroke={totalApplied === acceptLimit ? "#cb2424" : "#ffff"}
             strokeWidth="10"
             strokeDasharray={`calc(${percentage} * 31.4 / 100) 31.4`}
             transform="rotate(-90) translate(-20)"

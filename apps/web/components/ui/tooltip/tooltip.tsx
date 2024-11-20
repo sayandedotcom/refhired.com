@@ -15,7 +15,7 @@ export function TooltipDemo({
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>{children}</TooltipTrigger>
-        <TooltipContent side={side} className="bg-foreground text-background">
+        <TooltipContent side={side} className="bg-foreground text-background capitalize">
           <p>{text}</p>
         </TooltipContent>
       </Tooltip>

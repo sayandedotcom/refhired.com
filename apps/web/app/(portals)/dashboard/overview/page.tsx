@@ -1,9 +1,27 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@referrer/ui";
+import { TrendingUp } from "lucide-react";
+
+import {
+  BarChartComponent,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@referrer/ui";
 
 import { RecentSales } from "@/components/dashboard/components/recent-sales";
 
+const chartData = [
+  { month: "January", desktop: 186, mobile: 80 },
+  { month: "February", desktop: 305, mobile: 200 },
+  { month: "March", desktop: 237, mobile: 120 },
+  { month: "April", desktop: 73, mobile: 190 },
+  { month: "May", desktop: 209, mobile: 130 },
+  { month: "June", desktop: 214, mobile: 140 },
+];
 function OverviewDashboard() {
   return (
     <>
@@ -92,12 +110,23 @@ function OverviewDashboard() {
           </CardContent>
         </Card>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div className="mt-1 grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
+            <CardTitle>Conversion Rate</CardTitle>
+            <CardDescription>January - June 2024</CardDescription>
           </CardHeader>
-          <CardContent className="pl-2">Hi</CardContent>
+          <CardContent className="">
+            <BarChartComponent chartData={chartData} />
+          </CardContent>
+          <CardFooter className="flex-col items-start gap-2 p-3 text-sm">
+            <div className="flex gap-2 font-medium leading-none">
+              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+            </div>
+            <div className="text-muted-foreground leading-none">
+              Showing total visitors for the last 6 months
+            </div>
+          </CardFooter>
         </Card>
         <Card className="col-span-3">
           <CardHeader>

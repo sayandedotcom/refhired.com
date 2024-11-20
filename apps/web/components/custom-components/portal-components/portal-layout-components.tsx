@@ -50,7 +50,7 @@ export function LeftSection() {
   return (
     <>
       {pathName.startsWith("/dashboard") ? (
-        <section className="bg-muted/40 sticky left-0 top-0 hidden h-screen w-[15%] md:hidden lg:block lg:w-[4%]">
+        <section className="bg-muted/40 sticky left-0 top-0 z-50 hidden h-screen w-[15%] md:hidden lg:block lg:w-[4%]">
           <div className="flex h-full w-full flex-col items-start justify-start">
             <Link
               href="/home"
@@ -63,7 +63,7 @@ export function LeftSection() {
                   <TooltipDemo key={name} side="right" text={name}>
                     <Link
                       id={name.toLocaleLowerCase()}
-                      href={link ?? session?.user.userName ?? "profile"}
+                      href={link ?? `/${session?.user.userName}` ?? "/profile"}
                       className={clsx(
                         "hover:bg-muted flex items-center justify-center gap-4 rounded-md px-2 py-3",
                         path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"

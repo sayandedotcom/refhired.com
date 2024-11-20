@@ -76,13 +76,13 @@ const RichTextEditor = ({
             editor.storage.characterCount.characters() === limit ? "text-red-600" : ""
           }`}>
           <svg height="14" width="14" viewBox="0 0 20 20">
-            <circle r="10" cx="10" cy="10" fill="#000" />
+            <circle r="10" cx="10" cy="10" fill="#a1a1aa" />
             <circle
               r="5"
               cx="10"
               cy="10"
               fill="transparent"
-              stroke={editor.storage.characterCount.characters() === limit ? "#cb2424" : "#05FB31"}
+              stroke={editor.storage.characterCount.characters() === limit ? "#cb2424" : "#ffff"}
               strokeWidth="10"
               strokeDasharray={`calc(${percentage} * 31.4 / 100) 31.4`}
               transform="rotate(-90) translate(-20)"

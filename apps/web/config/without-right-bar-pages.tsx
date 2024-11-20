@@ -1,17 +1,14 @@
+import { dashboardNavigation } from "./dashboard-navigation";
+
+const dashboard = dashboardNavigation.map((path) => path.path);
+
 export const withoutRightBarPages = [
   "/auth",
   "/purchase",
   "/requests",
   "/applied",
-  "/dashboard",
-  "/dashboard/applied",
-  "/dashboard/requests",
-  "/dashboard/overview",
-  "/dashboard/chart",
-  "/dashboard/notifcations",
-  "/dashboard/revenue",
-  "/dashboard/settings",
   "/settings/profile",
   "/settings/appearance",
   "/settings/notifications",
+  ...dashboard,
 ];

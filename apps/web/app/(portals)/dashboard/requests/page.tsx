@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 
 import { Search } from "lucide-react";
 
@@ -17,29 +17,21 @@ import {
   TooltipProvider,
 } from "@referrer/ui";
 
-import { MailDisplay } from "@/components/dashboard/requests/components/mail-display";
-import { MailList } from "@/components/dashboard/requests/components/mail-list";
+import { PostsList } from "@/components/dashboard/requests/components/post-list";
+import { RequestsDisplay } from "@/components/dashboard/requests/components/request-display";
+import { RequestsList } from "@/components/dashboard/requests/components/request-list";
 import { mails } from "@/components/dashboard/requests/data";
 
 function RequestsDashboard() {
-  const mail = {
-    id: "6c84fb90-12c4-11e1-840d-7b25c5ee775a",
-    name: "William Smith",
-    email: "williamsmith@example.com",
-    subject: "Meeting Tomorrow",
-    text: "Hi, let's have a meeting tomorrow to discuss the project. I've been reviewing the project details and have some ideas I'd like to share. It's crucial that we align on our next steps to ensure the project's success.\n\nPlease come prepared with any questions or insights you may have. Looking forward to our meeting!\n\nBest regards, William",
-    date: "2023-10-22T09:00:00",
-    read: true,
-    labels: ["meeting", "work", "important"],
-  };
+  const [postId, setPostId] = useState();
 
   return (
     <TooltipProvider delayDuration={0}>
       <ResizablePanelGroup
         direction="horizontal"
-        onLayout={(sizes: number[]) => {
-          document.cookie = `react-resizable-panels:layout:mail=${JSON.stringify(sizes)}`;
-        }}
+        // onLayout={(sizes: number[]) => {
+        //   document.cookie = `react-resizable-panels:layout:mail=${JSON.stringify(sizes)}`;
+        // }}
         style={{ height: "calc(100vh-65px)" }}
         className="h-[calc(100vh-65px)] items-stretch">
         <ResizablePanel defaultSize={30} minSize={20}>
@@ -57,10 +49,7 @@ function RequestsDashboard() {
             </div>
             <Separator />
             <TabsContent value="all" className="mt-2">
-              <MailList items={mails} />
-            </TabsContent>
-            <TabsContent value="unread" className="mt-2">
-              <MailList items={mails?.filter((item) => !item.read)} />
+              <PostsList postId={postId} setPostId={setPostId} />
             </TabsContent>
           </Tabs>
         </ResizablePanel>
@@ -83,27 +72,21 @@ function RequestsDashboard() {
               </TabsList>
             </div>
             <Separator />
-            {/* <div className="bg-background/95 p-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <form>
-                <div className="relative">
-                  <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Search" className="pl-8" />
-                </div>
-              </form>
-            </div> */}
             <TabsContent value="all" className="mt-2">
-              <MailList items={mails} />
+              <RequestsList items={mails} postId={postId} />
             </TabsContent>
             <TabsContent value="unread" className="mt-2">
-              <MailList items={mails?.filter((item) => !item.read)} />
+              <RequestsList items={mails?.filter((item) => !item.read)} />
+            </TabsContent>
+            <TabsContent value="notresponded" className="mt-2">
+              <RequestsList items={mails?.filter((item) => !item.read)} />
             </TabsContent>
           </Tabs>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={40} minSize={40}>
-          <MailDisplay
-            mail={mail}
-            // mail={mails.find((item) => item.id === mails.selected) || null}
+          <RequestsDisplay
+          // mail={mails.find((item) => item.id === mails.selected) || null}
           />
         </ResizablePanel>
       </ResizablePanelGroup>

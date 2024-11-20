@@ -3,6 +3,6 @@ export const dashboardNavigation = [
   { title: "Requests", path: "/dashboard/requests" },
   { title: "Applied", path: "/dashboard/applied" },
   { title: "Revenue", path: "/dashboard/revenue" },
-  { title: "Charts", path: "/dashboard/charts" },
-  { title: "Notifications", path: "/dashboard/notifications" },
+  { title: "Analytics", path: "/dashboard/analytics" },
+  // { title: "Notifications", path: "/dashboard/notifications" },
 ];

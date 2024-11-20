@@ -1,38 +1,40 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import addDays from "date-fns/addDays";
 import addHours from "date-fns/addHours";
 import format from "date-fns/format";
 import nextSaturday from "date-fns/nextSaturday";
-import { Archive, Clock, Forward, MoreVertical, Reply, ReplyAll, Trash2 } from "lucide-react";
+import parse from "html-react-parser";
+import { Archive, Check, Clock, File, Forward, MoreVertical, Reply, ReplyAll, Trash2, X } from "lucide-react";
 
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
   Button,
   Calendar,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  Label,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Separator,
-  Switch,
   Textarea,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@referrer/ui";
 
-import { Mail } from "../data";
+import { DynamicIcons } from "@/components/icons/dynamic-icons";
+import { TooltipDemo } from "@/components/ui";
 
-interface MailDisplayProps {
-  mail: Mail | null;
-}
+import { useStore } from "@/store/store";
 
-export function MailDisplay({ mail }: MailDisplayProps) {
+interface MailDisplayProps {}
+
+export function RequestsDisplay({}: MailDisplayProps) {
+  const displayRequest = useStore((state) => state.displayRequest);
+
   const today = new Date();
 
   return (
@@ -41,7 +43,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
         <div className="flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
+              <Button variant="ghost" size="icon">
                 <Archive className="h-4 w-4" />
                 <span className="sr-only">Archive</span>
               </Button>
@@ -50,7 +52,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
+              <Button variant="ghost" size="icon">
                 <Archive className="h-4 w-4" />
                 <span className="sr-only">Move to junk</span>
               </Button>
@@ -59,7 +61,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="destructive" size="icon" disabled={!mail}>
+              <Button variant="destructive" size="icon">
                 <Trash2 className="h-4 w-4" />
                 <span className="sr-only">Move to trash</span>
               </Button>
@@ -71,7 +73,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
             <Popover>
               <PopoverTrigger asChild>
                 <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" disabled={!mail}>
+                  <Button variant="ghost" size="icon">
                     <Clock className="h-4 w-4" />
                     <span className="sr-only">Snooze</span>
                   </Button>
@@ -118,7 +120,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
         <div className="ml-auto flex items-center gap-2">
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
+              <Button variant="ghost" size="icon">
                 <Reply className="h-4 w-4" />
                 <span className="sr-only">Reply</span>
               </Button>
@@ -127,7 +129,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
+              <Button variant="ghost" size="icon">
                 <ReplyAll className="h-4 w-4" />
                 <span className="sr-only">Reply all</span>
               </Button>
@@ -136,7 +138,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="ghost" size="icon" disabled={!mail}>
+              <Button variant="ghost" size="icon">
                 <Forward className="h-4 w-4" />
                 <span className="sr-only">Forward</span>
               </Button>
@@ -147,7 +149,7 @@ export function MailDisplay({ mail }: MailDisplayProps) {
         <Separator orientation="vertical" className="mx-2 h-6" />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" disabled={!mail}>
+            <Button variant="ghost" size="icon">
               <MoreVertical className="h-4 w-4" />
               <span className="sr-only">More</span>
             </Button>
@@ -161,46 +163,88 @@ export function MailDisplay({ mail }: MailDisplayProps) {
         </DropdownMenu>
       </div>
       <Separator />
-      {mail ? (
+      {displayRequest ? (
         <div className="flex flex-1 flex-col">
           <div className="flex items-start p-4">
             <div className="flex items-start gap-4 text-sm">
-              <Avatar>
-                <AvatarImage alt={mail.name} />
-                <AvatarFallback>
-                  {mail.name
-                    .split(" ")
-                    .map((chunk) => chunk[0])
-                    .join("")}
-                </AvatarFallback>
-              </Avatar>
+              <Image
+                id="profile-picture"
+                alt="img"
+                src={displayRequest?.user.image ?? "/images/avatar/avatar.png"}
+                width={44}
+                height={44}
+                className="mx-auto cursor-pointer rounded-full"
+              />
               <div className="grid gap-1">
-                <div className="font-semibold">{mail.name}</div>
-                <div className="line-clamp-1 text-xs">{mail.subject}</div>
+                <div className="font-semibold">{displayRequest?.user.name}</div>
+                <div className="line-clamp-1 text-xs">@{displayRequest?.user.userName}</div>
                 <div className="line-clamp-1 text-xs">
-                  <span className="font-medium">Reply-To:</span> {mail.email}
+                  <span className="font-medium">{displayRequest?.user.email}</span>
                 </div>
               </div>
             </div>
-            {mail.date && (
+            {displayRequest?.appliedAt && (
               <div className="text-muted-foreground ml-auto text-xs">
-                {format(new Date(mail.date), "PPpp")}
+                {format(new Date(displayRequest?.appliedAt ?? ""), "PPpp")}
               </div>
             )}
           </div>
           <Separator />
-          <div className="flex-1 whitespace-pre-wrap p-4 text-sm">{mail.text}</div>
+          <div>
+            <div className="flex-1 whitespace-pre-wrap p-4 text-base">
+              {parse(displayRequest?.applyInfo.message)}
+            </div>
+            <div className="flex items-center gap-2 p-4">
+              <p className="font-heading text-sm">PDFs :-</p>
+              {displayRequest?.applyInfo.pdfs.map((link, index) => {
+                const platform = Object.keys(link)[0];
+                const url = link[platform];
+                return (
+                  <TooltipDemo key={index} text={platform}>
+                    <Link href={url} target="_blank">
+                      <File />
+                    </Link>
+                  </TooltipDemo>
+                );
+              })}
+            </div>
+            <div className="flex items-center gap-2 p-4">
+              <p className="font-heading text-sm">Links :-</p>
+              {displayRequest?.applyInfo.links.map((link, index) => {
+                const platform = Object.keys(link)[0];
+                const url = link[platform];
+                return (
+                  <TooltipDemo key={index} text={platform}>
+                    <Link href={url} target="_blank">
+                      <DynamicIcons iconName={platform} className="h-7 w-7" />
+                    </Link>
+                  </TooltipDemo>
+                );
+              })}
+            </div>
+          </div>
           <Separator className="mt-auto" />
           <div className="p-4">
             <form>
               <div className="grid gap-4">
-                <Textarea className="p-4" placeholder={`Reply ${mail.name}...`} />
-                <div className="flex items-center">
-                  <Label htmlFor="mute" className="flex items-center gap-2 text-xs font-normal">
-                    <Switch id="mute" aria-label="Mute thread" /> Mute this thread
-                  </Label>
-                  <Button onClick={(e) => e.preventDefault()} size="sm" className="ml-auto">
-                    Send
+                <Textarea
+                  className="bg-muted p-4"
+                  placeholder={`Send Feedback to ${displayRequest?.user.name}...`}
+                />
+                <div className="flex items-center justify-end gap-5">
+                  <Button
+                    onClick={(e) => e.preventDefault()}
+                    size="sm"
+                    className="text-foreground rounded-full bg-green-800 transition hover:bg-green-800 active:scale-95">
+                    <Check className="mr-1" />
+                    Accept
+                  </Button>
+                  <Button
+                    onClick={(e) => e.preventDefault()}
+                    size="sm"
+                    className="bg-destructive text-foreground hover:bg-destructive rounded-full transition active:scale-95">
+                    <X />
+                    Reject
                   </Button>
                 </div>
               </div>

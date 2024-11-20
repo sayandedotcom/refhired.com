@@ -56,9 +56,7 @@ export default function Home() {
               isAuthor={session?.user?.id === data.userId}
             />
             <Navigate userName={data.user.userName} postId={data.id}>
-              <PostCard.Description showMore={true}>
-                {data.description.substring(0, 350).concat(" ...")}
-              </PostCard.Description>
+              <PostCard.Description showMore={true}>{data.description}</PostCard.Description>
             </Navigate>
             <PostCard.Tags
               allTags={false}

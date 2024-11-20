@@ -12,8 +12,10 @@ export function SessionExpiredDialog({ open, setOpen }: { open: boolean; setOpen
       </DialogTrigger> */}
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Your session has expired! Please log in again to continue !</DialogTitle>
-          {/* <DialogDescription>Your session has expired! Please log in again to continue !</DialogDescription> */}
+          <DialogTitle className="text-base">
+            Your session has expired! Please log in again to continue !
+          </DialogTitle>
+          {/* <DialogDescription>Please log in again to continue !</DialogDescription> */}
         </DialogHeader>
         <DialogFooter>
           <Button type="submit" onClick={() => signIn("google")}>
