@@ -1,12 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import type { Applied } from "@prisma/client";
+import { useMutation } from "@tanstack/react-query";
 import addDays from "date-fns/addDays";
 import addHours from "date-fns/addHours";
 import format from "date-fns/format";
 import nextSaturday from "date-fns/nextSaturday";
 import parse from "html-react-parser";
-import { Archive, Check, Clock, File, Forward, MoreVertical, Reply, ReplyAll, Trash2, X } from "lucide-react";
+import {
+  Archive,
+  Check,
+  CircleAlert,
+  CircleCheck,
+  Clock,
+  File,
+  Forward,
+  MoreVertical,
+  Reply,
+  ReplyAll,
+  Trash2,
+  X,
+} from "lucide-react";
+import { useSession } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
 import {
   Button,
@@ -15,25 +34,83 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
   Popover,
   PopoverContent,
   PopoverTrigger,
   Separator,
-  Textarea,
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@referrer/ui";
 
+import RichTextEditor from "@/components/Tiptap";
 import { DynamicIcons } from "@/components/icons/dynamic-icons";
-import { TooltipDemo } from "@/components/ui";
+import { Badge, TooltipDemo, sonerToast } from "@/components/ui";
+
+import { request } from "@/lib/axios";
 
 import { useStore } from "@/store/store";
 
-interface MailDisplayProps {}
+import { TDashboardReplyRequests } from "@/types/posts";
 
-export function RequestsDisplay({}: MailDisplayProps) {
+export const replyValidator = z.object({
+  message: z.string().nonempty("Message is required"),
+});
+
+export function RequestsDisplay() {
+  const { data: session } = useSession();
+
   const displayRequest = useStore((state) => state.displayRequest);
+
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["referral"],
+    mutationFn: ({ status, reply }: TDashboardReplyRequests) => {
+      return request.post(
+        `/dashboard/requests/${displayRequest.id}`,
+        {
+          status,
+          reply,
+        },
+        {
+          headers: {
+            Authorization: session?.user?.refresh_token && `Bearer ${session?.user?.refresh_token}`,
+          },
+        }
+      );
+    },
+    onSuccess(data, variables) {
+      sonerToast({
+        severity: "success",
+        title: "Sucess !",
+        message: data.data.message,
+      });
+    },
+    onError(error, variables, context) {
+      sonerToast({
+        severity: "error",
+        title: "Error !",
+        ///@ts-expect-error
+        message: error?.response.data.message,
+      });
+    },
+  });
+
+  const form = useForm<z.infer<typeof replyValidator>>({
+    resolver: zodResolver(replyValidator),
+    defaultValues: {
+      message: "",
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof replyValidator>, status: Applied["status"]) {
+    mutate({ reply: values.message, status: status });
+  }
 
   const today = new Date();
 
@@ -222,34 +299,68 @@ export function RequestsDisplay({}: MailDisplayProps) {
                 );
               })}
             </div>
+            <div className="bg-muted m-4 flex-1 whitespace-pre-wrap rounded-xl p-4 text-base">
+              {displayRequest?.status === "Accepted" ? (
+                <Badge className="mb-2" variant="default">
+                  <CircleCheck className="h-3" /> Accepted
+                </Badge>
+              ) : (
+                <Badge className="mb-2" variant="default">
+                  <CircleAlert className="h-3" /> Rejected
+                </Badge>
+              )}
+              <p>{parse(displayRequest?.reply)}</p>
+            </div>
           </div>
           <Separator className="mt-auto" />
-          <div className="p-4">
-            <form>
-              <div className="grid gap-4">
-                <Textarea
-                  className="bg-muted p-4"
-                  placeholder={`Send Feedback to ${displayRequest?.user.name}...`}
-                />
-                <div className="flex items-center justify-end gap-5">
-                  <Button
-                    onClick={(e) => e.preventDefault()}
-                    size="sm"
-                    className="text-foreground rounded-full bg-green-800 transition hover:bg-green-800 active:scale-95">
-                    <Check className="mr-1" />
-                    Accept
-                  </Button>
-                  <Button
-                    onClick={(e) => e.preventDefault()}
-                    size="sm"
-                    className="bg-destructive text-foreground hover:bg-destructive rounded-full transition active:scale-95">
-                    <X />
-                    Reject
-                  </Button>
+          {!displayRequest.reply && (
+            <form className="p-4">
+              <Form {...form}>
+                <div className="grid gap-4">
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base">{`Send Feedback to ${displayRequest?.user.name}...`}</FormLabel>
+                        <FormControl>
+                          <RichTextEditor
+                            charactersLimit={500}
+                            className="bg-muted min-h-[80px] max-w-full text-base"
+                            name="message"
+                            placeholder="Write a short message to the referrer here. . . . . ."
+                            value={field.value}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="flex items-center justify-end gap-5">
+                    <Button
+                      isLoading={isPending}
+                      iconBefore={<Check />}
+                      onClick={form.handleSubmit((data) => onSubmit(data, "Accepted"))}
+                      type="submit"
+                      size="sm"
+                      className="text-foreground rounded-full bg-green-800 transition hover:bg-green-800 active:scale-95">
+                      Accept
+                    </Button>
+                    <Button
+                      isLoading={isPending}
+                      iconBefore={<X />}
+                      onClick={form.handleSubmit((data) => onSubmit(data, "Rejected"))}
+                      type="submit"
+                      size="sm"
+                      className="bg-destructive text-foreground hover:bg-destructive rounded-full transition active:scale-95">
+                      Reject
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </Form>
             </form>
-          </div>
+          )}
         </div>
       ) : (
         <div className="text-muted-foreground p-8 text-center">No message selected</div>

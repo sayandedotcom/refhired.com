@@ -51,7 +51,7 @@ export type TDashboardRequestsData = {
 
 export type TDashboardDisplayRequestsData = {
   id: Applied["id"];
-  applyInfo: sny;
+  applyInfo: any;
   appliedAt: Applied["appliedAt"];
   reply: Applied["reply"];
   status: Applied["status"];
@@ -62,4 +62,9 @@ export type TDashboardDisplayRequestsData = {
     image: User["image"];
     email: User["email"];
   };
+};
+
+export type TDashboardReplyRequests = {
+  reply: Applied["reply"];
+  status: Applied["status"];
 };

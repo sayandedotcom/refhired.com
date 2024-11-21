@@ -1,8 +1,12 @@
 "use client";
 
-import { fromNow } from "@refhiredcom/utils";
+import { useRouter } from "next/navigation";
+
+import { expired, fromNow } from "@refhiredcom/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
+
+import { Button } from "@referrer/ui";
 
 import { PostCard } from "@/components/custom-components";
 import {
@@ -23,6 +27,8 @@ import Loading from "../loading";
 
 export default function Home() {
   const { data: session } = useSession();
+  const router = useRouter();
+
   const { data, isLoading } = useQuery<TPosts>({
     queryKey: ["posts"],
     queryFn: () => {
@@ -54,6 +60,7 @@ export default function Home() {
               timeLeft={data.expiresAt ? fromNow(data.expiresAt) : "No Expiry"}
               postType={data.postType}
               isAuthor={session?.user?.id === data.userId}
+              expired={expired(data.expiresAt)}
             />
             <Navigate userName={data.user.userName} postId={data.id}>
               <PostCard.Description showMore={true}>{data.description}</PostCard.Description>
@@ -77,9 +84,16 @@ export default function Home() {
                 <StarButton star={data.stars} />
               </MultipleButtons>
               {session?.user?.id === data.userId ? (
-                <></>
+                data.totalApplied > 0 && (
+                  <Button
+                    onClick={() => {
+                      router.push(`/dashboard/requests?postId=${data.id}`);
+                    }}
+                    className="h-9 rounded-full text-sm md:w-36">
+                    Explore Requests
+                  </Button>
+                )
               ) : (
-                // <Button className="h-9 rounded-full text-sm md:w-36">Analytics</Button>
                 <ApplyDialog
                   myObject={data.accept}
                   postId={data.id}
@@ -87,7 +101,7 @@ export default function Home() {
                   totalApplied={data.totalApplied}
                   acceptLimit={data.acceptLimit}
                   authorId={data.userId}
-                  // expired={expired(data.expiresAt)}
+                  expired={expired(data.expiresAt)}
                 />
               )}
             </PostCard.Footer>

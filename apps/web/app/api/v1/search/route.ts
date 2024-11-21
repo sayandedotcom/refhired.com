@@ -1,19 +1,75 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-  return NextResponse.json("Hello, Next.js!", {
-    status: 200,
-  });
-}
+export async function GET(request: NextRequest, response: NextResponse) {
+  const searchParams = request.nextUrl.searchParams;
 
-export async function POST(request: NextRequest) {
-  const res = await request.json();
-  return NextResponse.json({ res });
-}
+  const search_query = searchParams.get("search_query");
+  const jobURL = searchParams.get("jobURL");
+  const jobCode = searchParams.get("jobCode");
+  const postType = searchParams.getAll("postType");
+  const companyName = searchParams.getAll("companyName");
+  const jobExperience = searchParams.getAll("jobExperience");
+  const jobType = searchParams.getAll("jobType");
+  const jobRole = searchParams.getAll("jobRole");
+  const skills = searchParams.getAll("skills");
+  const jobLocation = searchParams.getAll("jobLocation");
 
-export async function DELETE(request: NextRequest) {
-  const res = await request.json();
-  return NextResponse.json({ res });
+  console.log("jobURL", jobURL);
+  console.log("jobCode", jobCode);
+  console.log("postType", postType);
+  console.log("companyName", companyName);
+  console.log("jobExperience", jobExperience);
+  console.log("jobType", jobType);
+  console.log("jobRole", jobRole);
+  console.log("skills", skills);
+  console.log("jobLocation", jobLocation);
+
+  const filters = {
+    ...(search_query && { description: { contains: search_query, mode: "insensitive" } }),
+    ...(jobURL && { jobURL }),
+    ...(jobCode && { jobCode }),
+    ...(postType.length && { postType: { in: postType } }),
+    ...(companyName.length && { companyName: { in: companyName } }),
+    ...(jobExperience.length && { jobExperience: { in: jobExperience } }),
+    ...(jobType.length && { jobType: { in: jobType } }),
+    ...(jobRole.length && { jobRole: { in: jobRole } }),
+    ...(skills.length && { skills: { hasSome: skills } }), // for arrays in Prisma JSON fields
+    ...(jobLocation.length && { jobLocation: { in: jobLocation } }),
+  };
+  console.log("filtersfiltersfiltersfiltersfiltersfiltersfilters");
+
+  console.log(filters);
+
+  // const data = prisma.posts.findMany({
+  //   where: {
+  //     description: {
+  //       contains: search_query,
+  //       mode: "insensitive",
+  //     },
+  //     postType: {in: postType},
+  //     companyName: { in: companyName },
+  //     jobExperience: { in: jobExperience },
+  //     jobType: { in: jobType },
+  //     jobRole: { in: jobRole },
+  //     skills: { hasSome: skills },
+  //     jobLocation: { in: jobLocation },
+  //   },
+  // });
+
+  // if (data)
+  return NextResponse.json(
+    { data: "vdv" },
+    {
+      status: 200,
+    }
+  );
+  // else
+  //   return NextResponse.json(
+  //     { message: "Opps ! Not Found" },
+  //     {
+  //       status: 404,
+  //     }
+  //   );
 }
 
 //  GET -> Retrieving a single or multiple resources.

@@ -3,7 +3,7 @@ import Image from "next/image";
 import parse from "html-react-parser";
 import { MoreHorizontal } from "lucide-react";
 
-import { Badge, PostHoverCard } from "@/components/ui";
+import { Badge, PostHoverCard, TooltipDemo } from "@/components/ui";
 import UsernameNavigate from "@/components/wrappers/username-navigator";
 
 import { cn } from "@/utils";
@@ -53,6 +53,7 @@ function PostCardHeader({
   isAuthor,
   image,
   bio,
+  expired,
 }: {
   name: string;
   userName: string;
@@ -62,6 +63,7 @@ function PostCardHeader({
   isAuthor?: boolean;
   image?: any;
   bio: any;
+  expired: any;
 }) {
   const type = {
     REFERRALPOST: "Referral Post",
@@ -86,12 +88,18 @@ function PostCardHeader({
             </span>
           </UsernameNavigate>
         </PostHoverCard>
-        •<small id="post-uploaded">{time}</small>•
-        <small id="post-time-left" className="hidden capitalize md:block">
-          {timeLeft}
-        </small>
+        •
+        <TooltipDemo text={`Posted ${time}`}>
+          <Badge variant="secondary" id="post-uploaded">
+            {time}
+          </Badge>
+        </TooltipDemo>
+        •
+        <Badge variant="secondary" id="post-time-left" className="hidden md:block">
+          {expired && "Expired "} {timeLeft}
+        </Badge>
       </div>
-      <div className="flex gap-4">
+      <div className="flex items-center gap-4">
         <Badge search={type[postType]} search_query={"postType"} className="cursor-pointer capitalize">
           {type[postType]}
         </Badge>
@@ -109,7 +117,9 @@ PostCard.Header = PostCardHeader;
 
 function PostCardDescription({ children, showMore }: { children: any; showMore?: Boolean }) {
   return (
-    <div id="post-content" className={cn("cursor-pointer text-xs md:text-sm", showMore && "line-clamp-3")}>
+    <div
+      id="post-content"
+      className={cn("font-heading cursor-pointer text-xs md:text-base", showMore && "line-clamp-3")}>
       {parse(children)}
       {showMore && <span className="float-right text-xs md:text-sm">....Show more</span>}
     </div>

@@ -48,7 +48,7 @@ export function CustomPricingCard() {
           size="icon"
           className="h-8 w-8 shrink-0 rounded-full"
           onClick={() => onClick("add")}
-          disabled={stars >= 400}>
+          disabled={stars >= 30}>
           <Plus className="h-4 w-4" />
           <span className="sr-only">Increase</span>
         </Button>

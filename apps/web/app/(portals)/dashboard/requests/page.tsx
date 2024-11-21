@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 import { Search } from "lucide-react";
 
 import {
@@ -23,8 +21,6 @@ import { RequestsList } from "@/components/dashboard/requests/components/request
 import { mails } from "@/components/dashboard/requests/data";
 
 function RequestsDashboard() {
-  const [postId, setPostId] = useState();
-
   return (
     <TooltipProvider delayDuration={0}>
       <ResizablePanelGroup
@@ -49,7 +45,7 @@ function RequestsDashboard() {
             </div>
             <Separator />
             <TabsContent value="all" className="mt-2">
-              <PostsList postId={postId} setPostId={setPostId} />
+              <PostsList />
             </TabsContent>
           </Tabs>
         </ResizablePanel>
@@ -73,7 +69,7 @@ function RequestsDashboard() {
             </div>
             <Separator />
             <TabsContent value="all" className="mt-2">
-              <RequestsList items={mails} postId={postId} />
+              <RequestsList items={mails} />
             </TabsContent>
             <TabsContent value="unread" className="mt-2">
               <RequestsList items={mails?.filter((item) => !item.read)} />

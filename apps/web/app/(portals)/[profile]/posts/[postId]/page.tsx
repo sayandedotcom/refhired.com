@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { fromNow } from "@refhiredcom/utils";
+import { expired, fromNow } from "@refhiredcom/utils";
 
 import { PostCard } from "@/components/custom-components";
 import {
@@ -50,6 +50,7 @@ export const metadata: Metadata = {
 
 export default async function Post({ params }: PostProps) {
   const session = await auth();
+
   const { data } = (await request.get<TPostsData>(`/posts/${params.postId}`)).data;
 
   return (
@@ -71,6 +72,7 @@ export default async function Post({ params }: PostProps) {
             timeLeft={data.expiresAt ? fromNow(data.expiresAt) : "No Expiry"}
             postType={data.postType}
             isAuthor={session?.user?.id === data.userId}
+            expired={expired(data.expiresAt)}
           />
           <PostCard.Description showMore={false}>{data.description}</PostCard.Description>
           <PostCard.Tags
@@ -92,14 +94,27 @@ export default async function Post({ params }: PostProps) {
               <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
               <StarButton star={data.stars} />
             </MultipleButtons>
-            <ApplyDialog
-              myObject={data.accept}
-              postId={data.id}
-              stars={data.stars}
-              totalApplied={data.totalApplied}
-              acceptLimit={data.acceptLimit}
-              authorId={data.userId}
-            />
+            {session?.user?.id === data.userId ? (
+              // <Button
+              //   onClick={() => {
+
+              //     router.push(`/dashboard/requests/${data.id}`);
+              //   }}
+              //   className="h-9 rounded-full text-sm md:w-36">
+              //   Requests
+              // </Button>
+              <></>
+            ) : (
+              <ApplyDialog
+                myObject={data.accept}
+                postId={data.id}
+                stars={data.stars}
+                totalApplied={data.totalApplied}
+                acceptLimit={data.acceptLimit}
+                authorId={data.userId}
+                expired={expired(data.expiresAt)}
+              />
+            )}
           </PostCard.Footer>
         </PostCard.Content>
       </PostCard>

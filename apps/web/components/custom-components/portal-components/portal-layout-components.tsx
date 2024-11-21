@@ -46,6 +46,7 @@ export function LeftSection() {
   const path = "/" + pathName.split("/")[1];
   const { width } = useWindowSize();
   const [isOpen, setIsOpen] = useState(false);
+  const setDisplayRequest = useStore((state) => state.setDisplayRequest);
 
   return (
     <>
@@ -62,6 +63,9 @@ export function LeftSection() {
                 {portalsList.map(({ name, link, icon }) => (
                   <TooltipDemo key={name} side="right" text={name}>
                     <Link
+                      onClick={() => {
+                        setDisplayRequest(null);
+                      }}
                       id={name.toLocaleLowerCase()}
                       href={link ?? `/${session?.user.userName}` ?? "/profile"}
                       className={clsx(
@@ -98,7 +102,7 @@ export function LeftSection() {
                   <Link
                     key={name}
                     id={name.toLocaleLowerCase()}
-                    href={link ?? session?.user.userName ?? "profile"}
+                    href={link ?? `/${session?.user.userName}` ?? "/profile"}
                     className={clsx(
                       "hover:bg-muted flex items-center gap-4 rounded-md px-2 py-2",
                       path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"

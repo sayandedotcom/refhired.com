@@ -8,7 +8,7 @@ export const plans: SubscriptionPlan[] = [
     price: "700",
     stars: 1000,
     isMostPop: false,
-    features: ["Curabitur faucibus", "massa ut pretium maximus"],
+    features: ["70 Stars", "massa ut pretium maximus"],
     stripePriceId: process.env.STRIPE_EXPERIENCED_PRICE_ID,
   },
   {
@@ -18,7 +18,7 @@ export const plans: SubscriptionPlan[] = [
     price: "1200",
     stars: 1700,
     isMostPop: true,
-    features: ["Curabitur faucibus", "massa ut pretium maximus"],
+    features: ["120 Stars", "massa ut pretium maximus"],
     stripePriceId: process.env.STRIPE_JUNIOR_PRICE_ID,
   },
   {
@@ -28,7 +28,7 @@ export const plans: SubscriptionPlan[] = [
     price: "2000",
     stars: 2600,
     isMostPop: false,
-    features: ["Curabitur faucibus", "massa ut pretium maximus"],
+    features: ["2000 Stars", "massa ut pretium maximus"],
     stripePriceId: process.env.STRIPE_LAYOFFED_PRICE_ID,
   },
 ];

@@ -7,14 +7,21 @@ import { motion } from "framer-motion";
 
 import { dashboardNavigation } from "@/config";
 
+import { useStore } from "@/store/store";
+
 export default function DashboardProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const setDisplayRequest = useStore((state) => state.setDisplayRequest);
+
   return (
     <>
       <section className="scroll-smooth p-2">
         <div className="bg-muted text-muted-foreground items-centerjustify-center inline-flex h-10 rounded-md p-1">
           {dashboardNavigation.map((tab) => (
             <Link
+              onClick={() => {
+                setDisplayRequest(null);
+              }}
               href={tab.path}
               key={tab.path}
               className={`${
@@ -26,7 +33,7 @@ export default function DashboardProvider({ children }: { children: React.ReactN
               {pathname === tab.path && (
                 <motion.span
                   layoutId="bubble"
-                  className="absolute inset-0 z-10 rounded-lg bg-orange-50 mix-blend-difference"
+                  className="bg-foreground absolute inset-0 z-10 rounded-lg mix-blend-difference"
                   animate={{
                     scale: 1.2,
                   }}

@@ -1,6 +1,10 @@
+import { useCallback } from "react";
+
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { StopwatchIcon } from "@radix-ui/react-icons";
+import { expired, fromNow } from "@refhiredcom/utils";
 import { useQuery } from "@tanstack/react-query";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import parse from "html-react-parser";
@@ -18,14 +22,22 @@ import { useStore } from "@/store/store";
 
 import { TDashboardPostsData } from "@/types/posts";
 
-interface PostListProps {
-  postId?: string;
-  setPostId?: any;
-}
-
-export function PostsList({ postId, setPostId }: PostListProps) {
+export function PostsList() {
   const { data: session } = useSession();
   const setDisplayRequest = useStore((state) => state.setDisplayRequest);
+  const pathName = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   const { data, isLoading } = useQuery<TDashboardPostsData>({
     queryKey: ["dashboard", "requests"],
@@ -45,6 +57,10 @@ export function PostsList({ postId, setPostId }: PostListProps) {
     return <Loader className="mx-auto my-auto h-8 w-8 animate-spin" />;
   }
 
+  if (data?.data?.data?.posts.length === 0) {
+    return <div className="text-muted-foreground p-8 text-center">No have&apos;t posted anything</div>;
+  }
+
   return (
     <ScrollArea className="h-screen">
       <div className="flex flex-col gap-2 p-4 pt-0">
@@ -53,10 +69,11 @@ export function PostsList({ postId, setPostId }: PostListProps) {
             key={item.id}
             className={cn(
               "hover:bg-accent flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
-              postId === item.id && "bg-muted"
+              searchParams.get("postId") === item.id && "bg-muted"
             )}
             onClick={() => {
-              setPostId(item.id);
+              router.push(pathName + "?" + createQueryString("postId", item.id));
+              // setPostId(item.id);
               setDisplayRequest(null);
             }}>
             <div className="flex w-full flex-col gap-1">
@@ -90,7 +107,12 @@ export function PostsList({ postId, setPostId }: PostListProps) {
                 <User id="options" className="h-full" /> <p className="text-xs">{item.totalApplied}</p>
               </div>
               <div className={cn("text-muted-foreground line-clamp-2 flex h-5 items-center gap-1")}>
-                <StopwatchIcon id="options" className="h-full" /> <p className="text-xs">Expired</p>
+                <StopwatchIcon id="options" className="h-full" />{" "}
+                <p className="text-xs">
+                  {item.expiresAt
+                    ? expired(item.expiresAt) && `Expired ${fromNow(item.expiresAt)}`
+                    : "No Expiry"}
+                </p>
               </div>
               <TooltipDemo text={`${item.totalApplied} / ${item.acceptLimit} Applied`}>
                 <div
