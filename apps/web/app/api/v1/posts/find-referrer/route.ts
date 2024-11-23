@@ -2,6 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import prisma from "@referrer/prisma";
 
+import { auth } from "@/lib/auth";
+
 import { TFindReferralPost } from "@/types/types";
 
 export async function POST(request: NextRequest) {
@@ -22,10 +24,10 @@ export async function POST(request: NextRequest) {
 
   // const rateLimitFlag = await redis.get(`RATE_LIMIT:POST:${info.userId}`);
   // if (rateLimitFlag) throw new RateLimitError("Please Wait");
-
+  const session = await auth();
   const createdPost = await prisma.posts.create({
     data: {
-      userId: response.userId,
+      userId: session.user.id,
       description: response.description,
       jobCode: response.jobCode,
       postType: "FINDREFERRER",
