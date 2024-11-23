@@ -18,7 +18,6 @@ import {
 import { PostsList } from "@/components/dashboard/requests/components/post-list";
 import { RequestsDisplay } from "@/components/dashboard/requests/components/request-display";
 import { RequestsList } from "@/components/dashboard/requests/components/request-list";
-import { mails } from "@/components/dashboard/requests/data";
 
 function RequestsDashboard() {
   return (
@@ -69,13 +68,16 @@ function RequestsDashboard() {
             </div>
             <Separator />
             <TabsContent value="all" className="mt-2">
-              <RequestsList items={mails} />
+              {/* <RequestsList items={mails} /> */}
+              <RequestsList />
             </TabsContent>
             <TabsContent value="unread" className="mt-2">
-              <RequestsList items={mails?.filter((item) => !item.read)} />
+              {/* <RequestsList items={mails?.filter((item) => !item.read)} /> */}
+              <RequestsList />
             </TabsContent>
             <TabsContent value="notresponded" className="mt-2">
-              <RequestsList items={mails?.filter((item) => !item.read)} />
+              {/* <RequestsList items={mails?.filter((item) => !item.read)} /> */}
+              <RequestsList />
             </TabsContent>
           </Tabs>
         </ResizablePanel>
