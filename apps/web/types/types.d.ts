@@ -44,4 +44,4 @@ export type TProfile = { data: User & { posts: Posts[] } };
 
 export type TSettingsProfile = { data: User };
 
-export type TApply = { applyInfo: any; postId: string; starsRequired?: number; authorId: string };
+export type TApply = { applyInfo: any; starsRequired?: number; authorId: string };

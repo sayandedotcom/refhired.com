@@ -6,7 +6,7 @@ export function DynamicIcons({
   props,
 }: {
   iconName: string;
-  className: string;
+  className?: string;
   props?: any;
 }) {
   if (iconName === "twitter")

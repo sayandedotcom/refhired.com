@@ -34,6 +34,11 @@ export const portalsList = [
     icon: <Bookmark />,
   },
   {
+    name: "Settings",
+    link: "/settings/profile",
+    icon: <Settings />,
+  },
+  {
     name: "Requests",
     link: "/requests",
     icon: <FileInput />,
@@ -42,11 +47,6 @@ export const portalsList = [
     name: "Applied",
     link: "/applied",
     icon: <FileOutput />,
-  },
-  {
-    name: "Settings",
-    link: "/settings/profile",
-    icon: <Settings />,
   },
   {
     name: "Dashboard",

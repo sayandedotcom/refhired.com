@@ -110,7 +110,7 @@ export function PostsList() {
                 <StopwatchIcon id="options" className="h-full" />{" "}
                 <p className="text-xs">
                   {item.expiresAt
-                    ? expired(item.expiresAt) && `Expired ${fromNow(item.expiresAt)}`
+                    ? expired(item.expiresAt) && `Expired ${fromNow(item.expiresAt)} ago`
                     : "No Expiry"}
                 </p>
               </div>

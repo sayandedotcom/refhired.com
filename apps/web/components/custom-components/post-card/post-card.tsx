@@ -90,14 +90,14 @@ function PostCardHeader({
         </PostHoverCard>
         •
         <TooltipDemo text={`Posted ${time}`}>
-          <Badge variant="secondary" id="post-uploaded">
+          <span className="text-sm" id="post-uploaded">
             {time}
-          </Badge>
+          </span>
         </TooltipDemo>
         •
-        <Badge variant="secondary" id="post-time-left" className="hidden md:block">
-          {expired && "Expired "} {timeLeft}
-        </Badge>
+        <span id="post-time-left" className="hidden text-sm md:block">
+          {expired && "Expired "} {timeLeft} {expired && "ago "}
+        </span>
       </div>
       <div className="flex items-center gap-4">
         <Badge search={type[postType]} search_query={"postType"} className="cursor-pointer capitalize">

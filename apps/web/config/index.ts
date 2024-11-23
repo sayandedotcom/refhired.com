@@ -16,3 +16,4 @@ export * from "./without-right-bar-pages";
 export * from "./currencyList";
 export * from "./job-experience-list";
 export * from "./dashboard-navigation";
+export * from "./shrink-sidebar-routes";

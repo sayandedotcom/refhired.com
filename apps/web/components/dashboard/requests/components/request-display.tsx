@@ -12,8 +12,7 @@ import parse from "html-react-parser";
 import {
   Archive,
   Check,
-  CircleAlert,
-  CircleCheck,
+  CheckCircle2,
   Clock,
   File,
   Forward,
@@ -22,6 +21,7 @@ import {
   ReplyAll,
   Trash2,
   X,
+  XCircle,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -299,18 +299,20 @@ export function RequestsDisplay() {
                 );
               })}
             </div>
-            <div className="bg-muted m-4 flex-1 whitespace-pre-wrap rounded-xl p-4 text-base">
-              {displayRequest?.status === "Accepted" ? (
-                <Badge className="mb-2" variant="default">
-                  <CircleCheck className="h-3" /> Accepted
-                </Badge>
-              ) : (
-                <Badge className="mb-2" variant="default">
-                  <CircleAlert className="h-3" /> Rejected
-                </Badge>
-              )}
-              <p>{parse(displayRequest?.reply)}</p>
-            </div>
+            {displayRequest?.reply && (
+              <div className="bg-muted m-4 flex-1 whitespace-pre-wrap rounded-xl p-4 text-base">
+                {displayRequest?.status === "Accepted" ? (
+                  <Badge className="mb-2" variant="default">
+                    <CheckCircle2 className="h-3" /> Accepted
+                  </Badge>
+                ) : (
+                  <Badge className="mb-2" variant="default">
+                    <XCircle className="h-3" /> Rejected
+                  </Badge>
+                )}
+                <p>{parse(displayRequest.reply)}</p>
+              </div>
+            )}
           </div>
           <Separator className="mt-auto" />
           {!displayRequest.reply && (

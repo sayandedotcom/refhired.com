@@ -50,16 +50,20 @@ function PricingCards() {
       <BackgroundGradient className="h-full rounded-[22px] bg-white dark:bg-zinc-900">
         {/* <div className="border-border relative mt-6 flex flex-1 flex-col items-stretch rounded-xl border sm:mt-0 "> */}
         <div className="space-y-2 border-b p-8">
-          <span className="font-medium">Custom</span>
+          <span className="font-heading">Custom</span>
           <CustomPricingCard />
         </div>
         <ul className="space-y-3 p-8">
-          <li className="pb-2 text-xl font-medium">
+          <li className="font-heading pb-2 text-xl">
             <p>Features</p>
           </li>
-          <li className="flex items-center gap-5">
+          <li className="font-heading flex items-center gap-5">
             <CheckCircle2 />
-            featureItem
+            Custom Stars
+          </li>
+          <li className="font-heading flex items-center gap-5">
+            <CheckCircle2 />
+            Refundable
           </li>
         </ul>
         {/* </div> */}

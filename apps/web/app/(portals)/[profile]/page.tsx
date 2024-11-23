@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { fromNow } from "@refhiredcom/utils";
+import { expired, fromNow } from "@refhiredcom/utils";
 import { ArrowRight, Calendar, Mail, MapPin } from "lucide-react";
 
 import { Button, Separator } from "@referrer/ui";
@@ -150,6 +150,7 @@ const Profile = async ({ params }: paramsProps) => {
               timeLeft={postData.expiresAt ? fromNow(postData.expiresAt) : "No Expiry"}
               postType={postData.postType}
               isAuthor={session?.user?.id === data.id}
+              expired={expired(postData.expiresAt)}
             />
             <Navigate userName={data.userName} postId={data.id}>
               <PostCard.Description showMore={true}>
@@ -185,7 +186,7 @@ const Profile = async ({ params }: paramsProps) => {
                   totalApplied={postData.totalApplied}
                   acceptLimit={postData.acceptLimit}
                   authorId={postData.userId}
-                  // expired={expired(data.expiresAt)}
+                  expired={expired(postData.expiresAt)}
                 />
               )}
             </PostCard.Footer>

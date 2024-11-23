@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import parse from "html-react-parser";
-import { CircleAlert, CircleCheck, Loader } from "lucide-react";
+import { CheckCircle2, Loader, XCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
 
 import { cn } from "@referrer/lib/utils/cn";
@@ -56,7 +56,7 @@ export function RequestsList() {
               key={item.id}
               className={cn(
                 "hover:bg-accent flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
-                item.visibility === "Unread" && "bg-muted"
+                item.visibility === "Unread" && "bg-muted/40"
               )}
               onClick={() => setDisplayRequest(item)}>
               <div className="flex w-full flex-col gap-1">
@@ -100,20 +100,21 @@ export function RequestsList() {
               <div className="flex w-full justify-end gap-2">
                 {item?.reply ? (
                   <Badge variant="secondary">
-                    <CircleCheck className="h-3" /> Responded
+                    <CheckCircle2 className="h-3" /> Responded
                   </Badge>
                 ) : (
                   <Badge variant="secondary">
-                    <CircleAlert className="h-3" /> Not Responded
+                    <XCircle className="h-3" /> Not Responded
                   </Badge>
                 )}
-                {item?.status === "Accepted" ? (
+                {item?.status === "Accepted" && (
                   <Badge variant="default">
-                    <CircleCheck className="h-3" /> Accepted
+                    <CheckCircle2 className="h-3" /> Accepted
                   </Badge>
-                ) : (
+                )}
+                {item?.status === "Rejected" && (
                   <Badge variant="destructive">
-                    <CircleAlert className="h-3" /> Rejected
+                    <XCircle className="h-3" /> Rejected
                   </Badge>
                 )}
               </div>

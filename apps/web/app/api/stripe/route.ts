@@ -18,6 +18,7 @@ export async function POST(req: NextRequest) {
       payment_method_types: ["card"],
       mode: "payment",
       customer_email: user.email,
+      billing_address_collection: "required",
       line_items: [
         {
           price: planId,
@@ -28,7 +29,7 @@ export async function POST(req: NextRequest) {
         userId: user.id,
         stars,
       },
-      success_url: "http://localhost:3000/",
+      success_url: "http://localhost:3000/purchase",
       cancel_url: "http://localhost:3000/purchase",
     });
 

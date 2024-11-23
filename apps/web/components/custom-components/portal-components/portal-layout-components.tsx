@@ -21,7 +21,7 @@ import { Icons } from "@/components/icons/icons";
 import { Badge, PostTypeDialog, TooltipDemo, sonerToast } from "@/components/ui";
 import { PlaceholdersAndVanishInput } from "@/components/ui";
 
-import { withoutRightBarPages } from "@/config";
+import { shrinkSidebarRoutes, withoutRightBarPages } from "@/config";
 
 import { useStore } from "@/store/store";
 
@@ -50,7 +50,7 @@ export function LeftSection() {
 
   return (
     <>
-      {pathName.startsWith("/dashboard") ? (
+      {shrinkSidebarRoutes.some((route) => pathName.startsWith(route)) ? (
         <section className="bg-muted/40 sticky left-0 top-0 z-50 hidden h-screen w-[15%] md:hidden lg:block lg:w-[4%]">
           <div className="flex h-full w-full flex-col items-start justify-start">
             <Link
@@ -85,6 +85,15 @@ export function LeftSection() {
                 <Send />
               </Button>
             </PostTypeDialog>
+            <div className="bg-muted mx-auto mb-3 mt-auto flex w-full flex-col items-center justify-center gap-3 rounded-lg border p-2 px-3 lg:w-[95%]">
+              <Image
+                src={session?.user.image ?? "/images/avatar/avatar.png"}
+                height={60}
+                width={60}
+                className="rounded-md"
+                alt="img"
+              />
+            </div>
           </div>
         </section>
       ) : (
@@ -166,7 +175,7 @@ export function LeftSection() {
                 <div className="flex w-full items-center gap-3 py-2">
                   <Badge className="bg-background text-foreground border-foreground hover:bg-background mx-0 flex h-full items-center justify-center gap-3 rounded-sm">
                     <Star className="h-5" />
-                    <span className="font-heading mt-1 text-base font-bold">{session?.user.stars ?? 0}</span>
+                    <span className="font-heading mt-1 text-base font-bold">{session?.user.stars}</span>
                   </Badge>
                   <Button
                     onClick={() => router.push("/purchase")}
@@ -174,11 +183,11 @@ export function LeftSection() {
                     {/* <Coins className="mb-1 mr-2 h-5 w-5" />  */}
                     Buy Stars
                   </Button>
-                  <Button
+                  {/* <Button
                     onClick={() => router.push("/purchase")}
                     className="font-heading h-9 text-start transition active:scale-95">
                     Withdraw
-                  </Button>
+                  </Button> */}
                   {session?.user?.paidForDashboard && (
                     <Button className="font-heading w-full px-6 text-start transition active:scale-95">
                       Go to Dashboard <ArrowUpRight className="mb-1 mr-4 h-5 w-5" />
@@ -205,7 +214,7 @@ export function CenterSection({ children }: { children: React.ReactNode }) {
         className={clsx(
           "flex w-full flex-col",
           largeLayout ? "lg:w-[80%]" : "lg:w-[60%]",
-          pathName.startsWith("/dashboard") && "lg:w-[96%]"
+          shrinkSidebarRoutes.some((route) => pathName.startsWith(route)) && "lg:w-[96%]"
         )}>
         <div className="flex flex-row justify-between px-4">
           <LeftBarMobile />

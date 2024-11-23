@@ -63,10 +63,10 @@ export function ApplyDialog({
 
   const { mutate, isPending } = useMutation({
     mutationKey: ["apply"],
-    mutationFn: ({ applyInfo, postId, starsRequired, authorId }: TApply) => {
+    mutationFn: ({ applyInfo, starsRequired, authorId }: TApply) => {
       return request.post(
-        "/apply",
-        { applyInfo, postId, starsRequired, authorId },
+        `/apply/${postId}`,
+        { applyInfo, starsRequired, authorId },
         {
           headers: {
             Authorization: session?.user?.refresh_token && `Bearer ${session?.user?.refresh_token}`,
@@ -110,7 +110,7 @@ export function ApplyDialog({
       });
       router.push("/auth/login");
     } else {
-      mutate({ applyInfo: values, postId: postId, starsRequired: stars, authorId: authorId });
+      mutate({ applyInfo: values, starsRequired: stars, authorId: authorId });
     }
   }
 
