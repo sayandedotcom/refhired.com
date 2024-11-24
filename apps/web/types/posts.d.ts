@@ -70,14 +70,6 @@ export type TDashboardReplyRequests = {
 };
 
 export type TApplied = {
-  // id: Applied["id"];
-  // sent: Applied["appliedAt"];
-  // status: Applied["status"];
-  // post: Posts["description"];
-  // amount: Posts["stars"];
-  // message: any;
-  // pdfs: any;
-  // links: any;
   id: Applied["id"];
   sent: Applied["appliedAt"];
   applyInfo: any;
@@ -141,4 +133,17 @@ export type TAllApplied3 = {
   links: any;
   postId: Posts["id"];
   authorUsername: User["userName"];
+};
+
+export type TRequest = {
+  id: Posts["id"];
+  received: Applied["appliedAt"];
+  status: Applied["status"];
+  email: User["email"];
+  visibility: Applied["visibility"];
+  post: Posts["description"]; // Truncate post description
+  amount: Posts["stars"]; // Calculate amount
+  message: string;
+  pdfs: any;
+  links: any;
 };
