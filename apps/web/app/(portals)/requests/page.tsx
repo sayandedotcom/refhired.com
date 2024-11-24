@@ -52,7 +52,7 @@ import { cn } from "@/utils";
 
 import { TRequest } from "@/types/posts";
 
-export const columns: ColumnDef<TRequest>[] = [
+const columns: ColumnDef<TRequest>[] = [
   // select
   {
     id: "select",
