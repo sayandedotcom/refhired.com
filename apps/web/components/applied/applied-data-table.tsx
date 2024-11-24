@@ -18,7 +18,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import parse from "html-react-parser";
-import { ChevronDown, File, Link2, MoreHorizontal } from "lucide-react";
+import { CheckCircle2, ChevronDown, Clock, File, MoreHorizontal, XCircle } from "lucide-react";
 
 import {
   Button,
@@ -39,16 +39,15 @@ import {
   TableRow,
 } from "@referrer/ui";
 
-import { TooltipDemo } from "../ui";
+import { cn } from "@/utils";
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
-};
+import { TApplied } from "@/types/posts";
 
-export const columns: ColumnDef<any>[] = [
+import { DynamicIcons } from "../icons/dynamic-icons";
+import { Badge, TooltipDemo } from "../ui";
+
+const columns: ColumnDef<TApplied>[] = [
+  // select
   {
     id: "select",
     header: ({ table }) => (
@@ -71,26 +70,96 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "sent",
     header: "Sent",
-    cell: ({ row }) => <div className="capitalize">{fromNow(row.getValue("sent"))}</div>,
+    cell: ({ row }) => <div>{fromNow(row.getValue("sent"))}</div>,
   },
+  // status
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("status")}</div>,
+    cell: ({ row }) => (
+      <Badge>
+        {row.getValue("status") === "Pending" && <Clock className="mr-1 h-4" />}
+        {row.getValue("status") === "Accepted" && <CheckCircle2 className="mr-1 h-4" />}
+        {row.getValue("status") === "Rejected" && <XCircle className="mr-1 h-4" />}
+        {row.getValue("status")}
+      </Badge>
+    ),
   },
+  // post
   {
     accessorKey: "post",
     header: "Post",
-    cell: ({ row }) => <div className="lowercase">{parse(row.getValue("post"))}</div>,
+    cell: ({ row }) => {
+      return (
+        <Link
+          href={`/data.authorUsername/data.postId`}
+          className={cn(
+            "bg-accent transition-allbg-muted flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm"
+          )}>
+          <div className="flex w-full flex-col gap-1">
+            <div className="flex items-center justify-between"></div>
+            {/* <div className="text-xs font-medium">{item.subject}</div> */}
+          </div>
+          <div className={cn("text-muted-foreground font-heading line-clamp-3 text-sm")}>
+            {parse(row.getValue("post") ?? "")}
+          </div>
+          {/* <div className="ml-auto flex items-center gap-4">
+              <Link
+                href={`/${session.user.userName}/posts/${item.id}`}
+                className={cn("text-muted-foreground line-clamp-2 flex h-5 items-center gap-1")}>
+                <ArrowUpRight id="options" className="h-full" />
+              </Link>
+              <div className={cn("text-muted-foreground line-clamp-2 flex h-5 items-center gap-1")}>
+                <Star id="options" className="h-full" /> <p className="text-xs">{item.stars}</p>
+              </div>
+              <div className={cn("text-muted-foreground line-clamp-2 flex h-5 items-center gap-1")}>
+                <User id="options" className="h-full" /> <p className="text-xs">{item.totalApplied}</p>
+              </div>
+              <div className={cn("text-muted-foreground line-clamp-2 flex h-5 items-center gap-1")}>
+                <StopwatchIcon id="options" className="h-full" />{" "}
+                <p className="text-xs">
+                  {item.expiresAt
+                    ? expired(item.expiresAt) && `Expired ${fromNow(item.expiresAt)}`
+                    : "No Expiry"}
+                </p>
+              </div>
+              <TooltipDemo text={`${item.totalApplied} / ${item.acceptLimit} Applied`}>
+                <div
+                  className={`flex items-center text-base ${
+                    item.totalApplied === item.acceptLimit ? "text-red-600" : ""
+                  } ${item.acceptLimit ? "" : "hidden"} `}>
+                  <svg height="18" width="18" viewBox="0 0 20 20">
+                    <circle r="10" cx="10" cy="10" fill="#a1a1aa" />
+                    <circle
+                      r="5"
+                      cx="10"
+                      cy="10"
+                      fill="transparent"
+                      stroke={item.totalApplied === item.acceptLimit ? "#cb2424" : "#ffff"}
+                      strokeWidth="10"
+                      strokeDasharray={`calc(${
+                        item.acceptLimit ? Math.round((100 / item.acceptLimit) * item.totalApplied) : 0
+                      } * 31.4 / 100) 31.4`}
+                      transform="rotate(-90) translate(-20)"
+                    />
+                    <circle r="6" cx="10" cy="10" fill="black" />
+                  </svg>
+                </div>
+              </TooltipDemo>
+            </div> */}
+        </Link>
+      );
+    },
   },
-
+  // message
   {
     accessorKey: "message",
     header: () => <div className="">Message</div>,
     cell: ({ row }) => {
-      return <div className=" font-medium">{parse(row.getValue("message"))}</div>;
+      return <div className="font-heading line-clamp-3">{parse(row.getValue("message") ?? "")}</div>;
     },
   },
+  // pdfs
   {
     accessorKey: "pdfs",
     header: () => <div className="">Pdfs</div>,
@@ -98,7 +167,7 @@ export const columns: ColumnDef<any>[] = [
       return (
         <div className=" font-medium">
           {/* @ts-ignore */}
-          {row.getValue("pdfs").map((link, index) => {
+          {row.getValue("pdfs")?.map((link, index) => {
             const platform = Object.keys(link)[0];
             const url = link[platform];
             return (
@@ -113,20 +182,21 @@ export const columns: ColumnDef<any>[] = [
       );
     },
   },
+  // links
   {
     accessorKey: "links",
     header: () => <div className="">Links</div>,
     cell: ({ row }) => {
       return (
-        <div className="flex gap-3  font-medium">
+        <div className="flex items-center gap-3 font-medium">
           {/* @ts-ignore */}
-          {row.getValue("links").map((link, index) => {
+          {row.getValue("links")?.map((link, index) => {
             const platform = Object.keys(link)[0];
             const url = link[platform];
             return (
               <Link key={index} href={url} target="_blank">
                 <TooltipDemo text={platform}>
-                  <Link2 />
+                  <DynamicIcons iconName={platform} className="h-7 w-7" />
                 </TooltipDemo>
               </Link>
             );
@@ -135,27 +205,27 @@ export const columns: ColumnDef<any>[] = [
       );
     },
   },
+  // amount
   {
     accessorKey: "amount",
     header: () => <div className="">Amount</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-
       // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
+      // const formatted = new Intl.NumberFormat("en-US", {
+      //   style: "currency",
+      //   currency: "USD",
+      // }).format(amount);
 
-      return <div className=" font-medium">{formatted}</div>;
+      return <div className="font-medium">₹{row.getValue("amount")}</div>;
     },
   },
+
+  // actions
   {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
       const payment = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -180,6 +250,8 @@ export const columns: ColumnDef<any>[] = [
 ];
 
 export default function AppliedDataTable({ data }) {
+  console.log("datadatadata", data);
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});

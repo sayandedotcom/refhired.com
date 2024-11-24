@@ -68,3 +68,77 @@ export type TDashboardReplyRequests = {
   reply: Applied["reply"];
   status: Applied["status"];
 };
+
+export type TApplied = {
+  // id: Applied["id"];
+  // sent: Applied["appliedAt"];
+  // status: Applied["status"];
+  // post: Posts["description"];
+  // amount: Posts["stars"];
+  // message: any;
+  // pdfs: any;
+  // links: any;
+  id: Applied["id"];
+  sent: Applied["appliedAt"];
+  applyInfo: any;
+  status: Applied["status"];
+  visibility: Applied["visibility"];
+  post: Posts["description"]; // Truncate post description
+  amount: Posts["stars"]; // Calculate amount
+  message: string;
+  pdfs: any;
+  links: any;
+  postId: Posts["id"];
+  authorUsername: User["userName"];
+};
+
+export type TAllApplied = {
+  data: {
+    data: {
+      id: Applied["id"];
+      appliedAt: Applied["appliedAt"];
+      applyInfo: any;
+      status: Applied["status"];
+      visibility: Applied["visibility"];
+      posts: {
+        id: Posts["id"];
+        description: Posts["description"];
+        stars: Posts["stars"];
+        expiresAt: Posts["expiresAt"];
+        user: {
+          userName: User["userName"];
+        };
+      };
+    }[];
+  };
+};
+
+export type TAllApplied2 = {
+  id: Applied["id"];
+  appliedAt: Applied["appliedAt"];
+  applyInfo: any;
+  status: Applied["status"];
+  visibility: Applied["visibility"];
+  posts: {
+    id: Posts["id"];
+    description: Posts["description"];
+    stars: Posts["stars"];
+    expiresAt: Posts["expiresAt"];
+    user: {
+      userName: User["userName"];
+    };
+  };
+};
+
+export type TAllApplied3 = {
+  id: Applied["id"];
+  sent: aApplied["appliedAt"];
+  status: Applied["status"];
+  post: Posts["description"];
+  amount: Posts["stars"];
+  message: string;
+  pdfs: any;
+  links: any;
+  postId: Posts["id"];
+  authorUsername: User["userName"];
+};

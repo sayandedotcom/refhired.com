@@ -25,5 +25,6 @@ export function fromNow(date) {
     .replace("a year", "y")
     .replace("years", "y")
     .replace("ago", "")
-    .replace("a", "");
+    .replace("a", "")
+    .replace("dy", "d");
 }

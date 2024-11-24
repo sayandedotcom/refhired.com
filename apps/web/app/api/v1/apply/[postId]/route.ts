@@ -142,7 +142,7 @@ export async function POST(request: NextRequest, { params }: { params: { postId:
         await prisma.user.update({
           where: { id: response.authorId },
           data: {
-            stars: {
+            starsEarned: {
               increment: response.starsRequired,
             },
           },

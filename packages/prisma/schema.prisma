@@ -20,6 +20,7 @@ model User {
   link             String?
   location         String?
   stars            Int?        @default(0)
+  starsEarned      Int?        @default(0) @map("stars_earned")
   stripeCustomerId String?     @unique @map("stripe_customer_id")
   updatedAt        DateTime?   @updatedAt @map("updated_at")
   workingAt        String?     @map("working_at")
