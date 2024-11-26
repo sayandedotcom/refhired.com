@@ -48,7 +48,7 @@ const updateProfile = ({ userName, bio, name }) => {
 };
 
 export function ProfileForm() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
   const { data, error, isLoading } = useQuery<TSettingsProfile>({
     queryKey: ["settings/profile"],
     queryFn: () => {
@@ -74,6 +74,10 @@ export function ProfileForm() {
         severity: "success",
         title: "Sucess !",
         message: data.data.message,
+      });
+      update({
+        ...session,
+        user: { ...session?.user, name: data.data.data.name, userName: data.data.data.userName },
       });
       // form.reset();
     },
@@ -114,7 +118,6 @@ export function ProfileForm() {
       name: values.name,
       bio: values.bio,
     });
-    sonerToast({ severity: "neutral", title: "Profile Updated !" });
     // form.reset();
   };
 

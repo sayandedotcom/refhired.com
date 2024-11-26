@@ -10,36 +10,15 @@ export async function GET(request: NextRequest) {
 
   // const cachedAllRequests = await redis.get(`USER:REQUESTS:${userId}`);
   // if (cachedAllRequests) return JSON.parse(cachedAllRequests);
-  const data = await prisma.user.findFirst({
+  const data = await prisma.bookmarks.findMany({
     skip: 0,
     take: 10,
     where: {
-      id: id,
+      userId: id,
     },
     select: {
-      posts: {
-        select: {
-          id: true,
-          description: true,
-          stars: true,
-          applied: {
-            orderBy: {
-              appliedAt: "desc",
-            },
-            select: {
-              applyInfo: true,
-              appliedAt: true,
-              visibility: true,
-              status: true,
-              user: {
-                select: {
-                  email: true,
-                },
-              },
-            },
-          },
-        },
-      },
+      posts: true,
+      user: true,
     },
   });
 

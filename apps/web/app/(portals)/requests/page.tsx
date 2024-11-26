@@ -264,6 +264,30 @@ const columns: ColumnDef<TRequest>[] = [
   },
 ];
 
+const transformArray = (originalArray) => {
+  const transformedArray = [];
+
+  originalArray?.forEach((obj) => {
+    obj.applied.forEach((applyInfo) => {
+      const transformedObj = {
+        id: obj.id,
+        received: applyInfo.appliedAt,
+        status: applyInfo.status,
+        visibility: applyInfo.visibility,
+        post: obj.description,
+        email: applyInfo.user.email,
+        amount: obj.stars * 10,
+        message: applyInfo.applyInfo.message,
+        pdfs: applyInfo.applyInfo.pdfs,
+        links: applyInfo.applyInfo.links,
+      };
+      transformedArray.push(transformedObj);
+    });
+  });
+
+  return transformedArray;
+};
+
 export default function Requests() {
   const { data: session } = useSession();
   const { data, isLoading } = useQuery({
@@ -275,6 +299,9 @@ export default function Requests() {
         },
       });
     },
+    select(data) {
+      return transformArray(data.data.data.posts);
+    },
   });
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -283,7 +310,7 @@ export default function Requests() {
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
-    data: data?.data?.data || [],
+    data: data || [],
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

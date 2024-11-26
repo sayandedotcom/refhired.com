@@ -13,14 +13,15 @@ import { PostSteps, Steps } from "@/config";
 import { useStore } from "@/store/store";
 
 export function Provider({ children }: { children: React.ReactNode }) {
+  const { data: session } = useSession();
+
   const [run, setRun] = useState(false);
   const [open, setOpen] = useState(false);
 
   const [showComponent, setShowComponent] = useState(false);
   const [countIntro, setCountIntro] = useLocalStorage("count-intro", 0);
-  const joyRide = useStore((state) => state.joyRide);
 
-  const { data: session } = useSession();
+  const joyRide = useStore((state) => state.joyRide);
 
   useEffect(() => {
     if (session?.error !== "RefreshTokenError") return;
@@ -35,7 +36,6 @@ export function Provider({ children }: { children: React.ReactNode }) {
 
     return () => clearTimeout(timer);
   }, [showComponent, setShowComponent]);
-
   return (
     <>
       {showComponent && countIntro < 2 && (

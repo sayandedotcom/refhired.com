@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import { useSession } from "next-auth/react";
+
 import { Button } from "@referrer/ui";
 
 function PricingButton({
@@ -15,6 +17,8 @@ function PricingButton({
   quantity?: number;
   stars: number;
 }) {
+  const { data: session, update } = useSession();
+
   const [state, setState] = useState(false);
 
   const buyPlan = async (planId: string, stars: number, quantity?: number) => {
@@ -35,14 +39,19 @@ function PricingButton({
         return response.json();
       })
       .then((response) => {
-        console.log(response);
         if (response.url) {
+          update({
+            ...session,
+            user: { ...session?.user, stars: session.user.stars + response.stars },
+          });
           window.location.href = response.url;
         }
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+
+    session.user.stars;
 
     // const stripeUrl = await checkout({ planId: priceId, quantity: quantity, stars: stars });
     // router.push(data);

@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       cancel_url: "http://localhost:3000/purchase",
     });
 
-    return new NextResponse(JSON.stringify({ url: checkoutSession.url }));
+    return new NextResponse(JSON.stringify({ url: checkoutSession.url, stars: stars }));
   } catch (error) {
     return new NextResponse("Internal Error", { status: 500 });
   }

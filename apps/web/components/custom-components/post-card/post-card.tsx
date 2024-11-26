@@ -90,12 +90,12 @@ function PostCardHeader({
         </PostHoverCard>
         •
         <TooltipDemo text={`Posted ${time}`}>
-          <span className="text-sm" id="post-uploaded">
+          <span className="text-muted-foreground text-sm" id="post-uploaded">
             {time}
           </span>
         </TooltipDemo>
         •
-        <span id="post-time-left" className="hidden text-sm md:block">
+        <span id="post-time-left" className="text-muted-foreground hidden text-sm md:block">
           {expired && "Expired "} {timeLeft} {expired && "ago "}
         </span>
       </div>
@@ -104,7 +104,7 @@ function PostCardHeader({
           {type[postType]}
         </Badge>
         <ComboboxDropdownMenu isAuthor={isAuthor}>
-          <div className="hover:bg-muted cursor-pointer rounded-full">
+          <div className="hover:bg-muted text-muted-foreground cursor-pointer rounded-full">
             <MoreHorizontal id="post-options" className="w-5" />
           </div>
         </ComboboxDropdownMenu>

@@ -28,6 +28,7 @@
     "@refhiredcom/utils": "*",
     "@stripe/stripe-js": "^3.3.0",
     "@tanstack/react-query": "^5.55.2",
+    "@tanstack/react-query-devtools": "^5.61.3",
     "@tanstack/react-table": "^8.9.3",
     "@tiptap/extension-character-count": "^2.8.0",
     "@tiptap/extension-link": "^2.8.0",

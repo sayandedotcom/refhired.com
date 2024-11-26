@@ -70,6 +70,10 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   callbacks: {
     async jwt({ token, account, user, profile, trigger, session }) {
+      if (trigger === "update") {
+        return { ...token, ...session.user };
+      }
+
       if (account) {
         // First-time login, save the `access_token`, its expiry and the `refresh_token`
         return {

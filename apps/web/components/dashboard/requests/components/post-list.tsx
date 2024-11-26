@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 import { cn } from "@referrer/lib/utils/cn";
 import { ScrollArea, Separator } from "@referrer/ui";
 
+import { PortalsNotFound } from "@/components/custom-components";
 import { Badge, TooltipDemo } from "@/components/ui";
 
 import { request } from "@/lib/axios";
@@ -52,6 +53,10 @@ export function PostsList() {
       });
     },
   });
+
+  if (!session) {
+    return <PortalsNotFound text="Requests" />;
+  }
 
   if (isLoading) {
     return <Loader className="mx-auto my-auto h-8 w-8 animate-spin" />;

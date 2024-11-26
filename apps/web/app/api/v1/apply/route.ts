@@ -2,31 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import prisma from "@referrer/prisma";
 
-import { TAllApplied2 } from "@/types/posts";
-
-const transformArray = (originalData: TAllApplied2[]) => {
-  const transformedArray = [];
-
-  originalData?.forEach((appliedInfo) => {
-    const transformedObj = {
-      id: appliedInfo.id,
-      sent: appliedInfo.appliedAt,
-      status: appliedInfo.status,
-      post: appliedInfo.posts.description, // Truncate post description
-      amount: appliedInfo.posts.stars * 10, // Calculate amount
-      message: appliedInfo.applyInfo.message,
-      pdfs: appliedInfo.applyInfo.pdfs,
-      links: appliedInfo.applyInfo.links,
-      postId: appliedInfo.posts.id,
-      authorUsername: appliedInfo.posts.user.userName,
-      visibility: appliedInfo.visibility,
-    };
-    transformedArray.push(transformedObj);
-  });
-
-  return transformedArray;
-};
-
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const id = searchParams.get("userId");
@@ -62,11 +37,9 @@ export async function GET(request: NextRequest) {
     },
   });
 
-  const formattedArray = transformArray(data);
-
   return NextResponse.json(
     {
-      data: formattedArray,
+      data: data,
     },
     {
       status: 200,

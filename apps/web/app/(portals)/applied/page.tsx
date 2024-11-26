@@ -48,7 +48,7 @@ import { request } from "@/lib/axios";
 
 import { cn } from "@/utils";
 
-import { TApplied } from "@/types/posts";
+import { TAllApplied2, TApplied } from "@/types/posts";
 
 const columns: ColumnDef<TApplied>[] = [
   // select
@@ -220,16 +220,22 @@ const columns: ColumnDef<TApplied>[] = [
       //   currency: "USD",
       // }).format(amount);
 
-      return <div className="font-medium">₹{row.getValue("amount")}</div>;
+      return <div className="text-right font-medium">₹{row.getValue("amount")}</div>;
     },
   },
   // actions
   {
-    id: "visibility",
-    enableHiding: false,
+    accessorKey: "visibility",
+    header: () => <div className="">Visibility</div>,
     cell: ({ row }) => {
       return (
-        <div>{<CheckCheck className={cn(row.getValue("visibility") === "Read" && "text-[#77a1fc]")} />}</div>
+        <div>
+          {
+            <CheckCheck
+              className={cn("mx-auto", row.getValue("visibility") === "Read" && "text-[#77a1fc]")}
+            />
+          }{" "}
+        </div>
       );
     },
   },
@@ -262,6 +268,29 @@ const columns: ColumnDef<TApplied>[] = [
   // },
 ];
 
+const transformArray = (originalData: TAllApplied2[]) => {
+  const transformedArray = [];
+
+  originalData?.forEach((appliedInfo) => {
+    const transformedObj = {
+      id: appliedInfo.id,
+      sent: appliedInfo.appliedAt,
+      status: appliedInfo.status,
+      post: appliedInfo.posts.description, // Truncate post description
+      amount: appliedInfo.posts.stars * 10, // Calculate amount
+      message: appliedInfo.applyInfo.message,
+      pdfs: appliedInfo.applyInfo.pdfs,
+      links: appliedInfo.applyInfo.links,
+      postId: appliedInfo.posts.id,
+      authorUsername: appliedInfo.posts.user.userName,
+      visibility: appliedInfo.visibility,
+    };
+    transformedArray.push(transformedObj);
+  });
+
+  return transformedArray;
+};
+
 export default function Applied() {
   const { data: session } = useSession();
 
@@ -277,6 +306,9 @@ export default function Applied() {
         },
       });
     },
+    select(data) {
+      return transformArray(data.data.data);
+    },
   });
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -285,7 +317,7 @@ export default function Applied() {
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
-    data: data?.data?.data || [],
+    data: data || [],
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -311,9 +343,9 @@ export default function Applied() {
     <div className="w-full px-4">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) => table.getColumn("email")?.setFilterValue(event.target.value)}
+          placeholder="Filter post..."
+          value={(table.getColumn("post")?.getFilterValue() as string) ?? ""}
+          onChange={(event) => table.getColumn("post")?.setFilterValue(event.target.value)}
           className="max-w-sm"
         />
         <DropdownMenu>
@@ -374,7 +406,7 @@ export default function Applied() {
                   {isLoading ? (
                     <Loader className="mx-auto my-auto h-8 w-8 animate-spin" />
                   ) : (
-                    "You haven&apos;t applied anything !"
+                    "You haven't applied anything !"
                   )}
                 </TableCell>
               </TableRow>
