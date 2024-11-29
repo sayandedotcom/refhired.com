@@ -1,11 +1,18 @@
 import type { Posts, Tags, User } from "@prisma/client";
 import { z } from "zod";
 
-import { applyValidator, findReferrerValidator, referralPostValidator } from "@/lib/validators";
+import {
+  applyValidator,
+  findReferrerValidator,
+  postValidator,
+  referralPostValidator,
+} from "@/lib/validators";
 
 export type TReferralPost = z.infer<typeof referralPostValidator>;
 
 export type TFindReferralPost = z.infer<typeof findReferrerValidator>;
+
+export type TPost = z.infer<typeof postValidator>;
 
 export type TApplyPost = z.infer<typeof applyValidator>;
 
@@ -40,7 +47,7 @@ export type TPostsData = {
   data: Posts & { user: User; tags: Tags[] };
 };
 
-export type TProfile = { data: User & { posts: Posts[] } };
+export type TProfile = { data: { data: User & { posts: Posts[] } } };
 
 export type TSettingsProfile = { data: User };
 

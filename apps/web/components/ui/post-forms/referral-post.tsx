@@ -11,6 +11,7 @@ import { CalendarIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import numeral from "numeral";
 import { useForm } from "react-hook-form";
+import { useIndexedDBStore } from "use-indexeddb";
 import * as z from "zod";
 
 import {
@@ -56,6 +57,8 @@ import {
 
 import { cn } from "@/utils";
 
+import { useStore } from "@/store/store";
+
 import { TPostReferralPost } from "@/types/types";
 
 import { Required } from "../required";
@@ -68,34 +71,7 @@ export default function ReferralPost() {
 
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof referralPostValidator>>({
-    resolver: zodResolver(referralPostValidator),
-    defaultValues: {
-      description: "",
-      jobRole: "",
-      // jobExperience: 0,
-      companyName: "",
-      jobURL: "",
-      jobCode: "",
-      jobType: "",
-      // jobLocation: "Remote Only",
-      countryLocation: "",
-      stateLocation: "",
-      cityLocation: "",
-      skills: [],
-      salaryEndingRange: undefined,
-      // jobCompensation: "",
-      currency: undefined,
-      // stars: 0,
-      // limit: 0,
-      noEquity: false,
-      accept: {
-        message: true,
-        pdfs: ["resume"],
-        links: ["linkedin"],
-      },
-    },
-  });
+  const referralPostFromDraft = useStore((state) => state.referralPostFromDraft);
 
   const { mutate, isPending } = useMutation({
     mutationKey: ["referral"],
@@ -167,6 +143,42 @@ export default function ReferralPost() {
 
   const [countryiso2, setcountryiso2] = useState("");
   const [stateiso2, setstateiso2] = useState("");
+  const [draftId, setDraftId] = useState(referralPostFromDraft?.id ?? null);
+
+  const form = useForm<z.infer<typeof referralPostValidator>>({
+    resolver: zodResolver(referralPostValidator),
+    defaultValues: {
+      description: referralPostFromDraft?.body.description ?? "",
+      jobRole: referralPostFromDraft?.body.jobRole ?? "",
+      companyName: referralPostFromDraft?.body.companyName ?? "",
+      jobURL: referralPostFromDraft?.body.jobURL ?? "",
+      jobCode: referralPostFromDraft?.body.jobCode ?? "",
+      jobType: referralPostFromDraft?.body.jobType ?? "",
+      countryLocation: referralPostFromDraft?.body.countryLocation ?? "",
+      stateLocation: referralPostFromDraft?.body.stateLocation ?? "",
+      cityLocation: referralPostFromDraft?.body.cityLocation ?? "",
+      skills: referralPostFromDraft?.body.skills ?? [],
+      salaryStartingRange: referralPostFromDraft?.body.salaryStartingRange ?? undefined,
+      salaryEndingRange: referralPostFromDraft?.body.salaryEndingRange ?? undefined,
+      equityEndingRange: referralPostFromDraft?.body.equityEndingRange ?? undefined,
+      equityStartingRange: referralPostFromDraft?.body.equityStartingRange ?? undefined,
+      jobExperience: referralPostFromDraft?.body.jobExperience ?? undefined,
+      jobLocation: { type: referralPostFromDraft?.body.jobLocation ?? "On-Site" },
+      currency: referralPostFromDraft?.body.currency ?? undefined,
+      stars: referralPostFromDraft?.body.stars ?? 0,
+      acceptLimit: referralPostFromDraft?.body.acceptLimit,
+      noEquity: referralPostFromDraft?.body.noEquity ?? false,
+      accept: {
+        message: referralPostFromDraft?.body.accept.message ?? true,
+        pdfs: referralPostFromDraft?.body.accept.pdfs ?? ["resume"],
+        links: referralPostFromDraft?.body.accept.links ?? ["linkedin"],
+      },
+      expiresAt: referralPostFromDraft?.body.expiresAt,
+    },
+  });
+
+  const { add, getByID, update } = useIndexedDBStore("posts");
+
   const mapResponseToValuesAndLabels = (data) => ({
     value: data.name,
     label: data.name,
@@ -227,7 +239,7 @@ export default function ReferralPost() {
   }
 
   function onSubmit(values: z.infer<typeof referralPostValidator>) {
-    let locationString = values.jobLocation;
+    let locationString = values.jobLocation.type;
     if (values?.countryLocation) {
       locationString += " (" + values.countryLocation;
     }
@@ -250,7 +262,7 @@ export default function ReferralPost() {
     }
 
     const finalLocationString =
-      values.jobLocation === "Remote Only" ? values.jobLocation : locationString + ")";
+      values.jobLocation.type === "Remote Only" ? values.jobLocation : locationString + ")";
 
     let tags = values.skills.filter((item) => item !== "");
     let equity = values.noEquity
@@ -294,8 +306,8 @@ export default function ReferralPost() {
       jobCode: values.jobCode,
       jobCompensation: jobCompensation,
       jobExperience: values.jobExperience,
-      jobLocationType: values.jobLocation,
-      jobLocation: values.jobLocation === "Remote Only" ? null : jobLocation,
+      jobLocationType: values.jobLocation.type,
+      jobLocation: values.jobLocation.type === "Remote Only" ? null : jobLocation,
       jobRole: values.jobRole,
       jobType: values.jobType,
       postType: "REFERRALPOST",
@@ -304,7 +316,61 @@ export default function ReferralPost() {
       tags: tags,
     });
   }
-  // console.log("form.watch", form.watch("noEquity"));
+  // console.log("form.watch", form.watch("jobLocation").type);
+
+  const saveDraft = async () => {
+    const data = form.getValues();
+    if (draftId) {
+      try {
+        // Fetch existing draft by ID
+        const existingDraft = await getByID(draftId);
+
+        if (existingDraft) {
+          // Update the draft if it exists
+          update({
+            //@ts-ignore
+            ...existingDraft,
+            body: { ...data, postType: "Referral Post", updatedAt: new Date().toDateString() },
+          })
+            // .then(() => console.log("Draft updated"))
+            .catch(console.error);
+
+          sonerToast({
+            severity: "success",
+            title: "Sucess !",
+            message: "Your draft has been sucessfully updated",
+          });
+        } else {
+          sonerToast({
+            severity: "error",
+            title: "Sucess !",
+            message: "Draft not found for update!",
+          });
+        }
+      } catch (error) {
+        sonerToast({
+          severity: "error",
+          title: "Sucess !",
+          message: "Error fetching draft:",
+        });
+        console.error("Error fetching draft:", error);
+      }
+    } else {
+      // Add a new draft if no ID is available
+      add({ body: { ...data, postType: "Referral Post", updatedAt: new Date().toDateString() } })
+        .then((id) => {
+          console.log("Draft added with ID:", id);
+          setDraftId(id); // Save the ID for future updates
+        })
+        .catch(console.error);
+
+      sonerToast({
+        severity: "success",
+        title: "Sucess !",
+        message: "Your post has been sucessfully added to draft",
+      });
+    }
+  };
 
   return (
     <Form {...form}>
@@ -322,7 +388,9 @@ export default function ReferralPost() {
             <Button className="bg-foreground my-2 rounded-full lg:w-40" isLoading={isPending} type="submit">
               Publish
             </Button>
-            <Button className="bg-foreground my-2 rounded-full lg:w-40">Save as Draft</Button>
+            <Button onClick={saveDraft} type="button" className="bg-foreground my-2 rounded-full lg:w-40">
+              Save as Draft
+            </Button>
           </div>
         </div>
         <div className="mx-auto flex w-11/12 flex-col justify-center gap-6">
@@ -706,7 +774,7 @@ export default function ReferralPost() {
                 <FormControl>
                   <RadioGroup
                     onValueChange={field.onChange}
-                    // defaultValue={field.value}
+                    defaultValue={field.value.type}
                     className="flex items-center justify-center gap-8">
                     {jobLoationType.map((data) => (
                       <FormItem
@@ -730,7 +798,7 @@ export default function ReferralPost() {
           <div
             className={cn(
               "my-2 grid w-full grid-cols-3 items-center gap-4",
-              form.watch("jobLocation") === "Remote Only" && "cursor-not-allowed opacity-50"
+              form.watch("jobLocation").type === "Remote Only" && "cursor-not-allowed opacity-50"
             )}>
             {/* Country Location */}
             <FormField
@@ -742,7 +810,7 @@ export default function ReferralPost() {
                     Country Location <Required />
                   </FormLabel>
                   <AsyncSelectComponent
-                    isDisabled={form.watch("jobLocation") === "Remote Only"}
+                    isDisabled={form.watch("jobLocation").type === "Remote Only"}
                     isMulti={false}
                     loadOptions={countriesList}
                     onChange={(data) => {
@@ -772,7 +840,7 @@ export default function ReferralPost() {
                     State Location
                   </FormLabel>
                   <AsyncSelectComponent
-                    isDisabled={form.watch("jobLocation") === "Remote Only"}
+                    isDisabled={form.watch("jobLocation").type === "Remote Only"}
                     isMulti={false}
                     loadOptions={statesList}
                     onChange={(data) => {

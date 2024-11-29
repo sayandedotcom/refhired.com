@@ -5,16 +5,15 @@ import { useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-import { X } from "lucide-react";
-
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel2,
-  AlertDialogContent, // AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
+  Button,
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
 } from "@referrer/ui";
 
 export function PostTypeDialog({ children }: { children: React.ReactNode }) {
@@ -36,36 +35,42 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <AlertDialog>
-      <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-      <AlertDialogContent className="bg-muted">
-        <AlertDialogHeader className="flex flex-row items-center justify-between">
-          <AlertDialogTitle>What you want to Post ?</AlertDialogTitle>
-          <AlertDialogCancel2>
-            <X />
-          </AlertDialogCancel2>
-        </AlertDialogHeader>
-        <div className="flex items-center justify-center gap-5">
-          <AlertDialogAction
-            onClick={() => {
-              router.push("/post" + "?" + createQueryString("tab", "referral"));
-            }}>
-            Referral Post
-          </AlertDialogAction>
-          <AlertDialogAction
-            onClick={() => {
-              router.push("/post" + "?" + createQueryString("tab", "normal"));
-            }}>
-            Normal Post
-          </AlertDialogAction>
-          <AlertDialogAction
-            onClick={() => {
-              router.push("/post" + "?" + createQueryString("tab", "find"));
-            }}>
-            Find Referer
-          </AlertDialogAction>
-        </div>
-      </AlertDialogContent>
-    </AlertDialog>
+    <Dialog>
+      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogContent className="bg-muted/40 sm:max-w-[445px]">
+        <DialogHeader>
+          <DialogTitle>What you want to Post ?</DialogTitle>
+          {/* <DialogDescription>
+            Make changes to your profile here. Click save when you&apos;re done.
+          </DialogDescription> */}
+        </DialogHeader>
+        <DialogFooter className="flex flex-row items-center sm:justify-between">
+          <DialogClose asChild>
+            <Button
+              onClick={() => {
+                router.push("/post" + "?" + createQueryString("tab", "referral"));
+              }}>
+              Referral Post
+            </Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button
+              onClick={() => {
+                router.push("/post" + "?" + createQueryString("tab", "find"));
+              }}>
+              Find Referer
+            </Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button
+              onClick={() => {
+                router.push("/post" + "?" + createQueryString("tab", "post"));
+              }}>
+              Post Anything
+            </Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

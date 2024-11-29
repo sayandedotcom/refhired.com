@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { useSession } from "next-auth/react";
+import setupIndexedDB from "use-indexeddb";
 import { useLocalStorage } from "usehooks-ts";
 
 import { Walkthrough } from "@/components/custom-components";
@@ -11,6 +12,20 @@ import { SessionExpiredDialog } from "@/components/ui/session-expired-dialog";
 import { PostSteps, Steps } from "@/config";
 
 import { useStore } from "@/store/store";
+
+const idbConfig = {
+  databaseName: "refhired-db",
+  version: 1,
+  stores: [
+    {
+      name: "posts", // Store name
+      id: { keyPath: "id", autoIncrement: true }, // Primary key setup
+      indices: [
+        { name: "body", keyPath: "body", options: { unique: false } }, // Index for the "body" field
+      ],
+    },
+  ],
+};
 
 export function Provider({ children }: { children: React.ReactNode }) {
   const { data: session } = useSession();
@@ -30,6 +45,10 @@ export function Provider({ children }: { children: React.ReactNode }) {
   }, [session?.error]);
 
   useEffect(() => {
+    setupIndexedDB(idbConfig)
+      .then(() => console.log("success"))
+      .catch((e) => console.error("error / unsupported", e));
+
     const timer = setTimeout(() => {
       setShowComponent(true);
     }, 3000);

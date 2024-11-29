@@ -7,7 +7,22 @@ import { auth } from "@/lib/auth";
 import { TFindReferralPost } from "@/types/types";
 
 export async function POST(request: NextRequest) {
+  const token = request.headers.get("authorization")?.replace(/^Bearer\s+/, "");
+
+  if (!token) {
+    return NextResponse.json(
+      { message: "You are not authenticated" },
+      {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
   const response: TFindReferralPost = await request.json();
+  const session = await auth();
 
   // const key = `RATE_LIMIT:POST:${info.userId}`;
   // const currentCount = await redis.incr(key);
@@ -24,14 +39,13 @@ export async function POST(request: NextRequest) {
 
   // const rateLimitFlag = await redis.get(`RATE_LIMIT:POST:${info.userId}`);
   // if (rateLimitFlag) throw new RateLimitError("Please Wait");
-  const session = await auth();
-  const createdPost = await prisma.posts.create({
+  const data = await prisma.posts.create({
     data: {
       userId: session.user.id,
       description: response.description,
       jobCode: response.jobCode,
       postType: "FINDREFERRER",
-      companyName: response.company,
+      companyName: response.companyName,
     },
   });
 
@@ -39,7 +53,7 @@ export async function POST(request: NextRequest) {
   //   // await redis.del("ALL_POSTS");
 
   return NextResponse.json(
-    { data: createdPost, message: "Sucessfully created Referral Post" },
+    { data: data, message: "Sucessfully created the Post" },
     {
       status: 200,
       headers: {

@@ -12,6 +12,9 @@ type Store = {
   authDialogOpen: boolean | null;
   authDialogTitle: string;
   displayRequest: TDashboardDisplayRequestsData | null;
+  referralPostFromDraft: any;
+  findReferrerPostFromDraft: any;
+  postFromDraft: any;
   claimUserName: (userName: any) => void;
   setPostType: (postType: any) => void;
   setJoyRide: (joyRide: any) => void;
@@ -19,6 +22,9 @@ type Store = {
   setAuthDialogOpen: (authDialogOpen: any) => void;
   setAuthDialogTitle: (authDialogTitle: any) => void;
   setDisplayRequest: (displayRequest: TDashboardDisplayRequestsData) => void;
+  setReferralPostFromDraft: (referralPostFromDraft: any) => void;
+  setFindReferrerPostFromDraft: (findReferrerPostFromDraft: any) => void;
+  setPostFromDraft: (postFromDraft: any) => void;
 };
 
 export const useStore = create<Store>((set) => ({
@@ -29,6 +35,9 @@ export const useStore = create<Store>((set) => ({
   authDialogOpen: null,
   authDialogTitle: "Enjooy",
   displayRequest: null,
+  referralPostFromDraft: null,
+  findReferrerPostFromDraft: null,
+  postFromDraft: null,
   claimUserName: (userName) => set({ userName }),
   setPostType: (postType) => set({ postType }),
   setJoyRide: (joyRide) => set({ joyRide }),
@@ -36,4 +45,7 @@ export const useStore = create<Store>((set) => ({
   setAuthDialogOpen: (authDialogOpen) => set({ authDialogOpen }),
   setAuthDialogTitle: (authDialogTitle) => set({ authDialogTitle }),
   setDisplayRequest: (displayRequest) => set({ displayRequest }),
+  setReferralPostFromDraft: (referralPostFromDraft: any) => set({ referralPostFromDraft }),
+  setFindReferrerPostFromDraft: (findReferrerPostFromDraft: any) => set({ findReferrerPostFromDraft }),
+  setPostFromDraft: (postFromDraft) => set({ postFromDraft }),
 }));

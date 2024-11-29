@@ -133,22 +133,28 @@ export const referralPostValidator = z.object({
       label: z.string(),
     })
     .transform((value) => value.value),
-  jobLocation:
-    // z
-    //   .array(
-    //     z.object({
-    //       value: z.string().nonempty("Job Type is required"),
-    //       label: z.string().nonempty("Job Type is required"),
-    //     })
-    //   )
-    //   .refine((value) => value.some((item) => item), {
-    //     message: "You have to select at least one item.",
-    //   })
-    //   .transform((value) => value.map((item) => item.value)),
-    z.enum(["On-Site", "Remote", "Hybrid", "Remote Only"], {
-      required_error: "You need to select a job type.",
+  jobLocation: z.object({
+    type: z.enum(["On-Site", "Remote", "Hybrid", "Remote Only"], {
+      required_error: "You need to select a notification type.",
       invalid_type_error: "You need to select a job type.",
     }),
+  }),
+  // z
+  //   .array(
+  //     z.object({
+  //       value: z.string().nonempty("Job Type is required"),
+  //       label: z.string().nonempty("Job Type is required"),
+  //     })
+  //   )
+  //   .refine((value) => value.some((item) => item), {
+  //     message: "You have to select at least one item.",
+  //   })
+  //   .transform((value) => value.map((item) => item.value)),
+  // z.enum(["On-Site", "Remote", "Hybrid", "Remote Only"], {
+  //   required_error: "You need to select a job type.",
+  //   invalid_type_error: "You need to select a job type.",
+  // }),
+
   countryLocation: z.string().optional(),
   stateLocation: z.string().optional(),
   cityLocation: z.string().optional(),

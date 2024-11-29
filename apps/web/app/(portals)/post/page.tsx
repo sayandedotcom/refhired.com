@@ -27,7 +27,7 @@ const DynamicDrafts = dynamic(() => import("@/components/ui/post-forms/drafts"),
   loading: () => <Loading />,
 });
 
-type TabParams = { tab: "referral" | "find" | "normal" | "drafts" };
+type TabParams = { tab: "referral" | "find" | "post" | "drafts" };
 
 export default function Post() {
   const pathName = usePathname();
@@ -63,9 +63,9 @@ export default function Post() {
         </TabsTrigger>
         <TabsTrigger
           onClick={() => {
-            router.push(pathName + "?" + createQueryString("tab", "normal"));
+            router.push(pathName + "?" + createQueryString("tab", "post"));
           }}
-          value="normal">
+          value="post">
           Post
         </TabsTrigger>
         <TabsTrigger
@@ -82,7 +82,7 @@ export default function Post() {
       <TabsContent value="find">
         <DynamicFindReferrer />
       </TabsContent>
-      <TabsContent value="normal">
+      <TabsContent value="post">
         <DynamicNormalPost />
       </TabsContent>
       <TabsContent value="drafts">

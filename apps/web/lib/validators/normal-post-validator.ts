@@ -1,17 +1,7 @@
 import { z } from "zod";
 
-export const normalPostValidator = z.object({
-  title: z.string().optional(),
-  countryLocation: z.string().nonempty(),
-  stateLocation: z.string().nonempty(),
-  cityLocation: z.string().nonempty(),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      })
-    )
-    .optional(),
+export const postValidator = z.object({
+  description: z.string().optional(),
 });
 // countryLocation: z
 //   .object({
