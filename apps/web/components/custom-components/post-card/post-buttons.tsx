@@ -3,12 +3,16 @@
 import { useState } from "react";
 
 import { useLoading, useWindowSize } from "@/hooks";
+import { useMutation } from "@tanstack/react-query";
 import { Bookmark, MessageCircle, Share2, Star } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 import { Button } from "@referrer/ui";
 
 import { ShareDialog } from "@/components/dialog";
 import { Badge, TooltipDemo, sonerToast } from "@/components/ui";
+
+import { request } from "@/lib/axios";
 
 export const ApplyButton = ({ stars }) => {
   const [applied, setApplied] = useState(false);
@@ -59,11 +63,38 @@ export const CommentButton = () => {
   );
 };
 
-export const BookmarkButton = () => {
+export const BookmarkButton = ({ postId }: { postId?: string }) => {
   const [bookmark, setBookmark] = useState(false);
+  const { data: session } = useSession();
+  const { mutate, isPending } = useMutation({
+    mutationKey: ["bookmarks"],
+    mutationFn: ({ postId }: { postId: string }) => {
+      return request.post("/bookmarks", {
+        params: {
+          postId: postId,
+        },
+        headers: {
+          Authorization: session?.user?.refresh_token && `Bearer ${session?.user?.refresh_token}`,
+        },
+      });
+    },
+    // onSuccess(data, variables) {
+    //   setUserName(variables.userName);
+    //   router.push("/auth/sign-up");
+    // },
+    // onError(error) {
+    //   setError("userName", {
+    //     ///@ts-expect-error
+    //     message: error?.response.data.message,
+    //   });
+    // },
+  });
 
   const bookmarked = () => {
     setBookmark(!bookmark);
+    mutate({
+      postId: postId,
+    });
     sonerToast({
       severity: "neutral",
       title: (

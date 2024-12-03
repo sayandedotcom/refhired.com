@@ -1,18 +1,24 @@
 import { type NextRequest, NextResponse } from "next/server";
 
+import type { Posts } from "@prisma/client";
+
+import prisma from "@referrer/prisma";
+
+import { TFilter2 } from "@/types/posts";
+
 export async function GET(request: NextRequest, response: NextResponse) {
   const searchParams = request.nextUrl.searchParams;
 
   const search_query = searchParams.get("search_query");
   const jobURL = searchParams.get("jobURL");
   const jobCode = searchParams.get("jobCode");
-  const postType = searchParams.getAll("postType");
+  const postType = searchParams.getAll("postType") as Posts["postType"][];
   const companyName = searchParams.getAll("companyName");
   const jobExperience = searchParams.getAll("jobExperience");
   const jobType = searchParams.getAll("jobType");
   const jobRole = searchParams.getAll("jobRole");
   const skills = searchParams.getAll("skills");
-  const jobLocation = searchParams.getAll("jobLocation");
+  const jobLocationType = searchParams.getAll("jobLocationType");
 
   console.log("jobURL", jobURL);
   console.log("jobCode", jobCode);
@@ -22,61 +28,85 @@ export async function GET(request: NextRequest, response: NextResponse) {
   console.log("jobType", jobType);
   console.log("jobRole", jobRole);
   console.log("skills", skills);
-  console.log("jobLocation", jobLocation);
+  console.log("jobLocationType", jobLocationType);
 
-  const filters = {
+  const filters: TFilter2 = {
     ...(search_query && { description: { contains: search_query, mode: "insensitive" } }),
     ...(jobURL && { jobURL }),
     ...(jobCode && { jobCode }),
     ...(postType.length && { postType: { in: postType } }),
     ...(companyName.length && { companyName: { in: companyName } }),
-    ...(jobExperience.length && { jobExperience: { in: jobExperience } }),
+    ...(jobExperience.length && { jobExperience: { in: jobExperience.map(Number) } }),
     ...(jobType.length && { jobType: { in: jobType } }),
     ...(jobRole.length && { jobRole: { in: jobRole } }),
-    ...(skills.length && { skills: { hasSome: skills } }), // for arrays in Prisma JSON fields
-    ...(jobLocation.length && { jobLocation: { in: jobLocation } }),
+    ...(skills.length && { tags: { hasSome: skills } }),
+    ...(jobLocationType.length && { jobLocationType: { in: jobLocationType } }),
   };
-  console.log("filtersfiltersfiltersfiltersfiltersfiltersfilters");
+
+  // console.log(
+  //   "filtersfiltersfiltersfiltersfiltersfiltersfilters",
+  //   filters?.companyName[0] === companyName[0],
+  //   filters?.jobRole[0] === jobRole[0]
+  // );
+
+  if (Object.keys(filters).length === 0) {
+    return NextResponse.json(
+      { data: null },
+      {
+        status: 200,
+      }
+    );
+  }
 
   console.log(filters);
 
-  // const data = prisma.posts.findMany({
-  //   where: {
-  //     description: {
-  //       contains: search_query,
-  //       mode: "insensitive",
-  //     },
-  //     postType: {in: postType},
-  //     companyName: { in: companyName },
-  //     jobExperience: { in: jobExperience },
-  //     jobType: { in: jobType },
-  //     jobRole: { in: jobRole },
-  //     skills: { hasSome: skills },
-  //     jobLocation: { in: jobLocation },
-  //   },
-  // });
+  const data = await prisma.posts.findMany({
+    where: filters,
+    // {
+    //   description: {
+    //     contains: search_query,
+    //     mode: "insensitive",
+    //   },
+    //   //  postType: { in: postType },
+    //   companyName: { in: companyName, mode: "insensitive" },
+    //   // jobExperience: { in: jobExperience },
+    //   jobType: { in: jobType, mode: "insensitive" },
+    //   jobRole: { in: jobRole, mode: "insensitive" },
+    //   // skills: { hasSome: skills },
+    //   // jobLocation: { in: jobLocation },
+    // },
+    include: {
+      user: true,
+    },
+  });
 
-  // if (data)
-  return NextResponse.json(
-    { data: "vdv" },
-    {
-      status: 200,
-    }
-  );
-  // else
-  //   return NextResponse.json(
-  //     { message: "Opps ! Not Found" },
-  //     {
-  //       status: 404,
-  //     }
-  //   );
+  console.log("datatata", data);
+
+  if (data.length === 0) {
+    return NextResponse.json(
+      { data: [] },
+      {
+        status: 404,
+      }
+    );
+  } else
+    return NextResponse.json(
+      { data: data },
+      {
+        status: 200,
+      }
+    );
 }
 
-//  GET -> Retrieving a single or multiple resources.
-// POST -> Creating a new resource.
-//  PATCH -> Updating a resource.
-//  PUT -> Updating resource if exists / Creating new resource if it doesn't exist.
-//  DELETE -> Destroying a resource.
+// console.log("jobURL", jobURL);
+// console.log("jobCode", jobCode);
+// console.log("postType", postType);
+// console.log("companyName", companyName);
+// console.log("jobExperience", jobExperience);
+// console.log("jobType", jobType);
+// console.log("jobRole", jobRole);
+// console.log("skills", skills);
+// console.log("jobLocation", jobLocation);
 
 // !Status Code 200 – This is the standard “OK” status code for a successful HTTP request.
 // !Status Code 201 – This is the status code that confirms that the request was successful and, as a result, a new resource was created. Typically, this is the status code that is sent after a POST/PUT request.

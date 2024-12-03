@@ -63,7 +63,7 @@ function PricingCards() {
           </li>
           <li className="font-heading flex items-center gap-5">
             <CheckCircle2 />
-            Refundable
+            Withdrawable
           </li>
         </ul>
         {/* </div> */}

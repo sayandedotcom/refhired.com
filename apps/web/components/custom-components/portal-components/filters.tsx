@@ -4,14 +4,12 @@ import { useEffect } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { useSearch } from "@/hooks";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ListFilter, Search } from "lucide-react";
+import { ListFilter } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import {
-  Button,
   Checkbox,
   Form,
   FormControl,
@@ -194,20 +192,15 @@ function Filters() {
     form.watch("jobURL"),
     form.watch("jobCode"),
   ]);
-  const urlParams = new URLSearchParams(window.location.search);
 
-  const { data, refetch } = useSearch(urlParams.toString());
+  // async function onSubmit(value: z.infer<typeof filterValidator>) {
+  //   // const { data } = useSearch(urlParams.toString());
 
-  async function onSubmit(value: z.infer<typeof filterValidator>) {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    // const { data } = useSearch(urlParams.toString());
-
-    // await request.get("/search", {
-    //   params: urlParams,
-    // });
-    console.log(value);
-  }
+  //   // await request.get("/search", {
+  //   //   params: urlParams,
+  //   // });
+  //   console.log(value);
+  // }
 
   return (
     <div className="flex flex-col">
@@ -215,7 +208,7 @@ function Filters() {
         <ListFilter className="mb-1 h-5" /> <h6>Filters</h6>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+        <form className="space-y-2">
           {/* Post Type */}
           <FormField
             control={form.control}
@@ -357,6 +350,31 @@ function Filters() {
               </FormItem>
             )}
           />
+          {/* Skills */}
+          <FormField
+            control={form.control}
+            name="skills"
+            render={({ field }) => (
+              <FormItem className="my-2">
+                <FormLabel>Skills</FormLabel>
+                <SelectComponent
+                  createAble={true}
+                  isMulti={true}
+                  // value={field.value}
+                  // onChange={field.onChange}
+                  // value={field.value.map((value) => ({ value, label: value }))}
+                  // value={}
+                  options={skillsList}
+                  onChange={(newValue: { value: string; label: string }[] | null) => {
+                    field.onChange(newValue ?? []);
+                  }}
+                  placeholder="Select Skills"
+                  {...field}
+                />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {/* Job Location Type */}
           <FormField
             control={form.control}
@@ -395,31 +413,6 @@ function Filters() {
               </FormItem>
             )}
           />
-          {/* Skills */}
-          <FormField
-            control={form.control}
-            name="skills"
-            render={({ field }) => (
-              <FormItem className="my-2">
-                <FormLabel>Skills</FormLabel>
-                <SelectComponent
-                  createAble={true}
-                  isMulti={true}
-                  // value={field.value}
-                  // onChange={field.onChange}
-                  // value={field.value.map((value) => ({ value, label: value }))}
-                  // value={}
-                  options={skillsList}
-                  onChange={(newValue: { value: string; label: string }[] | null) => {
-                    field.onChange(newValue ?? []);
-                  }}
-                  placeholder="Select Skills"
-                  {...field}
-                />
-                <FormMessage />
-              </FormItem>
-            )}
-          />
           {/* Job URL */}
           <FormField
             control={form.control}
@@ -428,7 +421,7 @@ function Filters() {
               <FormItem className="px-1">
                 <FormLabel>Job URL</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter Job URL" {...field} />
+                  <Input className="bg-background" placeholder="Enter Job URL" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -442,14 +435,14 @@ function Filters() {
               <FormItem className="px-1">
                 <FormLabel>Job Code</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter Job Code" {...field} />
+                  <Input className="bg-background" placeholder="Enter Job Code" {...field} />
                 </FormControl>
               </FormItem>
             )}
           />
-          <Button className="mx-auto rounded-full px-5" onClick={() => refetch()} type="submit">
+          {/* <Button className="mx-auto rounded-full px-5" type="submit">
             <Search className="mr-1 h-5" /> Search
-          </Button>
+          </Button> */}
         </form>
       </Form>
     </div>

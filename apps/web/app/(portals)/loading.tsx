@@ -2,14 +2,14 @@
 
 import { PostCardSkeleton } from "@/components/custom-components";
 
-const loading = () => {
+const Loading = () => {
   return (
     <>
       <PostCardSkeleton />
       <PostCardSkeleton />
-      <PostCardSkeleton />
+      {/* <PostCardSkeleton /> */}
     </>
   );
 };
 
-export default loading;
+export default Loading;

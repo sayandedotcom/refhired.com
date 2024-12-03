@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useCallback } from "react";
 
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
@@ -15,27 +17,65 @@ import { history } from "@/config";
 
 import { cn } from "@/utils";
 
-export function PlaceholdersAndVanishInput({ placeholders, className, searchIconWidth, showSugession }) {
+const placeholderList = [
+  "Remote Front-End Developer jobs",
+  "Full Stack jobs in San Francisco",
+  "Javascript jobs",
+  "Referrals in Google",
+];
+
+export function PlaceholdersAndVanishInput({
+  placeholders = placeholderList,
+  className,
+  searchIconWidth,
+  showSugession,
+}: any) {
   const searchParams = useSearchParams();
-  const search = searchParams.get("q");
+
+  const router = useRouter();
+
+  const search = searchParams.get("search_query");
+
   const [value, setValue] = useState(search ?? "");
+
   const [isInputFocused, setInputFocused] = useState(false);
+
   const outsideRef = useRef();
+
   useOnClickOutside(outsideRef, () => setInputFocused(false));
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
 
   const optionClick = (item) => {
     setValue(item);
+    router.push("/search" + "?" + createQueryString("search_query", item));
     setInputFocused(false);
   };
+
+  function removeQueryParam(key) {
+    const urlObj = new URL(window.location.href);
+    urlObj.searchParams.delete(key);
+    window.history.replaceState(null, "", urlObj.toString());
+  }
 
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
   const startAnimation = () => {
     intervalRef.current = setInterval(() => {
       setCurrentPlaceholder((prev) => (prev + 1) % placeholders.length);
     }, 3000);
   };
+
   const handleVisibilityChange = () => {
     if (document.visibilityState !== "visible" && intervalRef.current) {
       clearInterval(intervalRef.current); // Clear the interval when the tab is not visible
@@ -44,7 +84,9 @@ export function PlaceholdersAndVanishInput({ placeholders, className, searchIcon
       startAnimation(); // Restart the interval when the tab becomes visible
     }
   };
+  const urlParams = new URLSearchParams(window.location.search);
 
+  // const { data, refetch } = useSearch(urlParams.toString());
   useEffect(() => {
     startAnimation();
     document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -57,13 +99,26 @@ export function PlaceholdersAndVanishInput({ placeholders, className, searchIcon
     };
   }, [placeholders]);
 
+  const handleKeyDown = async (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      router.push("/search" + "?" + createQueryString("search_query", event.target.value));
+      // setValue(e.target.value);
+      // await request.get("/search");
+      // refetch();
+    }
+  };
+
   return (
     <div className={className}>
       <form className={cn("bg-muted relative flex w-full items-center overflow-hidden rounded-full")}>
         <Search className={searchIconWidth} />
         <Input
+          onKeyDown={handleKeyDown}
           onFocus={() => setInputFocused(true)}
           onChange={(e) => {
+            e.preventDefault();
+            // router.push("/search" + "?" + createQueryString("search_query", e.target.value));
             setValue(e.target.value);
           }}
           value={value}
@@ -74,7 +129,11 @@ export function PlaceholdersAndVanishInput({ placeholders, className, searchIcon
         />
         <X
           className={`mr-4 h-[4%] w-[4%] cursor-pointer rounded-full  ${value?.length === 0 ? "hidden" : ""}`}
-          onClick={() => setValue("")}
+          onClick={() => {
+            removeQueryParam("q");
+            removeQueryParam("search_query");
+            setValue("");
+          }}
         />
         <div className="pointer-events-none absolute inset-0 ml-auto flex w-[96%] items-center rounded-full">
           <AnimatePresence mode="wait">
@@ -108,7 +167,7 @@ export function PlaceholdersAndVanishInput({ placeholders, className, searchIcon
         <div
           ref={outsideRef}
           className={clsx(
-            "bg-muted absolute top-12 h-[300px] w-full rounded-2xl",
+            "bg-muted absolute top-12 z-50 h-[300px] w-full rounded-2xl",
             !isInputFocused && "hidden"
           )}>
           {history.map((item) => (

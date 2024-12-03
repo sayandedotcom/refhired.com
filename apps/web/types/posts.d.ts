@@ -12,6 +12,33 @@ export type TPostsData = {
   data: Posts & { user: User; tags: Tags[] };
 };
 
+export type TFilter = {
+  postType?: Posts["postType"][];
+  description?: Posts["description"];
+  jobRole?: Posts["jobRole"][];
+  jobType?: Posts["jobType"][];
+  jobExperience?: Posts["jobExperience"][];
+  jobLocationType?: Posts["jobLocationType"][];
+  companyName?: Posts["companyName"][];
+  jobCode?: Posts["jobURL"];
+  jobURL?: Posts["jobURL"];
+  skills?: string[];
+};
+
+export type TFilter2 = {
+  postType?: { in: Posts["postType"][] }; // Filters by an array of postType
+  description?: { contains: string; mode: "insensitive" }; // Search query in description
+  jobRole?: { in: Posts["jobRole"][] }; // Filters by an array of jobRole
+  jobType?: { in: Posts["jobType"][] }; // Filters by an array of jobType
+  jobExperience?: { in: Posts["jobExperience"][] }; // Filters by an array of jobExperience
+  jobLocationType?: { in: Posts["jobLocationType"][] }; // Filters by an array of jobLocationType
+  companyName?: { in: Posts["companyName"][] }; // Filters by an array of companyName
+  jobCode?: Posts["jobCode"]; // Filters by jobCode directly
+  jobURL?: Posts["jobURL"]; // Filters by jobURL directly
+  skills?: { hasSome: string[] }; // Filters by one or more matching skills in an array
+  jobLocation?: { in: Posts["jobLocation"][] }; // Filters by an array of jobLocation
+};
+
 export type TDashboardPostsData = {
   data: {
     data: {

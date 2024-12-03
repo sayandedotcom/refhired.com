@@ -65,11 +65,12 @@ export function LeftSection() {
                     <Link
                       onClick={() => {
                         setDisplayRequest(null);
+                        // router.push(link ?? `/${session?.user.userName}` ?? "/profile");
                       }}
                       id={name.toLocaleLowerCase()}
                       href={link ?? `/${session?.user.userName}` ?? "/profile"}
                       className={clsx(
-                        "hover:bg-muted flex items-center justify-center gap-4 rounded-md px-2 py-3",
+                        "hover:bg-muted flex items-center justify-center gap-4 rounded-md px-2 py-3 transition active:scale-95",
                         path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
                       )}>
                       <span>{icon}</span>
@@ -114,7 +115,8 @@ export function LeftSection() {
                     href={link ?? `/${session?.user.userName}` ?? "/profile"}
                     className={clsx(
                       "hover:bg-muted flex items-center gap-4 rounded-md px-2 py-2",
-                      path === "/" + link?.split("/")[1] && "bg-muted hover:bg-muted/100"
+                      path === "/" + link?.split("/")[1] &&
+                        "bg-muted hover:bg-muted/100 transition active:scale-95"
                     )}>
                     <span className="ml-5">{icon}</span>
                     <p className="mt-1 hidden lg:block">{name}</p>
@@ -218,7 +220,7 @@ export function CenterSection({ children }: { children: React.ReactNode }) {
         )}>
         <div className="flex flex-row justify-between px-4">
           <LeftBarMobile />
-          {largeLayout ? (
+          {largeLayout || "/search" ? (
             <></>
           ) : (
             <h5 className="font-heading py-4 capitalize md:mx-auto">{pathName.split("/")[1]}</h5>

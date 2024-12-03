@@ -8,7 +8,7 @@ export const plans: SubscriptionPlan[] = [
     price: "700",
     stars: 70,
     isMostPop: false,
-    features: ["70 Stars", "Refundable"],
+    features: ["70 Stars", "Withdrawable"],
     stripePriceId: process.env.STRIPE_EXPERIENCED_PRICE_ID,
   },
   {
@@ -18,7 +18,7 @@ export const plans: SubscriptionPlan[] = [
     price: "1200",
     stars: 120,
     isMostPop: true,
-    features: ["120 Stars", "Refundable"],
+    features: ["120 Stars", "Withdrawable"],
     stripePriceId: process.env.STRIPE_JUNIOR_PRICE_ID,
   },
   {
@@ -28,7 +28,7 @@ export const plans: SubscriptionPlan[] = [
     price: "2000",
     stars: 200,
     isMostPop: false,
-    features: ["200 Stars", "Refundable"],
+    features: ["200 Stars", "Withdrawable"],
     stripePriceId: process.env.STRIPE_LAYOFFED_PRICE_ID,
   },
 ];
