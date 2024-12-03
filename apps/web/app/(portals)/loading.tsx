@@ -7,7 +7,7 @@ const Loading = () => {
     <>
       <PostCardSkeleton />
       <PostCardSkeleton />
-      {/* <PostCardSkeleton /> */}
+      <PostCardSkeleton />
     </>
   );
 };

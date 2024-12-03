@@ -8,7 +8,7 @@ import axios from "axios";
 import { Frown, Smile } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-import { Button, Separator } from "@referrer/ui";
+import { Button } from "@referrer/ui";
 
 import { PostCard } from "@/components/custom-components";
 import {
@@ -19,7 +19,7 @@ import {
   StarButton,
 } from "@/components/custom-components/post-card/post-buttons";
 import Navigate from "@/components/navigate";
-import { ApplyDialog, PlaceholdersAndVanishInput } from "@/components/ui";
+import { ApplyDialog } from "@/components/ui";
 
 import { request } from "@/lib/axios";
 
@@ -47,12 +47,12 @@ const SearchPage = () => {
   return (
     <>
       {/* <SearchBar /> */}
-      <PlaceholdersAndVanishInput
+      {/* <PlaceholdersAndVanishInput
         showSugession={true}
         className={"sticky top-0 m-2 flex items-center gap-1 md:mx-auto md:gap-2 lg:w-7/12"}
         searchIconWidth={"w-[10%]"}
-      />
-      <Separator />
+      /> */}
+      {/* <Separator /> */}
       {isLoading ? (
         <Loading />
       ) : (

@@ -220,7 +220,7 @@ export function CenterSection({ children }: { children: React.ReactNode }) {
         )}>
         <div className="flex flex-row justify-between px-4">
           <LeftBarMobile />
-          {largeLayout || "/search" ? (
+          {largeLayout ? (
             <></>
           ) : (
             <h5 className="font-heading py-4 capitalize md:mx-auto">{pathName.split("/")[1]}</h5>

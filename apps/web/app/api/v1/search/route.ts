@@ -39,15 +39,11 @@ export async function GET(request: NextRequest, response: NextResponse) {
     ...(jobExperience.length && { jobExperience: { in: jobExperience.map(Number) } }),
     ...(jobType.length && { jobType: { in: jobType } }),
     ...(jobRole.length && { jobRole: { in: jobRole } }),
-    ...(skills.length && { tags: { hasSome: skills } }),
+    ...(skills.length && {
+      tags: { some: { name: { in: skills, mode: "insensitive" } } },
+    }),
     ...(jobLocationType.length && { jobLocationType: { in: jobLocationType } }),
   };
-
-  // console.log(
-  //   "filtersfiltersfiltersfiltersfiltersfiltersfilters",
-  //   filters?.companyName[0] === companyName[0],
-  //   filters?.jobRole[0] === jobRole[0]
-  // );
 
   if (Object.keys(filters).length === 0) {
     return NextResponse.json(
@@ -58,29 +54,14 @@ export async function GET(request: NextRequest, response: NextResponse) {
     );
   }
 
-  console.log(filters);
-
   const data = await prisma.posts.findMany({
+    skip: 0,
+    take: 10,
     where: filters,
-    // {
-    //   description: {
-    //     contains: search_query,
-    //     mode: "insensitive",
-    //   },
-    //   //  postType: { in: postType },
-    //   companyName: { in: companyName, mode: "insensitive" },
-    //   // jobExperience: { in: jobExperience },
-    //   jobType: { in: jobType, mode: "insensitive" },
-    //   jobRole: { in: jobRole, mode: "insensitive" },
-    //   // skills: { hasSome: skills },
-    //   // jobLocation: { in: jobLocation },
-    // },
     include: {
       user: true,
     },
   });
-
-  console.log("datatata", data);
 
   if (data.length === 0) {
     return NextResponse.json(
@@ -91,7 +72,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
     );
   } else
     return NextResponse.json(
-      { data: data },
+      { data },
       {
         status: 200,
       }

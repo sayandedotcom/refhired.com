@@ -723,15 +723,15 @@ export const links = [
 
 export const postType = [
   {
-    id: "Referral Post",
+    id: "REFERRALPOST",
     label: "Referral Post",
   },
   {
-    id: "Seek Referral",
+    id: "FINDREFERRER",
     label: "Seek Referral",
   },
   {
-    id: "Post",
+    id: "POST",
     label: "Post",
   },
 ] as const;
