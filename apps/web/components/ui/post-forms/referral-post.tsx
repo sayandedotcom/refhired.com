@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -130,14 +131,21 @@ export default function ReferralPost() {
       form.reset();
     },
     onError(error, variables, context) {
-      console.log("errrrorrrr", error);
-      router.push("/auth/login");
-      sonerToast({
-        severity: "error",
-        title: "Error !",
-        ///@ts-expect-error
-        message: error?.response.data.message,
-      });
+      if (axios.isAxiosError(error) && error?.response.status === 401) {
+        router.push("/auth/login");
+        sonerToast({
+          severity: "error",
+          title: "Error !",
+          message: error?.response.data.message,
+        });
+      }
+      axios.isAxiosError(error) &&
+        error?.response.status != 401 &&
+        sonerToast({
+          severity: "info",
+          title: "Error !",
+          message: error?.response.data.message,
+        });
     },
   });
 

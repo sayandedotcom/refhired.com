@@ -16,6 +16,9 @@ export async function GET(request: NextRequest) {
     },
     select: {
       posts: {
+        where: {
+          postType: "REFERRALPOST",
+        },
         select: {
           id: true,
           description: true,
@@ -28,6 +31,9 @@ export async function GET(request: NextRequest) {
       },
     },
   });
+
+  console.log("data fetchedddddddddd🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉");
+
   // await redis.set(`USER:REQUESTS:${userId}`, JSON.stringify(requests), "EX", cacheTime);
 
   return NextResponse.json(

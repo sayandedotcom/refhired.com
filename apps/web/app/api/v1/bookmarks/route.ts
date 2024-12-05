@@ -5,8 +5,21 @@ import prisma from "@referrer/prisma";
 import { auth } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
-  const id = searchParams.get("userId");
+  const token = request.headers.get("authorization")?.replace(/^Bearer\s+/, "");
+
+  if (!token) {
+    return NextResponse.json(
+      { message: "You are not authenticated" },
+      {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
+  const session = await auth();
 
   // const { user } = await getServerAuthSession();
 
@@ -16,11 +29,14 @@ export async function GET(request: NextRequest) {
     skip: 0,
     take: 10,
     where: {
-      userId: id,
+      userId: session.user.id,
     },
     select: {
-      posts: true,
-      user: true,
+      posts: {
+        include: {
+          user: true,
+        },
+      },
     },
   });
 
@@ -55,8 +71,6 @@ export async function POST(request: NextRequest) {
   const session = await auth();
   const searchParams = request.nextUrl.searchParams;
   const postId = searchParams.get("postId");
-
-  // const { user } = await getServerAuthSession();
 
   // const cachedAllRequests = await redis.get(`USER:REQUESTS:${userId}`);
   // if (cachedAllRequests) return JSON.parse(cachedAllRequests);

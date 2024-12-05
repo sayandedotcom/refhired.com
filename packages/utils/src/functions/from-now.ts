@@ -10,8 +10,8 @@ export function fromNow(date) {
   // Replace full words with single characters
   return distance
     .replace("about", "a")
-    .replace("less than", "<")
-    .replace("a minute", "m")
+    .replace("less than", "1 seconds")
+    .replace("a minute", "50 seconds")
     .replace("minutes", "m")
     .replace("an hour", "h")
     .replace("hours", "h")

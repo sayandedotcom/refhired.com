@@ -94,13 +94,17 @@ function PostCardHeader({
             {time}
           </span>
         </TooltipDemo>
-        •
-        <span id="post-time-left" className="text-muted-foreground hidden text-sm md:block">
-          {expired && "Expired "} {timeLeft} {expired && "ago "}
-        </span>
+        {postType === "REFERRALPOST" && (
+          <>
+            •
+            <span id="post-time-left" className="text-muted-foreground hidden text-sm md:block">
+              {expired && "Expired "} {timeLeft} {expired && "ago "}
+            </span>
+          </>
+        )}
       </div>
       <div className="flex items-center gap-4">
-        <Badge search={type[postType]} search_query={"postType"} className="cursor-pointer capitalize">
+        <Badge search={postType} search_query={"postType"} className="cursor-pointer capitalize">
           {type[postType]}
         </Badge>
         <ComboboxDropdownMenu isAuthor={isAuthor}>
@@ -115,14 +119,18 @@ function PostCardHeader({
 
 PostCard.Header = PostCardHeader;
 
-function PostCardDescription({ children, showMore }: { children: any; showMore?: Boolean }) {
+function PostCardDescription({ children, showMore }: { children: string; showMore?: Boolean }) {
   return (
-    <div
-      id="post-content"
-      className={cn("font-heading cursor-pointer text-xs md:text-base", showMore && "line-clamp-3")}>
-      {parse(children)}
-      {showMore && <span className="float-right text-xs md:text-sm">....Show more</span>}
-    </div>
+    <>
+      <span
+        id="post-content"
+        className={cn("font-heading cursor-pointer text-xs md:text-base", showMore && "line-clamp-3")}>
+        {parse(children)}
+      </span>
+      {showMore && children.length > 300 && (
+        <span className="float-right text-xs md:text-sm">....Show more</span>
+      )}
+    </>
   );
 }
 
@@ -138,6 +146,7 @@ function PostCardTags({
   salary,
   role,
   skills,
+  postType,
 }: {
   allTags: boolean;
   companyName: string;
@@ -148,9 +157,12 @@ function PostCardTags({
   salary: string;
   role: string;
   skills?: any;
+  postType?: any;
 }) {
   return (
-    <div id="post-tags" className="font-heading">
+    <div
+      id="post-tags"
+      className={cn("font-heading", postType === "POST" || postType === "FINDREFERRER", "hidden")}>
       <Tags
         allTags={allTags}
         companyName={companyName}

@@ -4,8 +4,6 @@ import type { Posts } from "@prisma/client";
 
 import prisma from "@referrer/prisma";
 
-import { TFilter2 } from "@/types/posts";
-
 export async function GET(request: NextRequest, response: NextResponse) {
   const searchParams = request.nextUrl.searchParams;
 
@@ -30,15 +28,15 @@ export async function GET(request: NextRequest, response: NextResponse) {
   console.log("skills", skills);
   console.log("jobLocationType", jobLocationType);
 
-  const filters: TFilter2 = {
+  const filters: any = {
     ...(search_query && { description: { contains: search_query, mode: "insensitive" } }),
     ...(jobURL && { jobURL }),
     ...(jobCode && { jobCode }),
     ...(postType.length && { postType: { in: postType } }),
-    ...(companyName.length && { companyName: { in: companyName } }),
+    ...(companyName.length && { companyName: { in: companyName, mode: "insensitive" } }),
     ...(jobExperience.length && { jobExperience: { in: jobExperience.map(Number) } }),
-    ...(jobType.length && { jobType: { in: jobType } }),
-    ...(jobRole.length && { jobRole: { in: jobRole } }),
+    ...(jobType.length && { jobType: { in: jobType, mode: "insensitive" } }),
+    ...(jobRole.length && { jobRole: { in: jobRole, mode: "insensitive" } }),
     ...(skills.length && {
       tags: { some: { name: { in: skills, mode: "insensitive" } } },
     }),

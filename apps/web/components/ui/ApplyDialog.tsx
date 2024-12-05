@@ -46,6 +46,7 @@ export function ApplyDialog({
   acceptLimit,
   expired,
   authorId,
+  postType,
 }: {
   myObject?: any;
   postId?: any;
@@ -54,6 +55,7 @@ export function ApplyDialog({
   acceptLimit?: any;
   expired?: any;
   authorId: string;
+  postType?: any;
 }) {
   const router = useRouter();
 
@@ -135,7 +137,11 @@ export function ApplyDialog({
           // isLoading={isPending}
           // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
           // onClick={apply}
-          className="h-9 rounded-full text-sm md:w-36">
+          className={cn(
+            "h-9 rounded-full text-sm md:w-36",
+            postType === "POST" || postType === "FINDREFERRER",
+            "hidden"
+          )}>
           {(full && "Full") || (expired && "Expired") || "Apply"}
         </Button>
       </DialogTrigger>
