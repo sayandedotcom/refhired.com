@@ -37,7 +37,7 @@ export function PostTypeDialog({ children }: { children: React.ReactNode }) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="bg-muted/40 sm:max-w-[445px]">
+      <DialogContent className="bg-background sm:max-w-[445px]">
         <DialogHeader>
           <DialogTitle>What you want to Post ?</DialogTitle>
           {/* <DialogDescription>

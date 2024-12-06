@@ -112,9 +112,7 @@ export default function Home() {
                   <ShareButton link={`${data.user.userName}/posts/${data.id}`} title={data.description} />
                   <BookmarkButton postId={data.id} />
                   <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
-                  {data.postType != "POST" && data.postType != "FINDREFERRER" && (
-                    <StarButton star={data.stars} />
-                  )}
+                  {data.postType === "REFERRALPOST" && <StarButton star={data.stars} />}
                 </MultipleButtons>
                 {session?.user?.id === data.userId ? (
                   data.totalApplied > 0 ? (

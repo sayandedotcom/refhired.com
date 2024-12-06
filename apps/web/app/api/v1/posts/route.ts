@@ -7,12 +7,16 @@ import { auth } from "@/lib/auth";
 import { TPost } from "@/types/types";
 
 export async function GET(request: NextRequest, context: any) {
+  const searchParams = request.nextUrl.searchParams;
+  const take = searchParams.get("take");
+  const skip = searchParams.get("skip");
+
   // const cachedAllPosts = await redis.get("ALL_POSTS");
   // if (cachedAllPosts) return JSON.parse(cachedAllPosts);
 
   const posts = await prisma.posts.findMany({
-    take: 10,
-    skip: 0,
+    take: +take,
+    skip: +skip,
     orderBy: {
       createdAt: "desc",
     },

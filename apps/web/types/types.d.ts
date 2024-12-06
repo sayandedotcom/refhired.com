@@ -44,7 +44,7 @@ export type TPosts = {
 };
 
 export type TPostsData = {
-  data: Posts & { user: User; tags: Tags[] };
+  data: { data: Posts & { user: User; tags: Tags[] } };
 };
 
 export type TProfile = { data: { data: User & { posts: Posts[] } } };

@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 
+import { useRouter } from "next/navigation";
+
 import { useLoading, useWindowSize } from "@/hooks";
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { Bookmark, MessageCircle, Share2, Star } from "lucide-react";
 import { useSession } from "next-auth/react";
 
@@ -64,12 +67,15 @@ export const CommentButton = () => {
 };
 
 export const BookmarkButton = ({ postId }: { postId?: string }) => {
-  const [bookmark, setBookmark] = useState(false);
   const { data: session } = useSession();
+  const router = useRouter();
+
+  const [bookmark, setBookmark] = useState(false);
+
   const { mutate, isPending } = useMutation({
     mutationKey: ["bookmarks"],
     mutationFn: ({ postId }: { postId: string }) => {
-      return request.post("/bookmarks", {
+      return request.post("/bookmarks", null, {
         params: {
           postId: postId,
         },
@@ -78,36 +84,58 @@ export const BookmarkButton = ({ postId }: { postId?: string }) => {
         },
       });
     },
-    // onSuccess(data, variables) {
-    //   setUserName(variables.userName);
-    //   router.push("/auth/sign-up");
-    // },
-    // onError(error) {
-    //   setError("userName", {
-    //     ///@ts-expect-error
-    //     message: error?.response.data.message,
-    //   });
-    // },
+    onSuccess(data, variables) {
+      setBookmark(!bookmark);
+      sonerToast({
+        severity: "neutral",
+        title: (
+          <div className="my-auto mr-4 flex items-center gap-3">
+            <p className="text-sm">{bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"}</p>
+          </div>
+        ),
+        actions: (
+          <Button onClick={() => setBookmark(!bookmark)} className="h-6" variant="secondary">
+            Undo
+          </Button>
+        ),
+      });
+    },
+    onError(error) {
+      if (axios.isAxiosError(error) && error?.response.status === 401) {
+        router.push("/auth/login");
+        sonerToast({
+          severity: "error",
+          title: "Error !",
+          message: error?.response.data.message,
+        });
+      }
+      axios.isAxiosError(error) &&
+        error?.response.status != 401 &&
+        sonerToast({
+          severity: "info",
+          title: "Error !",
+          message: error?.response.data.message,
+        });
+    },
   });
 
   const bookmarked = () => {
-    setBookmark(!bookmark);
     mutate({
       postId: postId,
     });
-    sonerToast({
-      severity: "neutral",
-      title: (
-        <div className="my-auto mr-4 flex items-center gap-3">
-          <p className="text-sm">{bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"}</p>
-        </div>
-      ),
-      actions: (
-        <Button onClick={() => setBookmark(!bookmark)} className="h-6" variant="secondary">
-          Undo
-        </Button>
-      ),
-    });
+    // sonerToast({
+    //   severity: "neutral",
+    //   title: (
+    //     <div className="my-auto mr-4 flex items-center gap-3">
+    //       <p className="text-sm">{bookmark ? "Removed from Bookmarks" : "Added to Bookmarks"}</p>
+    //     </div>
+    //   ),
+    //   actions: (
+    //     <Button onClick={() => setBookmark(!bookmark)} className="h-6" variant="secondary">
+    //       Undo
+    //     </Button>
+    //   ),
+    // });
   };
 
   return (
@@ -216,6 +244,7 @@ export const Tags = ({
         variant="secondary">
         🧑‍💻 {experience} + years of experience
       </Badge>
+
       <Badge
         search={jobType}
         search_query={"jobType"}
@@ -223,6 +252,7 @@ export const Tags = ({
         variant="secondary">
         🧑‍💼 {jobType}
       </Badge>
+
       {allTags && (
         <>
           <Badge
@@ -230,7 +260,7 @@ export const Tags = ({
             variant="secondary">
             💵 {salary}
           </Badge>
-          {skills.map(({ __typename, name }, i) => (
+          {skills?.map(({ __typename, name }, i) => (
             <Badge
               key={i}
               search={name}
@@ -242,6 +272,7 @@ export const Tags = ({
           ))}
         </>
       )}
+
       {allTags ? (
         <></>
       ) : (

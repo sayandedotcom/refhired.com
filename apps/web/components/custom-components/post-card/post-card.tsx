@@ -63,7 +63,7 @@ function PostCardHeader({
   isAuthor?: boolean;
   image?: any;
   bio: any;
-  expired: any;
+  expired?: any;
 }) {
   const type = {
     REFERRALPOST: "Referral Post",
@@ -160,9 +160,7 @@ function PostCardTags({
   postType?: any;
 }) {
   return (
-    <div
-      id="post-tags"
-      className={cn("font-heading", postType === "POST" || postType === "FINDREFERRER", "hidden")}>
+    <div id="post-tags" className={cn("font-heading", postType != "REFERRALPOST" && "hidden")}>
       <Tags
         allTags={allTags}
         companyName={companyName}

@@ -1,6 +1,13 @@
-import { Metadata } from "next";
+"use client";
 
+import { useRouter } from "next/navigation";
+
+import Loading from "@/app/(portals)/loading";
 import { expired, fromNow } from "@refhiredcom/utils";
+import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+
+import { Button } from "@referrer/ui";
 
 import { PostCard } from "@/components/custom-components";
 import {
@@ -12,7 +19,6 @@ import {
 } from "@/components/custom-components/post-card/post-buttons";
 import { ApplyDialog } from "@/components/ui";
 
-import { auth } from "@/lib/auth";
 import { request } from "@/lib/axios";
 
 import { TPostsData } from "@/types/types";
@@ -43,40 +49,57 @@ interface PostProps {
 //   };
 // }
 
-export const metadata: Metadata = {
-  title: "Posts",
-  description: "Get job referrals to the top best companies of the world",
-};
+export default function Post({ params }: PostProps) {
+  const { data: session } = useSession();
 
-export default async function Post({ params }: PostProps) {
-  const session = await auth();
+  const router = useRouter();
 
-  const { data } = (await request.get<TPostsData>(`/posts/${params.postId}`)).data;
+  const {
+    data: postData,
+    error,
+    isStale,
+    isLoading,
+    isFetching,
+  } = useQuery<TPostsData>({
+    queryKey: ["posts", params.postId],
+    queryFn: () => {
+      return request.get(`/posts/${params.postId}`);
+    },
+    // refetchInterval: 5000,
+    // staleTime: 200000,
+    // gcTime: Infinity,
+  });
+  const data = postData?.data?.data;
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
       <PostCard key={data.id}>
         <PostCard.Image
-          src={data.user?.image ?? "/images/avatar/avatar.png"}
-          name={data.user?.name}
-          userName={data.user?.userName}
-          bio={data.user?.bio}
+          src={data?.user?.image ?? "/images/avatar/avatar.png"}
+          name={data?.user?.name}
+          userName={data?.user?.userName}
+          bio={data?.user?.bio}
         />
         <PostCard.Content>
           <PostCard.Header
-            name={data.user?.name}
-            userName={data.user?.userName}
-            image={data.user?.image ?? "/images/avatar/avatar.png"}
-            bio={data.user?.bio}
+            name={data?.user?.name}
+            userName={data?.user?.userName}
+            image={data?.user?.image ?? "/images/avatar/avatar.png"}
+            bio={data?.user?.bio}
             time={fromNow(data.createdAt)}
             timeLeft={data.expiresAt ? fromNow(data.expiresAt) : "No Expiry"}
             postType={data.postType}
             isAuthor={session?.user?.id === data.userId}
             expired={expired(data.expiresAt)}
           />
-          <PostCard.Description showMore={false}>{data.description}</PostCard.Description>
+          <PostCard.Description>{data.description}</PostCard.Description>
           <PostCard.Tags
-            allTags={true}
+            allTags
+            skills={data.tags}
             companyName={data.companyName}
             locationType={data.jobLocationType}
             location={data.jobLocation}
@@ -84,28 +107,37 @@ export default async function Post({ params }: PostProps) {
             jobType={data.jobType}
             role={data.jobRole}
             salary={data.jobCompensation}
-            skills={data.tags}
+            postType={data.postType}
           />
           <PostCard.Footer>
             <MultipleButtons>
               {/* <CommentButton /> */}
               <ShareButton link={`${data.user.userName}/posts/${data.id}`} title={data.description} />
-              <BookmarkButton />
+              <BookmarkButton postId={data.id} />
               <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
-              <StarButton star={data.stars} />
+              {data.postType === "REFERRALPOST" && <StarButton star={data.stars} />}
             </MultipleButtons>
             {session?.user?.id === data.userId ? (
-              // <Button
-              //   onClick={() => {
-
-              //     router.push(`/dashboard/requests/${data.id}`);
-              //   }}
-              //   className="h-9 rounded-full text-sm md:w-36">
-              //   Requests
-              // </Button>
-              <></>
+              data.totalApplied > 0 ? (
+                <Button
+                  onClick={() => {
+                    router.push(`/dashboard/requests?postId=${data.id}`);
+                  }}
+                  className="h-9 rounded-full text-sm md:w-36">
+                  Explore Requests
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    router.push(`/dashboard/requests?postId=${data.id}`);
+                  }}
+                  className="h-9 rounded-full text-sm md:w-36">
+                  No applies yet
+                </Button>
+              )
             ) : (
               <ApplyDialog
+                postType={data.postType}
                 myObject={data.accept}
                 postId={data.id}
                 stars={data.stars}

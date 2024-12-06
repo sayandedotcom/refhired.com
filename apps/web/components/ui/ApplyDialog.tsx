@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
+import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -137,10 +138,11 @@ export function ApplyDialog({
           // isLoading={isPending}
           // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
           // onClick={apply}
-          className={cn(
+          className={clsx(
             "h-9 rounded-full text-sm md:w-36",
-            postType === "POST" || postType === "FINDREFERRER",
-            "hidden"
+            postType != "REFERRALPOST" && "hidden"
+            // postType === "POST" || postType === "FINDREFERRER",
+            // "hidden"
           )}>
           {(full && "Full") || (expired && "Expired") || "Apply"}
         </Button>

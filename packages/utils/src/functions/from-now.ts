@@ -11,7 +11,6 @@ export function fromNow(date) {
   return distance
     .replace("about", "a")
     .replace("less than", "1 seconds")
-    .replace("a minute", "50 seconds")
     .replace("minutes", "m")
     .replace("an hour", "h")
     .replace("hours", "h")
@@ -28,3 +27,4 @@ export function fromNow(date) {
     .replace("a", "")
     .replace("dy", "d");
 }
+// .replace("a minute", "50 seconds")

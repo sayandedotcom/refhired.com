@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 
 import { Button } from "@referrer/ui";
 
+import { siteConfig } from "@/config";
+
 function PricingButton({
   planId,
   className,
@@ -24,7 +26,7 @@ function PricingButton({
   const buyPlan = async (planId: string, stars: number, quantity?: number) => {
     setState(true);
 
-    await fetch("http://localhost:3000/api/stripe", {
+    await fetch(`${siteConfig.url}/api/stripe`, {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -50,8 +52,6 @@ function PricingButton({
       .catch((error) => {
         console.error("Error:", error);
       });
-
-    session.user.stars;
 
     // const stripeUrl = await checkout({ planId: priceId, quantity: quantity, stars: stars });
     // router.push(data);
