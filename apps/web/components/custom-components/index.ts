@@ -17,3 +17,5 @@ export * from "./portal-components/left-bar-mobile";
 export * from "./portal-components/right-bar-mobile";
 export * from "./pages-heading";
 export * from "./3D-card-component";
+export * from "./avatar-circles";
+export * from "./new-posts";

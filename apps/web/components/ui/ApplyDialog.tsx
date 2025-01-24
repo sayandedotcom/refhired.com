@@ -48,6 +48,7 @@ export function ApplyDialog({
   expired,
   authorId,
   postType,
+  isPaused,
 }: {
   myObject?: any;
   postId?: any;
@@ -57,6 +58,7 @@ export function ApplyDialog({
   expired?: any;
   authorId: string;
   postType?: any;
+  isPaused?: any;
 }) {
   const router = useRouter();
 
@@ -134,7 +136,7 @@ export function ApplyDialog({
       <DialogTrigger asChild>
         <Button
           id="post-apply"
-          disabled={expired || full}
+          disabled={isPaused || expired || full}
           // isLoading={isPending}
           // iconBefore={applied && <AiOutlineCheckCircle className="mr-2 h-4 w-4 text-green-400" />}
           // onClick={apply}
@@ -144,7 +146,7 @@ export function ApplyDialog({
             // postType === "POST" || postType === "FINDREFERRER",
             // "hidden"
           )}>
-          {(full && "Full") || (expired && "Expired") || "Apply"}
+          {(isPaused && "Paused") || (full && "Full") || (expired && "Expired") || "Apply"}
         </Button>
       </DialogTrigger>
       <DialogContent className="border-foreground w-11/12 md:w-[500px]">
