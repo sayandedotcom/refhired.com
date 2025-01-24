@@ -199,7 +199,9 @@ export const Tags = ({
   salary,
   role,
   skills,
-}) => {
+  jobCode,
+  jobURL,
+}: any) => {
   const { width } = useWindowSize();
 
   return (
@@ -212,21 +214,25 @@ export const Tags = ({
         {companyName}
       </Badge>
 
-      <Badge
-        search={role}
-        search_query={"jobRole"}
-        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
-        variant="secondary">
-        💼 {role}
-      </Badge>
+      {role && (
+        <Badge
+          search={role}
+          search_query={"jobRole"}
+          className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+          variant="secondary">
+          💼 {role}
+        </Badge>
+      )}
 
-      <Badge
-        search={locationType}
-        search_query={"jobLocationType"}
-        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
-        variant="secondary">
-        {locationType}
-      </Badge>
+      {locationType && (
+        <Badge
+          search={locationType}
+          search_query={"jobLocationType"}
+          className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+          variant="secondary">
+          {locationType}
+        </Badge>
+      )}
 
       {location && (
         <Badge
@@ -237,21 +243,26 @@ export const Tags = ({
           📍 {location}
         </Badge>
       )}
-      <Badge
-        search={experience}
-        search_query={"jobExperience"}
-        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
-        variant="secondary">
-        🧑‍💻 {experience} + years of experience
-      </Badge>
 
-      <Badge
-        search={jobType}
-        search_query={"jobType"}
-        className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
-        variant="secondary">
-        🧑‍💼 {jobType}
-      </Badge>
+      {experience && (
+        <Badge
+          search={experience}
+          search_query={"jobExperience"}
+          className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+          variant="secondary">
+          🧑‍💻 {experience} + years of experience
+        </Badge>
+      )}
+
+      {jobType && (
+        <Badge
+          search={jobType}
+          search_query={"jobType"}
+          className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+          variant="secondary">
+          🧑‍💼 {jobType}
+        </Badge>
+      )}
 
       {allTags && (
         <>
@@ -280,6 +291,26 @@ export const Tags = ({
           className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
           variant="secondary">
           +7
+        </Badge>
+      )}
+
+      {jobURL && (
+        <Badge
+          search={jobURL}
+          search_query={"jobURL"}
+          className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+          variant="secondary">
+          {jobURL}
+        </Badge>
+      )}
+
+      {jobCode && (
+        <Badge
+          search={jobCode}
+          search_query={"jobCode"}
+          className="hover:bg-foreground hover:text-background cursor-pointer border border-black dark:border-gray-200"
+          variant="secondary">
+          {jobCode}
         </Badge>
       )}
     </>
