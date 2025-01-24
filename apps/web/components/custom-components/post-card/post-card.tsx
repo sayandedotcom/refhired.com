@@ -147,32 +147,53 @@ function PostCardTags({
   role,
   skills,
   postType,
+  jobCode,
+  jobURL,
 }: {
-  allTags: boolean;
-  companyName: string;
-  locationType: string;
-  location: string;
-  experience: number;
-  jobType: string;
-  salary: string;
+  allTags?: boolean;
+  companyName?: string;
+  locationType?: string;
+  location?: string;
+  experience?: number;
+  jobType?: string;
+  salary?: string;
   role: string;
   skills?: any;
   postType?: any;
+  jobCode?: any;
+  jobURL?: any;
 }) {
   return (
-    <div id="post-tags" className={cn("font-heading", postType != "REFERRALPOST" && "hidden")}>
-      <Tags
-        allTags={allTags}
-        companyName={companyName}
-        locationType={locationType}
-        location={location}
-        salary={salary}
-        role={role}
-        experience={experience}
-        jobType={jobType}
-        skills={skills}
-      />
-    </div>
+    <>
+      <div id="post-tags" className={cn("font-heading", postType != "REFERRALPOST" && "hidden")}>
+        <Tags
+          allTags={allTags}
+          companyName={companyName}
+          locationType={locationType}
+          location={location}
+          salary={salary}
+          role={role}
+          experience={experience}
+          jobType={jobType}
+          skills={skills}
+        />
+      </div>
+      <div id="post-tags" className={cn("font-heading", postType != "FINDREFERRER" && "hidden")}>
+        <Tags
+          allTags={allTags}
+          companyName={companyName}
+          locationType={locationType}
+          location={location}
+          // salary={salary}
+          role={role}
+          experience={experience}
+          jobType={jobType}
+          skills={skills}
+          jobCode={jobCode}
+          jobURL={jobURL}
+        />
+      </div>
+    </>
   );
 }
 
