@@ -2,15 +2,22 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import prisma from "@referrer/prisma";
 
-// import redis from "@referrer/redis";
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const take = searchParams.get("take");
+  const skip = searchParams.get("skip");
 
-export async function GET(request: NextRequest, context: any) {
   // const cachedAllPosts = await redis.get("ALL_POSTS");
   // if (cachedAllPosts) return JSON.parse(cachedAllPosts);
+
   const posts = await prisma.posts.findMany({
-    take: 10,
+    take: +take,
+    skip: +skip,
     orderBy: {
       createdAt: "desc",
+    },
+    include: {
+      user: true,
     },
   });
   // await redis.set("ALL_POSTS", JSON.stringify(posts));

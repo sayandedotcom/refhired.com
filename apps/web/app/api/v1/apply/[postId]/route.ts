@@ -39,6 +39,27 @@ export async function POST(request: NextRequest, { params }: { params: { postId:
     );
   }
 
+  const isPaused = await prisma.posts.findFirst({
+    where: {
+      id: params.postId,
+    },
+    select: {
+      isPause: true,
+    },
+  });
+
+  if (isPaused.isPause) {
+    return NextResponse.json(
+      { message: "Referrer has stopped paused accepting referrals" },
+      {
+        status: 401,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
   const response: TApply = await request.json();
   const session = await auth();
   const userId = session.user.id;

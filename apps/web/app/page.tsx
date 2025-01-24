@@ -6,7 +6,6 @@ import Starfield from "react-starfield";
 import {
   Companies,
   Joinnow,
-  MagicBentoComponent,
   MagicBentoThree,
   MagicBentoTwo,
   Opensource,
@@ -73,12 +72,16 @@ export default async function Page() {
         <Companies />
       </Suspense>
 
+      <Suspense fallback={<Loading />}>
+        <Stats />
+      </Suspense>
+
       {/* <Suspense fallback={<Loading />}>{!session?.user && <Username />}</Suspense> */}
 
-      <Suspense fallback={<Loading />}>
-        {/* <Section /> */}
-        <MagicBentoComponent />
-      </Suspense>
+      {/* <Suspense fallback={<Loading />}> */}
+      {/* <Section /> */}
+      {/* <MagicBentoComponent />
+      </Suspense> */}
 
       <Suspense fallback={<Loading />}>
         <MagicBentoTwo />
@@ -110,10 +113,6 @@ export default async function Page() {
       {/* <Suspense fallback={<Loading />}>
         <Features />
       </Suspense> */}
-
-      <Suspense fallback={<Loading />}>
-        <Stats />
-      </Suspense>
 
       <Suspense fallback={<Loading />}>
         <ScrollBasedVelocityCOmponent />

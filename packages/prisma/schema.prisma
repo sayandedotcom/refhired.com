@@ -9,29 +9,31 @@ datasource db {
 }
 
 model User {
-  id               String      @id @default(cuid())
-  email            String      @unique
-  userName         String      @unique @map("user_name")
-  emailVerified    DateTime?   @map("email_verified")
-  image            String?
-  overlayImage     String?     @map("overlay_image")
-  name             String?
-  bio              String?
-  link             String?
-  location         String?
-  stars            Int?        @default(0)
-  starsEarned      Int?        @default(0) @map("stars_earned")
-  stripeCustomerId String?     @unique @map("stripe_customer_id")
-  updatedAt        DateTime?   @updatedAt @map("updated_at")
-  workingAt        String?     @map("working_at")
-  createdAt        DateTime?   @default(now()) @map("created_at")
-  paidForDashboard Boolean     @default(false) @map("paid_for_dashboard")
-  accounts         Account[]
-  applied          Applied[]
-  bookmarks        Bookmarks[]
-  comments         Comments[]
-  posts            Posts[]
-  sessions         Session[]
+  id                  String      @id @default(cuid())
+  email               String      @unique
+  userName            String      @unique @map("user_name")
+  emailVerified       DateTime?   @map("email_verified")
+  image               String?
+  overlayImage        String?     @map("overlay_image")
+  name                String?
+  bio                 String?
+  link                String?
+  location            String?
+  stars               Int?        @default(0)
+  starsEarned         Int?        @default(0) @map("stars_earned")
+  stripeCustomerId    String?     @unique @map("stripe_customer_id")
+  stripeAccountId     String?     @unique @map("stripe_account_id")
+  stripeConnectLinked Boolean     @default(false) @map("stripe_connect_linked")
+  updatedAt           DateTime?   @updatedAt @map("updated_at")
+  workingAt           String?     @map("working_at")
+  createdAt           DateTime?   @default(now()) @map("created_at")
+  paidForDashboard    Boolean     @default(false) @map("paid_for_dashboard")
+  accounts            Account[]
+  applied             Applied[]
+  bookmarks           Bookmarks[]
+  comments            Comments[]
+  posts               Posts[]
+  sessions            Session[]
 
   @@index([userName])
   @@map("user")
@@ -99,6 +101,7 @@ model Posts {
   companyName     String?     @map("company_name")
   jobCode         String?     @map("job_code")
   jobURL          String?     @map("job_url")
+  isPause         Boolean     @default(false)
   applied         Applied[]
   bookmarks       Bookmarks[]
   comments        Comments[]

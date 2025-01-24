@@ -2,9 +2,7 @@ import { Metadata } from "next";
 
 import { Separator } from "@referrer/ui";
 
-import { PagesHeading, ShimmerButtonComponent, ThreeDCard } from "@/components/custom-components";
-import { Icons } from "@/components/icons/icons";
-import { AnimatedGradientText } from "@/components/ui";
+import { PagesHeading, ThreeDCard } from "@/components/custom-components";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -59,7 +57,7 @@ const AboutUs = () => {
             on a mission to create a solution. This journey ultimately led me to establish refhired.com
           </p>
         </div>
-        <div className="flex flex-col gap-2 text-left">
+        {/* <div className="flex flex-col gap-2 text-left">
           <h2 className="font-bold">Tech Stack</h2>
           <p className="font-sans font-semibold">
             We generally use tech stacks that are open sourced and has large community support.
@@ -91,7 +89,7 @@ const AboutUs = () => {
             Join the waitlist to be among the first to experience it!
           </p>
           <ShimmerButtonComponent href={"/"}>Join the Waitlist !</ShimmerButtonComponent>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -75,7 +75,7 @@ export const NavButtonsAuthenticated = ({ session }) => {
           Explore
         </Button>
       </li>
-      <li>
+      <li className="mt-2">
         <DropdownMenuDemo
           userName={session.user?.userName}
           name={session.user?.name}

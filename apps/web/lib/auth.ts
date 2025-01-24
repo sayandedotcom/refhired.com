@@ -86,6 +86,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           access_token: account.access_token,
           expires_at: account.expires_at,
           refresh_token: account.refresh_token,
+          stripeConnectLinked: user.stripeConnectLinked,
         };
       } else if (Date.now() < token.expires_at * 1000) {
         // Subsequent logins, but the `access_token` is still valid
@@ -141,6 +142,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           id: token.id,
           userName: token.userName,
           paidForDashboard: token.paidForDashboard,
+          stripeConnectLinked: token.stripeConnectLinked,
           stars: token.stars,
           refresh_token: token.refresh_token,
         },

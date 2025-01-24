@@ -22,11 +22,13 @@ import { ApplyDialog } from "@/components/ui";
 
 import { request } from "@/lib/axios";
 
+import Loading from "../loading";
+
 const Bookmarks = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const { data, isLoading, error, isError } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["all", "bookmarks"],
     queryFn: () => {
       return request.get("/bookmarks", {
@@ -39,7 +41,15 @@ const Bookmarks = () => {
   });
 
   if (!session) {
-    <PortalsNotFound text="Bookmarks" />;
+    return <PortalsNotFound text="Bookmarks" />;
+  }
+
+  if (data?.data?.data?.length === 0) {
+    return <PortalsNotFound text="Bookmarks" />;
+  }
+
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (

@@ -26,7 +26,7 @@ const Docs = () => {
       )} */}
 
       <div className="relative mx-auto max-w-xl sm:text-center">
-        <h1 className="font-heading font-semibold">Our Docs</h1>
+        <h1 className="font-heading font-semibold">Docs</h1>
         <div className="mt-3 max-w-xl">
           <h5 className="font-heading">Will be Updated soon</h5>
         </div>

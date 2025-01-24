@@ -12,6 +12,8 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { Toaster as SonerToaster } from "sonner";
 
+import { TooltipProvider } from "@referrer/ui";
+
 // import { Toaster } from "@referrer/ui";
 import { PreLoader } from "@/components/custom-components";
 import { Banner, Footer, Navbar } from "@/components/layout";
@@ -44,19 +46,21 @@ export function Provider({ children }) {
             ) : (
               <>
                 <ProgressBar />
-                {showNavbar && (
-                  <>
-                    <Suspense fallback={<Loading />}>
-                      <Banner />
-                    </Suspense>
-                    <Suspense fallback={<Loading />}>
-                      <Navbar />
-                    </Suspense>
-                  </>
-                )}
-                {children}
-                <CookieConsent />
-                <Suspense fallback={<Loading />}>{showNavbar && <Footer />}</Suspense>
+                <TooltipProvider>
+                  {showNavbar && (
+                    <>
+                      <Suspense fallback={<Loading />}>
+                        <Banner />
+                      </Suspense>
+                      <Suspense fallback={<Loading />}>
+                        <Navbar />
+                      </Suspense>
+                    </>
+                  )}
+                  {children}
+                  <CookieConsent />
+                  <Suspense fallback={<Loading />}>{showNavbar && <Footer />}</Suspense>
+                </TooltipProvider>
                 <Analytics />
               </>
             )}

@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 import { Button, Separator } from "@referrer/ui";
 
 import { PostCard } from "@/components/custom-components";
+import { PauseButton } from "@/components/custom-components/post-card/pause-button";
 import {
   ApplyStatus,
   BookmarkButton,
@@ -56,8 +57,6 @@ export default function ProfilePage({ params }: paramsProps) {
   });
 
   const data = profileData?.data?.data;
-
-  console.log(isLoading, isFetching, isStale);
 
   if (profile === "profile")
     return (
@@ -167,9 +166,7 @@ export default function ProfilePage({ params }: paramsProps) {
               expired={expired(postData.expiresAt)}
             />
             <Navigate userName={data.userName} postId={data.id}>
-              <PostCard.Description showMore={true}>
-                {postData.description.substring(0, 350).concat(" ...")}
-              </PostCard.Description>
+              <PostCard.Description showMore={true}>{postData.description}</PostCard.Description>
             </Navigate>
             <PostCard.Tags
               allTags={false}
@@ -180,6 +177,9 @@ export default function ProfilePage({ params }: paramsProps) {
               jobType={postData.jobType}
               role={postData.jobRole}
               salary={postData.jobCompensation}
+              postType={postData.postType}
+              jobURL={postData.jobURL}
+              jobCode={postData.jobCode}
             />
             <PostCard.Footer>
               <MultipleButtons>
@@ -189,19 +189,22 @@ export default function ProfilePage({ params }: paramsProps) {
                 <ApplyStatus totalApplied={postData.totalApplied} acceptLimit={postData.acceptLimit} />
                 <StarButton star={postData.stars} />
               </MultipleButtons>
-              {session?.user.id === data.id ? (
-                postData.totalApplied > 0 && (
+              {postData.postType === "REFERRALPOST" && session?.user.id === data.id ? (
+                <div className="flex items-center gap-3">
+                  <PauseButton postId={postData.id} isPause={postData.isPause} />
                   <Button
+                    disabled={postData.totalApplied === 0}
                     onClick={() => {
                       router.push(`/dashboard/requests?postId=${data.id}`);
                     }}
                     className="h-9 rounded-full text-sm md:w-36">
-                    Explore Requests
+                    {postData.totalApplied > 0 ? "Explore Requests" : "No Applies"}
                   </Button>
-                )
+                </div>
               ) : (
                 // <Button className="h-9 rounded-full text-sm md:w-36">Analytics</Button>
                 <ApplyDialog
+                  postType={postData.postType}
                   myObject={postData.accept}
                   postId={postData.id}
                   stars={postData.stars}
@@ -209,6 +212,7 @@ export default function ProfilePage({ params }: paramsProps) {
                   acceptLimit={postData.acceptLimit}
                   authorId={postData.userId}
                   expired={expired(postData.expiresAt)}
+                  isPaused={postData.isPause}
                 />
               )}
             </PostCard.Footer>

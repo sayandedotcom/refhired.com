@@ -24,6 +24,7 @@ declare module "next-auth" {
     stars: PrismaUser["stars"];
     paidForDashboard?: PrismaUser["paidForDashboard"];
     stripeCustomerId?: PrismaUser["stripeCustomerId"];
+    stripeConnectLinked?: PrismaUser["stripeConnectLinked"];
   }
   /**
    * Usually contains information about the provider being used
@@ -54,6 +55,7 @@ declare module "next-auth/jwt" {
     expires_at: number;
     refresh_token?: string;
     error?: "RefreshTokenError";
+    stripeConnectLinked?: PrismaUser["stripeConnectLinked"];
   }
 }
 

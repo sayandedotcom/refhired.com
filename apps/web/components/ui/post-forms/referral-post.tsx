@@ -171,7 +171,12 @@ export default function ReferralPost() {
       equityEndingRange: referralPostFromDraft?.body.equityEndingRange ?? undefined,
       equityStartingRange: referralPostFromDraft?.body.equityStartingRange ?? undefined,
       jobExperience: referralPostFromDraft?.body.jobExperience ?? undefined,
-      jobLocation: { type: referralPostFromDraft?.body.jobLocation ?? "On-Site" },
+      // jobLocation: referralPostFromDraft?.body?.jobLocation
+      //   ? { type: referralPostFromDraft?.body.jobLocation }
+      //   : undefined,
+      jobLocation: {
+        type: referralPostFromDraft?.body.jobLocationType ?? "Remote Only",
+      },
       currency: referralPostFromDraft?.body.currency ?? undefined,
       stars: referralPostFromDraft?.body.stars ?? 0,
       acceptLimit: referralPostFromDraft?.body.acceptLimit,
@@ -806,7 +811,7 @@ export default function ReferralPost() {
           <div
             className={cn(
               "my-2 grid w-full grid-cols-3 items-center gap-4",
-              form.watch("jobLocation").type === "Remote Only" && "cursor-not-allowed opacity-50"
+              form.watch("jobLocation")?.type === "Remote Only" && "cursor-not-allowed opacity-50"
             )}>
             {/* Country Location */}
             <FormField

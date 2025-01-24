@@ -8,6 +8,7 @@ export const withoutRightBarPages = [
   "/requests",
   "/applied",
   "/settings/profile",
+  "/settings/account",
   "/settings/appearance",
   "/settings/notifications",
   ...dashboard,

@@ -10,6 +10,7 @@ import { useSession } from "next-auth/react";
 import { Button } from "@referrer/ui";
 
 import { PostCard } from "@/components/custom-components";
+import { PauseButton } from "@/components/custom-components/post-card/pause-button";
 import {
   ApplyStatus,
   BookmarkButton,
@@ -108,6 +109,8 @@ export default function Post({ params }: PostProps) {
             role={data.jobRole}
             salary={data.jobCompensation}
             postType={data.postType}
+            jobURL={data.jobURL}
+            jobCode={data.jobCode}
           />
           <PostCard.Footer>
             <MultipleButtons>
@@ -117,24 +120,18 @@ export default function Post({ params }: PostProps) {
               <ApplyStatus totalApplied={data.totalApplied} acceptLimit={data.acceptLimit} />
               {data.postType === "REFERRALPOST" && <StarButton star={data.stars} />}
             </MultipleButtons>
-            {session?.user?.id === data.userId ? (
-              data.totalApplied > 0 ? (
+            {data.postType === "REFERRALPOST" && session?.user?.id === data.userId ? (
+              <div className="flex items-center gap-3">
+                <PauseButton postId={data.id} isPause={data.isPause} />
                 <Button
+                  disabled={data.totalApplied === 0}
                   onClick={() => {
                     router.push(`/dashboard/requests?postId=${data.id}`);
                   }}
                   className="h-9 rounded-full text-sm md:w-36">
-                  Explore Requests
+                  {data.totalApplied > 0 ? "Explore Requests" : "No Applies"}
                 </Button>
-              ) : (
-                <Button
-                  onClick={() => {
-                    router.push(`/dashboard/requests?postId=${data.id}`);
-                  }}
-                  className="h-9 rounded-full text-sm md:w-36">
-                  No applies yet
-                </Button>
-              )
+              </div>
             ) : (
               <ApplyDialog
                 postType={data.postType}
@@ -145,6 +142,7 @@ export default function Post({ params }: PostProps) {
                 acceptLimit={data.acceptLimit}
                 authorId={data.userId}
                 expired={expired(data.expiresAt)}
+                isPaused={data.isPause}
               />
             )}
           </PostCard.Footer>
