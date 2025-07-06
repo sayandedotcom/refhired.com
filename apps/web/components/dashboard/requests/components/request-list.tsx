@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import parse from "html-react-parser";
 import { CheckCircle2, Loader, XCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-import { cn } from "@referrer/lib/utils/cn";
+import { cn } from "@/utils";
 import { ScrollArea, Separator } from "@referrer/ui";
 
 import { Badge } from "@/components/ui";
@@ -34,11 +34,30 @@ export function RequestsList() {
         },
       });
     },
+    // staleTime: 20 * 60 * 1000,
   });
+
+  const { mutate, variables } = useMutation({
+    mutationKey: ["dashboard", "requests", "read", postId],
+    mutationFn: ({ visibility }: { visibility: "Read" }) => {
+      return request.patch(`/dashboard/requests/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${session.user.refresh_token}`,
+        },
+      });
+    },
+    // staleTime: 20 * 60 * 1000,
+  });
+
+  const displayRequest = (item) => {
+    setDisplayRequest(item);
+    mutate({ visibility: "Read" });
+  };
 
   if (!postId) {
     return <div className="text-muted-foreground p-8 text-center">Click on a Post to see requests !</div>;
   }
+
   if (isLoading) {
     return <Loader className="mx-auto my-auto h-8 w-8 animate-spin" />;
   }
@@ -56,9 +75,9 @@ export function RequestsList() {
               key={item.id}
               className={cn(
                 "hover:bg-accent flex flex-col items-start gap-2 rounded-lg border p-3 text-left text-sm transition-all",
-                item.visibility === "Unread" && "bg-muted/40"
+                variables?.visibility === "Read" || item.visibility === "Read" ? "" : "bg-muted/40"
               )}
-              onClick={() => setDisplayRequest(item)}>
+              onClick={() => displayRequest(item)}>
               <div className="flex w-full flex-col gap-1">
                 <div className="flex items-center">
                   <div className="flex items-center gap-2">
@@ -88,8 +107,12 @@ export function RequestsList() {
                     {formatDistanceToNow(new Date(item.appliedAt), {
                       addSuffix: true,
                     })}
-                    {item.visibility === "Unread" && (
+                    {variables?.visibility === "Read" || item.visibility === "Read" ? (
+                      <></>
+                    ) : (
+                      // item.visibility === "Unread" && (
                       <span className="flex h-2 w-2 rounded-full bg-blue-600" />
+                      // )
                     )}
                   </div>
                 </div>

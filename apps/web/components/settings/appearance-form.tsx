@@ -7,7 +7,6 @@ import { useTheme } from "next-themes";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { cn } from "@referrer/lib/utils/cn";
 import {
   Button,
   Form,
@@ -21,6 +20,8 @@ import {
   RadioGroupItem,
   buttonVariants,
 } from "@referrer/ui";
+
+import { cn } from "@/utils";
 
 const appearanceFormSchema = z.object({
   theme: z.enum(["light", "dark"], {

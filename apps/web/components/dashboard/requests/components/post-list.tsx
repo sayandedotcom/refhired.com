@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback } from "react";
 
 import Link from "next/link";
@@ -11,13 +13,14 @@ import parse from "html-react-parser";
 import { ArrowUpRight, Loader, Star, User } from "lucide-react";
 import { useSession } from "next-auth/react";
 
-import { cn } from "@referrer/lib/utils/cn";
 import { ScrollArea, Separator } from "@referrer/ui";
 
 import { PortalsNotFound } from "@/components/custom-components";
 import { Badge, TooltipDemo } from "@/components/ui";
 
 import { request } from "@/lib/axios";
+
+import { cn } from "@/utils";
 
 import { useStore } from "@/store/store";
 
@@ -40,7 +43,7 @@ export function PostsList() {
     [searchParams]
   );
 
-  const { data, isLoading } = useQuery<TDashboardPostsData>({
+  const { data, isLoading, isFetching } = useQuery<TDashboardPostsData>({
     queryKey: ["dashboard", "requests"],
     queryFn: () => {
       return request.get("/dashboard/requests", {
@@ -48,11 +51,15 @@ export function PostsList() {
           userId: session.user.id,
         },
         headers: {
-          Authorization: `Bearer ${session.user.refresh_token}`,
+          Authorization: session?.user?.refresh_token && `Bearer ${session.user.refresh_token}`,
         },
       });
     },
+    staleTime: 1200000,
+    // 20 * 60 * 1000
   });
+
+  console.log("Post List", isLoading, isFetching);
 
   if (!session) {
     return <PortalsNotFound text="Requests" />;
