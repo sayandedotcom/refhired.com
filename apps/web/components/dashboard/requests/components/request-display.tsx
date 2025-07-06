@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { Applied } from "@prisma/client";
+// import type { Applied } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import addDays from "date-fns/addDays";
 import addHours from "date-fns/addHours";
@@ -108,7 +108,8 @@ export function RequestsDisplay() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof replyValidator>, status: Applied["status"]) {
+  function onSubmit(values: z.infer<typeof replyValidator>, status) {
+    //: Applied["status"]
     mutate({ reply: values.message, status: status });
   }
 
