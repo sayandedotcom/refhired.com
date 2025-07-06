@@ -9,13 +9,15 @@
     "db:generate": "npx prisma generate",
     "db:studio": "npx prisma studio",
     "db:push": "npx prisma db push",
-    "db:pull": "npx prisma db pull"
+    "db:pull": "npx prisma db pull",
+    "clean": "rimraf node_modules dist"
   },
   "devDependencies": {
     "prisma": "^5.3.1"
   },
   "dependencies": {
     "@prisma/client": "^5.3.1",
-    "@prisma/extension-read-replicas": "^0.3.0"
+    "@prisma/extension-read-replicas": "^0.3.0",
+    "rimraf": "^5.0.5"
   }
 }

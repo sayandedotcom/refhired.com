@@ -1,5 +1,5 @@
 {
-  "name": "@referrer/web",
+  "name": "@refhiredcom/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,8 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhook --latest",
     "type-check": "tsc --pretty --noEmit",
-    "type-check:ci": "tsc-absolute --pretty --noEmit"
+    "type-check:ci": "tsc-absolute --pretty --noEmit",
+    "clean": "rimraf .turbo node_modules .next"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.0",
@@ -21,11 +22,10 @@
     "@motionone/utils": "^10.17.0",
     "@radix-ui/react-icons": "^1.3.0",
     "@react-email/components": "^0.0.11",
-    "@referrer/lib": "*",
-    "@referrer/prisma": "*",
-    "@referrer/ui": "*",
-    "@refhiredcom/features": "*",
-    "@refhiredcom/utils": "*",
+    "@referrer/lib": "workspace:*",
+    "@referrer/prisma": "workspace:*",
+    "@referrer/ui": "workspace:*",
+    "@refhiredcom/utils": "workspace:*",
     "@stripe/stripe-js": "^3.3.0",
     "@tanstack/react-query": "^5.55.2",
     "@tanstack/react-query-devtools": "^5.61.3",
@@ -79,10 +79,10 @@
     "zustand": "^4.4.0"
   },
   "devDependencies": {
-    "@referrer/prettier-config": "*",
-    "@referrer/tailwind-config": "*",
-    "@referrer/tsconfig": "*",
-    "@refhiredcom/types": "*",
+    "@referrer/prettier-config": "workspace:*",
+    "@referrer/tailwind-config": "workspace:*",
+    "@referrer/tsconfig": "workspace:*",
+    "@refhiredcom/types": "workspace:*",
     "@types/node": "^20.6.2",
     "@types/nodemailer": "^6.4.10",
     "@types/nprogress": "^0.2.0",
@@ -91,13 +91,13 @@
     "@types/react-dom": "^18.0.7",
     "autoprefixer": "^10.4.19",
     "cobe": "^0.6.3",
-    "eslint-config-custom": "*",
+    "eslint-config-custom": "workspace:*",
     "postcss": "^8.4.23",
     "react-spring": "^9.7.3",
-    "sst": "^2.41.4",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.7",
+    "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
   },
   "overrides": {

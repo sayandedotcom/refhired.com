@@ -10,7 +10,8 @@
     "lint": "eslint . --ext .ts,.js,.tsx,.jsx",
     "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
     "format": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "clean": "rimraf .turbo node_modules dist"
   },
   "dependencies": {
     "clsx": "^2.1.0",
@@ -19,8 +20,9 @@
     "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
-    "@referrer/prettier-config": "*",
-    "@referrer/tsconfig": "*",
-    "eslint-config-custom": "*"
+    "@referrer/prettier-config": "workspace:*",
+    "@referrer/tsconfig": "workspace:*",
+    "eslint-config-custom": "workspace:*",
+    "rimraf": "^5.0.5"
   }
 }

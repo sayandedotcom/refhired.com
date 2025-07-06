@@ -4,5 +4,19 @@
   "private": true,
   "license": "MIT",
   "main": "./index.ts",
-  "types": "./index.ts"
+  "types": "./index.ts",
+  "scripts": {
+    "clean": "rimraf .turbo node_modules dist",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@referrer/prisma": "workspace:*",
+    "@refhiredcom/validators": "workspace:*",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@referrer/tsconfig": "workspace:*",
+    "rimraf": "^5.0.5"
+  }
 }

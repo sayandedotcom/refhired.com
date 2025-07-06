@@ -14,10 +14,10 @@
     "type-check:ci": "tsc-absolute --pretty --noEmit"
   },
   "dependencies": {
-    "@referrer/lib": "*",
-    "@referrer/prisma": "*",
-    "@referrer/ui": "*",
-    "@refhiredcom/utils": "*",
+    "@referrer/lib": "workspace:*",
+    "@referrer/prisma": "workspace:*",
+    "@referrer/ui": "workspace:*",
+    "@refhiredcom/utils": "workspace:*",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.451.0",
     "next": "^14.2.15",
@@ -28,13 +28,13 @@
     "recharts": "^2.12.7"
   },
   "devDependencies": {
-    "@referrer/prettier-config": "*",
-    "@referrer/tailwind-config": "*",
-    "@referrer/tsconfig": "*",
+    "@referrer/prettier-config": "workspace:*",
+    "@referrer/tailwind-config": "workspace:*",
+    "@referrer/tsconfig": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint-config-custom": "*",
+    "eslint-config-custom": "workspace:*",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

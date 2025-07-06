@@ -4,6 +4,9 @@
   "description": "Prettier Config",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "clean": "rimraf .turbo node_modules dist"
+  },
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "prettier-plugin-tailwindcss": "^0.4.1"
@@ -12,5 +15,7 @@
     "prettier",
     "prettier-config"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "rimraf": "^5.0.5"
+  }
 }
