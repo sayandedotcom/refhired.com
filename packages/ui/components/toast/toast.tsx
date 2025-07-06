@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import { forwardRef } from "react";
 
-import clsx from "clsx";
 import { AlertTriangle, CheckCircle2, Info, XCircle } from "lucide-react";
+
+import { cn } from "@/utils";
 
 export interface AlertProps {
   title?: ReactNode;
@@ -20,7 +21,7 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
   return (
     <div
       ref={ref}
-      className={clsx(
+      className={cn(
         "font-heading rounded-md p-3",
         props.className,
         severity === "error" && "bg-red-100 text-red-900 dark:bg-red-900 dark:text-red-200",
@@ -34,38 +35,38 @@ export const Alert = forwardRef<HTMLDivElement, AlertProps>((props, ref) => {
           <div className="flex-shrink-0">
             <CustomIcon
               aria-hidden="true"
-              className={clsx(`h-5 w-5`, iconClassName, customIconColor ?? "text-default")}
+              className={cn(`h-5 w-5`, iconClassName, customIconColor ?? "text-default")}
             />
           </div>
         ) : (
           <div className="flex-shrink-0">
             {severity === "error" && (
               <XCircle
-                className={clsx("h-5 w-5 text-red-900 dark:text-red-200", iconClassName)}
+                className={cn("h-5 w-5 text-red-900 dark:text-red-200", iconClassName)}
                 aria-hidden="true"
               />
             )}
             {severity === "warning" && (
               <AlertTriangle
-                className={clsx("text-attention h-5 w-5 dark:text-orange-200", iconClassName)}
+                className={cn("text-attention h-5 w-5 dark:text-orange-200", iconClassName)}
                 aria-hidden="true"
               />
             )}
             {severity === "info" && (
               <Info
-                className={clsx("h-5 w-5 text-blue-900 dark:text-blue-200", iconClassName)}
+                className={cn("h-5 w-5 text-blue-900 dark:text-blue-200", iconClassName)}
                 aria-hidden="true"
               />
             )}
             {severity === "neutral" && (
               <Info
-                className={clsx("text-default h-5 w-5 fill-transparent", iconClassName)}
+                className={cn("text-default h-5 w-5 fill-transparent", iconClassName)}
                 aria-hidden="true"
               />
             )}
             {severity === "success" && (
               <CheckCircle2
-                className={clsx("text-default fill-muted h-5 w-5", iconClassName)}
+                className={cn("text-default fill-muted h-5 w-5", iconClassName)}
                 aria-hidden="true"
               />
             )}

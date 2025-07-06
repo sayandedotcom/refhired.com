@@ -4,7 +4,7 @@ import * as React from "react";
 
 import numeral from "numeral";
 
-import { cn } from "@referrer/lib/utils/cn";
+import { cn } from "@/utils";
 
 import { buttonVariants } from "../components/button";
 

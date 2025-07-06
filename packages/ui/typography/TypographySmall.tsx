@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@referrer/lib/utils/cn";
+import { cn } from "@/utils";
 
 export function TypographySmall({ children, className }: { children: React.ReactNode; className?: string }) {
   return (

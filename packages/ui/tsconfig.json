@@ -1,5 +1,10 @@
 {
   "extends": "@referrer/tsconfig/react-library.json",
   "include": ["."],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
   "exclude": ["dist", "build", "node_modules"]
 }

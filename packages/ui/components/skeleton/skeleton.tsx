@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@referrer/lib/utils/cn";
+import { cn } from "@/utils";
 
 function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return <div className={cn("bg-muted animate-pulse rounded-md", className)} {...props} />;
