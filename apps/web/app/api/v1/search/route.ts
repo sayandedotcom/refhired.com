@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-import type { Posts } from "@prisma/client";
-
+// import type { Posts } from "@referrer/prisma";
 import prisma from "@referrer/prisma";
 
 export async function GET(request: NextRequest, response: NextResponse) {
@@ -10,7 +9,8 @@ export async function GET(request: NextRequest, response: NextResponse) {
   const search_query = searchParams.get("search_query");
   const jobURL = searchParams.get("jobURL");
   const jobCode = searchParams.get("jobCode");
-  const postType = searchParams.getAll("postType") as Posts["postType"][];
+  const postType = searchParams.getAll("postType");
+  // as Posts["postType"][]
   const companyName = searchParams.getAll("companyName");
   const jobExperience = searchParams.getAll("jobExperience");
   const jobType = searchParams.getAll("jobType");
