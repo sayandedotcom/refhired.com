@@ -11,4 +11,4 @@
 | 6         | mobile           | For mobile app   | @refhiredcom/mobile    | yarn mobile    | -    |
 | 7         | storybook        | For Storybook    | @referrer/storybook    | yarn story     | 6006 |
 | 8         | swagger          | For desktop app  | @refhiredcom/desktop   | yarn desktop   | -    |
-| 9         | web              | For main website | @referrer/web          | yarn web       | 3000 |
+| 9         | web              | For main website | @refhiredcom/web       | yarn web       | 3000 |

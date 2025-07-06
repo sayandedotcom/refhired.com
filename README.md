@@ -99,7 +99,7 @@ Guidelines for contributing can be found in [CONTRIBUTING.md](https://github.com
 | 5         | mobile           | For mobile app   | @refhiredcom/mobile  | yarn mobile  | -    |
 | 6         | storybook        | For Storybook    | @referrer/storybook  | yarn story   | 6006 |
 | 7         | swagger          | For desktop app  | @refhiredcom/desktop | yarn desktop | -    |
-| 8         | web              | For main website | @referrer/web        | yarn web     | 3000 |
+| 8         | web              | For main website | @refhiredcom/web     | yarn web     | 3000 |
 
 ## Things I am stuck with
 
