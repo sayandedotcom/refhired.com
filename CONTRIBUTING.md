@@ -15,7 +15,7 @@ The goal of Referrer is to simplify receiving and giving jobs referrals. I'm try
 | apps /     |
 | 1          | api                  | API Server               | @referrer/api                  | yarn api                  | 3001 |
 | 2          | storybook            | Storybook                | @referrer/storybook            | yarn story                | 6006 |
-| 3          | web                  | Main Website             | @referrer/web                  | yarn web                  | 3000 |
+| 3          | web                  | Main Website             | @refhiredcom/web               | yarn web                  | 3000 |
 | 4          | mobile               | Mobile App               | @referrer/mobile               | yarn mobile               | -    |
 | 5          | Desktop              | Desktop App              | @referrer/desktop              | yarn desktop              | -    |
 | packages / |
@@ -91,7 +91,7 @@ Here is what you need to be able to run Cal.com.
 1. [Fork](https://help.github.com/articles/fork-a-repo/) this repository to your
    own GitHub account and then [clone](https://help.github.com/articles/cloning-a-repository/) it to your local device.
 
-2. Clone the repo into a public GitHub repository (or fork https://github.com/sayande2002/referrer/fork). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/referrer/blob/main/LICENSE).
+2. Clone the repo into a public GitHub repository (or fork <https://github.com/sayande2002/referrer/fork>). If you plan to distribute the code, keep the source code public to comply with [AGPLv3](https://github.com/sayande2002/referrer/blob/main/LICENSE).
 
    ```sh
    git clone https://github.com/sayande2002/referrer
