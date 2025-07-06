@@ -11,7 +11,9 @@
     "lint:fix": "eslint . --ext .ts,.js,.tsx,.jsx --fix",
     "format": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-    "clean": "rimraf .turbo node_modules dist"
+    "clean": "rimraf .turbo node_modules dist",
+    "type-check": "tsc --pretty --noEmit",
+    "type-check:ci": "tsc-absolute --pretty --noEmit"
   },
   "dependencies": {
     "clsx": "^1.2.1",
@@ -24,8 +26,8 @@
   "devDependencies": {
     "@referrer/prettier-config": "workspace:*",
     "@referrer/tsconfig": "workspace:*",
-    "@types/node": "^20.11.17",
     "eslint-config-custom": "workspace:*",
+    "@types/node": "^20.11.17",
     "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
   }
