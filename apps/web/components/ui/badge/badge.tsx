@@ -5,8 +5,9 @@ import { useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
-import { cn } from "@referrer/lib/utils/cn";
 import { BadgeProps, badgeVariants } from "@referrer/ui";
+
+import { cn } from "@/utils";
 
 interface Search {
   search?: string;

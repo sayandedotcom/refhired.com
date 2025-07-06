@@ -3,7 +3,6 @@ import * as React from "react";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
 import { Column } from "@tanstack/react-table";
 
-import { cn } from "@referrer/lib/utils/cn";
 import { Popover, PopoverContent, PopoverTrigger } from "@referrer/ui";
 import { Separator } from "@referrer/ui";
 import {
@@ -17,6 +16,8 @@ import {
 } from "@referrer/ui";
 import { Badge } from "@referrer/ui";
 import { Button } from "@referrer/ui";
+
+import { cn } from "@/utils";
 
 interface DataTableFacetedFilter<TData, TValue> {
   column?: Column<TData, TValue>;
