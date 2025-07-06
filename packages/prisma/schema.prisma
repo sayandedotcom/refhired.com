@@ -122,8 +122,8 @@ model Applied {
   visibility Visibility @default(Unread)
   status     Status     @default(Pending)
   reply      String?
-  posts      Posts      @relation(fields: [postId], references: [id])
-  user       User       @relation(fields: [userId], references: [id])
+  posts      Posts      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, postId])
   @@index([userId])
@@ -154,7 +154,7 @@ model Comments {
   userId    String
   postId    String
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("comments")
 }
@@ -165,7 +165,7 @@ model Bookmarks {
   userId    String
   postId    String
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, postId])
   @@map("bookmarks")

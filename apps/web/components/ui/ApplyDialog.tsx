@@ -11,7 +11,6 @@ import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-import { cn } from "@referrer/lib/utils/cn";
 import {
   Button,
   Dialog,
@@ -32,6 +31,8 @@ import {
 
 import { request } from "@/lib/axios";
 import { applyValidator } from "@/lib/validators";
+
+import { cn } from "@/utils";
 
 import { TApply } from "@/types/types";
 
