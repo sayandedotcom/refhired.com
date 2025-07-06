@@ -92,6 +92,9 @@ importers:
       tsx:
         specifier: ^4.9.4
         version: 4.20.3
+      zod:
+        specifier: ^3.21.4
+        version: 3.25.74
     devDependencies:
       '@referrer/prettier-config':
         specifier: workspace:*
@@ -117,6 +120,9 @@ importers:
       '@types/node':
         specifier: ^20.11.17
         version: 20.19.4
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.1
       eslint-config-custom:
         specifier: workspace:*
         version: link:../../packages/eslint-config-custom
@@ -763,6 +769,28 @@ importers:
       zod:
         specifier: ^3.21.4
         version: 3.25.74
+    devDependencies:
+      '@referrer/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config-custom
+      '@referrer/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/node':
+        specifier: ^20.11.17
+        version: 20.19.4
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.10
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.12.9(@swc/helpers@0.5.17))(@types/node@20.19.4)(typescript@5.8.3)
+      typescript:
+        specifier: ^5.3.3
+        version: 5.8.3
 
 packages:
 
