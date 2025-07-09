@@ -37,6 +37,8 @@
     "JWT_SECRET",
     "DATABASE_URL",
     "DATABASE_URL_REPLICA_1",
+    "POSTGRES_PRISMA_URL",
+    "POSTGRES_URL_NON_POOLING",
     "REDIS_URL",
     "AWS_SES_REGION",
     "EMAIL_SERVER_HOST",
@@ -94,6 +96,8 @@
         "JWT_SECRET",
         "DATABASE_URL",
         "DATABASE_URL_REPLICA_1",
+        "POSTGRES_PRISMA_URL",
+        "POSTGRES_URL_NON_POOLING",
         "REDIS_URL",
         "AWS_SES_REGION",
         "EMAIL_SERVER_HOST",
@@ -112,6 +116,13 @@
         "CACHE_DATABASE_URL"
       ],
       "outputs": ["api/**", ".next/**", "!.next/cache/**"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "persistent": true
+    },
+    "db:deploy": {
+      "cache": false
     },
     "db:generate": {
       "cache": false
