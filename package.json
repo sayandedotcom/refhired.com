@@ -89,5 +89,7 @@
       "prisma format"
     ]
   },
-  "dependencies": {}
+  "dependencies": {
+    "@prisma/client": "^5.3.1"
+  }
 }
