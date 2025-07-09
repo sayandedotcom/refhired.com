@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -9,9 +10,9 @@ datasource db {
 }
 
 model User {
-  id                  String      @id @default(cuid())
-  email               String      @unique
-  userName            String      @unique @map("user_name")
+  id                  String                                    @id @default(cuid())
+  email               String                                    @unique
+  userName            String      @map("user_name")             @unique
   emailVerified       DateTime?   @map("email_verified")
   image               String?
   overlayImage        String?     @map("overlay_image")
@@ -19,15 +20,15 @@ model User {
   bio                 String?
   link                String?
   location            String?
-  stars               Int?        @default(0)
-  starsEarned         Int?        @default(0) @map("stars_earned")
-  stripeCustomerId    String?     @unique @map("stripe_customer_id")
-  stripeAccountId     String?     @unique @map("stripe_account_id")
-  stripeConnectLinked Boolean     @default(false) @map("stripe_connect_linked")
-  updatedAt           DateTime?   @updatedAt @map("updated_at")
+  stars               Int?                                      @default(0)
+  starsEarned         Int?        @map("stars_earned")          @default(0)
+  stripeCustomerId    String?     @map("stripe_customer_id")    @unique
+  stripeAccountId     String?     @map("stripe_account_id")     @unique
+  stripeConnectLinked Boolean     @map("stripe_connect_linked") @default(false)
+  updatedAt           DateTime?   @map("updated_at")            @updatedAt
   workingAt           String?     @map("working_at")
-  createdAt           DateTime?   @default(now()) @map("created_at")
-  paidForDashboard    Boolean     @default(false) @map("paid_for_dashboard")
+  createdAt           DateTime?   @map("created_at")            @default(now())
+  paidForDashboard    Boolean     @map("paid_for_dashboard")    @default(false)
   accounts            Account[]
   applied             Applied[]
   bookmarks           Bookmarks[]
@@ -51,28 +52,28 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([provider, providerAccountId])
+  @@id([provider,   providerAccountId])
   @@map("account")
 }
 
 model Session {
-  sessionToken String   @unique
+  sessionToken String    @unique
   expires      DateTime
   userId       String
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
   @@map("session")
 }
 
 model VerificationToken {
   identifier String
-  token      String   @unique
+  token      String    @unique
   expires    DateTime
 
   @@id([identifier, token])
@@ -80,10 +81,10 @@ model VerificationToken {
 }
 
 model Posts {
-  id              String      @id @default(cuid())
-  postType        PostType    @default(POST) @map("post_type")
-  createdAt       DateTime    @default(now()) @map("created_at")
-  updatedAt       DateTime    @updatedAt @map("updated_at")
+  id              String                                @id @default(cuid())
+  postType        PostType    @map("post_type")         @default(POST)
+  createdAt       DateTime    @map("created_at")        @default(now())
+  updatedAt       DateTime    @map("updated_at")        @updatedAt
   description     String?
   accept          Json?
   expiresAt       DateTime?   @map("expires_at")
@@ -94,14 +95,14 @@ model Posts {
   jobLocation     String?     @map("job_location")
   jobCompensation String?     @map("job_compensation")
   userId          String
-  stars           Int?        @default(0)
+  stars           Int?                                  @default(0)
   acceptLimit     Int?        @map("accept_limit")
-  totalApplied    Int?        @default(0)
-  totalComments   Int?        @default(0)
+  totalApplied    Int?                                  @default(0)
+  totalComments   Int?                                  @default(0)
   companyName     String?     @map("company_name")
   jobCode         String?     @map("job_code")
   jobURL          String?     @map("job_url")
-  isPause         Boolean     @default(false)
+  isPause         Boolean                               @default(false)
   applied         Applied[]
   bookmarks       Bookmarks[]
   comments        Comments[]
@@ -114,13 +115,13 @@ model Posts {
 }
 
 model Applied {
-  id         String     @id @default(cuid())
-  appliedAt  DateTime   @default(now())
+  id         String                        @id @default(cuid())
+  appliedAt  DateTime                      @default(now())
   userId     String
   postId     String     @map("post_id")
   applyInfo  Json?      @map("apply_info")
-  visibility Visibility @default(Unread)
-  status     Status     @default(Pending)
+  visibility Visibility                    @default(Unread)
+  status     Status                        @default(Pending)
   reply      String?
   posts      Posts      @relation(fields: [postId], references: [id], onDelete: Cascade)
   user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -132,16 +133,16 @@ model Applied {
 }
 
 model Tags {
-  id    String  @id @default(cuid())
-  name  String  @unique
+  id    String   @id @default(cuid())
+  name  String   @unique
   posts Posts[] @relation("PostsToTags")
 
   @@map("tags")
 }
 
 model Hashtags {
-  id    String  @id @default(cuid())
-  name  String  @unique
+  id    String   @id @default(cuid())
+  name  String   @unique
   posts Posts[] @relation("PostsToHashtags")
 
   @@map("hashtags")
@@ -149,8 +150,8 @@ model Hashtags {
 
 model Comments {
   text      String
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
   userId    String
   postId    String
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
@@ -160,8 +161,8 @@ model Comments {
 }
 
 model Bookmarks {
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
   userId    String
   postId    String
   posts     Posts    @relation(fields: [postId], references: [id], onDelete: Cascade)
