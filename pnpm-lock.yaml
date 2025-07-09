@@ -567,9 +567,15 @@ importers:
         specifier: ^5.0.5
         version: 5.0.10
     devDependencies:
+      '@types/node':
+        specifier: ^20.6.2
+        version: 20.19.4
       prisma:
         specifier: ^5.3.1
         version: 5.22.0
+      typescript:
+        specifier: ^5.2.2
+        version: 5.8.3
 
   packages/tailwind-config: {}
 
