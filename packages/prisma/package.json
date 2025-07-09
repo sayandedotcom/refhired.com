@@ -7,13 +7,17 @@
     "db:format": "npx prisma format",
     "db:generate-schemas": "prisma generate && prisma format",
     "db:generate": "npx prisma generate",
+    "db:migrate": "npx prisma migrate dev --skip-generate",
+    "db:deploy": "npx prisma migrate deploy",
     "db:studio": "npx prisma studio",
     "db:push": "npx prisma db push",
     "db:pull": "npx prisma db pull",
     "clean": "rimraf node_modules dist"
   },
   "devDependencies": {
-    "prisma": "^5.3.1"
+    "@types/node": "^20.6.2",
+    "prisma": "^5.3.1",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@prisma/client": "^5.3.1",
