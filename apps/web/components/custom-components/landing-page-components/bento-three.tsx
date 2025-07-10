@@ -1,4 +1,4 @@
-import { CircleDollarSign, Folder, Gauge, Send, User } from "lucide-react";
+import { CircleDollarSign, Folder, Gauge, Send, Sparkles, User } from "lucide-react";
 
 import { AnimatedGradientHeading, MagicBentoCard, MagicBentoGrid, VelocityScroll } from "@/components/ui";
 
@@ -33,7 +33,10 @@ const features = [
     href: "/",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: (
+      // /images/dashboard-overview.png"
+      <img src="" className="border-foreground absolute -right-20 top-5 rounded-lg border opacity-60" />
+    ),
   },
   {
     Icon: User,
@@ -54,13 +57,13 @@ const features = [
     background: <img className="absolute -right-20 -top-20 opacity-60" />,
   },
   {
-    Icon: Send,
-    name: "Post Referrals",
-    description: "Post Referrals to attract job seekers.",
+    Icon: Sparkles,
+    name: "AI support",
+    description: "Filter best candidate with AI support.",
     href: "/",
     cta: "Learn more",
     className: "col-span-3 lg:col-span-2",
-    background: <img className="absolute -right-20 -top-20 opacity-60" />,
+    background: <img src="" className="absolute -right-20 -top-20 opacity-60" />,
   },
 ];
 
