@@ -6,7 +6,7 @@
   "scripts": {
     "db:format": "npx prisma format",
     "db:generate-schemas": "prisma generate && prisma format",
-    "db:generate": "npx prisma generate",
+    "db:generate": "npx prisma generate --schema=./schema.prisma",
     "db:migrate": "npx prisma migrate dev --skip-generate",
     "db:deploy": "npx prisma migrate deploy",
     "db:studio": "npx prisma studio",
