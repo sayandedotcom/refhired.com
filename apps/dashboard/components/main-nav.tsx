@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { cn } from "@referrer/lib/utils/cn";
+import { cn } from "@/utils";
 
 export function MainNav({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (

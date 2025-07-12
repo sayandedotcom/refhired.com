@@ -6,8 +6,9 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 import { addDays, format } from "date-fns";
 import { DateRange } from "react-day-picker";
 
-import { cn } from "@referrer/lib/utils/cn";
 import { Button, Calendar, Popover, PopoverContent, PopoverTrigger } from "@referrer/ui";
+
+import { cn } from "@/utils";
 
 export function CalendarDateRangePicker({ className }: React.HTMLAttributes<HTMLDivElement>) {
   const [date, setDate] = React.useState<DateRange | undefined>({

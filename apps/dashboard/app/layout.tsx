@@ -6,9 +6,9 @@ import { siteConfig } from "@/config/site";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 
-import { cn } from "@referrer/lib/utils/cn";
-
 import { ThemeProvider } from "@/components/theme-provider";
+
+import { cn } from "@/utils";
 
 import "../styles/globals.css";
 

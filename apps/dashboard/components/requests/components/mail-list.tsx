@@ -2,8 +2,9 @@ import { ComponentProps } from "react";
 
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
-import { cn } from "@referrer/lib/utils/cn";
 import { Badge, ScrollArea, Separator } from "@referrer/ui";
+
+import { cn } from "@/utils";
 
 import { Mail } from "../data";
 
