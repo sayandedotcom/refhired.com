@@ -1,12 +1,12 @@
 import { generateEncryptedToken, logger } from "@repo/lib";
-import { type UserCreateInputType, type UserCreateOutputType, type UserGetOutputType } from "@repo/models";
+import { type UserCreateInputType, type UserCreateOutputType } from "@repo/models";
 import { type NextFunction, type Request, type RequestHandler, type Response } from "express";
 
 import { cookieService } from "../services/cookie.service";
 import { userService } from "../services/user.service";
 
-class RequestController {
-  createRequest: RequestHandler = async (
+class BookmarkController {
+  createBookmark: RequestHandler = async (
     req: Request<object, object, UserCreateInputType["body"]>,
     res: Response<UserCreateOutputType>,
     next: NextFunction
@@ -24,9 +24,9 @@ class RequestController {
     }
   };
 
-  deleteRequestById: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+  deleteBookmarkById: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const user = req.cu;
+      const user = req.currentUser.paidForDashboard;
       await userService.deleteUser(user.id);
       cookieService.clearTokenCookie({ res });
       res.status(204);
@@ -35,22 +35,6 @@ class RequestController {
       next(error);
     }
   };
-
-  getRequestsByPostId: RequestHandler = async (
-    req: Request,
-    res: Response<UserGetOutputType>,
-    next: NextFunction
-  ) => {
-    try {
-      const user = req.user;
-      res.status(200).json({
-        user,
-      });
-    } catch (error) {
-      logger.error(error);
-      next(error);
-    }
-  };
 }
 
-export const requestController = new RequestController();
+export const bookmarkController = new BookmarkController();

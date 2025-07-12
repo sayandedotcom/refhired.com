@@ -1,35 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2020" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "NodeNext" /* Specify what module code is generated. */,
-    "moduleResolution": "NodeNext",
-    "rootDir": "./" /* Specify the root folder within your source files. */,
-    "outDir": "./dist" /* Specify an output folder for all emitted files. */,
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    // "target": "ES2020",
+    // "module": "NodeNext",
+    // "moduleResolution": "NodeNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "exclude": ["node_modules"],
-  "include": ["src/**/*"]
-  // "ts-node": {
-  //   "esm": true,
-  //   "experimentalSpecifierResolution": "node"
-  // }
+  "include": ["src/**/*", ".eslintrc.js"]
 }
-
-// {
-//   "compilerOptions": {
-//     "target": "ES2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-//     "module": "NodeNext" /* Specify what module code is generated. */,
-//     "rootDir": "./src" /* Specify the root folder within your source files. */,
-//     "moduleResolution": "NodeNext" /* Specify how TypeScript looks up a file from a given module specifier. */,
-//     "baseUrl": "src",
-//     "outDir": "api" /* Specify an output folder for all emitted files. */,
-//     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-//     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-//     // "strict": true /* Enable all strict type-checking options. */,
-//     "skipLibCheck": true /* Skip type checking all .d.ts files. */
-//   },
-//   "exclude": ["node_modules"],
-//   "include": ["src/**/*"]
-// }
