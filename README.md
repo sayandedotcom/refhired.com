@@ -38,7 +38,7 @@ Deployment Cost - AWS Aurora Database for 2 days cost me $0.35! with only 2 
   </p>
 </p>
 
-This is a solo project by [Sayan De](https://github.com/sayandedotcom).
+This is a solo project by [Sayan De](https://github.com/sayandedotcom). Read more about the project in this [blog](https://blogs.sayande.com/refhiredcom-what-is-it-a-side-hustle-that-boosted-my-career-skills-confidence-knowledge-etc)
 
 ## Architecture
 
