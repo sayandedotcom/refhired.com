@@ -87,7 +87,7 @@
     "@referrer/tailwind-config": "workspace:*",
     "@referrer/tsconfig": "workspace:*",
     "@refhiredcom/types": "workspace:*",
-    "@types/node": "^20.6.2",
+    "@types/node": "^26.5.1",
     "@types/nodemailer": "^6.4.10",
     "@types/nprogress": "^0.2.0",
     "@types/numeral": "^2.0.5",
